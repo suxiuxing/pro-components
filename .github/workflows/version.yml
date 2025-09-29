@@ -1,9 +1,9 @@
-name: Release
+name: Version Packages
 
 on:
   push:
     branches:
-      - master
+      - release/**
 
 permissions: write-all
 
@@ -30,18 +30,12 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm build
-
-      - name: Create Release Pull Request or Publish to npm
+      - name: Create Release Pull Request
         id: changesets
         uses: changesets/action@v1
         with:
           version: pnpm changeset version
           commit: 'chore: update versions'
           title: 'chore: update versions'
-          publish: pnpm changeset publish
-          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
