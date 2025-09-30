@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build": "father build",
-    "build:docs": "cross-env SITE_DEPLOY='TRUE' dumi build",
+    "build:docs": "dumi build",
     "build:site": "pnpm build && pnpm build:docs",
     "dev": "dumi dev",
     "format": "prettier --write --ignore-unknown .",
