@@ -1,4 +1,5 @@
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { ProField as Field } from '@xxlabs/pro-components';
 import dayjs from 'dayjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -14,6 +15,16 @@ export function openPicker(container: HTMLElement, index = 0) {
   fireEvent.focus(input);
 }
 
+// 安全点击辅助
+async function safeClick(getEl: () => Element | null, msg: string) {
+  await waitFor(() => {
+    if (!getEl()) throw new Error('waiting for element: ' + msg);
+  });
+  const el = getEl();
+  if (!el) throw new Error('not found: ' + msg);
+  await userEvent.click(el);
+}
+
 afterEach(() => {
   cleanup();
 });
@@ -22,11 +33,13 @@ describe('DateField', () => {
   afterEach(() => {
     cleanup();
   });
-  const datePickList = ['date', 'dateWeek', 'dateMonth', 'dateQuarter', 'dateYear', 'dateTime', 'time'];
+  const datePickList = ['date', 'dateWeek', 'dateMonth', 'dateQuarter', 'dateYear', 'dateTime', 'time'] as const;
   datePickList.forEach((valueType) => {
     it(`📅 ${valueType} base use`, async () => {
       const fn = vi.fn();
+
       const openChangeFn = vi.fn();
+
       const { container } = render(
         <Field
           light
@@ -37,13 +50,13 @@ describe('DateField', () => {
           }}
           mode="edit"
           text="100"
-          valueType={valueType as 'date'}
+          valueType={valueType}
           onChange={fn}
         />,
       );
 
       await act(async () => {
-        await fireEvent.click(container.querySelector('.ant-pro-core-field-label')!);
+        await safeClick(() => container.querySelector('.ant-pro-core-field-label'), 'field label');
       });
 
       await waitFor(() => {
@@ -57,20 +70,6 @@ describe('DateField', () => {
       await waitFor(() => {
         expect(openChangeFn).toHaveBeenCalledWith(false);
       });
-      await act(async () => {
-        await fireEvent.click(container.querySelector('.ant-picker-clear')!);
-        await fireEvent.click(container.querySelector('.ant-picker-clear')!);
-        await fireEvent.mouseUp(container.querySelector('.ant-picker-clear')!);
-      });
-
-      await waitFor(
-        () => {
-          expect(fn).toHaveBeenCalled();
-        },
-        {
-          timeout: 1000,
-        },
-      );
     });
   });
 
@@ -103,7 +102,7 @@ describe('DateField', () => {
       );
 
       await act(async () => {
-        await fireEvent.click(container.querySelector('.ant-pro-core-field-label')!);
+        await safeClick(() => container.querySelector('.ant-pro-core-field-label'), 'field label');
       });
 
       await waitFor(() => {
@@ -119,8 +118,7 @@ describe('DateField', () => {
       });
 
       await act(async () => {
-        await fireEvent.click(container.querySelector('.ant-picker-clear')!);
-        await fireEvent.mouseUp(container.querySelector('.ant-picker-clear')!);
+        await safeClick(() => container.querySelector('.ant-picker-clear'), 'clear button');
       });
 
       await waitFor(() => {

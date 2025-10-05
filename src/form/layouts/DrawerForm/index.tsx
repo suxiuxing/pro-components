@@ -129,10 +129,10 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
   const formRef = useRef<ProFormInstance>(undefined);
 
   const resetFields = useCallback(() => {
-    const form = rest.formRef?.current ?? rest.form ?? formRef.current;
     // 重置表单
-    if (form && drawerProps?.destroyOnHidden) {
-      form.resetFields();
+    if (drawerProps?.destroyOnHidden) {
+      const form = rest.formRef?.current ?? rest.form ?? formRef.current;
+      form?.resetFields?.();
     }
   }, [drawerProps?.destroyOnHidden, rest.form, rest.formRef]);
 

@@ -90,10 +90,10 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
   const formRef = useRef<ProFormInstance>(undefined);
 
   const resetFields = useCallback(() => {
-    const form = rest.form ?? rest.formRef?.current ?? formRef.current;
     // 重置表单
-    if (form && modalProps?.destroyOnHidden) {
-      form.resetFields();
+    if (modalProps?.destroyOnHidden) {
+      const form = rest.form ?? rest.formRef?.current ?? formRef.current;
+      form?.resetFields?.();
     }
   }, [modalProps?.destroyOnHidden, rest.form, rest.formRef]);
 
@@ -271,6 +271,7 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
           }}
           onInit={(_, form) => {
             if (rest.formRef) {
+              // eslint-disable-next-line react-hooks/immutability
               (rest.formRef as React.RefObject<ProFormInstance<T>>).current = form;
             }
             rest?.onInit?.(_, form);

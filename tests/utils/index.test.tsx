@@ -918,7 +918,7 @@ describe('utils', () => {
         },
       }),
     ).toBe(
-      '{"name":"kiner","age":99999,"node":{"type":"div","key":null,"ref":null,"props":{"children":"aaaa"},"_owner":null,"_store":{}}}',
+      '{"name":"kiner","age":99999,"node":{"type":"div","key":null,"props":{"children":"aaaa"},"_owner":null,"_store":{}}}',
     );
   });
 });

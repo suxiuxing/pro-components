@@ -5,11 +5,10 @@ on:
     branches:
       - master
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+permissions: write-all
 
 jobs:
   release:
-    name: Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -42,10 +41,7 @@ jobs:
           commit: 'chore: update versions'
           title: 'chore: update versions'
           publish: pnpm changeset publish
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Send a Slack notification if a publish happens
-        if: steps.changesets.outputs.published == 'true'
-        run: my-slack-bot send-notification --message "A new version of ${GITHUB_REPOSITORY} was published!"
