@@ -72,8 +72,8 @@
     "@types/lodash-es": "^4.17.12",
     "@types/mockjs": "^1.0.10",
     "@types/node": "^22.18.8",
-    "@types/react": "^19.2.0",
-    "@types/react-dom": "^19.2.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
     "@vitest/browser": "^3.2.4",
     "@vitest/coverage-istanbul": "^3.2.4",
     "@vitest/ui": "^3.2.4",
@@ -102,10 +102,10 @@
     "react-dom": "^19.2.0",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.45.0",
+    "typescript-eslint": "^8.46.0",
     "umi": "^4.5.1",
     "umi-request": "^1.4.0",
-    "vite": "npm:rolldown-vite@7.1.15",
+    "vite": "npm:rolldown-vite@7.1.16",
     "vitest": "^3.2.4",
     "xhr-mock": "^2.5.1"
   },
@@ -114,7 +114,7 @@
     "react": ">=19.0.0",
     "react-dom": ">=19.0.0"
   },
-  "packageManager": "pnpm@10.18.0",
+  "packageManager": "pnpm@10.18.1",
   "engines": {
     "node": ">=22.0.0"
   },
