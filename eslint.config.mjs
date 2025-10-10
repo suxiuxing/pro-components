@@ -9,16 +9,17 @@ import tsEslint from 'typescript-eslint';
 export default defineConfig([
   globalIgnores(['.dumi', 'dist']),
   {
-    files: ['**/*.{js,ts,jsx,tsx,cjs,cts,mjs,mts}'],
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     extends: [
       js.configs.recommended,
       tsEslint.configs.recommended,
       eslintPluginReact.configs.flat.recommended,
-      eslintPluginReactHooks.configs['recommended-latest'],
+      eslintPluginReactHooks.configs.flat['recommended-latest'],
       eslintPluginReactRefresh.configs.recommended,
     ],
     languageOptions: {
       ecmaVersion: 2020,
+      ...eslintPluginReact.configs.flat.recommended.languageOptions,
       globals: {
         ...globals.browser,
         ...globals.node,
