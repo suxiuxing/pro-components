@@ -6,6 +6,7 @@ export default defineConfig([
     input: './src/index.ts',
     plugins: [dts()],
     output: { dir: 'dist/esm', format: 'es' },
+    external: ['react', 'react-dom', 'antd'],
   },
   {
     input: './src/index.ts',
@@ -13,5 +14,6 @@ export default defineConfig([
       dir: 'dist/cjs',
       format: 'cjs',
     },
+    external: ['react', 'react-dom', 'antd'],
   },
 ]);
