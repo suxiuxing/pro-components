@@ -1,10 +1,18 @@
 import { defineConfig } from 'rolldown';
 import { dts } from 'rolldown-plugin-dts';
 import { esmExternalRequirePlugin } from 'rolldown/experimental';
+import pkg from './package.json';
 
 const external = () => {
   return esmExternalRequirePlugin({
-    external: ['antd', 'dayjs', 'react', 'react/jsx-runtime', 'react-dom'],
+    external: [
+      /^antd/,
+      /^dayjs/,
+      'es-toolkit/compat',
+      'react/jsx-runtime',
+      'react-is',
+      ...Object.keys(pkg.dependencies),
+    ],
   });
 };
 

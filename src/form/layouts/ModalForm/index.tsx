@@ -1,7 +1,7 @@
 ﻿import { useMergedState, warning } from '@rc-component/util';
 import type { FormProps, ModalProps } from 'antd';
 import { ConfigProvider, Modal } from 'antd';
-import { merge } from 'lodash-es';
+import { merge } from 'es-toolkit/compat';
 import type { JSX } from 'react';
 import React, { useCallback, useContext, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';

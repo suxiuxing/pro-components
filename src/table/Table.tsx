@@ -8,8 +8,7 @@ import type {
   TableCurrentDataSource,
 } from 'antd/es/table/interface';
 import classNames from 'classnames';
-import isEmpty from 'lodash-es/isEmpty';
-import isEqual from 'lodash-es/isEqual';
+import { isEmpty, isEqual } from 'es-toolkit/compat';
 import type Summary from 'rc-table/lib/Footer/Summary';
 import type { JSX, Key } from 'react';
 import React, { useCallback, useContext, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
