@@ -1,6 +1,6 @@
 {
   "name": "@xxlabs/pro-components",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
@@ -111,6 +111,7 @@
   },
   "peerDependencies": {
     "antd": "^5.27.4",
+    "dayjs": ">=1.11.18",
     "react": ">=19.2.0",
     "react-dom": ">=19.2.0"
   },

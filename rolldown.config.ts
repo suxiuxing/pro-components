@@ -1,19 +1,25 @@
 import { defineConfig } from 'rolldown';
 import { dts } from 'rolldown-plugin-dts';
+import { esmExternalRequirePlugin } from 'rolldown/experimental';
+
+const external = () => {
+  return esmExternalRequirePlugin({
+    external: ['antd', 'dayjs', 'react', 'react-dom'],
+  });
+};
 
 export default defineConfig([
   {
     input: './src/index.ts',
-    plugins: [dts()],
+    plugins: [dts(), external()],
     output: { dir: 'dist/esm', format: 'es' },
-    external: ['react', 'react-dom', 'antd'],
   },
   {
     input: './src/index.ts',
+    plugins: [external()],
     output: {
       dir: 'dist/cjs',
       format: 'cjs',
     },
-    external: ['react', 'react-dom', 'antd'],
   },
 ]);
