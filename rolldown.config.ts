@@ -4,7 +4,7 @@ import { esmExternalRequirePlugin } from 'rolldown/experimental';
 
 const external = () => {
   return esmExternalRequirePlugin({
-    external: ['antd', 'dayjs', 'react', 'react-dom'],
+    external: ['antd', 'dayjs', 'react', 'react/jsx-runtime', 'react-dom'],
   });
 };
 
