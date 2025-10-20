@@ -26,18 +26,11 @@ export default defineConfig([
       },
     },
     rules: {
-      '@typescript-eslint/ban-ts-comment': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/ban-ts-comment': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-unused-vars': ['warn', { caughtErrors: 'none' }],
 
-      'react-hooks/exhaustive-deps': 'off',
-
-      'react-refresh/only-export-components': 'warn',
-
-      'react/no-unescaped-entities': 'warn',
-      'react/prop-types': 'off',
-      'react/display-name': 'warn',
       'react/react-in-jsx-scope': 'off',
       'react/jsx-sort-props': [
         'error',
