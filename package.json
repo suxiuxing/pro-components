@@ -49,7 +49,7 @@
     "antd": "^5.27.6",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.18",
-    "es-toolkit": "^1.40.0",
+    "es-toolkit": "^1.41.0",
     "path-to-regexp": "^8.3.0",
     "rc-field-form": "^2.7.0",
     "rc-resize-observer": "^1.4.3",
@@ -74,39 +74,39 @@
     "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.6.1",
     "@types/mockjs": "^1.0.10",
-    "@types/node": "^22.18.11",
+    "@types/node": "^22.18.12",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
-    "@vitest/browser": "^3.2.4",
-    "@vitest/coverage-istanbul": "^3.2.4",
-    "@vitest/ui": "^3.2.4",
+    "@vitest/browser": "^4.0.4",
+    "@vitest/coverage-istanbul": "^4.0.4",
+    "@vitest/ui": "^4.0.4",
     "cross-env": "^10.1.0",
     "dumi": "^2.4.21",
     "dumi-theme-antd-style": "^0.31.1",
     "eslint": "^9.38.0",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "glob": "^11.0.3",
     "globals": "^16.4.0",
-    "happy-dom": "^20.0.7",
+    "happy-dom": "^20.0.8",
     "husky": "^9.1.7",
     "jest-canvas-mock": "^2.5.2",
-    "lint-staged": "^16.2.4",
+    "lint-staged": "^16.2.6",
     "mockdate": "^3.0.5",
     "mockjs": "^1.1.0",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-packagejson": "^2.5.19",
-    "rolldown": "1.0.0-beta.44",
-    "rolldown-plugin-dts": "^0.16.12",
+    "rolldown": "1.0.0-beta.45",
+    "rolldown-plugin-dts": "^0.17.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.1",
-    "umi": "^4.5.2",
+    "typescript-eslint": "^8.46.2",
+    "umi": "^4.5.3",
     "umi-request": "^1.4.0",
-    "vite": "npm:rolldown-vite@7.1.18",
-    "vitest": "^3.2.4",
+    "vite": "npm:rolldown-vite@7.1.20",
+    "vitest": "^4.0.4",
     "xhr-mock": "^2.5.1"
   },
   "peerDependencies": {
@@ -115,7 +115,7 @@
     "react": ">=19.2.0",
     "react-dom": ">=19.2.0"
   },
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.19.0",
   "engines": {
     "node": ">=22.0.0"
   },
@@ -132,7 +132,7 @@
       "esbuild"
     ],
     "overrides": {
-      "vite": "npm:rolldown-vite@7.1.18"
+      "vite": "npm:rolldown-vite@7.1.20"
     }
   }
 }
