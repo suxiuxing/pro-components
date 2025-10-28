@@ -146,10 +146,10 @@ importers:
         version: 10.1.0
       dumi:
         specifier: ^2.4.21
-        version: 2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
+        version: 2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
       dumi-theme-antd-style:
         specifier: ^0.31.1
-        version: 0.31.1(@types/react@19.2.2)(dumi@2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+        version: 0.31.1(@types/react@19.2.2)(dumi@2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       eslint:
         specifier: ^9.38.0
         version: 9.38.0(jiti@2.6.1)
@@ -195,12 +195,9 @@ importers:
       prettier-plugin-packagejson:
         specifier: ^2.5.19
         version: 2.5.19(prettier@3.6.2)
-      rolldown:
-        specifier: 1.0.0-beta.45
-        version: 1.0.0-beta.45
-      rolldown-plugin-dts:
-        specifier: ^0.17.1
-        version: 0.17.1(rolldown@1.0.0-beta.45)(typescript@5.9.3)
+      tsdown:
+        specifier: ^0.15.11
+        version: 0.15.11(typescript@5.9.3)
       tsx:
         specifier: ^4.20.6
         version: 4.20.6
@@ -212,7 +209,7 @@ importers:
         version: 8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3)
       umi:
         specifier: ^4.5.3
-        version: 4.5.3(@babel/core@7.28.5)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.54.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
+        version: 4.5.3(@babel/core@7.28.5)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.54.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
       umi-request:
         specifier: ^1.4.0
         version: 1.4.0
@@ -1651,6 +1648,9 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
+  '@quansync/fs@0.1.5':
+    resolution: {integrity: sha512-lNS9hL2aS2NZgNW7BBj+6EBl4rOf8l+tQ0eRY6JWCI8jI2kc53gSoqbjojU0OnAWhzoXiOjFyGsHcDGePB3lhA==}
+
   '@rc-component/async-validator@5.0.4':
     resolution: {integrity: sha512-qgGdcVIF604M9EqjNF0hbUTz42bz/RDtxWdWuU5EQe3hi7M8ob54B6B35rOsvX5eSvIHIzT9iH1R3n+hk3CGfg==}
     engines: {node: '>=14.x'}
@@ -2543,38 +2543,38 @@ packages:
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
-  '@utoo/pack-darwin-arm64@0.0.1-alpha.57':
-    resolution: {integrity: sha512-X8O0Z0P2+C2jawIRF1PYusyP6IXZgYenlJrxu0uhfoh7yS1BIPLAT/fZslMzL8qXOu0UzsfwBOGlORr8Rvn6Sg==}
+  '@utoo/pack-darwin-arm64@0.0.1-alpha.58':
+    resolution: {integrity: sha512-9FyWklt5swXr41X1gUNl5bQHoUd75+DA5ha88wZGJ/1K133dDRmcqzQym7Bt0igfL7pVN7CZj8N0QGfByQi3+w==}
     engines: {node: '>= 20'}
     cpu: [arm64]
     os: [darwin]
 
-  '@utoo/pack-darwin-x64@0.0.1-alpha.57':
-    resolution: {integrity: sha512-UtW4OjILPUPPmfJqYK10EIKQeRQkyOEe//sCuYVmk21TcSOdI3joS/4Ng6tlNON0uxmV7btIdE+euFfYjZO4Cw==}
+  '@utoo/pack-darwin-x64@0.0.1-alpha.58':
+    resolution: {integrity: sha512-8dA2/AmBTQziS8v5IrE8aMKRWTyBJDpSPDuipjGt1wQYnP+RrxTEGJOvGff9UMUNUp/AHzRWIj/15zAL7o28vA==}
     engines: {node: '>= 20'}
     cpu: [x64]
     os: [darwin]
 
-  '@utoo/pack-linux-arm64-gnu@0.0.1-alpha.57':
-    resolution: {integrity: sha512-2qXExUlR9SFkWsnGiY8+Z14WMduTujYYKQFMGjd4q+Hp7ogPvKwa0U39WcJcFnVbgc6b7EJZaVmvAxkxiQvZrA==}
+  '@utoo/pack-linux-arm64-gnu@0.0.1-alpha.58':
+    resolution: {integrity: sha512-MS92dkIv0JIo8rpyI/p1XzkVd21W0X7v6bcECcqrum6elZ/DZvZBw8t7cDFVmChvdzZruISH7+CfESAlPTSc2w==}
     engines: {node: '>= 20'}
     cpu: [arm64]
     os: [linux]
 
-  '@utoo/pack-linux-arm64-musl@0.0.1-alpha.57':
-    resolution: {integrity: sha512-rU8vaC7CNQ1CDshtVvY8ld2PM/BcgnX5z5hW1MYqu83mKT1JcGKJ2ln19n/q6xteXk8NDPx8UJtoG1dOcaFPOw==}
+  '@utoo/pack-linux-arm64-musl@0.0.1-alpha.58':
+    resolution: {integrity: sha512-LbLzFqWKc6Wb/9gBQFOU2QhusLdvTX+e3tFKO5QA0gn8bau+GMouqJWYUWrzD2C0GOfv22KYzO3ndLJd4KGdfQ==}
     engines: {node: '>= 20'}
     cpu: [arm64]
     os: [linux]
 
-  '@utoo/pack-linux-x64-gnu@0.0.1-alpha.57':
-    resolution: {integrity: sha512-o+oxa7IjtPb3V1NbhSs483g3MEj8yF/nfJHYCN+a50524D6AMQp40IZc5qeo+bK7to93lgFYEudbn/wFijO5/w==}
+  '@utoo/pack-linux-x64-gnu@0.0.1-alpha.58':
+    resolution: {integrity: sha512-H+15xldZCwSSFDZRho4lMGnDHhyR3AvyP7ZM63FLlkzVlJ8itzMB7FMhQJI55zS2HEr3JP+StIT8rv0476NHDQ==}
     engines: {node: '>= 20'}
     cpu: [x64]
     os: [linux]
 
-  '@utoo/pack-linux-x64-musl@0.0.1-alpha.57':
-    resolution: {integrity: sha512-hM7g9TC444cLAYZlGmGbqq2NujGOlmntoUm0iqYsV1G/spACVHEVWI2EmQlGAq0N7F8JVcWnl6zhqVzA03uTeQ==}
+  '@utoo/pack-linux-x64-musl@0.0.1-alpha.58':
+    resolution: {integrity: sha512-Q4SuW3u+e8AUpfHJMS/Fdd5upoUxkNNLJIXqCMCaRqrr47P8ne5QC+mx97Nf79rSeeLhaElerWp8q/qkALYlHQ==}
     engines: {node: '>= 20'}
     cpu: [x64]
     os: [linux]
@@ -2583,14 +2583,14 @@ packages:
     resolution: {integrity: sha512-CATHVePPWDirHvej0dR2x6nYPHjXgggpiMPOC846z1a9En20r3G1xrMkDBcNDbKlWJ2uF+kyR3qzcrLCCH+YCw==}
     engines: {node: '>= 20'}
 
-  '@utoo/pack-win32-x64-msvc@0.0.1-alpha.57':
-    resolution: {integrity: sha512-OLg8RKFYp3Gcc5NodVNuph0xXNSrcgsbZLa6M7R7gFeBbHYKrNgp0t/zzpyLJp1rKpQ4h0Z7voVCKYhKn2hiXA==}
+  '@utoo/pack-win32-x64-msvc@0.0.1-alpha.58':
+    resolution: {integrity: sha512-y1loLzpMvcE/6E1hxpVcMjulYKAYqzKU/cGsTDT5Q/yKDKhgorO8O72z0TBSNXNZuIBva+6C/i25FywKqsIekA==}
     engines: {node: '>= 20'}
     cpu: [x64]
     os: [win32]
 
-  '@utoo/pack@0.0.1-alpha.57':
-    resolution: {integrity: sha512-xKdYgsgCbS2/p13jGcQ3KXKtwT17JV5rZBWt7UTxFXmhTg2zNj/95BjUHjcC/Np8vR/R4Lnm9QPsdZmFDydz/g==}
+  '@utoo/pack@0.0.1-alpha.58':
+    resolution: {integrity: sha512-zEQHYngqSCNSW5/zoAvElB2jy6k6w9A1niw6mdPS30qJVvmi8GZEdOyxkzcujQDEEdYhOin8vfMsxfYiis3A2g==}
     engines: {node: '>= 20'}
     peerDependencies:
       '@types/webpack': ^5.28.5
@@ -2801,6 +2801,10 @@ packages:
   ansi-styles@6.2.3:
     resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
     engines: {node: '>=12'}
+
+  ansis@4.2.0:
+    resolution: {integrity: sha512-HqZ5rWlFjGiV0tDm3UxxgNRqsOTniqoKZu0pIAfh7TZQMGuZK+hH0drySty0si0QXj1ieop4+SkSfPZBPPkHig==}
+    engines: {node: '>=14'}
 
   antd-style@3.7.1:
     resolution: {integrity: sha512-CQOfddVp4aOvBfCepa+Kj2e7ap+2XBINg1Kn2osdE3oQvrD7KJu/K0sfnLcFLkgCJygbxmuazYdWLKb+drPDYA==}
@@ -3089,6 +3093,10 @@ packages:
   bytes@3.1.2:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
+
+  cac@6.7.14:
+    resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
+    engines: {node: '>=8'}
 
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
@@ -3602,6 +3610,9 @@ packages:
     resolution: {integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==}
     engines: {node: '>= 0.4'}
 
+  defu@6.1.4:
+    resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
+
   depd@1.1.2:
     resolution: {integrity: sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==}
     engines: {node: '>= 0.6'}
@@ -3653,6 +3664,10 @@ packages:
 
   diff@5.2.0:
     resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
+    engines: {node: '>=0.3.1'}
+
+  diff@8.0.2:
+    resolution: {integrity: sha512-sSuxWU5j5SR9QQji/o2qMvqRNYRDOcBTgsJ/DeCf4iSN4gW+gNMXM7wFIP+fdXZxoNiAnHUTGjCr+TSWXdRDKg==}
     engines: {node: '>=0.3.1'}
 
   diffie-hellman@5.0.3:
@@ -3785,6 +3800,10 @@ packages:
   emojis-list@3.0.0:
     resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==}
     engines: {node: '>= 4'}
+
+  empathic@2.0.0:
+    resolution: {integrity: sha512-i6UzDscO/XfAcNYD75CfICkmfLedpyPDdozrLMmQc5ORaQcdMoc21OnlEylMIqI7U8eniKrPMxxtj8k0vhmJhA==}
+    engines: {node: '>=14'}
 
   encodeurl@1.0.2:
     resolution: {integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==}
@@ -4551,6 +4570,9 @@ packages:
 
   hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+
+  hookable@5.5.3:
+    resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
 
   hosted-git-info@2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
@@ -7981,6 +8003,10 @@ packages:
   transformation-matrix@2.16.1:
     resolution: {integrity: sha512-tdtC3wxVEuzU7X/ydL131Q3JU5cPMEn37oqVLITjRDSDsnSHVFzW2JiCLfZLIQEgWzZHdSy3J6bZzvKEN24jGA==}
 
+  tree-kill@1.2.2:
+    resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
+    hasBin: true
+
   trim-lines@3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
 
@@ -8006,6 +8032,28 @@ packages:
 
   ts-toolbelt@9.6.0:
     resolution: {integrity: sha512-nsZd8ZeNUzukXPlJmTBwUAuABDe/9qtVDelJeT/qW0ow3ZS3BsQJtNkan1802aM9Uf68/Y8ljw86Hu0h5IUW3w==}
+
+  tsdown@0.15.11:
+    resolution: {integrity: sha512-7k2OglWWt6LzvJKwEf1izbGvETvVfPYRBr9JgEYVRnz/R9LeJSp+B51FUMO46wUeEGtZ1jA3E3PtWWLlq3iygA==}
+    engines: {node: '>=20.19.0'}
+    hasBin: true
+    peerDependencies:
+      '@arethetypeswrong/core': ^0.18.1
+      publint: ^0.3.0
+      typescript: ^5.0.0
+      unplugin-lightningcss: ^0.4.0
+      unplugin-unused: ^0.5.0
+    peerDependenciesMeta:
+      '@arethetypeswrong/core':
+        optional: true
+      publint:
+        optional: true
+      typescript:
+        optional: true
+      unplugin-lightningcss:
+        optional: true
+      unplugin-unused:
+        optional: true
 
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
@@ -8094,6 +8142,9 @@ packages:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
 
+  unconfig@7.3.3:
+    resolution: {integrity: sha512-QCkQoOnJF8L107gxfHL0uavn7WD9b3dpBcFX6HtfQYmjw2YzWxGuFQ0N0J6tE9oguCBJn9KOvfqYDCMPHIZrBA==}
+
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
@@ -8160,6 +8211,11 @@ packages:
 
   unquote@1.1.1:
     resolution: {integrity: sha512-vRCqFv6UhXpWxZPyGDh/F3ZpNv8/qo7w6iufLpQg9aKnQ71qM4B5KiI7Mia9COcjEhrO9LueHpMYjYzsWH3OIg==}
+
+  unrun@0.2.1:
+    resolution: {integrity: sha512-1HpwmlCKrAOP3jPxFisPR0sYpPuiNtyYKJbmKu9iugIdvCte3DH1uJ1p1DBxUWkxW2pjvkUguJoK9aduK8ak3Q==}
+    engines: {node: '>=20.19.0'}
+    hasBin: true
 
   unset-value@0.1.2:
     resolution: {integrity: sha512-yhv5I4TsldLdE3UcVQn0hD2T5sNCPv4+qm/CTUpRKIpwthYRIipsAPdsrNpOI79hPQa0rTTeW22Fq6JWRcTgNg==}
@@ -9997,6 +10053,10 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
+  '@quansync/fs@0.1.5':
+    dependencies:
+      quansync: 0.2.11
+
   '@rc-component/async-validator@5.0.4':
     dependencies:
       '@babel/runtime': 7.28.4
@@ -10789,11 +10849,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@umijs/bundler-utoopack@4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))':
+  '@umijs/bundler-utoopack@4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))':
     dependencies:
       '@umijs/bundler-utils': 4.5.3
       '@umijs/bundler-webpack': 4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
-      '@utoo/pack': 0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11))
+      '@utoo/pack': 0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11))
       compression: 1.8.1
       connect-history-api-fallback: 2.0.0
       cors: 2.8.5
@@ -11095,7 +11155,7 @@ snapshots:
     dependencies:
       tsx: 3.12.2
 
-  '@umijs/preset-umi@4.5.3(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(jiti@2.6.1)(sass@1.54.0)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)':
+  '@umijs/preset-umi@4.5.3(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(jiti@2.6.1)(sass@1.54.0)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)':
     dependencies:
       '@iconify/utils': 2.1.1
       '@stagewise/toolbar': 0.6.2
@@ -11105,7 +11165,7 @@ snapshots:
       '@umijs/bundler-esbuild': 4.5.3
       '@umijs/bundler-mako': 0.11.10(postcss@8.5.6)(sass@1.54.0)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
       '@umijs/bundler-utils': 4.5.3
-      '@umijs/bundler-utoopack': 4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
+      '@umijs/bundler-utoopack': 4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
       '@umijs/bundler-vite': 4.5.3(@types/node@22.18.12)(esbuild@0.25.11)(jiti@2.6.1)(postcss@8.5.6)(sass@1.54.0)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.1)
       '@umijs/bundler-webpack': 4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
       '@umijs/core': 4.5.3
@@ -11162,7 +11222,7 @@ snapshots:
       - webpack-plugin-serve
       - yaml
 
-  '@umijs/preset-umi@4.5.3(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)':
+  '@umijs/preset-umi@4.5.3(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)':
     dependencies:
       '@iconify/utils': 2.1.1
       '@stagewise/toolbar': 0.6.2
@@ -11172,7 +11232,7 @@ snapshots:
       '@umijs/bundler-esbuild': 4.5.3
       '@umijs/bundler-mako': 0.11.10(postcss@8.5.6)(sass@1.93.2)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
       '@umijs/bundler-utils': 4.5.3
-      '@umijs/bundler-utoopack': 4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
+      '@umijs/bundler-utoopack': 4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
       '@umijs/bundler-vite': 4.5.3(@types/node@22.18.12)(esbuild@0.25.11)(jiti@2.6.1)(postcss@8.5.6)(sass@1.93.2)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.1)
       '@umijs/bundler-webpack': 4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
       '@umijs/core': 4.5.3
@@ -11307,22 +11367,22 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@utoo/pack-darwin-arm64@0.0.1-alpha.57':
+  '@utoo/pack-darwin-arm64@0.0.1-alpha.58':
     optional: true
 
-  '@utoo/pack-darwin-x64@0.0.1-alpha.57':
+  '@utoo/pack-darwin-x64@0.0.1-alpha.58':
     optional: true
 
-  '@utoo/pack-linux-arm64-gnu@0.0.1-alpha.57':
+  '@utoo/pack-linux-arm64-gnu@0.0.1-alpha.58':
     optional: true
 
-  '@utoo/pack-linux-arm64-musl@0.0.1-alpha.57':
+  '@utoo/pack-linux-arm64-musl@0.0.1-alpha.58':
     optional: true
 
-  '@utoo/pack-linux-x64-gnu@0.0.1-alpha.57':
+  '@utoo/pack-linux-x64-gnu@0.0.1-alpha.58':
     optional: true
 
-  '@utoo/pack-linux-x64-musl@0.0.1-alpha.57':
+  '@utoo/pack-linux-x64-musl@0.0.1-alpha.58':
     optional: true
 
   '@utoo/pack-shared@0.0.7':
@@ -11330,10 +11390,10 @@ snapshots:
       '@babel/code-frame': 7.22.5
       picocolors: 1.1.1
 
-  '@utoo/pack-win32-x64-msvc@0.0.1-alpha.57':
+  '@utoo/pack-win32-x64-msvc@0.0.1-alpha.58':
     optional: true
 
-  '@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11))':
+  '@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11))':
     dependencies:
       '@babel/code-frame': 7.22.5
       '@swc/helpers': 0.5.15
@@ -11354,13 +11414,13 @@ snapshots:
       send: 0.17.1
       ws: 8.18.3
     optionalDependencies:
-      '@utoo/pack-darwin-arm64': 0.0.1-alpha.57
-      '@utoo/pack-darwin-x64': 0.0.1-alpha.57
-      '@utoo/pack-linux-arm64-gnu': 0.0.1-alpha.57
-      '@utoo/pack-linux-arm64-musl': 0.0.1-alpha.57
-      '@utoo/pack-linux-x64-gnu': 0.0.1-alpha.57
-      '@utoo/pack-linux-x64-musl': 0.0.1-alpha.57
-      '@utoo/pack-win32-x64-msvc': 0.0.1-alpha.57
+      '@utoo/pack-darwin-arm64': 0.0.1-alpha.58
+      '@utoo/pack-darwin-x64': 0.0.1-alpha.58
+      '@utoo/pack-linux-arm64-gnu': 0.0.1-alpha.58
+      '@utoo/pack-linux-arm64-musl': 0.0.1-alpha.58
+      '@utoo/pack-linux-x64-gnu': 0.0.1-alpha.58
+      '@utoo/pack-linux-x64-musl': 0.0.1-alpha.58
+      '@utoo/pack-win32-x64-msvc': 0.0.1-alpha.58
     transitivePeerDependencies:
       - '@rspack/core'
       - bufferutil
@@ -11639,6 +11699,8 @@ snapshots:
   ansi-styles@5.2.0: {}
 
   ansi-styles@6.2.3: {}
+
+  ansis@4.2.0: {}
 
   antd-style@3.7.1(@types/react@19.2.2)(antd@5.27.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
@@ -12083,6 +12145,8 @@ snapshots:
       run-applescript: 5.0.0
 
   bytes@3.1.2: {}
+
+  cac@6.7.14: {}
 
   call-bind-apply-helpers@1.0.2:
     dependencies:
@@ -12608,6 +12672,8 @@ snapshots:
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
 
+  defu@6.1.4: {}
+
   depd@1.1.2: {}
 
   depd@2.0.0: {}
@@ -12640,6 +12706,8 @@ snapshots:
       dequal: 2.0.3
 
   diff@5.2.0: {}
+
+  diff@8.0.2: {}
 
   diffie-hellman@5.0.3:
     dependencies:
@@ -12728,7 +12796,7 @@ snapshots:
 
   dumi-assets-types@2.4.14: {}
 
-  dumi-theme-antd-style@0.31.1(@types/react@19.2.2)(dumi@2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1))(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+  dumi-theme-antd-style@0.31.1(@types/react@19.2.2)(dumi@2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1))(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
       '@ant-design/icons': 5.6.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@babel/runtime': 7.28.4
@@ -12739,7 +12807,7 @@ snapshots:
       chalk: 4.1.2
       chroma-js: 2.6.0
       copy-to-clipboard: 3.3.3
-      dumi: 2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
+      dumi: 2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
       fast-deep-equal: 3.1.3
       lodash: 4.17.21
       polished: 4.3.1
@@ -12761,7 +12829,7 @@ snapshots:
       - moment
       - supports-color
 
-  dumi@2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1):
+  dumi@2.4.21(@babel/core@7.28.5)(@swc/helpers@0.5.15)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1):
     dependencies:
       '@ant-design/icons-svg': 4.4.2
       '@makotot/ghostui': 2.0.0(react@19.2.0)
@@ -12826,7 +12894,7 @@ snapshots:
       sass: 1.93.2
       sitemap: 7.1.2
       sucrase: 3.35.0
-      umi: 4.5.3(@babel/core@7.28.5)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.93.2)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
+      umi: 4.5.3(@babel/core@7.28.5)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.93.2)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
       unified: 10.1.2
       unist-util-visit: 4.1.2
       unist-util-visit-parents: 5.1.3
@@ -12912,6 +12980,8 @@ snapshots:
   emoji-regex@9.2.2: {}
 
   emojis-list@3.0.0: {}
+
+  empathic@2.0.0: {}
 
   encodeurl@1.0.2: {}
 
@@ -14030,6 +14100,8 @@ snapshots:
   hoist-non-react-statics@3.3.2:
     dependencies:
       react-is: 16.13.1
+
+  hookable@5.5.3: {}
 
   hosted-git-info@2.8.9: {}
 
@@ -18141,6 +18213,8 @@ snapshots:
 
   transformation-matrix@2.16.1: {}
 
+  tree-kill@1.2.2: {}
+
   trim-lines@3.0.1: {}
 
   trim-newlines@3.0.1: {}
@@ -18156,6 +18230,32 @@ snapshots:
   ts-interface-checker@0.1.13: {}
 
   ts-toolbelt@9.6.0: {}
+
+  tsdown@0.15.11(typescript@5.9.3):
+    dependencies:
+      ansis: 4.2.0
+      cac: 6.7.14
+      chokidar: 4.0.3
+      debug: 4.4.3
+      diff: 8.0.2
+      empathic: 2.0.0
+      hookable: 5.5.3
+      rolldown: 1.0.0-beta.45
+      rolldown-plugin-dts: 0.17.1(rolldown@1.0.0-beta.45)(typescript@5.9.3)
+      semver: 7.7.3
+      tinyexec: 1.0.1
+      tinyglobby: 0.2.15
+      tree-kill: 1.2.2
+      unconfig: 7.3.3
+      unrun: 0.2.1
+    optionalDependencies:
+      typescript: 5.9.3
+    transitivePeerDependencies:
+      - '@ts-macro/tsc'
+      - '@typescript/native-preview'
+      - oxc-resolver
+      - supports-color
+      - vue-tsc
 
   tslib@1.14.1: {}
 
@@ -18253,14 +18353,14 @@ snapshots:
       isomorphic-fetch: 2.2.1
       qs: 6.14.0
 
-  umi@4.5.3(@babel/core@7.28.5)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.54.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1):
+  umi@4.5.3(@babel/core@7.28.5)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.54.0)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1):
     dependencies:
       '@babel/runtime': 7.23.6
       '@umijs/bundler-utils': 4.5.3
       '@umijs/bundler-webpack': 4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
       '@umijs/core': 4.5.3
       '@umijs/lint': 4.5.3(eslint@9.38.0(jiti@2.6.1))(stylelint@14.16.1)(typescript@5.9.3)
-      '@umijs/preset-umi': 4.5.3(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(jiti@2.6.1)(sass@1.54.0)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
+      '@umijs/preset-umi': 4.5.3(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(jiti@2.6.1)(sass@1.54.0)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
       '@umijs/renderer-react': 4.5.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@umijs/server': 4.5.3
       '@umijs/test': 4.5.3(@babel/core@7.28.5)
@@ -18307,14 +18407,14 @@ snapshots:
       - webpack-plugin-serve
       - yaml
 
-  umi@4.5.3(@babel/core@7.28.5)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.93.2)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1):
+  umi@4.5.3(@babel/core@7.28.5)(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(eslint@9.38.0(jiti@2.6.1))(jiti@2.6.1)(prettier@3.6.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.93.2)(stylelint@14.16.1)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1):
     dependencies:
       '@babel/runtime': 7.23.6
       '@umijs/bundler-utils': 4.5.3
       '@umijs/bundler-webpack': 4.5.3(@types/webpack@5.28.5(esbuild@0.25.11))(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))
       '@umijs/core': 4.5.3
       '@umijs/lint': 4.5.3(eslint@9.38.0(jiti@2.6.1))(stylelint@14.16.1)(typescript@5.9.3)
-      '@umijs/preset-umi': 4.5.3(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.57(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
+      '@umijs/preset-umi': 4.5.3(@types/node@22.18.12)(@types/react@19.2.2)(@types/webpack@5.28.5(esbuild@0.25.11))(@utoo/pack@0.0.1-alpha.58(@types/webpack@5.28.5(esbuild@0.25.11))(webpack@5.102.1(esbuild@0.25.11)))(esbuild@0.25.11)(jiti@2.6.1)(sass@1.93.2)(terser@5.44.0)(tsx@4.20.6)(type-fest@0.18.1)(typescript@5.9.3)(webpack@5.102.1(esbuild@0.25.11))(yaml@2.8.1)
       '@umijs/renderer-react': 4.5.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@umijs/server': 4.5.3
       '@umijs/test': 4.5.3(@babel/core@7.28.5)
@@ -18367,6 +18467,13 @@ snapshots:
       has-bigints: 1.1.0
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
+
+  unconfig@7.3.3:
+    dependencies:
+      '@quansync/fs': 0.1.5
+      defu: 6.1.4
+      jiti: 2.6.1
+      quansync: 0.2.11
 
   undici-types@6.21.0: {}
 
@@ -18455,6 +18562,12 @@ snapshots:
   unpipe@1.0.0: {}
 
   unquote@1.1.1: {}
+
+  unrun@0.2.1:
+    dependencies:
+      '@oxc-project/runtime': 0.95.0
+      rolldown: 1.0.0-beta.45
+      synckit: 0.11.11
 
   unset-value@0.1.2:
     dependencies:

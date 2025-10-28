@@ -18,5 +18,5 @@
       "@xxlabs/pro-components": ["src"]
     }
   },
-  "include": ["demos", "src", "tests", ".dumirc.ts", "rolldown.config.ts", "vitest.config.mts"]
+  "include": ["demos", "src", "tests", ".dumirc.ts", "tsdown.config.ts", "vitest.config.mts"]
 }
