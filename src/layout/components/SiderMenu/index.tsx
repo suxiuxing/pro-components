@@ -36,8 +36,10 @@ const SiderMenuWrapper: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (prop
     isMobile ? (
       <Drawer
         maskClosable
-        afterOpenChange={() => {
-          onCollapse?.(true);
+        afterOpenChange={(open) => {
+          if (!open) {
+            onCollapse?.(true);
+          }
         }}
         className={classNames(`${prefixCls}-drawer-sider`, className)}
         closable={false}
