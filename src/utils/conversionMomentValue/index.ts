@@ -175,7 +175,10 @@ export const conversionMomentValue = <T extends Record<any, any> = any>(
     if (Array.isArray(itemValue)) {
       (tmpValue as any)[valueKey] = itemValue.map((arrayValue, index) => {
         if (dayjs.isDayjs(arrayValue) || isMoment(arrayValue)) {
-          return convertMoment(arrayValue, finalDateFormatter, valueType);
+          // For arrays, if no format is defined and dateFormatter is 'string', use 'string' with default format
+          const arrayDateFormatter =
+            finalDateFormatter === undefined && currentDateFormatter === 'string' ? 'string' : finalDateFormatter;
+          return convertMoment(arrayValue, arrayDateFormatter, valueType);
         }
         return conversionMomentValue(arrayValue, dateFormatter, valueTypeMap, omitNil, [valueKey, `${index}`].flat(1));
       });
