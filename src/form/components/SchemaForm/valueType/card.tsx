@@ -2,7 +2,7 @@ import Card from '../../FormItem/Card';
 import type { ProSchemaRenderValueTypeFunction } from '../typing';
 
 export const card: ProSchemaRenderValueTypeFunction = (item, { genItems }) => {
-  if (item.valueType === 'group') {
+  if (item.valueType === 'card') {
     if (!item.columns || !Array.isArray(item.columns)) return null;
 
     return (
