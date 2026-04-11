@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/suxiuxing/pro-components/compare/v1.0.0...v1.0.1) (2026-04-11)
+
+
+### Bug Fixes
+
+* remove version export from index file ([eb2e563](https://github.com/suxiuxing/pro-components/commit/eb2e5635f155030d9878a3c3aca48ae96d6efce1))
+
 # 1.0.0 (2026-04-11)
 
 
