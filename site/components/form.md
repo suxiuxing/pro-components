@@ -264,7 +264,7 @@ FormItemRender 用来专门处理，采用 render props 的方式来组织代码
 
 <code src="../../demos/form/linkage-customization.tsx" debug></code>
 
-<code src="../../demos/form/pro-form-dependency.debug.tsx"  debug></code>
+<code src="../../demos/form/_pro-form-dependency.tsx"  debug></code>
 
 <code src="../../demos/form/label-col.tsx" debug></code>
 
@@ -272,7 +272,7 @@ FormItemRender 用来专门处理，采用 render props 的方式来组织代码
 
 ProForm 是对 antd Form 的再封装，如果你想要自定义表单元素，ProForm 与 antd 的方法是相同的，你仍然可以用 FormItem + 自定义组件的方式来自定义。当然这样不会影响到别的组件，QueryFilter 等组件同理。
 
-> antd 的 Form api 查看[这里](https://ant.design/components/form-cn/)，initialValues 相关知识查看[这里](https://procomponents.ant.design/docs/faq)
+> antd 的 Form api 查看[这里](https://ant.design/components/form-cn/)，initialValues 相关知识查看[这里](/docs/faq)
 
 | 参数                                            | 说明                                                                                                                                           | 类型                                                                                                                                                                                                                          | 默认值          |
 | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
@@ -520,6 +520,6 @@ export default () => {
 |    `getFieldFormatValueObject`    | 使用方法与 `FormInstance` 的 `getFieldValue` 方法相同，将返回格式化后的指定数据（包含 name） |      |
 | `validateFieldsReturnFormatValue` |  使用方法与 `FormInstance` 的 `validateFields` 方法相同，验证通过后将返回格式化后的所有数据  |      |
 
-<code src="../../demos/form/modalform-test.tsx"  debug></code>
+<code src="../../demos/form/_modalform-test.tsx"  debug></code>
 
 <code src="../../demos/form/params-formref.tsx"  debug></code>

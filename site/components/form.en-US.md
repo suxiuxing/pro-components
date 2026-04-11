@@ -264,7 +264,7 @@ Using FormItemRender or ProFormItemRender makes it easier to write form items in
 
 <code src="../../demos/form/linkage-customization.tsx" debug></code>
 
-<code src="../../demos/form/pro-form-dependency.debug.tsx"  debug></code>
+<code src="../../demos/form/_pro-form-dependency.tsx"  debug></code>
 
 <code src="../../demos/form/label-col.tsx" debug></code>
 
@@ -272,7 +272,7 @@ Using FormItemRender or ProFormItemRender makes it easier to write form items in
 
 ProForm is a repackaging of antd Form, if you want to customize form elements, ProForm is the same way as antd, you can still customize it with FormItem + custom components. Of course this does not affect other components, QueryFilter and other components as well.
 
-> antd's Form api View [here](https://ant.design/components/form/), initialValues related knowledge view [here](https://procomponents.ant.design/docs/faq)
+> antd's Form api View [here](https://ant.design/components/form/), initialValues related knowledge view [here](/docs/faq)
 
 | Parameters                                      | Description                                                                                                                                                  | Type                                                                                                                                                                                                                          | Default         |
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
@@ -522,6 +522,6 @@ export default () => {
 |    `getFieldFormatValueObject`    |   Usage is the same as `FormInstance`'s `getFieldValue`, returns formatted specified data (including name path)   |         |
 | `validateFieldsReturnFormatValue` | Usage is the same as `FormInstance`'s `validateFields` method, returns all formatted data after validation passes |         |
 
-<code src="../../demos/form/modalform-test.tsx"  debug></code>
+<code src="../../demos/form/_modalform-test.tsx"  debug></code>
 
 <code src="../../demos/form/params-formref.tsx"  debug></code>

@@ -111,7 +111,7 @@ formItemRender: (
 
 <code src="../../demos/table/split.tsx" background="var(--main-bg-color)" title="左右结构"></code>
 
-<code src="../../demos/table/pollinga.tsx" background="var(--main-bg-color)" title="表格轮询"></code>
+<code src="../../demos/table/polling.tsx" background="var(--main-bg-color)" title="表格轮询"></code>
 
 <code src="../../demos/table/dateFormatter.tsx" background="var(--main-bg-color)" title="dateFormatter - 日期格式化"></code>
 
@@ -222,7 +222,7 @@ RTL means right-to-left.
 
 <code src="../../demos/table/config-provider.tsx" debug background="var(--main-bg-color)"></code>
 
-<code src="../../demos/table/single-test.tsx" debug background="var(--main-bg-color)"></code>
+<code src="../../demos/table/_single-test.tsx" debug background="var(--main-bg-color)"></code>
 
 ## 列表工具栏
 
