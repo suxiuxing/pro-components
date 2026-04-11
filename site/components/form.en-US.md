@@ -213,6 +213,12 @@ Supported in `ProForm`, `SchemaForm`, `ModalForm`, `DrawerForm`, `StepsForm`
 
 <code src="../../demos/form/form-layout-grid.tsx" ></code>
 
+### Hidden Fields
+
+When a form item is set to `hidden`, it will not occupy space in the grid layout. Hidden fields will still be preserved in the form data.
+
+<code src="../../demos/form/hidden-field.tsx" ></code>
+
 <code src="../../demos/form/dependency.tsx" title="Form Linkage"></code>
 
 <code src="../../demos/form/formRef.tsx" id="formRef-usage" description="

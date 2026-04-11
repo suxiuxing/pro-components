@@ -168,3 +168,9 @@ For large forms, you can use `shouldUpdate` and `dependencies` for fine-grained 
 Supports `valueType: 'formList'` to generate dynamically addable/removable list forms.
 
 <code src="../../demos/form/SchemaForm/form-list-required.tsx" title="FormList Required Validation" debug></code>
+
+### Hidden Fields
+
+Use `formItemProps: { hidden: true }` to hide form items. In grid layout, hidden fields will not occupy space, but will still be preserved in the form data.
+
+<code src="../../demos/form/SchemaForm/hidden-field.tsx" ></code>

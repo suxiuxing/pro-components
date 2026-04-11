@@ -1080,6 +1080,99 @@ describe('ProForm', () => {
     wrapper.unmount();
   });
 
+  it('📦 ProForm hidden field should not occupy space in grid mode', async () => {
+    const wrapper = render(
+      <ProForm grid rowProps={{ gutter: [16, 0] }}>
+        <ProFormText colProps={{ md: 12 }} name="name" label="姓名" />
+        <ProFormText
+          colProps={{ md: 12 }}
+          name="company"
+          label="公司名称"
+          hidden
+        />
+        <ProFormText colProps={{ md: 12 }} name="phone" label="电话" />
+      </ProForm>,
+    );
+    await wrapper.findByText('提 交');
+
+    const cols = wrapper.baseElement.querySelectorAll<HTMLElement>(
+      '.ant-row > .ant-col',
+    );
+
+    // 找到 hidden 字段对应的 Col
+    const hiddenCol = Array.from(cols).find((col) =>
+      col.querySelector('.ant-form-item-hidden'),
+    );
+    expect(hiddenCol).toBeTruthy();
+    expect(hiddenCol!.style.display).toBe('none');
+
+    wrapper.unmount();
+  });
+
+  it('📦 ProForm hidden field should update grid layout when toggled', async () => {
+    const App = () => {
+      const [hidden, setHidden] = React.useState(false);
+
+      return (
+        <>
+          <button type="button" onClick={() => setHidden((value) => !value)}>
+            toggle hidden
+          </button>
+          <ProForm grid rowProps={{ gutter: [16, 0] }}>
+            <ProFormText colProps={{ md: 12 }} name="name" label="姓名" />
+            <ProFormText
+              colProps={{ md: 12 }}
+              name="company"
+              label="公司名称"
+              hidden={hidden}
+            />
+            <ProFormText colProps={{ md: 12 }} name="phone" label="电话" />
+          </ProForm>
+        </>
+      );
+    };
+
+    const wrapper = render(<App />);
+    await wrapper.findByText('提 交');
+
+    const getCompanyCol = () =>
+      Array.from(
+        wrapper.baseElement.querySelectorAll<HTMLElement>(
+          '.ant-row > .ant-col',
+        ),
+      ).find((col) => col.querySelector('input#company'));
+
+    const getCompanyInput = () =>
+      wrapper.baseElement.querySelector('input#company') as HTMLInputElement;
+
+    expect(getCompanyCol()).toBeTruthy();
+    expect(getCompanyCol()!.style.display).not.toBe('none');
+
+    act(() => {
+      fireEvent.change(getCompanyInput(), {
+        target: {
+          value: '蚂蚁集团',
+        },
+      });
+    });
+    expect(getCompanyInput().value).toBe('蚂蚁集团');
+
+    act(() => {
+      fireEvent.click(wrapper.getByText('toggle hidden'));
+    });
+    expect(getCompanyCol()).toBeTruthy();
+    expect(getCompanyCol()!.style.display).toBe('none');
+
+    act(() => {
+      fireEvent.click(wrapper.getByText('toggle hidden'));
+    });
+    expect(getCompanyCol()).toBeTruthy();
+    expect(getCompanyCol()!.style.display).not.toBe('none');
+    expect(getCompanyInput().value).toBe('蚂蚁集团');
+
+    wrapper.unmount();
+  });
+
   it('📦 ProFormField support onChange in ProForm', async () => {
     const fn = vi.fn();
     const wrapper = render(

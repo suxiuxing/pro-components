@@ -328,7 +328,13 @@ export function warpField<P extends ProFormFieldItemProps = any>(
 
     const { ColWrapper } = useGridHelpers(rest);
 
-    return <ColWrapper>{formItem}</ColWrapper>;
+    return (
+      <ColWrapper
+        style={otherProps.hidden ? { display: 'none' } : undefined}
+      >
+        {formItem}
+      </ColWrapper>
+    );
   };
 
   const DependencyWrapper: React.FC<

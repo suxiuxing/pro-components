@@ -168,3 +168,9 @@ SchemaForm 最基础的用法，通过 JSON 配置生成标准的表单页面。
 支持 `valueType: 'formList'` 来生成动态增减的列表表单。
 
 <code src="../../demos/form/SchemaForm/form-list-required.tsx" title="FormList Required 校验" debug></code>
+
+### 隐藏字段
+
+通过 `formItemProps: { hidden: true }` 可以隐藏表单项。在栅格布局中，隐藏的字段不会占用空间，但仍会保留在表单数据中。
+
+<code src="../../demos/form/SchemaForm/hidden-field.tsx" ></code>

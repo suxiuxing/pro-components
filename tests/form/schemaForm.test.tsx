@@ -917,4 +917,49 @@ describe('SchemaForm', () => {
       expect(fibonacci).toHaveBeenCalledTimes(1);
     });
   });
+
+  it('📦 BetaSchemaForm hidden field should not occupy space in grid mode', async () => {
+    const columns: ProFormColumnsType<any>[] = [
+      {
+        title: '姓名',
+        dataIndex: 'name',
+        colProps: { md: 12 },
+      },
+      {
+        title: '公司名称',
+        dataIndex: 'company',
+        colProps: { md: 12 },
+        formItemProps: {
+          hidden: true,
+        },
+      },
+      {
+        title: '电话',
+        dataIndex: 'phone',
+        colProps: { md: 12 },
+      },
+    ];
+
+    const wrapper = render(
+      <BetaSchemaForm
+        grid
+        rowProps={{ gutter: [16, 0] }}
+        columns={columns}
+      />,
+    );
+    await wrapper.findByText('提 交');
+
+    const cols = wrapper.baseElement.querySelectorAll<HTMLElement>(
+      '.ant-row > .ant-col',
+    );
+
+    // 找到 hidden 字段对应的 Col
+    const hiddenCol = Array.from(cols).find((col) =>
+      col.querySelector('.ant-form-item-hidden'),
+    );
+    expect(hiddenCol).toBeTruthy();
+    expect(hiddenCol!.style.display).toBe('none');
+
+    wrapper.unmount();
+  });
 });

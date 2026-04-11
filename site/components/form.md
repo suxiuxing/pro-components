@@ -213,6 +213,12 @@ import { set } from '@rc-component/util';
 
 <code src="../../demos/form/form-layout-grid.tsx" ></code>
 
+### 隐藏字段
+
+当表单项设置 `hidden` 时，该字段在栅格布局中不会占用空间。隐藏的字段仍然会保留在表单数据中。
+
+<code src="../../demos/form/hidden-field.tsx" ></code>
+
 <code src="../../demos/form/dependency.tsx" title="表单联动"></code>
 
 <code src="../../demos/form/formRef.tsx" id="formRef-usage" description="
