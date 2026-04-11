@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/suxiuxing/pro-components/compare/v1.0.1...v1.0.2) (2026-04-11)
+
+
+### Bug Fixes
+
+* remove hidden field grid gaps ([7643cba](https://github.com/suxiuxing/pro-components/commit/7643cbaebd09ff0037e1d09a30e71c8059329e94))
+
 ## [1.0.1](https://github.com/suxiuxing/pro-components/compare/v1.0.0...v1.0.1) (2026-04-11)
 
 
