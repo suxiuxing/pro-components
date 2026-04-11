@@ -1,0 +1,10 @@
+post-merge:
+  commands:
+    install:
+      run: pnpm install
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm exec commitlint --edit {1}
+      fail_text: 'Commit message 格式不符合规范，请参考 commitlint 规则'
