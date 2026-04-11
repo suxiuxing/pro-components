@@ -22,7 +22,7 @@ const Demo = () => (
           {
             key: 'procomponents',
             title: 'ProComponents',
-            href: 'https://procomponents.ant.design/',
+            href: 'https://suxiuxing.github.io/pro-components/',
           },
           {
             key: 'antd',

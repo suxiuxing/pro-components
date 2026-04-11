@@ -18,7 +18,7 @@ const AppGroupList: any = [
         icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
         title: 'Pro Components',
         desc: '专业级 UI 组件库',
-        url: 'https://procomponents.ant.design/',
+        url: 'https://suxiuxing.github.io/pro-components/',
       },
     ],
   },
@@ -26,7 +26,7 @@ const AppGroupList: any = [
     title: 'UI 设计语言 2组111',
     icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
     desc: '专业级 UI 组件库',
-    url: 'https://procomponents.ant.design/',
+    url: 'https://suxiuxing.github.io/pro-components/',
     children: [
       {
         icon: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',

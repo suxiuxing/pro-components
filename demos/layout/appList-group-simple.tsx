@@ -18,17 +18,20 @@ const AppGroupList: any = [
       },
       {
         icon: () => (
-          <img src="https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg" alt="" />
+          <img
+            src="https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg"
+            alt=""
+          />
         ),
         title: 'Pro Components',
-        url: 'https://procomponents.ant.design/',
+        url: 'https://suxiuxing.github.io/pro-components/',
       },
     ],
   },
   {
     title: 'UI 设计语言 2组111',
     icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
-    url: 'https://procomponents.ant.design/',
+    url: 'https://suxiuxing.github.io/pro-components/',
     children: [
       {
         icon: 'W',

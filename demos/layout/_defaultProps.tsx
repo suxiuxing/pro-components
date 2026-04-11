@@ -115,7 +115,7 @@ export default {
       icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
       title: 'Pro Components',
       desc: '专业级 UI 组件库',
-      url: 'https://procomponents.ant.design/',
+      url: 'https://suxiuxing.github.io/pro-components/',
     },
     {
       icon: 'https://img.alicdn.com/tfs/TB1zomHwxv1gK0jSZFFXXb0sXXa-200-200.png',

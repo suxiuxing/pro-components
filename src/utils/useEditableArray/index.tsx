@@ -1292,7 +1292,7 @@ export function useEditableArray<RecordType extends AnyObject>(
     if (recordKey == null && recordKey !== 0 && recordKey !== '') {
       noteOnce(
         false,
-        '请设置 recordCreatorProps.record 并返回一个唯一的key  \n  https://procomponents.ant.design/components/editable-table#editable-%E6%96%B0%E5%BB%BA%E8%A1%8C',
+        '请设置 recordCreatorProps.record 并返回一个唯一的key  \n  https://suxiuxing.github.io/pro-components/components/editable-table#editable-%E6%96%B0%E5%BB%BA%E8%A1%8C',
       );
       throw new Error('请设置 recordCreatorProps.record 并返回一个唯一的key');
     }

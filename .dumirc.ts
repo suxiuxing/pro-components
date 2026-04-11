@@ -1,10 +1,15 @@
 import { defineConfig } from 'dumi';
 import path from 'path';
 
+const githubPagesBase = '/pro-components/';
+const githubPagesHost = 'https://suxiuxing.github.io/pro-components';
+const isSiteDeploy = process.env.SITE_DEPLOY === 'TRUE';
+
 export default defineConfig({
+  base: isSiteDeploy ? githubPagesBase : '/',
+  publicPath: isSiteDeploy ? githubPagesBase : '/',
   title: 'ProComponents',
   exportStatic: {},
-  sitemap: { hostname: 'https://procomponents.ant.design' },
   alias: {
     '@ant-design/pro-components': path.resolve(__dirname, 'src'),
   },
@@ -17,7 +22,7 @@ export default defineConfig({
     {
       'data-rh': 'keywords',
       property: 'og:image',
-      content: 'https://procomponents.ant.design/icon.png',
+      content: `${githubPagesHost}/icon.png`,
     },
     {
       property: 'og:description',
@@ -186,10 +191,6 @@ export default defineConfig({
         { title: '组件', link: '/components' },
         { title: 'Changelog', link: '/changelog' },
         { title: 'Playground', link: '/playground' },
-        {
-          title: '国内镜像',
-          link: 'https://pro-components.antdigital.dev',
-        },
       ],
       'en-US': [
         { title: 'Docs', link: '/en-US/docs' },

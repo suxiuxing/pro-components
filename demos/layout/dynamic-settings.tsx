@@ -60,7 +60,7 @@ const Demo = () => {
             >
               <img
                 alt="pro-logo"
-                src="https://procomponents.ant.design/favicon.ico"
+                src="https://suxiuxing.github.io/pro-components/favicon.ico"
                 style={{
                   width: 16,
                   height: 16,

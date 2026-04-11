@@ -241,7 +241,7 @@ Same as [DatePicker](https://ant.design/components/date-picker/)
 
 Same as [select](https://ant.design/components/select/). Both request and valueEnum are supported to generate options.
 
-> Requesting remote data is more complicated, see [here](https://procomponents.ant.design/components/schema#request-%E5%92%8C-params) for details.
+> Requesting remote data is more complicated, see [here](/components/schema#request-%E5%92%8C-params) for details.
 
 | Parameters   | Description                                                                     | Type                                        | Default |
 | ------------ | ------------------------------------------------------------------------------- | ------------------------------------------- | ------- |
@@ -326,7 +326,7 @@ Customize options：
 
 Same as [tree-select](https://ant.design/components/tree-select/). Both request and valueEnum are supported to generate options.
 
-> Requesting remote data is more complicated, see [here](https://procomponents.ant.design/components/schema#request-%E5%92%8C-params) for details.
+> Requesting remote data is more complicated, see [here](/components/schema#request-%E5%92%8C-params) for details.
 
 > When using `onOpenChange` in `fieldProps`, you need to separately manage the `open` state. For details, refer to [#8876](https://github.com/ant-design/pro-components/issues/8876)
 
@@ -398,7 +398,7 @@ Same as [tree-select](https://ant.design/components/tree-select/). Both request 
 
 ### ProFormCheckbox
 
-> Requesting remote data is more complicated, see [here](https://procomponents.ant.design/components/schema#request-%E5%92%8C-params) for details.
+> Requesting remote data is more complicated, see [here](/components/schema#request-%E5%92%8C-params) for details.
 
 Same as [checkbox](https://ant.design/components/checkbox/), but supports `options` and `layout`.
 
@@ -421,7 +421,7 @@ Same as [checkbox](https://ant.design/components/checkbox/), but supports `optio
 
 ### ProFormRadio.Group
 
-> Requesting remote data is more complicated, see [here](https://procomponents.ant.design/components/schema#request-%E5%92%8C-params) for details.
+> Requesting remote data is more complicated, see [here](/components/schema#request-%E5%92%8C-params) for details.
 
 Same as [radio](https://ant.design/components/radio/) but with support for `options`.
 
@@ -458,7 +458,7 @@ Same as [radio](https://ant.design/components/radio/) but with support for `opti
 
 Same as [cascader](https://ant.design/components/cascader-cn/), configure Cascader data through `fieldProps`.
 
-> Requesting remote data is more complicated, see [here](https://procomponents.ant.design/components/schema#request-%E5%92%8C-params) for details.
+> Requesting remote data is more complicated, see [here](/components/schema#request-%E5%92%8C-params) for details.
 
 ```tsx | pure
 <ProFormCascader
@@ -642,7 +642,7 @@ ProFormMoney's input box for entering amounts supports the display of currency s
 
 Same as [Segmented](https://ant.design/components/segmented-cn/). Supports both `request` and `valueEnum` methods to generate options.
 
-> Requesting remote data is more complicated, see [here](https://procomponents.ant.design/components/schema#request-%E5%92%8C-params) for details.
+> Requesting remote data is more complicated, see [here](/components/schema#request-%E5%92%8C-params) for details.
 
 | Parameters   | Description                                                                     | Type                                        | Default |
 | ------------ | ------------------------------------------------------------------------------- | ------------------------------------------- | ------- |

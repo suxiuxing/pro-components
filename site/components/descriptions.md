@@ -93,30 +93,30 @@ API 与 ProTable 相同
 
 > 更多功能查看 antd 的 [Descriptions](https://ant.design/components/descriptions-cn/)
 
-| 参数           | 说明                                                                                              | 类型                                     | 默认值       |
-| -------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------- | ------------ |
-| title          | 描述列表的标题，显示在最顶部                                                                      | `ReactNode`                              | -            |
-| tooltip        | 内容的补充描述，hover 后显示                                                                      | `string`                                 | -            |
-| loading        | 展示一个加载的骨架屏，骨架屏和 dom 不会一一对应                                                   | `boolean`                                | -            |
-| extra          | 描述列表的操作区域，显示在右上方                                                                  | `string` \| `ReactNode`                  | -            |
-| bordered       | 是否展示边框                                                                                      | boolean                                  | false        |
-| column         | 一行的描述项数量，可以写成像素值或支持响应式的对象写法 `{ xs: 1, sm: 2, md: 3}` | number                                   | 3            |
-| size           | 设置列表的大小。可以设置为 `middle` 、`small`，或不填（只有设置 `bordered={true}` 生效）          | `default` \| `middle` \| `small`         | -            |
-| layout         | 描述布局                                                                                          | `horizontal` \| `vertical`               | `horizontal` |
-| colon          | 配置 antd `Descriptions` 单元格 `colon` 的默认值                     | boolean                                  | true         |
-| request        | 请求数据，与 `columns` 中的 `dataIndex` 配合使用         | `(params: U) => Promise<RequestData<T>>` | -            |
-| onRequestError | 处理 request 的错误，默认会直接抛出错误                                                           | `(error: Error) => void`                 | -            |
-| columns        | 列定义，与 request 配合使用 [columns](/components/table#columns)                                  | `ProColumns<T>[]`                        | -            |
-| editable       | 编辑的相关配置                                                                                    | [EditableConfig](#editable-编辑配置)     | -            |
-| dataSource     | 数据源                                                                                            | `T[]`                                    | -            |
-| actionRef      | 操作引用                                                                                          | `MutableRefObject<ActionType>`           | -            |
+| 参数           | 说明                                                                                     | 类型                                     | 默认值       |
+| -------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------- | ------------ |
+| title          | 描述列表的标题，显示在最顶部                                                             | `ReactNode`                              | -            |
+| tooltip        | 内容的补充描述，hover 后显示                                                             | `string`                                 | -            |
+| loading        | 展示一个加载的骨架屏，骨架屏和 dom 不会一一对应                                          | `boolean`                                | -            |
+| extra          | 描述列表的操作区域，显示在右上方                                                         | `string` \| `ReactNode`                  | -            |
+| bordered       | 是否展示边框                                                                             | boolean                                  | false        |
+| column         | 一行的描述项数量，可以写成像素值或支持响应式的对象写法 `{ xs: 1, sm: 2, md: 3}`          | number                                   | 3            |
+| size           | 设置列表的大小。可以设置为 `middle` 、`small`，或不填（只有设置 `bordered={true}` 生效） | `default` \| `middle` \| `small`         | -            |
+| layout         | 描述布局                                                                                 | `horizontal` \| `vertical`               | `horizontal` |
+| colon          | 配置 antd `Descriptions` 单元格 `colon` 的默认值                                         | boolean                                  | true         |
+| request        | 请求数据，与 `columns` 中的 `dataIndex` 配合使用                                         | `(params: U) => Promise<RequestData<T>>` | -            |
+| onRequestError | 处理 request 的错误，默认会直接抛出错误                                                  | `(error: Error) => void`                 | -            |
+| columns        | 列定义，与 request 配合使用 [columns](/components/table#columns)                         | `ProColumns<T>[]`                        | -            |
+| editable       | 编辑的相关配置                                                                           | [EditableConfig](#editable-编辑配置)     | -            |
+| dataSource     | 数据源                                                                                   | `T[]`                                    | -            |
+| actionRef      | 操作引用                                                                                 | `MutableRefObject<ActionType>`           | -            |
 
 ### editable 编辑配置
 
 | 属性                          | 描述                                                                                                    | 类型                                                                    | 默认值             |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------ |
 | form                          | 可编辑表格的 form 实例，使用 `Form.useForm` 生成后使用                                                  | `FormInstance`                                                          | -                  |
-| formProps                     | 可以配置 form 的属性，但是不支持 onFinish                                                               | [`FormProps`](https://procomponents.ant.design/components/form#proform) | -                  |
+| formProps                     | 可以配置 form 的属性，但是不支持 onFinish                                                               | [`FormProps`](/components/form#proform)                                 | -                  |
 | editableKeys                  | 正在编辑的行，受控属性。 默认 `key` 会使用 `rowKey` 的配置，如果没有配置会使用 `index`，建议使用 rowKey | `Key[]`                                                                 | -                  |
 | onChange                      | 行数据被修改的时候触发                                                                                  | `(editableKeys: Key[], editableRows: T[]) => void`                      | -                  |
 | onSave                        | 保存一行的时候触发                                                                                      | `(key: Key, row: T,originRow:T,newLine?:newLineConfig) => Promise<any>` | -                  |
@@ -140,7 +140,7 @@ API 与 ProTable 相同
 | tooltip   | 内容的补充描述，hover 后显示                                                | string                                                       | -      |
 | ellipsis  | 是否自动缩略                                                                | `boolean`                                                    | -      |
 | copyable  | 是否支持复制                                                                | `boolean`                                                    | -      |
-| span      | 包含列的数量（对应 antd Descriptions 列跨度）                                | number                                                       | 1      |
+| span      | 包含列的数量（对应 antd Descriptions 列跨度）                               | number                                                       | 1      |
 | valueType | 格式化的类型                                                                | `ValueType`                                                  | -      |
 | valueEnum | 当前列值的枚举 [valueEnum](/components/table#valueenum)                     | `Record`                                                     | -      |
 | request   | 从网络请求枚举数据                                                          | `()=>Promise<{[key:string`\|`number]:any}>`                  | -      |

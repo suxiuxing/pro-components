@@ -36,7 +36,7 @@ const ready = true;
 
 > 提示：左侧菜单项可使用 \`asyncLoad\` 异步拉取正文。
 
-[ProComponents 文档](https://procomponents.ant.design/)
+[ProComponents 文档](https://suxiuxing.github.io/pro-components/)
 `;
 
 const Demo = () => {

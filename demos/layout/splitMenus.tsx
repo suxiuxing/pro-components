@@ -90,7 +90,7 @@ const Demo = () => {
         }}
         openKeys={false}
         actionsRender={() => [
-          <a key="docs" href="https://procomponents.ant.design/">
+          <a key="docs" href="https://suxiuxing.github.io/pro-components/">
             文档
           </a>,
         ]}
