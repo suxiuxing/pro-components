@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/suxiuxing/pro-components/compare/v1.0.3...v1.0.4) (2026-04-12)
+
+
+### Bug Fixes
+
+* 修复editor-table测试React 19兼容性问题 ([75b9a9b](https://github.com/suxiuxing/pro-components/commit/75b9a9b0f52dd443fd844b63061f009f8514184c))
+* 修复大部分测试用例报错 ([e4827db](https://github.com/suxiuxing/pro-components/commit/e4827db3b9f5f9889c6243a50188cafcd8ae2d61))
+* 更新测试快照以修复测试用例报错 ([07e72ce](https://github.com/suxiuxing/pro-components/commit/07e72cecb197ec243414a18cbe35b20ee020a7a2))
+
 ## [1.0.3](https://github.com/suxiuxing/pro-components/compare/v1.0.2...v1.0.3) (2026-04-12)
 
 
