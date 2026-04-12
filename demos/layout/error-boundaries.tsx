@@ -8,19 +8,19 @@ class CustomBoundary extends React.Component<
   Record<string, any>,
   { hasError: boolean; errorInfo: string }
 > {
-  state = { hasError: false, errorInfo: '' };
+  override state = { hasError: false, errorInfo: '' };
 
   static getDerivedStateFromError(error: Error) {
     return { hasError: true, errorInfo: error.message };
   }
 
-  componentDidCatch(error: any, errorInfo: ErrorInfo) {
+  override componentDidCatch(error: any, errorInfo: ErrorInfo) {
     // You can also log the error to an error reporting service
     // eslint-disable-next-line no-console
     console.error(error, errorInfo);
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (

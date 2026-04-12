@@ -17,7 +17,6 @@
     "allowImportingTsExtensions": true,
 
     "exactOptionalPropertyTypes": false,
-    "noImplicitOverride": false,
     "noUncheckedIndexedAccess": false,
     "noPropertyAccessFromIndexSignature": false,
 
