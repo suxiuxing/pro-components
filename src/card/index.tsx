@@ -1,7 +1,4 @@
-import type {
-  CheckCardGroupProps,
-  CheckCardProps,
-} from './components/CheckCard';
+import type { CheckCardGroupProps, CheckCardProps } from './components/CheckCard';
 import CheckCard from './components/CheckCard';
 import type { StatisticProps } from './components/Statistic';
 import Statistic from './components/Statistic';

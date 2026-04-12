@@ -1,14 +1,9 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
-import { ProForm, ProFormMoney } from '@xxlabs/pro-components';
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { ConfigProvider } from 'antd';
 import enGBIntl from 'antd/lib/locale/en_GB';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProForm, ProFormMoney } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -26,7 +21,10 @@ describe('💵 ProFormMoney', () => {
           fn(values.amount);
         }}
       >
-        <ProFormMoney name="amount" initialValue={44.33} />
+        <ProFormMoney
+          name="amount"
+          initialValue={44.33}
+        />
       </ProForm>,
     );
 
@@ -51,7 +49,10 @@ describe('💵 ProFormMoney', () => {
             fn(values.amount);
           }}
         >
-          <ProFormMoney name="amount" initialValue={44.33} />
+          <ProFormMoney
+            name="amount"
+            initialValue={44.33}
+          />
         </ProForm>
       </ConfigProvider>,
     );
@@ -76,7 +77,11 @@ describe('💵 ProFormMoney', () => {
           fn(values.amount);
         }}
       >
-        <ProFormMoney name="amount" initialValue={44.33} locale="en-US" />
+        <ProFormMoney
+          name="amount"
+          initialValue={44.33}
+          locale="en-US"
+        />
       </ProForm>,
     );
 
@@ -98,7 +103,11 @@ describe('💵 ProFormMoney', () => {
           fn(values.amount);
         }}
       >
-        <ProFormMoney name="amount" initialValue={44.33} customSymbol="💰" />
+        <ProFormMoney
+          name="amount"
+          initialValue={44.33}
+          customSymbol="💰"
+        />
       </ProForm>,
     );
 
@@ -121,7 +130,10 @@ describe('💵 ProFormMoney', () => {
           fn(values.amount);
         }}
       >
-        <ProFormMoney name="amount" min={0} />
+        <ProFormMoney
+          name="amount"
+          min={0}
+        />
       </ProForm>,
     );
 
@@ -173,6 +185,7 @@ describe('💵 ProFormMoney', () => {
 
   it('💵 update money precision when init', async () => {
     const fn = vi.fn();
+    const initialValue = Number('444444444.333333333');
     const { container } = render(
       <ProForm
         onFinish={async (values) => {
@@ -181,7 +194,7 @@ describe('💵 ProFormMoney', () => {
       >
         <ProFormMoney
           name="amount"
-          initialValue={444444444.333333333}
+          initialValue={initialValue}
           fieldProps={{ precision: 2 }}
           customSymbol="💰"
         />
@@ -193,7 +206,7 @@ describe('💵 ProFormMoney', () => {
     fireEvent.click(container.querySelector('button.ant-btn-primary')!);
 
     await waitFor(() => {
-      expect(fn).toHaveBeenCalledWith(444444444.333333333);
+      expect(fn).toHaveBeenCalledWith(initialValue);
     });
     expect(container).toMatchSnapshot();
   });

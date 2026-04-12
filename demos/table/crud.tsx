@@ -1,17 +1,10 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type {
-  ProColumns,
-  ProDescriptionsItemProps,
-} from '@xxlabs/pro-components';
-import {
-  ProCard,
-  ProDescriptions,
-  ProTable,
-  TableDropdown,
-} from '@xxlabs/pro-components';
 import { Button, Space, Tabs, Tag, message } from 'antd';
 import { useState } from 'react';
 import request from 'umi-request';
+
+import type { ProColumns, ProDescriptionsItemProps } from '@xxlabs/pro-components';
+import { ProCard, ProDescriptions, ProTable, TableDropdown } from '@xxlabs/pro-components';
 
 type GithubIssueItem = {
   url: string;
@@ -83,7 +76,10 @@ const columns: ProColumns<GithubIssueItem>[] = [
     render: (_, row) => (
       <Space>
         {row.labels.map(({ name, color }) => (
-          <Tag color={color} key={name}>
+          <Tag
+            color={color}
+            key={name}
+          >
             {name}
           </Tag>
         ))}
@@ -95,7 +91,12 @@ const columns: ProColumns<GithubIssueItem>[] = [
     valueType: 'option',
     dataIndex: 'id',
     render: (text, row) => [
-      <a href={row.url} key="show" target="_blank" rel="noopener noreferrer">
+      <a
+        href={row.url}
+        key="show"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         查看
       </a>,
       <TableDropdown
@@ -141,7 +142,10 @@ const Demo = () => {
           dateFormatter="string"
           headerTitle="Issue 管理"
           toolBarRender={() => [
-            <Button key="new" type="primary">
+            <Button
+              key="new"
+              type="primary"
+            >
               <PlusOutlined />
               新建
             </Button>,

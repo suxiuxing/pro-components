@@ -1,6 +1,7 @@
 import { ConfigProvider, Layout } from 'antd';
 import { clsx } from 'clsx';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+
 import { isNeedOpenHash, ProProvider } from '../../../provider';
 import type { WithFalse } from '../../typing';
 import { clearMenuItem } from '../../utils/utils';
@@ -20,11 +21,7 @@ export type HeaderViewProps = GlobalHeaderProps & {
     (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
   >;
   headerTitleRender?: WithFalse<
-    (
-      logo: React.ReactNode,
-      title: React.ReactNode,
-      props: HeaderViewProps,
-    ) => React.ReactNode
+    (logo: React.ReactNode, title: React.ReactNode, props: HeaderViewProps) => React.ReactNode
   >;
   headerContentRender?: WithFalse<
     (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
@@ -33,9 +30,7 @@ export type HeaderViewProps = GlobalHeaderProps & {
   hasSiderMenu?: boolean;
 };
 
-const DefaultHeader: React.FC<HeaderViewProps & PrivateSiderMenuProps> = (
-  props,
-) => {
+const DefaultHeader: React.FC<HeaderViewProps & PrivateSiderMenuProps> = (props) => {
   const {
     isMobile,
     fixedHeader,
@@ -58,7 +53,11 @@ const DefaultHeader: React.FC<HeaderViewProps & PrivateSiderMenuProps> = (
     const clearMenuData = clearMenuItem(props.menuData || []);
 
     let defaultDom = (
-      <GlobalHeader onCollapse={onCollapse} {...props} menuData={clearMenuData}>
+      <GlobalHeader
+        onCollapse={onCollapse}
+        {...props}
+        menuData={clearMenuData}
+      >
         {headerContentRender && headerContentRender(props, null)}
       </GlobalHeader>
     );
@@ -83,10 +82,7 @@ const DefaultHeader: React.FC<HeaderViewProps & PrivateSiderMenuProps> = (
     const isFixedHeaderFn = () => {
       const scrollTop = (dom as HTMLElement).scrollTop;
 
-      if (
-        scrollTop > (token.layout?.header?.heightLayoutHeader || 56) &&
-        !isFixedHeaderScroll
-      ) {
+      if (scrollTop > (token.layout?.header?.heightLayoutHeader || 56) && !isFixedHeaderScroll) {
         setIsFixedHeaderScroll(true);
         return true;
       }
@@ -104,11 +100,7 @@ const DefaultHeader: React.FC<HeaderViewProps & PrivateSiderMenuProps> = (
     return () => {
       dom.removeEventListener('scroll', isFixedHeaderFn);
     };
-  }, [
-    token.layout?.header?.heightLayoutHeader,
-    needFixedHeader,
-    isFixedHeaderScroll,
-  ]);
+  }, [token.layout?.header?.heightLayoutHeader, needFixedHeader, isFixedHeaderScroll]);
 
   const isTop = layout === 'top';
   const baseClassName = `${prefixCls}-layout-header`;
@@ -148,9 +140,7 @@ const DefaultHeader: React.FC<HeaderViewProps & PrivateSiderMenuProps> = (
             <Header
               style={{
                 height: token.layout?.header?.heightLayoutHeader || 56,
-                lineHeight: `${
-                  token.layout?.header?.heightLayoutHeader || 56
-                }px`,
+                lineHeight: `${token.layout?.header?.heightLayoutHeader || 56}px`,
                 backgroundColor: 'transparent',
                 zIndex: 19,
                 ...style,

@@ -6,6 +6,7 @@ import type {
 } from 'antd/lib/table/interface';
 import type React from 'react';
 import { Key } from 'react';
+
 import type { IntlType } from '../../provider';
 import type { UseEditableUtilType } from '../../utils';
 import type {
@@ -24,8 +25,7 @@ import type {
  *
  * @param value
  */
-export const checkUndefinedOrNull = (value: any) =>
-  value !== undefined && value !== null;
+export const checkUndefinedOrNull = (value: any) => value !== undefined && value !== null;
 
 /**
  * 合并用户 props 和 预设的 props
@@ -45,27 +45,18 @@ export function mergePagination<T>(
     return false;
   }
   const { total, current, pageSize, setPageInfo } = pageInfo;
-  const defaultPagination: TablePaginationConfig =
-    typeof pagination === 'object' ? pagination : {};
+  const defaultPagination: TablePaginationConfig = typeof pagination === 'object' ? pagination : {};
 
   return {
     showTotal: (all, range) =>
-      `${intl.getMessage('pagination.total.range', '第')} ${range[0]}-${
-        range[1]
-      } ${intl.getMessage(
+      `${intl.getMessage('pagination.total.range', '第')} ${range[0]}-${range[1]} ${intl.getMessage(
         'pagination.total.total',
         '条/总共',
       )} ${all} ${intl.getMessage('pagination.total.item', '条')}`,
     total,
     ...(defaultPagination as TablePaginationConfig),
-    current:
-      pagination !== true && pagination
-        ? (pagination.current ?? current)
-        : current,
-    pageSize:
-      pagination !== true && pagination
-        ? (pagination.pageSize ?? pageSize)
-        : pageSize,
+    current: pagination !== true && pagination ? (pagination.current ?? current) : current,
+    pageSize: pagination !== true && pagination ? (pagination.pageSize ?? pageSize) : pageSize,
     onChange: (page: number, newPageSize?: number) => {
       const { onChange } = pagination as TablePaginationConfig;
       onChange?.(page, newPageSize || 20);
@@ -173,10 +164,7 @@ export const isMergeCell = (
  * @param dataIndex 在对象中的数据
  * @param index 序列号，理论上唯一
  */
-export const genColumnKey = (
-  key?: string | number | Key,
-  index?: number | string,
-): string => {
+export const genColumnKey = (key?: string | number | Key, index?: number | string): string => {
   if (key) {
     return Array.isArray(key) ? key.join('-') : key.toString();
   }
@@ -188,9 +176,7 @@ export const genColumnKey = (
  *
  * @param dataIndex Column 中的 dataIndex
  */
-export const parseDataIndex = (
-  dataIndex: ProColumnType['dataIndex'],
-): string | undefined => {
+export const parseDataIndex = (dataIndex: ProColumnType['dataIndex']): string | undefined => {
   if (Array.isArray(dataIndex)) {
     return dataIndex.join(',');
   }
@@ -253,18 +239,13 @@ export const getServerFilterResult = <T>(
   columns: ProColumnType<T>[],
 ) => {
   // 过滤掉本地筛选的列
-  return Object.entries(filters).reduce<Record<string, FilterValue>>(
-    (acc, [key, value]) => {
-      const column = columns.find(
-        (column) => parseDataIndex(column.dataIndex) === key,
-      );
-      if (column != null && !isLocalFilter(column.filters, column.onFilter))
-        acc[key] = value as FilterValue;
+  return Object.entries(filters).reduce<Record<string, FilterValue>>((acc, [key, value]) => {
+    const column = columns.find((column) => parseDataIndex(column.dataIndex) === key);
+    if (column != null && !isLocalFilter(column.filters, column.onFilter))
+      acc[key] = value as FilterValue;
 
-      return acc;
-    },
-    {},
-  );
+    return acc;
+  }, {});
 };
 
 /**
@@ -272,26 +253,18 @@ export const getServerFilterResult = <T>(
  * @param sorterResult 排序数据
  * @returns 服务端排序数据
  */
-export const getServerSorterResult = <T>(
-  sorterResult: SorterResult<T> | SorterResult<T>[],
-) => {
+export const getServerSorterResult = <T>(sorterResult: SorterResult<T> | SorterResult<T>[]) => {
   const result = Array.isArray(sorterResult) ? sorterResult : [sorterResult];
 
-  const serverSorter = result.reduce<Record<string, SortOrder | undefined>>(
-    (acc, item) => {
-      const sorter = item.column?.sorter;
-      if (sorter != null && isLocalSorter<T>(sorter)) return acc;
+  const serverSorter = result.reduce<Record<string, SortOrder | undefined>>((acc, item) => {
+    const sorter = item.column?.sorter;
+    if (sorter != null && isLocalSorter<T>(sorter)) return acc;
 
-      const sortKey =
-        typeof sorter === 'string'
-          ? sorter
-          : parseDataIndex(item.column?.dataIndex);
-      if (sortKey != null) acc[sortKey] = item.order;
+    const sortKey = typeof sorter === 'string' ? sorter : parseDataIndex(item.column?.dataIndex);
+    if (sortKey != null) acc[sortKey] = item.order;
 
-      return acc;
-    },
-    {},
-  );
+    return acc;
+  }, {});
   return serverSorter;
 };
 
@@ -299,9 +272,7 @@ export const getServerSorterResult = <T>(
  * 从 ProColumns 数组中取出默认的服务端排序和筛选数据
  * @param columns ProColumns
  */
-export const parseServerDefaultColumnConfig = <T, Value>(
-  columns: ProColumns<T, Value>[],
-) => {
+export const parseServerDefaultColumnConfig = <T, Value>(columns: ProColumns<T, Value>[]) => {
   const filter: Record<string, FilterValue> = {};
   const sort: Record<string, SortOrder> = {};
   columns.forEach((column) => {
@@ -348,8 +319,7 @@ export const parseProSortOrder = <T>(
   if (isLocalSorter(sorter)) return undefined;
 
   // 服务端排序：确定排序键
-  const sortKey =
-    typeof sorter === 'string' ? sorter : parseDataIndex(dataIndex);
+  const sortKey = typeof sorter === 'string' ? sorter : parseDataIndex(dataIndex);
 
   // 返回对应的排序值
   return sortKey ? proSort[sortKey] : undefined;
@@ -365,16 +335,10 @@ export const parseProFilteredValue = <T>(
   proFilter: Record<string, FilterValue>,
   columnProps: ProColumnType<T>,
 ): FilterValue | undefined => {
-  const {
-    filters,
-    onFilter,
-    filteredValue: columnFilteredValue,
-    dataIndex,
-  } = columnProps;
+  const { filters, onFilter, filteredValue: columnFilteredValue, dataIndex } = columnProps;
 
   // 优先使用用户设置的 filteredValue
-  if (columnFilteredValue !== undefined)
-    return columnFilteredValue as FilterValue;
+  if (columnFilteredValue !== undefined) return columnFilteredValue as FilterValue;
 
   // 如果没有筛选配置，直接返回 undefined
   if (filters == null) return undefined;

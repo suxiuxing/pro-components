@@ -1,8 +1,10 @@
 import { cleanup, render, waitFor } from '@testing-library/react';
-import { ProProvider, ProTable } from '@xxlabs/pro-components';
 import { Input } from 'antd';
 import { act, useContext } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProProvider, ProTable } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 const Demo = () => {
@@ -15,7 +17,10 @@ const Demo = () => {
           link: {
             render: (text) => <a>{text}</a>,
             formItemRender: (text, props) => (
-              <Input placeholder="请输入链接" {...props?.fieldProps} />
+              <Input
+                placeholder="请输入链接"
+                {...props?.fieldProps}
+              />
             ),
           },
         },
@@ -124,27 +129,22 @@ describe('Table valueEnum', () => {
     });
 
     act(() => {
-      html.baseElement
-        .querySelector<HTMLDivElement>('form.ant-form div.ant-select')
-        ?.click();
+      html.baseElement.querySelector<HTMLDivElement>('form.ant-form div.ant-select')?.click();
     });
 
     await waitForWaitTime(500);
 
     act(() => {
       expect(
-        html.baseElement.querySelector<HTMLDivElement>(
-          'div.ant-select-dropdown',
-        )?.textContent,
+        html.baseElement.querySelector<HTMLDivElement>('div.ant-select-dropdown')?.textContent,
       ).toBe('01关闭运行中已上线异常');
     });
 
     console.log(html.baseElement.querySelector('table')?.innerHTML);
 
-    expect(
-      html.baseElement.querySelector<HTMLDivElement>('td.ant-table-cell')
-        ?.textContent,
-    ).toBe('已上线');
+    expect(html.baseElement.querySelector<HTMLDivElement>('td.ant-table-cell')?.textContent).toBe(
+      '已上线',
+    );
   });
 
   it('🎏 customization valueType', async () => {

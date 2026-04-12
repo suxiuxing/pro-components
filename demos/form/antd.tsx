@@ -19,10 +19,7 @@ const PriceInput: React.FC<PriceInputProps> = ({ value = {}, onChange }) => {
   const [number, setNumber] = useState(0);
   const [currency, setCurrency] = useState<Currency>('rmb');
 
-  const triggerChange = (changedValue: {
-    number?: number;
-    currency?: Currency;
-  }) => {
+  const triggerChange = (changedValue: { number?: number; currency?: Currency }) => {
     onChange?.({ number, currency, ...value, ...changedValue });
   };
 
@@ -88,11 +85,18 @@ const App: React.FC = () => {
         },
       }}
     >
-      <Form.Item name="price" label="Price" rules={[{ validator: checkPrice }]}>
+      <Form.Item
+        name="price"
+        label="Price"
+        rules={[{ validator: checkPrice }]}
+      >
         <PriceInput />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+        >
           Submit
         </Button>
       </Form.Item>

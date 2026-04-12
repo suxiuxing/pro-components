@@ -1,7 +1,8 @@
-import { LightFilter, ProFormText } from '@xxlabs/pro-components';
 import { Button, Radio, Space } from 'antd';
 import type { SizeType } from 'antd/lib/config-provider/SizeContext';
 import React from 'react';
+
+import { LightFilter, ProFormText } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [size, setSize] = React.useState<SizeType>('middle');
@@ -48,7 +49,11 @@ const Demo = () => {
             name: 'Jack2',
           }}
         >
-          <ProFormText name="name" label="名称" footerRender={false} />
+          <ProFormText
+            name="name"
+            label="名称"
+            footerRender={false}
+          />
         </LightFilter>
 
         <LightFilter
@@ -60,7 +65,10 @@ const Demo = () => {
           collapseLabel="footer为false"
           footerRender={false}
         >
-          <ProFormText name="name" label="名称" />
+          <ProFormText
+            name="name"
+            label="名称"
+          />
         </LightFilter>
 
         <LightFilter
@@ -80,7 +88,10 @@ const Demo = () => {
             </Button>
           )}
         >
-          <ProFormText name="name" label="名称" />
+          <ProFormText
+            name="name"
+            label="名称"
+          />
         </LightFilter>
       </Space>
     </div>

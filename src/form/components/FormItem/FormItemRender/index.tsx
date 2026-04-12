@@ -1,5 +1,6 @@
 import { Form } from 'antd';
 import React from 'react';
+
 import ProFormItem from '../index';
 
 interface ControlPropsType {
@@ -21,8 +22,7 @@ interface FormControlProps {
 interface FormControlMultiProps extends FormControlProps {
   name: string;
 }
-type GetArrayFieldType<T extends readonly { name: string }[]> =
-  T[number]['name'];
+type GetArrayFieldType<T extends readonly { name: string }[]> = T[number]['name'];
 
 function getControlConfigProps(props = {} as any): {
   valuePropName: string;
@@ -47,15 +47,12 @@ export function useControlModel<const T extends readonly string[]>(
   { value, onChange, id }: WithControlPropsType,
   model?: T,
 ): { [P in T[number]]: ControlModelType };
-export function useControlModel<
-  const T extends readonly FormControlMultiProps[],
->(
+export function useControlModel<const T extends readonly FormControlMultiProps[]>(
   { value, onChange, id }: WithControlPropsType,
   model?: T,
 ): { [P in GetArrayFieldType<T>]: ControlModelType };
 export function useControlModel<
-  T extends FormControlProps | (string | FormControlMultiProps)[] =
-    FormControlProps,
+  T extends FormControlProps | (string | FormControlMultiProps)[] = FormControlProps,
 >({ value, onChange }: WithControlPropsType, model?: T): unknown {
   if (!Array.isArray(model)) {
     const p = getControlConfigProps(model);
@@ -86,9 +83,7 @@ export function useControlModel<
   ) as unknown;
 }
 
-export type FormControlFC<P> = (
-  props: WithControlPropsType<P>,
-) => React.ReactNode;
+export type FormControlFC<P> = (props: WithControlPropsType<P>) => React.ReactNode;
 
 type FormControlInjectProps = ReturnType<typeof Form.Item.useStatus> & {
   id: string;
@@ -135,16 +130,11 @@ export function FormControlRender(
 export function pickControlProps(props: FormControlInjectProps) {
   return {
     value: props.value,
-    onChange: (value: any) =>
-      props.onChange(value?.target ? value.target.value : value),
+    onChange: (value: any) => props.onChange(value?.target ? value.target.value : value),
   };
 }
 
-const ARIA_CONTROL_ATTRS = [
-  'aria-describedby',
-  'aria-invalid',
-  'aria-required',
-] as const;
+const ARIA_CONTROL_ATTRS = ['aria-describedby', 'aria-invalid', 'aria-required'] as const;
 
 /**
  * 提取 props 中的 value、onChange、id 及无障碍属性（aria-describedby、aria-invalid、aria-required）

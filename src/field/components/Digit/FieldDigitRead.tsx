@@ -1,4 +1,5 @@
-﻿import React from 'react';
+import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import type { FieldDigitProps } from './types';
 
@@ -16,13 +17,11 @@ export function FieldDigitRead(
   }
   const digit = new Intl.NumberFormat(undefined, {
     ...fractionDigits,
-    ...(fieldProps?.intlProps || {}),
+    ...fieldProps?.intlProps,
   }).format(Number(text) as number);
 
   const dom = !fieldProps?.stringMode ? (
-    <span ref={ref as React.Ref<HTMLSpanElement>}>
-      {fieldProps?.formatter?.(digit) || digit}
-    </span>
+    <span ref={ref as React.Ref<HTMLSpanElement>}>{fieldProps?.formatter?.(digit) || digit}</span>
   ) : (
     <span>{text}</span>
   );

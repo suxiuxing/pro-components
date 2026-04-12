@@ -1,3 +1,20 @@
+pre-commit:
+  parallel: true
+  skip:
+    - merge
+    - rebase
+  commands:
+    Oxfmt:
+      glob: '**/*'
+      run: pnpm exec oxfmt --no-error-on-unmatched-pattern {staged_files}
+      stage_fixed: true
+      fail_text: 'Oxfmt 格式化失败，请检查文件格式'
+    Oxlint:
+      glob: '*.{js,ts,jsx,tsx,cjs,cts,mjs,mts}'
+      run: pnpm exec oxlint --fix {staged_files}
+      stage_fixed: true
+      fail_text: 'Oxlint 检查失败，请修复后重新提交'
+
 post-merge:
   commands:
     install:

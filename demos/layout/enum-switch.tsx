@@ -1,12 +1,10 @@
-import {
-  GithubFilled,
-  InfoCircleFilled,
-  QuestionCircleFilled,
-} from '@ant-design/icons';
-import type { ProSettings } from '@xxlabs/pro-components';
-import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
+import { GithubFilled, InfoCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
 import { Segmented, Space, theme } from 'antd';
 import { useState } from 'react';
+
+import type { ProSettings } from '@xxlabs/pro-components';
+import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 
 const Demo = () => {
@@ -21,8 +19,15 @@ const Demo = () => {
 
   return (
     <div>
-      <ProCard style={{ marginBlockEnd: 16 }} variant="outlined">
-        <Space orientation="vertical" size={12} style={{ width: '100%' }}>
+      <ProCard
+        style={{ marginBlockEnd: 16 }}
+        variant="outlined"
+      >
+        <Space
+          orientation="vertical"
+          size={12}
+          style={{ width: '100%' }}
+        >
           <Space>
             <span>layout 导航模式：</span>
             <Segmented
@@ -99,16 +104,14 @@ const Demo = () => {
             <GithubFilled key="github" />,
           ]}
           menuItemRender={(item, dom) => (
-            <div onClick={() => setPathname(item.path || '/welcome')}>
-              {dom}
-            </div>
+            <div onClick={() => setPathname(item.path || '/welcome')}>{dom}</div>
           )}
         >
           <PageContainer>
             <ProCard style={{ minHeight: 300 }}>
               <div>
-                当前配置：layout=<b>{layout}</b>、navTheme=<b>{navTheme}</b>、
-                contentWidth=<b>{contentWidth}</b>、siderMenuType=
+                当前配置：layout=<b>{layout}</b>、navTheme=<b>{navTheme}</b>、 contentWidth=
+                <b>{contentWidth}</b>、siderMenuType=
                 <b>{siderMenuType}</b>
               </div>
             </ProCard>

@@ -1,11 +1,12 @@
-﻿import type {
+import React, { useRef, useState } from 'react';
+
+import type {
   ActionType,
   EditableFormInstance,
   ProColumns,
   ProFormInstance,
 } from '@xxlabs/pro-components';
 import { EditableProTable, ProCard, ProForm } from '@xxlabs/pro-components';
-import React, { useRef, useState } from 'react';
 
 type DataSourceType = {
   id: React.Key;
@@ -36,9 +37,7 @@ const Demo = () => {
         <a
           key="delete"
           onClick={() => {
-            const tableDataSource = formRef.current?.getFieldValue(
-              'table',
-            ) as DataSourceType[];
+            const tableDataSource = formRef.current?.getFieldValue('table') as DataSourceType[];
             formRef.current?.setFieldsValue({
               table: tableDataSource.filter((item) => item.id !== row?.id),
             });

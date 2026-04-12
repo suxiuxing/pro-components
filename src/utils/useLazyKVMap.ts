@@ -1,4 +1,4 @@
-﻿import type { AnyObject } from 'antd/lib/_util/type';
+import type { AnyObject } from 'antd/lib/_util/type';
 import type { GetRowKey } from 'antd/lib/table/interface';
 import React, { useRef } from 'react';
 
@@ -17,19 +17,12 @@ const useLazyKVMap = <RecordType extends AnyObject = AnyObject>(
   const mapCacheRef = useRef<LazyMapCache<RecordType>>({});
 
   function getRecordByKey(key: React.Key): RecordType | undefined {
-    function dig(
-      records: readonly RecordType[],
-      kv: Map<React.Key, RecordType>,
-    ) {
+    function dig(records: readonly RecordType[], kv: Map<React.Key, RecordType>) {
       records.forEach((record, index) => {
         const rowKey = getRowKey(record, index);
         kv.set(rowKey, record);
 
-        if (
-          record &&
-          typeof record === 'object' &&
-          childrenColumnName in record
-        ) {
+        if (record && typeof record === 'object' && childrenColumnName in record) {
           dig(((record as any)[childrenColumnName] || []) as RecordType[], kv);
         }
       });

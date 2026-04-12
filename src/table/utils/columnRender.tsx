@@ -1,6 +1,7 @@
 import { get } from '@rc-component/util';
 import type { AnyObject } from 'antd/lib/_util/type';
 import React from 'react';
+
 import { isMergeCell } from '.';
 import type { ProFieldEmptyText } from '../../field';
 import type {
@@ -35,15 +36,16 @@ type ColumnRenderInterface<T> = {
  */
 export const renderColumnsTitle = (item: ProColumns<any>) => {
   const { title } = item;
-  const ellipsis =
-    typeof item?.ellipsis === 'boolean'
-      ? item?.ellipsis
-      : item?.ellipsis?.showTitle;
+  const ellipsis = typeof item?.ellipsis === 'boolean' ? item?.ellipsis : item?.ellipsis?.showTitle;
   if (title && typeof title === 'function') {
     return title(item, 'table', null);
   }
   return (
-    <LabelIconTip label={title} tooltip={item.tooltip} ellipsis={ellipsis} />
+    <LabelIconTip
+      label={title}
+      tooltip={item.tooltip}
+      ellipsis={ellipsis}
+    />
   );
 };
 
@@ -68,11 +70,7 @@ function isNotEditableCell<T>(
  * @param dataIndex
  * @returns
  */
-export const defaultOnFilter = (
-  value: string,
-  record: any,
-  dataIndex: string | string[],
-) => {
+export const defaultOnFilter = (value: string, record: any, dataIndex: string | string[]) => {
   const recordElement = Array.isArray(dataIndex)
     ? get(record, dataIndex as string[])
     : record[dataIndex];
@@ -107,10 +105,7 @@ export function columnRender<T extends AnyObject>({
 
   const renderTextStr = renderText(text, rowData, index, action as ActionType);
   const mode =
-    isEditable &&
-    !isNotEditableCell(text, rowData, index, columnProps?.editable)
-      ? 'edit'
-      : 'read';
+    isEditable && !isNotEditableCell(text, rowData, index, columnProps?.editable) ? 'edit' : 'read';
 
   const textDom = cellRenderToFromItem<T>({
     text: renderTextStr,
@@ -135,9 +130,7 @@ export function columnRender<T extends AnyObject>({
   });
 
   const dom: React.ReactNode =
-    mode === 'edit'
-      ? textDom
-      : genCopyable(textDom, columnProps, renderTextStr, text);
+    mode === 'edit' ? textDom : genCopyable(textDom, columnProps, renderTextStr, text);
 
   /** 如果是编辑模式，并且 formItemRender 存在直接走 formItemRender */
   if (mode === 'edit') {
@@ -148,8 +141,7 @@ export function columnRender<T extends AnyObject>({
             display: 'flex',
             alignItems: 'center',
             gap: marginSM,
-            justifyContent:
-              columnProps.align === 'center' ? 'center' : 'flex-start',
+            justifyContent: columnProps.align === 'center' ? 'center' : 'flex-start',
           }}
         >
           {editableUtils.actionRender({
@@ -188,11 +180,7 @@ export function columnRender<T extends AnyObject>({
     return renderDom;
   }
 
-  if (
-    renderDom &&
-    columnProps.valueType === 'option' &&
-    Array.isArray(renderDom)
-  ) {
+  if (renderDom && columnProps.valueType === 'option' && Array.isArray(renderDom)) {
     return (
       <div
         style={{

@@ -1,5 +1,6 @@
-﻿import { InputNumber } from 'antd';
+import { InputNumber } from 'antd';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import type { PercentPropInt } from './types';
 
@@ -8,8 +9,7 @@ type Props = Parameters<ProFieldFC<PercentPropInt>>[0] & {
 };
 
 export function FieldPercentEdit(props: Props, ref: React.Ref<unknown>) {
-  const { text, mode, formItemRender, fieldProps, prefix, placeholderValue } =
-    props;
+  const { text, mode, formItemRender, fieldProps, prefix, placeholderValue } = props;
   const dom = (
     <InputNumber
       ref={ref as React.Ref<any>}

@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
+
 import { useLatest } from '../../../../utils';
 import { StepsForm as ProStepsForm } from '../../../layouts/StepsForm';
 import type { ProFormGridConfig } from '../../../typing';
@@ -44,7 +45,10 @@ const StepsForm = <T, ValueType>({
   }, [columns, grid, steps]);
 
   return (
-    <ProStepsForm {...props} onCurrentChange={onCurrentChange}>
+    <ProStepsForm
+      {...props}
+      onCurrentChange={onCurrentChange}
+    >
       {StepDoms}
     </ProStepsForm>
   );

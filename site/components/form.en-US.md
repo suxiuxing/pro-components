@@ -171,7 +171,10 @@ In practice, `transform` is usually used in two ways:
 - **1) Return a primitive (most straightforward and stable)**: it replaces the submitted value of the current field.
 
 ```tsx | pure
-<ProFormText name="name" transform={(value) => `${value}:suffix`} />
+<ProFormText
+  name="name"
+  transform={(value) => `${value}:suffix`}
+/>
 // Submit: { name: 'xxx:suffix' }
 ```
 
@@ -419,11 +422,7 @@ This property is a high-level wrapper made by ProForm based on the original Antd
 
 ```tsx | pure
 import type { ProFormInstance } from '@xxlabs/pro-components';
-import {
-  ProForm,
-  ProFormDatePicker,
-  ProFormText,
-} from '@xxlabs/pro-components';
+import { ProForm, ProFormDatePicker, ProFormText } from '@xxlabs/pro-components';
 import { Button, message, Space } from 'antd';
 import moment from 'dayjs';
 import { useRef } from 'react';
@@ -446,16 +445,11 @@ export default () => {
   };
 
   const getCompanyName = () => {
-    message.info(
-      `Company name is "${formRef?.current?.getFieldValue('company')}"`,
-    );
+    message.info(`Company name is "${formRef?.current?.getFieldValue('company')}"`);
   };
 
   const getFormatValues = () => {
-    console.log(
-      'All data after formatting:',
-      formRef.current?.getFieldsFormatValue?.(),
-    );
+    console.log('All data after formatting:', formRef.current?.getFieldsFormatValue?.());
   };
 
   const validateAndGetFormatValue = async () => {
@@ -471,14 +465,29 @@ export default () => {
         render: (props, doms) => {
           return [
             ...doms,
-            <Button htmlType="button" onClick={onFill} key="edit">
+            <Button
+              htmlType="button"
+              onClick={onFill}
+              key="edit"
+            >
               One-click Fill
             </Button>,
-            <Button htmlType="button" onClick={getCompanyName} key="read">
+            <Button
+              htmlType="button"
+              onClick={getCompanyName}
+              key="read"
+            >
               Read Company
             </Button>,
-            <Space.Compact key="refs" style={{ display: 'block' }}>
-              <Button htmlType="button" onClick={getFormatValues} key="format">
+            <Space.Compact
+              key="refs"
+              style={{ display: 'block' }}
+            >
+              <Button
+                htmlType="button"
+                onClick={getFormatValues}
+                key="format"
+              >
                 Get all formatted data
               </Button>
               <Button
@@ -513,7 +522,10 @@ export default () => {
         label="Our Company Name"
         placeholder="Please enter name"
       />
-      <ProFormDatePicker name="date" initialValue={moment('2021-08-09')} />
+      <ProFormDatePicker
+        name="date"
+        initialValue={moment('2021-08-09')}
+      />
     </ProForm>
   );
 };

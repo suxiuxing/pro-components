@@ -1,8 +1,9 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import { ProForm, ProFormCaptcha } from '@xxlabs/pro-components';
 import { Button, message } from 'antd';
 import React, { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProForm, ProFormCaptcha } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -80,23 +81,19 @@ describe('ProFormCaptcha', () => {
       fireEvent.click(dom);
     });
 
-    expect(
-      html.container.querySelectorAll('#captchaButton')[0],
-    ).toHaveTextContent('60 秒后重新获取');
+    expect(html.container.querySelectorAll('#captchaButton')[0]).toHaveTextContent(
+      '60 秒后重新获取',
+    );
 
     await act(async () => {
       const dom = await html.findByText('手动结束计数');
       fireEvent.click(dom);
     });
 
-    expect(
-      html.container.querySelectorAll('#captchaButton')[0],
-    ).toHaveTextContent('获取验证码');
+    expect(html.container.querySelectorAll('#captchaButton')[0]).toHaveTextContent('获取验证码');
 
     expect(captchaRef.current).toBeTruthy();
 
-    expect(
-      html.container.querySelectorAll('#captchaButton')[0],
-    ).toHaveTextContent('获取验证码');
+    expect(html.container.querySelectorAll('#captchaButton')[0]).toHaveTextContent('获取验证码');
   });
 });

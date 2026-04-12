@@ -1,8 +1,4 @@
-import {
-  ProFormDateTimePicker,
-  ProFormText,
-  QueryFilter,
-} from '@xxlabs/pro-components';
+import { ProFormDateTimePicker, ProFormText, QueryFilter } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -13,7 +9,12 @@ const Demo = () => {
         name="orderTime"
         required
       />
-      <ProFormText disabled colProps={{ xl: 12 }} name="pay" label="支付方式" />
+      <ProFormText
+        disabled
+        colProps={{ xl: 12 }}
+        name="pay"
+        label="支付方式"
+      />
     </QueryFilter>
   );
 };

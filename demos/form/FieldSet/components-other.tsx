@@ -1,3 +1,7 @@
+import { message, Switch } from 'antd';
+import Mock from 'mockjs';
+import { useState } from 'react';
+
 import {
   ProForm,
   ProFormCascader,
@@ -17,9 +21,6 @@ import {
   ProFormUploadButton,
   ProFormUploadDragger,
 } from '@xxlabs/pro-components';
-import { message, Switch } from 'antd';
-import Mock from 'mockjs';
-import { useState } from 'react';
 
 export const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -79,8 +80,16 @@ const Demo = () => {
         }}
       >
         <ProFormGroup title="Text Types">
-          <ProFormText width="md" name="name" label="Name" />
-          <ProFormText.Password width="md" name="password" label="Password" />
+          <ProFormText
+            width="md"
+            name="name"
+            label="Name"
+          />
+          <ProFormText.Password
+            width="md"
+            name="password"
+            label="Password"
+          />
         </ProFormGroup>
         <ProFormGroup
           title="Selection Types"
@@ -325,7 +334,10 @@ const Demo = () => {
             label="Checkbox.Group"
             options={['A', 'B', 'C', 'D', 'E', 'F']}
           />
-          <ProFormColorPicker label="Color Picker" name="color" />
+          <ProFormColorPicker
+            label="Color Picker"
+            name="color"
+          />
         </ProFormGroup>
         <ProFormGroup title="Number Types">
           <ProFormDigitRange
@@ -342,7 +354,10 @@ const Demo = () => {
             min={1}
             max={10}
           />
-          <ProFormSwitch name="switch" label="Switch" />
+          <ProFormSwitch
+            name="switch"
+            label="Switch"
+          />
           <ProFormSlider
             name="slider"
             label="Slider"
@@ -356,9 +371,18 @@ const Demo = () => {
               100: 'F',
             }}
           />
-          <ProFormRate name="rate" label="Rate" />
-          <ProFormUploadButton name="pic" label="Upload" />
-          <ProFormUploadDragger name="drag-pic" label="Drag and Drop Upload" />
+          <ProFormRate
+            name="rate"
+            label="Rate"
+          />
+          <ProFormUploadButton
+            name="pic"
+            label="Upload"
+          />
+          <ProFormUploadDragger
+            name="drag-pic"
+            label="Drag and Drop Upload"
+          />
           <ProFormSegmented
             name="segmented"
             label="Segmented Control"

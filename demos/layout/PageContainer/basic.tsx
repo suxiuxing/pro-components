@@ -1,6 +1,7 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import { PageContainer, ProCard } from '@xxlabs/pro-components';
 import { Button, Dropdown, message } from 'antd';
+
+import { PageContainer, ProCard } from '@xxlabs/pro-components';
 
 const Demo = () => (
   <div
@@ -31,7 +32,10 @@ const Demo = () => (
         extra: [
           <Button key="1">Secondary button</Button>,
           <Button key="2">Secondary button</Button>,
-          <Button key="3" type="primary">
+          <Button
+            key="3"
+            type="primary"
+          >
             Primary button
           </Button>,
           <Dropdown
@@ -54,7 +58,10 @@ const Demo = () => (
               ],
             }}
           >
-            <Button key="4" style={{ padding: '0 8px' }}>
+            <Button
+              key="4"
+              style={{ padding: '0 8px' }}
+            >
               <EllipsisOutlined />
             </Button>
           </Dropdown>,
@@ -81,14 +88,25 @@ const Demo = () => (
       }}
       footer={[
         <Button key="3">Reset</Button>,
-        <Button key="2" type="primary">
+        <Button
+          key="2"
+          type="primary"
+        >
           Submit
         </Button>,
       ]}
     >
-      <ProCard direction="column" ghost gutter={[0, 16]}>
+      <ProCard
+        direction="column"
+        ghost
+        gutter={[0, 16]}
+      >
         <ProCard style={{ height: 200 }} />
-        <ProCard gutter={16} ghost style={{ height: 200 }}>
+        <ProCard
+          gutter={16}
+          ghost
+          style={{ height: 200 }}
+        >
           <ProCard colSpan={16} />
           <ProCard colSpan={8} />
         </ProCard>

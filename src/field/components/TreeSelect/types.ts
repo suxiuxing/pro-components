@@ -1,4 +1,4 @@
-﻿import type { TreeSelectProps } from 'antd';
+import type { TreeSelectProps } from 'antd';
 
 export type TreeSelectFieldProps = TreeSelectProps & {
   /**

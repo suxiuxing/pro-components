@@ -1,8 +1,9 @@
 /* eslint-disable no-console */ import { PlusOutlined } from '@ant-design/icons';
-import type { ProColumns } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Button, Input, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 type ServiceItem = {
   key: number;
@@ -67,11 +68,7 @@ const Demo = () => {
       key: 'direction',
       hideInTable: true,
       dataIndex: 'direction',
-      formItemRender: (
-        item,
-        { type, defaultRender: _defaultRender, ...rest },
-        form,
-      ) => {
+      formItemRender: (item, { type, defaultRender: _defaultRender, ...rest }, form) => {
         if (type === 'form') {
           return null;
         }
@@ -142,7 +139,10 @@ const Demo = () => {
         ],
       }}
       toolBarRender={() => [
-        <Button key="new" type="primary">
+        <Button
+          key="new"
+          type="primary"
+        >
           <PlusOutlined />
           新建
         </Button>,

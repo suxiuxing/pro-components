@@ -1,4 +1,4 @@
-﻿import {
+import {
   ProForm,
   ProFormDependency,
   ProFormList,
@@ -68,7 +68,11 @@ const Demo = () => {
                 );
               }
               return (
-                <ProFormText width="md" name="function" label="生效方式" />
+                <ProFormText
+                  width="md"
+                  name="function"
+                  label="生效方式"
+                />
               );
             }}
           </ProFormDependency>

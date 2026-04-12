@@ -1,4 +1,4 @@
-﻿import type { GenerateStyle, ProAliasToken } from '../../../../provider';
+import type { GenerateStyle, ProAliasToken } from '../../../../provider';
 import { setAlpha, useStyle as useAntdStyle } from '../../../../provider';
 
 export interface FooterToolBarToken extends ProAliasToken {

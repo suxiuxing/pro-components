@@ -5,15 +5,12 @@ import {
   QuestionCircleFilled,
   SearchOutlined,
 } from '@ant-design/icons';
-import type { ProSettings } from '@xxlabs/pro-components';
-import {
-  PageContainer,
-  ProCard,
-  ProLayout,
-  SettingDrawer,
-} from '@xxlabs/pro-components';
 import { Button, Input } from 'antd';
 import { useState } from 'react';
+
+import type { ProSettings } from '@xxlabs/pro-components';
+import { PageContainer, ProCard, ProLayout, SettingDrawer } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 import { demoOnMenuHeaderClick } from './_demoHandlers';
 
@@ -177,13 +174,19 @@ const Demo = () => {
           extra={[
             <Button key="3">操作</Button>,
             <Button key="2">操作</Button>,
-            <Button key="1" type="primary">
+            <Button
+              key="1"
+              type="primary"
+            >
               主操作
             </Button>,
           ]}
           footer={[
             <Button key="3">重置</Button>,
-            <Button key="2" type="primary">
+            <Button
+              key="2"
+              type="primary"
+            >
               提交
             </Button>,
           ]}

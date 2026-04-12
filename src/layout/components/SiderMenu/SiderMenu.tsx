@@ -3,6 +3,7 @@ import { Avatar, Layout, Menu, Space } from 'antd';
 import { clsx } from 'clsx';
 import type { CSSProperties, FC, ReactNode } from 'react';
 import React, { useContext, useMemo } from 'react';
+
 import type { GenerateStyle } from '../../../provider';
 import { ProProvider } from '../../../provider';
 import type { WithFalse } from '../../typing';
@@ -15,16 +16,12 @@ import { BaseMenu } from './BaseMenu';
 import type { SiderMenuToken } from './style/stylish';
 import { useStylish } from './style/stylish';
 
-const _SafetyWarningProvider: FC<{ children: ReactNode }> = React.memo(
-  (props) => {
-    return <>{props.children}</>;
-  },
-);
+const _SafetyWarningProvider: FC<{ children: ReactNode }> = React.memo((props) => {
+  return <>{props.children}</>;
+});
 
-const {
-  Sider,
-  _InternalSiderContext: SiderContext = { Provider: _SafetyWarningProvider },
-} = Layout;
+const { Sider, _InternalSiderContext: SiderContext = { Provider: _SafetyWarningProvider } } =
+  Layout;
 
 export type HeaderRenderKey = 'menuHeaderRender' | 'headerTitleRender';
 
@@ -75,15 +72,9 @@ export type SiderMenuProps = {
   logo?: React.ReactNode;
   /** 相关品牌的列表 */
   appList?: AppListProps;
-  appListRender?: (
-    props: AppListProps,
-    defaultDom: React.ReactNode,
-  ) => React.ReactNode;
+  appListRender?: (props: AppListProps, defaultDom: React.ReactNode) => React.ReactNode;
   /** 相关品牌的列表项 点击事件，当事件存在时，appList 内配置的 url 不在自动跳转 */
-  itemClick?: (
-    item: AppItemProps,
-    popoverRef?: React.RefObject<HTMLSpanElement | null>,
-  ) => void;
+  itemClick?: (item: AppItemProps, popoverRef?: React.RefObject<HTMLSpanElement | null>) => void;
   /** 菜单的宽度 */
   siderWidth?: number;
   /** 头像的设置 */
@@ -99,9 +90,7 @@ export type SiderMenuProps = {
   >;
 
   /** Layout的操作功能列表，不同的 layout 会放到不同的位置 */
-  actionsRender?: WithFalse<
-    (props: HeaderViewProps) => React.ReactNode[] | React.ReactNode
-  >;
+  actionsRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode[] | React.ReactNode>;
   /**
    * @name  菜单 logo 和 title 区域的渲染
    *
@@ -111,11 +100,7 @@ export type SiderMenuProps = {
    * @example 不要这个区域了 : menuHeaderRender={false}
    */
   menuHeaderRender?: WithFalse<
-    (
-      logo: React.ReactNode,
-      title: React.ReactNode,
-      props?: SiderMenuProps,
-    ) => React.ReactNode
+    (logo: React.ReactNode, title: React.ReactNode, props?: SiderMenuProps) => React.ReactNode
   >;
   /**
    * @name 侧边菜单底部的配置，可以增加一些底部操作
@@ -232,18 +217,14 @@ const SiderMenu: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (props) => {
   const collapsedWidth = props.menu?.collapsedWidth ?? 64;
 
   // 之所以这样写是为了提升样式优先级，不然会被sider 自带的覆盖掉
-  const stylishClassName = useStylish(
-    `${baseClassName}.${baseClassName}-stylish`,
-    {
-      stylish,
-      proLayoutCollapsedWidth: collapsedWidth,
-    },
-  );
+  const stylishClassName = useStylish(`${baseClassName}.${baseClassName}-stylish`, {
+    stylish,
+    proLayoutCollapsedWidth: collapsedWidth,
+  });
 
   const siderClassName = clsx(`${baseClassName}`, hashId, {
     [`${baseClassName}-fixed`]: fixSiderbar,
-    [`${baseClassName}-fixed-mix`]:
-      layout === 'mix' && !isMobile && fixSiderbar,
+    [`${baseClassName}-fixed-mix`]: layout === 'mix' && !isMobile && fixSiderbar,
     [`${baseClassName}-collapsed`]: props.collapsed,
     [`${baseClassName}-layout-${layout}`]: layout && !isMobile,
     [`${baseClassName}-light`]: theme !== 'dark',
@@ -288,7 +269,10 @@ const SiderMenu: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (props) => {
     const dom = (
       <div className={`${baseClassName}-actions-avatar`}>
         {rest?.src || rest?.srcSet || rest.icon || rest.children ? (
-          <Avatar size={28} {...rest} />
+          <Avatar
+            size={28}
+            {...rest}
+          />
         ) : null}
         {avatarProps.title && !collapsed && <span>{title}</span>}
       </div>
@@ -312,18 +296,16 @@ const SiderMenu: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (props) => {
           hashId,
         ])}
       >
-        {[actionsRender?.(props as HeaderViewProps)]
-          .flat(1)
-          .map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={clsx(`${baseClassName}-actions-list-item`, hashId)}
-              >
-                {item}
-              </div>
-            );
-          })}
+        {[actionsRender?.(props as HeaderViewProps)].flat(1).map((item, index) => {
+          return (
+            <div
+              key={index}
+              className={clsx(`${baseClassName}-actions-list-item`, hashId)}
+            >
+              {item}
+            </div>
+          );
+        })}
       </Space>
     );
   }, [actionsRender, baseClassName, collapsed]);
@@ -353,14 +335,7 @@ const SiderMenu: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (props) => {
     );
     if (collapsedButtonRender) return collapsedButtonRender(collapsed, dom);
     return dom;
-  }, [
-    collapsedButtonRender,
-    isMobile,
-    originCollapsed,
-    baseClassName,
-    collapsed,
-    onCollapse,
-  ]);
+  }, [collapsedButtonRender, isMobile, originCollapsed, baseClassName, collapsed, onCollapse]);
 
   /** 操作区域的dom */
   const actionAreaDom = useMemo(() => {

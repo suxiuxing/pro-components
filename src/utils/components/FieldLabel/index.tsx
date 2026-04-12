@@ -3,6 +3,7 @@ import { ConfigProvider } from 'antd';
 import type { SizeType } from 'antd/lib/config-provider/SizeContext';
 import { clsx } from 'clsx';
 import React, { useContext, useImperativeHandle, useRef } from 'react';
+
 import { useIntl } from '../../../provider';
 import { useStyle } from './style';
 
@@ -28,10 +29,7 @@ export type FieldLabelProps = {
   onLabelClick?: () => void;
 };
 
-const FieldLabelFunction: React.ForwardRefRenderFunction<
-  any,
-  FieldLabelProps
-> = (props, ref) => {
+const FieldLabelFunction: React.ForwardRefRenderFunction<any, FieldLabelProps> = (props, ref) => {
   const {
     label,
     onClear,
@@ -63,9 +61,7 @@ const FieldLabelFunction: React.ForwardRefRenderFunction<
     clearRef,
   }));
 
-  const wrapElements = (
-    array: (string | React.JSX.Element)[],
-  ): React.JSX.Element[] | string => {
+  const wrapElements = (array: (string | React.JSX.Element)[]): React.JSX.Element[] | string => {
     if (array.every((item) => typeof item === 'string')) return array.join(',');
 
     return array.map((item, index) => {
@@ -79,7 +75,10 @@ const FieldLabelFunction: React.ForwardRefRenderFunction<
         );
       }
       return (
-        <span key={index} style={{ display: 'flex' }}>
+        <span
+          key={index}
+          style={{ display: 'flex' }}
+        >
           {item}
           {comma}
         </span>
@@ -134,11 +133,7 @@ const FieldLabelFunction: React.ForwardRefRenderFunction<
       const getText = () => {
         const isArrayValue = Array.isArray(aValue) && aValue.length > 1;
         const unitText = intl.getMessage('form.lightFilter.itemUnit', '项');
-        if (
-          typeof str === 'string' &&
-          str.length > valueMaxLength &&
-          isArrayValue
-        ) {
+        if (typeof str === 'string' && str.length > valueMaxLength && isArrayValue) {
           return `...${aValue.length}${unitText}`;
         }
         return '';
@@ -155,9 +150,7 @@ const FieldLabelFunction: React.ForwardRefRenderFunction<
         >
           {prefix}
           <span style={{ paddingInlineStart: 4, display: 'flex' }}>
-            {typeof str === 'string'
-              ? str?.toString()?.slice?.(0, valueMaxLength)
-              : str}
+            {typeof str === 'string' ? str?.toString()?.slice?.(0, valueMaxLength) : str}
           </span>
           {tail}
         </span>
@@ -204,13 +197,7 @@ const FieldLabelFunction: React.ForwardRefRenderFunction<
       )}
       {downIcon !== false
         ? (downIcon ?? (
-            <DownOutlined
-              className={clsx(
-                `${prefixCls}-icon`,
-                hashId,
-                `${prefixCls}-arrow`,
-              )}
-            />
+            <DownOutlined className={clsx(`${prefixCls}-icon`, hashId, `${prefixCls}-arrow`)} />
           ))
         : null}
     </span>,

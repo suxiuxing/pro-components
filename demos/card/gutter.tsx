@@ -4,7 +4,12 @@ const Demo = () => {
   return (
     <>
       <ProCard gutter={[16, 16]}>
-        <ProCard colSpan="30%" title="title" headerBordered variant="outlined">
+        <ProCard
+          colSpan="30%"
+          title="title"
+          headerBordered
+          variant="outlined"
+        >
           300px
         </ProCard>
         <ProCard variant="outlined">Auto</ProCard>
@@ -19,7 +24,10 @@ const Demo = () => {
         <ProCard variant="outlined">Responsive</ProCard>
       </ProCard>
 
-      <ProCard gutter={16} style={{ marginBlockStart: 16 }}>
+      <ProCard
+        gutter={16}
+        style={{ marginBlockStart: 16 }}
+      >
         <ProCard variant="outlined">Auto</ProCard>
         <ProCard variant="outlined">Auto</ProCard>
         <ProCard variant="outlined">Auto</ProCard>

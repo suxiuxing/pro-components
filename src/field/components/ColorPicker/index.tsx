@@ -1,9 +1,7 @@
-﻿import type { ColorPickerProps } from 'antd';
+import type { ColorPickerProps } from 'antd';
 import React from 'react';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldColorPickerEdit } from './FieldColorPickerEdit';
 import { FieldColorPickerRead } from './FieldColorPickerRead';
@@ -21,9 +19,7 @@ type ForwardRefFieldColorPicker = React.ForwardRefExoticComponent<
  * 颜色组件
  * Antd > 5.5.0 的版本 使用 antd 的 ColorPicker
  */
-const FieldColorPicker: ProFieldFC<
-  FieldColorPickerProps
-> = (props, ref: any) => {
+const FieldColorPicker: ProFieldFC<FieldColorPickerProps> = (props, ref: any) => {
   const { mode: type } = props;
 
   if (isProFieldReadMode(type)) {
@@ -35,7 +31,6 @@ const FieldColorPicker: ProFieldFC<
   return null;
 };
 
-const ForwardRefFieldColorPicker: ForwardRefFieldColorPicker =
-  React.forwardRef(FieldColorPicker);
+const ForwardRefFieldColorPicker: ForwardRefFieldColorPicker = React.forwardRef(FieldColorPicker);
 
 export default ForwardRefFieldColorPicker;

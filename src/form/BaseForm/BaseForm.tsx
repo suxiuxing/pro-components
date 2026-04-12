@@ -1,4 +1,4 @@
-﻿import {
+import {
   get,
   set as namePathSet,
   omit,
@@ -20,6 +20,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+
 import { ProConfigProvider } from '../../provider';
 import type {
   ProFieldProps,
@@ -45,11 +46,7 @@ import type { ProFieldValueType } from '../../utils/typing';
 import { FormListContext } from '../components/List';
 import FieldContext from '../FieldContext';
 import { GridContext, useGridHelpers } from '../helpers';
-import type {
-  FieldProps,
-  ProFormGridConfig,
-  ProFormGroupProps,
-} from '../typing';
+import type { FieldProps, ProFormGridConfig, ProFormGroupProps } from '../typing';
 import { EditOrReadOnlyContext } from './EditOrReadOnlyContext';
 import type { SubmitterProps } from './Submitter';
 import Submitter from './Submitter';
@@ -65,10 +62,7 @@ type ProFormRef<T> = ProFormInstance<T> & {
   focus?: () => void;
 };
 
-export type CommonFormProps<
-  T = Record<string, any>,
-  U = Record<string, any>,
-> = {
+export type CommonFormProps<T = Record<string, any>, U = Record<string, any>> = {
   /**
    * @name 自定义提交的配置
    *
@@ -318,10 +312,7 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
           return {};
         }
         const values = formInstance.getFieldsValue(allData!);
-        return transformKey(
-          values,
-          omitNilParam !== undefined ? omitNilParam : omitNil,
-        );
+        return transformKey(values, omitNilParam !== undefined ? omitNilParam : omitNil);
       },
       /**
        * 获取被 ProForm 格式化后的单个数据
@@ -332,10 +323,7 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
        * @example {a:{b:value}} -> getFieldFormatValue(['a', 'b']) -> value
        */
       /** 获取格式化之后的单个数据 */
-      getFieldFormatValue: (
-        paramsNameList: NamePath = [],
-        omitNilParam?: boolean,
-      ) => {
+      getFieldFormatValue: (paramsNameList: NamePath = [], omitNilParam?: boolean) => {
         const formInstance = getFormInstance();
         if (!formInstance) {
           return undefined;
@@ -373,10 +361,7 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
        * @example  {a:{b:value}} -> getFieldFormatValueObject(['a', 'b']) -> {a:{b:value}}
        */
       /** 获取格式化之后的单个数据 */
-      getFieldFormatValueObject: (
-        paramsNameList?: NamePath,
-        omitNilParam?: boolean,
-      ) => {
+      getFieldFormatValueObject: (paramsNameList?: NamePath, omitNilParam?: boolean) => {
         const formInstance = getFormInstance();
         if (!formInstance) {
           return {};
@@ -384,13 +369,9 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
         const nameList = covertFormName(paramsNameList);
         const value = formInstance.getFieldValue(nameList!);
         const obj = nameList ? set({}, nameList as string[], value) : value;
-        return transformKey(
-          obj,
-          omitNilParam !== undefined ? omitNilParam : omitNil,
-          nameList,
-        );
+        return transformKey(obj, omitNilParam !== undefined ? omitNilParam : omitNil, nameList);
       },
-      /** 
+      /**
       /**
        *验字段后返回格式化之后的所有数据
        * @param nameList (string|number)[]
@@ -399,16 +380,12 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
        * 
        * @example validateFieldsReturnFormatValue -> {a:{b:value}}
        */
-      validateFieldsReturnFormatValue: async (
-        nameList?: NamePath[],
-        omitNilParam?: boolean,
-      ) => {
+      validateFieldsReturnFormatValue: async (nameList?: NamePath[], omitNilParam?: boolean) => {
         const formInstance = getFormInstance();
         if (!formInstance) {
           return {};
         }
-        if (!Array.isArray(nameList) && nameList)
-          throw new Error('nameList must be array');
+        if (!Array.isArray(nameList) && nameList) throw new Error('nameList must be array');
 
         const values = await formInstance.validateFields(nameList);
         const transformedKey = transformKey(
@@ -424,10 +401,7 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
   const items = useMemo(() => {
     return React.Children.toArray(children as any).map((item, index) => {
       if (index === 0 && React.isValidElement(item) && autoFocusFirstInput) {
-        return autoFocusToFirstChild(
-          item,
-          autoFocusFirstInput,
-        ) as React.ReactElement;
+        return autoFocusToFirstChild(item, autoFocusFirstInput) as React.ReactElement;
       }
       return item;
     });
@@ -447,10 +421,7 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
         key="submitter"
         {...submitterProps}
         onReset={() => {
-          const finalValues = transformKey(
-            formRef.current?.getFieldsValue(),
-            omitNil,
-          );
+          const finalValues = transformKey(formRef.current?.getFieldsValue(), omitNil);
           submitterProps?.onReset?.(finalValues);
           onReset?.(finalValues);
           // 如果 syncToUrl，清空一下数据
@@ -499,8 +470,7 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
 
   // 提示一个 initialValues ，问的人实在是太多了
   useEffect(() => {
-    if (syncToUrl || !props.initialValues || !preInitialValues || rest.request)
-      return;
+    if (syncToUrl || !props.initialValues || !preInitialValues || rest.request) return;
     const isEqual = isDeepEqualReact(props.initialValues, preInitialValues);
     noteOnce(
       isEqual,
@@ -522,15 +492,9 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
           return {};
         }
         const values = formInstance.getFieldsValue(allData!);
-        return transformKey(
-          values,
-          omitNilParam !== undefined ? omitNilParam : omitNil,
-        );
+        return transformKey(values, omitNilParam !== undefined ? omitNilParam : omitNil);
       },
-      getFieldFormatValue: (
-        paramsNameList: NamePath = [],
-        omitNilParam?: boolean,
-      ) => {
+      getFieldFormatValue: (paramsNameList: NamePath = [], omitNilParam?: boolean) => {
         const formInstance = formRef.current;
         if (!formInstance) {
           return undefined;
@@ -559,10 +523,7 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
         }
         return result;
       },
-      getFieldFormatValueObject: (
-        paramsNameList?: NamePath,
-        omitNilParam?: boolean,
-      ) => {
+      getFieldFormatValueObject: (paramsNameList?: NamePath, omitNilParam?: boolean) => {
         const formInstance = formRef.current;
         if (!formInstance) {
           return {};
@@ -570,22 +531,14 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
         const nameList = covertFormName(paramsNameList);
         const value = formInstance.getFieldValue(nameList!);
         const obj = nameList ? set({}, nameList as string[], value) : value;
-        return transformKey(
-          obj,
-          omitNilParam !== undefined ? omitNilParam : omitNil,
-          nameList,
-        );
+        return transformKey(obj, omitNilParam !== undefined ? omitNilParam : omitNil, nameList);
       },
-      validateFieldsReturnFormatValue: async (
-        nameList?: NamePath[],
-        omitNilParam?: boolean,
-      ) => {
+      validateFieldsReturnFormatValue: async (nameList?: NamePath[], omitNilParam?: boolean) => {
         const formInstance = formRef.current;
         if (!formInstance) {
           return {};
         }
-        if (!Array.isArray(nameList) && nameList)
-          throw new Error('nameList must be array');
+        if (!Array.isArray(nameList) && nameList) throw new Error('nameList must be array');
 
         const values = await formInstance.validateFields(nameList);
         const transformedKey = transformKey(
@@ -597,10 +550,7 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
     };
   }, [omitNil, transformKey, formRef.current]);
   useEffect(() => {
-    const finalValues = transformKey(
-      formRef.current?.getFieldsValue?.(true),
-      omitNil,
-    );
+    const finalValues = transformKey(formRef.current?.getFieldsValue?.(true), omitNil);
     onInit?.(finalValues, {
       ...formRef.current,
       ...formatValues,
@@ -670,10 +620,7 @@ export function BaseForm<T = Record<string, any>, U = Record<string, any>>(
     ...propRest
   } = props;
   const formRef = useRef<ProFormRef<any>>({} as any);
-  const [loading, setLoadingInner] = useControlledState<boolean>(
-    false,
-    propsLoading,
-  );
+  const [loading, setLoadingInner] = useControlledState<boolean>(false, propsLoading);
 
   /**
    * 使用 useRefFunction 包装回调，确保引用稳定
@@ -690,9 +637,7 @@ export function BaseForm<T = Record<string, any>, U = Record<string, any>>(
     (updater: boolean | ((prev: boolean) => boolean)) => {
       setLoadingInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         queueMicrotask(() => {
           onLoadingChangeCallback(next);
         });
@@ -702,10 +647,7 @@ export function BaseForm<T = Record<string, any>, U = Record<string, any>>(
     [onLoadingChangeCallback],
   );
 
-  const [urlSearch, setUrlSearch] = useUrlSearchParams(
-    {},
-    { disabled: !syncToUrl },
-  );
+  const [urlSearch, setUrlSearch] = useUrlSearchParams({}, { disabled: !syncToUrl });
   const curFormKey = useRef<string>(nanoid());
 
   useEffect(() => {
@@ -766,18 +708,15 @@ export function BaseForm<T = Record<string, any>, U = Record<string, any>>(
   });
 
   // 如果为 false，不需要触发设置进去
-  const [urlParamsMergeInitialValues, setUrlParamsMergeInitialValues] =
-    useState(() => {
-      if (!syncToUrl) {
-        return {};
-      }
-      return genParams(syncToUrl, urlSearch, 'get');
-    });
+  const [urlParamsMergeInitialValues, setUrlParamsMergeInitialValues] = useState(() => {
+    if (!syncToUrl) {
+      return {};
+    }
+    return genParams(syncToUrl, urlSearch, 'get');
+  });
 
   /** 保存 transformKeyRef，用于对表单key transform */
-  const transformKeyRef = useRef<
-    Record<string, SearchTransformKeyFn | undefined>
-  >({});
+  const transformKeyRef = useRef<Record<string, SearchTransformKeyFn | undefined>>({});
 
   const fieldsValueType = useRef<
     Record<
@@ -845,11 +784,7 @@ export function BaseForm<T = Record<string, any>, U = Record<string, any>>(
       setLoading(true);
       const finalValues = formRef?.current?.getFieldsFormatValue?.() || {};
       const response = propRest.onFinish(finalValues);
-      if (
-        response &&
-        typeof response === 'object' &&
-        typeof response.then === 'function'
-      ) {
+      if (response && typeof response === 'object' && typeof response.then === 'function') {
         try {
           await response;
         } catch (error) {
@@ -921,29 +856,18 @@ export function BaseForm<T = Record<string, any>, U = Record<string, any>>(
             formComponentType,
             getPopupContainer,
             formKey: curFormKey.current,
-            setFieldValueType: (
-              name,
-              { valueType = 'text', dateFormat, transform },
-            ) => {
+            setFieldValueType: (name, { valueType = 'text', dateFormat, transform }) => {
               if (!Array.isArray(name)) return;
 
               // Store transform function in the correct nested structure
               if (transform) {
-                transformKeyRef.current = namePathSet(
-                  transformKeyRef.current,
-                  name,
-                  transform,
-                );
+                transformKeyRef.current = namePathSet(transformKeyRef.current, name, transform);
               }
 
-              fieldsValueType.current = namePathSet(
-                fieldsValueType.current,
-                name,
-                {
-                  valueType,
-                  dateFormat,
-                },
-              );
+              fieldsValueType.current = namePathSet(fieldsValueType.current, name, {
+                valueType,
+                dateFormat,
+              });
             },
           }}
         >
@@ -1001,9 +925,7 @@ export function BaseForm<T = Record<string, any>, U = Record<string, any>>(
               <BaseFormComponents<T, U>
                 transformKey={transformKey}
                 autoComplete="off"
-                loading={
-                  loading || !!(request && !initialData && initialDataLoading)
-                }
+                loading={loading || !!(request && !initialData && initialDataLoading)}
                 onUrlSearchChange={setUrlSearch}
                 {...props}
                 formRef={formRef}

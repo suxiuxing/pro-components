@@ -1,4 +1,6 @@
 import { SmileOutlined } from '@ant-design/icons';
+import { Card, message } from 'antd';
+
 import {
   FooterToolbar,
   PageContainer,
@@ -12,7 +14,6 @@ import {
   ProFormUploadButton,
   ProLayout,
 } from '@xxlabs/pro-components';
-import { Card, message } from 'antd';
 
 const Demo = () => {
   return (
@@ -100,7 +101,11 @@ const Demo = () => {
                 label="Contract Agreed Invalid Method"
               />
             </ProForm.Group>
-            <ProFormText width="sm" name="id" label="Main Contract Number" />
+            <ProFormText
+              width="sm"
+              name="id"
+              label="Main Contract Number"
+            />
             <ProFormText
               name="project"
               disabled

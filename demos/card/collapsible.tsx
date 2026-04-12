@@ -1,7 +1,8 @@
 import { RightOutlined } from '@ant-design/icons';
-import { ProCard } from '@xxlabs/pro-components';
 import { Button, message } from 'antd';
 import { useState } from 'react';
+
+import { ProCard } from '@xxlabs/pro-components';
 
 export default () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -121,11 +122,7 @@ export default () => {
         </ProCard>
         <ProCard
           title="Collapsible - Custom Icon (Controlled)"
-          collapsibleIconRender={({
-            collapsed: buildInCollapsed,
-          }: {
-            collapsed: boolean;
-          }) =>
+          collapsibleIconRender={({ collapsed: buildInCollapsed }: { collapsed: boolean }) =>
             buildInCollapsed ? <span>Collapse - </span> : <span>Expand - </span>
           }
           style={{ marginBlockStart: 16 }}
@@ -138,11 +135,7 @@ export default () => {
         </ProCard>
         <ProCard
           title="Collapsible - Custom Icon"
-          collapsibleIconRender={({
-            collapsed: buildInCollapsed,
-          }: {
-            collapsed: boolean;
-          }) =>
+          collapsibleIconRender={({ collapsed: buildInCollapsed }: { collapsed: boolean }) =>
             buildInCollapsed ? <span>Collapse - </span> : <span>Expand - </span>
           }
           style={{ marginBlockStart: 16 }}

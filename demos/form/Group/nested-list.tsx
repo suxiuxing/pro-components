@@ -1,15 +1,15 @@
-﻿import {
-  ProCard,
-  ProForm,
-  ProFormGroup,
-  ProFormList,
-  ProFormText,
-} from '@xxlabs/pro-components';
+import { ProCard, ProForm, ProFormGroup, ProFormList, ProFormText } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
-    <ProForm name="nested-list-demo" onFinish={async (e) => console.log(e)}>
-      <ProFormText name="name" label="姓名" />
+    <ProForm
+      name="nested-list-demo"
+      onFinish={async (e) => console.log(e)}
+    >
+      <ProFormText
+        name="name"
+        label="姓名"
+      />
       <ProFormList
         name="users"
         label="用户信息"
@@ -34,8 +34,14 @@ const Demo = () => {
         }}
       >
         <ProFormGroup>
-          <ProFormText name="name" label="姓名" />
-          <ProFormText name="nickName" label="昵称" />
+          <ProFormText
+            name="name"
+            label="姓名"
+          />
+          <ProFormText
+            name="nickName"
+            label="昵称"
+          />
         </ProFormGroup>
         <ProFormList
           name="labels"
@@ -54,8 +60,14 @@ const Demo = () => {
           }}
         >
           <ProFormGroup key="group">
-            <ProFormText name="value" label="值" />
-            <ProFormText name="label" label="显示名称" />
+            <ProFormText
+              name="value"
+              label="值"
+            />
+            <ProFormText
+              name="label"
+              label="显示名称"
+            />
           </ProFormGroup>
         </ProFormList>
       </ProFormList>

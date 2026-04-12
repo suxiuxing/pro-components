@@ -1,11 +1,8 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import {
-  EditableProTable,
-  ProCard,
-  ProFormField,
-} from '@xxlabs/pro-components';
 import { Segmented } from 'antd';
 import React, { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { EditableProTable, ProCard, ProFormField } from '@xxlabs/pro-components';
 
 import { createEditableRowId, DEMO_TASK_STATUS_ENUM } from '../mockData';
 
@@ -42,9 +39,7 @@ const defaultData: DataSourceType[] = [
 ];
 
 const Demo = () => {
-  const [editableType, setEditableType] = useState<'single' | 'multiple'>(
-    'multiple',
-  );
+  const [editableType, setEditableType] = useState<'single' | 'multiple'>('multiple');
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
   const [dataSource, setDataSource] = useState<readonly DataSourceType[]>([]);
 
@@ -74,14 +69,15 @@ const Demo = () => {
       valueType: 'option',
       width: 150,
       render: (text, record, _, action) => [
-        <a key="editable" onClick={() => action?.startEditable?.(record.id)}>
+        <a
+          key="editable"
+          onClick={() => action?.startEditable?.(record.id)}
+        >
           编辑
         </a>,
         <a
           key="delete"
-          onClick={() =>
-            setDataSource(dataSource.filter((item) => item.id !== record.id))
-          }
+          onClick={() => setDataSource(dataSource.filter((item) => item.id !== record.id))}
         >
           删除
         </a>,
@@ -127,7 +123,12 @@ const Demo = () => {
           onChange: setEditableRowKeys,
         }}
       />
-      <ProCard title="表格数据" headerBordered collapsible defaultCollapsed>
+      <ProCard
+        title="表格数据"
+        headerBordered
+        collapsible
+        defaultCollapsed
+      >
         <ProFormField
           ignoreFormItem
           fieldProps={{ style: { width: '100%' } }}

@@ -1,3 +1,7 @@
+import { TreeSelect } from 'antd';
+import dayjs from 'dayjs';
+import { useRef } from 'react';
+
 import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProForm,
@@ -11,9 +15,6 @@ import {
   ProFormText,
   ProFormTreeSelect,
 } from '@xxlabs/pro-components';
-import { TreeSelect } from 'antd';
-import dayjs from 'dayjs';
-import { useRef } from 'react';
 
 const treeData = [
   {
@@ -96,7 +97,11 @@ const Demo = () => {
         />
       </ProForm.Group>
       <ProForm.Group>
-        <ProFormDigit name="count" label="人数" width="lg" />
+        <ProFormDigit
+          name="count"
+          label="人数"
+          width="lg"
+        />
       </ProForm.Group>
       <ProForm.Group>
         <ProFormText
@@ -156,7 +161,11 @@ const Demo = () => {
           }}
         />
       </ProForm.Group>
-      <ProFormText width="sm" name="id" label="主合同编号" />
+      <ProFormText
+        width="sm"
+        name="id"
+        label="主合同编号"
+      />
       <ProFormText
         name="project"
         width="md"

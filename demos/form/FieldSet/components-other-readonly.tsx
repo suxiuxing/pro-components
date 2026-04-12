@@ -1,3 +1,5 @@
+import { message } from 'antd';
+
 import {
   ProForm,
   ProFormCheckbox,
@@ -19,7 +21,6 @@ import {
   ProFormUploadButton,
   ProFormUploadDragger,
 } from '@xxlabs/pro-components';
-import { message } from 'antd';
 
 import { FIXED_BASE_TIMESTAMP } from '../../mockData';
 
@@ -113,14 +114,8 @@ const Demo = () => (
         dateTime: FIXED_BASE_TIMESTAMP,
         time: '00:01:05',
         timeRange: ['05:00:00', '11:00:00'],
-        dateTimeRange: [
-          FIXED_BASE_TIMESTAMP,
-          FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24,
-        ],
-        dateRange: [
-          FIXED_BASE_TIMESTAMP,
-          FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24,
-        ],
+        dateTimeRange: [FIXED_BASE_TIMESTAMP, FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24],
+        dateRange: [FIXED_BASE_TIMESTAMP, FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24],
       }}
       onFinish={async () => {
         message.success('Submitted');
@@ -237,7 +232,10 @@ const Demo = () => (
         ]}
       />
       <ProForm.Group>
-        <ProFormText hidden label="text1" />
+        <ProFormText
+          hidden
+          label="text1"
+        />
         <ProFormText label="text2" />
       </ProForm.Group>
       <ProFormRadio.Group
@@ -264,7 +262,10 @@ const Demo = () => (
         label="Checkbox.Group"
         options={['A', 'B', 'C', 'D', 'E', 'F']}
       />
-      <ProFormRate name="rate" label="Rate" />
+      <ProFormRate
+        name="rate"
+        label="Rate"
+      />
       <ProFormUploadButton
         name="upload"
         label="Upload"
@@ -286,8 +287,14 @@ const Demo = () => (
           },
         ]}
       >
-        <ProFormText name="name" label="姓名" />
-        <ProFormText name="addr" label="地址" />
+        <ProFormText
+          name="name"
+          label="姓名"
+        />
+        <ProFormText
+          name="addr"
+          label="地址"
+        />
       </ProFormList>
       <ProFormFieldSet
         name="list"
@@ -320,10 +327,17 @@ const Demo = () => (
           });
         }}
       </ProFormFieldSet>
-      <ProFormUploadDragger max={4} label="Dragger" name="dragger" />
+      <ProFormUploadDragger
+        max={4}
+        label="Dragger"
+        name="dragger"
+      />
 
       <ProForm.Group title="日期相关分组">
-        <ProFormDatePicker name="date" label="日期" />
+        <ProFormDatePicker
+          name="date"
+          label="日期"
+        />
         <ProFormDatePicker
           name="date"
           fieldProps={{
@@ -331,12 +345,30 @@ const Demo = () => (
           }}
           label="年月"
         />
-        <ProFormTimePicker name="time" label="时间" />
-        <ProFormTimePicker.RangePicker name="timeRange" label="时间区间" />
-        <ProFormDatePicker.Week name="dateWeek" label="周" />
-        <ProFormDatePicker.Month name="dateMonth" label="月" />
-        <ProFormDatePicker.Quarter name="dateQuarter" label="季度" />
-        <ProFormDatePicker.Year name="dateYear" label="年" />
+        <ProFormTimePicker
+          name="time"
+          label="时间"
+        />
+        <ProFormTimePicker.RangePicker
+          name="timeRange"
+          label="时间区间"
+        />
+        <ProFormDatePicker.Week
+          name="dateWeek"
+          label="周"
+        />
+        <ProFormDatePicker.Month
+          name="dateMonth"
+          label="月"
+        />
+        <ProFormDatePicker.Quarter
+          name="dateQuarter"
+          label="季度"
+        />
+        <ProFormDatePicker.Year
+          name="dateYear"
+          label="年"
+        />
         <ProFormDateTimePicker
           name="dateTime"
           label="日期时间"
@@ -344,8 +376,14 @@ const Demo = () => (
             format: (value) => value.format('YYYY-MM-DD'),
           }}
         />
-        <ProFormDateRangePicker name="dateRange" label="日期区间" />
-        <ProFormDateTimeRangePicker name="dateTimeRange" label="日期时间区间" />
+        <ProFormDateRangePicker
+          name="dateRange"
+          label="日期区间"
+        />
+        <ProFormDateTimeRangePicker
+          name="dateTimeRange"
+          label="日期时间区间"
+        />
       </ProForm.Group>
       <ProForm.Group title="其他相关分组">
         <ProForm.Item label="互相依赖的表单">
@@ -355,7 +393,10 @@ const Demo = () => (
             }}
           </ProFormDependency>
         </ProForm.Item>
-        <ProFormFieldSet name="list" label="组件列表">
+        <ProFormFieldSet
+          name="list"
+          label="组件列表"
+        >
           <ProFormText width="md" />
           <ProFormSelect
             width="md"

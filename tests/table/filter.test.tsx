@@ -1,17 +1,12 @@
-import type { ActionType } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 /// <reference types="@vitest/browser/context" />
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import type { ActionType } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -59,9 +54,7 @@ describe('BasicTable filter', () => {
       />,
     );
 
-    await userEvent.click(
-      container.querySelector('span.ant-table-filter-trigger')!,
-    );
+    await userEvent.click(container.querySelector('span.ant-table-filter-trigger')!);
     fireEvent.click(screen.getAllByText('关闭')[1], {
       target: {
         checked: true,
@@ -115,9 +108,7 @@ describe('BasicTable filter', () => {
       />,
     );
 
-    await userEvent.click(
-      container.querySelector('span.ant-table-filter-trigger')!,
-    );
+    await userEvent.click(container.querySelector('span.ant-table-filter-trigger')!);
     fireEvent.click(screen.getByText('关闭'), {
       target: {
         checked: true,
@@ -211,14 +202,10 @@ describe('BasicTable filter', () => {
       { timeout: 1000 },
     );
 
-    await userEvent.click(
-      container.querySelectorAll('span.ant-table-filter-trigger')[0],
-    );
+    await userEvent.click(container.querySelectorAll('span.ant-table-filter-trigger')[0]);
     await userEvent.click(screen.getByRole('menuitem', { name: /已上线/i }));
     await userEvent.click(
-      container.querySelector(
-        '.ant-table-filter-dropdown-btns .ant-btn-primary',
-      )!,
+      container.querySelector('.ant-table-filter-dropdown-btns .ant-btn-primary')!,
     );
 
     await waitFor(
@@ -279,14 +266,10 @@ describe('BasicTable filter', () => {
       fn.mockClear(); // 清除初始 request 调用
     });
 
-    await userEvent.click(
-      container.querySelector('span.ant-table-filter-trigger')!,
-    );
+    await userEvent.click(container.querySelector('span.ant-table-filter-trigger')!);
     await userEvent.click(screen.getByRole('menuitem', { name: /启用/i }));
     await userEvent.click(
-      container.querySelector(
-        '.ant-table-filter-dropdown-btns .ant-btn-primary',
-      )!,
+      container.querySelector('.ant-table-filter-dropdown-btns .ant-btn-primary')!,
     );
 
     await waitFor(() => {
@@ -369,14 +352,10 @@ describe('BasicTable filter', () => {
       { timeout: 1000 },
     );
 
-    await userEvent.click(
-      container.querySelectorAll('span.ant-table-filter-trigger')[0],
-    );
+    await userEvent.click(container.querySelectorAll('span.ant-table-filter-trigger')[0]);
     await userEvent.click(screen.getByRole('menuitem', { name: /已上线/i }));
     await userEvent.click(
-      container.querySelector(
-        '.ant-table-filter-dropdown-btns .ant-btn-primary',
-      )!,
+      container.querySelector('.ant-table-filter-dropdown-btns .ant-btn-primary')!,
     );
 
     await waitFor(
@@ -455,33 +434,21 @@ describe('BasicTable filter', () => {
       { timeout: 10000 },
     );
 
+    await userEvent.click(container.querySelector('span.ant-table-filter-trigger')!);
     await userEvent.click(
-      container.querySelector('span.ant-table-filter-trigger')!,
+      container.querySelectorAll('.ant-table-filter-dropdown .ant-dropdown-menu-item')[0],
     );
     await userEvent.click(
-      container.querySelectorAll(
-        '.ant-table-filter-dropdown .ant-dropdown-menu-item',
-      )[0],
-    );
-    await userEvent.click(
-      container.querySelector(
-        '.ant-table-filter-dropdown-btns .ant-btn-primary',
-      )!,
+      container.querySelector('.ant-table-filter-dropdown-btns .ant-btn-primary')!,
     );
 
     expect(fn).toHaveBeenCalled();
+    await userEvent.click(container.querySelector('span.ant-table-filter-trigger')!);
     await userEvent.click(
-      container.querySelector('span.ant-table-filter-trigger')!,
+      container.querySelectorAll('.ant-table-filter-dropdown .ant-dropdown-menu-item')[0],
     );
     await userEvent.click(
-      container.querySelectorAll(
-        '.ant-table-filter-dropdown .ant-dropdown-menu-item',
-      )[0],
-    );
-    await userEvent.click(
-      container.querySelector(
-        '.ant-table-filter-dropdown-btns .ant-btn-primary',
-      )!,
+      container.querySelector('.ant-table-filter-dropdown-btns .ant-btn-primary')!,
     );
 
     expect(fn).toHaveBeenCalled();
@@ -638,17 +605,13 @@ describe('BasicTable filter', () => {
               ]
                 .filter((item) => {
                   if (filter.onlineStatus != null) {
-                    return filter.onlineStatus.includes(
-                      item.onlineStatus.toString(),
-                    );
+                    return filter.onlineStatus.includes(item.onlineStatus.toString());
                   }
                   return true;
                 })
                 .filter((item) => {
                   if (filter.processStatus != null) {
-                    return filter.processStatus.includes(
-                      item.processStatus.toString(),
-                    );
+                    return filter.processStatus.includes(item.processStatus.toString());
                   }
                   return true;
                 });
@@ -678,9 +641,7 @@ describe('BasicTable filter', () => {
       // 等待初始数据加载 - 增加更健壮的等待条件
       await waitFor(
         () => {
-          expect(
-            container.querySelector('.ant-table-tbody tr'),
-          ).toBeInTheDocument();
+          expect(container.querySelector('.ant-table-tbody tr')).toBeInTheDocument();
           expect(screen.queryByText('项目 A')).toBeInTheDocument();
         },
         { timeout: 15000 },
@@ -689,17 +650,13 @@ describe('BasicTable filter', () => {
       // 等待表格完全渲染
       await waitFor(
         () => {
-          expect(
-            container.querySelectorAll('span.ant-table-filter-trigger'),
-          ).toHaveLength(2);
+          expect(container.querySelectorAll('span.ant-table-filter-trigger')).toHaveLength(2);
         },
         { timeout: 5000 },
       );
 
       // 点击第一个筛选器（上线状态）
-      const filterTriggers = container.querySelectorAll(
-        'span.ant-table-filter-trigger',
-      );
+      const filterTriggers = container.querySelectorAll('span.ant-table-filter-trigger');
       expect(filterTriggers).toHaveLength(2);
 
       await userEvent.click(filterTriggers[0]);
@@ -707,9 +664,7 @@ describe('BasicTable filter', () => {
       // 等待下拉菜单出现
       await waitFor(
         () => {
-          expect(
-            screen.getByRole('menuitem', { name: /已上线/i }),
-          ).toBeInTheDocument();
+          expect(screen.getByRole('menuitem', { name: /已上线/i })).toBeInTheDocument();
         },
         { timeout: 5000 },
       );
@@ -726,9 +681,7 @@ describe('BasicTable filter', () => {
       // 等待下拉菜单出现
       await waitFor(
         () => {
-          expect(
-            screen.getByRole('menuitem', { name: /异常/i }),
-          ).toBeInTheDocument();
+          expect(screen.getByRole('menuitem', { name: /异常/i })).toBeInTheDocument();
         },
         { timeout: 5000 },
       );
@@ -832,17 +785,13 @@ describe('BasicTable filter', () => {
               ]
                 .filter((item) => {
                   if (filter.onlineStatus != null) {
-                    return filter.onlineStatus.includes(
-                      item.onlineStatus.toString(),
-                    );
+                    return filter.onlineStatus.includes(item.onlineStatus.toString());
                   }
                   return true;
                 })
                 .filter((item) => {
                   if (filter.processStatus != null) {
-                    return filter.processStatus.includes(
-                      item.processStatus.toString(),
-                    );
+                    return filter.processStatus.includes(item.processStatus.toString());
                   }
                   return true;
                 });
@@ -872,9 +821,7 @@ describe('BasicTable filter', () => {
       // 等待初始數據加載 - 增加更健壯的等待條件
       await waitFor(
         () => {
-          expect(
-            container.querySelector('.ant-table-tbody tr'),
-          ).toBeInTheDocument();
+          expect(container.querySelector('.ant-table-tbody tr')).toBeInTheDocument();
           expect(screen.queryByText('項目 A')).toBeInTheDocument();
         },
         { timeout: 15000 },
@@ -883,17 +830,13 @@ describe('BasicTable filter', () => {
       // 等待表格完全渲染
       await waitFor(
         () => {
-          expect(
-            container.querySelectorAll('span.ant-table-filter-trigger'),
-          ).toHaveLength(2);
+          expect(container.querySelectorAll('span.ant-table-filter-trigger')).toHaveLength(2);
         },
         { timeout: 5000 },
       );
 
       // 點擊嵌套列中的第一個篩選器（上線狀態）
-      const filterTriggers = container.querySelectorAll(
-        'span.ant-table-filter-trigger',
-      );
+      const filterTriggers = container.querySelectorAll('span.ant-table-filter-trigger');
       expect(filterTriggers).toHaveLength(2);
       const [filterTrigger1, filterTrigger2] = filterTriggers;
 
@@ -902,9 +845,7 @@ describe('BasicTable filter', () => {
       // 等待下拉菜單出現
       await waitFor(
         () => {
-          expect(
-            screen.getByRole('menuitem', { name: /已上線/i }),
-          ).toBeInTheDocument();
+          expect(screen.getByRole('menuitem', { name: /已上線/i })).toBeInTheDocument();
         },
         { timeout: 5000 },
       );
@@ -931,9 +872,7 @@ describe('BasicTable filter', () => {
       // 等待下拉菜單出現
       await waitFor(
         () => {
-          expect(
-            screen.getByRole('menuitem', { name: /運行中/i }),
-          ).toBeInTheDocument();
+          expect(screen.getByRole('menuitem', { name: /運行中/i })).toBeInTheDocument();
         },
         { timeout: 5000 },
       );

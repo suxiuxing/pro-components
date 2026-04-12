@@ -1,4 +1,4 @@
-﻿import {
+import {
   ProCard,
   ProForm,
   ProFormDependency,
@@ -14,7 +14,10 @@ const Demo = () => {
       name="dependency-debug-demo"
       onFinish={async (e) => console.log(e)}
     >
-      <ProFormText name="name" label="姓名" />
+      <ProFormText
+        name="name"
+        label="姓名"
+      />
       <ProFormList
         name="users"
         label="用户信息"
@@ -39,7 +42,10 @@ const Demo = () => {
         }}
       >
         <ProFormGroup>
-          <ProFormText name="name" label="姓名" />
+          <ProFormText
+            name="name"
+            label="姓名"
+          />
         </ProFormGroup>
         <ProFormList
           name="labels"
@@ -58,7 +64,10 @@ const Demo = () => {
           }}
         >
           <ProFormGroup>
-            <ProFormSwitch name="is_show" label="显示名称" />
+            <ProFormSwitch
+              name="is_show"
+              label="显示名称"
+            />
           </ProFormGroup>
           <ProFormDependency name={['is_show']}>
             {({ is_show }) => {
@@ -81,8 +90,14 @@ const Demo = () => {
                   }}
                 >
                   <ProFormGroup>
-                    <ProFormText name="value" label="值" />
-                    <ProFormSwitch name="is_show" label="显示名称" />
+                    <ProFormText
+                      name="value"
+                      label="值"
+                    />
+                    <ProFormSwitch
+                      name="is_show"
+                      label="显示名称"
+                    />
                   </ProFormGroup>
                 </ProFormList>
               );

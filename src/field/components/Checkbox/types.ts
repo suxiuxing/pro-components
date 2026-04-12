@@ -1,4 +1,5 @@
-﻿import type { CheckboxGroupProps } from 'antd/lib/checkbox';
+import type { CheckboxGroupProps } from 'antd/lib/checkbox';
+
 import type { FieldSelectProps } from '../Select';
 
 export type GroupProps = {

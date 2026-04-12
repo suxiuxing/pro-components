@@ -1,8 +1,9 @@
-﻿import { omit } from '@rc-component/util';
+import { omit } from '@rc-component/util';
 import type { FormItemProps } from 'antd';
 import { ConfigProvider, Form } from 'antd';
 import type { NamePath } from 'antd/lib/form/interface';
 import React, { useContext, useEffect, useMemo } from 'react';
+
 import {
   isDropdownValueType,
   omitUndefined,
@@ -47,9 +48,7 @@ const WithValueFomFiledProps: React.FC<
     filedChildren?.type?.displayName !== 'ProFormComponent';
 
   const isValidElementForFiledChildren = !React.isValidElement(filedChildren);
-  const filedChildrenProps = React.isValidElement<Record<string, any>>(
-    filedChildren,
-  )
+  const filedChildrenProps = React.isValidElement<Record<string, any>>(filedChildren)
     ? filedChildren.props
     : undefined;
 
@@ -144,9 +143,7 @@ const WithValueFomFiledProps: React.FC<
         : {}),
       ...(variantFromRest !== undefined && { variant: variantFromRest }),
       onBlur:
-        isProFormComponent &&
-        !isValidElementForFiledChildren &&
-        typeof onBlur === 'function'
+        isProFormComponent && !isValidElementForFiledChildren && typeof onBlur === 'function'
           ? onBlur
           : undefined,
     }),
@@ -178,10 +175,7 @@ type WarpFormItemProps = {
   convertValue?: SearchConvertKeyFn;
   help?:
     | React.ReactNode
-    | ((params: {
-        errors: React.ReactNode[];
-        warnings: React.ReactNode[];
-      }) => React.ReactNode);
+    | ((params: { errors: React.ReactNode[]; warnings: React.ReactNode[] }) => React.ReactNode);
 };
 
 /**
@@ -190,9 +184,7 @@ type WarpFormItemProps = {
  * @param WarpFormItemProps
  * @returns
  */
-const WarpFormItem: React.FC<
-  Omit<FormItemProps, 'help'> & WarpFormItemProps
-> = ({
+const WarpFormItem: React.FC<Omit<FormItemProps, 'help'> & WarpFormItemProps> = ({
   children,
   addonAfter,
   addonBefore,
@@ -227,7 +219,7 @@ const WarpFormItem: React.FC<
 
     return (
       <Form.Item
-        {...props}
+        
         help={typeof help !== 'function' ? help : undefined}
         valuePropName={valuePropName}
         // @ts-ignore
@@ -253,13 +245,9 @@ const WarpFormItem: React.FC<
                   ...addonWarpStyle,
                 }}
               >
-                {addonBefore ? (
-                  <div style={{ marginInlineEnd: 8 }}>{addonBefore}</div>
-                ) : null}
+                {addonBefore ? <div style={{ marginInlineEnd: 8 }}>{addonBefore}</div> : null}
                 {doms.input}
-                {addonAfter ? (
-                  <div style={{ marginInlineStart: 8 }}>{addonAfter}</div>
-                ) : null}
+                {addonAfter ? <div style={{ marginInlineStart: 8 }}>{addonAfter}</div> : null}
               </div>
               {typeof help === 'function'
                 ? help({
@@ -367,8 +355,7 @@ const ProFormItem: React.FC<ProFormItemProps> = (props) => {
     ? props.children.props.valueType
     : undefined;
   const mergedValueType = valueType || childrenValueType;
-  const isDropdown =
-    typeof mergedValueType === 'string' && isDropdownValueType(mergedValueType);
+  const isDropdown = typeof mergedValueType === 'string' && isDropdownValueType(mergedValueType);
 
   const noLightFormItem = useMemo(() => {
     if (!lightProps?.light || lightProps?.customLightMode || isDropdown) {

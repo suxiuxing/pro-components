@@ -1,6 +1,7 @@
 import type { ColProps, RowProps } from 'antd';
 import { Col, Row } from 'antd';
 import React, { createContext, useContext, useMemo } from 'react';
+
 import type { ProFormGridConfig } from '../typing';
 
 export const GridContext = createContext<ProFormGridConfig>({
@@ -24,9 +25,11 @@ export interface GridHelpers {
   grid: boolean;
 }
 
-export const gridHelpers: (
-  config: ProFormGridConfig & CommonProps,
-) => GridHelpers = ({ grid, rowProps, colProps }) => ({
+export const gridHelpers: (config: ProFormGridConfig & CommonProps) => GridHelpers = ({
+  grid,
+  rowProps,
+  colProps,
+}) => ({
   grid: !!grid,
   RowWrapper({ children, Wrapper, ...props } = {} as Record<string, any>) {
     if (!grid) {
@@ -34,19 +37,17 @@ export const gridHelpers: (
     }
 
     return (
-      <Row gutter={8} {...rowProps} {...props}>
+      <Row
+        gutter={8}
+        {...rowProps}
+        {...props}
+      >
         {children}
       </Row>
     );
   },
   ColWrapper(
-    {
-      children,
-      Wrapper,
-      variant,
-      fieldProps,
-      ...rest
-    }: ColWrapperProps = {} as ColWrapperProps,
+    { children, Wrapper, variant, fieldProps, ...rest }: ColWrapperProps = {} as ColWrapperProps,
   ) {
     const props = useMemo(() => {
       const originProps = { ...colProps, ...rest };
@@ -55,10 +56,7 @@ export const gridHelpers: (
        * `xs` takes precedence over `span`
        * avoid `span` doesn't work
        */
-      if (
-        typeof originProps.span === 'undefined' &&
-        typeof originProps.xs === 'undefined'
-      ) {
+      if (typeof originProps.span === 'undefined' && typeof originProps.xs === 'undefined') {
         originProps.xs = 24;
       }
 
@@ -82,20 +80,14 @@ export const gridHelpers: (
         : children;
 
     if (!grid) {
-      return Wrapper ? (
-        <Wrapper>{childrenWithProps}</Wrapper>
-      ) : (
-        childrenWithProps
-      );
+      return Wrapper ? <Wrapper>{childrenWithProps}</Wrapper> : childrenWithProps;
     }
 
     return (<Col {...props}>{childrenWithProps}</Col>) as any;
   },
 });
 
-export const useGridHelpers = (
-  props?: (ProFormGridConfig & CommonProps) | boolean,
-) => {
+export const useGridHelpers = (props?: (ProFormGridConfig & CommonProps) | boolean) => {
   const config = useMemo(() => {
     {
       if (typeof props === 'object') {

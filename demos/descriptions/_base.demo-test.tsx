@@ -1,5 +1,6 @@
-﻿import { ProDescriptions } from '@xxlabs/pro-components';
 import { Button } from 'antd';
+
+import { ProDescriptions } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -17,7 +18,10 @@ const Demo = () => {
             label: '文本',
             valueType: 'option',
             render: () => [
-              <Button key="primary" type="primary">
+              <Button
+                key="primary"
+                type="primary"
+              >
                 提交
               </Button>,
             ],

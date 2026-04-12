@@ -1,7 +1,8 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import { TableDropdown, TableStatus } from '@xxlabs/pro-components';
 import { Input, message } from 'antd';
 import dayjs from 'dayjs';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { TableDropdown, TableStatus } from '@xxlabs/pro-components';
 
 const getFetchData = (
   size: number,

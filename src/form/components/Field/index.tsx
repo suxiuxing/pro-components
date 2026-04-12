@@ -1,4 +1,5 @@
-﻿import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
+
 import { PureProField } from '../../../field';
 import type { ProSchema } from '../../../utils';
 import { runFunction, useRefFunction } from '../../../utils';
@@ -7,10 +8,7 @@ import { EditOrReadOnlyContext } from '../../BaseForm/EditOrReadOnlyContext';
 import type { ProFormFieldItemProps } from '../../typing';
 import warpField from '../FormItem/warpField';
 
-export type ProFormFieldProps<
-  T = any,
-  FiledProps = Record<string, any>,
-> = ProSchema<
+export type ProFormFieldProps<T = any, FiledProps = Record<string, any>> = ProSchema<
   T,
   ProFormFieldItemProps<FiledProps> & {
     mode?: 'edit' | 'read' | 'update';
@@ -66,7 +64,7 @@ const BaseProFormField: React.FC<
     return dependenciesValues && restProps.request
       ? {
           ...params,
-          ...(dependenciesValues || {}),
+          ...dependenciesValues,
         }
       : params;
   }, [dependenciesValues, params, restProps.request]);
@@ -100,7 +98,7 @@ const BaseProFormField: React.FC<
             }
             onChange?.(...restParams);
           },
-          ...((children?.props as any) || {}),
+          ...(children.props as any),
         });
       }
       return <>{children}</>;

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 格式化秒
  */
 export function formatSecond(result: number) {

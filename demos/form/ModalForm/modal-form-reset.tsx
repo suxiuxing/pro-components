@@ -1,7 +1,8 @@
-import type { ProFormInstance } from '@xxlabs/pro-components';
-import { ModalForm, ProFormText } from '@xxlabs/pro-components';
 import { Button, Space, message } from 'antd';
 import { useRef, useState } from 'react';
+
+import type { ProFormInstance } from '@xxlabs/pro-components';
+import { ModalForm, ProFormText } from '@xxlabs/pro-components';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {

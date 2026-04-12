@@ -1,4 +1,5 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { omitUndefined } from '../../utils';
 import type { ProSettings } from '../defaultSettings';
 
@@ -9,10 +10,7 @@ const useCurrentMenuLayoutProps = (currentMenu: ProSettings) => {
     setCurrentMenuLayoutProps(
       omitUndefined({
         // 有时候会变成对象，是原来的方式
-        layout:
-          typeof currentMenu.layout !== 'object'
-            ? currentMenu.layout
-            : undefined,
+        layout: typeof currentMenu.layout !== 'object' ? currentMenu.layout : undefined,
         navTheme: currentMenu.navTheme,
         menuRender: currentMenu.menuRender,
         footerRender: currentMenu.footerRender,

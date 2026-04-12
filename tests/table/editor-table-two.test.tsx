@@ -1,11 +1,9 @@
 import { useControlledState } from '@rc-component/util';
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import { Button, Input, InputNumber, Popover } from 'antd';
+import React, { useCallback, useRef, useState } from 'react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import type {
   ActionType,
   EditableFormInstance,
@@ -13,9 +11,7 @@ import type {
   TableRowEditable,
 } from '@xxlabs/pro-components';
 import { EditableProTable, ProForm, ProFormText } from '@xxlabs/pro-components';
-import { Button, Input, InputNumber, Popover } from 'antd';
-import React, { useCallback, useRef, useState } from 'react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import { waitForWaitTime } from '../util';
 type DataSourceType = {
   id: number | string;
@@ -185,9 +181,10 @@ const EditorProTableDemo = (
     },
     [props.onEditorChange],
   );
-  const [tableDataSource, setDataSourceInner] = useControlledState<
-    readonly DataSourceType[]
-  >(defaultData, props.dataSource);
+  const [tableDataSource, setDataSourceInner] = useControlledState<readonly DataSourceType[]>(
+    defaultData,
+    props.dataSource,
+  );
   const setDataSource = useCallback(
     (
       updater:
@@ -197,11 +194,7 @@ const EditorProTableDemo = (
       setDataSourceInner((prev) => {
         const next =
           typeof updater === 'function'
-            ? (
-                updater as (
-                  p: readonly DataSourceType[],
-                ) => readonly DataSourceType[]
-              )(prev)
+            ? (updater as (p: readonly DataSourceType[]) => readonly DataSourceType[])(prev)
             : updater;
         props.onDataSourceChange?.(next);
         return next;
@@ -283,9 +276,7 @@ describe('EditorProTable 2', () => {
     // 检查是否有数据行
     await waitFor(
       () => {
-        const rows = wrapper.container.querySelectorAll(
-          '.ant-table-tbody tr.ant-table-row',
-        );
+        const rows = wrapper.container.querySelectorAll('.ant-table-tbody tr.ant-table-row');
         expect(rows.length).toBeGreaterThan(0);
       },
       { timeout: 10000 },
@@ -577,9 +568,7 @@ describe('EditorProTable 2', () => {
 
     act(() => {
       fireEvent.change(
-        wrapper.container.querySelectorAll(
-          '.ant-table-cell .ant-form-item-control-input input',
-        )[1],
+        wrapper.container.querySelectorAll('.ant-table-cell .ant-form-item-control-input input')[1],
         {
           target: {
             value: '🐛 [BUG]yarn install命令',
@@ -1152,10 +1141,11 @@ describe('EditorProTable 2', () => {
           open={open}
           onOpenChange={setOpen}
         >
-          <Button type="link" onClick={() => setOpen(true)}>
-            {typeof schema.title === 'function'
-              ? '标题'
-              : (schema.title ?? '标题')}
+          <Button
+            type="link"
+            onClick={() => setOpen(true)}
+          >
+            {typeof schema.title === 'function' ? '标题' : (schema.title ?? '标题')}
           </Button>
         </Popover>
       );
@@ -1164,7 +1154,11 @@ describe('EditorProTable 2', () => {
     const columnsWithTitleFunction: ProColumns<DataSourceType>[] = [
       {
         title: (schema, type, dom) => (
-          <TitleWithPopover schema={schema} type={type ?? 'text'} dom={dom} />
+          <TitleWithPopover
+            schema={schema}
+            type={type ?? 'text'}
+            dom={dom}
+          />
         ),
         dataIndex: 'title',
         valueType: 'text',
@@ -1190,9 +1184,7 @@ describe('EditorProTable 2', () => {
     await waitForWaitTime(500);
 
     // 查找标题按钮
-    const titleButton = wrapper.container.querySelector(
-      '.ant-btn-link',
-    ) as HTMLElement;
+    const titleButton = wrapper.container.querySelector('.ant-btn-link') as HTMLElement;
 
     expect(titleButton).toBeTruthy();
 
@@ -1204,9 +1196,7 @@ describe('EditorProTable 2', () => {
     await waitForWaitTime(300);
 
     // 验证只有一个 Popover 弹出层
-    const popovers = wrapper.container.querySelectorAll(
-      '.ant-popover:not(.ant-popover-hidden)',
-    );
+    const popovers = wrapper.container.querySelectorAll('.ant-popover:not(.ant-popover-hidden)');
     // 应该只有一个可见的 Popover（不包括隐藏的）
     const visiblePopovers = Array.from(popovers).filter(
       (popover) => !popover.classList.contains('ant-popover-hidden'),

@@ -1,10 +1,8 @@
-﻿import React, { useCallback } from 'react';
+import React, { useCallback } from 'react';
+
 import { useIntl } from '../../../provider';
 import { isNil } from '../../../utils';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldDigitEdit } from './FieldDigitEdit';
 import { FieldDigitRead } from './FieldDigitRead';
@@ -20,8 +18,7 @@ const FieldDigit: ProFieldFC<FieldDigitProps> = (
   ref,
 ) => {
   const intl = useIntl();
-  const placeholderValue =
-    placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
+  const placeholderValue = placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
   const proxyChange = useCallback(
     (value: number | string | null) => {
       let val = value ?? undefined;
@@ -39,11 +36,7 @@ const FieldDigit: ProFieldFC<FieldDigitProps> = (
           val = numVal;
         }
       }
-      if (
-        typeof val === 'number' &&
-        !isNil(val) &&
-        !isNil(fieldProps.precision)
-      ) {
+      if (typeof val === 'number' && !isNil(val) && !isNil(fieldProps.precision)) {
         val = Number(val.toFixed(fieldProps.precision));
       }
       return val;

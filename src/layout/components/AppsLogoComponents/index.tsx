@@ -1,6 +1,7 @@
 import { Popover } from 'antd';
 import { clsx } from 'clsx';
 import React, { useMemo, useState } from 'react';
+
 import { AppsLogo } from './AppsLogo';
 import { DefaultContent } from './DefaultContent';
 import { SimpleContent } from './SimpleContent';
@@ -17,7 +18,14 @@ export const defaultRenderLogo = (
   logo: React.ReactNode | (() => React.ReactNode),
 ): React.ReactNode => {
   if (typeof logo === 'string') {
-    return <img width="auto" height={22} src={logo} alt="logo" />;
+    return (
+      <img
+        width="auto"
+        height={22}
+        src={logo}
+        alt="logo"
+      />
+    );
   }
   if (typeof logo === 'function') {
     return logo();
@@ -33,14 +41,8 @@ export const defaultRenderLogo = (
  */
 export const AppsLogoComponents: React.FC<{
   appList?: AppListProps;
-  appListRender?: (
-    props: AppListProps,
-    defaultDom: React.ReactNode,
-  ) => React.ReactNode;
-  onItemClick?: (
-    item: AppItemProps,
-    popoverRef?: React.RefObject<HTMLSpanElement | null>,
-  ) => void;
+  appListRender?: (props: AppListProps, defaultDom: React.ReactNode) => React.ReactNode;
+  onItemClick?: (item: AppItemProps, popoverRef?: React.RefObject<HTMLSpanElement | null>) => void;
   prefixCls?: string;
 }> = (props) => {
   const { appList, appListRender, prefixCls, onItemClick: itemClick } = props;

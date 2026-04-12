@@ -1,9 +1,10 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@xxlabs/pro-components';
-import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 import { Button, ConfigProvider, Space, Tag } from 'antd';
 import { useRef } from 'react';
 import request from 'umi-request';
+
+import type { ActionType, ProColumns } from '@xxlabs/pro-components';
+import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 
 type GithubIssueItem = {
   url: string;
@@ -74,7 +75,10 @@ const columns: ProColumns<GithubIssueItem>[] = [
     render: (_, row) => (
       <Space>
         {row.labels.map(({ name, color }) => (
-          <Tag color={color} key={name}>
+          <Tag
+            color={color}
+            key={name}
+          >
             {name}
           </Tag>
         ))}
@@ -85,13 +89,28 @@ const columns: ProColumns<GithubIssueItem>[] = [
     title: '操作',
     valueType: 'option',
     render: (text, row, _, action) => [
-      <a href={row.url} target="_blank" rel="noopener noreferrer" key="link">
+      <a
+        href={row.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="link"
+      >
         链路
       </a>,
-      <a href={row.url} target="_blank" rel="noopener noreferrer" key="warning">
+      <a
+        href={row.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="warning"
+      >
         报警
       </a>,
-      <a href={row.url} target="_blank" rel="noopener noreferrer" key="view">
+      <a
+        href={row.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="view"
+      >
         查看
       </a>,
       <TableDropdown
@@ -128,7 +147,10 @@ const Demo = () => {
         dateFormatter="string"
         headerTitle="高级表格"
         toolBarRender={() => [
-          <Button key="3" type="primary">
+          <Button
+            key="3"
+            type="primary"
+          >
             <PlusOutlined />
             新建
           </Button>,

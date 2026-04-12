@@ -8,7 +8,14 @@ export function GroupIcon() {
       viewBox="0 0 104 104"
     >
       <defs>
-        <rect id="path-1" width="90" height="72" x="0" y="0" rx="10" />
+        <rect
+          id="path-1"
+          width="90"
+          height="72"
+          x="0"
+          y="0"
+          rx="10"
+        />
         <filter
           id="filter-2"
           width="152.2%"
@@ -84,19 +91,80 @@ export function GroupIcon() {
           </feMerge>
         </filter>
       </defs>
-      <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
+      <g
+        fill="none"
+        fillRule="evenodd"
+        stroke="none"
+        strokeWidth="1"
+      >
         <g>
-          <use fill="#000" filter="url(#filter-2)" xlinkHref="#path-1" />
-          <use fill="#F0F2F5" xlinkHref="#path-1" />
+          <use
+            fill="#000"
+            filter="url(#filter-2)"
+            xlinkHref="#path-1"
+          />
+          <use
+            fill="#F0F2F5"
+            xlinkHref="#path-1"
+          />
         </g>
-        <path fill="#FFF" d="M25 15h65v47c0 5.523-4.477 10-10 10H25V15z" />
-        <path stroke="#E6EAF0" strokeLinecap="square" d="M0.5 15.5L90.5 15.5" />
-        <rect width="14" height="3" x="4" y="26" fill="#D7DDE6" rx="1.5" />
-        <rect width="9" height="3" x="4" y="32" fill="#D7DDE6" rx="1.5" />
-        <rect width="9" height="3" x="4" y="42" fill="#E6EAF0" rx="1.5" />
-        <rect width="9" height="3" x="4" y="21" fill="#E6EAF0" rx="1.5" />
-        <rect width="9" height="3" x="4" y="53" fill="#D7DDE6" rx="1.5" />
-        <rect width="14" height="3" x="4" y="47" fill="#D7DDE6" rx="1.5" />
+        <path
+          fill="#FFF"
+          d="M25 15h65v47c0 5.523-4.477 10-10 10H25V15z"
+        />
+        <path
+          stroke="#E6EAF0"
+          strokeLinecap="square"
+          d="M0.5 15.5L90.5 15.5"
+        />
+        <rect
+          width="14"
+          height="3"
+          x="4"
+          y="26"
+          fill="#D7DDE6"
+          rx="1.5"
+        />
+        <rect
+          width="9"
+          height="3"
+          x="4"
+          y="32"
+          fill="#D7DDE6"
+          rx="1.5"
+        />
+        <rect
+          width="9"
+          height="3"
+          x="4"
+          y="42"
+          fill="#E6EAF0"
+          rx="1.5"
+        />
+        <rect
+          width="9"
+          height="3"
+          x="4"
+          y="21"
+          fill="#E6EAF0"
+          rx="1.5"
+        />
+        <rect
+          width="9"
+          height="3"
+          x="4"
+          y="53"
+          fill="#D7DDE6"
+          rx="1.5"
+        />
+        <rect
+          width="14"
+          height="3"
+          x="4"
+          y="47"
+          fill="#D7DDE6"
+          rx="1.5"
+        />
         <path
           stroke="#E6EAF0"
           strokeLinecap="square"

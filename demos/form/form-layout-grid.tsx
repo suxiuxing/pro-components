@@ -1,3 +1,7 @@
+import { Col, Row, Space, message } from 'antd';
+import type { FormLayout } from 'antd/lib/form/Form';
+import { useState } from 'react';
+
 import {
   ProForm,
   ProFormDatePicker,
@@ -9,9 +13,6 @@ import {
   ProFormText,
   ProFormTextArea,
 } from '@xxlabs/pro-components';
-import { Col, Row, Space, message } from 'antd';
-import type { FormLayout } from 'antd/lib/form/Form';
-import { useState } from 'react';
 
 const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
 
@@ -24,9 +25,7 @@ const waitTime = (time: number = 100) => {
 };
 
 const Demo = () => {
-  const [formLayoutType, setFormLayoutType] = useState<FormLayout>(
-    LAYOUT_TYPE_HORIZONTAL,
-  );
+  const [formLayoutType, setFormLayoutType] = useState<FormLayout>(LAYOUT_TYPE_HORIZONTAL);
 
   const [grid, setGrid] = useState(true);
 
@@ -45,7 +44,10 @@ const Demo = () => {
         render: (props, doms) => {
           return formLayoutType === LAYOUT_TYPE_HORIZONTAL ? (
             <Row>
-              <Col span={14} offset={4}>
+              <Col
+                span={14}
+                offset={4}
+              >
                 <Space>{doms}</Space>
               </Col>
             </Row>
@@ -97,9 +99,21 @@ const Demo = () => {
         tooltip="Up to 24 characters"
         placeholder="Please enter a name"
       />
-      <ProFormText colProps={{ md: 12, xl: 8 }} name="company" label="Name" />
-      <ProFormDigit colProps={{ md: 12, xl: 8 }} name="phone" label="Phone" />
-      <ProFormText colProps={{ md: 12, xl: 8 }} name="email" label="Email" />
+      <ProFormText
+        colProps={{ md: 12, xl: 8 }}
+        name="company"
+        label="Name"
+      />
+      <ProFormDigit
+        colProps={{ md: 12, xl: 8 }}
+        name="phone"
+        label="Phone"
+      />
+      <ProFormText
+        colProps={{ md: 12, xl: 8 }}
+        name="email"
+        label="Email"
+      />
       <ProFormTextArea
         colProps={{ span: 24 }}
         name="address"

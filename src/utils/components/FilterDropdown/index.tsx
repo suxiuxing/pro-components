@@ -3,6 +3,7 @@ import { ConfigProvider, Popover } from 'antd';
 import type { TooltipPlacement } from 'antd/lib/tooltip';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo, useRef } from 'react';
+
 import type { DropdownFooterProps } from '../DropdownFooter';
 import { DropdownFooter } from '../DropdownFooter';
 import { useStyle } from './style';
@@ -59,9 +60,9 @@ const FilterDropdown: React.FC<DropdownProps> = (props) => {
     () => ({
       container: {
         padding: 0,
-        ...((popoverProps?.styles as any)?.container || {}),
+        ...(popoverProps?.styles as any)?.container,
       },
-      ...(popoverProps?.styles || {}),
+      ...popoverProps?.styles,
     }),
     [popoverProps?.styles],
   );
@@ -87,9 +88,7 @@ const FilterDropdown: React.FC<DropdownProps> = (props) => {
               return htmlRef.current || document.body;
             }}
           >
-            <div className={clsx(`${prefixCls}-content`, hashId)}>
-              {children}
-            </div>
+            <div className={clsx(`${prefixCls}-content`, hashId)}>{children}</div>
           </ConfigProvider>
           {footer && (
             <DropdownFooter

@@ -1,6 +1,7 @@
-﻿import { omit } from '@rc-component/util';
+import { omit } from '@rc-component/util';
 import { Segmented } from 'antd';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import type { FieldSelectProps } from '../Select';
 
@@ -18,8 +19,7 @@ type Props = Parameters<
 };
 
 export function FieldSegmentedEdit(props: Props) {
-  const { text, mode, formItemRender, fieldProps, options, loading, inputRef } =
-    props;
+  const { text, mode, formItemRender, fieldProps, options, loading, inputRef } = props;
   const dom = (
     <Segmented
       ref={inputRef as React.Ref<any>}

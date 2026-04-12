@@ -1,5 +1,6 @@
-﻿import { clsx } from 'clsx';
+import { clsx } from 'clsx';
 import React, { useContext, useEffect, useMemo, useRef } from 'react';
+
 import { ProProvider } from '../../../provider';
 import { useDebounceFn } from '../../../utils';
 import { AsyncContentPanel } from './AsyncContentPanel';
@@ -42,10 +43,7 @@ export const ProHelpContentPanel: React.FC<ProHelpContentPanelProps> = ({
     const div = scrollHeightMap.current.get(selectedKey);
 
     if (div?.offsetTop && divRef.current) {
-      if (
-        Math.abs(divRef.current!.scrollTop - div?.offsetTop + 40) >
-        div?.clientHeight
-      ) {
+      if (Math.abs(divRef.current!.scrollTop - div?.offsetTop + 40) > div?.clientHeight) {
         divRef.current!.scrollTop = div?.offsetTop - 40;
       }
     }
@@ -58,14 +56,12 @@ export const ProHelpContentPanel: React.FC<ProHelpContentPanelProps> = ({
     const dom = e?.target as HTMLDivElement;
 
     // 根据滚动位置来找到当前列表的 key
-    const list = Array.from(scrollHeightMap.current.entries()).find(
-      ([, value]) => {
-        if (dom?.scrollTop < value.offsetTop) {
-          return true;
-        }
-        return false;
-      },
-    );
+    const list = Array.from(scrollHeightMap.current.entries()).find(([, value]) => {
+      if (dom?.scrollTop < value.offsetTop) {
+        return true;
+      }
+      return false;
+    });
 
     if (!list) {
       return;
@@ -115,7 +111,10 @@ export const ProHelpContentPanel: React.FC<ProHelpContentPanelProps> = ({
   const renderItem = (item: ProHelpDataSource<any>['children'][number]) => {
     if (item?.asyncLoad) {
       return (
-        <div className={clsx(className, hashId)} id={item.title}>
+        <div
+          className={clsx(className, hashId)}
+          id={item.title}
+        >
           <AsyncContentPanel
             key={item?.key}
             item={item!}
@@ -129,7 +128,10 @@ export const ProHelpContentPanel: React.FC<ProHelpContentPanelProps> = ({
     }
 
     return (
-      <div className={clsx(className, hashId)} id={item.title}>
+      <div
+        className={clsx(className, hashId)}
+        id={item.title}
+      >
         <RenderContentPanel
           onInit={(ref) => {
             if (!scrollHeightMap.current) return;
@@ -151,9 +153,7 @@ export const ProHelpContentPanel: React.FC<ProHelpContentPanelProps> = ({
         }}
       >
         {parentItem.children?.map((item) => {
-          return (
-            <React.Fragment key={item.key}>{renderItem(item)}</React.Fragment>
-          );
+          return <React.Fragment key={item.key}>{renderItem(item)}</React.Fragment>;
         })}
       </div>
     );

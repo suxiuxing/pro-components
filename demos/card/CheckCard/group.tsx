@@ -1,5 +1,6 @@
-import { CheckCard } from '@xxlabs/pro-components';
 import { Divider } from 'antd';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 export default () => (
   <>
@@ -42,16 +43,37 @@ export default () => (
       <Divider />
       <br />
       <CheckCard.Group defaultValue="A">
-        <CheckCard title="🍊 Orange" value="🍊 Orange" />
-        <CheckCard title="🍐 Pear" value="🍐 Pear" />
-        <CheckCard title="🍎 Apple" value="🍎 Apple" />
+        <CheckCard
+          title="🍊 Orange"
+          value="🍊 Orange"
+        />
+        <CheckCard
+          title="🍐 Pear"
+          value="🍐 Pear"
+        />
+        <CheckCard
+          title="🍎 Apple"
+          value="🍎 Apple"
+        />
       </CheckCard.Group>
       <br />
       <Divider />
-      <CheckCard.Group defaultValue="A" loading>
-        <CheckCard title="🍊 Orange" value="🍊 Orange" />
-        <CheckCard title="🍐 Pear" value="🍐 Pear" />
-        <CheckCard title="🍎 Apple" value="🍎 Apple" />
+      <CheckCard.Group
+        defaultValue="A"
+        loading
+      >
+        <CheckCard
+          title="🍊 Orange"
+          value="🍊 Orange"
+        />
+        <CheckCard
+          title="🍐 Pear"
+          value="🍐 Pear"
+        />
+        <CheckCard
+          title="🍎 Apple"
+          value="🍎 Apple"
+        />
       </CheckCard.Group>
     </div>
 
@@ -81,8 +103,7 @@ export default () => (
       <h4>Options 配置方式：</h4>
       <ul>
         <li>
-          <strong>字符串数组</strong>: ['🍎 Apple', '🍐 Pear', '🍊
-          Orange']，自动生成 CheckCard
+          <strong>字符串数组</strong>: ['🍎 Apple', '🍐 Pear', '🍊 Orange']，自动生成 CheckCard
         </li>
         <li>
           <strong>对象数组</strong>: 包含 title、value、children 等属性的对象

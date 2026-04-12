@@ -2,14 +2,13 @@ import { omit } from '@rc-component/util';
 import { ConfigProvider, Drawer } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext, useEffect } from 'react';
+
 import { ProProvider } from '../../../provider';
 import type { PrivateSiderMenuProps, SiderMenuProps } from './SiderMenu';
 import { SiderMenu } from './SiderMenu';
 import { useStyle } from './style/index';
 
-const SiderMenuWrapper: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (
-  props,
-) => {
+const SiderMenuWrapper: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (props) => {
   const {
     isMobile,
     siderWidth,

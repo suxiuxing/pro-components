@@ -1,6 +1,7 @@
-import { ProList } from '@xxlabs/pro-components';
 import { Card, Progress, Switch, Tag } from 'antd';
 import { useState } from 'react';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const projects = [
   {
@@ -72,8 +73,7 @@ const data = projects.map((project, index) => ({
   title: project.name,
   subTitle: <Tag color={priorityColor[project.priority]}>{project.team}</Tag>,
   actions: [<a key="detail">详情</a>, <a key="edit">编辑</a>],
-  avatar:
-    'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
+  avatar: 'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
   content: (
     <div style={{ flex: 1 }}>
       <div>
@@ -108,7 +108,11 @@ export default () => {
         <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span>幽灵模式:</span>
-            <Switch checked={ghost} onChange={setGhost} size="small" />
+            <Switch
+              checked={ghost}
+              onChange={setGhost}
+              size="small"
+            />
           </div>
         </div>
       </Card>

@@ -1,10 +1,8 @@
-﻿import type { SwitchProps } from 'antd';
+import type { SwitchProps } from 'antd';
 import React, { useMemo } from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldSwitchEdit } from './FieldSwitchEdit';
 import { FieldSwitchRead } from './FieldSwitchRead';
@@ -17,16 +15,7 @@ const FieldSwitch: ProFieldFC<{
   fieldProps?: SwitchProps;
   variant?: 'outlined' | 'borderless' | 'filled';
 }> = (
-  {
-    text,
-    mode,
-    render,
-    light,
-    label,
-    formItemRender,
-    fieldProps,
-    variant: propsVariant,
-  },
+  { text, mode, render, light, label, formItemRender, fieldProps, variant: propsVariant },
   ref,
 ) => {
   const intl = useIntl();
@@ -35,8 +24,7 @@ const FieldSwitch: ProFieldFC<{
     if (text === undefined || text === null || `${text}`.length < 1) return '-';
     return text
       ? (fieldProps?.checkedChildren ?? intl.getMessage('switch.open', '打开'))
-      : (fieldProps?.unCheckedChildren ??
-          intl.getMessage('switch.close', '关闭'));
+      : (fieldProps?.unCheckedChildren ?? intl.getMessage('switch.close', '关闭'));
   }, [fieldProps?.checkedChildren, fieldProps?.unCheckedChildren, text]);
 
   if (isProFieldReadMode(mode)) {

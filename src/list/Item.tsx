@@ -4,15 +4,13 @@ import { ConfigProvider, Skeleton } from 'antd';
 import type { ExpandableConfig } from 'antd/lib/table/interface';
 import { clsx } from 'clsx';
 import React, { useCallback, useContext, useMemo } from 'react';
+
 import type { CheckCardProps } from '../card';
 import { CheckCard } from '../card';
 import { ProProvider } from '../provider';
 import type { GetComponentProps } from './index';
 import type { ListGridType } from './ProListBase';
-import {
-  ProListItem as BaseListItem,
-  ProListItemMeta as BaseListItemMeta,
-} from './ProListBase';
+import { ProListItem as BaseListItem, ProListItemMeta as BaseListItemMeta } from './ProListBase';
 
 export type RenderExpandIconProps<RecordType> = {
   prefixCls: string;
@@ -96,18 +94,10 @@ export type ItemProps<RecordType> = {
   onRow?: GetComponentProps<RecordType>;
   onItem?: GetComponentProps<RecordType>;
   itemHeaderRender?:
-    | ((
-        item: RecordType,
-        index: number,
-        defaultDom: React.JSX.Element | null,
-      ) => React.ReactNode)
+    | ((item: RecordType, index: number, defaultDom: React.JSX.Element | null) => React.ReactNode)
     | false;
   itemTitleRender?:
-    | ((
-        item: RecordType,
-        index: number,
-        defaultDom: React.JSX.Element | null,
-      ) => React.ReactNode)
+    | ((item: RecordType, index: number, defaultDom: React.JSX.Element | null) => React.ReactNode)
     | false;
 };
 
@@ -157,17 +147,12 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
     expandedRowClassName,
   } = expandableConfig || {};
 
-  const [expanded, onExpandInner] = useControlledState<boolean>(
-    !!propsExpand,
-    propsExpand,
-  );
+  const [expanded, onExpandInner] = useControlledState<boolean>(!!propsExpand, propsExpand);
   const onExpand = useCallback(
     (updater: boolean | ((prev: boolean) => boolean)) => {
       onExpandInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         propsOnExpand?.(next);
         return next;
       });
@@ -185,8 +170,7 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
     defaultClassName,
   );
 
-  const hasExpandBehavior =
-    expandableConfig != null && Object.keys(expandableConfig).length > 0;
+  const hasExpandBehavior = expandableConfig != null && Object.keys(expandableConfig).length > 0;
   const needExpanded = expanded || !hasExpandBehavior;
   const expandedRowDom =
     expandedRowRender && expandedRowRender(record, index, indentSize, expanded);
@@ -220,8 +204,7 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
       </div>
     ) : null;
 
-  const metaTitle =
-    (itemTitleRender && itemTitleRender?.(record, index, titleDom)) ?? titleDom;
+  const metaTitle = (itemTitleRender && itemTitleRender?.(record, index, titleDom)) ?? titleDom;
   const metaDom =
     metaTitle || avatar || subTitle || description ? (
       <BaseListItemMeta
@@ -230,9 +213,7 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
         description={
           description &&
           needExpanded && (
-            <div className={clsx(`${className}-description`, hashId)}>
-              {description}
-            </div>
+            <div className={clsx(`${className}-description`, hashId)}>{description}</div>
           )
         }
       />
@@ -247,9 +228,7 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
       : expandedRowClassName;
 
   const headerDom =
-    typeof itemHeaderRender === 'function'
-      ? itemHeaderRender(record, index, metaDom)
-      : metaDom;
+    typeof itemHeaderRender === 'function' ? itemHeaderRender(record, index, metaDom) : metaDom;
 
   // 卡片模式渲染
   if (cardProps) {
@@ -257,9 +236,7 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
       avatar || title ? (
         <>
           {avatar}
-          <span className={clsx(`${prefixCls}-item-meta-title`, hashId)}>
-            {title}
-          </span>
+          <span className={clsx(`${prefixCls}-item-meta-title`, hashId)}>{title}</span>
         </>
       ) : null;
 
@@ -285,10 +262,14 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
             itemProps?.onClick?.(e as any);
           }}
         >
-          <Skeleton avatar title={false} loading={loading} active>
+          <Skeleton
+            avatar
+            title={false}
+            loading={loading}
+            active
+          >
             <div className={clsx(`${className}-header`, hashId)}>
-              {typeof itemTitleRender === 'function' &&
-                itemTitleRender(record, index, titleDom)}
+              {typeof itemTitleRender === 'function' && itemTitleRender(record, index, titleDom)}
               {content}
             </div>
           </Skeleton>
@@ -322,14 +303,15 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
         }
       }}
     >
-      <Skeleton avatar title={false} loading={loading} active>
+      <Skeleton
+        avatar
+        title={false}
+        loading={loading}
+        active
+      >
         <div className={clsx(`${className}-header`, hashId)}>
           <div className={clsx(`${className}-header-option`, hashId)}>
-            {!!checkbox && (
-              <div className={clsx(`${className}-checkbox`, hashId)}>
-                {checkbox}
-              </div>
-            )}
+            {!!checkbox && <div className={clsx(`${className}-checkbox`, hashId)}>{checkbox}</div>}
             {hasExpandableConfig &&
               rowSupportExpand &&
               renderExpandIcon({

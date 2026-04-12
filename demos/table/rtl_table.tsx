@@ -1,10 +1,11 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@xxlabs/pro-components';
-import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 import { Button, ConfigProvider, Space, Tag } from 'antd';
 import arEGIntl from 'antd/lib/locale/ar_EG';
 import { useRef } from 'react';
 import request from 'umi-request';
+
+import type { ActionType, ProColumns } from '@xxlabs/pro-components';
+import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 
 type GithubIssueItem = {
   url: string;
@@ -73,7 +74,10 @@ const columns: ProColumns<GithubIssueItem>[] = [
     render: (_, record) => (
       <Space>
         {record.labels.map(({ name, color }) => (
-          <Tag color={color} key={name}>
+          <Tag
+            color={color}
+            key={name}
+          >
             {name}
           </Tag>
         ))}
@@ -84,10 +88,20 @@ const columns: ProColumns<GithubIssueItem>[] = [
     title: 'التشغيل',
     valueType: 'option',
     render: (text, record, _, action) => [
-      <a href={record.url} target="_blank" rel="noopener noreferrer" key="link">
+      <a
+        href={record.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="link"
+      >
         رابط
       </a>,
-      <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
+      <a
+        href={record.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="view"
+      >
         查看
       </a>,
       <TableDropdown
@@ -106,7 +120,10 @@ const Demo = () => {
   const actionRef = useRef<ActionType>();
 
   return (
-    <ConfigProvider locale={arEGIntl} direction="rtl">
+    <ConfigProvider
+      locale={arEGIntl}
+      direction="rtl"
+    >
       <ProTable<GithubIssueItem>
         columns={columns}
         actionRef={actionRef}
@@ -127,7 +144,11 @@ const Demo = () => {
         dateFormatter="string"
         headerTitle="نموذج احترافي"
         toolBarRender={() => [
-          <Button key="button" icon={<PlusOutlined />} type="primary">
+          <Button
+            key="button"
+            icon={<PlusOutlined />}
+            type="primary"
+          >
             جديد
           </Button>,
         ]}

@@ -1,6 +1,7 @@
-import { ProList } from '@xxlabs/pro-components';
 import { Space, Tag } from 'antd';
 import { useState } from 'react';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const defaultData = [
   {

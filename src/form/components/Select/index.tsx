@@ -2,14 +2,12 @@ import type { SelectProps } from 'antd';
 import type { BaseOptionType } from 'antd/lib/cascader';
 import type { DefaultOptionType, RefSelectProps } from 'antd/lib/select';
 import React, { useContext } from 'react';
+
 import { FieldSelect } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
 import { runFunction } from '../../../utils';
 import FieldContext from '../../FieldContext';
-import type {
-  ProFormFieldItemProps,
-  ProFormFieldRemoteProps,
-} from '../../typing';
+import type { ProFormFieldItemProps, ProFormFieldRemoteProps } from '../../typing';
 import ProFormField from '../Field';
 
 export type ProFormSelectProps<
@@ -82,9 +80,17 @@ const ProFormSelectComponents = <T, OptionType extends BaseOptionType = any>(
     <ProConfigProvider
       valueTypeMap={{
         select: {
-          render: (text, props) => <FieldSelect {...props} text={text} />,
+          render: (text, props) => (
+            <FieldSelect
+              {...props}
+              text={text}
+            />
+          ),
           formItemRender: (text, props) => (
-            <FieldSelect {...props} text={text} />
+            <FieldSelect
+              {...props}
+              text={text}
+            />
           ),
         },
       }}
@@ -116,17 +122,7 @@ const ProFormSelectComponents = <T, OptionType extends BaseOptionType = any>(
 
 const SearchSelect = React.forwardRef<any, ProFormSelectProps<any>>(
   (
-    {
-      fieldProps,
-      children,
-      params,
-      proFieldProps,
-      mode,
-      valueEnum,
-      request,
-      options,
-      ...rest
-    },
+    { fieldProps, children, params, proFieldProps, mode, valueEnum, request, options, ...rest },
     ref,
   ) => {
     const finalMode = fieldProps?.mode || mode || 'multiple';
@@ -140,8 +136,7 @@ const SearchSelect = React.forwardRef<any, ProFormSelectProps<any>>(
       autoClearSearchValue: true,
       optionLabelProp: 'label',
       ...fieldProps,
-      mode:
-        finalMode === 'single' ? undefined : (finalMode as 'multiple' | 'tags'), // 确保mode正确设置
+      mode: finalMode === 'single' ? undefined : (finalMode as 'multiple' | 'tags'), // 确保mode正确设置
     };
     const context = useContext(FieldContext);
     return (
@@ -149,10 +144,16 @@ const SearchSelect = React.forwardRef<any, ProFormSelectProps<any>>(
         valueTypeMap={{
           select: {
             render: (text, valueTypeProps) => (
-              <FieldSelect {...valueTypeProps} text={text} />
+              <FieldSelect
+                {...valueTypeProps}
+                text={text}
+              />
             ),
             formItemRender: (text, valueTypeProps) => (
-              <FieldSelect {...valueTypeProps} text={text} />
+              <FieldSelect
+                {...valueTypeProps}
+                text={text}
+              />
             ),
           },
         }}
@@ -185,17 +186,11 @@ const ProFormSelect = React.forwardRef(ProFormSelectComponents) as <
   props: ProFormSelectProps<T, OptionType>,
 ) => React.ReactElement;
 
-const ProFormSearchSelect = SearchSelect as <
-  T,
-  OptionType extends BaseOptionType = any,
->(
+const ProFormSearchSelect = SearchSelect as <T, OptionType extends BaseOptionType = any>(
   props: ProFormSelectProps<T, OptionType>,
 ) => React.ReactElement;
 
-const WrappedProFormSelect = ProFormSelect as (<
-  T,
-  OptionType extends BaseOptionType = any,
->(
+const WrappedProFormSelect = ProFormSelect as (<T, OptionType extends BaseOptionType = any>(
   props: ProFormSelectProps<T, OptionType>,
 ) => React.ReactElement) & {
   SearchSelect: typeof ProFormSearchSelect;

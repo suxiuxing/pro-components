@@ -2,6 +2,7 @@ import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
 import type { CSSProperties } from 'react';
 import React, { useContext } from 'react';
+
 import { RouteContext } from '../../context/RouteContext';
 import type { PureSettings } from '../../defaultSettings';
 import { useStyle } from './style';
@@ -22,12 +23,7 @@ type GridContentProps = {
  */
 const GridContent: React.FC<GridContentProps> = (props) => {
   const value = useContext(RouteContext);
-  const {
-    children,
-    contentWidth: propsContentWidth,
-    className: propsClassName,
-    style,
-  } = props;
+  const { children, contentWidth: propsContentWidth, className: propsClassName, style } = props;
 
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = props.prefixCls || getPrefixCls('pro');
@@ -44,9 +40,7 @@ const GridContent: React.FC<GridContentProps> = (props) => {
       style={style}
       data-testid="pro-grid-content"
     >
-      <div className={clsx(`${prefixCls}-grid-content-children`, hashId)}>
-        {children}
-      </div>
+      <div className={clsx(`${prefixCls}-grid-content-children`, hashId)}>{children}</div>
     </div>,
   );
 };

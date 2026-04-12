@@ -2,12 +2,8 @@ import { useControlledState } from '@rc-component/util';
 import type { SelectProps } from 'antd';
 import { ConfigProvider, Select } from 'antd';
 import { clsx } from 'clsx';
-import React, {
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import React, { useContext, useEffect, useImperativeHandle, useRef } from 'react';
+
 import type { RequestOptionsType } from '../../../../utils';
 import { nanoid } from '../../../../utils';
 
@@ -140,10 +136,7 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
     options: optionsPropsName = 'options',
   } = fieldNames || {};
 
-  const [searchValue, setSearchValue] = useControlledState(
-    defaultSearchValue,
-    propsSearchValue,
-  );
+  const [searchValue, setSearchValue] = useControlledState(defaultSearchValue, propsSearchValue);
 
   const selectRef = useRef<any>();
 
@@ -188,9 +181,7 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
       const labelValue = fallbackValue.label;
       if (
         (React.isValidElement(labelValue) ||
-          (labelValue &&
-            typeof labelValue === 'object' &&
-            'props' in labelValue)) &&
+          (labelValue && typeof labelValue === 'object' && 'props' in labelValue)) &&
         labelValue.props &&
         labelValue.props.label
       ) {
@@ -211,14 +202,12 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
       // 多选情况且用户有选择
 
       return value.map((item, index) => {
-        const optionItem = (option as DefaultOptionType[])?.[
-          index
-        ] as DefaultOptionType;
+        const optionItem = (option as DefaultOptionType[])?.[index] as DefaultOptionType;
         const dataItem = optionItem?.['data-item'];
         const originalLabel = getOriginalLabel(dataItem, item);
 
         return {
-          ...(dataItem || {}),
+          ...dataItem,
           ...item,
           label: originalLabel || item.label,
         };
@@ -227,15 +216,9 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
     return [];
   };
 
-  const genOptions = (
-    mapOptions: RequestOptionsType[],
-  ): DefaultOptionType[] => {
+  const genOptions = (mapOptions: RequestOptionsType[]): DefaultOptionType[] => {
     return mapOptions.map((item, index) => {
-      const {
-        className: itemClassName,
-        optionType,
-        ...resetItem
-      } = item as RequestOptionsType;
+      const { className: itemClassName, optionType, ...resetItem } = item as RequestOptionsType;
 
       // 获取 label，优先使用 labelPropsName，如果没有则使用 text（valueEnum 的情况）
       const label = item[labelPropsName] ?? item.text;
@@ -292,15 +275,11 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
           : (inputValue, option) => {
               // 当 inputValue 为空或 searchValue 为空时，显示所有选项
               // 这样可以确保 searchOnFocus 时能够显示所有选项
-              const effectiveSearchValue =
-                searchValue === '' ? '' : inputValue || searchValue;
+              const effectiveSearchValue = searchValue === '' ? '' : inputValue || searchValue;
               if (!effectiveSearchValue) {
                 return true;
               }
-              if (
-                restProps.filterOption &&
-                typeof restProps.filterOption === 'function'
-              ) {
+              if (restProps.filterOption && typeof restProps.filterOption === 'function') {
                 return restProps.filterOption(effectiveSearchValue, {
                   ...option,
                   label: option?.data_title,
@@ -366,9 +345,7 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
                   return opt;
                 }
                 if (opt[optionsPropsName] || opt.options) {
-                  const found = findDataItem(
-                    opt[optionsPropsName] || opt.options || [],
-                  );
+                  const found = findDataItem(opt[optionsPropsName] || opt.options || []);
                   if (found) return found;
                 }
               }

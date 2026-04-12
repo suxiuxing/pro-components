@@ -1,16 +1,12 @@
-﻿import type { DescriptionsItemType } from 'antd/es/descriptions';
 import { ConfigProvider, Descriptions, Space } from 'antd';
+import type { DescriptionsItemType } from 'antd/es/descriptions';
 import React, { useContext, useEffect } from 'react';
+
 import ValueTypeToComponent from '../field/ValueTypeToComponent';
 import ProForm from '../form';
 import ProConfigContext, { ProConfigProvider } from '../provider';
 import ProSkeleton from '../skeleton';
-import {
-  ErrorBoundary,
-  LabelIconTip,
-  stringify,
-  useEditableMap,
-} from '../utils';
+import { ErrorBoundary, LabelIconTip, stringify, useEditableMap } from '../utils';
 import { schemaToDescriptionsItem } from './schemaToDescriptionsItem';
 import type { ProDescriptionsColumn, ProDescriptionsProps } from './typing';
 import type { ProDescriptionsRequestResult } from './useFetchData';
@@ -18,10 +14,7 @@ import useFetchData from './useFetchData';
 
 const DefaultProDescriptionsDom = (dom: { children: any }) => dom.children;
 
-const ProDescriptions = <
-  RecordType extends Record<string, any>,
-  ValueType = 'text',
->(
+const ProDescriptions = <RecordType extends Record<string, any>, ValueType = 'text'>(
   props: ProDescriptionsProps<RecordType, ValueType>,
 ) => {
   const {
@@ -45,9 +38,7 @@ const ProDescriptions = <
 
   const action = useFetchData<RecordType, ProDescriptionsRequestResult<RecordType>>(
     async () => {
-      const data = request
-        ? await request(params)
-        : { data: {} as RecordType };
+      const data = request ? await request(params) : { data: {} as RecordType };
       return data;
     },
     {
@@ -78,17 +69,20 @@ const ProDescriptions = <
   }, [action, actionRef, editableUtils]);
 
   if (action.loading || (action.loading === undefined && request)) {
-    return <ProSkeleton type="descriptions" list={false} pageHeader={false} />;
+    return (
+      <ProSkeleton
+        type="descriptions"
+        list={false}
+        pageHeader={false}
+      />
+    );
   }
 
   const getColumns = (): ProDescriptionsColumn<RecordType, ValueType>[] => {
     return (columns || [])
       .filter((item) => {
         if (!item) return false;
-        if (
-          item?.valueType &&
-          ['index', 'indexBorder'].includes(item?.valueType as string)
-        ) {
+        if (item?.valueType && ['index', 'indexBorder'].includes(item?.valueType as string)) {
           return false;
         }
         return !item?.hideInDescriptions;
@@ -114,16 +108,17 @@ const ProDescriptions = <
   let title = null;
   if (rest.title || rest.tooltip) {
     title = (
-      <LabelIconTip label={rest.title} tooltip={rest.tooltip} />
+      <LabelIconTip
+        label={rest.title}
+        tooltip={rest.tooltip}
+      />
     );
   }
 
   const className = context.getPrefixCls('pro-descriptions');
   return (
     <ErrorBoundary>
-      <ProConfigProvider
-        valueTypeMap={{ ...proContext.valueTypeMap, ...ValueTypeToComponent }}
-      >
+      <ProConfigProvider valueTypeMap={{ ...proContext.valueTypeMap, ...ValueTypeToComponent }}>
         <FormComponent
           key="form"
           form={props.editable?.form}

@@ -1,6 +1,7 @@
-﻿import type { SelectProps } from 'antd';
+import type { SelectProps } from 'antd';
 import { Spin } from 'antd';
 import React, { MutableRefObject } from 'react';
+
 import type { IntlType } from '../../../provider';
 import type { ProFieldFC } from '../../types';
 import LightSelect from './LightSelect';
@@ -77,9 +78,7 @@ export function FieldSelectEdit(props: Props) {
         ref={inputRef}
         allowClear
         defaultSearchValue={props.defaultKeyWords}
-        notFoundContent={
-          loading ? <Spin size="small" /> : fieldProps?.notFoundContent
-        }
+        notFoundContent={loading ? <Spin size="small" /> : fieldProps?.notFoundContent}
         fetchData={(keyWord) => {
           keyWordsRef.current = keyWord ?? '';
           fetchData(keyWord);
@@ -109,13 +108,7 @@ export function FieldSelectEdit(props: Props) {
 
   const dom = renderDom();
   if (formItemRender) {
-    return (
-      formItemRender(
-        rest.text,
-        { mode, ...fieldProps, options, loading },
-        dom,
-      ) ?? null
-    );
+    return formItemRender(rest.text, { mode, ...fieldProps, options, loading }, dom) ?? null;
   }
   return dom;
 }

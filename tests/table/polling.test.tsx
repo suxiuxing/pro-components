@@ -1,14 +1,8 @@
 import { cleanup, render, waitFor } from '@testing-library/react';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+
 import { ProTable } from '@xxlabs/pro-components';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+
 import { columns } from './fixtures';
 
 afterEach(() => {

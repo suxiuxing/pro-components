@@ -1,8 +1,9 @@
-import type { ProFieldFCMode } from '@xxlabs/pro-components';
-import { ProField } from '@xxlabs/pro-components';
 import { Descriptions, Radio, Space } from 'antd';
 import dayjs from 'dayjs';
 import { useState } from 'react';
+
+import type { ProFieldFCMode } from '@xxlabs/pro-components';
+import { ProField } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [state, setState] = useState<ProFieldFCMode>('edit');
@@ -21,7 +22,10 @@ const Demo = () => {
       <br />
       <Descriptions column={2}>
         <Descriptions.Item label="空字符串">
-          <ProField text="" mode="read" />
+          <ProField
+            text=""
+            mode="read"
+          />
         </Descriptions.Item>
         <Descriptions.Item label="头像">
           <ProField
@@ -41,7 +45,11 @@ const Demo = () => {
           />
         </Descriptions.Item>
         <Descriptions.Item label="颜色">
-          <ProField text="blue" valueType="color" mode={state} />
+          <ProField
+            text="blue"
+            valueType="color"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="颜色禁用">
           <ProField
@@ -52,7 +60,12 @@ const Demo = () => {
             }}
             mode={state}
           />
-          <ProField text="blue" valueType="color" disabled mode="read" />
+          <ProField
+            text="blue"
+            valueType="color"
+            disabled
+            mode="read"
+          />
         </Descriptions.Item>
         <Descriptions.Item label="图片">
           <ProField
@@ -103,19 +116,39 @@ const Demo = () => {
           />
         </Descriptions.Item>
         <Descriptions.Item label="数字范围">
-          <ProField text={[123, 456]} valueType="digitRange" mode={state} />
+          <ProField
+            text={[123, 456]}
+            valueType="digitRange"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="秒格式化">
-          <ProField text={2000000} valueType="second" mode={state} />
+          <ProField
+            text={2000000}
+            valueType="second"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="百分比">
-          <ProField text="100" valueType="percent" mode={state} />
+          <ProField
+            text="100"
+            valueType="percent"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="评分">
-          <ProField text={3.5} valueType="rate" mode={state} />
+          <ProField
+            text={3.5}
+            valueType="rate"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="slider">
-          <ProField text="40" valueType="slider" mode={state} />
+          <ProField
+            text="40"
+            valueType="slider"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="选择框">
           <ProField
@@ -311,16 +344,31 @@ const Demo = () => {
           />
         </Descriptions.Item>
         <Descriptions.Item label="进度条">
-          <ProField text="40" valueType="progress" mode={state} />
+          <ProField
+            text="40"
+            valueType="progress"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="进度条">
-          <ProField text="40%" valueType="progress" mode={state} />
+          <ProField
+            text="40%"
+            valueType="progress"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="进度条">
-          <ProField text="love" valueType="progress" mode={state} />
+          <ProField
+            text="love"
+            valueType="progress"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="百分比空值">
-          <ProField valueType="percent" mode="read" />
+          <ProField
+            valueType="percent"
+            mode="read"
+          />
         </Descriptions.Item>
         <Descriptions.Item label="百分比">
           <Space>
@@ -424,7 +472,11 @@ const Demo = () => {
           />
         </Descriptions.Item>
         <Descriptions.Item label="密码">
-          <ProField text="password" valueType="password" mode={state} />
+          <ProField
+            text="password"
+            valueType="password"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="代码块">
           <ProField

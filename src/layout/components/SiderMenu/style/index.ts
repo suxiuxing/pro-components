@@ -1,4 +1,5 @@
-﻿import { Keyframes } from '@ant-design/cssinjs';
+import { Keyframes } from '@ant-design/cssinjs';
+
 import type { GenerateStyle, ProAliasToken } from '../../../../provider';
 import { useStyle as useAntdStyle } from '../../../../provider';
 export interface SiderMenuToken extends ProAliasToken {
@@ -46,10 +47,9 @@ const genSiderMenuStyle: GenerateStyle<SiderMenuToken> = (token) => {
             fontSize: token.fontSizeSM,
             paddingBottom: 4,
           },
-          [`${token.antCls}-menu-item:not(${token.antCls}-menu-item-selected):hover`]:
-            {
-              color: token.layout?.sider?.colorTextMenuItemHover,
-            },
+          [`${token.antCls}-menu-item:not(${token.antCls}-menu-item-selected):hover`]: {
+            color: token.layout?.sider?.colorTextMenuItemHover,
+          },
         },
         '&-logo': {
           position: 'relative',
@@ -187,12 +187,8 @@ const genSiderMenuStyle: GenerateStyle<SiderMenuToken> = (token) => {
         zIndex: '100',
         height: '100%',
         '&-mix': {
-          height: `calc(100% - ${
-            token.layout?.header?.heightLayoutHeader || 56
-          }px)`,
-          insetBlockStart: `${
-            token.layout?.header?.heightLayoutHeader || 56
-          }px`,
+          height: `calc(100% - ${token.layout?.header?.heightLayoutHeader || 56}px)`,
+          insetBlockStart: `${token.layout?.header?.heightLayoutHeader || 56}px`,
         },
       },
     },

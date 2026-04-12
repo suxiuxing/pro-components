@@ -2,6 +2,7 @@ import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useState } from 'react';
 import { describe, expect, it } from 'vitest';
+
 import ProTable from '../../src/table';
 
 const waitTime = (time: number = 100) => {
@@ -18,10 +19,16 @@ describe('ProTable Race Condition', () => {
       const [current, setCurrent] = useState(1);
       return (
         <div>
-          <button onClick={() => setCurrent(3)} data-testid="btn-3">
+          <button
+            onClick={() => setCurrent(3)}
+            data-testid="btn-3"
+          >
             setCurrent 3
           </button>
-          <button onClick={() => setCurrent(0)} data-testid="btn-0">
+          <button
+            onClick={() => setCurrent(0)}
+            data-testid="btn-0"
+          >
             setCurrent 0
           </button>
           <ProTable

@@ -1,8 +1,6 @@
-﻿import React from 'react';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import React from 'react';
+
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldSliderEdit } from './FieldSliderEdit';
 import { FieldSliderRead } from './FieldSliderRead';

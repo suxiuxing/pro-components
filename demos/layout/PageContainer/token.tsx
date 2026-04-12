@@ -1,6 +1,7 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import { PageContainer, ProTable } from '@xxlabs/pro-components';
 import { Button, Dropdown } from 'antd';
+
+import { PageContainer, ProTable } from '@xxlabs/pro-components';
 
 const Demo = () => (
   <div
@@ -35,7 +36,10 @@ const Demo = () => (
         extra: [
           <Button key="1">Secondary button</Button>,
           <Button key="2">Secondary button</Button>,
-          <Button key="3" type="primary">
+          <Button
+            key="3"
+            type="primary"
+          >
             Primary button
           </Button>,
           <Dropdown
@@ -58,7 +62,10 @@ const Demo = () => (
               ],
             }}
           >
-            <Button key="4" style={{ padding: '0 8px' }}>
+            <Button
+              key="4"
+              style={{ padding: '0 8px' }}
+            >
               <EllipsisOutlined />
             </Button>
           </Dropdown>,

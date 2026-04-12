@@ -3,10 +3,7 @@ import useSWR from 'swr';
 
 let testId = 0;
 
-export type ProRequestData<T, U = Record<string, any>> = (
-  params: U,
-  props: any,
-) => Promise<T>;
+export type ProRequestData<T, U = Record<string, any>> = (params: U, props: any) => Promise<T>;
 
 export function useFetchData<T, U = Record<string, any>>(props: {
   proFieldKey?: React.Key;

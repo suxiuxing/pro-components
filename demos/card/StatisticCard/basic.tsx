@@ -1,6 +1,7 @@
 import { EllipsisOutlined, RightOutlined } from '@ant-design/icons';
-import { StatisticCard } from '@xxlabs/pro-components';
 import { Space, theme } from 'antd';
+
+import { StatisticCard } from '@xxlabs/pro-components';
 
 const { Statistic } = StatisticCard;
 
@@ -21,8 +22,14 @@ const Demo = () => {
           prefix: '¥',
           description: (
             <Space>
-              <Statistic title="Actual Completion" value="82.3%" />
-              <Statistic title="Current Target" value="¥6000" />
+              <Statistic
+                title="Actual Completion"
+                value="82.3%"
+              />
+              <Statistic
+                title="Current Target"
+                value="¥6000"
+              />
             </Space>
           ),
         }}
@@ -52,8 +59,7 @@ const Demo = () => {
             <strong>title</strong>: 卡片标题，可以是字符串或 React 节点
           </li>
           <li>
-            <strong>extra</strong>: 卡片右上角操作区域，可以是字符串或 React
-            节点
+            <strong>extra</strong>: 卡片右上角操作区域，可以是字符串或 React 节点
           </li>
           <li>
             <strong>statistic</strong>: 统计信息配置对象

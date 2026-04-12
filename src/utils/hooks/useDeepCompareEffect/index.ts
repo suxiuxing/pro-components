@@ -1,5 +1,6 @@
 import type { DependencyList } from 'react';
 import { useEffect, useRef } from 'react';
+
 import { isDeepEqualReact } from '../../isDeepEqualReact';
 import { useDebounceFn } from '../useDebounceFn';
 

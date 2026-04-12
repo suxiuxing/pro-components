@@ -1,12 +1,10 @@
-﻿import type { TreeSelectProps } from 'antd';
+import type { TreeSelectProps } from 'antd';
 import type { RefSelectProps } from 'antd/lib/select';
 import React from 'react';
+
 import { FieldTreeSelect } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
-import type {
-  ProFormFieldItemProps,
-  ProFormFieldRemoteProps,
-} from '../../typing';
+import type { ProFormFieldItemProps, ProFormFieldRemoteProps } from '../../typing';
 import ProFormField from '../Field';
 
 export type ProFormTreeSelectProps<T = any> = ProFormFieldItemProps<
@@ -27,17 +25,25 @@ export type ProFormTreeSelectProps<T = any> = ProFormFieldItemProps<
  *
  * @param
  */
-const ProFormTreeSelect: React.ForwardRefRenderFunction<
-  any,
-  ProFormTreeSelectProps<any>
-> = ({ fieldProps, request, params, proFieldProps, ...rest }, ref) => {
+const ProFormTreeSelect: React.ForwardRefRenderFunction<any, ProFormTreeSelectProps<any>> = (
+  { fieldProps, request, params, proFieldProps, ...rest },
+  ref,
+) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
         treeSelect: {
-          render: (text, props) => <FieldTreeSelect {...props} text={text} />,
+          render: (text, props) => (
+            <FieldTreeSelect
+              {...props}
+              text={text}
+            />
+          ),
           formItemRender: (text, props) => (
-            <FieldTreeSelect {...props} text={text} />
+            <FieldTreeSelect
+              {...props}
+              text={text}
+            />
           ),
         },
       }}
@@ -56,7 +62,6 @@ const ProFormTreeSelect: React.ForwardRefRenderFunction<
   );
 };
 
-const WarpProFormTreeSelect: React.FC<ProFormTreeSelectProps> =
-  React.forwardRef(ProFormTreeSelect);
+const WarpProFormTreeSelect: React.FC<ProFormTreeSelectProps> = React.forwardRef(ProFormTreeSelect);
 
 export default WarpProFormTreeSelect;

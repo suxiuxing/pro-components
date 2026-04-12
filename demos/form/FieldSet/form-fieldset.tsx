@@ -1,12 +1,13 @@
-﻿import {
+import { Switch } from 'antd';
+import { useState } from 'react';
+
+import {
   ProForm,
   ProFormDependency,
   ProFormFieldSet,
   ProFormSelect,
   ProFormText,
 } from '@xxlabs/pro-components';
-import { Switch } from 'antd';
-import { useState } from 'react';
 
 export default () => {
   const [readonly, setReadonly] = useState(false);
@@ -39,7 +40,10 @@ export default () => {
             }}
           </ProFormDependency>
         </ProForm.Item>
-        <ProFormFieldSet name="list" label="组件列表">
+        <ProFormFieldSet
+          name="list"
+          label="组件列表"
+        >
           <ProFormText width="md" />
           <ProFormSelect
             width="md"
@@ -95,11 +99,20 @@ export default () => {
             endTime: value[1],
           })}
         >
-          <ProFormText width="md" readonly />
+          <ProFormText
+            width="md"
+            readonly
+          />
           -
-          <ProFormText width="md" readonly />
+          <ProFormText
+            width="md"
+            readonly
+          />
           -
-          <ProFormText width="md" readonly />
+          <ProFormText
+            width="md"
+            readonly
+          />
         </ProFormFieldSet>
       </ProForm>
     </div>

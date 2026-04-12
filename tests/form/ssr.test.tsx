@@ -1,7 +1,8 @@
-// @vitest-environment node
-import { DrawerForm, ModalForm, ProForm } from '@xxlabs/pro-components';
 import { renderToString } from 'react-dom/server';
 import { expect, test } from 'vitest';
+
+// @vitest-environment node
+import { DrawerForm, ModalForm, ProForm } from '@xxlabs/pro-components';
 
 // Mock window object for SSR environment
 if (typeof window === 'undefined') {

@@ -2,6 +2,7 @@ import { get, useControlledState } from '@rc-component/util';
 import { message } from 'antd';
 import type React from 'react';
 import { useCallback, useMemo, useRef } from 'react';
+
 import { useRefFunction } from '..';
 import { useIntl } from '../../provider';
 import type {
@@ -26,13 +27,7 @@ const warning = (messageStr: React.ReactNode) => {
  * @param params
  * @param action
  */
-function editableRowByKey<RecordType>({
-  data,
-  row,
-}: {
-  data: RecordType;
-  row: RecordType;
-}) {
+function editableRowByKey<RecordType>({ data, row }: { data: RecordType; row: RecordType }) {
   return { ...data, ...row };
 }
 
@@ -64,9 +59,10 @@ export function useEditableMap<RecordType>(
   // Internationalization
   const intl = useIntl();
 
-  const [editableKeys, setEditableRowKeysInner] = useControlledState<
-    React.Key[]
-  >([], props.editableKeys);
+  const [editableKeys, setEditableRowKeysInner] = useControlledState<React.Key[]>(
+    [],
+    props.editableKeys,
+  );
   const setEditableRowKeys = useCallback(
     (updater: React.Key[] | ((prev: React.Key[]) => React.Key[])) => {
       setEditableRowKeysInner((prev) => {
@@ -83,10 +79,7 @@ export function useEditableMap<RecordType>(
 
   /** 一个用来标志的set 提供了方便的 api 来去重什么的 */
   const editableKeysSet = useMemo(() => {
-    const keys =
-      editableType === 'single'
-        ? editableKeys?.slice(0, 1) || []
-        : editableKeys || [];
+    const keys = editableType === 'single' ? editableKeys?.slice(0, 1) || [] : editableKeys || [];
     return new Set(keys.map((key) => String(key)));
   }, [editableKeys, editableType]);
 
@@ -94,12 +87,10 @@ export function useEditableMap<RecordType>(
    * 检查 key 是否在编辑列表中
    * 使用 editableKeysSet 进行快速查找，性能更好
    */
-  const checkKeyInEditableList = useRefFunction(
-    (recordKey: RecordKey): boolean => {
-      const keyStr = String(recordKeyToString(recordKey));
-      return editableKeysSet.has(keyStr);
-    },
-  );
+  const checkKeyInEditableList = useRefFunction((recordKey: RecordKey): boolean => {
+    const keyStr = String(recordKeyToString(recordKey));
+    return editableKeysSet.has(keyStr);
+  });
 
   /** 这行是不是编辑状态 */
   const isEditable = useCallback(
@@ -117,10 +108,7 @@ export function useEditableMap<RecordType>(
     if (editableType === 'single' && editableKeys && editableKeys.length > 0) {
       warning(
         props.onlyOneLineEditorAlertMessage ||
-          intl.getMessage(
-            'editableTable.onlyOneLineEditor',
-            '只能同时编辑一行',
-          ),
+          intl.getMessage('editableTable.onlyOneLineEditor', '只能同时编辑一行'),
       );
       return false;
     }
@@ -133,45 +121,35 @@ export function useEditableMap<RecordType>(
    * @param recordKey
    * @param recordValue
    */
-  const startEditable = useRefFunction(
-    (recordKey: RecordKey, recordValue?: any): boolean => {
-      // 验证是否可以开始编辑
-      if (!validateCanStartEdit()) {
-        return false;
-      }
+  const startEditable = useRefFunction((recordKey: RecordKey, recordValue?: any): boolean => {
+    // 验证是否可以开始编辑
+    if (!validateCanStartEdit()) {
+      return false;
+    }
 
-      const keyStr = String(recordKeyToString(recordKey));
+    const keyStr = String(recordKeyToString(recordKey));
 
-      // 检查是否已经在编辑列表中，避免重复添加
-      if (checkKeyInEditableList(recordKey)) {
-        return true;
-      }
-
-      // 保存编辑前的数据
-      preEditRowRef.current =
-        recordValue ??
-        get(
-          props.dataSource,
-          Array.isArray(recordKey)
-            ? (recordKey as string[])
-            : [recordKey as string],
-        ) ??
-        null;
-      preEditRowRefs.current.set(
-        String(recordKeyToString(recordKey)),
-        preEditRowRef.current,
-      );
-
-      // 更新编辑 keys（不直接修改 editableKeysSet）
-      const newKeys =
-        editableType === 'single'
-          ? [keyStr]
-          : [...(editableKeys || []), keyStr];
-
-      setEditableRowKeys(newKeys);
+    // 检查是否已经在编辑列表中，避免重复添加
+    if (checkKeyInEditableList(recordKey)) {
       return true;
-    },
-  );
+    }
+
+    // 保存编辑前的数据
+    preEditRowRef.current =
+      recordValue ??
+      get(
+        props.dataSource,
+        Array.isArray(recordKey) ? (recordKey as string[]) : [recordKey as string],
+      ) ??
+      null;
+    preEditRowRefs.current.set(String(recordKeyToString(recordKey)), preEditRowRef.current);
+
+    // 更新编辑 keys（不直接修改 editableKeysSet）
+    const newKeys = editableType === 'single' ? [keyStr] : [...(editableKeys || []), keyStr];
+
+    setEditableRowKeys(newKeys);
+    return true;
+  });
 
   /**
    * 退出编辑状态
@@ -187,9 +165,7 @@ export function useEditableMap<RecordType>(
     }
 
     // 更新编辑 keys（不直接修改 editableKeysSet）
-    const newKeys = (editableKeys || []).filter(
-      (key) => String(key) !== keyStr,
-    );
+    const newKeys = (editableKeys || []).filter((key) => String(key) !== keyStr);
 
     setEditableRowKeys(newKeys);
     return true;
@@ -207,12 +183,7 @@ export function useEditableMap<RecordType>(
       originRow: RecordType & { index?: number },
       newLine?: NewLineConfig<any>,
     ): Promise<boolean> => {
-      const success = await props?.onCancel?.(
-        recordKey,
-        editRow,
-        originRow,
-        newLine,
-      );
+      const success = await props?.onCancel?.(recordKey, editRow, originRow, newLine);
       if (success === false) {
         return false;
       }
@@ -263,10 +234,7 @@ export function useEditableMap<RecordType>(
    */
   const actionRender = useCallback(
     (key: RecordKey, config?: ActionTypeText<RecordType>) => {
-      const renderConfig: ActionRenderConfig<
-        RecordType,
-        NewLineConfig<RecordType>
-      > = {
+      const renderConfig: ActionRenderConfig<RecordType, NewLineConfig<RecordType>> = {
         recordKey: key,
         cancelEditable,
         onCancel,
@@ -278,10 +246,7 @@ export function useEditableMap<RecordType>(
         preEditRowRef,
         preEditRowRefs,
         deleteText,
-        deletePopconfirmMessage: `${intl.getMessage(
-          'deleteThisLine',
-          '删除此项',
-        )}?`,
+        deletePopconfirmMessage: `${intl.getMessage('deleteThisLine', '删除此项')}?`,
         editorType: 'Map',
         ...config,
       };

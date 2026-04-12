@@ -27,7 +27,10 @@ const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
   const baseClassName = `${prefixCls}-block-checkbox`;
   const dom = useMemo(() => {
     const domList = (list || []).map((item) => (
-      <Tooltip title={item.title} key={item.key}>
+      <Tooltip
+        title={item.title}
+        key={item.key}
+      >
         <div
           className={clsx(
             hashId,
@@ -44,9 +47,7 @@ const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
             }}
           />
           {item?.icon ? (
-            <div className={clsx(`${baseClassName}-icon`, hashId)}>
-              {item.icon}
-            </div>
+            <div className={clsx(`${baseClassName}-icon`, hashId)}>{item.icon}</div>
           ) : null}
         </div>
       </Tooltip>

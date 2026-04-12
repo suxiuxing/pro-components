@@ -1,19 +1,11 @@
-﻿import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
-import type {
-  ProFormColumnsType,
-  ProFormLayoutType,
-} from '@xxlabs/pro-components';
-import { BetaSchemaForm, ProProvider } from '@xxlabs/pro-components';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { FormInstance } from 'antd';
 import { Input } from 'antd';
 import React, { act, createRef, useContext, useEffect } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import type { ProFormColumnsType, ProFormLayoutType } from '@xxlabs/pro-components';
+import { BetaSchemaForm, ProProvider } from '@xxlabs/pro-components';
 
 const columns: ProFormColumnsType<any>[] = [
   {
@@ -193,14 +185,8 @@ describe('SchemaForm', () => {
     const { container } = render(
       <BetaSchemaForm
         shouldUpdate={(value: any, oldValue?: any) => {
-          shouldUpdateFn(
-            value.subtitle === 'rerender' &&
-              value.subtitle !== oldValue?.subtitle,
-          );
-          if (
-            value.subtitle === 'rerender' &&
-            value.subtitle !== oldValue?.subtitle
-          ) {
+          shouldUpdateFn(value.subtitle === 'rerender' && value.subtitle !== oldValue?.subtitle);
+          if (value.subtitle === 'rerender' && value.subtitle !== oldValue?.subtitle) {
             return true;
           } else {
             return false;
@@ -362,15 +348,9 @@ describe('SchemaForm', () => {
     );
 
     expect(container.querySelectorAll('.ant-steps-item-icon')).toHaveLength(3);
-    expect(
-      container.querySelectorAll('div.ant-steps-item-title')[0],
-    ).toHaveTextContent('表单1');
-    expect(
-      container.querySelectorAll('div.ant-steps-item-title')[1],
-    ).toHaveTextContent('表单2');
-    expect(
-      container.querySelectorAll('div.ant-steps-item-title')[2],
-    ).toHaveTextContent('表单3');
+    expect(container.querySelectorAll('div.ant-steps-item-title')[0]).toHaveTextContent('表单1');
+    expect(container.querySelectorAll('div.ant-steps-item-title')[1]).toHaveTextContent('表单2');
+    expect(container.querySelectorAll('div.ant-steps-item-title')[2]).toHaveTextContent('表单3');
     unmount();
   });
 
@@ -642,10 +622,9 @@ describe('SchemaForm', () => {
     });
 
     await waitFor(() => {
-      expect(
-        wrapper.baseElement.querySelector('.ant-form-item-explain-error')
-          ?.innerHTML,
-      ).toBe('请填写1');
+      expect(wrapper.baseElement.querySelector('.ant-form-item-explain-error')?.innerHTML).toBe(
+        '请填写1',
+      );
     });
 
     await act(async () => {
@@ -696,17 +675,17 @@ describe('SchemaForm', () => {
         ?.closest('button');
 
       await act(async () => {
-        const button = Array.from(
-          wrapper.container.querySelectorAll('button'),
-        ).find((btn) => btn.textContent?.includes('打开'));
+        const button = Array.from(wrapper.container.querySelectorAll('button')).find((btn) =>
+          btn.textContent?.includes('打开'),
+        );
         if (button) {
           fireEvent.click(button);
         }
       });
 
       // 打开就存在了
-      await Array.from(wrapper.container.querySelectorAll('label')).find(
-        (label) => label.textContent?.includes('签约客户名称'),
+      await Array.from(wrapper.container.querySelectorAll('label')).find((label) =>
+        label.textContent?.includes('签约客户名称'),
       );
 
       await act(async () => {
@@ -722,17 +701,17 @@ describe('SchemaForm', () => {
       );
 
       await act(async () => {
-        const button = Array.from(
-          wrapper.container.querySelectorAll('button'),
-        ).find((btn) => btn.textContent?.includes('打开'));
+        const button = Array.from(wrapper.container.querySelectorAll('button')).find((btn) =>
+          btn.textContent?.includes('打开'),
+        );
         if (button) {
           fireEvent.click(button);
         }
       });
 
       // 打开就又存在了
-      await Array.from(wrapper.container.querySelectorAll('label')).find(
-        (label) => label.textContent?.includes('签约客户名称'),
+      await Array.from(wrapper.container.querySelectorAll('label')).find((label) =>
+        label.textContent?.includes('签约客户名称'),
       );
     });
   });
@@ -789,8 +768,8 @@ describe('SchemaForm', () => {
         />,
       );
 
-      await Array.from(wrapper.container.querySelectorAll('label')).find(
-        (label) => label.textContent?.includes('签约客户名称'),
+      await Array.from(wrapper.container.querySelectorAll('label')).find((label) =>
+        label.textContent?.includes('签约客户名称'),
       );
 
       expect(formRef.current).toBeTruthy();
@@ -821,9 +800,7 @@ describe('SchemaForm', () => {
         });
 
         waitFor(() => {
-          expect(formRef.current!.getFieldsValue(true)).toMatchObject(
-            stepsValue,
-          );
+          expect(formRef.current!.getFieldsValue(true)).toMatchObject(stepsValue);
         });
       }
     });
@@ -941,18 +918,18 @@ describe('SchemaForm', () => {
     ];
 
     const wrapper = render(
-      <BetaSchemaForm grid rowProps={{ gutter: [16, 0] }} columns={columns} />,
+      <BetaSchemaForm
+        grid
+        rowProps={{ gutter: [16, 0] }}
+        columns={columns}
+      />,
     );
     await wrapper.findByText('提 交');
 
-    const cols = wrapper.baseElement.querySelectorAll<HTMLElement>(
-      '.ant-row > .ant-col',
-    );
+    const cols = wrapper.baseElement.querySelectorAll<HTMLElement>('.ant-row > .ant-col');
 
     // 找到 hidden 字段对应的 Col
-    const hiddenCol = Array.from(cols).find((col) =>
-      col.querySelector('.ant-form-item-hidden'),
-    );
+    const hiddenCol = Array.from(cols).find((col) => col.querySelector('.ant-form-item-hidden'));
     expect(hiddenCol).toBeTruthy();
     expect(hiddenCol!.style.display).toBe('none');
 

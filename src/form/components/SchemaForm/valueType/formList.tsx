@@ -1,10 +1,7 @@
 import { ProFormList } from '../../List';
 import type { ProSchemaRenderValueTypeFunction } from '../typing';
 
-export const formList: ProSchemaRenderValueTypeFunction = (
-  item,
-  { genItems },
-) => {
+export const formList: ProSchemaRenderValueTypeFunction = (item, { genItems }) => {
   if (item.valueType === 'formList' && item.dataIndex) {
     if (!item.columns || !Array.isArray(item.columns)) return null;
     return (

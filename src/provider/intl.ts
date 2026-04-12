@@ -1,4 +1,5 @@
-﻿import { get } from '@rc-component/util';
+import { get } from '@rc-component/util';
+
 import arEG from './locale/ar_EG';
 import caES from './locale/ca_ES';
 import csCZ from './locale/cs_CZ';
@@ -44,13 +45,9 @@ export type IntlType = {
  * @param locale
  * @param localeMap
  */
-export const createIntl = (
-  locale: string,
-  localeMap: Record<string, any>,
-): IntlType => ({
+export const createIntl = (locale: string, localeMap: Record<string, any>): IntlType => ({
   getMessage: (id: string, defaultMessage: string) => {
-    const msg =
-      get(localeMap, id.replace(/\[(\d+)\]/g, '.$1').split('.')) || '';
+    const msg = get(localeMap, id.replace(/\[(\d+)\]/g, '.$1').split('.')) || '';
     if (msg) return msg;
     const localKey = locale.replace('_', '-');
     if (localKey === 'zh-CN') {

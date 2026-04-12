@@ -1,10 +1,8 @@
-import type {
-  ProFormColumnsType,
-  ProFormLayoutType,
-} from '@xxlabs/pro-components';
-import { BetaSchemaForm, ProFormSelect } from '@xxlabs/pro-components';
 import { Alert, DatePicker, Space } from 'antd';
 import { useState } from 'react';
+
+import type { ProFormColumnsType, ProFormLayoutType } from '@xxlabs/pro-components';
+import { BetaSchemaForm, ProFormSelect } from '@xxlabs/pro-components';
 
 import { FIXED_BASE_DATE } from '../../mockData';
 

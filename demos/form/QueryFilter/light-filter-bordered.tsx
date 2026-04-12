@@ -1,4 +1,6 @@
 import { FilterOutlined } from '@ant-design/icons';
+import { TreeSelect, message } from 'antd';
+
 import {
   LightFilter,
   ProFormCascader,
@@ -8,7 +10,6 @@ import {
   ProFormSelect,
   ProFormTreeSelect,
 } from '@xxlabs/pro-components';
-import { TreeSelect, message } from 'antd';
 
 const treeData = [
   {
@@ -90,7 +91,10 @@ const Demo = () => {
           },
         ]}
       />
-      <ProFormDatePicker name="time" placeholder="日期" />
+      <ProFormDatePicker
+        name="time"
+        placeholder="日期"
+      />
       <ProFormTreeSelect
         request={async () => treeData}
         fieldProps={{

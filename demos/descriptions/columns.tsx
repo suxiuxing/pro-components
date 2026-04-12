@@ -1,4 +1,4 @@
-﻿import { ProDescriptions } from '@xxlabs/pro-components';
+import { ProDescriptions } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -99,13 +99,25 @@ const Demo = () => {
             title: '操作',
             valueType: 'option',
             render: () => [
-              <a target="_blank" rel="noopener noreferrer" key="link">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                key="link"
+              >
                 链路
               </a>,
-              <a target="_blank" rel="noopener noreferrer" key="warning">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                key="warning"
+              >
                 报警
               </a>,
-              <a target="_blank" rel="noopener noreferrer" key="view">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                key="view"
+              >
                 查看
               </a>,
             ],

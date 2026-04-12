@@ -1,7 +1,5 @@
 const isNode =
-  typeof process !== 'undefined' &&
-  process.versions != null &&
-  process.versions.node != null;
+  typeof process !== 'undefined' && process.versions != null && process.versions.node != null;
 
 /**
  * 用于判断当前是否在浏览器环境中。

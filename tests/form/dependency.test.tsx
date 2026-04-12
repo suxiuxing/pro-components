@@ -1,11 +1,9 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import {
-  ProForm,
-  ProFormDependency,
-  ProFormText,
-} from '@xxlabs/pro-components';
 import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProForm, ProFormDependency, ProFormText } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 afterEach(() => {
@@ -22,8 +20,14 @@ describe('ProForm Dependency component', () => {
     }> = ({ shouldUpdate = false }) => {
       return (
         <ProForm>
-          <ProFormText name="name" label="姓名" />
-          <ProFormDependency name={['name']} shouldUpdate={shouldUpdate}>
+          <ProFormText
+            name="name"
+            label="姓名"
+          />
+          <ProFormDependency
+            name={['name']}
+            shouldUpdate={shouldUpdate}
+          >
             {({ name }) => {
               return <div id="show">{name || 'first'}</div>;
             }}
@@ -35,21 +39,16 @@ describe('ProForm Dependency component', () => {
     const html = render(<Demo />);
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!,
-        {
-          target: {
-            value: 'second',
-          },
+      fireEvent.change(html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!, {
+        target: {
+          value: 'second',
         },
-      );
+      });
     });
 
     await waitForWaitTime(100);
 
-    expect(
-      html.baseElement.querySelector<HTMLDivElement>('div#show')?.textContent,
-    ).toBe('first');
+    expect(html.baseElement.querySelector<HTMLDivElement>('div#show')?.textContent).toBe('first');
 
     act(() => {
       html.rerender(<Demo shouldUpdate />);
@@ -58,27 +57,27 @@ describe('ProForm Dependency component', () => {
     await waitForWaitTime(100);
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!,
-        {
-          target: {
-            value: 'ProComponents',
-          },
+      fireEvent.change(html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!, {
+        target: {
+          value: 'ProComponents',
         },
-      );
+      });
     });
 
     await waitForWaitTime(100);
 
-    expect(
-      html.baseElement.querySelector<HTMLDivElement>('div#show')?.textContent,
-    ).toBe('ProComponents');
+    expect(html.baseElement.querySelector<HTMLDivElement>('div#show')?.textContent).toBe(
+      'ProComponents',
+    );
   });
 
   it('⛲ shouldUpdate of ProFormDependency is Function', async () => {
     const html = render(
       <ProForm>
-        <ProFormText name="name" label="姓名" />
+        <ProFormText
+          name="name"
+          label="姓名"
+        />
         <ProFormDependency
           name={['name']}
           shouldUpdate={(prevValues, nextValues) => {
@@ -96,34 +95,26 @@ describe('ProForm Dependency component', () => {
     );
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!,
-        {
-          target: {
-            value: "Don't update",
-          },
+      fireEvent.change(html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!, {
+        target: {
+          value: "Don't update",
         },
-      );
+      });
     });
 
     await waitForWaitTime(100);
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!,
-        {
-          target: {
-            value: 'update',
-          },
+      fireEvent.change(html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!, {
+        target: {
+          value: 'update',
         },
-      );
+      });
     });
 
     await waitForWaitTime(100);
 
-    expect(
-      html.baseElement.querySelector<HTMLDivElement>('div#show')?.textContent,
-    ).toBe('update');
+    expect(html.baseElement.querySelector<HTMLDivElement>('div#show')?.textContent).toBe('update');
   });
 
   it('⛲ ProFormDependency support transform', async () => {
@@ -156,14 +147,11 @@ describe('ProForm Dependency component', () => {
     const html = render(<Demo />);
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!,
-        {
-          target: {
-            value: 'second',
-          },
+      fireEvent.change(html.baseElement.querySelector<HTMLDivElement>('input.ant-input')!, {
+        target: {
+          value: 'second',
         },
-      );
+      });
     });
 
     await waitForWaitTime(100);

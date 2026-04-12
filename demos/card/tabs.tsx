@@ -1,14 +1,14 @@
-import type { ProCardTabsProps } from '@xxlabs/pro-components';
-import { ProCard } from '@xxlabs/pro-components';
 import { Select, Space } from 'antd';
 import { useState } from 'react';
+
+import type { ProCardTabsProps } from '@xxlabs/pro-components';
+import { ProCard } from '@xxlabs/pro-components';
 
 const { Option } = Select;
 
 const Demo = () => {
   const [tab, setTab] = useState('tab2');
-  const [tabPlacement, setTabPlacement] =
-    useState<ProCardTabsProps['tabPlacement']>('top');
+  const [tabPlacement, setTabPlacement] = useState<ProCardTabsProps['tabPlacement']>('top');
 
   return (
     <>
@@ -65,8 +65,8 @@ const Demo = () => {
         <h4>ProCard Tabs 动态位置 Props 说明：</h4>
         <ul>
           <li>
-            <strong>tabs.tabPlacement</strong>: 标签页位置，可选值：'top' |
-            'bottom' | 'start' | 'end'
+            <strong>tabs.tabPlacement</strong>: 标签页位置，可选值：'top' | 'bottom' | 'start' |
+            'end'
           </li>
           <li>
             <strong>tabs.activeKey</strong>: 当前激活的标签页 key
@@ -87,12 +87,10 @@ const Demo = () => {
             <strong>bottom</strong>: 标签页显示在内容下方
           </li>
           <li>
-            <strong>start</strong>: 标签页显示在内容开始侧（LTR 为左侧，RTL
-            为右侧）
+            <strong>start</strong>: 标签页显示在内容开始侧（LTR 为左侧，RTL 为右侧）
           </li>
           <li>
-            <strong>end</strong>: 标签页显示在内容结束侧（LTR 为右侧，RTL
-            为左侧）
+            <strong>end</strong>: 标签页显示在内容结束侧（LTR 为右侧，RTL 为左侧）
           </li>
         </ul>
         <h4>Select 组件配置：</h4>
@@ -104,8 +102,7 @@ const Demo = () => {
             <strong>onChange</strong>: 值改变时的回调函数
           </li>
           <li>
-            <strong>popupMatchSelectWidth</strong>:
-            下拉菜单宽度是否与选择框宽度一致
+            <strong>popupMatchSelectWidth</strong>: 下拉菜单宽度是否与选择框宽度一致
           </li>
         </ul>
         <h4>状态管理：</h4>

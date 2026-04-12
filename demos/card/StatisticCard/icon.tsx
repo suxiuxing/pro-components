@@ -1,6 +1,7 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { StatisticCard } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { StatisticCard } from '@xxlabs/pro-components';
 
 const imgStyle = {
   display: 'block',
@@ -98,8 +99,7 @@ const Demo = () => {
         <h4>StatisticCard.Group Props：</h4>
         <ul>
           <li>
-            <strong>direction</strong>: 排列方向，'row' 表示水平排列，'column'
-            表示垂直排列
+            <strong>direction</strong>: 排列方向，'row' 表示水平排列，'column' 表示垂直排列
           </li>
           <li>
             <strong>children</strong>: StatisticCard 子组件
@@ -132,8 +132,7 @@ const Demo = () => {
             <strong>图片图标</strong>: 使用 img 标签显示图标图片
           </li>
           <li>
-            <strong>Ant Design 图标</strong>: 使用 @ant-design/icons
-            中的图标组件
+            <strong>Ant Design 图标</strong>: 使用 @ant-design/icons 中的图标组件
           </li>
           <li>
             <strong>自定义图标</strong>: 使用 SVG 或其他自定义图标组件

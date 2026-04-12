@@ -2,6 +2,7 @@ import ResizeObserver from '@rc-component/resize-observer';
 import { Avatar, ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo, useState } from 'react';
+
 import type { GlobalHeaderProps } from '.';
 import { useDebounceFn } from '../../../utils';
 import { useStyle } from './rightContentStyle';
@@ -28,7 +29,11 @@ export const ActionsContent: React.FC<GlobalHeaderProps> = ({
     const { title, render, ...rest } = avatarProps;
     const domList = [
       rest?.src || rest?.srcSet || rest.icon || rest.children ? (
-        <Avatar {...rest} size={28} key="avatar" />
+        <Avatar
+          {...rest}
+          size={28}
+          key="avatar"
+        />
       ) : null,
       title ? (
         <span
@@ -59,12 +64,7 @@ export const ActionsContent: React.FC<GlobalHeaderProps> = ({
               <div className={clsx(`${prefixCls}-header-actions`, hashId)}>
                 {doms}
                 {avatarDom && (
-                  <span
-                    className={clsx(
-                      `${prefixCls}-header-actions-avatar`,
-                      hashId,
-                    )}
-                  >
+                  <span className={clsx(`${prefixCls}-header-actions-avatar`, hashId)}>
                     {avatarDom}
                   </span>
                 )}
@@ -81,22 +81,16 @@ export const ActionsContent: React.FC<GlobalHeaderProps> = ({
                 return (
                   <div
                     key={index}
-                    className={clsx(
-                      `${prefixCls}-header-actions-item`,
-                      hashId,
-                      {
-                        [`${prefixCls}-header-actions-hover`]: !hideHover,
-                      },
-                    )}
+                    className={clsx(`${prefixCls}-header-actions-item`, hashId, {
+                      [`${prefixCls}-header-actions-hover`]: !hideHover,
+                    })}
                   >
                     {dom}
                   </div>
                 );
               })}
               {avatarDom && (
-                <span
-                  className={clsx(`${prefixCls}-header-actions-avatar`, hashId)}
-                >
+                <span className={clsx(`${prefixCls}-header-actions-avatar`, hashId)}>
                   {avatarDom}
                 </span>
               )}

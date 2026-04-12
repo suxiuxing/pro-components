@@ -1,7 +1,8 @@
-﻿import { omit } from '@rc-component/util';
+import { omit } from '@rc-component/util';
 import type { SwitchProps } from 'antd';
 import { Switch } from 'antd';
 import React from 'react';
+
 import { FieldLabel } from '../../../utils';
 import type { ProFieldFC } from '../../types';
 
@@ -16,8 +17,7 @@ type Props = Parameters<
 };
 
 export function FieldSwitchEdit(props: Props, ref: React.Ref<unknown>) {
-  const { text, mode, light, label, formItemRender, fieldProps, variant } =
-    props;
+  const { text, mode, light, label, formItemRender, fieldProps, variant } = props;
 
   const editDom = (
     <Switch

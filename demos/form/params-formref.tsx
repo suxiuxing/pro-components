@@ -1,5 +1,6 @@
-﻿import { BetaSchemaForm } from '@xxlabs/pro-components';
 import { useEffect, useRef, useState } from 'react';
+
+import { BetaSchemaForm } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const targetRef = useRef();

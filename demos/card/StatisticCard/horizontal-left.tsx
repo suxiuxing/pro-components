@@ -14,7 +14,11 @@ const Demo = () => {
           suffix: 'Yuan',
           description: (
             <>
-              <Statistic title="Weekly Comparison" value="6.47%" trend="up" />
+              <Statistic
+                title="Weekly Comparison"
+                value="6.47%"
+                trend="up"
+              />
               <Statistic
                 title="Monthly Comparison"
                 value="6.47%"

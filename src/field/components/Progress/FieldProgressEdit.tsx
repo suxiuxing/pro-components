@@ -1,5 +1,6 @@
-﻿import { InputNumber } from 'antd';
+import { InputNumber } from 'antd';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 
 type Props = Parameters<

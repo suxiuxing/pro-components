@@ -1,4 +1,5 @@
-﻿import React from 'react';
+import React from 'react';
+
 import type { ProRenderFieldPropsType } from '../provider';
 import {
   type ProFieldTextType,
@@ -28,17 +29,8 @@ export const pureRenderRead: ProFieldRenderText = (
 ): React.ReactNode => {
   const { mode = 'read', emptyText = '-' } = props;
 
-  if (
-    emptyText !== false &&
-    mode === 'read' &&
-    valueType !== 'option' &&
-    valueType !== 'switch'
-  ) {
-    if (
-      typeof dataValue !== 'boolean' &&
-      typeof dataValue !== 'number' &&
-      !dataValue
-    ) {
+  if (emptyText !== false && mode === 'read' && valueType !== 'option' && valueType !== 'switch') {
+    if (typeof dataValue !== 'boolean' && typeof dataValue !== 'number' && !dataValue) {
       const { fieldProps, render } = props;
       if (render) {
         return render(dataValue, { mode, ...fieldProps }, <>{emptyText}</>);
@@ -61,8 +53,7 @@ export const pureRenderRead: ProFieldRenderText = (
     );
   }
 
-  const customValueTypeConfig =
-    valueTypeMap && valueTypeMap[valueType as string];
+  const customValueTypeConfig = valueTypeMap && valueTypeMap[valueType as string];
 
   if (customValueTypeConfig) {
     delete props.ref;
@@ -87,7 +78,12 @@ export const pureRenderRead: ProFieldRenderText = (
     }
     return readDom;
   }
-  return <FieldText text={dataValue as string} {...props} />;
+  return (
+    <FieldText
+      text={dataValue as string}
+      {...props}
+    />
+  );
 };
 
 /** 编辑：自定义 valueType 的 formItemRender、默认 FieldText */
@@ -111,8 +107,7 @@ export const pureRenderEdit: ProFieldRenderText = (
     );
   }
 
-  const customValueTypeConfig =
-    valueTypeMap && valueTypeMap[valueType as string];
+  const customValueTypeConfig = valueTypeMap && valueTypeMap[valueType as string];
 
   if (customValueTypeConfig) {
     delete props.ref;
@@ -136,16 +131,16 @@ export const pureRenderEdit: ProFieldRenderText = (
     }
     return dom;
   }
-  return <FieldText text={dataValue as string} {...props} />;
+  return (
+    <FieldText
+      text={dataValue as string}
+      {...props}
+    />
+  );
 };
 
 /** 按 props.mode 调度（单测或外部若直接调用时使用） */
-export const pureRenderText: ProFieldRenderText = (
-  dataValue,
-  valueType,
-  props,
-  valueTypeMap,
-) => {
+export const pureRenderText: ProFieldRenderText = (dataValue, valueType, props, valueTypeMap) => {
   const m = props.mode ?? 'read';
   return m === 'edit' || m === 'update'
     ? pureRenderEdit(dataValue, valueType, props, valueTypeMap)

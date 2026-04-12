@@ -1,4 +1,4 @@
-﻿import type { ProFieldFC, ProFieldLightProps } from '../../types';
+import type { ProFieldFC, ProFieldLightProps } from '../../types';
 import { formatDate } from './datePickerUtils';
 
 type Props = Parameters<

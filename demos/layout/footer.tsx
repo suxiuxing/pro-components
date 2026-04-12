@@ -1,8 +1,5 @@
-import {
-  DefaultFooter,
-  PageContainer,
-  ProLayout,
-} from '@xxlabs/pro-components';
+import { DefaultFooter, PageContainer, ProLayout } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 
 const Demo = () => (

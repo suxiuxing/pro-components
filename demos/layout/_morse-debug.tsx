@@ -5,9 +5,11 @@ import {
   QuestionCircleFilled,
   SearchOutlined,
 } from '@ant-design/icons';
-import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
 import { Button, Input } from 'antd';
 import { useState } from 'react';
+
+import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
+
 import { demoOnMenuHeaderClick } from './_demoHandlers';
 
 const Demo = () => {
@@ -23,9 +25,7 @@ const Demo = () => {
             path: '/all',
             name: '总览',
             parentId: '14',
-            children: [
-              { path: '/all/workbench/index', name: '首页', parentId: '16' },
-            ],
+            children: [{ path: '/all/workbench/index', name: '首页', parentId: '16' }],
           },
           {
             path: '/sa',
@@ -210,13 +210,19 @@ const Demo = () => {
         extra={[
           <Button key="3">操作</Button>,
           <Button key="2">操作</Button>,
-          <Button key="1" type="primary">
+          <Button
+            key="1"
+            type="primary"
+          >
             主操作
           </Button>,
         ]}
         footer={[
           <Button key="3">重置</Button>,
-          <Button key="2" type="primary">
+          <Button
+            key="2"
+            type="primary"
+          >
             提交
           </Button>,
         ]}

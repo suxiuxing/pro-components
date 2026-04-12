@@ -141,8 +141,15 @@ return (
         获取所有数据
       </Button>
     </Space>
-    <ProFormList actionGuard={actionGuard} actionRef={actionRef}>
-      <ProFormText key="useMode" name="name" label="姓名" />
+    <ProFormList
+      actionGuard={actionGuard}
+      actionRef={actionRef}
+    >
+      <ProFormText
+        key="useMode"
+        name="name"
+        label="姓名"
+      />
     </ProFormList>
   </>
 );
@@ -178,8 +185,15 @@ const actionGuard = {
   },
 };
 return (
-  <ProFormList actionGuard={actionGuard} actionRef={actionRef}>
-    <ProFormText key="useMode" name="name" label="姓名" />
+  <ProFormList
+    actionGuard={actionGuard}
+    actionRef={actionRef}
+  >
+    <ProFormText
+      key="useMode"
+      name="name"
+      label="姓名"
+    />
   </ProFormList>
 );
 ```

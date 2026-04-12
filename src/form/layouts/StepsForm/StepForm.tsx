@@ -1,6 +1,7 @@
 import { omit, warning } from '@rc-component/util';
 import type { FormInstance, FormProps, StepsProps } from 'antd';
 import { useContext, useEffect, useImperativeHandle, useRef } from 'react';
+
 import type { CommonFormProps } from '../../BaseForm';
 import { BaseForm } from '../../BaseForm';
 import { StepFormProvide, StepsFormProps, StepsFormProvide } from './index';
@@ -18,23 +19,13 @@ function StepForm<T = Record<string, any>>(stepNativeProps: StepFormProps<T>) {
   const context = useContext(StepsFormProvide);
   const stepContext = useContext(StepFormProvide);
 
-  const props = { ...stepNativeProps, ...stepContext } as StepFormProps<T> &
-    StepsFormProps<any>;
-  const {
-    onFinish,
-    step,
-    formRef: propFormRef,
-    title,
-    stepProps,
-    ...restProps
-  } = props;
+  const props = { ...stepNativeProps, ...stepContext } as StepFormProps<T> & StepsFormProps<any>;
+  const { onFinish, step, formRef: propFormRef, title, stepProps, ...restProps } = props;
 
   noteOnce(!restProps.submitter, 'StepForm 不包含提交按钮，请在 StepsForm 上');
 
   /** 重置 formRef */
-  useImperativeHandle(propFormRef, () => formRef.current, [
-    propFormRef?.current,
-  ]);
+  useImperativeHandle(propFormRef, () => formRef.current, [propFormRef?.current]);
 
   /** Dom 不存在的时候解除挂载 */
   useEffect(() => {

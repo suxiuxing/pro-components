@@ -1,6 +1,7 @@
-﻿import { ProDescriptions } from '@xxlabs/pro-components';
 import { Input, Tooltip } from 'antd';
 import { useRef } from 'react';
+
+import { ProDescriptions } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const actionRef = useRef();
@@ -128,13 +129,25 @@ const Demo = () => {
           title: '操作',
           valueType: 'option',
           render: () => [
-            <a target="_blank" rel="noopener noreferrer" key="detail">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              key="detail"
+            >
               详情
             </a>,
-            <a target="_blank" rel="noopener noreferrer" key="log">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              key="log"
+            >
               日志
             </a>,
-            <a target="_blank" rel="noopener noreferrer" key="track">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              key="track"
+            >
               物流追踪
             </a>,
           ],

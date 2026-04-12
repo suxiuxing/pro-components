@@ -12,6 +12,7 @@ import React, {
   useMemo,
   useRef,
 } from 'react';
+
 import ProForm, { ProFormDependency, ProFormInstance } from '../../../form';
 import type { ParamsType } from '../../../provider';
 import { useIntl } from '../../../provider';
@@ -70,9 +71,7 @@ type CreatorButtonResult = {
 };
 
 export type RecordCreatorProps<DataSourceType> = {
-  record:
-    | DataSourceType
-    | ((index: number, dataSource: DataSourceType[]) => DataSourceType);
+  record: DataSourceType | ((index: number, dataSource: DataSourceType[]) => DataSourceType);
   position?: 'top' | 'bottom';
   /**
    * 新增一行的类型
@@ -82,16 +81,13 @@ export type RecordCreatorProps<DataSourceType> = {
    */
   newRecordType?: 'dataSource' | 'cache';
   /** 要增加到哪个节点下，一般用于多重嵌套表格 */
-  parentKey?:
-    | React.Key
-    | ((index: number, dataSource: DataSourceType[]) => React.Key);
+  parentKey?: React.Key | ((index: number, dataSource: DataSourceType[]) => React.Key);
 };
 
-export type EditableProTableProps<
-  T,
-  U extends ParamsType,
-  ValueType = 'text',
-> = Omit<ProTableProps<T, U, ValueType>, 'onChange'> & {
+export type EditableProTableProps<T, U extends ParamsType, ValueType = 'text'> = Omit<
+  ProTableProps<T, U, ValueType>,
+  'onChange'
+> & {
   defaultValue?: readonly T[];
   value?: readonly T[];
   onChange?: (value: readonly T[]) => void;
@@ -202,8 +198,7 @@ function createButtonDom<DataType>(
         icon={<PlusOutlined />}
         {...restButtonProps}
       >
-        {creatorButtonText ||
-          intl.getMessage('editableTable.action.add', '添加一行数据')}
+        {creatorButtonText || intl.getMessage('editableTable.action.add', '添加一行数据')}
       </Button>
     </RecordCreator>
   );
@@ -219,17 +214,14 @@ function createTopButtonProps(
   return {
     components: {
       header: {
-        wrapper: ({
-          className,
-          children,
-        }: {
-          className: string;
-          children: React.ReactNode;
-        }) => (
+        wrapper: ({ className, children }: { className: string; children: React.ReactNode }) => (
           <thead className={className}>
             {children}
             <tr style={{ position: 'relative' }}>
-              <td colSpan={0} style={{ visibility: 'hidden' }}>
+              <td
+                colSpan={0}
+                style={{ visibility: 'hidden' }}
+              >
                 {creatorButtonDom}
               </td>
               <td
@@ -272,10 +264,7 @@ function useCreatorButton<DataType>({
   columnsLength,
   tableViewRender,
 }: {
-  recordCreatorProps: EditableProTableProps<
-    DataType,
-    any
-  >['recordCreatorProps'];
+  recordCreatorProps: EditableProTableProps<DataType, any>['recordCreatorProps'];
   maxLength: EditableProTableProps<DataType, any>['maxLength'];
   value: readonly DataType[] | undefined;
   intl: ReturnType<typeof useIntl>;
@@ -284,13 +273,7 @@ function useCreatorButton<DataType>({
   tableViewRender: ProTableProps<DataType, any>['tableViewRender'];
 }): CreatorButtonResult {
   const creatorButtonDom = useMemo(() => {
-    if (
-      !shouldShowCreatorButton(
-        maxLength,
-        value?.length || 0,
-        recordCreatorProps,
-      )
-    ) {
+    if (!shouldShowCreatorButton(maxLength, value?.length || 0, recordCreatorProps)) {
       return false;
     }
 
@@ -346,9 +329,7 @@ function EditableTable<
   const form = Form.useFormInstance();
 
   // 设置 ref
-  useImperativeHandle(rest.actionRef, () => actionRef.current, [
-    actionRef.current,
-  ]);
+  useImperativeHandle(rest.actionRef, () => actionRef.current, [actionRef.current]);
 
   // 在 name 模式下，如果没有传递 value prop，尝试从表单值中获取初始值
   const getInitialValue = () => {
@@ -375,11 +356,7 @@ function EditableTable<
   );
   const onChangeFn = props.controlled ? props.onChange : undefined;
   const setValue = useCallback(
-    (
-      updater:
-        | readonly DataType[]
-        | ((prev: readonly DataType[]) => readonly DataType[]),
-    ) => {
+    (updater: readonly DataType[] | ((prev: readonly DataType[]) => readonly DataType[])) => {
       setValueInner((prev) => {
         const next =
           typeof updater === 'function'
@@ -393,14 +370,11 @@ function EditableTable<
     [onChangeFn],
   );
 
-  const getRowKey = React.useMemo<
-    GetRowKey<DataType>
-  >((): GetRowKey<DataType> => {
+  const getRowKey = React.useMemo<GetRowKey<DataType>>((): GetRowKey<DataType> => {
     if (typeof rowKey === 'function') {
       return rowKey;
     }
-    return (record: DataType, index?: number) =>
-      (record as any)[rowKey as string] || index;
+    return (record: DataType, index?: number) => (record as any)[rowKey as string] || index;
   }, [rowKey]);
 
   /**
@@ -416,20 +390,14 @@ function EditableTable<
    * 同步表单值，排除正在编辑的行
    */
   const syncFormValuesExcludingEditing = useRefFunction(
-    (
-      dataSource: readonly DataType[],
-      editingKeysSet: Set<string>,
-      namePath?: string[],
-    ): void => {
+    (dataSource: readonly DataType[], editingKeysSet: Set<string>, namePath?: string[]): void => {
       if (!formRef.current) return;
 
       try {
         if (namePath && namePath.length > 0) {
           // name 模式：需要保留正在编辑的行
           const currentFormValues = formRef.current.getFieldsValue() || {};
-          const currentList = get(currentFormValues, namePath) as
-            | DataType[]
-            | undefined;
+          const currentList = get(currentFormValues, namePath) as DataType[] | undefined;
 
           if (currentList && Array.isArray(currentList)) {
             // 构建新的表单值，保留正在编辑的行
@@ -483,14 +451,12 @@ function EditableTable<
   /**
    * 将数字索引转换为实际的 rowKey（非 name 模式）
    */
-  const convertIndexToRowKey = useRefFunction(
-    (index: number): string | number => {
-      const dataLength = value?.length ?? 0;
-      if (index >= dataLength) return index;
-      const rowData = value?.[index];
-      return getRowKey?.(rowData!, index) as string | number;
-    },
-  );
+  const convertIndexToRowKey = useRefFunction((index: number): string | number => {
+    const dataLength = value?.length ?? 0;
+    if (index >= dataLength) return index;
+    const rowData = value?.[index];
+    return getRowKey?.(rowData!, index) as string | number;
+  });
 
   /**
    * 将 rowKey 转换为数字索引（name 模式）
@@ -511,45 +477,37 @@ function EditableTable<
   /**
    * 根据不同的情况返回不同的 rowKey
    */
-  const coverRowKey = useRefFunction(
-    (finlayRowKey: number | string): string | number => {
-      if (typeof finlayRowKey === 'number' && !props.name) {
-        return convertIndexToRowKey(finlayRowKey);
-      }
+  const coverRowKey = useRefFunction((finlayRowKey: number | string): string | number => {
+    if (typeof finlayRowKey === 'number' && !props.name) {
+      return convertIndexToRowKey(finlayRowKey);
+    }
 
-      if (props.name) {
-        return convertRowKeyToIndex(finlayRowKey);
-      }
+    if (props.name) {
+      return convertRowKeyToIndex(finlayRowKey);
+    }
 
-      return finlayRowKey;
-    },
-  );
+    return finlayRowKey;
+  });
 
   /**
    * 构建表单字段路径
    */
-  const buildFormFieldPath = useRefFunction(
-    (rowKey: string | number): NamePath => {
-      return [props.name, rowKey?.toString() ?? '']
-        .flat(1)
-        .filter(Boolean) as NamePath;
-    },
-  );
+  const buildFormFieldPath = useRefFunction((rowKey: string | number): NamePath => {
+    return [props.name, rowKey?.toString() ?? ''].flat(1).filter(Boolean) as NamePath;
+  });
 
   /**
    * 获取一行数据
    */
-  const getRowData = useRefFunction(
-    (rowIndex: string | number): DataType | undefined => {
-      if (rowIndex == null) {
-        throw new Error('rowIndex is required');
-      }
+  const getRowData = useRefFunction((rowIndex: string | number): DataType | undefined => {
+    if (rowIndex == null) {
+      throw new Error('rowIndex is required');
+    }
 
-      const finlayRowKey = coverRowKey(rowIndex);
-      const rowKeyName = buildFormFieldPath(finlayRowKey);
-      return formRef.current?.getFieldValue(rowKeyName) as DataType;
-    },
-  );
+    const finlayRowKey = coverRowKey(rowIndex);
+    const rowKeyName = buildFormFieldPath(finlayRowKey);
+    return formRef.current?.getFieldValue(rowKeyName) as DataType;
+  });
 
   /**
    * 获取整个表格的数据
@@ -579,7 +537,7 @@ function EditableTable<
       const currentRowData = getRowData(rowIndex);
       const newRowData = {
         ...currentRowData,
-        ...(data || {}),
+        ...data,
       };
 
       // 在 name 模式下，需要更新整个数组
@@ -597,16 +555,10 @@ function EditableTable<
               ? finlayRowKey
               : currentTableData.findIndex((row, index) => {
                   const rowKey = getRowKey?.(row, index);
-                  return (
-                    rowKey === finlayRowKey ||
-                    rowKey?.toString() === finlayRowKey?.toString()
-                  );
+                  return rowKey === finlayRowKey || rowKey?.toString() === finlayRowKey?.toString();
                 });
 
-          if (
-            rowIndexToUpdate >= 0 &&
-            rowIndexToUpdate < currentTableData.length
-          ) {
+          if (rowIndexToUpdate >= 0 && rowIndexToUpdate < currentTableData.length) {
             // 更新数组中的对应行
             const updatedTableData = [...currentTableData];
             updatedTableData[rowIndexToUpdate] = newRowData as DataType;
@@ -714,20 +666,18 @@ function EditableTable<
    * 注意：受控模式下不调用 onChange，避免循环更新
    * onChange 应该由外部控制，而不是在内部触发
    */
-  const handleValuesChange = useRefFunction(
-    (r: DataType, dataSource: DataType[]) => {
-      props.editable?.onValuesChange?.(r, dataSource);
-      props.onValuesChange?.(dataSource, r);
+  const handleValuesChange = useRefFunction((r: DataType, dataSource: DataType[]) => {
+    props.editable?.onValuesChange?.(r, dataSource);
+    props.onValuesChange?.(dataSource, r);
 
-      // 在受控模式下，当表单值变化时也应该触发 onChange
-      // 这样外部可以同步更新 value，实现真正的受控
-      if (props.controlled && props?.onChange) {
-        props.onChange(dataSource);
-      }
-      // 非受控模式下，onChange 应该在 onDataSourceChange 中触发
-      // 这样可以确保数据已经正确更新
-    },
-  );
+    // 在受控模式下，当表单值变化时也应该触发 onChange
+    // 这样外部可以同步更新 value，实现真正的受控
+    if (props.controlled && props?.onChange) {
+      props.onChange(dataSource);
+    }
+    // 非受控模式下，onChange 应该在 onDataSourceChange 中触发
+    // 这样可以确保数据已经正确更新
+  });
 
   /**
    * 构建可编辑属性
@@ -745,13 +695,7 @@ function EditableTable<
     }
 
     return baseProps;
-  }, [
-    props.editable,
-    props.onValuesChange,
-    props.controlled,
-    props.onChange,
-    handleValuesChange,
-  ]);
+  }, [props.editable, props.onValuesChange, props.controlled, props.onChange, handleValuesChange]);
 
   return (
     <>
@@ -790,11 +734,7 @@ function EditableTable<
               const editingKeysSet = createEditingKeysSet(editingKeys);
               const namePath = [props.name].flat(1).filter(Boolean);
 
-              syncFormValuesExcludingEditing(
-                dataSource,
-                editingKeysSet,
-                namePath,
-              );
+              syncFormValuesExcludingEditing(dataSource, editingKeysSet, namePath);
             }
 
             // 在非受控模式下，通过 onDataSourceChange 触发 onChange
@@ -878,9 +818,7 @@ function FieldEditableTable<
       shouldUpdate={(prev, next) => {
         const name = [props.name].flat(1) as string[];
         try {
-          return (
-            JSON.stringify(get(prev, name)) !== JSON.stringify(get(next, name))
-          );
+          return JSON.stringify(get(prev, name)) !== JSON.stringify(get(next, name));
         } catch (_error) {
           return true;
         }

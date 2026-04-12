@@ -1,4 +1,6 @@
 import { PlusOutlined } from '@ant-design/icons';
+import { Button, Form, message } from 'antd';
+
 import {
   ModalForm,
   ProForm,
@@ -6,7 +8,6 @@ import {
   ProFormSelect,
   ProFormText,
 } from '@xxlabs/pro-components';
-import { Button, Form, message } from 'antd';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -98,7 +99,11 @@ const Demo = () => {
           label="Contract Agreed Invalid Method"
         />
       </ProForm.Group>
-      <ProFormText width="sm" name="id" label="Main Contract Number" />
+      <ProFormText
+        width="sm"
+        name="id"
+        label="Main Contract Number"
+      />
       <ProFormText
         name="project"
         disabled

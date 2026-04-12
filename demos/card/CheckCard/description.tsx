@@ -1,5 +1,6 @@
-import { CheckCard } from '@xxlabs/pro-components';
 import { Typography } from 'antd';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 const { Paragraph } = Typography;
 
@@ -64,8 +65,7 @@ const Demo = () => (
       <h4>复杂 Description 示例：</h4>
       <ul>
         <li>
-          <strong>链接</strong>: 在描述中添加可点击的链接，使用 stopPropagation
-          阻止事件冒泡
+          <strong>链接</strong>: 在描述中添加可点击的链接，使用 stopPropagation 阻止事件冒泡
         </li>
         <li>
           <strong>排版组件</strong>: 使用 Typography.Paragraph 组件控制文本显示

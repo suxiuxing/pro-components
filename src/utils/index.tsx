@@ -1,11 +1,4 @@
-import {
-  lighten,
-  operationUnit,
-  resetComponent,
-  setAlpha,
-  useStyle,
-} from '../provider';
-
+import { lighten, operationUnit, resetComponent, setAlpha, useStyle } from '../provider';
 import { autoFocusToFirstChild } from './autoFocusToFirstChild';
 import { DropdownFooter } from './components/DropdownFooter';
 import { ErrorBoundary } from './components/ErrorBoundary';
@@ -15,21 +8,14 @@ import { InlineErrorFormItem } from './components/InlineErrorFormItem';
 import { LabelIconTip } from './components/LabelIconTip';
 import type { ProFormInstanceType } from './components/ProFormContext';
 import { ProFormContext } from './components/ProFormContext';
-import {
-  conversionMomentValue,
-  convertMoment,
-  dateFormatterMap,
-} from './conversionMomentValue';
+import { conversionMomentValue, convertMoment, dateFormatterMap } from './conversionMomentValue';
 import { dateArrayFormatter } from './dateArrayFormatter';
 import type { ProEllipsis } from './genCopyable';
 import { genCopyable } from './genCopyable';
 import { getFieldPropsOrFormItemProps } from './getFieldPropsOrFormItemProps';
 import { useDebounceFn } from './hooks/useDebounceFn';
 import { useDebounceValue } from './hooks/useDebounceValue';
-import {
-  useDeepCompareEffect,
-  useDeepCompareEffectDebounce,
-} from './hooks/useDeepCompareEffect';
+import { useDeepCompareEffect, useDeepCompareEffectDebounce } from './hooks/useDeepCompareEffect';
 import useDeepCompareMemo from './hooks/useDeepCompareMemo';
 import { useDocumentTitle } from './hooks/useDocumentTitle';
 import type { ProRequestData } from './hooks/useFetchData';
@@ -64,15 +50,8 @@ import type {
   UseEditableType,
   UseEditableUtilType,
 } from './useEditableArray';
-import {
-  editableRowByKey,
-  recordKeyToString,
-  useEditableArray,
-} from './useEditableArray';
-import type {
-  UseEditableMapType,
-  UseEditableMapUtilType,
-} from './useEditableMap';
+import { editableRowByKey, recordKeyToString, useEditableArray } from './useEditableArray';
+import type { UseEditableMapType, UseEditableMapUtilType } from './useEditableMap';
 import { useEditableMap } from './useEditableMap';
 import { useBreakpoint } from './useMediaQuery';
 

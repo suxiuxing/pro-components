@@ -1,6 +1,7 @@
-﻿import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 
 type Props = Parameters<
@@ -20,12 +21,8 @@ export function FieldPasswordRead(props: Props, ref: React.Ref<unknown>) {
   if (text) {
     dom = (
       <Space>
-        <span ref={ref as React.Ref<HTMLSpanElement>}>
-          {open ? text : '********'}
-        </span>
-        <a onClick={() => setOpen(!open)}>
-          {open ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-        </a>
+        <span ref={ref as React.Ref<HTMLSpanElement>}>{open ? text : '********'}</span>
+        <a onClick={() => setOpen(!open)}>{open ? <EyeOutlined /> : <EyeInvisibleOutlined />}</a>
       </Space>
     );
   }

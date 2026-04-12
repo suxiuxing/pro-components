@@ -1,13 +1,8 @@
-﻿import type { FormListActionType } from '@xxlabs/pro-components';
-import {
-  ProCard,
-  ProForm,
-  ProFormGroup,
-  ProFormList,
-  ProFormText,
-} from '@xxlabs/pro-components';
 import { Button, Space, message } from 'antd';
 import { useRef } from 'react';
+
+import type { FormListActionType } from '@xxlabs/pro-components';
+import { ProCard, ProForm, ProFormGroup, ProFormList, ProFormText } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const actionRef = useRef<
@@ -67,7 +62,10 @@ const Demo = () => {
           获取所有数据
         </Button>
       </Space>
-      <ProForm name="pro-form-list-demo" onFinish={async (e) => console.log(e)}>
+      <ProForm
+        name="pro-form-list-demo"
+        onFinish={async (e) => console.log(e)}
+      >
         <ProFormList
           name="users"
           label="用户信息"
@@ -113,8 +111,14 @@ const Demo = () => {
           actionRef={actionRef}
         >
           <ProFormGroup key="group">
-            <ProFormText name="name" label="姓名" />
-            <ProFormText name="age" label="年龄" />
+            <ProFormText
+              name="name"
+              label="姓名"
+            />
+            <ProFormText
+              name="age"
+              label="年龄"
+            />
           </ProFormGroup>
         </ProFormList>
       </ProForm>

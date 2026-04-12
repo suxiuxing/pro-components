@@ -1,11 +1,9 @@
 import { GithubOutlined } from '@ant-design/icons';
-import {
-  DefaultFooter,
-  PageContainer,
-  ProLayout,
-} from '@xxlabs/pro-components';
 import { Switch } from 'antd';
 import { useState } from 'react';
+
+import { DefaultFooter, PageContainer, ProLayout } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 
 const Demo = () => {

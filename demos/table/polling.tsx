@@ -1,15 +1,12 @@
 import { LoadingOutlined, ReloadOutlined } from '@ant-design/icons';
-import type { ProColumns } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Button } from 'antd';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 
-import {
-  DEMO_STATUS_VALUE_ENUM,
-  DEMO_VALUE_ENUM,
-  FIXED_BASE_TIMESTAMP,
-} from '../mockData';
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
+
+import { DEMO_STATUS_VALUE_ENUM, DEMO_VALUE_ENUM, FIXED_BASE_TIMESTAMP } from '../mockData';
 
 export type TableListItem = {
   key: number;
@@ -21,18 +18,15 @@ export type TableListItem = {
   money: number;
 };
 
-const tableListDataSource: TableListItem[] = Array.from(
-  { length: 2 },
-  (_, i) => ({
-    key: i,
-    name: i === 0 ? '用户认证服务' : '支付网关',
-    status: DEMO_VALUE_ENUM[(i % 4) as keyof typeof DEMO_VALUE_ENUM],
-    updatedAt: FIXED_BASE_TIMESTAMP - (i * 500 + 100),
-    createdAt: FIXED_BASE_TIMESTAMP - (i * 1000 + 200),
-    money: ((i * 3456 + 7890) % 50000) * 100,
-    progress: ((i * 17 + 23) % 100) + 1,
-  }),
-);
+const tableListDataSource: TableListItem[] = Array.from({ length: 2 }, (_, i) => ({
+  key: i,
+  name: i === 0 ? '用户认证服务' : '支付网关',
+  status: DEMO_VALUE_ENUM[(i % 4) as keyof typeof DEMO_VALUE_ENUM],
+  updatedAt: FIXED_BASE_TIMESTAMP - (i * 500 + 100),
+  createdAt: FIXED_BASE_TIMESTAMP - (i * 1000 + 200),
+  money: ((i * 3456 + 7890) % 50000) * 100,
+  progress: ((i * 17 + 23) % 100) + 1,
+}));
 
 const timeAwait = (waitTime: number): Promise<void> =>
   new Promise((res) =>

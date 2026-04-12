@@ -1,7 +1,8 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import { DragSortTable } from '@xxlabs/pro-components';
 import { message } from 'antd';
 import { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { DragSortTable } from '@xxlabs/pro-components';
 
 const columns: ProColumns[] = [
   {
@@ -49,11 +50,7 @@ const data = [
 const Demo = () => {
   const [dataSource, setDataSource] = useState(data);
 
-  const handleDragSortEnd = (
-    beforeIndex: number,
-    afterIndex: number,
-    newDataSource: any,
-  ) => {
+  const handleDragSortEnd = (beforeIndex: number, afterIndex: number, newDataSource: any) => {
     setDataSource(newDataSource);
     message.success('修改列表排序成功');
   };

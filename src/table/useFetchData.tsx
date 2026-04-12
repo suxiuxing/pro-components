@@ -1,5 +1,6 @@
 import { useControlledState } from '@rc-component/util';
 import { useCallback, useEffect, useRef, useState } from 'react';
+
 import {
   runFunction,
   useDebounceFn,
@@ -7,11 +8,7 @@ import {
   usePrevious,
   useRefFunction,
 } from '../utils';
-import type {
-  RequestData,
-  UseFetchDataAction,
-  UseFetchProps,
-} from './typing';
+import type { RequestData, UseFetchDataAction, UseFetchProps } from './typing';
 import { postDataPipeline } from './utils/index';
 import { usePageInfo } from './utils/usePageInfo';
 
@@ -25,9 +22,7 @@ import { usePageInfo } from './utils/usePageInfo';
  * @returns {UseFetchDataAction} 返回一个对象，包含当前的数据列表、loading 状态、error、以及可控制的分页参数等
  */
 const useFetchData = <DataSource extends RequestData<any>>(
-  getData:
-    | undefined
-    | ((params?: { pageSize: number; current: number }) => Promise<DataSource>),
+  getData: undefined | ((params?: { pageSize: number; current: number }) => Promise<DataSource>),
   defaultData: any[] | undefined,
   options: UseFetchProps,
 ): UseFetchDataAction => {
@@ -64,9 +59,10 @@ const useFetchData = <DataSource extends RequestData<any>>(
   /**
    * 用于存储最新的数据，这样可以在切换的时候保持数据的一致性
    */
-  const [tableDataList, setTableDataListInner] = useControlledState<
-    DataSource[] | undefined
-  >(defaultData, options?.dataSource);
+  const [tableDataList, setTableDataListInner] = useControlledState<DataSource[] | undefined>(
+    defaultData,
+    options?.dataSource,
+  );
   const setTableDataList = useCallback(
     (
       updater:
@@ -77,11 +73,7 @@ const useFetchData = <DataSource extends RequestData<any>>(
       setTableDataListInner((prev) => {
         const next =
           typeof updater === 'function'
-            ? (
-                updater as (
-                  p: DataSource[] | undefined,
-                ) => DataSource[] | undefined
-              )(prev)
+            ? (updater as (p: DataSource[] | undefined) => DataSource[] | undefined)(prev)
             : updater;
         // 使用 queueMicrotask 延迟回调，避免在渲染期间更新其他组件状态
         queueMicrotask(() => {
@@ -97,9 +89,7 @@ const useFetchData = <DataSource extends RequestData<any>>(
    * 表格的加载状态
    */
   const tableLoadingValue =
-    typeof options?.loading === 'object'
-      ? options?.loading?.spinning
-      : options?.loading;
+    typeof options?.loading === 'object' ? options?.loading?.spinning : options?.loading;
   const [tableLoading, setTableLoadingInner] = useControlledState<boolean>(
     false,
     tableLoadingValue,
@@ -120,9 +110,7 @@ const useFetchData = <DataSource extends RequestData<any>>(
     (updater: boolean | ((prev: boolean) => boolean)) => {
       setTableLoadingInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         queueMicrotask(() => {
           onLoadingChange(next);
         });
@@ -203,12 +191,7 @@ const useFetchData = <DataSource extends RequestData<any>>(
               pageSize,
             }
           : undefined;
-      const {
-        data = [],
-        success,
-        total = 0,
-        ...rest
-      } = (await getData?.(pageParams)) || {};
+      const { data = [], success, total = 0, ...rest } = (await getData?.(pageParams)) || {};
       // 如果被取消了，直接返回
       if (signal?.aborted) {
         return [];
@@ -344,17 +327,11 @@ const useFetchData = <DataSource extends RequestData<any>>(
     const { current, pageSize } = pageInfo || {};
     // 如果上次的页码为空或者两次页码等于是没必要查询的
     // 如果 pageSize 发生变化是需要查询的，所以又加了 prePageSize
-    if (
-      (!prePage || prePage === current) &&
-      (!prePageSize || prePageSize === pageSize)
-    ) {
+    if ((!prePage || prePage === current) && (!prePageSize || prePageSize === pageSize)) {
       return;
     }
 
-    if (
-      (options.pageInfo && tableDataList && tableDataList?.length > pageSize) ||
-      0
-    ) {
+    if ((options.pageInfo && tableDataList && tableDataList?.length > pageSize) || 0) {
       return;
     }
 
@@ -363,11 +340,7 @@ const useFetchData = <DataSource extends RequestData<any>>(
     // (pageIndex - 1 || 1) 至少要第一页
     // 在第一页大于 10
     // 第二页也应该是大于 10
-    if (
-      current !== undefined &&
-      tableDataList &&
-      tableDataList.length <= pageSize
-    ) {
+    if (current !== undefined && tableDataList && tableDataList.length <= pageSize) {
       abortFetch();
       fetchListDebounce.run(false);
     }

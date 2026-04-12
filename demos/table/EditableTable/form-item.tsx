@@ -1,8 +1,8 @@
-import type {
-  EditableFormInstance,
-  ProColumns,
-  ProFormInstance,
-} from '@xxlabs/pro-components';
+import { Button, message } from 'antd';
+import isEmpty from 'lodash-es/isEmpty';
+import React, { useRef, useState } from 'react';
+
+import type { EditableFormInstance, ProColumns, ProFormInstance } from '@xxlabs/pro-components';
 import {
   EditableProTable,
   ProCard,
@@ -12,10 +12,7 @@ import {
   ProFormSegmented,
   ProFormSwitch,
 } from '@xxlabs/pro-components';
-import { Button, message } from 'antd';
-import React, { useRef, useState } from 'react';
 
-import isEmpty from 'lodash-es/isEmpty';
 import { createEditableRowId } from '../../mockData';
 
 type DataSourceType = {
@@ -51,9 +48,7 @@ let i = 0;
 
 const Demo = () => {
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() => []);
-  const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>(
-    'bottom',
-  );
+  const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>('bottom');
   const [controlled, setControlled] = useState<boolean>(false);
   const formRef = useRef<ProFormInstance<any>>();
   const editorFormRef = useRef<EditableFormInstance<DataSourceType>>();
@@ -125,9 +120,7 @@ const Demo = () => {
         <a
           key="delete"
           onClick={() => {
-            const tableDataSource = formRef.current?.getFieldValue(
-              'table',
-            ) as DataSourceType[];
+            const tableDataSource = formRef.current?.getFieldValue('table') as DataSourceType[];
             formRef.current?.setFieldsValue({
               table: tableDataSource.filter((item) => item.id !== record.id),
             });
@@ -246,7 +239,12 @@ const Demo = () => {
         }}
       />
       <ProForm.Item>
-        <ProCard title="表格数据" headerBordered collapsible defaultCollapsed>
+        <ProCard
+          title="表格数据"
+          headerBordered
+          collapsible
+          defaultCollapsed
+        >
           <ProFormDependency name={['table']}>
             {({ table }) => {
               return (

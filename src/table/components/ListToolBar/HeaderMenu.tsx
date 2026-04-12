@@ -3,6 +3,7 @@ import { useControlledState } from '@rc-component/util';
 import { Dropdown, Space, Tabs } from 'antd';
 import { clsx } from 'clsx';
 import React, { useCallback, useContext } from 'react';
+
 import { ProProvider } from '../../../provider';
 
 export type ListToolBarMenuItem = {
@@ -40,14 +41,8 @@ const HeaderMenu: React.FC<ListToolBarHeaderMenuProps> = (props) => {
     (updater: React.Key | ((prev: React.Key) => React.Key)) => {
       setActiveKeyInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: React.Key) => React.Key)(prev)
-            : updater;
-        (
-          props.onChange as
-            | ((key?: React.Key, prev?: React.Key) => void)
-            | undefined
-        )?.(next, prev);
+          typeof updater === 'function' ? (updater as (p: React.Key) => React.Key)(prev) : updater;
+        (props.onChange as ((key?: React.Key, prev?: React.Key) => void) | undefined)?.(next, prev);
         return next;
       });
     },
@@ -65,13 +60,7 @@ const HeaderMenu: React.FC<ListToolBarHeaderMenuProps> = (props) => {
 
   if (type === 'inline') {
     return (
-      <div
-        className={clsx(
-          `${prefixCls}-menu`,
-          `${prefixCls}-inline-menu`,
-          hashId,
-        )}
-      >
+      <div className={clsx(`${prefixCls}-menu`, `${prefixCls}-inline-menu`, hashId)}>
         {items.map((item, index) => (
           <div
             key={item.key || index}
@@ -80,9 +69,7 @@ const HeaderMenu: React.FC<ListToolBarHeaderMenuProps> = (props) => {
             }}
             className={clsx(
               `${prefixCls}-inline-menu-item`,
-              activeItem.key === item.key
-                ? `${prefixCls}-inline-menu-item-active`
-                : undefined,
+              activeItem.key === item.key ? `${prefixCls}-inline-menu-item-active` : undefined,
               hashId,
             )}
           >
@@ -107,13 +94,7 @@ const HeaderMenu: React.FC<ListToolBarHeaderMenuProps> = (props) => {
   }
 
   return (
-    <div
-      className={clsx(
-        `${prefixCls}-menu`,
-        `${prefixCls}-dropdownmenu`,
-        hashId,
-      )}
-    >
+    <div className={clsx(`${prefixCls}-menu`, `${prefixCls}-dropdownmenu`, hashId)}>
       <Dropdown
         trigger={['click']}
         menu={{

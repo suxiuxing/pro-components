@@ -1,7 +1,8 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Radio, Space } from 'antd';
 import { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 /** 服务状态枚举 */
 const statusEnum = {
@@ -71,13 +72,7 @@ const departmentOptions = [
   },
 ];
 
-type ValueTypeKey =
-  | 'select'
-  | 'radio'
-  | 'radioButton'
-  | 'checkbox'
-  | 'cascader'
-  | 'treeSelect';
+type ValueTypeKey = 'select' | 'radio' | 'radioButton' | 'checkbox' | 'cascader' | 'treeSelect';
 
 const VALUE_TYPE_OPTIONS: { label: string; value: ValueTypeKey }[] = [
   { label: '下拉选择 select', value: 'select' },

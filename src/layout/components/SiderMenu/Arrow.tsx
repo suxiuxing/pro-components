@@ -1,4 +1,4 @@
-﻿function ArrowSvgIcon() {
+function ArrowSvgIcon() {
   return (
     <svg
       width="1em"

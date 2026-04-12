@@ -2,6 +2,7 @@ import { omit } from '@rc-component/util';
 import type { ButtonProps } from 'antd';
 import { Button, Form } from 'antd';
 import React from 'react';
+
 import { proTheme, useIntl } from '../../../provider';
 
 /** @name 用于配置操作栏 */
@@ -80,16 +81,11 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
   if (resetButtonProps !== false) {
     dom.push(
       <Button
-        {...omit(resetButtonProps ?? {}, [
-          'preventDefault',
-          'fieldProps',
-        ] as any)}
+        {...omit(resetButtonProps ?? {}, ['preventDefault', 'fieldProps'] as any)}
         key="rest"
         onClick={(e) => {
           if (!resetButtonProps?.preventDefault) reset();
-          resetButtonProps?.onClick?.(
-            e as React.MouseEvent<HTMLButtonElement, MouseEvent>,
-          );
+          resetButtonProps?.onClick?.(e as React.MouseEvent<HTMLButtonElement, MouseEvent>);
         }}
       >
         {resetText}
@@ -101,16 +97,11 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
     dom.push(
       <Button
         type="primary"
-        {...omit(submitButtonProps || {}, [
-          'preventDefault',
-          'fieldProps',
-        ] as any)}
+        {...omit(submitButtonProps || {}, ['preventDefault', 'fieldProps'] as any)}
         key="submit"
         onClick={(e) => {
           if (!submitButtonProps?.preventDefault) submit();
-          submitButtonProps?.onClick?.(
-            e as React.MouseEvent<HTMLButtonElement, MouseEvent>,
-          );
+          submitButtonProps?.onClick?.(e as React.MouseEvent<HTMLButtonElement, MouseEvent>);
         }}
       >
         {submitText}
@@ -118,9 +109,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
     );
   }
 
-  const renderDom = render
-    ? render({ ...props, form, submit, reset }, dom)
-    : dom;
+  const renderDom = render ? render({ ...props, form, submit, reset }, dom) : dom;
   if (!renderDom) {
     return null;
   }

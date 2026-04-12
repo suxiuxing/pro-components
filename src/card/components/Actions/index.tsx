@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import React from 'react';
+
 import useStyle from './style';
 
 export type ProCardActionsProps = {
@@ -31,9 +32,7 @@ const ProCardActions: React.FC<ProCardActionsProps> = (props) => {
       </ul>,
     );
   }
-  return wrapSSR(
-    <ul className={clsx(`${prefixCls}-actions`, hashId)}>{actions}</ul>,
-  );
+  return wrapSSR(<ul className={clsx(`${prefixCls}-actions`, hashId)}>{actions}</ul>);
 };
 
 export default ProCardActions;

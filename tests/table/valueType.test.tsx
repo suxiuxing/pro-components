@@ -1,8 +1,10 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import { ProProvider, ProTable } from '@xxlabs/pro-components';
 import { Input } from 'antd';
 import { act } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import { ProProvider, ProTable } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 const cascaderOptions = [
@@ -120,9 +122,9 @@ describe('BasicTable valueType', () => {
 
     expect(!!html.asFragment().querySelector('input#name')).toBeTruthy();
 
-    expect(
-      (html.asFragment().querySelector('input#name') as HTMLInputElement).value,
-    ).toBe('TradeCode');
+    expect((html.asFragment().querySelector('input#name') as HTMLInputElement).value).toBe(
+      'TradeCode',
+    );
 
     html.unmount();
   });
@@ -166,9 +168,9 @@ describe('BasicTable valueType', () => {
 
     expect(!!html.asFragment().querySelector('input#name')).toBeTruthy();
 
-    expect(
-      (html.asFragment().querySelector('input#name') as HTMLInputElement).value,
-    ).toBe('TradeCode');
+    expect((html.asFragment().querySelector('input#name') as HTMLInputElement).value).toBe(
+      'TradeCode',
+    );
 
     html.unmount();
   });
@@ -184,18 +186,10 @@ describe('BasicTable valueType', () => {
       });
     });
     await waitForWaitTime(300);
-    expect(
-      html.baseElement.querySelectorAll('span[title="Javascript"]').length,
-    ).toBe(1);
-    expect(html.baseElement.querySelectorAll('span[title="Java"]').length).toBe(
-      1,
-    );
-    expect(
-      html.baseElement.querySelectorAll('span[title="Typescript"]').length,
-    ).toBe(0);
-    expect(html.baseElement.querySelectorAll('span[title="Go"]').length).toBe(
-      0,
-    );
+    expect(html.baseElement.querySelectorAll('span[title="Javascript"]').length).toBe(1);
+    expect(html.baseElement.querySelectorAll('span[title="Java"]').length).toBe(1);
+    expect(html.baseElement.querySelectorAll('span[title="Typescript"]').length).toBe(0);
+    expect(html.baseElement.querySelectorAll('span[title="Go"]').length).toBe(0);
 
     act(() => {
       fireEvent.change(html.baseElement.querySelector('input#treeSelect')!, {
@@ -205,18 +199,10 @@ describe('BasicTable valueType', () => {
       });
     });
     await waitForWaitTime(300);
-    expect(
-      html.baseElement.querySelectorAll('span[title="Javascript"]').length,
-    ).toBe(1);
-    expect(html.baseElement.querySelectorAll('span[title="Java"]').length).toBe(
-      0,
-    );
-    expect(
-      html.baseElement.querySelectorAll('span[title="Typescript"]').length,
-    ).toBe(0);
-    expect(html.baseElement.querySelectorAll('span[title="Go"]').length).toBe(
-      0,
-    );
+    expect(html.baseElement.querySelectorAll('span[title="Javascript"]').length).toBe(1);
+    expect(html.baseElement.querySelectorAll('span[title="Java"]').length).toBe(0);
+    expect(html.baseElement.querySelectorAll('span[title="Typescript"]').length).toBe(0);
+    expect(html.baseElement.querySelectorAll('span[title="Go"]').length).toBe(0);
     expect(html.asFragment()).toMatchSnapshot();
 
     html.unmount();

@@ -35,6 +35,8 @@
     "src",
     "tests",
     "commitlint.config.ts",
+    "oxfmt.config.ts",
+    "oxlint.config.ts",
     "rspress.config.ts",
     "tsdown.config.ts",
     "vitest.config.mts"

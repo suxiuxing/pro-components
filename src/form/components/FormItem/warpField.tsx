@@ -2,6 +2,7 @@ import { FieldContext as RcFieldContext } from '@rc-component/form';
 import type { FormItemProps } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo, useState } from 'react';
+
 import {
   omitUndefined,
   pickProFormItemProps,
@@ -11,11 +12,7 @@ import {
 } from '../../../utils';
 import FieldContext from '../../FieldContext';
 import { useGridHelpers } from '../../helpers';
-import type {
-  ExtendsProps,
-  ProFormFieldItemProps,
-  ProFormItemCreateConfig,
-} from '../../typing';
+import type { ExtendsProps, ProFormFieldItemProps, ProFormItemCreateConfig } from '../../typing';
 import ProFormDependency from '../Dependency';
 import ProFormItem from './index';
 
@@ -63,9 +60,7 @@ export function warpField<P extends ProFormFieldItemProps = any>(
   // 标记是否是 ProForm 的组件
   Field.displayName = 'ProFormComponent';
 
-  const FieldWithContext: React.FC<P & ExtendsProps & FunctionFieldProps> = (
-    props,
-  ) => {
+  const FieldWithContext: React.FC<P & ExtendsProps & FunctionFieldProps> = (props) => {
     const {
       valueType: tmpValueType,
       customLightMode,
@@ -181,8 +176,7 @@ export function warpField<P extends ProFormFieldItemProps = any>(
     const proFieldKey = useDeepCompareMemo(() => {
       let name = otherProps?.name;
       if (Array.isArray(name)) name = name.join('_');
-      if (Array.isArray(prefixName) && name)
-        name = `${prefixName.join('.')}.${name}`;
+      if (Array.isArray(prefixName) && name) name = `${prefixName.join('.')}.${name}`;
       const key = name && `form-${contextValue.formKey ?? ''}-field-${name}`;
       return key;
     }, [stringify(otherProps?.name), prefixName, contextValue.formKey]);
@@ -199,11 +193,7 @@ export function warpField<P extends ProFormFieldItemProps = any>(
     const style = useDeepCompareMemo(() => {
       const newStyle = {
         width:
-          width && !WIDTH_SIZE_ENUM[width as 'xs']
-            ? width
-            : contextValue.grid
-              ? '100%'
-              : undefined,
+          width && !WIDTH_SIZE_ENUM[width as 'xs'] ? width : contextValue.grid ? '100%' : undefined,
         ...fieldProps?.style,
       };
 
@@ -329,9 +319,7 @@ export function warpField<P extends ProFormFieldItemProps = any>(
     const { ColWrapper } = useGridHelpers(rest);
 
     return (
-      <ColWrapper
-        style={otherProps.hidden ? { display: 'none' } : undefined}
-      >
+      <ColWrapper style={otherProps.hidden ? { display: 'none' } : undefined}>
         {formItem}
       </ColWrapper>
     );
@@ -361,7 +349,10 @@ export function warpField<P extends ProFormFieldItemProps = any>(
         }}
       </ProFormDependency>
     ) : (
-      <FieldWithContext dependencies={dependencies} {...props} />
+      <FieldWithContext
+        dependencies={dependencies}
+        {...props}
+      />
     );
   };
 

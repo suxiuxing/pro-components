@@ -5,6 +5,7 @@ import type { FormItemProps, PopoverProps } from 'antd';
 import { ConfigProvider, Form, Popover, theme } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext, useEffect, useState } from 'react';
+
 import { useStyle } from './style';
 
 interface InlineErrorFormItemProps extends FormItemProps {
@@ -56,8 +57,7 @@ const InlineErrorFormItemPopover: React.FC<{
   }, [inputProps.errors, inputProps.warnings, inputProps.validateStatus]);
 
   const loading = inputProps.validateStatus === 'validating';
-  const hasMessages =
-    (messages.errors?.length ?? 0) + (messages.warnings?.length ?? 0) >= 1;
+  const hasMessages = (messages.errors?.length ?? 0) + (messages.warnings?.length ?? 0) >= 1;
 
   const renderMessageContent = () => (
     <>
@@ -100,13 +100,7 @@ const InlineErrorFormItemPopover: React.FC<{
             padding: 0,
           }}
         >
-          <div
-            className={clsx(
-              `${prefixCls}-form-item-with-help`,
-              hashId,
-              token.hashId,
-            )}
-          >
+          <div className={clsx(`${prefixCls}-form-item-with-help`, hashId, token.hashId)}>
             {loading ? <LoadingOutlined /> : null}
             {hasMessages ? renderMessageContent() : errorList}
           </div>
@@ -141,10 +135,7 @@ const InternalFormItemFunction: React.FC<InternalProps & FormItemProps> = ({
           shouldName.pop();
         }
         try {
-          return (
-            JSON.stringify(get(prev, shouldName)) !==
-            JSON.stringify(get(next, shouldName))
-          );
+          return JSON.stringify(get(prev, shouldName)) !== JSON.stringify(get(next, shouldName));
         } catch (_error) {
           return true;
         }
@@ -208,8 +199,7 @@ export const InlineErrorFormItem = (props: InlineErrorFormItemProps) => {
               }
               try {
                 return (
-                  JSON.stringify(get(prev, shouldName)) !==
-                  JSON.stringify(get(next, shouldName))
+                  JSON.stringify(get(prev, shouldName)) !== JSON.stringify(get(next, shouldName))
                 );
               } catch (_error) {
                 return true;

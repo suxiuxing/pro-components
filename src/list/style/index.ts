@@ -1,4 +1,5 @@
 import { Keyframes } from '@ant-design/cssinjs';
+
 import type { GenerateStyle, ProAliasToken } from '../../provider';
 import { setAlpha, useStyle as useAntdStyle } from '../../provider';
 
@@ -170,10 +171,9 @@ const genProListStyle: GenerateStyle<ProListToken> = (token) => {
 
       '&-no-split': {
         [`${token.componentCls}-row`]: { borderBlockEnd: 'none' },
-        [`${token.proComponentsCls}-list ${token.proComponentsCls}-list-item`]:
-          {
-            borderBlockEnd: 'none',
-          },
+        [`${token.proComponentsCls}-list ${token.proComponentsCls}-list-item`]: {
+          borderBlockEnd: 'none',
+        },
       },
       '&-grid': {
         [`${token.componentCls}-row`]: {
@@ -246,10 +246,9 @@ const genProListStyle: GenerateStyle<ProListToken> = (token) => {
             marginBlockStart: token.margin,
           },
         },
-        [`${token.proComponentsCls}-list-bordered ${token.proComponentsCls}-list-item`]:
-          {
-            paddingInline: 0,
-          },
+        [`${token.proComponentsCls}-list-bordered ${token.proComponentsCls}-list-item`]: {
+          paddingInline: 0,
+        },
         [`${token.componentCls}-row-show-extra-hover`]: {
           [`${token.proComponentsCls}-list-item-extra`]: {
             display: 'none',
@@ -429,8 +428,7 @@ const genProListStyle: GenerateStyle<ProListToken> = (token) => {
           },
         },
         [`&${token.componentCls}-row-type-top`]: {
-          backgroundImage:
-            "url('https://gw.alipayobjects.com/zos/antfincdn/DehQfMbOJb/icon.svg')",
+          backgroundImage: "url('https://gw.alipayobjects.com/zos/antfincdn/DehQfMbOJb/icon.svg')",
           backgroundRepeat: 'no-repeat',
           backgroundPosition: '0 0',
           backgroundSize: `${token.fontSizeSM}px ${token.fontSizeSM}px`,
@@ -590,9 +588,6 @@ export function useStyle(prefixCls: string) {
       componentCls: `.${prefixCls}`,
     };
 
-    return [
-      genProListStyle(proListToken),
-      genProListResponsiveStyle(proListToken),
-    ];
+    return [genProListStyle(proListToken), genProListResponsiveStyle(proListToken)];
   });
 }

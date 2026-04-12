@@ -1,4 +1,4 @@
-﻿import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 export default function useMediaQuery(mediaQuery: string) {
   const isSsr = typeof window === 'undefined';

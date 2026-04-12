@@ -8,10 +8,12 @@ import {
   SearchOutlined,
 } from '@ant-design/icons';
 import { css } from '@emotion/css';
-import type { ProSettings } from '@xxlabs/pro-components';
-import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
 import { Divider, Input, Popover, theme } from 'antd';
 import { useState } from 'react';
+
+import type { ProSettings } from '@xxlabs/pro-components';
+import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 
 const SOLUTIONS = {
@@ -364,10 +366,7 @@ const Demo = () => {
               {title}
             </button>
           );
-          if (
-            typeof document === 'undefined' ||
-            document.body.clientWidth < 1400
-          ) {
+          if (typeof document === 'undefined' || document.body.clientWidth < 1400) {
             return defaultDom;
           }
           if (_.isMobile) return defaultDom;

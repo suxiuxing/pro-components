@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import { clsx } from 'clsx';
 import type { CSSProperties } from 'react';
 import { useContext, useMemo, useRef, useState } from 'react';
+
 import { ProProvider, useIntl } from '../../../provider';
 import { nanoid, runFunction } from '../../../utils';
 import { EditOrReadOnlyContext } from '../../BaseForm/EditOrReadOnlyContext';
@@ -102,10 +103,7 @@ const ProFormListContainer: React.FC<ProFormListItemProps> = (props) => {
     if (creatorButtonProps === false || uuidFields.length === max) return null;
     const {
       position = 'bottom',
-      creatorButtonText = intl.getMessage(
-        'editableTable.action.add',
-        '添加一行数据',
-      ),
+      creatorButtonText = intl.getMessage('editableTable.action.add', '添加一行数据'),
     } = creatorButtonProps || {};
     return (
       <Button
@@ -170,15 +168,14 @@ const ProFormListContainer: React.FC<ProFormListItemProps> = (props) => {
   }
 
   return (
-    <div style={defaultStyle} className={containerClassName}>
-      {creatorButtonProps !== false &&
-        creatorButtonProps?.position === 'top' &&
-        creatorButton}
+    <div
+      style={defaultStyle}
+      className={containerClassName}
+    >
+      {creatorButtonProps !== false && creatorButtonProps?.position === 'top' && creatorButton}
       {itemList}
       {fieldExtraRender && fieldExtraRender(wrapperAction, meta)}
-      {creatorButtonProps !== false &&
-        creatorButtonProps?.position !== 'top' &&
-        creatorButton}
+      {creatorButtonProps !== false && creatorButtonProps?.position !== 'top' && creatorButton}
     </div>
   );
 };

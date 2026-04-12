@@ -1,6 +1,7 @@
 import { omit } from '@rc-component/util';
 import type { TablePaginationConfig } from 'antd';
 import React, { memo, useMemo } from 'react';
+
 import { isDeepEqualReact, omitUndefined, useRefFunction } from '../../../utils';
 import type { ActionType, ProTableProps } from '../../typing';
 import { isBordered } from '../../utils/index';
@@ -60,32 +61,32 @@ const FormSearch = <T, U>(props: BaseFormProps<T, U> & { ghost?: boolean }) => {
   const onSubmitHandler = useRefFunction((value: U, firstLoad: boolean) => {
     // 检查是否需要验证
     if (form?.ignoreRules === false && firstLoad) {
-      formRef?.current?.validateFields().then(() => {
-        const submitParams = {
-          ...value,
-          _timestamp: Date.now(),
-          ...pageInfo,
-        };
-        const omitParams = omit(
-          beforeSearchSubmit(submitParams),
-          Object.keys(pageInfo!),
-        ) as U;
-        onFormSearchSubmit(omitParams);
-        if (!firstLoad) {
-          // back first page
-          action.current?.setPageInfo?.({
-            current: 1,
-          });
-        }
-        // 不是第一次提交就不触发，第一次提交是 js 触发的
-        // 为了解决 https://github.com/ant-design/pro-components/issues/579
-        if (onSubmit && !firstLoad) {
-          onSubmit?.(value);
-        }
-      }).catch((e) => {
-        // 验证失败，不执行后续逻辑
-        // console.error(e);
-      });
+      formRef?.current
+        ?.validateFields()
+        .then(() => {
+          const submitParams = {
+            ...value,
+            _timestamp: Date.now(),
+            ...pageInfo,
+          };
+          const omitParams = omit(beforeSearchSubmit(submitParams), Object.keys(pageInfo!)) as U;
+          onFormSearchSubmit(omitParams);
+          if (!firstLoad) {
+            // back first page
+            action.current?.setPageInfo?.({
+              current: 1,
+            });
+          }
+          // 不是第一次提交就不触发，第一次提交是 js 触发的
+          // 为了解决 https://github.com/ant-design/pro-components/issues/579
+          if (onSubmit && !firstLoad) {
+            onSubmit?.(value);
+          }
+        })
+        .catch((e) => {
+          // 验证失败，不执行后续逻辑
+          // console.error(e);
+        });
       return;
     }
 
@@ -94,10 +95,7 @@ const FormSearch = <T, U>(props: BaseFormProps<T, U> & { ghost?: boolean }) => {
       _timestamp: Date.now(),
       ...pageInfo,
     };
-    const omitParams = omit(
-      beforeSearchSubmit(submitParams),
-      Object.keys(pageInfo!),
-    ) as U;
+    const omitParams = omit(beforeSearchSubmit(submitParams), Object.keys(pageInfo!)) as U;
     onFormSearchSubmit(omitParams);
     if (!firstLoad) {
       // back first page
@@ -127,7 +125,10 @@ const FormSearch = <T, U>(props: BaseFormProps<T, U> & { ghost?: boolean }) => {
     };
 
     if (form?.ignoreRules === false) {
-      formRef?.current?.validateFields().then(resetLogic).catch(() => {});
+      formRef?.current
+        ?.validateFields()
+        .then(resetLogic)
+        .catch(() => {});
       return;
     }
     resetLogic();

@@ -1,22 +1,8 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-  within,
-} from '@testing-library/react';
+import { act, cleanup, fireEvent, render, waitFor, within } from '@testing-library/react';
 import { Form } from 'antd';
 import React, { useState } from 'react';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+
 import {
   useEditableArray,
   type NewLineConfig,
@@ -53,20 +39,14 @@ describe('useEditableArray - Cancel Operation', () => {
       originRow: TestRecordType & { index?: number },
       newLineConfig?: NewLineConfig<TestRecordType>,
     ) => Promise<any | void>;
-    onDelete?: (
-      key: RecordKey,
-      row: TestRecordType & { index?: number },
-    ) => Promise<any | void>;
+    onDelete?: (key: RecordKey, row: TestRecordType & { index?: number }) => Promise<any | void>;
     onSave?: (
       key: RecordKey,
       record: TestRecordType & { index?: number },
       originRow: TestRecordType & { index?: number },
       newLineConfig?: NewLineConfig<TestRecordType>,
     ) => Promise<any | void>;
-    onValuesChange?: (
-      record: TestRecordType,
-      dataSource: TestRecordType[],
-    ) => void;
+    onValuesChange?: (record: TestRecordType, dataSource: TestRecordType[]) => void;
     tableName?: string;
   }> = ({ onCancel, onDelete, onSave, onValuesChange, tableName }) => {
     const [dataSource, setDataSource] = useState<TestRecordType[]>([
@@ -91,9 +71,7 @@ describe('useEditableArray - Cancel Operation', () => {
 
     return (
       <Form>
-        <div data-testid="editable-keys">
-          {editableUtils.editableKeys?.join(',') || 'none'}
-        </div>
+        <div data-testid="editable-keys">{editableUtils.editableKeys?.join(',') || 'none'}</div>
         <button
           data-testid="start-edit-1"
           onClick={() => editableUtils.startEditable(1)}
@@ -139,7 +117,10 @@ describe('useEditableArray - Cancel Operation', () => {
     );
 
     const wrapper = render(
-      <TestComponent onCancel={onCancel} tableName="testTable" />,
+      <TestComponent
+        onCancel={onCancel}
+        tableName="testTable"
+      />,
     );
 
     // 开始编辑
@@ -182,7 +163,10 @@ describe('useEditableArray - Cancel Operation', () => {
     );
 
     const wrapper = render(
-      <TestComponent onCancel={onCancel} tableName="testTable" />,
+      <TestComponent
+        onCancel={onCancel}
+        tableName="testTable"
+      />,
     );
 
     act(() => {
@@ -215,7 +199,10 @@ describe('useEditableArray - Cancel Operation', () => {
     const onCancel = vi.fn(async () => Promise.resolve());
 
     const wrapper = render(
-      <TestComponent onCancel={onCancel} onDelete={onDelete} />,
+      <TestComponent
+        onCancel={onCancel}
+        onDelete={onDelete}
+      />,
     );
 
     // 开始编辑
@@ -245,7 +232,10 @@ describe('useEditableArray - Cancel Operation', () => {
     const onCancel = vi.fn(async () => Promise.resolve());
 
     const wrapper = render(
-      <TestComponent onCancel={onCancel} tableName="testTable" />,
+      <TestComponent
+        onCancel={onCancel}
+        tableName="testTable"
+      />,
     );
 
     // 开始编辑第一行
@@ -281,7 +271,10 @@ describe('useEditableArray - Cancel Operation', () => {
     const onCancel = vi.fn(async () => Promise.resolve());
 
     const wrapper = render(
-      <TestComponent onCancel={onCancel} tableName="testTable" />,
+      <TestComponent
+        onCancel={onCancel}
+        tableName="testTable"
+      />,
     );
 
     const initialDataSource = wrapper.getByTestId('data-source').textContent;
@@ -301,9 +294,7 @@ describe('useEditableArray - Cancel Operation', () => {
     await waitFor(() => {
       expect(wrapper.getByTestId('editable-keys').textContent).toBe('none');
       // 数据源不应该改变
-      expect(wrapper.getByTestId('data-source').textContent).toBe(
-        initialDataSource,
-      );
+      expect(wrapper.getByTestId('data-source').textContent).toBe(initialDataSource);
     });
   });
 
@@ -336,9 +327,7 @@ describe('useEditableArray - Cancel Operation', () => {
 
       return (
         <Form>
-          <div data-testid="editable-keys">
-            {editableUtils.editableKeys?.join(',') || 'none'}
-          </div>
+          <div data-testid="editable-keys">{editableUtils.editableKeys?.join(',') || 'none'}</div>
           <button
             data-testid="start-edit-1"
             onClick={() => editableUtils.startEditable(1)}
@@ -434,7 +423,10 @@ describe('useEditableArray - Cancel Operation', () => {
     });
 
     const wrapper = render(
-      <TestComponent onCancel={onCancel} tableName="testTable" />,
+      <TestComponent
+        onCancel={onCancel}
+        tableName="testTable"
+      />,
     );
 
     act(() => {
@@ -471,7 +463,10 @@ describe('useEditableArray - Cancel Operation', () => {
     );
 
     const wrapper = render(
-      <TestComponent onCancel={onCancel} tableName="testTable" />,
+      <TestComponent
+        onCancel={onCancel}
+        tableName="testTable"
+      />,
     );
 
     act(() => {
@@ -538,7 +533,10 @@ describe('useEditableArray - Cancel Operation', () => {
     );
 
     const wrapper = render(
-      <TestComponent onCancel={onCancel} tableName="testTable" />,
+      <TestComponent
+        onCancel={onCancel}
+        tableName="testTable"
+      />,
     );
 
     // 添加新行
@@ -603,9 +601,7 @@ describe('useEditableArray - Cancel Operation', () => {
 
       return (
         <Form>
-          <div data-testid="editable-keys">
-            {editableUtils.editableKeys?.join(',') || 'none'}
-          </div>
+          <div data-testid="editable-keys">{editableUtils.editableKeys?.join(',') || 'none'}</div>
           <button
             data-testid="start-edit"
             onClick={() => editableUtils.startEditable(1)}
@@ -676,9 +672,7 @@ describe('useEditableArray - Cancel Operation', () => {
 
       return (
         <Form>
-          <div data-testid="editable-keys">
-            {editableUtils.editableKeys?.join(',') || 'none'}
-          </div>
+          <div data-testid="editable-keys">{editableUtils.editableKeys?.join(',') || 'none'}</div>
           <div data-testid="data-source">
             {dataSource.map((item) => `${item.id}:${item.name}`).join(',')}
           </div>
@@ -727,12 +721,8 @@ describe('useEditableArray - Cancel Operation', () => {
       expect(keysText.split(',').sort().join(',')).toBe('1,2');
     });
 
-    const cancel1 = within(wrapper.getByTestId('cancel-action-1')).getByText(
-      '取消',
-    );
-    const cancel2 = within(wrapper.getByTestId('cancel-action-2')).getByText(
-      '取消',
-    );
+    const cancel1 = within(wrapper.getByTestId('cancel-action-1')).getByText('取消');
+    const cancel2 = within(wrapper.getByTestId('cancel-action-2')).getByText('取消');
 
     act(() => {
       fireEvent.click(cancel1);
@@ -752,9 +742,7 @@ describe('useEditableArray - Cancel Operation', () => {
     await waitFor(() => {
       expect(wrapper.getByTestId('editable-keys').textContent).toBe('none');
       expect(onDelete).not.toHaveBeenCalled();
-      expect(wrapper.getByTestId('data-source').textContent).toBe(
-        '1:test1,2:test2',
-      );
+      expect(wrapper.getByTestId('data-source').textContent).toBe('1:test1,2:test2');
     });
   });
 });

@@ -21,16 +21,66 @@ export const StatusComponents: {
   default: React.FC<StatusProps>;
   warning: React.FC<StatusProps>;
 } = {
-  Success: ({ children }) => <Badge status="success" text={children} />,
-  Error: ({ children }) => <Badge status="error" text={children} />,
-  Default: ({ children }) => <Badge status="default" text={children} />,
-  Processing: ({ children }) => <Badge status="processing" text={children} />,
-  Warning: ({ children }) => <Badge status="warning" text={children} />,
-  success: ({ children }) => <Badge status="success" text={children} />,
-  error: ({ children }) => <Badge status="error" text={children} />,
-  default: ({ children }) => <Badge status="default" text={children} />,
-  processing: ({ children }) => <Badge status="processing" text={children} />,
-  warning: ({ children }) => <Badge status="warning" text={children} />,
+  Success: ({ children }) => (
+    <Badge
+      status="success"
+      text={children}
+    />
+  ),
+  Error: ({ children }) => (
+    <Badge
+      status="error"
+      text={children}
+    />
+  ),
+  Default: ({ children }) => (
+    <Badge
+      status="default"
+      text={children}
+    />
+  ),
+  Processing: ({ children }) => (
+    <Badge
+      status="processing"
+      text={children}
+    />
+  ),
+  Warning: ({ children }) => (
+    <Badge
+      status="warning"
+      text={children}
+    />
+  ),
+  success: ({ children }) => (
+    <Badge
+      status="success"
+      text={children}
+    />
+  ),
+  error: ({ children }) => (
+    <Badge
+      status="error"
+      text={children}
+    />
+  ),
+  default: ({ children }) => (
+    <Badge
+      status="default"
+      text={children}
+    />
+  ),
+  processing: ({ children }) => (
+    <Badge
+      status="processing"
+      text={children}
+    />
+  ),
+  warning: ({ children }) => (
+    <Badge
+      status="warning"
+      text={children}
+    />
+  ),
 };
 
 export type ProFieldStatusType = keyof typeof StatusComponents;
@@ -38,6 +88,11 @@ export type ProFieldStatusType = keyof typeof StatusComponents;
 export const ProFieldBadgeColor: React.FC<StatusProps & { color: string }> = ({
   color,
   children,
-}) => <Badge color={color} text={children} />;
+}) => (
+  <Badge
+    color={color}
+    text={children}
+  />
+);
 
 export default StatusComponents;

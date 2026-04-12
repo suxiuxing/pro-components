@@ -1,8 +1,9 @@
-﻿import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
 import type { SelectProps } from 'antd';
 import { ConfigProvider, Select } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext, useState } from 'react';
+
 import { ProProvider, useStyle } from '../../../provider';
 import { useDebounceFn } from '../../../utils';
 import { ProHelpProvide } from './HelpProvide';
@@ -56,9 +57,7 @@ export const Highlight: React.FC<{
 
   // 创建正则表达式匹配关键词
   const matchKeywordsRE = new RegExp(
-    words
-      .map((word) => word.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&'))
-      .join('|'),
+    words.map((word) => word.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')).join('|'),
     'gi',
   );
 
@@ -102,10 +101,7 @@ export const Highlight: React.FC<{
 };
 
 export const ProHelpSelect: React.FC<
-  Omit<
-    SelectProps,
-    'onSearch' | 'optionFilterProp' | 'options' | 'filterOption'
-  > & {
+  Omit<SelectProps, 'onSearch' | 'optionFilterProp' | 'options' | 'filterOption'> & {
     iconClassName?: string;
   }
 > = ({ iconClassName, ...props }) => {

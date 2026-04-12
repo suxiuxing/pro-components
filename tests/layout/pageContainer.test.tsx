@@ -1,12 +1,10 @@
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
-import {
-  FooterToolbar,
-  PageContainer,
-  ProLayout,
-} from '@xxlabs/pro-components';
 import { Button, Skeleton } from 'antd';
 import React, { act, useEffect, useMemo, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { FooterToolbar, PageContainer, ProLayout } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 afterEach(() => {
@@ -76,9 +74,7 @@ describe('PageContainer', () => {
     const html = render(<Demo />);
 
     expect(
-      !!html.baseElement.querySelector(
-        '.ant-pro-layout-content-has-page-container',
-      ),
+      !!html.baseElement.querySelector('.ant-pro-layout-content-has-page-container'),
     ).toBeFalsy();
 
     await act(async () => {
@@ -86,9 +82,7 @@ describe('PageContainer', () => {
     });
 
     expect(
-      !!html.baseElement.querySelector(
-        '.ant-pro-layout-content-has-page-container',
-      ),
+      !!html.baseElement.querySelector('.ant-pro-layout-content-has-page-container'),
     ).toBeTruthy();
 
     await act(async () => {
@@ -96,9 +90,7 @@ describe('PageContainer', () => {
     });
 
     expect(
-      !!html.baseElement.querySelector(
-        '.ant-pro-layout-content-has-page-container',
-      ),
+      !!html.baseElement.querySelector('.ant-pro-layout-content-has-page-container'),
     ).toBeTruthy();
 
     await act(async () => {
@@ -106,9 +98,7 @@ describe('PageContainer', () => {
     });
 
     expect(
-      !!html.baseElement.querySelector(
-        '.ant-pro-layout-content-has-page-container',
-      ),
+      !!html.baseElement.querySelector('.ant-pro-layout-content-has-page-container'),
     ).toBeTruthy();
 
     await act(async () => {
@@ -116,34 +106,24 @@ describe('PageContainer', () => {
     });
 
     expect(
-      !!html.baseElement.querySelector(
-        'ant-pro-layout-content-has-page-container',
-      ),
+      !!html.baseElement.querySelector('ant-pro-layout-content-has-page-container'),
     ).toBeFalsy();
   });
 
   it('💄 pageContainer support breadcrumbRender', async () => {
     const { container } = render(
-      <PageContainer breadcrumbRender={() => <div>这里是面包屑</div>}>
-        content
-      </PageContainer>,
+      <PageContainer breadcrumbRender={() => <div>这里是面包屑</div>}>content</PageContainer>,
     );
 
     expect(
-      container
-        .querySelectorAll('.ant-page-header-has-breadcrumb')[0]
-        .querySelector('div'),
+      container.querySelectorAll('.ant-page-header-has-breadcrumb')[0].querySelector('div'),
     ).toHaveTextContent('这里是面包屑');
   });
 
   it('💄 pageContainer support tabBarExtraContent', async () => {
-    const { container } = render(
-      <PageContainer tabBarExtraContent="测试">content</PageContainer>,
-    );
+    const { container } = render(<PageContainer tabBarExtraContent="测试">content</PageContainer>);
 
-    expect(
-      container.querySelectorAll('.ant-tabs-extra-content')[0],
-    ).toHaveTextContent('测试');
+    expect(container.querySelectorAll('.ant-tabs-extra-content')[0]).toHaveTextContent('测试');
   });
 
   it('⚡️ support footer', async () => {
@@ -151,28 +131,37 @@ describe('PageContainer', () => {
       <PageContainer
         title="期贤"
         footer={[
-          <button type="button" key="button">
+          <button
+            type="button"
+            key="button"
+          >
             right
           </button>,
         ]}
       />,
     );
 
-    expect(
-      container.querySelectorAll('.ant-pro-page-container-with-footer'),
-    ).toHaveLength(1);
+    expect(container.querySelectorAll('.ant-pro-page-container-with-footer')).toHaveLength(1);
     expect(container).toMatchSnapshot();
   });
 
   it('⚡️ support fixedHeader', async () => {
-    const html = render(<PageContainer title="期贤" fixedHeader />);
-    expect(
-      html.baseElement.querySelector('.ant-pro-sider-fixed'),
-    ).toMatchSnapshot();
+    const html = render(
+      <PageContainer
+        title="期贤"
+        fixedHeader
+      />,
+    );
+    expect(html.baseElement.querySelector('.ant-pro-sider-fixed')).toMatchSnapshot();
   });
 
   it('⚡️ support loading', async () => {
-    const html = render(<PageContainer title="期贤" loading={<Skeleton />} />);
+    const html = render(
+      <PageContainer
+        title="期贤"
+        loading={<Skeleton />}
+      />,
+    );
     expect(html.baseElement.querySelector('.ant-skeleton')).toBeInTheDocument();
   });
 
@@ -199,7 +188,10 @@ describe('PageContainer', () => {
           ],
         }}
         footer={[
-          <button key="right" type="button">
+          <button
+            key="right"
+            type="button"
+          >
             right
           </button>,
         ]}
@@ -219,7 +211,10 @@ describe('PageContainer', () => {
           />
         }
       >
-        <button key="button" type="button">
+        <button
+          key="button"
+          type="button"
+        >
           right
         </button>
       </FooterToolbar>,
@@ -241,7 +236,10 @@ describe('PageContainer', () => {
           return 'home_toolbar';
         }}
       >
-        <button key="button" type="button">
+        <button
+          key="button"
+          type="button"
+        >
           right
         </button>
       </FooterToolbar>,
@@ -255,7 +253,10 @@ describe('PageContainer', () => {
         <PageContainer
           title="期贤"
           footer={[
-            <button type="button" key="button">
+            <button
+              type="button"
+              key="button"
+            >
               qixian
             </button>,
           ]}
@@ -263,16 +264,17 @@ describe('PageContainer', () => {
       </ProLayout>,
     );
 
-    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle(
-      'width: calc(100% - 256px)',
-    );
+    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle('width: calc(100% - 256px)');
 
     rerender(
       <ProLayout collapsed>
         <PageContainer
           title="期贤"
           footer={[
-            <button type="button" key="button">
+            <button
+              type="button"
+              key="button"
+            >
               qixian
             </button>,
           ]}
@@ -280,16 +282,17 @@ describe('PageContainer', () => {
       </ProLayout>,
     );
 
-    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle(
-      'width: calc(100% - 64px)',
-    );
+    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle('width: calc(100% - 64px)');
 
     rerender(
       <ProLayout layout="top">
         <PageContainer
           title="期贤"
           footer={[
-            <button type="button" key="button">
+            <button
+              type="button"
+              key="button"
+            >
               qixian
             </button>,
           ]}
@@ -297,9 +300,7 @@ describe('PageContainer', () => {
       </ProLayout>,
     );
 
-    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle(
-      'width: 100%',
-    );
+    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle('width: 100%');
     expect(container).toMatchSnapshot();
   });
 
@@ -314,22 +315,26 @@ describe('PageContainer', () => {
               };
             }}
           >
-            <button type="button" key="button">
+            <button
+              type="button"
+              key="button"
+            >
               qixian
             </button>
           </FooterToolbar>
         </PageContainer>
       </ProLayout>,
     );
-    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle(
-      'width: calc(100% - 256px)',
-    );
+    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle('width: calc(100% - 256px)');
 
     rerender(
       <ProLayout collapsed>
         <PageContainer>
           <FooterToolbar>
-            <button type="button" key="button">
+            <button
+              type="button"
+              key="button"
+            >
               qixian
             </button>
           </FooterToolbar>
@@ -337,15 +342,16 @@ describe('PageContainer', () => {
       </ProLayout>,
     );
 
-    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle(
-      'width: calc(100% - 64px)',
-    );
+    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle('width: calc(100% - 64px)');
 
     rerender(
       <ProLayout layout="top">
         <PageContainer>
           <FooterToolbar>
-            <button type="button" key="button">
+            <button
+              type="button"
+              key="button"
+            >
               qixian
             </button>
           </FooterToolbar>
@@ -353,9 +359,7 @@ describe('PageContainer', () => {
       </ProLayout>,
     );
 
-    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle(
-      'width: 100%',
-    );
+    expect(container.querySelector('.ant-pro-footer-bar')).toHaveStyle('width: 100%');
     expect(container).toMatchSnapshot();
     // test useUseEffect render function
     unmount();
@@ -365,7 +369,10 @@ describe('PageContainer', () => {
     const wrapper = render(
       <PageContainer
         footer={[
-          <button type="button" key="button">
+          <button
+            type="button"
+            key="button"
+          >
             qixian
           </button>,
         ]}
@@ -429,7 +436,10 @@ describe('PageContainer', () => {
     const { container, rerender } = render(
       <PageContainer
         footer={[
-          <button type="button" key="button">
+          <button
+            type="button"
+            key="button"
+          >
             qixian
           </button>,
         ]}
@@ -478,9 +488,7 @@ describe('PageContainer', () => {
     const wrapper = render(<PageContainer content="just so so" />);
     expect(wrapper.asFragment()).toMatchSnapshot();
 
-    const html2 = render(
-      <PageContainer extraContent={<div>extraContent</div>} />,
-    );
+    const html2 = render(<PageContainer extraContent={<div>extraContent</div>} />);
     expect(html2.asFragment()).toMatchSnapshot();
   });
 
@@ -511,9 +519,7 @@ describe('PageContainer', () => {
         ),
         [],
       );
-      const [loading, setLoading] = useState<React.ReactNode | false>(
-        loadingDom,
-      );
+      const [loading, setLoading] = useState<React.ReactNode | false>(loadingDom);
       useEffect(() => {
         setTimeout(() => {
           setLoading(false);
@@ -532,14 +538,10 @@ describe('PageContainer', () => {
 
     const wrapper = render(<App />);
     await waitForWaitTime(100);
-    expect(wrapper.baseElement.querySelectorAll('#customLoading').length).toBe(
-      1,
-    );
+    expect(wrapper.baseElement.querySelectorAll('#customLoading').length).toBe(1);
     expect(wrapper.asFragment()).toMatchSnapshot();
     await waitForWaitTime(1000);
-    expect(wrapper.baseElement.querySelectorAll('#customLoading').length).toBe(
-      0,
-    );
+    expect(wrapper.baseElement.querySelectorAll('#customLoading').length).toBe(0);
   });
 
   it('🐛 breadcrumbRender and restProps?.header?.breadcrumbRender', async () => {
@@ -554,9 +556,7 @@ describe('PageContainer', () => {
     );
 
     // 当 breadcrumbRender={false} 时，面包屑应该被禁用
-    expect(
-      html.container.querySelector('.ant-page-header-has-breadcrumb'),
-    ).toBeNull();
+    expect(html.container.querySelector('.ant-page-header-has-breadcrumb')).toBeNull();
 
     html.rerender(
       <PageContainer
@@ -567,8 +567,7 @@ describe('PageContainer', () => {
       />,
     );
     expect(
-      html.container.getElementsByClassName('ant-page-header-has-breadcrumb')[0]
-        .innerHTML,
+      html.container.getElementsByClassName('ant-page-header-has-breadcrumb')[0].innerHTML,
     ).toBe('diss');
   });
 });

@@ -2,6 +2,7 @@ import { CopyrightOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
 import type { CSSProperties } from 'react';
 import React, { Fragment } from 'react';
+
 import type { WithFalse } from '../typing';
 import { GlobalFooter } from './GlobalFooter';
 

@@ -1,10 +1,8 @@
-import {
-  GithubFilled,
-  InfoCircleFilled,
-  QuestionCircleFilled,
-} from '@ant-design/icons';
-import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
+import { GithubFilled, InfoCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
 import { useState } from 'react';
+
+import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 
 const Demo = () => {

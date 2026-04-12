@@ -1,5 +1,7 @@
-import { ProField as Field } from '@xxlabs/pro-components';
 import type { TreeSelectProps } from 'antd';
+
+import { ProField as Field } from '@xxlabs/pro-components';
+
 import { waitTime } from '../../util';
 
 export function TreeSelectDemo(

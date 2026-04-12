@@ -1,5 +1,6 @@
 import { Avatar } from 'antd';
 import React from 'react';
+
 import {
   pickProProps,
   type ProFieldTextType,
@@ -81,7 +82,11 @@ const defaultRenderTextByObject = (
 
   if (valueType.type === 'image') {
     return (
-      <FieldImage {...props} text={text as string} width={valueType.width} />
+      <FieldImage
+        {...props}
+        text={text as string}
+        width={valueType.width}
+      />
     );
   }
 
@@ -96,7 +101,12 @@ function renderDefaultValueTypeLeaf(
 ): React.ReactNode {
   /** 如果是金额的值 */
   if (valueType === 'money') {
-    return <FieldMoney {...props} text={dataValue as number} />;
+    return (
+      <FieldMoney
+        {...props}
+        text={dataValue as number}
+      />
+    );
   }
 
   /** 如果是日期的值 */
@@ -297,7 +307,12 @@ function renderDefaultValueTypeLeaf(
   }
 
   if (valueType === 'fromNow') {
-    return <FieldFromNow text={dataValue as string} {...props} />;
+    return (
+      <FieldFromNow
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'index') {
@@ -305,113 +320,223 @@ function renderDefaultValueTypeLeaf(
   }
 
   if (valueType === 'indexBorder') {
-    return (
-      <FieldIndexColumn border>{(dataValue as number) + 1}</FieldIndexColumn>
-    );
+    return <FieldIndexColumn border>{(dataValue as number) + 1}</FieldIndexColumn>;
   }
 
   if (valueType === 'progress') {
-    return <FieldProgress {...props} text={dataValue as number} />;
+    return (
+      <FieldProgress
+        {...props}
+        text={dataValue as number}
+      />
+    );
   }
   /** 百分比, 默认展示符号, 不展示小数位 */
   if (valueType === 'percent') {
-    return <FieldPercent text={dataValue as number} {...props} />;
+    return (
+      <FieldPercent
+        text={dataValue as number}
+        {...props}
+      />
+    );
   }
 
-  if (
-    valueType === 'avatar' &&
-    typeof dataValue === 'string' &&
-    props.mode === 'read'
-  ) {
-    return <Avatar src={dataValue as string} size={22} shape="circle" />;
+  if (valueType === 'avatar' && typeof dataValue === 'string' && props.mode === 'read') {
+    return (
+      <Avatar
+        src={dataValue as string}
+        size={22}
+        shape="circle"
+      />
+    );
   }
 
   if (valueType === 'code') {
-    return <FieldCode text={dataValue as string} {...props} />;
+    return (
+      <FieldCode
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'jsonCode') {
-    return <FieldCode text={dataValue as string} language="json" {...props} />;
+    return (
+      <FieldCode
+        text={dataValue as string}
+        language="json"
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'textarea') {
-    return <FieldTextArea text={dataValue as string} {...props} />;
+    return (
+      <FieldTextArea
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'digit') {
-    return <FieldDigit text={dataValue as number} {...props} />;
+    return (
+      <FieldDigit
+        text={dataValue as number}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'digitRange') {
-    return <FieldDigitRange text={dataValue as number[]} {...props} />;
+    return (
+      <FieldDigitRange
+        text={dataValue as number[]}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'second') {
-    return <FieldSecond text={dataValue as number} {...props} />;
+    return (
+      <FieldSecond
+        text={dataValue as number}
+        {...props}
+      />
+    );
   }
 
-  if (
-    valueType === 'select' ||
-    (valueType === 'text' && (props.valueEnum || props.request))
-  ) {
+  if (valueType === 'select' || (valueType === 'text' && (props.valueEnum || props.request))) {
     return wrapProFieldLight(
       props.light,
-      <FieldSelect text={dataValue as string} {...props} />,
+      <FieldSelect
+        text={dataValue as string}
+        {...props}
+      />,
     );
   }
 
   if (valueType === 'checkbox') {
-    return <FieldCheckbox text={dataValue as string} {...props} />;
+    return (
+      <FieldCheckbox
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'radio') {
-    return <FieldRadio text={dataValue as string} {...props} />;
+    return (
+      <FieldRadio
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'radioButton') {
     return (
-      <FieldRadio radioType="button" text={dataValue as string} {...props} />
+      <FieldRadio
+        radioType="button"
+        text={dataValue as string}
+        {...props}
+      />
     );
   }
 
   if (valueType === 'rate') {
-    return <FieldRate text={dataValue as string} {...props} />;
+    return (
+      <FieldRate
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
   if (valueType === 'slider') {
-    return <FieldSlider text={dataValue as string} {...props} />;
+    return (
+      <FieldSlider
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
   if (valueType === 'switch') {
-    return <FieldSwitch text={dataValue as boolean} {...props} />;
+    return (
+      <FieldSwitch
+        text={dataValue as boolean}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'option') {
-    return <FieldOptions text={dataValue as React.ReactNode} {...props} />;
+    return (
+      <FieldOptions
+        text={dataValue as React.ReactNode}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'password') {
-    return <FieldPassword text={dataValue as string} {...props} />;
+    return (
+      <FieldPassword
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'image') {
-    return <FieldImage text={dataValue as string} {...props} />;
+    return (
+      <FieldImage
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
   if (valueType === 'cascader') {
-    return <FieldCascader text={dataValue as string} {...props} />;
+    return (
+      <FieldCascader
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'treeSelect') {
-    return <FieldTreeSelect text={dataValue as string} {...props} />;
+    return (
+      <FieldTreeSelect
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'color') {
-    return <FieldColorPicker text={dataValue as string} {...props} />;
+    return (
+      <FieldColorPicker
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
   if (valueType === 'segmented') {
-    return <FieldSegmented text={dataValue as string} {...props} />;
+    return (
+      <FieldSegmented
+        text={dataValue as string}
+        {...props}
+      />
+    );
   }
 
-  return <FieldText text={dataValue as string} {...props} />;
+  return (
+    <FieldText
+      text={dataValue as string}
+      {...props}
+    />
+  );
 }
 
 /** 只读：空值占位、context valueTypeMap 的 render、内置 valueType */
@@ -423,17 +548,8 @@ export const defaultRenderRead: ProFieldRenderText = (
 ) => {
   const { mode = 'read', emptyText = '-' } = props;
 
-  if (
-    emptyText !== false &&
-    mode === 'read' &&
-    valueType !== 'option' &&
-    valueType !== 'switch'
-  ) {
-    if (
-      typeof dataValue !== 'boolean' &&
-      typeof dataValue !== 'number' &&
-      !dataValue
-    ) {
+  if (emptyText !== false && mode === 'read' && valueType !== 'option' && valueType !== 'switch') {
+    if (typeof dataValue !== 'boolean' && typeof dataValue !== 'number' && !dataValue) {
       const { fieldProps, render } = props;
       if (render) {
         return render(dataValue, { mode, ...fieldProps }, <>{emptyText}</>);
@@ -448,8 +564,7 @@ export const defaultRenderRead: ProFieldRenderText = (
     return defaultRenderTextByObject(dataValue, valueType, props);
   }
 
-  const customValueTypeConfig =
-    valueTypeMap && valueTypeMap[valueType as string];
+  const customValueTypeConfig = valueTypeMap && valueTypeMap[valueType as string];
   if (customValueTypeConfig) {
     delete props.ref;
     return customValueTypeConfig.render?.(
@@ -463,11 +578,7 @@ export const defaultRenderRead: ProFieldRenderText = (
     );
   }
 
-  return renderDefaultValueTypeLeaf(
-    dataValue,
-    valueType as ProFieldValueType,
-    props,
-  );
+  return renderDefaultValueTypeLeaf(dataValue, valueType as ProFieldValueType, props);
 };
 
 /** 编辑：context valueTypeMap 的 formItemRender、内置 valueType */
@@ -483,8 +594,7 @@ export const defaultRenderEdit: ProFieldRenderText = (
     return defaultRenderTextByObject(dataValue, valueType, props);
   }
 
-  const customValueTypeConfig =
-    valueTypeMap && valueTypeMap[valueType as string];
+  const customValueTypeConfig = valueTypeMap && valueTypeMap[valueType as string];
   if (customValueTypeConfig) {
     delete props.ref;
     return customValueTypeConfig.formItemRender?.(
@@ -497,11 +607,7 @@ export const defaultRenderEdit: ProFieldRenderText = (
     );
   }
 
-  return renderDefaultValueTypeLeaf(
-    dataValue,
-    valueType as ProFieldValueType,
-    props,
-  );
+  return renderDefaultValueTypeLeaf(dataValue, valueType as ProFieldValueType, props);
 };
 
 /** 按 mode 调度（直接调用 defaultRenderText 时与旧行为一致） */

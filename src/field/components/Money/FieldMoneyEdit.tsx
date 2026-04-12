@@ -1,5 +1,6 @@
-﻿import { omit } from '@rc-component/util';
+import { omit } from '@rc-component/util';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import InputNumberPopover from './InputNumberPopover';
 import { getTextByLocale } from './moneyFormat';
@@ -46,10 +47,7 @@ export function FieldMoneyEdit(props: Props, ref: React.Ref<unknown>) {
         );
 
         if (typeof numberPopoverRender === 'function') {
-          return numberPopoverRender?.(
-            p,
-            String(localeText),
-          ) as React.ReactNode;
+          return numberPopoverRender?.(p, String(localeText)) as React.ReactNode;
         }
         return localeText;
       }}
@@ -63,10 +61,7 @@ export function FieldMoneyEdit(props: Props, ref: React.Ref<unknown>) {
       }}
       parser={(value) => {
         if (moneySymbol && value) {
-          return value.replace(
-            new RegExp(`\\${moneySymbol}\\s?|(,*)`, 'g'),
-            '',
-          );
+          return value.replace(new RegExp(`\\${moneySymbol}\\s?|(,*)`, 'g'), '');
         }
         return value!;
       }}
@@ -85,10 +80,7 @@ export function FieldMoneyEdit(props: Props, ref: React.Ref<unknown>) {
           ? (e) => {
               let value = e.target.value;
               if (moneySymbol && value) {
-                value = value.replace(
-                  new RegExp(`\\${moneySymbol}\\s?|(,*)`, 'g'),
-                  '',
-                );
+                value = value.replace(new RegExp(`\\${moneySymbol}\\s?|(,*)`, 'g'), '');
               }
               fieldProps.onBlur?.(value);
             }

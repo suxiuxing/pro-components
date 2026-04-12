@@ -1,16 +1,12 @@
-import {
-  cleanup,
-  fireEvent,
-  render as reactRender,
-  screen,
-  waitFor,
-} from '@testing-library/react';
-import type { ProColumns } from '@xxlabs/pro-components';
-import { BaseProList, ProList } from '@xxlabs/pro-components';
+import { cleanup, fireEvent, render as reactRender, screen, waitFor } from '@testing-library/react';
 import { Tag } from 'antd';
 import type { Key } from 'react';
 import { act, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { BaseProList, ProList } from '@xxlabs/pro-components';
+
 import PaginationDemo from '../../demos/list/pagination';
 import { waitForWaitTime } from '../util';
 
@@ -47,12 +43,10 @@ describe('List', () => {
         }}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('我是名称');
-    expect(
-      container.querySelector('.ant-pro-list-row-description')!.innerHTML,
-    ).toEqual('desc text');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('我是名称');
+    expect(container.querySelector('.ant-pro-list-row-description')!.innerHTML).toEqual(
+      'desc text',
+    );
   });
 
   it('🚏 BaseList', async () => {
@@ -82,12 +76,10 @@ describe('List', () => {
         }}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('我是名称');
-    expect(
-      container.querySelector('.ant-pro-list-row-description')!.innerHTML,
-    ).toEqual('desc text');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('我是名称');
+    expect(container.querySelector('.ant-pro-list-row-description')!.innerHTML).toEqual(
+      'desc text',
+    );
     expect(container.querySelectorAll('.ant-pro-card')!.length).toBe(0);
   });
 
@@ -182,17 +174,13 @@ describe('List', () => {
         }}
       />,
     );
-    expect(
-      container.querySelector('.ant-empty-description')!.innerHTML,
-    ).toEqual('暂无数据');
+    expect(container.querySelector('.ant-empty-description')!.innerHTML).toEqual('暂无数据');
   });
 
   it('🚏 expandable', async () => {
     const onExpand = vi.fn();
     const Wrapper = () => {
-      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>(
-        [],
-      );
+      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>([]);
       return (
         <ProList
           dataSource={[
@@ -212,27 +200,18 @@ describe('List', () => {
       );
     };
     const { container } = reactRender(<Wrapper />);
-    expect(
-      container.querySelectorAll('.ant-pro-list-row-description').length,
-    ).toEqual(0);
-    await fireEvent.click(
-      container.querySelector('.ant-pro-list-row-expand-icon')!,
+    expect(container.querySelectorAll('.ant-pro-list-row-description').length).toEqual(0);
+    await fireEvent.click(container.querySelector('.ant-pro-list-row-expand-icon')!);
+    expect(container.querySelector('.ant-pro-list-row-content')!.innerHTML).toEqual(
+      '<div>我是内容</div>',
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-content')!.innerHTML,
-    ).toEqual('<div>我是内容</div>');
-    expect(onExpand).toHaveBeenCalledWith(
-      true,
-      expect.objectContaining({ name: '我是名称' }),
-    );
+    expect(onExpand).toHaveBeenCalledWith(true, expect.objectContaining({ name: '我是名称' }));
   });
 
   it('🚏 expandable support expandRowByClick', async () => {
     const onExpand = vi.fn();
     const Wrapper = () => {
-      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>(
-        [],
-      );
+      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>([]);
       return (
         <ProList
           dataSource={[
@@ -257,17 +236,12 @@ describe('List', () => {
       );
     };
     const { container } = reactRender(<Wrapper />);
-    expect(
-      container.querySelectorAll('.ant-pro-list-row-description').length,
-    ).toEqual(0);
+    expect(container.querySelectorAll('.ant-pro-list-row-description').length).toEqual(0);
     await fireEvent.click(container.querySelector('.ant-pro-list-item')!);
-    expect(
-      container.querySelector('.ant-pro-list-row-content')!.innerHTML,
-    ).toEqual('<div>我是内容</div>');
-    expect(onExpand).toHaveBeenCalledWith(
-      true,
-      expect.objectContaining({ name: '我是名称' }),
+    expect(container.querySelector('.ant-pro-list-row-content')!.innerHTML).toEqual(
+      '<div>我是内容</div>',
     );
+    expect(onExpand).toHaveBeenCalledWith(true, expect.objectContaining({ name: '我是名称' }));
   });
 
   it('🚏 expandable with defaultExpandedRowKeys', async () => {
@@ -300,16 +274,14 @@ describe('List', () => {
       );
     };
     const { container } = reactRender(<Wrapper />);
-    expect(
-      container.querySelector('.ant-pro-list-row-content')!.innerHTML,
-    ).toEqual('<div>我是内容b</div>');
+    expect(container.querySelector('.ant-pro-list-row-content')!.innerHTML).toEqual(
+      '<div>我是内容b</div>',
+    );
   });
 
   it('🚏 expandable with expandedRowRender', async () => {
     const Wrapper = () => {
-      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>(
-        [],
-      );
+      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>([]);
       return (
         <ProList
           dataSource={[
@@ -341,17 +313,11 @@ describe('List', () => {
       );
     };
     const { container } = reactRender(<Wrapper />);
-    expect(
-      container.querySelectorAll('.ant-pro-list-row-description').length,
-    ).toEqual(0);
+    expect(container.querySelectorAll('.ant-pro-list-row-description').length).toEqual(0);
     // html.find('.ant-pro-list-row-expand-icon').simulate('click');
-    await fireEvent.click(
-      container.querySelector('.ant-pro-list-row-expand-icon')!,
-    );
+    await fireEvent.click(container.querySelector('.ant-pro-list-row-expand-icon')!);
     expect(
-      container.querySelector(
-        '.ant-pro-list-row-content .test-custom-class-name',
-      )!.innerHTML,
+      container.querySelector('.ant-pro-list-row-content .test-custom-class-name')!.innerHTML,
     ).toEqual('<div>expand:0</div>');
   });
 
@@ -445,9 +411,7 @@ describe('List', () => {
     };
     const { container } = reactRender(<Wrapper />);
 
-    expect(container.querySelectorAll('.ant-checkbox-input')!.length).toEqual(
-      2,
-    );
+    expect(container.querySelectorAll('.ant-checkbox-input')!.length).toEqual(2);
 
     fireEvent.change(container.querySelectorAll('.ant-checkbox-input')[0], {
       target: {
@@ -456,9 +420,7 @@ describe('List', () => {
     });
 
     expect(container.querySelectorAll('.ant-checkbox-input')[0]).toBeChecked();
-    expect(
-      container.querySelectorAll('.ant-checkbox-input')[1],
-    ).not.toBeChecked();
+    expect(container.querySelectorAll('.ant-checkbox-input')[1]).not.toBeChecked();
   });
 
   it('🚏 support pagination', async () => {
@@ -488,9 +450,7 @@ describe('List', () => {
     // 等待下拉菜单选项出现在 document.body 中
     await waitFor(
       () => {
-        const options = document.body.querySelectorAll(
-          '.ant-select-item.ant-select-item-option',
-        );
+        const options = document.body.querySelectorAll('.ant-select-item.ant-select-item-option');
         expect(options.length).toBeGreaterThan(0);
       },
       {
@@ -510,9 +470,7 @@ describe('List', () => {
     // 等待列表更新（分页大小改变后，应该显示所有7条数据）
     await waitFor(
       () => {
-        expect(container.querySelectorAll('.ant-pro-list-item').length).toEqual(
-          7,
-        );
+        expect(container.querySelectorAll('.ant-pro-list-item').length).toEqual(7);
       },
       {
         timeout: 3000,
@@ -556,9 +514,7 @@ describe('List', () => {
     );
 
     await waitFor(async () => {
-      expect(
-        container.querySelectorAll('.ant-pro-list-row-title').length,
-      ).toEqual(2);
+      expect(container.querySelectorAll('.ant-pro-list-row-title').length).toEqual(2);
     });
 
     fireEvent.click(container.querySelector('.ant-pro-core-field-label')!);
@@ -654,9 +610,7 @@ describe('List', () => {
       />,
     );
 
-    expect(container.querySelector('.ant-pro-list-row')!).toHaveClass(
-      customizedRowClassName,
-    );
+    expect(container.querySelector('.ant-pro-list-row')!).toHaveClass(customizedRowClassName);
     expect(container).toMatchSnapshot();
   });
 
@@ -691,12 +645,8 @@ describe('List', () => {
       />,
     );
 
-    expect(container.querySelectorAll('.ant-pro-list-row')[0]).toHaveClass(
-      'even',
-    );
-    expect(container.querySelectorAll('.ant-pro-list-row')[1]).toHaveClass(
-      'odd',
-    );
+    expect(container.querySelectorAll('.ant-pro-list-row')[0]).toHaveClass('even');
+    expect(container.querySelectorAll('.ant-pro-list-row')[1]).toHaveClass('odd');
     expect(container).toMatchSnapshot();
   });
 
@@ -724,9 +674,7 @@ describe('List', () => {
     );
 
     await waitForWaitTime(1200);
-    expect(
-      html.baseElement.textContent?.includes('qixian:我是名称'),
-    ).toBeTruthy();
+    expect(html.baseElement.textContent?.includes('qixian:我是名称')).toBeTruthy();
   });
 
   it('🚏 ProList support itemTitleRender', async () => {
@@ -754,9 +702,7 @@ describe('List', () => {
 
     await waitForWaitTime(1200);
 
-    expect(
-      html.baseElement.textContent?.includes('qixian:我是名称'),
-    ).toBeTruthy();
+    expect(html.baseElement.textContent?.includes('qixian:我是名称')).toBeTruthy();
   });
 
   it('🚏 list support actions render to extra props', async () => {
@@ -770,7 +716,10 @@ describe('List', () => {
               text: 'desc text',
             },
             actions: [
-              <a key="edit" id="html_url">
+              <a
+                key="edit"
+                id="html_url"
+              >
                 修复
               </a>,
             ],
@@ -794,9 +743,7 @@ describe('List', () => {
       (await html.findByText('修复'))?.click();
     });
     expect(html.baseElement.textContent?.includes('修复')).toBeTruthy();
-    expect(
-      !!html.baseElement.querySelector('.ant-pro-card-actions'),
-    ).toBeFalsy();
+    expect(!!html.baseElement.querySelector('.ant-pro-card-actions')).toBeFalsy();
   });
 
   it('🚏 list support actions render to actions props', async () => {
@@ -821,7 +768,10 @@ describe('List', () => {
           },
           actions: {
             render: () => [
-              <a key="edit" id="edit">
+              <a
+                key="edit"
+                id="edit"
+              >
                 修复
               </a>,
             ],
@@ -872,7 +822,10 @@ describe('List', () => {
           },
           actions: {
             render: () => [
-              <a key="edit" id="edit">
+              <a
+                key="edit"
+                id="edit"
+              >
                 修复
               </a>,
             ],
@@ -883,14 +836,8 @@ describe('List', () => {
     await waitForWaitTime(1000);
 
     act(() => {
-      fireEvent.mouseEnter(
-        html.baseElement.querySelector('.ant-pro-list-row-card')!,
-        {},
-      );
-      fireEvent.click(
-        html.baseElement.querySelector('.ant-pro-list-row-card')!,
-        {},
-      );
+      fireEvent.mouseEnter(html.baseElement.querySelector('.ant-pro-list-row-card')!, {});
+      fireEvent.click(html.baseElement.querySelector('.ant-pro-list-row-card')!, {});
     });
 
     await waitFor(() => {
@@ -921,9 +868,7 @@ describe('List', () => {
       />,
     );
 
-    expect(
-      container.querySelectorAll('.ant-radio-input').length,
-    ).toBeGreaterThan(0);
+    expect(container.querySelectorAll('.ant-radio-input').length).toBeGreaterThan(0);
     expect(container.querySelectorAll('.ant-checkbox-input').length).toBe(0);
   });
 
@@ -953,12 +898,10 @@ describe('List', () => {
         ]}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('我是名称');
-    expect(
-      container.querySelector('.ant-pro-list-row-description')!.innerHTML,
-    ).toEqual('desc text');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('我是名称');
+    expect(container.querySelector('.ant-pro-list-row-description')!.innerHTML).toEqual(
+      'desc text',
+    );
   });
 
   it('🚏 columns API: columns take priority over metas', async () => {
@@ -984,9 +927,7 @@ describe('List', () => {
       />,
     );
     // columns 优先级高于 metas
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('列的名称');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('列的名称');
   });
 
   it('🚏 columns API: actions with cardActionProps', async () => {
@@ -1006,7 +947,10 @@ describe('List', () => {
           {
             listSlot: 'actions',
             render: () => [
-              <a key="edit" id="edit">
+              <a
+                key="edit"
+                id="edit"
+              >
                 修复
               </a>,
             ],
@@ -1026,9 +970,7 @@ describe('List', () => {
   it('🚏 columns API: expandable support', async () => {
     const onExpand = vi.fn();
     const Wrapper = () => {
-      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>(
-        [],
-      );
+      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>([]);
       return (
         <ProList
           dataSource={[
@@ -1052,16 +994,11 @@ describe('List', () => {
       );
     };
     const { container } = reactRender(<Wrapper />);
-    await fireEvent.click(
-      container.querySelector('.ant-pro-list-row-expand-icon')!,
+    await fireEvent.click(container.querySelector('.ant-pro-list-row-expand-icon')!);
+    expect(container.querySelector('.ant-pro-list-row-content')!.innerHTML).toEqual(
+      '<div>我是内容</div>',
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-content')!.innerHTML,
-    ).toEqual('<div>我是内容</div>');
-    expect(onExpand).toHaveBeenCalledWith(
-      true,
-      expect.objectContaining({ name: '我是名称' }),
-    );
+    expect(onExpand).toHaveBeenCalledWith(true, expect.objectContaining({ name: '我是名称' }));
   });
 
   it('🚏 columns API: with render function', async () => {
@@ -1089,9 +1026,7 @@ describe('List', () => {
         ]}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-description'),
-    ).toBeTruthy();
+    expect(container.querySelector('.ant-pro-list-row-description')).toBeTruthy();
     expect(container.querySelectorAll('.ant-tag').length).toEqual(2);
   });
 
@@ -1122,9 +1057,7 @@ describe('List', () => {
       />,
     );
 
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('测试名称');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('测试名称');
   });
 
   it('🚏 columns API: rowSelection works', async () => {
@@ -1144,9 +1077,7 @@ describe('List', () => {
     };
     const { container } = reactRender(<Wrapper />);
 
-    expect(container.querySelectorAll('.ant-checkbox-input')!.length).toEqual(
-      2,
-    );
+    expect(container.querySelectorAll('.ant-checkbox-input')!.length).toEqual(2);
 
     fireEvent.change(container.querySelectorAll('.ant-checkbox-input')[0], {
       target: {
@@ -1155,9 +1086,7 @@ describe('List', () => {
     });
 
     expect(container.querySelectorAll('.ant-checkbox-input')[0]).toBeChecked();
-    expect(
-      container.querySelectorAll('.ant-checkbox-input')[1],
-    ).not.toBeChecked();
+    expect(container.querySelectorAll('.ant-checkbox-input')[1]).not.toBeChecked();
   });
 
   it('🚏 columns API: columns without listSlot are ignored in list rendering', async () => {
@@ -1187,9 +1116,7 @@ describe('List', () => {
         ]}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('名称');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('名称');
   });
 
   it('🚏 columns API: onRow works', async () => {
@@ -1237,9 +1164,7 @@ describe('List', () => {
     await waitForWaitTime(1000);
 
     act(() => {
-      fireEvent.click(
-        html.baseElement.querySelector('.ant-pro-list-row-card')!,
-      );
+      fireEvent.click(html.baseElement.querySelector('.ant-pro-list-row-card')!);
     });
 
     await waitFor(() => {
@@ -1255,9 +1180,7 @@ describe('List', () => {
         rowClassName="custom-row-class"
       />,
     );
-    expect(container.querySelector('.ant-pro-list-row')!).toHaveClass(
-      'custom-row-class',
-    );
+    expect(container.querySelector('.ant-pro-list-row')!).toHaveClass('custom-row-class');
   });
 
   it('🚏 columns API: rowClassName as function', async () => {
@@ -1265,17 +1188,11 @@ describe('List', () => {
       <ProList
         dataSource={[{ name: 'A' }, { name: 'B' }]}
         columns={[{ dataIndex: 'name', listSlot: 'title' }]}
-        rowClassName={(_: any, index: number) =>
-          index === 0 ? 'first' : 'rest'
-        }
+        rowClassName={(_: any, index: number) => (index === 0 ? 'first' : 'rest')}
       />,
     );
-    expect(container.querySelectorAll('.ant-pro-list-row')[0]).toHaveClass(
-      'first',
-    );
-    expect(container.querySelectorAll('.ant-pro-list-row')[1]).toHaveClass(
-      'rest',
-    );
+    expect(container.querySelectorAll('.ant-pro-list-row')[0]).toHaveClass('first');
+    expect(container.querySelectorAll('.ant-pro-list-row')[1]).toHaveClass('rest');
   });
 
   it('🚏 columns API: itemRender works', async () => {
@@ -1306,9 +1223,7 @@ describe('List', () => {
       />,
     );
     await waitForWaitTime(1200);
-    expect(
-      html.baseElement.textContent?.includes('自定义头:名称'),
-    ).toBeTruthy();
+    expect(html.baseElement.textContent?.includes('自定义头:名称')).toBeTruthy();
   });
 
   it('🚏 columns API: itemTitleRender works', async () => {
@@ -1320,9 +1235,7 @@ describe('List', () => {
       />,
     );
     await waitForWaitTime(1200);
-    expect(
-      html.baseElement.textContent?.includes('渲染标题:标题名称'),
-    ).toBeTruthy();
+    expect(html.baseElement.textContent?.includes('渲染标题:标题名称')).toBeTruthy();
   });
 
   it('🚏 columns API: BaseProList works', async () => {
@@ -1335,12 +1248,8 @@ describe('List', () => {
         ]}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('基础列表');
-    expect(
-      container.querySelector('.ant-pro-list-row-description')!.innerHTML,
-    ).toEqual('描述文本');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('基础列表');
+    expect(container.querySelector('.ant-pro-list-row-description')!.innerHTML).toEqual('描述文本');
     // BaseProList 不显示卡片
     expect(container.querySelectorAll('.ant-pro-card')!.length).toBe(0);
   });
@@ -1349,9 +1258,7 @@ describe('List', () => {
     const { container } = reactRender(
       <ProList columns={[{ dataIndex: 'name', listSlot: 'title' }]} />,
     );
-    expect(
-      container.querySelector('.ant-empty-description')!.innerHTML,
-    ).toEqual('暂无数据');
+    expect(container.querySelector('.ant-empty-description')!.innerHTML).toEqual('暂无数据');
   });
 
   it('🚏 columns API: request and search with light filter', async () => {
@@ -1380,9 +1287,7 @@ describe('List', () => {
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelectorAll('.ant-pro-list-row-title').length,
-      ).toEqual(2);
+      expect(container.querySelectorAll('.ant-pro-list-row-title').length).toEqual(2);
     });
 
     fireEvent.click(container.querySelector('.ant-pro-core-field-label')!);
@@ -1396,20 +1301,14 @@ describe('List', () => {
     });
 
     await waitFor(() => {
-      expect(onRequest).toHaveBeenCalledWith(
-        { current: 1, pageSize: 5, title: 'test' },
-        {},
-        {},
-      );
+      expect(onRequest).toHaveBeenCalledWith({ current: 1, pageSize: 5, title: 'test' }, {}, {});
     });
   });
 
   it('🚏 columns API: expandRowByClick works', async () => {
     const onExpand = vi.fn();
     const Wrapper = () => {
-      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>(
-        [],
-      );
+      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>([]);
       return (
         <ProList
           dataSource={[{ name: '点击展开', content: <div>展开的内容</div> }]}
@@ -1428,20 +1327,15 @@ describe('List', () => {
     };
     const { container } = reactRender(<Wrapper />);
     await fireEvent.click(container.querySelector('.ant-pro-list-item')!);
-    expect(
-      container.querySelector('.ant-pro-list-row-content')!.innerHTML,
-    ).toEqual('<div>展开的内容</div>');
-    expect(onExpand).toHaveBeenCalledWith(
-      true,
-      expect.objectContaining({ name: '点击展开' }),
+    expect(container.querySelector('.ant-pro-list-row-content')!.innerHTML).toEqual(
+      '<div>展开的内容</div>',
     );
+    expect(onExpand).toHaveBeenCalledWith(true, expect.objectContaining({ name: '点击展开' }));
   });
 
   it('🚏 columns API: expandedRowRender works', async () => {
     const Wrapper = () => {
-      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>(
-        [],
-      );
+      const [expandedRowKeys, onExpandedRowsChange] = useState<readonly Key[]>([]);
       return (
         <ProList
           dataSource={[{ name: '行展开' }]}
@@ -1460,12 +1354,9 @@ describe('List', () => {
       );
     };
     const { container } = reactRender(<Wrapper />);
-    await fireEvent.click(
-      container.querySelector('.ant-pro-list-row-expand-icon')!,
-    );
+    await fireEvent.click(container.querySelector('.ant-pro-list-row-expand-icon')!);
     expect(
-      container.querySelector('.ant-pro-list-row-content .expanded-custom')!
-        .innerHTML,
+      container.querySelector('.ant-pro-list-row-content .expanded-custom')!.innerHTML,
     ).toEqual('<div>展开行:0</div>');
   });
 
@@ -1477,9 +1368,7 @@ describe('List', () => {
         columns={[{ dataIndex: 'name', listSlot: 'title' }]}
       />,
     );
-    expect(
-      container.querySelectorAll('.ant-radio-input').length,
-    ).toBeGreaterThan(0);
+    expect(container.querySelectorAll('.ant-radio-input').length).toBeGreaterThan(0);
     expect(container.querySelectorAll('.ant-checkbox-input').length).toBe(0);
   });
 
@@ -1512,25 +1401,19 @@ describe('List', () => {
       />,
     );
     // title
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.textContent,
-    ).toEqual('完整标题');
+    expect(container.querySelector('.ant-pro-list-row-title')!.textContent).toEqual('完整标题');
     // subTitle
-    expect(
-      container.querySelector('.ant-pro-list-row-sub-title')!.textContent,
-    ).toEqual('副标题内容');
-    // avatar
-    expect(
-      container.querySelector('.ant-pro-list-item-meta-avatar'),
-    ).toBeTruthy();
-    // description
-    expect(
-      container.querySelector('.ant-pro-list-row-description')!.textContent,
-    ).toEqual('描述文本');
-    // content
-    expect(container.querySelector('.test-content')!.textContent).toEqual(
-      '内容区域',
+    expect(container.querySelector('.ant-pro-list-row-sub-title')!.textContent).toEqual(
+      '副标题内容',
     );
+    // avatar
+    expect(container.querySelector('.ant-pro-list-item-meta-avatar')).toBeTruthy();
+    // description
+    expect(container.querySelector('.ant-pro-list-row-description')!.textContent).toEqual(
+      '描述文本',
+    );
+    // content
+    expect(container.querySelector('.test-content')!.textContent).toEqual('内容区域');
     // actions (默认以 extra 形式渲染，不会出现 ant-pro-list-item-action)
     expect(container.textContent?.includes('操作')).toBeTruthy();
   });
@@ -1553,9 +1436,7 @@ describe('List', () => {
     await waitForWaitTime(1000);
     expect(html.baseElement.textContent?.includes('默认操作')).toBeTruthy();
     // 默认不渲染到 actions 位置
-    expect(
-      !!html.baseElement.querySelector('.ant-pro-card-actions'),
-    ).toBeFalsy();
+    expect(!!html.baseElement.querySelector('.ant-pro-card-actions')).toBeFalsy();
   });
 
   it('🚏 columns API: defaultExpandedRowKeys works', async () => {
@@ -1622,9 +1503,7 @@ describe('List', () => {
       />,
     );
     // 两者互不冲突
-    expect(
-      container.querySelector('[data-testid="aside-content"]'),
-    ).toBeTruthy();
+    expect(container.querySelector('[data-testid="aside-content"]')).toBeTruthy();
     expect(container.textContent?.includes('编辑')).toBeTruthy();
   });
 
@@ -1643,19 +1522,18 @@ describe('List', () => {
         ]}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('嵌套名称');
-    expect(
-      container.querySelector('.ant-pro-list-row-description')!.innerHTML,
-    ).toEqual('嵌套描述');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('嵌套名称');
+    expect(container.querySelector('.ant-pro-list-row-description')!.innerHTML).toEqual('嵌套描述');
   });
 
   // ============ 边缘场景测试 ============
 
   it('🚏 edge: empty columns array renders empty list', async () => {
     const { container } = reactRender(
-      <ProList dataSource={[{ name: 'a' }]} columns={[]} />,
+      <ProList
+        dataSource={[{ name: 'a' }]}
+        columns={[]}
+      />,
     );
     // 有数据项但没有任何列配置，不应该崩溃
     expect(container.querySelector('.ant-pro-list')).toBeTruthy();
@@ -1670,9 +1548,7 @@ describe('List', () => {
     );
     // 没有任何 listSlot，列表项应无 title/description 等内容
     expect(container.querySelector('.ant-pro-list-row-title')).toBeFalsy();
-    expect(
-      container.querySelector('.ant-pro-list-row-description'),
-    ).toBeFalsy();
+    expect(container.querySelector('.ant-pro-list-row-description')).toBeFalsy();
   });
 
   it('🚏 edge: undefined columns falls back to metas', async () => {
@@ -1683,9 +1559,7 @@ describe('List', () => {
         metas={{ title: { dataIndex: 'name' } }}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('回退名称');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('回退名称');
   });
 
   it('🚏 edge: null dataSource does not crash', async () => {
@@ -1705,9 +1579,7 @@ describe('List', () => {
         columns={[{ dataIndex: 'name', listSlot: 'title' }]}
       />,
     );
-    expect(
-      container.querySelector('.ant-empty-description')!.innerHTML,
-    ).toEqual('暂无数据');
+    expect(container.querySelector('.ant-empty-description')!.innerHTML).toEqual('暂无数据');
   });
 
   it('🚏 edge: duplicate listSlot uses last column value', async () => {
@@ -1721,9 +1593,7 @@ describe('List', () => {
       />,
     );
     // 后面的列会覆盖前面的（forEach 顺序）
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('第二个');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('第二个');
   });
 
   it('🚏 edge: render returns "-" is skipped', async () => {
@@ -1739,13 +1609,9 @@ describe('List', () => {
         ]}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('名称');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('名称');
     // render 返回 '-' 的列不会渲染
-    expect(
-      container.querySelector('.ant-pro-list-row-description'),
-    ).toBeFalsy();
+    expect(container.querySelector('.ant-pro-list-row-description')).toBeFalsy();
   });
 
   it('🚏 edge: dataIndex points to non-existent field renders nothing', async () => {
@@ -1758,13 +1624,9 @@ describe('List', () => {
         ]}
       />,
     );
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('存在');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('存在');
     // 不存在的字段不渲染 description
-    expect(
-      container.querySelector('.ant-pro-list-row-description'),
-    ).toBeFalsy();
+    expect(container.querySelector('.ant-pro-list-row-description')).toBeFalsy();
   });
 
   it('🚏 edge: rowKey as function works with columns', async () => {
@@ -1816,13 +1678,14 @@ describe('List', () => {
       const [showDesc, setShowDesc] = useState(false);
       const cols = [
         { dataIndex: 'name', listSlot: 'title' as const },
-        ...(showDesc
-          ? [{ dataIndex: 'desc', listSlot: 'description' as const }]
-          : []),
+        ...(showDesc ? [{ dataIndex: 'desc', listSlot: 'description' as const }] : []),
       ];
       return (
         <>
-          <button data-testid="toggle" onClick={() => setShowDesc(true)}>
+          <button
+            data-testid="toggle"
+            onClick={() => setShowDesc(true)}
+          >
             切换
           </button>
           <ProList
@@ -1834,18 +1697,14 @@ describe('List', () => {
     };
     const { container } = reactRender(<Wrapper />);
 
-    expect(
-      container.querySelector('.ant-pro-list-row-description'),
-    ).toBeFalsy();
+    expect(container.querySelector('.ant-pro-list-row-description')).toBeFalsy();
 
     act(() => {
       fireEvent.click(screen.getByTestId('toggle'));
     });
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-list-row-description'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-list-row-description')).toBeTruthy();
     });
   });
 
@@ -1858,9 +1717,7 @@ describe('List', () => {
     );
     // 当没有 dataIndex 时，使用 listSlot 或 key 作为 fallback
     // listSlot='title' 会作为 dataIndex fallback
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.textContent,
-    ).toEqual('通过key取值');
+    expect(container.querySelector('.ant-pro-list-row-title')!.textContent).toEqual('通过key取值');
   });
 
   it('🚏 edge: both metas and empty columns array uses metas', async () => {
@@ -1872,9 +1729,7 @@ describe('List', () => {
       />,
     );
     // 空 columns 数组 length=0，应回退到 metas
-    expect(
-      container.querySelector('.ant-pro-list-row-title')!.innerHTML,
-    ).toEqual('metas生效');
+    expect(container.querySelector('.ant-pro-list-row-title')!.innerHTML).toEqual('metas生效');
   });
 
   it('🚏 edge: columns with render returning ReactNode array for actions', async () => {
@@ -1885,11 +1740,7 @@ describe('List', () => {
           { dataIndex: 'name', listSlot: 'title' },
           {
             listSlot: 'actions',
-            render: () => [
-              <a key="a">操作一</a>,
-              <a key="b">操作二</a>,
-              <a key="c">操作三</a>,
-            ],
+            render: () => [<a key="a">操作一</a>, <a key="b">操作二</a>, <a key="c">操作三</a>],
           },
         ]}
       />,

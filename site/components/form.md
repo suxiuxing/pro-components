@@ -171,7 +171,10 @@ formRef 内置了几个方法来获取转化之后的值，这也是相比 antd 
 - **1）返回普通值（最直观，也最稳定）**：会替换当前字段的提交值。
 
 ```tsx | pure
-<ProFormText name="name" transform={(value) => `${value}:suffix`} />
+<ProFormText
+  name="name"
+  transform={(value) => `${value}:suffix`}
+/>
 // 提交时：{ name: 'xxx:suffix' }
 ```
 
@@ -419,11 +422,7 @@ ProFormInstance 与 antd 的 form 相比增加了一些能力。
 
 ```tsx | pure
 import type { ProFormInstance } from '@xxlabs/pro-components';
-import {
-  ProForm,
-  ProFormDatePicker,
-  ProFormText,
-} from '@xxlabs/pro-components';
+import { ProForm, ProFormDatePicker, ProFormText } from '@xxlabs/pro-components';
 import { Button, message, Space } from 'antd';
 import moment from 'dayjs';
 import { useRef } from 'react';
@@ -450,10 +449,7 @@ export default () => {
   };
 
   const getFormatValues = () => {
-    console.log(
-      '格式化后的所有数据：',
-      formRef.current?.getFieldsFormatValue?.(),
-    );
+    console.log('格式化后的所有数据：', formRef.current?.getFieldsFormatValue?.());
   };
 
   const validateAndGetFormatValue = async () => {
@@ -469,14 +465,29 @@ export default () => {
         render: (props, doms) => {
           return [
             ...doms,
-            <Button htmlType="button" onClick={onFill} key="edit">
+            <Button
+              htmlType="button"
+              onClick={onFill}
+              key="edit"
+            >
               一键填写
             </Button>,
-            <Button htmlType="button" onClick={getCompanyName} key="read">
+            <Button
+              htmlType="button"
+              onClick={getCompanyName}
+              key="read"
+            >
               读取公司
             </Button>,
-            <Space.Compact key="refs" style={{ display: 'block' }}>
-              <Button htmlType="button" onClick={getFormatValues} key="format">
+            <Space.Compact
+              key="refs"
+              style={{ display: 'block' }}
+            >
+              <Button
+                htmlType="button"
+                onClick={getFormatValues}
+                key="format"
+              >
                 获取格式化后的所有数据
               </Button>
               <Button
@@ -511,7 +522,10 @@ export default () => {
         label="我方公司名称"
         placeholder="请输入名称"
       />
-      <ProFormDatePicker name="date" initialValue={moment('2021-08-09')} />
+      <ProFormDatePicker
+        name="date"
+        initialValue={moment('2021-08-09')}
+      />
     </ProForm>
   );
 };

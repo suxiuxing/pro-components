@@ -1,6 +1,7 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { StatisticCard } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { StatisticCard } from '@xxlabs/pro-components';
 
 const { Statistic, Divider } = StatisticCard;
 
@@ -27,7 +28,12 @@ const Demo = () => {
             statistic={{
               title: 'Paid Traffic',
               value: 3701928,
-              description: <Statistic title="Proportion" value="61.5%" />,
+              description: (
+                <Statistic
+                  title="Proportion"
+                  value="61.5%"
+                />
+              ),
             }}
             chart={
               <img
@@ -42,7 +48,12 @@ const Demo = () => {
             statistic={{
               title: 'Free Traffic',
               value: 1806062,
-              description: <Statistic title="Proportion" value="38.5%" />,
+              description: (
+                <Statistic
+                  title="Proportion"
+                  value="38.5%"
+                />
+              ),
             }}
             chart={
               <img
@@ -73,15 +84,13 @@ const Demo = () => {
             <strong>statistic.value</strong>: 统计数值
           </li>
           <li>
-            <strong>statistic.description</strong>: 统计描述，可以是 Statistic
-            组件
+            <strong>statistic.description</strong>: 统计描述，可以是 Statistic 组件
           </li>
           <li>
             <strong>chart</strong>: 图表区域
           </li>
           <li>
-            <strong>chartPlacement</strong>: 图表位置，'left' 表示左侧，'right'
-            表示右侧
+            <strong>chartPlacement</strong>: 图表位置，'left' 表示左侧，'right' 表示右侧
           </li>
         </ul>
         <h4>ChartPlacement 属性说明：</h4>

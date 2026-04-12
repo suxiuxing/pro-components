@@ -1,6 +1,7 @@
-import { ProForm, ProFormRadio, ProFormText } from '@xxlabs/pro-components';
 import { Col, Row, Space, message } from 'antd';
 import { useState } from 'react';
+
+import { ProForm, ProFormRadio, ProFormText } from '@xxlabs/pro-components';
 
 type LayoutType = Parameters<typeof ProForm>[0]['layout'];
 const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
@@ -14,9 +15,7 @@ const waitTime = (time: number = 100) => {
 };
 
 const Demo = () => {
-  const [formLayoutType, setFormLayoutType] = useState<LayoutType>(
-    LAYOUT_TYPE_HORIZONTAL,
-  );
+  const [formLayoutType, setFormLayoutType] = useState<LayoutType>(LAYOUT_TYPE_HORIZONTAL);
 
   const formItemLayout =
     formLayoutType === LAYOUT_TYPE_HORIZONTAL
@@ -39,7 +38,10 @@ const Demo = () => {
         render: (props, doms) => {
           return formLayoutType === LAYOUT_TYPE_HORIZONTAL ? (
             <Row>
-              <Col span={14} offset={4}>
+              <Col
+                span={14}
+                offset={4}
+              >
                 <Space>{doms}</Space>
               </Col>
             </Row>

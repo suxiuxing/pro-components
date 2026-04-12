@@ -1,15 +1,13 @@
 import { ColumnHeightOutlined } from '@ant-design/icons';
 import { Dropdown, Tooltip } from 'antd';
 import React, { useContext } from 'react';
+
 import { useIntl } from '../../../provider';
 import { TableContext } from '../../Store/Provide';
 
 export type DensitySize = 'middle' | 'small' | 'large' | undefined;
 
-const DensityIcon = React.forwardRef<
-  HTMLSpanElement,
-  { icon?: React.ReactNode }
->((props, ref) => {
+const DensityIcon = React.forwardRef<HTMLSpanElement, { icon?: React.ReactNode }>((props, ref) => {
   const { icon = <ColumnHeightOutlined /> } = props;
   const counter = useContext(TableContext);
   const intl = useIntl();

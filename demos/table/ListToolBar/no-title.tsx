@@ -1,11 +1,8 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import type { ProColumns } from '@xxlabs/pro-components';
-import {
-  LightFilter,
-  ProFormDatePicker,
-  ProTable,
-} from '@xxlabs/pro-components';
 import { Button } from 'antd';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { LightFilter, ProFormDatePicker, ProTable } from '@xxlabs/pro-components';
 
 import { createTableDataSource, DEMO_CREATOR_VALUE_ENUM } from '../../mockData';
 
@@ -75,7 +72,10 @@ const Demo = () => {
           },
           filter: (
             <LightFilter>
-              <ProFormDatePicker name="startdate" label="响应日期" />
+              <ProFormDatePicker
+                name="startdate"
+                label="响应日期"
+              />
             </LightFilter>
           ),
           actions: [

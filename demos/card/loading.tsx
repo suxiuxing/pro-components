@@ -3,7 +3,10 @@ import { ProCard } from '@xxlabs/pro-components';
 const Demo = () => {
   return (
     <>
-      <ProCard loading style={{ maxWidth: 300 }}>
+      <ProCard
+        loading
+        style={{ maxWidth: 300 }}
+      >
         Content
       </ProCard>
 
@@ -59,8 +62,8 @@ const Demo = () => {
             <strong>布尔值</strong>: loading={true} 使用默认的骨架屏效果
           </li>
           <li>
-            <strong>React 节点</strong>: loading={'{'}{' '}
-            &lt;div&gt;Loading&lt;/div&gt; {'}'} 使用自定义加载内容
+            <strong>React 节点</strong>: loading={'{'} &lt;div&gt;Loading&lt;/div&gt; {'}'}{' '}
+            使用自定义加载内容
           </li>
         </ul>
         <h4>默认 Loading 效果：</h4>

@@ -1,9 +1,4 @@
-﻿import {
-  ProForm,
-  ProFormGroup,
-  ProFormList,
-  ProFormText,
-} from '@xxlabs/pro-components';
+import { ProForm, ProFormGroup, ProFormList, ProFormText } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -18,7 +13,10 @@ const Demo = () => {
         name="list-arrowsort-demo"
         onFinish={async (e) => console.log(e)}
       >
-        <ProFormText name="name" label="姓名" />
+        <ProFormText
+          name="name"
+          label="姓名"
+        />
 
         <ProFormList
           name="labels"
@@ -41,8 +39,14 @@ const Demo = () => {
           upIconProps={{ tooltipText: '' }}
         >
           <ProFormGroup key="group">
-            <ProFormText name="value" label="值" />
-            <ProFormText name="label" label="显示名称" />
+            <ProFormText
+              name="value"
+              label="值"
+            />
+            <ProFormText
+              name="label"
+              label="显示名称"
+            />
           </ProFormGroup>
         </ProFormList>
       </ProForm>

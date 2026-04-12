@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext } from 'react';
+
 import { useStyle } from './style';
 
 export interface ProCardOperationProps {
@@ -29,7 +30,10 @@ const ProCardOperation: React.FC<ProCardOperationProps> = (props) => {
   const classString = clsx(prefixCls, className, hashId);
 
   return wrapSSR(
-    <div className={classString} style={style}>
+    <div
+      className={classString}
+      style={style}
+    >
       {children}
     </div>,
   );

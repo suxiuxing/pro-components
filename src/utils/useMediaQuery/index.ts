@@ -1,5 +1,6 @@
 import { theme } from 'antd';
 import { useEffect, useState } from 'react';
+
 import useMediaQuery from './query';
 
 const { getDesignToken } = theme;
@@ -50,15 +51,13 @@ export const getScreenClassName = () => {
   if (typeof window === 'undefined') {
     return queryKey;
   }
-  const mediaQueryKey = (Object.keys(MediaQueryEnum) as MediaQueryKey[]).find(
-    (key) => {
-      const { matchMedia } = MediaQueryEnum[key];
-      if (window.matchMedia(matchMedia).matches) {
-        return true;
-      }
-      return false;
-    },
-  );
+  const mediaQueryKey = (Object.keys(MediaQueryEnum) as MediaQueryKey[]).find((key) => {
+    const { matchMedia } = MediaQueryEnum[key];
+    if (window.matchMedia(matchMedia).matches) {
+      return true;
+    }
+    return false;
+  });
   queryKey = mediaQueryKey as unknown as MediaQueryKey;
   return queryKey;
 };
@@ -71,9 +70,9 @@ const useBreakpoint = () => {
   const isSm = useMediaQuery(MediaQueryEnum.sm.matchMedia);
   const isXs = useMediaQuery(MediaQueryEnum.xs.matchMedia);
 
-  const [colSpan, setColSpan] = useState<
-    keyof typeof MediaQueryEnum | undefined
-  >(getScreenClassName());
+  const [colSpan, setColSpan] = useState<keyof typeof MediaQueryEnum | undefined>(
+    getScreenClassName(),
+  );
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'TEST') {

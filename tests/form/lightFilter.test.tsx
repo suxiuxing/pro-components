@@ -1,4 +1,9 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
+import { describe, expect, it, vi } from 'vitest';
+
 import {
   LightFilter,
   ProFormDatePicker,
@@ -14,10 +19,7 @@ import {
   ProFormText,
   ProFormTimePicker,
 } from '@xxlabs/pro-components';
-import dayjs from 'dayjs';
-import advancedFormat from 'dayjs/plugin/advancedFormat';
-import weekOfYear from 'dayjs/plugin/weekOfYear';
-import { describe, expect, it, vi } from 'vitest';
+
 import { dateArrayFormatter } from '../../src/utils/dateArrayFormatter';
 
 dayjs.extend(advancedFormat);
@@ -27,14 +29,15 @@ describe('LightFilter', () => {
   it(' 🪕 should render basic structure', async () => {
     const { container } = render(
       <LightFilter>
-        <ProFormText name="name1" label="名称" />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field label is rendered
@@ -55,14 +58,15 @@ describe('LightFilter', () => {
         }}
         onValuesChange={onValuesChange}
       >
-        <ProFormText name="name1" label="名称" />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the initial value is displayed in the field label
@@ -77,21 +81,23 @@ describe('LightFilter', () => {
     const onValuesChange = vi.fn();
 
     const { container } = render(
-      <LightFilter onValuesChange={onValuesChange} variant="outlined">
-        <ProFormText name="name1" label="名称" />
+      <LightFilter
+        onValuesChange={onValuesChange}
+        variant="outlined"
+      >
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check if the variant class is applied
-    const lightFilterContainer = container.querySelector(
-      '.ant-pro-form-light-filter',
-    );
+    const lightFilterContainer = container.querySelector('.ant-pro-form-light-filter');
     expect(lightFilterContainer).toBeTruthy();
   });
 
@@ -99,20 +105,22 @@ describe('LightFilter', () => {
     const onValuesChange = vi.fn();
 
     const { container } = render(
-      <LightFilter onValuesChange={onValuesChange} placement="topLeft">
-        <ProFormText name="name1" label="名称" />
+      <LightFilter
+        onValuesChange={onValuesChange}
+        placement="topLeft"
+      >
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
-    const lightFilterContainer = container.querySelector(
-      '.ant-pro-form-light-filter',
-    );
+    const lightFilterContainer = container.querySelector('.ant-pro-form-light-filter');
     expect(lightFilterContainer).toBeTruthy();
   });
 
@@ -133,9 +141,7 @@ describe('LightFilter', () => {
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field label is rendered
@@ -151,14 +157,15 @@ describe('LightFilter', () => {
 
     const { container } = render(
       <LightFilter onValuesChange={onValuesChange}>
-        <ProFormDatePicker name="name1" label="名称" />
+        <ProFormDatePicker
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field label is rendered
@@ -174,14 +181,15 @@ describe('LightFilter', () => {
 
     const { container } = render(
       <LightFilter onValuesChange={onValuesChange}>
-        <ProFormDateRangePicker name="name1" label="名称" />
+        <ProFormDateRangePicker
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field label is rendered
@@ -197,14 +205,15 @@ describe('LightFilter', () => {
 
     const { container } = render(
       <LightFilter onValuesChange={onValuesChange}>
-        <ProFormDateTimePicker name="name1" label="名称" />
+        <ProFormDateTimePicker
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field label is rendered
@@ -220,14 +229,15 @@ describe('LightFilter', () => {
 
     const { container } = render(
       <LightFilter onValuesChange={onValuesChange}>
-        <ProFormTimePicker name="name1" label="名称" />
+        <ProFormTimePicker
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field label is rendered
@@ -243,14 +253,15 @@ describe('LightFilter', () => {
 
     const { container } = render(
       <LightFilter onValuesChange={onValuesChange}>
-        <ProFormSlider name="name1" label="名称" />
+        <ProFormSlider
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field label is rendered
@@ -265,16 +276,23 @@ describe('LightFilter', () => {
     const onValuesChange = vi.fn();
 
     const { container } = render(
-      <LightFilter onValuesChange={onValuesChange} collapse>
-        <ProFormText name="name1" label="名称" />
-        <ProFormText name="name2" label="名称2" />
+      <LightFilter
+        onValuesChange={onValuesChange}
+        collapse
+      >
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
+        <ProFormText
+          name="name2"
+          label="名称2"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // In collapse mode, there should be a filter icon instead of field labels
@@ -282,9 +300,7 @@ describe('LightFilter', () => {
     expect(filterIcon).toBeTruthy();
 
     // Check that there's a dropdown label
-    const dropdownLabel = container.querySelector(
-      '.ant-pro-core-field-dropdown-label',
-    );
+    const dropdownLabel = container.querySelector('.ant-pro-core-field-dropdown-label');
     expect(dropdownLabel).toBeTruthy();
   });
 
@@ -297,21 +313,23 @@ describe('LightFilter', () => {
         collapse
         collapseLabel="更多筛选"
       >
-        <ProFormText name="name1" label="名称" />
-        <ProFormText name="name2" label="名称2" />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
+        <ProFormText
+          name="name2"
+          label="名称2"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // In collapse mode with custom label, there should be the custom label text
-    const dropdownLabel = container.querySelector(
-      '.ant-pro-core-field-dropdown-label',
-    );
+    const dropdownLabel = container.querySelector('.ant-pro-core-field-dropdown-label');
     expect(dropdownLabel).toBeTruthy();
     expect(dropdownLabel?.textContent).toBe('更多筛选');
   });
@@ -321,15 +339,20 @@ describe('LightFilter', () => {
 
     const { container } = render(
       <LightFilter onValuesChange={onValuesChange}>
-        <ProFormText name="name1" label="名称" />
-        <ProFormText name="name2" label="名称2" secondary />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
+        <ProFormText
+          name="name2"
+          label="名称2"
+          secondary
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field labels are rendered
@@ -342,14 +365,15 @@ describe('LightFilter', () => {
 
     const { container } = render(
       <LightFilter onValuesChange={onValuesChange}>
-        <ProFormText name="name1" label="名称" />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field label is rendered
@@ -364,20 +388,32 @@ describe('LightFilter', () => {
       <LightFilter
         initialValues={{
           dateRange: [dayjs('2023-01-01'), dayjs('2023-01-03')],
-          dateTimeRange: [
-            dayjs('2023-01-01 08:00:00'),
-            dayjs('2023-01-01 10:30:00'),
-          ],
+          dateTimeRange: [dayjs('2023-01-01 08:00:00'), dayjs('2023-01-01 10:30:00')],
           weekRange: [dayjs('2023-01-02'), dayjs('2023-01-08')],
           quarterRange: [dayjs('2023-01-01'), dayjs('2023-03-31')],
           yearRange: [dayjs('2022-01-01'), dayjs('2023-01-01')],
         }}
       >
-        <ProFormDateRangePicker name="dateRange" label="日期" />
-        <ProFormDateTimeRangePicker name="dateTimeRange" label="日期时间" />
-        <ProFormDateWeekRangePicker name="weekRange" label="周" />
-        <ProFormDateQuarterRangePicker name="quarterRange" label="季度" />
-        <ProFormDateYearRangePicker name="yearRange" label="年份" />
+        <ProFormDateRangePicker
+          name="dateRange"
+          label="日期"
+        />
+        <ProFormDateTimeRangePicker
+          name="dateTimeRange"
+          label="日期时间"
+        />
+        <ProFormDateWeekRangePicker
+          name="weekRange"
+          label="周"
+        />
+        <ProFormDateQuarterRangePicker
+          name="quarterRange"
+          label="季度"
+        />
+        <ProFormDateYearRangePicker
+          name="yearRange"
+          label="年份"
+        />
       </LightFilter>,
     );
 
@@ -399,18 +435,12 @@ describe('LightFilter', () => {
       );
     });
 
-    const weekLabel = dateArrayFormatter(
-      [dayjs('2023-01-02'), dayjs('2023-01-08')],
-      'YYYY-wo',
-    );
+    const weekLabel = dateArrayFormatter([dayjs('2023-01-02'), dayjs('2023-01-08')], 'YYYY-wo');
     const quarterLabel = dateArrayFormatter(
       [dayjs('2023-01-01'), dayjs('2023-03-31')],
       'YYYY-[Q]Q',
     );
-    const yearLabel = dateArrayFormatter(
-      [dayjs('2022-01-01'), dayjs('2023-01-01')],
-      'YYYY',
-    );
+    const yearLabel = dateArrayFormatter([dayjs('2022-01-01'), dayjs('2023-01-01')], 'YYYY');
     expect(weekLabel).toBe('2023-1st ~ 2023-2nd');
     expect(quarterLabel).toBe('2023-Q1 ~ 2023-Q1');
     expect(yearLabel).toBe('2022 ~ 2023');
@@ -440,8 +470,7 @@ describe('LightFilter', () => {
       expect(fieldLabel?.textContent).toContain('数字范围');
     });
 
-    const fieldLabelText =
-      container.querySelector('.ant-pro-core-field-label')?.textContent || '';
+    const fieldLabelText = container.querySelector('.ant-pro-core-field-label')?.textContent || '';
 
     // If digitRange is mistakenly treated as dateRange, 12/34 would be formatted as timestamps (1970-...)
     expect(fieldLabelText).not.toContain('1970-');
@@ -454,14 +483,15 @@ describe('LightFilter', () => {
 
     const { container } = render(
       <LightFilter onFinish={onFinish}>
-        <ProFormText name="name1" label="名称" />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Check that the field label is rendered
@@ -473,9 +503,7 @@ describe('LightFilter', () => {
 
   it(' 🪕 should support footerRender', async () => {
     const onValuesChange = vi.fn();
-    const footerRender = vi.fn(() => (
-      <div data-testid="custom-footer">Custom Footer</div>
-    ));
+    const footerRender = vi.fn(() => <div data-testid="custom-footer">Custom Footer</div>);
 
     const { container } = render(
       <LightFilter
@@ -483,15 +511,19 @@ describe('LightFilter', () => {
         footerRender={footerRender}
         collapse
       >
-        <ProFormText name="name1" label="名称" />
-        <ProFormText name="name2" label="名称2" />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
+        <ProFormText
+          name="name2"
+          label="名称2"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // In collapse mode, there should be a filter icon instead of field labels
@@ -499,9 +531,7 @@ describe('LightFilter', () => {
     expect(filterIcon).toBeTruthy();
 
     // Check that there's a dropdown label
-    const dropdownLabel = container.querySelector(
-      '.ant-pro-core-field-dropdown-label',
-    );
+    const dropdownLabel = container.querySelector('.ant-pro-core-field-dropdown-label');
     expect(dropdownLabel).toBeTruthy();
   });
 
@@ -513,15 +543,19 @@ describe('LightFilter', () => {
           classNames: { root: 'my-lightfilter-popover' },
         }}
       >
-        <ProFormText name="name1" label="名称" />
-        <ProFormText name="name2" label="名称2" />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
+        <ProFormText
+          name="name2"
+          label="名称2"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // Before open, overlay shouldn't exist in body
@@ -542,15 +576,16 @@ describe('LightFilter', () => {
   it(' 🪕 should default to borderless variant', async () => {
     const { container } = render(
       <LightFilter>
-        <ProFormText name="name" label="Name" />
+        <ProFormText
+          name="name"
+          label="Name"
+        />
       </LightFilter>,
     );
 
     // 等待渲染完成
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     // LightFilter 默认应该是 borderless，所以不应该有 ant-pro-core-field-label-bordered
@@ -558,23 +593,22 @@ describe('LightFilter', () => {
     // 如果我们能找到 FieldLabel 并检查它的 class 就好了。
 
     // 我们检查是否包含 bordered class
-    const borderedLabel = container.querySelector(
-      '.ant-pro-core-field-label-bordered',
-    );
+    const borderedLabel = container.querySelector('.ant-pro-core-field-label-bordered');
     expect(borderedLabel).toBeFalsy();
   });
 
   it(' 🪕 should support outlined variant', async () => {
     const { container } = render(
       <LightFilter variant="outlined">
-        <ProFormText name="name" label="Name" />
+        <ProFormText
+          name="name"
+          label="Name"
+        />
       </LightFilter>,
     );
 
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-pro-form-light-filter'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-pro-form-light-filter')).toBeTruthy();
     });
 
     const borderedLabel = await waitFor(() =>

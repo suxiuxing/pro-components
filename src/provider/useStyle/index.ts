@@ -5,6 +5,7 @@ import { ConfigProvider as AntdConfigProvider, theme as antdTheme } from 'antd';
 import type { GlobalToken } from 'antd/lib/theme/interface';
 import type React from 'react';
 import { useContext, useMemo, useRef } from 'react';
+
 import { ProProvider } from '../index';
 import type { ProTokenType } from '../typing/layoutToken';
 
@@ -118,8 +119,7 @@ export function useStyle(
   componentName: string,
   styleFn: (token: ProAliasToken) => CSSInterpolation,
 ) {
-  let { token = {} as Record<string, any> as ProAliasToken, hashed } =
-    useContext(ProProvider);
+  let { token = {} as Record<string, any> as ProAliasToken, hashed } = useContext(ProProvider);
 
   const { token: antdToken, hashId, theme } = antdTheme.useToken();
 
@@ -142,12 +142,7 @@ export function useStyle(
 
   // Keep path monotonic across toggles to avoid style order issues
   // when switching dark -> light (back to an old key).
-  const styleKey = [
-    hashId,
-    (theme as any).id,
-    token.themeId,
-    proTokenKey,
-  ]
+  const styleKey = [hashId, (theme as any).id, token.themeId, proTokenKey]
     .filter(Boolean)
     .join('-');
 
@@ -158,9 +153,7 @@ export function useStyle(
     lastStyleKeyRef.current = styleKey;
   }
 
-  const stylePath = [componentName, styleKey, styleVersionRef.current].filter(
-    Boolean,
-  );
+  const stylePath = [componentName, styleKey, styleVersionRef.current].filter(Boolean);
 
   useStyleRegister(
     {

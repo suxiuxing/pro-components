@@ -1,6 +1,7 @@
+import { Space, Tag } from 'antd';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
-import { Space, Tag } from 'antd';
 
 type GithubIssueItem = {
   id: number;
@@ -82,7 +83,10 @@ const columns: ProColumns<GithubIssueItem>[] = [
     render: (_, record) => (
       <Space>
         {record.labels.map(({ name, color }) => (
-          <Tag color={color} key={name}>
+          <Tag
+            color={color}
+            key={name}
+          >
             {name}
           </Tag>
         ))}

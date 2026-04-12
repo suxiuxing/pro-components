@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import React from 'react';
+
 import { isUrl } from '../../../utils';
 import type { AppItemProps, AppListProps } from './types';
 
@@ -15,7 +16,12 @@ export const renderLogo = (
   title?: React.ReactNode,
 ): React.ReactNode => {
   if (logo && typeof logo === 'string' && isUrl(logo)) {
-    return <img src={logo} alt="logo" />;
+    return (
+      <img
+        src={logo}
+        alt="logo"
+      />
+    );
   }
 
   if (typeof logo === 'function') {
@@ -48,17 +54,9 @@ export const SimpleContent: React.FC<{
             return (
               <div
                 key={index}
-                className={clsx(
-                  `${baseClassName}-content-list-item-group`,
-                  hashId,
-                )}
+                className={clsx(`${baseClassName}-content-list-item-group`, hashId)}
               >
-                <div
-                  className={clsx(
-                    `${baseClassName}-content-list-item-group-title`,
-                    hashId,
-                  )}
-                >
+                <div className={clsx(`${baseClassName}-content-list-item-group-title`, hashId)}>
                   {app.title}
                 </div>
                 <SimpleContent

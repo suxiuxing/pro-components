@@ -1,6 +1,7 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { StatisticCard } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { StatisticCard } from '@xxlabs/pro-components';
 
 const { Divider } = StatisticCard;
 
@@ -74,8 +75,7 @@ const Demo = () => {
         <h4>StatisticCard.Group 图表分组 Props 说明：</h4>
         <ul>
           <li>
-            <strong>direction</strong>: 排列方向，'row' 表示水平排列，'column'
-            表示垂直排列
+            <strong>direction</strong>: 排列方向，'row' 表示水平排列，'column' 表示垂直排列
           </li>
           <li>
             <strong>children</strong>: StatisticCard 和 Divider 子组件

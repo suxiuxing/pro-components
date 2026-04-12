@@ -1,5 +1,7 @@
 import { join } from 'node:path';
+
 import { defineConfig } from 'vitest/config';
+
 import { TEST_INITIAL_URL } from './tests/testConstants';
 
 export default defineConfig({

@@ -1,6 +1,7 @@
-import { ProCard } from '@xxlabs/pro-components';
 import { Segmented, Space, theme } from 'antd';
 import { useState } from 'react';
+
+import { ProCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const { token } = theme.useToken();
@@ -10,17 +11,20 @@ const Demo = () => {
   const [layout, setLayout] = useState<'default' | 'center'>('default');
   const [type, setType] = useState<'default' | 'inner'>('default');
   const [direction, setDirection] = useState<'row' | 'column'>('row');
-  const [split, setSplit] = useState<'vertical' | 'horizontal' | undefined>(
-    undefined,
-  );
-  const [collapsible, setCollapsible] = useState<'icon' | 'header' | false>(
-    false,
-  );
+  const [split, setSplit] = useState<'vertical' | 'horizontal' | undefined>(undefined);
+  const [collapsible, setCollapsible] = useState<'icon' | 'header' | false>(false);
 
   return (
     <div>
-      <ProCard variant="outlined" style={{ marginBlockEnd: 16 }}>
-        <Space orientation="vertical" size={12} style={{ width: '100%' }}>
+      <ProCard
+        variant="outlined"
+        style={{ marginBlockEnd: 16 }}
+      >
+        <Space
+          orientation="vertical"
+          size={12}
+          style={{ width: '100%' }}
+        >
           <Space>
             <span>size 尺寸：</span>
             <Segmented
@@ -92,9 +96,7 @@ const Demo = () => {
             <span>collapsible 折叠方式：</span>
             <Segmented
               value={collapsible === false ? 'false' : collapsible}
-              onChange={(v) =>
-                setCollapsible(v === 'false' ? false : (v as any))
-              }
+              onChange={(v) => setCollapsible(v === 'false' ? false : (v as any))}
               options={[
                 { label: '不可折叠', value: 'false' },
                 { label: '图标触发 icon', value: 'icon' },
@@ -141,8 +143,8 @@ const Demo = () => {
         }}
       >
         当前配置：size=<b>{size}</b>、variant=<b>{variant}</b>、layout=
-        <b>{layout}</b>、type=<b>{type}</b>、direction=<b>{direction}</b>、
-        split=<b>{String(split ?? '无')}</b>、collapsible=
+        <b>{layout}</b>、type=<b>{type}</b>、direction=<b>{direction}</b>、 split=
+        <b>{String(split ?? '无')}</b>、collapsible=
         <b>{String(collapsible)}</b>
       </div>
     </div>

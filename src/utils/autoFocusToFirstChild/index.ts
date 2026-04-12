@@ -4,14 +4,8 @@ import React from 'react';
  * 将 autoFocus 应用到第一个子节点；若首个子节点是 Fragment，则递归应用到其第一个子节点，
  * 避免向 React.Fragment 传入非法 props。
  */
-export function autoFocusToFirstChild(
-  node: React.ReactNode,
-  autoFocus: boolean,
-): React.ReactNode {
-  if (
-    !autoFocus ||
-    !React.isValidElement<{ children?: React.ReactNode }>(node)
-  ) {
+export function autoFocusToFirstChild(node: React.ReactNode, autoFocus: boolean): React.ReactNode {
+  if (!autoFocus || !React.isValidElement<{ children?: React.ReactNode }>(node)) {
     return node;
   }
   if (node.type === React.Fragment) {

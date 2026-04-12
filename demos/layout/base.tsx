@@ -9,6 +9,9 @@ import {
   SearchOutlined,
 } from '@ant-design/icons';
 import { css } from '@emotion/css';
+import { Button, ConfigProvider, Divider, Dropdown, Input, Popover, theme } from 'antd';
+import React, { useState } from 'react';
+
 import type { ProSettings } from '@xxlabs/pro-components';
 import {
   PageContainer,
@@ -17,16 +20,7 @@ import {
   ProLayout,
   SettingDrawer,
 } from '@xxlabs/pro-components';
-import {
-  Button,
-  ConfigProvider,
-  Divider,
-  Dropdown,
-  Input,
-  Popover,
-  theme,
-} from 'antd';
-import React, { useState } from 'react';
+
 import defaultProps from './_defaultProps';
 import { demoOnMenuHeaderClick } from './_demoHandlers';
 
@@ -470,7 +464,10 @@ const Demo = () => {
               subTitle="简单的描述"
               footer={[
                 <Button key="3">重置</Button>,
-                <Button key="2" type="primary">
+                <Button
+                  key="2"
+                  type="primary"
+                >
                   提交
                 </Button>,
               ]}

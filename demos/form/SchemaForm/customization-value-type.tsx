@@ -1,8 +1,9 @@
-import type { ProFormColumnsType } from '@xxlabs/pro-components';
-import { BetaSchemaForm, ProProvider } from '@xxlabs/pro-components';
 import type { InputRef } from 'antd';
 import { Input, Space, Tag } from 'antd';
 import React, { useContext, useRef, useState } from 'react';
+
+import type { ProFormColumnsType } from '@xxlabs/pro-components';
+import { BetaSchemaForm, ProProvider } from '@xxlabs/pro-components';
 
 import { DEMO_VALUE_ENUM } from '../../mockData';
 
@@ -49,14 +50,8 @@ const TagList: React.FC<{
 
   const handleInputConfirm = () => {
     let tempsTags = [...(value || [])];
-    if (
-      inputValue &&
-      tempsTags.filter((tag) => tag.label === inputValue).length === 0
-    ) {
-      tempsTags = [
-        ...tempsTags,
-        { key: `new-${tempsTags.length}`, label: inputValue },
-      ];
+    if (inputValue && tempsTags.filter((tag) => tag.label === inputValue).length === 0) {
+      tempsTags = [...tempsTags, { key: `new-${tempsTags.length}`, label: inputValue }];
     }
     onChange?.(tempsTags);
     setNewTags([]);
@@ -131,7 +126,10 @@ const Demo = () => {
           link: {
             render: (text) => <a>{text}</a>,
             formItemRender: (text, props) => (
-              <Input placeholder="请输入链接" {...props?.fieldProps} />
+              <Input
+                placeholder="请输入链接"
+                {...props?.fieldProps}
+              />
             ),
           },
           tags: {
@@ -145,7 +143,10 @@ const Demo = () => {
               );
             },
             formItemRender: (text, props) => (
-              <TagList {...props} {...props?.fieldProps} />
+              <TagList
+                {...props}
+                {...props?.fieldProps}
+              />
             ),
           },
         },

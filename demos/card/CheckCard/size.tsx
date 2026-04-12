@@ -1,13 +1,17 @@
-import { CheckCard } from '@xxlabs/pro-components';
 import { Radio } from 'antd';
 import { useState } from 'react';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [size, setSize] = useState('default' as const);
   return (
     <>
       <div style={{ marginBlockEnd: 16 }}>
-        <Radio.Group value={size} onChange={(e) => setSize(e.target.value)}>
+        <Radio.Group
+          value={size}
+          onChange={(e) => setSize(e.target.value)}
+        >
           <Radio.Button value="large">Large</Radio.Button>
           <Radio.Button value="default">Default</Radio.Button>
           <Radio.Button value="small">Small</Radio.Button>
@@ -30,8 +34,7 @@ const Demo = () => {
         <h4>CheckCard Size Props 说明：</h4>
         <ul>
           <li>
-            <strong>size</strong>: 卡片尺寸，可选值：'large' | 'default' |
-            'small'
+            <strong>size</strong>: 卡片尺寸，可选值：'large' | 'default' | 'small'
           </li>
           <li>
             <strong>title</strong>: 卡片标题

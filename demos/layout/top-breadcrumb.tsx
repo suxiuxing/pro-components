@@ -1,8 +1,4 @@
-import {
-  PageContainer,
-  ProBreadcrumb,
-  ProLayout,
-} from '@xxlabs/pro-components';
+import { PageContainer, ProBreadcrumb, ProLayout } from '@xxlabs/pro-components';
 
 const Demo = () => (
   <div
@@ -60,7 +56,10 @@ const Demo = () => (
         },
       ]}
     >
-      <PageContainer content="欢迎使用" breadcrumbRender={false}>
+      <PageContainer
+        content="欢迎使用"
+        breadcrumbRender={false}
+      >
         <div>Hello World</div>
       </PageContainer>
     </ProLayout>

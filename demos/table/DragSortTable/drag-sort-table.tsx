@@ -1,8 +1,9 @@
 import { MenuOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@xxlabs/pro-components';
-import { DragSortTable } from '@xxlabs/pro-components';
 import { message } from 'antd';
 import { useRef, useState } from 'react';
+
+import type { ActionType, ProColumns } from '@xxlabs/pro-components';
+import { DragSortTable } from '@xxlabs/pro-components';
 
 const data = [
   {
@@ -46,9 +47,7 @@ const Demo = () => {
       title: '排序',
       dataIndex: 'sort',
       render: (dom, rowData, index) => {
-        return (
-          <span className="customRender">{`自定义Render[${rowData.name}-${index}]`}</span>
-        );
+        return <span className="customRender">{`自定义Render[${rowData.name}-${index}]`}</span>;
       },
     },
     {
@@ -87,27 +86,15 @@ const Demo = () => {
   const actionRef = useRef<ActionType>();
   const [dataSource1, setDatasource1] = useState(data);
   const [dataSource2, setDatasource2] = useState(data);
-  const handleDragSortEnd1 = (
-    beforeIndex: number,
-    afterIndex: number,
-    newDataSource: any,
-  ) => {
+  const handleDragSortEnd1 = (beforeIndex: number, afterIndex: number, newDataSource: any) => {
     setDatasource1(newDataSource);
     message.success('修改列表排序成功');
   };
-  const handleDragSortEnd2 = (
-    beforeIndex: number,
-    afterIndex: number,
-    newDataSource: any,
-  ) => {
+  const handleDragSortEnd2 = (beforeIndex: number, afterIndex: number, newDataSource: any) => {
     setDatasource2(newDataSource);
     message.success('修改列表排序成功');
   };
-  const handleDragSortEnd3 = (
-    beforeIndex: number,
-    afterIndex: number,
-    newDataSource: any,
-  ) => {
+  const handleDragSortEnd3 = (beforeIndex: number, afterIndex: number, newDataSource: any) => {
     // 模拟将排序后数据发送到服务器的场景
     remoteData = newDataSource;
     // 请求成功之后刷新列表

@@ -1,3 +1,6 @@
+import { Switch } from 'antd';
+import { useState } from 'react';
+
 import {
   ProForm,
   ProFormDateMonthRangePicker,
@@ -11,8 +14,6 @@ import {
   ProFormTimePicker,
 } from '@xxlabs/pro-components';
 
-import { Switch } from 'antd';
-import { useState } from 'react';
 import { FIXED_BASE_TIMESTAMP } from '../../mockData';
 
 export default () => {
@@ -44,19 +45,16 @@ export default () => {
           dateTime: FIXED_BASE_TIMESTAMP,
           time: '00:01:05',
           timeRange: ['05:00:00', '11:00:00'],
-          dateTimeRange: [
-            FIXED_BASE_TIMESTAMP,
-            FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24,
-          ],
-          dateRange: [
-            FIXED_BASE_TIMESTAMP,
-            FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24,
-          ],
+          dateTimeRange: [FIXED_BASE_TIMESTAMP, FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24],
+          dateRange: [FIXED_BASE_TIMESTAMP, FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24],
         }}
         onFinish={async (values) => {}}
       >
         <ProForm.Group title="Date Related Group">
-          <ProFormDatePicker name="date" label="Date" />
+          <ProFormDatePicker
+            name="date"
+            label="Date"
+          />
           <ProFormDatePicker
             name="date"
             fieldProps={{
@@ -64,22 +62,46 @@ export default () => {
             }}
             label="Year-Month"
           />
-          <ProFormTimePicker name="time" label="Time" />
-          <ProFormTimePicker.RangePicker name="timeRange" label="Time Range" />
-          <ProFormDatePicker.Week name="dateWeek" label="Week" />
-          <ProFormDateWeekRangePicker name="dateWeekRange" label="Week Range" />
-          <ProFormDatePicker.Month name="dateMonth" label="Month" />
+          <ProFormTimePicker
+            name="time"
+            label="Time"
+          />
+          <ProFormTimePicker.RangePicker
+            name="timeRange"
+            label="Time Range"
+          />
+          <ProFormDatePicker.Week
+            name="dateWeek"
+            label="Week"
+          />
+          <ProFormDateWeekRangePicker
+            name="dateWeekRange"
+            label="Week Range"
+          />
+          <ProFormDatePicker.Month
+            name="dateMonth"
+            label="Month"
+          />
           <ProFormDateMonthRangePicker
             name="dateMonthRange"
             label="Month Range"
           />
-          <ProFormDatePicker.Quarter name="dateQuarter" label="Quarter" />
+          <ProFormDatePicker.Quarter
+            name="dateQuarter"
+            label="Quarter"
+          />
           <ProFormDateQuarterRangePicker
             name="dateQuarterRange"
             label="Quarter Range"
           />
-          <ProFormDatePicker.Year name="dateYear" label="Year" />
-          <ProFormDateYearRangePicker name="dateYearRange" label="Year Range" />
+          <ProFormDatePicker.Year
+            name="dateYear"
+            label="Year"
+          />
+          <ProFormDateYearRangePicker
+            name="dateYearRange"
+            label="Year Range"
+          />
           <ProFormDateTimePicker
             name="dateTime"
             label="Date Time"
@@ -87,7 +109,10 @@ export default () => {
               format: (value) => value.format('YYYY-MM-DD'),
             }}
           />
-          <ProFormDateRangePicker name="dateRange" label="Date Range" />
+          <ProFormDateRangePicker
+            name="dateRange"
+            label="Date Range"
+          />
           <ProFormDateTimeRangePicker
             name="dateTimeRange"
             label="Date Time Range"

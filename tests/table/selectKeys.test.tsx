@@ -1,7 +1,9 @@
 import { cleanup, render, waitFor } from '@testing-library/react';
-import { ProTable } from '@xxlabs/pro-components';
 import React, { act, useState } from 'react';
 import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProTable } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 import { getFetchData } from './fixtures';
 
@@ -74,9 +76,7 @@ describe('BasicTable Search', () => {
     await waitForWaitTime(200);
     act(() => {
       html.baseElement
-        .querySelectorAll<HTMLInputElement>(
-          '.ant-table-cell label.ant-checkbox-wrapper input',
-        )[1]
+        .querySelectorAll<HTMLInputElement>('.ant-table-cell label.ant-checkbox-wrapper input')[1]
         ?.click();
     });
     await waitForWaitTime(200);
@@ -112,10 +112,7 @@ describe('BasicTable Search', () => {
           id: '002',
         },
       ];
-      const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([
-        '001',
-        '002',
-      ]);
+      const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>(['001', '002']);
       return (
         <ProTable
           columns={columns}

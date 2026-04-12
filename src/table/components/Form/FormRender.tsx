@@ -1,13 +1,10 @@
-﻿import { omit } from '@rc-component/util';
+import { omit } from '@rc-component/util';
 import type { FormItemProps } from 'antd';
 import { ConfigProvider, Table } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo } from 'react';
-import type {
-  BaseQueryFilterProps,
-  ProFormInstance,
-  ProFormProps,
-} from '../../../form';
+
+import type { BaseQueryFilterProps, ProFormInstance, ProFormProps } from '../../../form';
 import { BetaSchemaForm } from '../../../form';
 import { ProProvider } from '../../../provider';
 import type { ProSchemaComponentTypes } from '../../../utils';
@@ -160,8 +157,7 @@ const FormRender = <T, U = any>({
       .map((item) => {
         const finalValueType =
           !item.valueType ||
-          (['textarea', 'jsonCode', 'code'].includes(item?.valueType) &&
-            type === 'table')
+          (['textarea', 'jsonCode', 'code'].includes(item?.valueType) && type === 'table')
             ? 'text'
             : (item?.valueType as 'text');
         const columnKey = item?.key || item?.dataIndex?.toString();
@@ -169,9 +165,7 @@ const FormRender = <T, U = any>({
         return {
           ...item,
           width: undefined,
-          ...(item.search && typeof item.search === 'object'
-            ? item.search
-            : {}),
+          ...(item.search && typeof item.search === 'object' ? item.search : {}),
           valueType: finalValueType,
           proFieldProps: {
             ...item.proFieldProps,
@@ -233,10 +227,7 @@ const FormRender = <T, U = any>({
             // 修改 pageSize，变成从 url 中获取的
             const pageInfo = action.current?.pageInfo;
             // 从 values 里获取是因为有时候要从 url中获取的 pageSize。
-            const {
-              current = pageInfo?.current,
-              pageSize = pageInfo?.pageSize,
-            } = values as any;
+            const { current = pageInfo?.current, pageSize = pageInfo?.pageSize } = values as any;
             action.current?.setPageInfo?.({
               ...pageInfo,
               current: parseInt(current, 10),

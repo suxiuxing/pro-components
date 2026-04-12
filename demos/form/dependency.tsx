@@ -1,10 +1,6 @@
-import {
-  ProForm,
-  ProFormDependency,
-  ProFormSelect,
-  ProFormText,
-} from '@xxlabs/pro-components';
 import { message } from 'antd';
+
+import { ProForm, ProFormDependency, ProFormSelect, ProFormText } from '@xxlabs/pro-components';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -62,7 +58,10 @@ const Demo = () => {
         }}
       </ProFormDependency>
       {/* noStyle shouldUpdate is required, writing name will invalidate it */}
-      <ProForm.Item noStyle shouldUpdate>
+      <ProForm.Item
+        noStyle
+        shouldUpdate
+      >
         {(form) => {
           return (
             <ProFormSelect

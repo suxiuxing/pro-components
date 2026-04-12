@@ -1,7 +1,8 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { ProCard } from '@xxlabs/pro-components';
 import { Button, Space, Steps } from 'antd';
 import { useState } from 'react';
+
+import { ProCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [current, setCurrent] = useState(0);
@@ -34,7 +35,10 @@ const Demo = () => {
               ]}
             />
           </ProCard>
-          <ProCard title="Traffic Usage" colSpan={responsive ? 24 : 18}>
+          <ProCard
+            title="Traffic Usage"
+            colSpan={responsive ? 24 : 18}
+          >
             <Space>
               <Button
                 key="primary"

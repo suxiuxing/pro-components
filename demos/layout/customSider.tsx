@@ -1,17 +1,10 @@
-import {
-  GithubFilled,
-  InfoCircleFilled,
-  QuestionCircleFilled,
-} from '@ant-design/icons';
-import type { ProSettings } from '@xxlabs/pro-components';
-import {
-  PageContainer,
-  ProCard,
-  ProLayout,
-  SettingDrawer,
-} from '@xxlabs/pro-components';
+import { GithubFilled, InfoCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
 import { Avatar, Image, Space } from 'antd';
 import { useState } from 'react';
+
+import type { ProSettings } from '@xxlabs/pro-components';
+import { PageContainer, ProCard, ProLayout, SettingDrawer } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 
 const Demo = () => {

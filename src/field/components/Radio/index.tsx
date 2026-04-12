@@ -1,10 +1,8 @@
-﻿import { ConfigProvider, Form, Spin } from 'antd';
+import { ConfigProvider, Form, Spin } from 'antd';
 import React, { useContext, useImperativeHandle, useRef } from 'react';
+
 import { useStyle } from '../../../utils';
-import {
-  isProFieldEditOnlyMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOnlyMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { useFieldFetchData } from '../Select';
 import { FieldRadioEdit } from './FieldRadioEdit';
@@ -29,7 +27,7 @@ const FieldRadio: ProFieldFC<GroupProps> = (
   useImperativeHandle(
     ref,
     () => ({
-      ...(radioRef.current || {}),
+      ...radioRef.current,
       fetchData: (keyWord: string) => fetchData(keyWord),
     }),
     [fetchData],

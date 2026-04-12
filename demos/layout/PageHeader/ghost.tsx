@@ -1,6 +1,7 @@
-import { PageHeader } from '@xxlabs/pro-components';
 import { Button, Descriptions } from 'antd';
 import React from 'react';
+
+import { PageHeader } from '@xxlabs/pro-components';
 
 const App: React.FC = () => (
   <div className="site-page-header-ghost-wrapper">
@@ -12,12 +13,18 @@ const App: React.FC = () => (
       extra={[
         <Button key="3">Operation</Button>,
         <Button key="2">Operation</Button>,
-        <Button key="1" type="primary">
+        <Button
+          key="1"
+          type="primary"
+        >
           Primary
         </Button>,
       ]}
     >
-      <Descriptions size="small" column={3}>
+      <Descriptions
+        size="small"
+        column={3}
+      >
         <Descriptions.Item label="Created">Lili Qu</Descriptions.Item>
         <Descriptions.Item label="Association">
           <a>421421</a>

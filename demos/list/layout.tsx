@@ -1,7 +1,8 @@
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { ProList } from '@xxlabs/pro-components';
 import { Button, Space, Tag } from 'antd';
 import React from 'react';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const IconText = ({ icon, text }: { icon: any; text: string }) => (
   <span>
@@ -30,7 +31,10 @@ const Demo = () => {
     <ProList<{ title: string }>
       toolBarRender={() => {
         return [
-          <Button key="3" type="primary">
+          <Button
+            key="3"
+            type="primary"
+          >
             新建
           </Button>,
         ];
@@ -54,9 +58,21 @@ const Demo = () => {
         {
           listSlot: 'actions',
           render: () => [
-            <IconText icon={StarOutlined} text="156" key="star" />,
-            <IconText icon={LikeOutlined} text="156" key="like" />,
-            <IconText icon={MessageOutlined} text="2" key="message" />,
+            <IconText
+              icon={StarOutlined}
+              text="156"
+              key="star"
+            />,
+            <IconText
+              icon={LikeOutlined}
+              text="156"
+              key="like"
+            />,
+            <IconText
+              icon={MessageOutlined}
+              text="2"
+              key="message"
+            />,
           ],
         },
         {

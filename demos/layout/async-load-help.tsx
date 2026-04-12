@@ -1,6 +1,7 @@
-import { ProHelp, ProHelpPanel } from '@xxlabs/pro-components';
 import { App } from 'antd';
 import ReactMarkdown from 'react-markdown';
+
+import { ProHelp, ProHelpPanel } from '@xxlabs/pro-components';
 
 export const waitTimePromise = async (time: number = 100) => {
   return new Promise((resolve) => {
@@ -149,7 +150,10 @@ const Demo = () => {
               width: 400,
             }}
           >
-            <ProHelpPanel defaultSelectedKey="1" height={448} />
+            <ProHelpPanel
+              defaultSelectedKey="1"
+              height={448}
+            />
           </div>
         </ProHelp>
       </div>

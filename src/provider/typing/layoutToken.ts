@@ -119,8 +119,7 @@ export const getLayoutDesignToken: (
       colorBgMenuItemHover: setAlpha(antdToken.colorTextBase, 0.03),
       colorBgMenuItemSelected: 'transparent',
       colorBgMenuElevated:
-        (finalDesignTokens?.header?.colorBgHeader ?? defaultColorBgHeader) !==
-        defaultColorBgHeader
+        (finalDesignTokens?.header?.colorBgHeader ?? defaultColorBgHeader) !== defaultColorBgHeader
           ? finalDesignTokens.header?.colorBgHeader
           : antdToken.colorBgElevated,
       colorTextMenuSelected: setAlpha(antdToken.colorTextBase, 0.95),
@@ -155,8 +154,7 @@ export const getLayoutDesignToken: (
     pageContainer: {
       colorBgPageContainer: 'transparent',
       paddingInlinePageContainerContent:
-        finalDesignTokens.pageContainer?.paddingInlinePageContainerContent ||
-        40,
+        finalDesignTokens.pageContainer?.paddingInlinePageContainerContent || 40,
       paddingBlockPageContainerContent:
         finalDesignTokens.pageContainer?.paddingBlockPageContainerContent || 32,
       colorBgPageContainerFixed: antdToken.colorBgElevated,

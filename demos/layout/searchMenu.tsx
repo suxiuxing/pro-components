@@ -1,14 +1,13 @@
 import { PlusCircleFilled, SearchOutlined } from '@ant-design/icons';
-import type { MenuDataItem } from '@xxlabs/pro-components';
-import { PageContainer, ProLayout } from '@xxlabs/pro-components';
 import { Input, Space } from 'antd';
 import { useState } from 'react';
+
+import type { MenuDataItem } from '@xxlabs/pro-components';
+import { PageContainer, ProLayout } from '@xxlabs/pro-components';
+
 import complexMenu from './complexMenu';
 
-const filterByMenuData = (
-  data: MenuDataItem[],
-  keyWord: string,
-): MenuDataItem[] =>
+const filterByMenuData = (data: MenuDataItem[], keyWord: string): MenuDataItem[] =>
   data
     .map((item) => {
       if (item.name?.includes(keyWord)) {

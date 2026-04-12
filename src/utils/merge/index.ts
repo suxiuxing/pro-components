@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 用于合并 n 个对象
  * @param  {any[]} ...rest
  * @returns T

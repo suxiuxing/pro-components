@@ -1,5 +1,6 @@
-﻿import { Avatar } from 'antd';
+import { Avatar } from 'antd';
 import type { ReactNode } from 'react';
+
 import { FieldText } from '.';
 import { ProRenderFieldPropsType } from '../provider';
 import { pickProProps } from '../utils';
@@ -38,9 +39,7 @@ import { wrapProFieldLight } from './internal/ProFieldLightWrapper';
  * If a valueType needs different read vs edit behavior, use an explicit
  * `{ render, formItemRender }` object for that key instead.
  */
-function sameRenderPair(
-  fn: (text: any, props: any) => ReactNode,
-): ProRenderFieldPropsType {
+function sameRenderPair(fn: (text: any, props: any) => ReactNode): ProRenderFieldPropsType {
   return {
     render: fn as ProRenderFieldPropsType['render'],
     formItemRender: fn as ProRenderFieldPropsType['formItemRender'],
@@ -48,14 +47,10 @@ function sameRenderPair(
 }
 
 /** 内置 valueType → render / formItemRender；键集合与 {@link ProFieldBuiltinValueType} 一致 */
-const ValueTypeToComponentMap: Record<
-  ProFieldBuiltinValueType,
-  ProRenderFieldPropsType
-> = {
+const ValueTypeToComponentMap: Record<ProFieldBuiltinValueType, ProRenderFieldPropsType> = {
   progress: sameRenderPair((text, props) => {
     const fieldProps = pickProProps(props.fieldProps);
-    const placeholder =
-      typeof props.placeholder === 'string' ? props.placeholder : undefined;
+    const placeholder = typeof props.placeholder === 'string' ? props.placeholder : undefined;
     return (
       <FieldProgress
         mode={props.mode}
@@ -67,8 +62,7 @@ const ValueTypeToComponentMap: Record<
   }),
   money: sameRenderPair((text, props) => {
     const fieldProps = pickProProps(props.fieldProps);
-    const placeholder =
-      typeof props.placeholder === 'string' ? props.placeholder : undefined;
+    const placeholder = typeof props.placeholder === 'string' ? props.placeholder : undefined;
     return (
       <FieldMoney
         mode={props.mode}
@@ -80,8 +74,7 @@ const ValueTypeToComponentMap: Record<
   }),
   percent: sameRenderPair((text, props) => {
     const fieldProps = pickProProps(props.fieldProps);
-    const placeholder =
-      typeof props.placeholder === 'string' ? props.placeholder : undefined;
+    const placeholder = typeof props.placeholder === 'string' ? props.placeholder : undefined;
     return (
       <FieldPercent
         mode={props.mode}
@@ -91,17 +84,31 @@ const ValueTypeToComponentMap: Record<
       />
     );
   }),
-  image: sameRenderPair((text, props) => <FieldImage {...props} text={text} />),
+  image: sameRenderPair((text, props) => (
+    <FieldImage
+      {...props}
+      text={text}
+    />
+  )),
   date: sameRenderPair((text, props) =>
     wrapProFieldLight(
       props.light,
-      <FieldDatePicker format="YYYY-MM-DD" {...props} text={text} />,
+      <FieldDatePicker
+        format="YYYY-MM-DD"
+        {...props}
+        text={text}
+      />,
     ),
   ),
   dateWeek: sameRenderPair((text, props) =>
     wrapProFieldLight(
       props.light,
-      <FieldDatePicker format="YYYY-wo" picker="week" {...props} text={text} />,
+      <FieldDatePicker
+        format="YYYY-wo"
+        picker="week"
+        {...props}
+        text={text}
+      />,
     ),
   ),
   dateWeekRange: sameRenderPair((text, props) =>
@@ -177,11 +184,20 @@ const ValueTypeToComponentMap: Record<
   dateYear: sameRenderPair((text, props) =>
     wrapProFieldLight(
       props.light,
-      <FieldDatePicker format="YYYY" picker="year" {...props} text={text} />,
+      <FieldDatePicker
+        format="YYYY"
+        picker="year"
+        {...props}
+        text={text}
+      />,
     ),
   ),
   dateRange: sameRenderPair((text, props) => (
-    <FieldRangePicker format="YYYY-MM-DD" {...props} text={text} />
+    <FieldRangePicker
+      format="YYYY-MM-DD"
+      {...props}
+      text={text}
+    />
   )),
   dateTime: sameRenderPair((text, props) =>
     wrapProFieldLight(
@@ -208,33 +224,58 @@ const ValueTypeToComponentMap: Record<
   time: sameRenderPair((text, props) =>
     wrapProFieldLight(
       props.light,
-      <FieldTimePicker format="HH:mm:ss" {...props} text={text} />,
+      <FieldTimePicker
+        format="HH:mm:ss"
+        {...props}
+        text={text}
+      />,
     ),
   ),
   timeRange: sameRenderPair((text, props) =>
     wrapProFieldLight(
       props.light,
-      <FieldTimeRangePicker format="HH:mm:ss" {...props} text={text} />,
+      <FieldTimeRangePicker
+        format="HH:mm:ss"
+        {...props}
+        text={text}
+      />,
     ),
   ),
   fromNow: sameRenderPair((text, props) => (
-    <FieldFromNow {...props} text={text} />
+    <FieldFromNow
+      {...props}
+      text={text}
+    />
   )),
-  index: sameRenderPair((text) => (
-    <FieldIndexColumn>{(text as number) + 1}</FieldIndexColumn>
-  )),
+  index: sameRenderPair((text) => <FieldIndexColumn>{(text as number) + 1}</FieldIndexColumn>),
   indexBorder: sameRenderPair((text) => (
     <FieldIndexColumn border>{(text as number) + 1}</FieldIndexColumn>
   )),
   avatar: sameRenderPair((text) => (
-    <Avatar src={text as string} size={22} shape="circle" />
+    <Avatar
+      src={text as string}
+      size={22}
+      shape="circle"
+    />
   )),
-  code: sameRenderPair((text, props) => <FieldCode {...props} text={text} />),
+  code: sameRenderPair((text, props) => (
+    <FieldCode
+      {...props}
+      text={text}
+    />
+  )),
   jsonCode: sameRenderPair((text, props) => (
-    <FieldCode language="json" {...props} text={text} />
+    <FieldCode
+      language="json"
+      {...props}
+      text={text}
+    />
   )),
   textarea: sameRenderPair((text, props) => (
-    <FieldTextArea {...props} text={text} />
+    <FieldTextArea
+      {...props}
+      text={text}
+    />
   )),
   digit: sameRenderPair((text, props) => {
     const fieldProps = pickProProps(props.fieldProps);
@@ -254,7 +295,10 @@ const ValueTypeToComponentMap: Record<
     );
   }),
   digitRange: sameRenderPair((text, props) => (
-    <FieldDigitRange {...props} text={text} />
+    <FieldDigitRange
+      {...props}
+      text={text}
+    />
   )),
   second: sameRenderPair((text, props) => (
     <FieldSecond
@@ -264,39 +308,82 @@ const ValueTypeToComponentMap: Record<
     />
   )),
   select: sameRenderPair((text, props) =>
-    wrapProFieldLight(props.light, <FieldSelect {...props} text={text} />),
+    wrapProFieldLight(
+      props.light,
+      <FieldSelect
+        {...props}
+        text={text}
+      />,
+    ),
   ),
   text: sameRenderPair((text, props) =>
     'valueEnum' in props ? (
-      wrapProFieldLight(props.light, <FieldSelect {...props} text={text} />)
+      wrapProFieldLight(
+        props.light,
+        <FieldSelect
+          {...props}
+          text={text}
+        />,
+      )
     ) : (
-      <FieldText {...props} text={text as string} />
+      <FieldText
+        {...props}
+        text={text as string}
+      />
     ),
   ),
   checkbox: sameRenderPair((text, props) => (
-    <FieldCheckbox {...props} text={text} />
+    <FieldCheckbox
+      {...props}
+      text={text}
+    />
   )),
-  radio: sameRenderPair((text, props) => <FieldRadio {...props} text={text} />),
+  radio: sameRenderPair((text, props) => (
+    <FieldRadio
+      {...props}
+      text={text}
+    />
+  )),
   radioButton: sameRenderPair((text, props) => (
-    <FieldRadio radioType="button" {...props} text={text} />
+    <FieldRadio
+      radioType="button"
+      {...props}
+      text={text}
+    />
   )),
-  rate: sameRenderPair((text, props) => <FieldRate {...props} text={text} />),
+  rate: sameRenderPair((text, props) => (
+    <FieldRate
+      {...props}
+      text={text}
+    />
+  )),
   slider: sameRenderPair((text, props) => (
-    <FieldSlider {...props} text={text} />
+    <FieldSlider
+      {...props}
+      text={text}
+    />
   )),
   switch: sameRenderPair((text, props) => (
-    <FieldSwitch {...props} text={text} />
+    <FieldSwitch
+      {...props}
+      text={text}
+    />
   )),
   option: sameRenderPair((text, props) => (
-    <FieldOptions {...props} text={text} />
+    <FieldOptions
+      {...props}
+      text={text}
+    />
   )),
   password: sameRenderPair((text, props) => (
-    <FieldPassword {...props} text={text} />
+    <FieldPassword
+      {...props}
+      text={text}
+    />
   )),
   cascader: sameRenderPair((text, props) => {
     const fieldProps = pickProProps(props.fieldProps);
-    const placeholder =
-      typeof props.placeholder === 'string' ? props.placeholder : undefined;
+    const placeholder = typeof props.placeholder === 'string' ? props.placeholder : undefined;
     return (
       <FieldCascader
         {...props}
@@ -308,13 +395,22 @@ const ValueTypeToComponentMap: Record<
     );
   }),
   treeSelect: sameRenderPair((text, props) => (
-    <FieldTreeSelect {...props} text={text} />
+    <FieldTreeSelect
+      {...props}
+      text={text}
+    />
   )),
   color: sameRenderPair((text, props) => (
-    <FieldColorPicker {...props} text={text} />
+    <FieldColorPicker
+      {...props}
+      text={text}
+    />
   )),
   segmented: sameRenderPair((text, props) => (
-    <FieldSegmented {...props} text={text} />
+    <FieldSegmented
+      {...props}
+      text={text}
+    />
   )),
 };
 

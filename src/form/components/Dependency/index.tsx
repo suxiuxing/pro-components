@@ -4,6 +4,7 @@ import { Form } from 'antd';
 import type { NamePath } from 'antd/lib/form/interface';
 import { merge } from 'lodash-es';
 import React, { useContext, useMemo } from 'react';
+
 import { isDeepEqualReact, ProFormContext } from '../../../utils';
 import type { ProFormInstance } from '../../BaseForm';
 import { FormListContext } from '../List';
@@ -51,12 +52,7 @@ const ProFormDependency = <T,>({
 
       return name.flat(1);
     });
-  }, [
-    formListField.listName,
-    formListField.name,
-    ignoreFormListField,
-    nameList?.toString(),
-  ]);
+  }, [formListField.listName, formListField.name, ignoreFormListField, nameList?.toString()]);
 
   return (
     <Form.Item
@@ -70,10 +66,7 @@ const ProFormDependency = <T,>({
         }
 
         return flattenNames.some((name) => {
-          return !isDeepEqualReact(
-            get(prevValues, name),
-            get(nextValues, name),
-          );
+          return !isDeepEqualReact(get(prevValues, name), get(nextValues, name));
         });
       }}
     >

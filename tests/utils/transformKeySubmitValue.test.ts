@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { describe, expect, it } from 'vitest';
+
 import { transformKeySubmitValue } from '../../src/utils/transformKeySubmitValue';
 
 describe('transformKeySubmitValue', () => {
@@ -243,9 +244,7 @@ describe('transformKeySubmitValue', () => {
     const transforms = {
       name: (value: string) => ({ displayName: value }),
     };
-    expect(transformKeySubmitValue(values as any, transforms)).toBe(
-      'string value',
-    );
+    expect(transformKeySubmitValue(values as any, transforms)).toBe('string value');
   });
 
   it('handles null values', () => {
@@ -305,9 +304,7 @@ describe('transformKeySubmitValue', () => {
               },
               {
                 name: 'Backend',
-                members: [
-                  { memberName: 'Charlie', skills: ['Node.js', 'Python'] },
-                ],
+                members: [{ memberName: 'Charlie', skills: ['Node.js', 'Python'] }],
               },
             ],
           },
@@ -340,8 +337,7 @@ describe('transformKeySubmitValue', () => {
       },
     };
     const transforms = {
-      'user.hobbies': (value: string[]) =>
-        value.map((hobby) => hobby.toUpperCase()),
+      'user.hobbies': (value: string[]) => value.map((hobby) => hobby.toUpperCase()),
     };
     expect(transformKeySubmitValue(values, transforms)).toEqual({
       user: {
@@ -510,8 +506,9 @@ describe('transformKeySubmitValue', () => {
       },
     };
     const transforms = {
-      'level1.level2.level3.level4.level5.level6.level7.level8.level9.level10.value':
-        (value: string) => ({ deepTransformedValue: value }),
+      'level1.level2.level3.level4.level5.level6.level7.level8.level9.level10.value': (
+        value: string,
+      ) => ({ deepTransformedValue: value }),
     };
     expect(transformKeySubmitValue(values, transforms)).toEqual({
       level1: {

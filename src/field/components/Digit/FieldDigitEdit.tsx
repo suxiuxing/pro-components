@@ -1,6 +1,7 @@
-﻿import { omit } from '@rc-component/util';
+import { omit } from '@rc-component/util';
 import { InputNumber } from 'antd';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import { isEmptyOrWhitespace } from './digitUtils';
 import type { FieldDigitProps } from './types';
@@ -11,14 +12,7 @@ type Props = Parameters<ProFieldFC<FieldDigitProps>>[0] & {
 };
 
 export function FieldDigitEdit(props: Props, ref: React.Ref<unknown>) {
-  const {
-    text,
-    mode: type,
-    formItemRender,
-    fieldProps,
-    placeholderValue,
-    proxyChange,
-  } = props;
+  const { text, mode: type, formItemRender, fieldProps, placeholderValue, proxyChange } = props;
   const dom = (
     <InputNumber<number | string>
       ref={ref as React.Ref<any>}

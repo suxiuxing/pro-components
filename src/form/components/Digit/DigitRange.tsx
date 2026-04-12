@@ -1,5 +1,6 @@
-﻿import type { InputNumberProps } from 'antd';
+import type { InputNumberProps } from 'antd';
 import React from 'react';
+
 import { FieldDigitRange } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
 import type { ProFormFieldItemProps } from '../../typing';
@@ -18,11 +19,10 @@ export type RangeInputNumberProps = Omit<
   onChange?: (value?: ValuePair) => void;
 };
 
-export type ProFormDigitRangeProps =
-  ProFormFieldItemProps<RangeInputNumberProps> & {
-    separator?: string;
-    separatorWidth?: number;
-  };
+export type ProFormDigitRangeProps = ProFormFieldItemProps<RangeInputNumberProps> & {
+  separator?: string;
+  separatorWidth?: number;
+};
 /**
  * 数字范围输入组件
  *
@@ -31,10 +31,10 @@ export type ProFormDigitRangeProps =
  * @param rest
  * @param ref
  */
-const ProFormDigit: React.ForwardRefRenderFunction<
-  any,
-  ProFormDigitRangeProps
-> = ({ fieldProps, proFieldProps, ...rest }, ref) => {
+const ProFormDigit: React.ForwardRefRenderFunction<any, ProFormDigitRangeProps> = (
+  { fieldProps, proFieldProps, ...rest },
+  ref,
+) => {
   return (
     <ProConfigProvider
       valueTypeMap={{

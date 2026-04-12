@@ -1,4 +1,5 @@
 import { EllipsisOutlined } from '@ant-design/icons';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
 

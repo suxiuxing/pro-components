@@ -19,6 +19,7 @@ import type { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import type { DataNode } from 'antd/lib/tree';
 import { clsx } from 'clsx';
 import React, { useContext, useEffect, useMemo, useRef } from 'react';
+
 import { ProProvider, useIntl } from '../../../provider';
 import { runFunction, useRefFunction } from '../../../utils';
 import type { ColumnsState } from '../../Store/Provide';
@@ -103,10 +104,11 @@ const CheckboxListItem: React.FC<{
     </span>
   );
   return (
-    <span className={clsx(`${className}-list-item`, hashId)} key={columnKey}>
-      <div className={clsx(`${className}-list-item-title`, hashId)}>
-        {title}
-      </div>
+    <span
+      className={clsx(`${className}-list-item`, hashId)}
+      key={columnKey}
+    >
+      <div className={clsx(`${className}-list-item-title`, hashId)}>{title}</div>
       {showListItemOption && !isLeaf ? dom : null}
     </span>
   );
@@ -133,16 +135,12 @@ const CheckboxList: React.FC<{
 }) => {
   const { hashId } = useContext(ProProvider);
 
-  const { columnsMap, setColumnsMap, sortKeyColumns, setSortKeyColumns } =
-    useContext(TableContext);
+  const { columnsMap, setColumnsMap, sortKeyColumns, setSortKeyColumns } = useContext(TableContext);
   const show = list && list.length > 0;
   const treeDataConfig = useMemo(() => {
     if (!show) return {};
     const checkedKeys: string[] = [];
-    const treeMap = new Map<
-      string | number,
-      DataNode & { parentKey?: string }
-    >();
+    const treeMap = new Map<string | number, DataNode & { parentKey?: string }>();
 
     const loopData = (
       data: any[],
@@ -166,9 +164,7 @@ const CheckboxList: React.FC<{
           selectable: false,
           disabled: config.disable === true,
           disableCheckbox:
-            typeof config.disable === 'boolean'
-              ? config.disable
-              : config.disable?.checkbox,
+            typeof config.disable === 'boolean' ? config.disable : config.disable?.checkbox,
           isLeaf: parentConfig ? true : undefined,
         };
 
@@ -193,37 +189,29 @@ const CheckboxList: React.FC<{
   }, [columnsMap, list, show]);
 
   /** 移动到指定的位置 */
-  const move = useRefFunction(
-    (id: React.Key, targetId: React.Key, dropPosition: number) => {
-      const newMap = { ...columnsMap };
-      const newColumns = [...sortKeyColumns];
-      const findIndex = newColumns.findIndex((columnKey) => columnKey === id);
-      const targetIndex = newColumns.findIndex(
-        (columnKey) => columnKey === targetId,
-      );
-      const isDownWard = dropPosition >= findIndex;
-      if (findIndex < 0) return;
-      const targetItem = newColumns[findIndex];
-      newColumns.splice(findIndex, 1);
+  const move = useRefFunction((id: React.Key, targetId: React.Key, dropPosition: number) => {
+    const newMap = { ...columnsMap };
+    const newColumns = [...sortKeyColumns];
+    const findIndex = newColumns.findIndex((columnKey) => columnKey === id);
+    const targetIndex = newColumns.findIndex((columnKey) => columnKey === targetId);
+    const isDownWard = dropPosition >= findIndex;
+    if (findIndex < 0) return;
+    const targetItem = newColumns[findIndex];
+    newColumns.splice(findIndex, 1);
 
-      if (dropPosition === 0) {
-        newColumns.unshift(targetItem);
-      } else {
-        newColumns.splice(
-          isDownWard ? targetIndex : targetIndex + 1,
-          0,
-          targetItem,
-        );
-      }
-      // 重新生成排序数组
-      newColumns.forEach((key, order) => {
-        newMap[key] = { ...(newMap[key] || {}), order };
-      });
-      // 更新数组
-      setColumnsMap(newMap);
-      setSortKeyColumns(newColumns);
-    },
-  );
+    if (dropPosition === 0) {
+      newColumns.unshift(targetItem);
+    } else {
+      newColumns.splice(isDownWard ? targetIndex : targetIndex + 1, 0, targetItem);
+    }
+    // 重新生成排序数组
+    newColumns.forEach((key, order) => {
+      newMap[key] = { ...newMap[key], order };
+    });
+    // 更新数组
+    setColumnsMap(newMap);
+    setSortKeyColumns(newColumns);
+  });
 
   /** 选中反选功能 */
   const onCheckTree = useRefFunction((e) => {
@@ -234,9 +222,7 @@ const CheckboxList: React.FC<{
       newSetting.show = e.checked;
       // 如果含有子节点，也要选中
       if (treeDataConfig.map?.get(key)?.children) {
-        treeDataConfig.map
-          .get(key)
-          ?.children?.forEach((item) => loopSetShow(item.key as string));
+        treeDataConfig.map.get(key)?.children?.forEach((item) => loopSetShow(item.key as string));
       }
 
       // 如果子节点选择，那父节点也应该选中
@@ -258,18 +244,13 @@ const CheckboxList: React.FC<{
   const listDom = (
     <Tree
       itemHeight={24}
-      draggable={
-        draggable &&
-        !!treeDataConfig.list?.length &&
-        treeDataConfig.list?.length > 1
-      }
+      draggable={draggable && !!treeDataConfig.list?.length && treeDataConfig.list?.length > 1}
       checkable={checkable}
       onDrop={(info) => {
         const dropKey = info.node.key;
         const dragKey = info.dragNode.key;
         const { dropPosition, dropToGap } = info;
-        const position =
-          dropPosition === -1 || !dropToGap ? dropPosition + 1 : dropPosition;
+        const position = dropPosition === -1 || !dropToGap ? dropPosition + 1 : dropPosition;
         move(dragKey, dropKey, position);
       }}
       blockNode
@@ -310,11 +291,7 @@ const CheckboxList: React.FC<{
   );
   return (
     <>
-      {showTitle && (
-        <span className={clsx(`${className}-list-title`, hashId)}>
-          {listTitle}
-        </span>
-      )}
+      {showTitle && <span className={clsx(`${className}-list-title`, hashId)}>{listTitle}</span>}
       {listDom}
     </>
   );
@@ -327,14 +304,7 @@ const GroupCheckboxList: React.FC<{
   checkable: boolean;
   showListItemOption: boolean;
   listsHeight?: number;
-}> = ({
-  localColumns,
-  className,
-  draggable,
-  checkable,
-  showListItemOption,
-  listsHeight,
-}) => {
+}> = ({ localColumns, className, draggable, checkable, showListItemOption, listsHeight }) => {
   const { hashId } = useContext(ProProvider);
   const rightList: (ProColumns<any> & { index?: number })[] = [];
   const leftList: (ProColumns<any> & { index?: number })[] = [];
@@ -468,13 +438,10 @@ function ColumnSetting<T>(props: ColumnSettingProps<T>) {
   });
 
   // 未选中的 key 列表
-  const unCheckedKeys = Object.values(columnsMap).filter(
-    (value) => !value || value.show === false,
-  );
+  const unCheckedKeys = Object.values(columnsMap).filter((value) => !value || value.show === false);
 
   // 是否已经选中
-  const indeterminate =
-    unCheckedKeys.length > 0 && unCheckedKeys.length !== localColumns.length;
+  const indeterminate = unCheckedKeys.length > 0 && unCheckedKeys.length !== localColumns.length;
 
   const intl = useIntl();
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
@@ -490,10 +457,7 @@ function ColumnSetting<T>(props: ColumnSettingProps<T>) {
           ) : (
             <Checkbox
               indeterminate={indeterminate}
-              checked={
-                unCheckedKeys.length === 0 &&
-                unCheckedKeys.length !== localColumns.length
-              }
+              checked={unCheckedKeys.length === 0 && unCheckedKeys.length !== localColumns.length}
               onChange={(e) => {
                 checkedAll(e);
               }}
@@ -510,7 +474,10 @@ function ColumnSetting<T>(props: ColumnSettingProps<T>) {
             </a>
           ) : null}
           {props?.extra ? (
-            <Space size={12} align="center">
+            <Space
+              size={12}
+              align="center"
+            >
               {props.extra}
             </Space>
           ) : null}
@@ -533,9 +500,7 @@ function ColumnSetting<T>(props: ColumnSettingProps<T>) {
       }
     >
       {props.children || (
-        <Tooltip
-          title={intl.getMessage('tableToolBar.columnSetting', '列设置')}
-        >
+        <Tooltip title={intl.getMessage('tableToolBar.columnSetting', '列设置')}>
           {props.settingIcon ?? <SettingOutlined />}
         </Tooltip>
       )}

@@ -1,6 +1,8 @@
+import { Modal } from 'antd';
+
 import type { AppItemProps, ProSettings } from '@xxlabs/pro-components';
 import { ProConfigProvider, ProLayout } from '@xxlabs/pro-components';
-import { Modal } from 'antd';
+
 import defaultProps from './_defaultProps';
 
 const AppGroupList: any = [
@@ -88,10 +90,7 @@ const Demo = () => {
     layout: 'mix',
     splitMenus: true,
   };
-  const itemClick = (
-    item: AppItemProps,
-    popoverRef?: React.RefObject<HTMLSpanElement | null>,
-  ) => {
+  const itemClick = (item: AppItemProps, popoverRef?: React.RefObject<HTMLSpanElement | null>) => {
     // 点击后关闭 Popover
     popoverRef?.current?.click?.();
 
@@ -109,7 +108,10 @@ const Demo = () => {
   };
 
   return (
-    <div id="test-pro-layout" style={{ height: '100vh' }}>
+    <div
+      id="test-pro-layout"
+      style={{ height: '100vh' }}
+    >
       <ProConfigProvider hashed={false}>
         <ProLayout
           {...defaultProps}

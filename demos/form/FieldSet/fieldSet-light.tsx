@@ -1,9 +1,4 @@
-﻿import {
-  LightFilter,
-  ProFormFieldSet,
-  ProFormSelect,
-  ProFormText,
-} from '@xxlabs/pro-components';
+import { LightFilter, ProFormFieldSet, ProFormSelect, ProFormText } from '@xxlabs/pro-components';
 
 export function App() {
   return (

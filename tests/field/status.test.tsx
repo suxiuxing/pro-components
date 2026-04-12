@@ -1,6 +1,7 @@
 import { cleanup, render } from '@testing-library/react';
-import { ProField as Field } from '@xxlabs/pro-components';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import { ProField as Field } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();

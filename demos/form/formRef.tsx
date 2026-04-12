@@ -1,12 +1,9 @@
-import type { ProFormInstance } from '@xxlabs/pro-components';
-import {
-  ProForm,
-  ProFormDatePicker,
-  ProFormText,
-} from '@xxlabs/pro-components';
 import { Button, message, Space } from 'antd';
 import dayjs from 'dayjs';
 import { useRef } from 'react';
+
+import type { ProFormInstance } from '@xxlabs/pro-components';
+import { ProForm, ProFormDatePicker, ProFormText } from '@xxlabs/pro-components';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -37,9 +34,7 @@ const Demo = () => {
 
   const validateAndGetFormatValue = () => {
     formRef.current?.validateFieldsReturnFormatValue?.().then((values) => {
-      message.success(
-        `校验表单并返回格式化后的所有数据：${JSON.stringify(values)}`,
-      );
+      message.success(`校验表单并返回格式化后的所有数据：${JSON.stringify(values)}`);
     });
   };
 
@@ -52,14 +47,29 @@ const Demo = () => {
         render: (props, doms) => {
           return [
             ...doms,
-            <Button htmlType="button" onClick={onFill} key="edit">
+            <Button
+              htmlType="button"
+              onClick={onFill}
+              key="edit"
+            >
               一键填写
             </Button>,
-            <Button htmlType="button" onClick={getCompanyName} key="read">
+            <Button
+              htmlType="button"
+              onClick={getCompanyName}
+              key="read"
+            >
               读取公司
             </Button>,
-            <Space.Compact key="refs" style={{ display: 'block' }}>
-              <Button htmlType="button" onClick={getFormatValues} key="format">
+            <Space.Compact
+              key="refs"
+              style={{ display: 'block' }}
+            >
+              <Button
+                htmlType="button"
+                onClick={getFormatValues}
+                key="format"
+              >
                 获取格式化后的所有数据
               </Button>
               <Button
@@ -93,7 +103,10 @@ const Demo = () => {
         label="我方公司名称"
         placeholder="请输入名称"
       />
-      <ProFormDatePicker name="date" initialValue={dayjs('2021-08-09')} />
+      <ProFormDatePicker
+        name="date"
+        initialValue={dayjs('2021-08-09')}
+      />
     </ProForm>
   );
 };

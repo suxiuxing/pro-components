@@ -1,4 +1,5 @@
-﻿import React from 'react';
+import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import { getTextByLocale } from './moneyFormat';
 import type { FieldMoneyProps } from './types';

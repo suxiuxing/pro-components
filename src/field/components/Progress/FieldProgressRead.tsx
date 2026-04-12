@@ -1,5 +1,6 @@
-﻿import { Progress } from 'antd';
+import { Progress } from 'antd';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import { getProgressStatus } from './utils';
 

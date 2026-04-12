@@ -1,4 +1,5 @@
 import { EllipsisOutlined } from '@ant-design/icons';
+
 import { StatisticCard } from '@xxlabs/pro-components';
 
 const { Statistic } = StatisticCard;
@@ -12,7 +13,12 @@ const Demo = () => {
         statistic={{
           value: 86.2,
           suffix: '分',
-          description: <Statistic title="排名前" value="20%" />,
+          description: (
+            <Statistic
+              title="排名前"
+              value="20%"
+            />
+          ),
         }}
         chart={
           <img

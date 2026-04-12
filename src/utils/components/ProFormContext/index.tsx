@@ -1,4 +1,4 @@
-﻿import type { FormInstance } from 'antd';
+import type { FormInstance } from 'antd';
 import type { NamePath } from 'antd/lib/form/interface';
 import React from 'react';
 

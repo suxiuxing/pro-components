@@ -1,11 +1,7 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import {
-  EditableProTable,
-  ProCard,
-  ProFormField,
-  ProFormRadio,
-} from '@xxlabs/pro-components';
 import React, { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { EditableProTable, ProCard, ProFormField, ProFormRadio } from '@xxlabs/pro-components';
 
 import { createEditableRowId, DEMO_TASK_STATUS_ENUM } from '../../mockData';
 
@@ -54,9 +50,7 @@ const defaultData: DataSourceType[] = [
 const Demo = () => {
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
   const [dataSource, setDataSource] = useState<readonly DataSourceType[]>([]);
-  const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>(
-    'bottom',
-  );
+  const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>('bottom');
 
   const columns: ProColumns<DataSourceType>[] = [
     {
@@ -65,8 +59,7 @@ const Demo = () => {
       tooltip: '只读，使用form.getFieldValue获取不到值',
       formItemProps: (form, { rowIndex }) => {
         return {
-          rules:
-            rowIndex > 1 ? [{ required: true, message: '此项为必填项' }] : [],
+          rules: rowIndex > 1 ? [{ required: true, message: '此项为必填项' }] : [],
         };
       },
       editable: (text, record, index) => {
@@ -207,7 +200,12 @@ const Demo = () => {
           onChange: setEditableRowKeys,
         }}
       />
-      <ProCard title="表格数据" headerBordered collapsible defaultCollapsed>
+      <ProCard
+        title="表格数据"
+        headerBordered
+        collapsible
+        defaultCollapsed
+      >
         <ProFormField
           ignoreFormItem
           fieldProps={{

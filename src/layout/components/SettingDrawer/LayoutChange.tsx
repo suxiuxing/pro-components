@@ -1,20 +1,21 @@
 import { List, Select, Switch, Tooltip } from 'antd';
 import { clsx } from 'clsx';
 import React from 'react';
+
 import type { ProSettings } from '../../defaultSettings';
 import { defaultSettings } from '../../defaultSettings';
 import type { SettingItemProps } from './index';
 import { getFormatMessage } from './index';
 
 export const renderLayoutSettingItem = (item: SettingItemProps) => {
-  const action = React.cloneElement(
-    item.action as React.ReactElement<Record<string, any>>,
-    {
-      disabled: item.disabled,
-    },
-  );
+  const action = React.cloneElement(item.action as React.ReactElement<Record<string, any>>, {
+    disabled: item.disabled,
+  });
   return (
-    <Tooltip title={item.disabled ? item.disabledReason : ''} placement="left">
+    <Tooltip
+      title={item.disabled ? item.disabledReason : ''}
+      placement="left"
+    >
       <List.Item actions={[action]}>
         <span style={{ opacity: item.disabled ? 0.5 : 1 }}>{item.title}</span>
       </List.Item>

@@ -1,5 +1,6 @@
 import type { DatePickerProps } from 'antd';
 import React from 'react';
+
 import type { ProFormFieldItemProps } from '../../typing';
 import { BaseDatePicker } from './BaseDatePicker';
 
@@ -10,8 +11,8 @@ const valueType = 'dateTime' as const;
  *
  * @param
  */
-const ProFormDateTimePicker: React.FC<ProFormFieldItemProps<DatePickerProps>> =
-  React.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
+const ProFormDateTimePicker: React.FC<ProFormFieldItemProps<DatePickerProps>> = React.forwardRef(
+  ({ fieldProps, proFieldProps, ...rest }, ref) => {
     return (
       <BaseDatePicker
         ref={ref}
@@ -25,6 +26,7 @@ const ProFormDateTimePicker: React.FC<ProFormFieldItemProps<DatePickerProps>> =
         {...rest}
       />
     );
-  });
+  },
+);
 
 export default ProFormDateTimePicker;

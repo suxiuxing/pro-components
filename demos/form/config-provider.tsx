@@ -1,4 +1,7 @@
 import { SmileOutlined } from '@ant-design/icons';
+import { ConfigProvider, Input, message } from 'antd';
+import enUS from 'antd/lib/locale/en_US';
+
 import {
   LightWrapper,
   ProForm,
@@ -12,8 +15,6 @@ import {
   ProFormUploadDragger,
   StepsForm,
 } from '@xxlabs/pro-components';
-import { ConfigProvider, Input, message } from 'antd';
-import enUS from 'antd/lib/locale/en_US';
 
 const Demo = () => (
   <ConfigProvider locale={enUS}>
@@ -46,7 +47,10 @@ const Demo = () => (
       />
       <ProFormRadio name="test" />
       <ProFormCheckbox name="test2" />
-      <ProFormSwitch width="lg" label="是否打开" />
+      <ProFormSwitch
+        width="lg"
+        label="是否打开"
+      />
       <ProFormUploadDragger
         title="拖动上传"
         icon={<SmileOutlined />}
@@ -59,7 +63,10 @@ const Demo = () => (
       />
       <LightWrapper valuePropName="value">test</LightWrapper>
       <LightWrapper valuePropName="value">test</LightWrapper>
-      <ProFormSlider name="range" label="范围" />
+      <ProFormSlider
+        name="range"
+        label="范围"
+      />
       <ProFormField>test</ProFormField>
       <ProFormField>
         <Input />

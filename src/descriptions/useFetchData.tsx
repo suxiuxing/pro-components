@@ -1,5 +1,6 @@
 import { useControlledState } from '@rc-component/util';
 import { useCallback, useEffect } from 'react';
+
 import { useRefFunction } from '../utils';
 
 export type ProDescriptionsRequestResult<T = unknown> = {
@@ -30,25 +31,14 @@ const useFetchData = <TData, TResponse extends ProDescriptionsRequestResult<TDat
     onDataSourceChange?: (value: TData | undefined) => void;
   },
 ): UseProDescriptionsFetchAction<TData> => {
-  const {
-    onRequestError,
-    effects,
-    manual,
-    dataSource,
-    defaultDataSource,
-    onDataSourceChange,
-  } = options || {};
+  const { onRequestError, effects, manual, dataSource, defaultDataSource, onDataSourceChange } =
+    options || {};
   const [entity, setEntityInner] = useControlledState<TData | undefined>(
     defaultDataSource,
     dataSource,
   );
   const setEntity = useCallback(
-    (
-      updater:
-        | TData
-        | undefined
-        | ((prev: TData | undefined) => TData | undefined),
-    ) => {
+    (updater: TData | undefined | ((prev: TData | undefined) => TData | undefined)) => {
       setEntityInner((prev) => {
         const next =
           typeof updater === 'function'
@@ -77,12 +67,7 @@ const useFetchData = <TData, TResponse extends ProDescriptionsRequestResult<TDat
    * 避免在渲染阶段调用外部回调导致的 React 警告
    */
   const setLoading = useCallback(
-    (
-      updater:
-        | boolean
-        | undefined
-        | ((prev: boolean | undefined) => boolean | undefined),
-    ) => {
+    (updater: boolean | undefined | ((prev: boolean | undefined) => boolean | undefined)) => {
       setLoadingInner((prev) => {
         const next =
           typeof updater === 'function'

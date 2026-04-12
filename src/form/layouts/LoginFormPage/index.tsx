@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo } from 'react';
+
 import { useIntl } from '../../../provider';
 import type { ProFormProps } from '../ProForm';
 import { ProForm } from '../ProForm';
@@ -70,9 +71,7 @@ export type LoginFormPageProps<T> = {
   otherStyle?: React.CSSProperties;
 } & Omit<ProFormProps<T>, 'title'>;
 
-export function LoginFormPage<T = Record<string, any>>(
-  props: Partial<LoginFormPageProps<T>>,
-) {
+export function LoginFormPage<T = Record<string, any>>(props: Partial<LoginFormPageProps<T>>) {
   const {
     logo,
     message,
@@ -123,7 +122,12 @@ export function LoginFormPage<T = Record<string, any>>(
   const logoDom = useMemo(() => {
     if (!logo) return null;
     if (typeof logo === 'string') {
-      return <img src={logo} alt="" />;
+      return (
+        <img
+          src={logo}
+          alt=""
+        />
+      );
     }
     return logo;
   }, [logo]);
@@ -134,9 +138,7 @@ export function LoginFormPage<T = Record<string, any>>(
       style={{
         ...style,
         position: 'relative',
-        backgroundImage: backgroundImageUrl
-          ? `url("${backgroundImageUrl}")`
-          : undefined,
+        backgroundImage: backgroundImageUrl ? `url("${backgroundImageUrl}")` : undefined,
       }}
     >
       {backgroundVideoUrl ? (
@@ -181,19 +183,12 @@ export function LoginFormPage<T = Record<string, any>>(
                 </div>
               )}
               {activityConfig.subTitle && (
-                <div
-                  className={clsx(
-                    getCls('notice-activity-subTitle'),
-                    hashId,
-                  )}
-                >
+                <div className={clsx(getCls('notice-activity-subTitle'), hashId)}>
                   {activityConfig.subTitle}
                 </div>
               )}
               {activityConfig.action && (
-                <div
-                  className={clsx(getCls('notice-activity-action'), hashId)}
-                >
+                <div className={clsx(getCls('notice-activity-action'), hashId)}>
                   {activityConfig.action}
                 </div>
               )}
@@ -208,26 +203,21 @@ export function LoginFormPage<T = Record<string, any>>(
             <div className={clsx(getCls('top'), hashId)}>
               {title || logoDom ? (
                 <div className={clsx(getCls('header'), hashId)}>
-                  {logoDom ? (
-                    <span className={clsx(getCls('logo'), hashId)}>
-                      {logoDom}
-                    </span>
-                  ) : null}
-                  {title ? (
-                    <span className={clsx(getCls('title'), hashId)}>
-                      {title}
-                    </span>
-                  ) : null}
+                  {logoDom ? <span className={clsx(getCls('logo'), hashId)}>{logoDom}</span> : null}
+                  {title ? <span className={clsx(getCls('title'), hashId)}>{title}</span> : null}
                 </div>
               ) : null}
-              {subTitle ? (
-                <div className={clsx(getCls('desc'), hashId)}>
-                  {subTitle}
-                </div>
-              ) : null}
+              {subTitle ? <div className={clsx(getCls('desc'), hashId)}>{subTitle}</div> : null}
             </div>
-            <div className={clsx(getCls('main'), hashId)} style={mainStyle}>
-              <ProForm isKeyPressSubmit {...proFormProps} submitter={submitter}>
+            <div
+              className={clsx(getCls('main'), hashId)}
+              style={mainStyle}
+            >
+              <ProForm
+                isKeyPressSubmit
+                {...proFormProps}
+                submitter={submitter}
+              >
                 {message}
                 {children}
               </ProForm>

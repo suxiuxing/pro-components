@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext } from 'react';
+
 import type { WithFalse } from '../../typing';
 import { useStyle } from './style';
 
@@ -19,22 +20,14 @@ export type GlobalFooterProps = {
   className?: string;
 };
 
-const GlobalFooter = ({
-  className,
-  prefixCls,
-  links,
-  copyright,
-  style,
-}: GlobalFooterProps) => {
+const GlobalFooter = ({ className, prefixCls, links, copyright, style }: GlobalFooterProps) => {
   const context = useContext(ConfigProvider.ConfigContext);
   const baseClassName = context.getPrefixCls(prefixCls || 'pro-global-footer');
 
   const { wrapSSR, hashId } = useStyle(baseClassName);
 
   if (
-    (links == null ||
-      links === false ||
-      (Array.isArray(links) && links.length === 0)) &&
+    (links == null || links === false || (Array.isArray(links) && links.length === 0)) &&
     (copyright == null || copyright === false)
   ) {
     return null;
@@ -62,11 +55,7 @@ const GlobalFooter = ({
           ))}
         </div>
       )}
-      {copyright && (
-        <div className={clsx(`${baseClassName}-copyright`, hashId)}>
-          {copyright}
-        </div>
-      )}
+      {copyright && <div className={clsx(`${baseClassName}-copyright`, hashId)}>{copyright}</div>}
     </div>,
   );
 };

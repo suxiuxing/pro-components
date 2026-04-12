@@ -1,12 +1,9 @@
-import {
-  CrownOutlined,
-  LeftOutlined,
-  SmileOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
-import { ProLayout } from '@xxlabs/pro-components';
+import { CrownOutlined, LeftOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Result, Space, Tag } from 'antd';
 import { useState } from 'react';
+
+import { ProLayout } from '@xxlabs/pro-components';
+
 import { demoOnMenuHeaderClick } from './_demoHandlers';
 
 const defaultProps = {

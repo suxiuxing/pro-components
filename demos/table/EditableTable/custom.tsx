@@ -1,13 +1,10 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@xxlabs/pro-components';
-import {
-  EditableProTable,
-  ProCard,
-  ProFormField,
-} from '@xxlabs/pro-components';
 import type { InputRef } from 'antd';
 import { Button, Form, Input, Space, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
+
+import type { ActionType, ProColumns } from '@xxlabs/pro-components';
+import { EditableProTable, ProCard, ProFormField } from '@xxlabs/pro-components';
 
 import { createEditableRowId } from '../../mockData';
 
@@ -48,14 +45,8 @@ const TagList: React.FC<{
 
   const handleInputConfirm = () => {
     let tempsTags = [...(value || [])];
-    if (
-      inputValue &&
-      tempsTags.filter((tag) => tag.label === inputValue).length === 0
-    ) {
-      tempsTags = [
-        ...tempsTags,
-        { key: `new-${tempsTags.length}`, label: inputValue },
-      ];
+    if (inputValue && tempsTags.filter((tag) => tag.label === inputValue).length === 0) {
+      tempsTags = [...tempsTags, { key: `new-${tempsTags.length}`, label: inputValue }];
     }
     onChange?.(tempsTags);
     setNewTags([]);
@@ -156,8 +147,7 @@ const columns: ProColumns<DataSourceType>[] = [
     formItemRender: (_, { isEditable }) => {
       return isEditable ? <TagList /> : <Input />;
     },
-    render: (_, row) =>
-      row?.labels?.map((item) => <Tag key={item.key}>{item.label}</Tag>),
+    render: (_, row) => row?.labels?.map((item) => <Tag key={item.key}>{item.label}</Tag>),
   },
   {
     title: '操作',
@@ -242,7 +232,12 @@ const Demo = () => {
           actionRender: (row, config, dom) => [dom.save, dom.cancel],
         }}
       />
-      <ProCard title="表格数据" headerBordered collapsible defaultCollapsed>
+      <ProCard
+        title="表格数据"
+        headerBordered
+        collapsible
+        defaultCollapsed
+      >
         <ProFormField
           ignoreFormItem
           fieldProps={{

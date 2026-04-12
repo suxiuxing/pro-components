@@ -1,13 +1,9 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProForm, ProTable } from '@xxlabs/pro-components';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import { waitForWaitTime } from '../util';
 
 type DataSourceType = {

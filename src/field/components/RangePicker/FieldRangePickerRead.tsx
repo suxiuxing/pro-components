@@ -1,4 +1,5 @@
-﻿import React from 'react';
+import React from 'react';
+
 import type { ProFieldFC, ProFieldLightProps } from '../../types';
 
 type Props = Parameters<
@@ -17,8 +18,7 @@ type Props = Parameters<
 };
 
 export function FieldRangePickerRead(props: Props, ref: React.Ref<unknown>) {
-  const { text, mode, render, fieldProps, parsedStartText, parsedEndText } =
-    props;
+  const { text, mode, render, fieldProps, parsedStartText, parsedEndText } = props;
   const dom = (
     <div
       ref={ref as React.Ref<HTMLDivElement>}

@@ -1,7 +1,8 @@
 import { cleanup, render } from '@testing-library/react';
-import { ProSkeleton } from '@xxlabs/pro-components';
 import { act } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import { ProSkeleton } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -25,12 +26,20 @@ describe('skeleton', () => {
 
   it('🥩 descriptions api use', async () => {
     const wrapper = render(
-      <ProSkeleton type="descriptions" pageHeader={false} list={10} />,
+      <ProSkeleton
+        type="descriptions"
+        pageHeader={false}
+        list={10}
+      />,
     );
     expect(wrapper.asFragment()).toMatchSnapshot();
     act(() => {
       wrapper.rerender(
-        <ProSkeleton type="descriptions" pageHeader={false} list={5} />,
+        <ProSkeleton
+          type="descriptions"
+          pageHeader={false}
+          list={5}
+        />,
       );
     });
     expect(wrapper.asFragment()).toMatchSnapshot();

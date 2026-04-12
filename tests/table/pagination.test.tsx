@@ -1,7 +1,9 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProTable, TableDropdown } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 import { request } from './fixtures';
 

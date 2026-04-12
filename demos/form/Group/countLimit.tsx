@@ -1,7 +1,8 @@
 import { CloseOutlined, SnippetsOutlined } from '@ant-design/icons';
+import { useRef } from 'react';
+
 import type { FormListActionType } from '@xxlabs/pro-components';
 import { ProForm, ProFormList, ProFormText } from '@xxlabs/pro-components';
-import { useRef } from 'react';
 
 const Demo = () => {
   const actionRef = useRef<
@@ -48,7 +49,11 @@ const Demo = () => {
             },
           ]}
         >
-          <ProFormText key="useMode" name="name" label="姓名" />
+          <ProFormText
+            key="useMode"
+            name="name"
+            label="姓名"
+          />
         </ProFormList>
       </ProForm>
     </>

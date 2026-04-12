@@ -1,5 +1,10 @@
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Button, Input } from 'antd';
+import dayjs from 'dayjs';
+import React, { act, useState } from 'react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import {
   ProField as Field,
   FieldSelect,
@@ -7,10 +12,7 @@ import {
   FieldTimePicker,
   ProFieldBadgeColor,
 } from '@xxlabs/pro-components';
-import { Button, Input } from 'antd';
-import dayjs from 'dayjs';
-import React, { act, useState } from 'react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import { waitForWaitTime, waitTime } from '../util';
 import { TreeSelectDemo } from './fixtures/treeSelectDemo';
 
@@ -25,14 +27,25 @@ describe('Field', () => {
     cleanup();
   });
   it('🐴 base use', async () => {
-    const html = render(<Field text="100" valueType="money" mode="edit" />);
+    const html = render(
+      <Field
+        text="100"
+        valueType="money"
+        mode="edit"
+      />,
+    );
     expect(html.asFragment()).toMatchSnapshot();
     html.unmount();
   });
 
   it('🐴 money onchange values', async () => {
     const html = render(
-      <Field text="100" numberPopoverRender valueType="money" mode="edit" />,
+      <Field
+        text="100"
+        numberPopoverRender
+        valueType="money"
+        mode="edit"
+      />,
     );
     act(() => {
       fireEvent.change(html.baseElement.querySelector('input')!, {
@@ -41,10 +54,7 @@ describe('Field', () => {
     });
 
     act(() => {
-      fireEvent.mouseDown(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {},
-      );
+      fireEvent.mouseDown(html.baseElement.querySelector('.ant-input-number-input')!, {});
     });
     expect(html.baseElement.querySelector('input')?.value).toBe('¥ 1,000');
     act(() => {
@@ -61,7 +71,12 @@ describe('Field', () => {
 
   it('🐴 money onchange values, when no moneySymbol', async () => {
     const html = render(
-      <Field text="100" moneySymbol={false} valueType="money" mode="edit" />,
+      <Field
+        text="100"
+        moneySymbol={false}
+        valueType="money"
+        mode="edit"
+      />,
     );
     act(() => {
       fireEvent.change(html.baseElement.querySelector('input')!, {
@@ -70,10 +85,7 @@ describe('Field', () => {
     });
 
     act(() => {
-      fireEvent.mouseDown(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {},
-      );
+      fireEvent.mouseDown(html.baseElement.querySelector('.ant-input-number-input')!, {});
     });
 
     expect(html.baseElement.querySelector('input')?.value).toBe('1000');
@@ -156,31 +168,20 @@ describe('Field', () => {
     );
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: 111111111,
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: 111111111,
         },
-      );
+      });
     });
 
     await html.findByDisplayValue('¥ 111,111,111');
 
     act(() => {
-      fireEvent.click(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-      );
-      fireEvent.focus(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-      );
-      fireEvent.mouseEnter(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-      );
-      fireEvent.mouseDown(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-      );
+      fireEvent.click(html.baseElement.querySelector('.ant-input-number-input')!);
+      fireEvent.focus(html.baseElement.querySelector('.ant-input-number-input')!);
+      fireEvent.mouseEnter(html.baseElement.querySelector('.ant-input-number-input')!);
+      fireEvent.mouseDown(html.baseElement.querySelector('.ant-input-number-input')!);
     });
 
     html.unmount();
@@ -287,218 +288,210 @@ describe('Field', () => {
     html.unmount();
   });
 
-  [
-    'select',
-    'checkbox',
-    'radio',
-    'radioButton',
-    'cascader',
-    'treeSelect',
-    'segmented',
-  ].forEach((valueType) => {
-    it(`🐴 ${valueType}  read mode support render valueEnum`, async () => {
-      const html = render(
-        <Field
-          text="default"
-          valueType={valueType as 'radio'}
-          mode="read"
-          ref={domRef}
-          render={(
-            text: unknown,
-            _: Record<string, any>,
-            dom: React.ReactNode,
-          ) => <>pre{dom}</>}
-          valueEnum={{
-            default: { text: '关闭', status: 'Default' },
-            processing: { text: '运行中', status: 'Processing' },
-            success: { text: '已上线', status: 'Success' },
-            error: { text: '异常', status: 'Error' },
-          }}
-        />,
-      );
-      await html.findAllByText('pre');
-    });
-
-    it(`🐴 ${valueType} read mode support request function`, async () => {
-      const ref = React.createRef<{
-        fetchData: (keyWord?: string) => void;
-      }>();
-      const fn = vi.fn();
-      const html = render(
-        <Field
-          ref={ref}
-          text="default"
-          proFieldKey={valueType}
-          valueType={valueType as 'radio'}
-          mode="read"
-          request={async () => {
-            fn();
-            return new Promise((resolve) => {
-              setTimeout(() => {
-                resolve([
-                  { label: '全部', value: 'all' },
-                  { label: '未解决', value: 'open' },
-                  { label: '已解决', value: 'closed' },
-                  { label: '解决中', value: 'processing' },
-                ]);
-              }, 1000);
-            });
-          }}
-        />,
-      );
-
-      // Wait for the initial request to complete and text to appear
-      await waitFor(
-        () => {
-          expect(html.baseElement.textContent).toContain('default');
-        },
-        { timeout: 3000 },
-      );
-
-      expect(fn).toHaveBeenCalledTimes(1);
-
-      act(() => {
-        ref.current?.fetchData?.('test');
-      });
-
-      // Wait for the debounced value to update and the second request to complete
-      await waitFor(
-        () => {
-          expect(fn).toHaveBeenCalledTimes(2);
-        },
-        { timeout: 3000 },
-      );
-
-      html.unmount();
-    });
-
-    it(`🐴 ${valueType}  edit model support formItemRender function`, async () => {
-      const html = render(
-        <Field
-          text="default"
-          valueType={valueType as 'radio'}
-          mode="edit"
-          formItemRender={() => (
-            <>
-              <Input id="select" />
-              default
-            </>
-          )}
-          valueEnum={{
-            0: { text: '关闭', status: 'Default' },
-            1: { text: '运行中', status: 'Processing' },
-            2: { text: '已上线', status: 'Success' },
-            3: { text: '异常', status: 'Error' },
-          }}
-        />,
-      );
-
-      await html.findAllByText('default');
-
-      expect(!!html.baseElement.querySelector('#select')).toBeTruthy();
-      html.unmount();
-    });
-
-    it(`🐴 ${valueType}  edit model support formItemRender return null`, async () => {
-      const html = render(
-        <Field
-          text="default"
-          valueType={valueType as 'radio'}
-          mode="edit"
-          formItemRender={() => undefined}
-          valueEnum={{
-            0: { text: '关闭', status: 'Default' },
-            1: { text: '运行中', status: 'Processing' },
-            2: { text: '已上线', status: 'Success' },
-            3: { text: '异常', status: 'Error' },
-          }}
-        />,
-      );
-      expect(html.baseElement.textContent).toBe('');
-      html.unmount();
-    });
-
-    it(`🐴 ${valueType}  edit model support formItemRender return 0`, async () => {
-      const html = render(
-        <Field
-          text="default"
-          valueType={valueType as 'radio'}
-          mode="edit"
-          formItemRender={() => 0}
-          valueEnum={{
-            0: { text: '关闭', status: 'Default' },
-            1: { text: '运行中', status: 'Processing' },
-            2: { text: '已上线', status: 'Success' },
-            3: { text: '异常', status: 'Error' },
-          }}
-        />,
-      );
-
-      await html.findAllByText('0');
-
-      html.unmount();
-    });
-
-    it('🐴 select mode=null', async () => {
-      const html = render(
-        <Field
-          text="default"
-          valueType={valueType as 'radio'}
-          mode="test"
-          valueEnum={{
-            0: { text: '关闭', status: 'Default' },
-            1: { text: '运行中', status: 'Processing' },
-            2: { text: '已上线', status: 'Success' },
-            3: { text: '异常', status: 'Error' },
-          }}
-        />,
-      );
-      expect(html.baseElement.textContent).toBeFalsy();
-      html.unmount();
-    });
-
-    if (
-      !['checkbox', 'radio', 'radioButton', 'segmented'].includes(valueType)
-    ) {
-      it(`🐴 ${valueType} request loading with request`, async () => {
+  ['select', 'checkbox', 'radio', 'radioButton', 'cascader', 'treeSelect', 'segmented'].forEach(
+    (valueType) => {
+      it(`🐴 ${valueType}  read mode support render valueEnum`, async () => {
         const html = render(
           <Field
             text="default"
             valueType={valueType as 'radio'}
             mode="read"
-            request={async () => {
-              await waitTime(10000);
-              return [
-                { label: '全部', value: 'all' },
-                { label: '未解决', value: 'open' },
-                { label: '已解决', value: 'closed' },
-                { label: '解决中', value: 'processing' },
-              ];
+            ref={domRef}
+            render={(text: unknown, _: Record<string, any>, dom: React.ReactNode) => <>pre{dom}</>}
+            valueEnum={{
+              default: { text: '关闭', status: 'Default' },
+              processing: { text: '运行中', status: 'Processing' },
+              success: { text: '已上线', status: 'Success' },
+              error: { text: '异常', status: 'Error' },
             }}
+          />,
+        );
+        await html.findAllByText('pre');
+      });
+
+      it(`🐴 ${valueType} read mode support request function`, async () => {
+        const ref = React.createRef<{
+          fetchData: (keyWord?: string) => void;
+        }>();
+        const fn = vi.fn();
+        const html = render(
+          <Field
+            ref={ref}
+            text="default"
+            proFieldKey={valueType}
+            valueType={valueType as 'radio'}
+            mode="read"
+            request={async () => {
+              fn();
+              return new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve([
+                    { label: '全部', value: 'all' },
+                    { label: '未解决', value: 'open' },
+                    { label: '已解决', value: 'closed' },
+                    { label: '解决中', value: 'processing' },
+                  ]);
+                }, 1000);
+              });
+            }}
+          />,
+        );
+
+        // Wait for the initial request to complete and text to appear
+        await waitFor(
+          () => {
+            expect(html.baseElement.textContent).toContain('default');
+          },
+          { timeout: 3000 },
+        );
+
+        expect(fn).toHaveBeenCalledTimes(1);
+
+        act(() => {
+          ref.current?.fetchData?.('test');
+        });
+
+        // Wait for the debounced value to update and the second request to complete
+        await waitFor(
+          () => {
+            expect(fn).toHaveBeenCalledTimes(2);
+          },
+          { timeout: 3000 },
+        );
+
+        html.unmount();
+      });
+
+      it(`🐴 ${valueType}  edit model support formItemRender function`, async () => {
+        const html = render(
+          <Field
+            text="default"
+            valueType={valueType as 'radio'}
+            mode="edit"
+            formItemRender={() => (
+              <>
+                <Input id="select" />
+                default
+              </>
+            )}
+            valueEnum={{
+              0: { text: '关闭', status: 'Default' },
+              1: { text: '运行中', status: 'Processing' },
+              2: { text: '已上线', status: 'Success' },
+              3: { text: '异常', status: 'Error' },
+            }}
+          />,
+        );
+
+        await html.findAllByText('default');
+
+        expect(!!html.baseElement.querySelector('#select')).toBeTruthy();
+        html.unmount();
+      });
+
+      it(`🐴 ${valueType}  edit model support formItemRender return null`, async () => {
+        const html = render(
+          <Field
+            text="default"
+            valueType={valueType as 'radio'}
+            mode="edit"
+            formItemRender={() => undefined}
+            valueEnum={{
+              0: { text: '关闭', status: 'Default' },
+              1: { text: '运行中', status: 'Processing' },
+              2: { text: '已上线', status: 'Success' },
+              3: { text: '异常', status: 'Error' },
+            }}
+          />,
+        );
+        expect(html.baseElement.textContent).toBe('');
+        html.unmount();
+      });
+
+      it(`🐴 ${valueType}  edit model support formItemRender return 0`, async () => {
+        const html = render(
+          <Field
+            text="default"
+            valueType={valueType as 'radio'}
+            mode="edit"
+            formItemRender={() => 0}
+            valueEnum={{
+              0: { text: '关闭', status: 'Default' },
+              1: { text: '运行中', status: 'Processing' },
+              2: { text: '已上线', status: 'Success' },
+              3: { text: '异常', status: 'Error' },
+            }}
+          />,
+        );
+
+        await html.findAllByText('0');
+
+        html.unmount();
+      });
+
+      it('🐴 select mode=null', async () => {
+        const html = render(
+          <Field
+            text="default"
+            valueType={valueType as 'radio'}
+            mode="test"
+            valueEnum={{
+              0: { text: '关闭', status: 'Default' },
+              1: { text: '运行中', status: 'Processing' },
+              2: { text: '已上线', status: 'Success' },
+              3: { text: '异常', status: 'Error' },
+            }}
+          />,
+        );
+        expect(html.baseElement.textContent).toBeFalsy();
+        html.unmount();
+      });
+
+      if (!['checkbox', 'radio', 'radioButton', 'segmented'].includes(valueType)) {
+        it(`🐴 ${valueType} request loading with request`, async () => {
+          const html = render(
+            <Field
+              text="default"
+              valueType={valueType as 'radio'}
+              mode="read"
+              request={async () => {
+                await waitTime(10000);
+                return [
+                  { label: '全部', value: 'all' },
+                  { label: '未解决', value: 'open' },
+                  { label: '已解决', value: 'closed' },
+                  { label: '解决中', value: 'processing' },
+                ];
+              }}
+            />,
+          );
+          expect(html.baseElement.textContent).toBe('default');
+          html.unmount();
+        });
+      }
+
+      it(`🐴 ${valueType} request loading without request`, async () => {
+        const html = render(
+          <Field
+            text="default"
+            valueType={valueType as 'radio'}
+            mode="read"
+            options={[]}
           />,
         );
         expect(html.baseElement.textContent).toBe('default');
         html.unmount();
       });
-    }
-
-    it(`🐴 ${valueType} request loading without request`, async () => {
-      const html = render(
-        <Field
-          text="default"
-          valueType={valueType as 'radio'}
-          mode="read"
-          options={[]}
-        />,
-      );
-      expect(html.baseElement.textContent).toBe('default');
-      html.unmount();
-    });
-  });
+    },
+  );
 
   it('🐴 select valueEnum and request=null ', async () => {
     const html = render(
-      <Field text="default" valueType="select" mode="read" />,
+      <Field
+        text="default"
+        valueType="select"
+        mode="read"
+      />,
     );
     expect(html.baseElement.textContent).toBe('default');
     html.unmount();
@@ -543,9 +536,7 @@ describe('Field', () => {
         ]}
       />,
     );
-    expect(
-      html.baseElement.querySelector('.ant-pro-core-field-label')?.textContent,
-    ).toBe('不解决');
+    expect(html.baseElement.querySelector('.ant-pro-core-field-label')?.textContent).toBe('不解决');
     html.unmount();
   });
 
@@ -625,9 +616,7 @@ describe('Field', () => {
       );
 
       act(() => {
-        fireEvent.click(
-          html.baseElement.querySelector('.ant-pro-core-field-label')!,
-        );
+        fireEvent.click(html.baseElement.querySelector('.ant-pro-core-field-label')!);
       });
 
       await waitFor(() => {
@@ -646,7 +635,12 @@ describe('Field', () => {
 
   it('🐴 select text=null & valueEnum=null ', async () => {
     const html = render(
-      <Field text={null} valueEnum={null} valueType="select" mode="read" />,
+      <Field
+        text={null}
+        valueEnum={null}
+        valueType="select"
+        mode="read"
+      />,
     );
     expect(html.baseElement.textContent).toBe('-');
     html.unmount();
@@ -802,10 +796,9 @@ describe('Field', () => {
       );
     });
 
-    expect(
-      html.baseElement.querySelector<HTMLInputElement>('.ant-select-input')
-        ?.value,
-    ).toEqual('ProComponents');
+    expect(html.baseElement.querySelector<HTMLInputElement>('.ant-select-input')?.value).toEqual(
+      'ProComponents',
+    );
 
     html.unmount();
   });
@@ -829,21 +822,16 @@ describe('Field', () => {
 
     await html.findAllByText('Node2');
 
-    const searchInput = html.baseElement.querySelector(
-      'input.ant-select-input',
-    );
+    const searchInput = html.baseElement.querySelector('input.ant-select-input');
 
     expect(!!searchInput).toBeTruthy();
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('input.ant-select-input')!,
-        {
-          target: {
-            value: 'Node5',
-          },
+      fireEvent.change(html.baseElement.querySelector('input.ant-select-input')!, {
+        target: {
+          value: 'Node5',
         },
-      );
+      });
     });
 
     const selectTreeTitle = html.baseElement.querySelectorAll<HTMLSpanElement>(
@@ -903,40 +891,27 @@ describe('Field', () => {
 
     act(() => {
       html.baseElement
-        .querySelectorAll<HTMLSpanElement>(
-          'span.ant-select-tree-switcher_close',
-        )
+        .querySelectorAll<HTMLSpanElement>('span.ant-select-tree-switcher_close')
         [
-          html.baseElement.querySelectorAll(
-            'span.ant-select-tree-switcher_close',
-          ).length - 1
+          html.baseElement.querySelectorAll('span.ant-select-tree-switcher_close').length - 1
         ].click();
       html.baseElement
-        .querySelectorAll<HTMLSpanElement>(
-          'span.ant-select-tree-switcher_close',
-        )
+        .querySelectorAll<HTMLSpanElement>('span.ant-select-tree-switcher_close')
         [
-          html.baseElement.querySelectorAll(
-            'span.ant-select-tree-switcher_close',
-          ).length - 1
+          html.baseElement.querySelectorAll('span.ant-select-tree-switcher_close').length - 1
         ].click();
     });
 
     await waitFor(() => {
-      expect(
-        !!html.baseElement.querySelector('input.ant-select-input'),
-      ).toBeTruthy();
+      expect(!!html.baseElement.querySelector('input.ant-select-input')).toBeTruthy();
     });
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('input.ant-select-input')!,
-        {
-          target: {
-            value: 'Node5',
-          },
+      fireEvent.change(html.baseElement.querySelector('input.ant-select-input')!, {
+        target: {
+          value: 'Node5',
         },
-      );
+      });
     });
 
     await waitFor(() => {
@@ -951,25 +926,19 @@ describe('Field', () => {
 
     await waitFor(() => {
       const selectTreeTitle =
-        html.baseElement.querySelectorAll<HTMLSpanElement>(
-          '.ant-select-tree-title',
-        );
+        html.baseElement.querySelectorAll<HTMLSpanElement>('.ant-select-tree-title');
       expect(selectTreeTitle.length).toBe(2);
     });
 
     act(() => {
       const selectTreeTitle =
-        html.baseElement.querySelectorAll<HTMLSpanElement>(
-          '.ant-select-tree-title',
-        );
+        html.baseElement.querySelectorAll<HTMLSpanElement>('.ant-select-tree-title');
       selectTreeTitle[0]?.click();
     });
 
     act(() => {
       const selectTreeTitle =
-        html.baseElement.querySelectorAll<HTMLSpanElement>(
-          '.ant-select-tree-title',
-        );
+        html.baseElement.querySelectorAll<HTMLSpanElement>('.ant-select-tree-title');
       selectTreeTitle[selectTreeTitle.length - 1]?.click();
     });
 
@@ -978,10 +947,9 @@ describe('Field', () => {
       expect(html.queryAllByText('Node2').length > 0).toBeTruthy();
     });
 
-    expect(
-      html.baseElement.querySelector<HTMLInputElement>('input.ant-select-input')
-        ?.value,
-    ).toBe('');
+    expect(html.baseElement.querySelector<HTMLInputElement>('input.ant-select-input')?.value).toBe(
+      '',
+    );
 
     // 在新版本的 Ant Design 中，多选模式下清除按钮的DOM结构可能已改变
     // 尝试查找清除按钮并测试清除功能
@@ -1000,10 +968,7 @@ describe('Field', () => {
     }
 
     act(() => {
-      fireEvent.blur(
-        html.baseElement.querySelector('input.ant-select-input')!,
-        {},
-      );
+      fireEvent.blur(html.baseElement.querySelector('input.ant-select-input')!, {});
     });
 
     expect(onBlurFn).toHaveBeenCalledTimes(1);
@@ -1183,14 +1148,11 @@ describe('Field', () => {
       />,
     );
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: '100',
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: '100',
         },
-      );
+      });
     });
 
     await html.findByDisplayValue('% 100');
@@ -1223,9 +1185,7 @@ describe('Field', () => {
     });
 
     await waitFor(() => {
-      expect(html.baseElement.querySelector('span')?.textContent).toBe(
-        '+ 100.00%',
-      );
+      expect(html.baseElement.querySelector('span')?.textContent).toBe('+ 100.00%');
     });
 
     html.rerender(
@@ -1330,32 +1290,24 @@ describe('Field', () => {
     });
     // edit test
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: '123',
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: '123',
         },
-      );
+      });
     });
     await waitFor(() => {
       expect(html.baseElement.querySelector('input')?.value).toBe('??? 123');
     });
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: '123456',
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: '123456',
         },
-      );
+      });
     });
     await waitFor(() => {
-      expect(html.baseElement.querySelector('input')?.value).toBe(
-        '??? 123,456',
-      );
+      expect(html.baseElement.querySelector('input')?.value).toBe('??? 123,456');
     });
   });
   it('🐴 percent magic prefix onchange values', async () => {
@@ -1391,50 +1343,42 @@ describe('Field', () => {
     });
     // edit test
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: '123',
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: '123',
         },
-      );
+      });
     });
 
     await waitFor(() => {
-      expect(html.baseElement.querySelector('input')?.value).toBe(
-        `${magicPrefix} 123`,
-      );
+      expect(html.baseElement.querySelector('input')?.value).toBe(`${magicPrefix} 123`);
     });
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: '123456',
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: '123456',
         },
-      );
+      });
     });
 
     await waitFor(() => {
-      expect(html.baseElement.querySelector('input')?.value).toBe(
-        `${magicPrefix} 123,456`,
-      );
+      expect(html.baseElement.querySelector('input')?.value).toBe(`${magicPrefix} 123,456`);
     });
   });
 
   it('🐴 password support open', async () => {
     const html = render(
-      <Field text={123456} valueType="password" mode="read" />,
+      <Field
+        text={123456}
+        valueType="password"
+        mode="read"
+      />,
     );
     await html.findByText('********');
 
     act(() => {
-      fireEvent.click(
-        html.baseElement.querySelector('span.anticon-eye-invisible')!,
-      );
+      fireEvent.click(html.baseElement.querySelector('span.anticon-eye-invisible')!);
     });
     await waitFor(() => {
       expect(!!html.baseElement.querySelector('span.anticon-eye')).toBeTruthy();
@@ -1462,9 +1406,7 @@ describe('Field', () => {
     await html.findByText('123456');
 
     await waitFor(() => {
-      expect(
-        !!html.baseElement.querySelector('span.anticon-eye-invisible'),
-      ).toBeFalsy();
+      expect(!!html.baseElement.querySelector('span.anticon-eye-invisible')).toBeFalsy();
       expect(fn).toHaveBeenCalledWith(false);
     });
 
@@ -1473,14 +1415,25 @@ describe('Field', () => {
 
   it('🐴 options support empty dom', async () => {
     const html = render(
-      <Field render={() => []} text={[]} valueType="option" mode="read" />,
+      <Field
+        render={() => []}
+        text={[]}
+        valueType="option"
+        mode="read"
+      />,
     );
     expect(html.asFragment()).toMatchSnapshot();
     html.unmount();
   });
 
   it('🐴 options support no text', async () => {
-    const html = render(<Field text="qixian" valueType="option" mode="read" />);
+    const html = render(
+      <Field
+        text="qixian"
+        valueType="option"
+        mode="read"
+      />,
+    );
     expect(html.asFragment()).toMatchSnapshot();
     html.unmount();
   });
@@ -1488,10 +1441,7 @@ describe('Field', () => {
   it('🐴 options support dom list', () => {
     const html = render(
       <Field
-        text={[
-          <Button key="add">新建</Button>,
-          <Button key="edit">修改</Button>,
-        ]}
+        text={[<Button key="add">新建</Button>, <Button key="edit">修改</Button>]}
         valueType="option"
         mode="read"
       />,
@@ -1525,27 +1475,47 @@ describe('Field', () => {
   });
 
   it('🐴 progress support string number', () => {
-    const html = render(<Field text="12" valueType="progress" mode="read" />);
+    const html = render(
+      <Field
+        text="12"
+        valueType="progress"
+        mode="read"
+      />,
+    );
     expect(html.asFragment()).toMatchSnapshot();
     html.unmount();
   });
 
   it('🐴 progress support no number', () => {
     const html = render(
-      <Field text="qixian" valueType="progress" mode="read" />,
+      <Field
+        text="qixian"
+        valueType="progress"
+        mode="read"
+      />,
     );
     expect(html.asFragment()).toMatchSnapshot();
   });
 
   it('🐴 valueType={}', () => {
-    const html = render(<Field text="qixian" valueType={{}} mode="read" />);
+    const html = render(
+      <Field
+        text="qixian"
+        valueType={{}}
+        mode="read"
+      />,
+    );
     expect(html.baseElement.textContent).toBe('qixian');
     html.unmount();
   });
 
   it('🐴 keypress simulate', async () => {
     const html = render(
-      <Field text="qixian" valueType="textarea" mode="edit" />,
+      <Field
+        text="qixian"
+        valueType="textarea"
+        mode="edit"
+      />,
     );
     await html.findByPlaceholderText('请输入');
 
@@ -1557,7 +1527,13 @@ describe('Field', () => {
     });
 
     act(() => {
-      html.rerender(<Field text="qixian" valueType="textarea" mode="read" />);
+      html.rerender(
+        <Field
+          text="qixian"
+          valueType="textarea"
+          mode="read"
+        />,
+      );
     });
     await html.findAllByText('qixian');
 
@@ -1636,132 +1612,127 @@ describe('Field', () => {
 
   it(`🐴 valueType digitRange base use`, async () => {
     const html = render(
-      <Field text={[12.34, 56.78]} mode="read" valueType="digitRange" />,
+      <Field
+        text={[12.34, 56.78]}
+        mode="read"
+        valueType="digitRange"
+      />,
     );
     expect(html.baseElement.textContent).toBe('12.34 ~ 56.78');
     html.unmount();
   });
 
   it(`🐴 valueType digitRange placeholder use`, async () => {
-    const html = render(<Field mode="edit" valueType="digitRange" />);
+    const html = render(
+      <Field
+        mode="edit"
+        valueType="digitRange"
+      />,
+    );
     await waitFor(() => {
       expect(
-        html.baseElement.querySelector<HTMLInputElement>(
-          '.ant-input-number-input',
-        )?.placeholder,
+        html.baseElement.querySelector<HTMLInputElement>('.ant-input-number-input')?.placeholder,
       ).toBe('请输入');
       expect(
-        html.baseElement.querySelectorAll<HTMLInputElement>(
-          '.ant-input-number-input',
-        )[1]?.placeholder,
+        html.baseElement.querySelectorAll<HTMLInputElement>('.ant-input-number-input')[1]
+          ?.placeholder,
       ).toBe('请输入');
     });
   });
 
   it(`🐴 valueType digitRange placeholder use`, async () => {
     const html = render(
-      <Field mode="edit" valueType="digitRange" placeholder={['Min', 'Max']} />,
+      <Field
+        mode="edit"
+        valueType="digitRange"
+        placeholder={['Min', 'Max']}
+      />,
     );
     await waitFor(() => {
       expect(
-        html.baseElement.querySelector<HTMLInputElement>(
-          '.ant-input-number-input',
-        )?.placeholder,
+        html.baseElement.querySelector<HTMLInputElement>('.ant-input-number-input')?.placeholder,
       ).toBe('Min');
       expect(
-        html.baseElement.querySelectorAll<HTMLInputElement>(
-          '.ant-input-number-input',
-        )[1]?.placeholder,
+        html.baseElement.querySelectorAll<HTMLInputElement>('.ant-input-number-input')[1]
+          ?.placeholder,
       ).toBe('Max');
     });
   });
 
   it(`🐴 valueType digitRange normal input simulate`, async () => {
-    const html = render(<Field mode="edit" valueType="digitRange" />);
+    const html = render(
+      <Field
+        mode="edit"
+        valueType="digitRange"
+      />,
+    );
     await waitForWaitTime(100);
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: '12.34',
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: '12.34',
         },
-      );
+      });
     });
 
     await waitFor(() => {
       expect(
-        html.baseElement.querySelector<HTMLInputElement>(
-          '.ant-input-number-input',
-        )?.value,
+        html.baseElement.querySelector<HTMLInputElement>('.ant-input-number-input')?.value,
       ).toBe('12.34');
     });
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: '56.78',
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: '56.78',
         },
-      );
+      });
     });
 
     await waitFor(() => {
       expect(
-        html.baseElement.querySelector<HTMLInputElement>(
-          '.ant-input-number-input',
-        )?.value,
+        html.baseElement.querySelector<HTMLInputElement>('.ant-input-number-input')?.value,
       ).toBe('56.78');
     });
     html.unmount();
   });
 
   it(`🐴 valueType digitRange will exchange when value1 > valu2`, async () => {
-    const html = render(<Field mode="edit" valueType="digitRange" />);
+    const html = render(
+      <Field
+        mode="edit"
+        valueType="digitRange"
+      />,
+    );
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: '56.78',
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: '56.78',
         },
-      );
+      });
     });
 
     await waitFor(() => {
       expect(
-        html.baseElement.querySelector<HTMLInputElement>(
-          '.ant-input-number-input',
-        )?.value,
+        html.baseElement.querySelector<HTMLInputElement>('.ant-input-number-input')?.value,
       ).toBe('56.78');
     });
 
     act(() => {
-      fireEvent.change(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-        {
-          target: {
-            value: '12.34',
-          },
+      fireEvent.change(html.baseElement.querySelector('.ant-input-number-input')!, {
+        target: {
+          value: '12.34',
         },
-      );
+      });
     });
 
     act(() => {
-      fireEvent.blur(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-      );
+      fireEvent.blur(html.baseElement.querySelector('.ant-input-number-input')!);
     });
 
     await waitFor(() => {
       expect(
-        html.baseElement.querySelector<HTMLInputElement>(
-          '.ant-input-number-input',
-        )?.value,
+        html.baseElement.querySelector<HTMLInputElement>('.ant-input-number-input')?.value,
       ).toBe('12.34');
     });
 
@@ -1854,9 +1825,7 @@ describe('Field', () => {
 
     act(() => {
       fireEvent.blur(html.baseElement.querySelector('.ant-space-compact')!);
-      fireEvent.blur(
-        html.baseElement.querySelector('.ant-input-number-input')!,
-      );
+      fireEvent.blur(html.baseElement.querySelector('.ant-input-number-input')!);
     });
 
     await waitFor(() => {
@@ -1957,9 +1926,7 @@ describe('Field', () => {
     await waitForWaitTime(100);
 
     // Check that the component renders
-    const labelElement = html.baseElement.querySelector(
-      '.ant-pro-core-field-label',
-    );
+    const labelElement = html.baseElement.querySelector('.ant-pro-core-field-label');
     expect(labelElement).toBeInTheDocument();
 
     // Check that the select component is rendered

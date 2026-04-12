@@ -1,6 +1,7 @@
-import { ProList } from '@xxlabs/pro-components';
 import { Button, Space, Tag } from 'antd';
 import request from 'umi-request';
+
+import { ProList } from '@xxlabs/pro-components';
 
 type GithubIssueItem = {
   url: string;
@@ -22,7 +23,10 @@ const Demo = () => (
   <ProList<GithubIssueItem>
     toolBarRender={() => {
       return [
-        <Button key="3" type="primary">
+        <Button
+          key="3"
+          type="primary"
+        >
           新建
         </Button>,
       ];
@@ -53,7 +57,10 @@ const Demo = () => (
         render: (_, row) => (
           <Space size={8}>
             {row.labels?.map((label: { name: string }) => (
-              <Tag color="blue" key={label.name}>
+              <Tag
+                color="blue"
+                key={label.name}
+              >
                 {label.name}
               </Tag>
             ))}

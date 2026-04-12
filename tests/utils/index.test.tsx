@@ -1,5 +1,11 @@
 import { CodeFilled } from '@ant-design/icons';
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import { Form, Input } from 'antd';
+import type { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
+import React, { act, useEffect, useState } from 'react';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+
 import {
   conversionSubmitValue,
   dateArrayFormatter,
@@ -21,19 +27,6 @@ import {
   useDebounceFn,
   useDebounceValue,
 } from '@xxlabs/pro-components';
-import { Form, Input } from 'antd';
-import type { Dayjs } from 'dayjs';
-import dayjs from 'dayjs';
-import React, { act, useEffect, useState } from 'react';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
 
 afterEach(() => {
   cleanup();
@@ -269,16 +262,10 @@ describe('utils', () => {
         time: dayjs('2019-11-16 12:50:26'),
         name: 'qixian',
         money: 20,
-        dateTimeRange: [
-          dayjs('2019-11-16 12:50:26'),
-          dayjs('2019-11-16 12:50:26'),
-        ],
+        dateTimeRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
         dateRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
         timeRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
-        timeRange2: [
-          dayjs('2019-11-16 12:50:26'),
-          dayjs('2019-11-16 12:50:26'),
-        ],
+        timeRange2: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
         dateQuarter: dayjs('2019-11-16 12:50:26'),
       },
       'string',
@@ -291,19 +278,13 @@ describe('utils', () => {
         dateQuarter: 'dateQuarter',
       },
     );
-    expect(html.dataTime?.format('YYYY-MM-DD HH:mm:ss')).toBe(
-      '2019-11-16 12:50:26',
-    );
+    expect(html.dataTime?.format('YYYY-MM-DD HH:mm:ss')).toBe('2019-11-16 12:50:26');
     expect(html.time).toBe('12:50:26');
     expect(html.name).toBe('qixian');
     expect(html.money).toBe(20);
-    expect(html.dateTimeRange.join(',')).toBe(
-      '2019-11-16 12:50:26,2019-11-16 12:50:26',
-    );
+    expect(html.dateTimeRange.join(',')).toBe('2019-11-16 12:50:26,2019-11-16 12:50:26');
     expect(html.dateRange.join(',')).toBe('2019-11-16,2019-11-16');
-    expect(html.timeRange2.join(',')).toBe(
-      '2019-11-16 12:50:26,2019-11-16 12:50:26',
-    );
+    expect(html.timeRange2.join(',')).toBe('2019-11-16 12:50:26,2019-11-16 12:50:26');
     expect(html.dateQuarter).toBe('2019-Q4');
   });
 
@@ -331,22 +312,10 @@ describe('utils', () => {
       {
         date: {
           dataTime: dayjs('2019-11-16 12:50:26'),
-          dateTimeRange: [
-            dayjs('2019-11-16 12:50:26'),
-            dayjs('2019-11-16 12:50:26'),
-          ],
-          dateRange: [
-            dayjs('2019-11-16 12:50:26'),
-            dayjs('2019-11-16 12:50:26'),
-          ],
-          timeRange: [
-            dayjs('2019-11-16 12:50:26'),
-            dayjs('2019-11-16 12:50:26'),
-          ],
-          timeRange2: [
-            dayjs('2019-11-16 12:50:26'),
-            dayjs('2019-11-16 12:50:26'),
-          ],
+          dateTimeRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
+          dateRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
+          timeRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
+          timeRange2: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
         },
       },
       'string',
@@ -361,13 +330,9 @@ describe('utils', () => {
       },
     );
     expect(html.date.dataTime).toBe('2019-11-16 12:50:26');
-    expect(html.date.dateTimeRange.join(',')).toBe(
-      '2019-11-16 12:50:26,2019-11-16 12:50:26',
-    );
+    expect(html.date.dateTimeRange.join(',')).toBe('2019-11-16 12:50:26,2019-11-16 12:50:26');
     expect(html.date.dateRange.join(',')).toBe('2019-11-16,2019-11-16');
-    expect(html.date.timeRange2.join(',')).toBe(
-      '2019-11-16 12:50:26,2019-11-16 12:50:26',
-    );
+    expect(html.date.timeRange2.join(',')).toBe('2019-11-16 12:50:26,2019-11-16 12:50:26');
   });
 
   it('📅 conversionSubmitValue number', async () => {
@@ -377,16 +342,10 @@ describe('utils', () => {
         time: dayjs('2019-11-16 12:50:26'),
         name: 'qixian',
         money: 20,
-        dateTimeRange: [
-          dayjs('2019-11-16 12:50:26'),
-          dayjs('2019-11-16 12:50:26'),
-        ],
+        dateTimeRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
         dateRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
         timeRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
-        timeRange2: [
-          dayjs('2019-11-16 12:50:26'),
-          dayjs('2019-11-16 12:50:26'),
-        ],
+        timeRange2: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
       },
       'number',
       {
@@ -413,16 +372,10 @@ describe('utils', () => {
         time: dayjs('2019-11-16 12:50:26'),
         name: 'qixian',
         money: 20,
-        dateTimeRange: [
-          dayjs('2019-11-16 12:50:26'),
-          dayjs('2019-11-16 12:50:26'),
-        ],
+        dateTimeRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
         dateRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
         timeRange: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
-        timeRange2: [
-          dayjs('2019-11-16 12:50:26'),
-          dayjs('2019-11-16 12:50:26'),
-        ],
+        timeRange2: [dayjs('2019-11-16 12:50:26'), dayjs('2019-11-16 12:50:26')],
       },
       false,
       {
@@ -450,10 +403,7 @@ describe('utils', () => {
   });
 
   it('📅 parseValueToMoment dayjs', async () => {
-    const html = parseValueToDay(
-      ['2019-11-16 12:50:26', '2019-11-16 12:50:26'],
-      'YYYY-MM-DD',
-    );
+    const html = parseValueToDay(['2019-11-16 12:50:26', '2019-11-16 12:50:26'], 'YYYY-MM-DD');
     expect((html as Dayjs[]).map((item) => item.valueOf()).join(',')).toBe(
       '1573862400000,1573862400000',
     );
@@ -476,14 +426,10 @@ describe('utils', () => {
       </DropdownFooter>,
     );
     act(() => {
-      html.baseElement
-        .querySelector<HTMLDivElement>('.ant-pro-core-dropdown-footer')
-        ?.click();
+      html.baseElement.querySelector<HTMLDivElement>('.ant-pro-core-dropdown-footer')?.click();
     });
     expect(
-      !!html.baseElement.querySelector<HTMLDivElement>(
-        '.ant-pro-core-dropdown-footer',
-      ),
+      !!html.baseElement.querySelector<HTMLDivElement>('.ant-pro-core-dropdown-footer'),
     ).toBeTruthy();
   });
 
@@ -520,7 +466,10 @@ describe('utils', () => {
           popoverProps={{ trigger: 'focus' }}
           name="title"
         >
-          <Input id="test" role="test_input" />
+          <Input
+            id="test"
+            role="test_input"
+          />
         </InlineErrorFormItem>
       </Form>,
     );
@@ -546,9 +495,7 @@ describe('utils', () => {
 
     await waitFor(
       () => {
-        expect(
-          !!html.baseElement.querySelector('div.ant-popover'),
-        ).toBeTruthy();
+        expect(!!html.baseElement.querySelector('div.ant-popover')).toBeTruthy();
       },
       { timeout: 3000 },
     );
@@ -565,9 +512,7 @@ describe('utils', () => {
     );
 
     // Check for error messages - structure may vary in Ant Design v6
-    const popoverContent = html.baseElement.querySelector(
-      'div.ant-popover .ant-popover-content',
-    );
+    const popoverContent = html.baseElement.querySelector('div.ant-popover .ant-popover-content');
 
     // Try to find error messages with various possible selectors
     const errorSelectors = [
@@ -619,8 +564,7 @@ describe('utils', () => {
     });
     await waitFor(() => {
       expect(
-        html.baseElement.querySelectorAll('div.ant-popover.ant-popover-hidden')
-          .length > 0,
+        html.baseElement.querySelectorAll('div.ant-popover.ant-popover-hidden').length > 0,
       ).toBeFalsy();
     });
 
@@ -654,7 +598,11 @@ describe('utils', () => {
           popoverProps={{ trigger: ['click', 'focus'] }}
           name="count"
         >
-          <Input id="warning_test" role="warning_test_input" type="number" />
+          <Input
+            id="warning_test"
+            role="warning_test_input"
+            type="number"
+          />
         </InlineErrorFormItem>
       </Form>,
     );
@@ -678,9 +626,7 @@ describe('utils', () => {
           'div.ant-popover .ant-popover-content',
         );
         expect(!!popoverContent).toBeTruthy();
-        const warningEl = html.baseElement.querySelector(
-          '.ant-form-item-explain-warning',
-        );
+        const warningEl = html.baseElement.querySelector('.ant-form-item-explain-warning');
         expect(!!warningEl).toBeTruthy();
         expect(warningEl?.textContent).toContain(warningMessage);
       },
@@ -721,26 +667,14 @@ describe('utils', () => {
       ].sort(),
     );
     expect(htmlKeys).not.toEqual(
-      [
-        'dataTime',
-        'time',
-        'new-name',
-        'dateRange2',
-        'money',
-        'dateTimeRange',
-        'dateRange',
-      ].sort(),
+      ['dataTime', 'time', 'new-name', 'dateRange2', 'money', 'dateTimeRange', 'dateRange'].sort(),
     );
     expect((html as any)['new-dataTime']).toBe('2019-11-16 12:50:26');
     expect((html as any)['new-time']).toBe('2019-11-16 12:50:26');
     expect((html as any).name).toBe('new-name');
     expect((html as any)['new-money']).toBe(20);
-    expect(html.dateTimeRange.join(',')).toBe(
-      '2019-11-16 12:50:26,2019-11-16 12:55:26',
-    );
-    expect(html.dateRange.join(',')).toBe(
-      '2019-11-16 12:50:26,2019-11-16 12:55:26',
-    );
+    expect(html.dateTimeRange.join(',')).toBe('2019-11-16 12:50:26,2019-11-16 12:55:26');
+    expect(html.dateRange.join(',')).toBe('2019-11-16 12:50:26,2019-11-16 12:55:26');
   });
 
   it('📅 transformKeySubmitValue will return file', async () => {
@@ -797,14 +731,7 @@ describe('utils', () => {
     );
 
     expect(htmlKeys).not.toEqual(
-      [
-        'dataTime',
-        'time',
-        'name',
-        'money',
-        'dateTimeRange',
-        'dateRange',
-      ].sort(),
+      ['dataTime', 'time', 'name', 'money', 'dateTimeRange', 'dateRange'].sort(),
     );
     expect(html.dataTime).toBe('2019-11-16 12:50:26');
     expect(html.time).toBe('2019-11-16 12:50:26');
@@ -968,20 +895,12 @@ describe('utils', () => {
   });
 
   it('🪓 isUrl', async () => {
-    expect(isUrl('https://procomponents.ant.design/components/layout')).toBe(
+    expect(isUrl('https://procomponents.ant.design/components/layout')).toBe(true);
+    expect(isUrl('https://procomponents.ant.design/en-US/components/layout#basic-usage')).toBe(
       true,
     );
-    expect(
-      isUrl(
-        'https://procomponents.ant.design/en-US/components/layout#basic-usage',
-      ),
-    ).toBe(true);
-    expect(isUrl('procomponents.ant.design/en-US/components/layout')).toBe(
-      false,
-    );
-    expect(
-      isUrl('https:://procomponents.ant.design/en-US/components/layout'),
-    ).toBe(false);
+    expect(isUrl('procomponents.ant.design/en-US/components/layout')).toBe(false);
+    expect(isUrl('https:://procomponents.ant.design/en-US/components/layout')).toBe(false);
   });
 
   it('🪓 isDropdownValueType', async () => {
@@ -1032,13 +951,7 @@ describe('utils', () => {
     const DeepComponent = () => {
       const a = (
         <CustomComponent
-          array={[
-            1,
-            2,
-            3,
-            4,
-            { deep: true, nested: { deep: true, ignoreKey: false } },
-          ]}
+          array={[1, 2, 3, 4, { deep: true, nested: { deep: true, ignoreKey: false } }]}
           map={
             new Map([
               ['key', 'value'],
@@ -1061,13 +974,7 @@ describe('utils', () => {
 
       const b = (
         <CustomComponent
-          array={[
-            1,
-            2,
-            3,
-            4,
-            { deep: true, nested: { deep: true, ignoreKey: true } },
-          ]}
+          array={[1, 2, 3, 4, { deep: true, nested: { deep: true, ignoreKey: true } }]}
           map={
             new Map([
               ['key', 'value'],
@@ -1124,9 +1031,7 @@ describe('utils', () => {
       age: 28,
     };
     json.detail = json;
-    expect(stringify(json)).toBe(
-      '{"name":"kiner","age":28,"detail":"Magic circle!"}',
-    );
+    expect(stringify(json)).toBe('{"name":"kiner","age":28,"detail":"Magic circle!"}');
 
     expect(
       stringify({

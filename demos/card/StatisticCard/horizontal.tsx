@@ -14,7 +14,11 @@ const Demo = () => {
           suffix: 'Yuan',
           description: (
             <>
-              <Statistic title="Weekly Comparison" value="6.47%" trend="up" />
+              <Statistic
+                title="Weekly Comparison"
+                value="6.47%"
+                trend="up"
+              />
               <Statistic
                 title="Monthly Comparison"
                 value="6.47%"
@@ -44,8 +48,7 @@ const Demo = () => {
         <h4>StatisticCard Horizontal Layout Props 说明：</h4>
         <ul>
           <li>
-            <strong>chartPlacement</strong>: 图表位置，'right'
-            表示图表显示在右侧
+            <strong>chartPlacement</strong>: 图表位置，'right' 表示图表显示在右侧
           </li>
           <li>
             <strong>statistic</strong>: 统计信息配置对象

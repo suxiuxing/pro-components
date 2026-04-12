@@ -15,30 +15,24 @@ export type TableListItem = {
   code: string;
 };
 
-const tableListDataSource: TableListItem[] = Array.from(
-  { length: 2 },
-  (_, i) => ({
-    key: i,
-    name: i === 0 ? '用户认证服务' : '支付网关',
-    status: DEMO_VALUE_ENUM[(i % 4) as keyof typeof DEMO_VALUE_ENUM],
-    updatedAt: FIXED_BASE_TIMESTAMP - (i * 500 + 100),
-    createdAt: FIXED_BASE_TIMESTAMP - (i * 1000 + 200),
-    createdAtRange: [
-      FIXED_BASE_TIMESTAMP - (i * 1000 + 300),
-      FIXED_BASE_TIMESTAMP - (i * 1000 + 400),
-    ],
-    money: ((i * 3456 + 7890) % 50000) * 100,
-    progress: ((i * 17 + 23) % 100) + 1,
-    percent:
-      i % 2 === 0
-        ? ((i + 1) * 10 + 0.123).toFixed(3)
-        : -((i + 1) * 10 + 0.456).toFixed(2),
-    code: `const healthCheck = async (host) => {
+const tableListDataSource: TableListItem[] = Array.from({ length: 2 }, (_, i) => ({
+  key: i,
+  name: i === 0 ? '用户认证服务' : '支付网关',
+  status: DEMO_VALUE_ENUM[(i % 4) as keyof typeof DEMO_VALUE_ENUM],
+  updatedAt: FIXED_BASE_TIMESTAMP - (i * 500 + 100),
+  createdAt: FIXED_BASE_TIMESTAMP - (i * 1000 + 200),
+  createdAtRange: [
+    FIXED_BASE_TIMESTAMP - (i * 1000 + 300),
+    FIXED_BASE_TIMESTAMP - (i * 1000 + 400),
+  ],
+  money: ((i * 3456 + 7890) % 50000) * 100,
+  progress: ((i * 17 + 23) % 100) + 1,
+  percent: i % 2 === 0 ? ((i + 1) * 10 + 0.123).toFixed(3) : -((i + 1) * 10 + 0.456).toFixed(2),
+  code: `const healthCheck = async (host) => {
   const res = await fetch(host + '/health');
   return { status: res.status };
 };`,
-  }),
-);
+}));
 
 const Demo = () => (
   <ProTable<TableListItem>

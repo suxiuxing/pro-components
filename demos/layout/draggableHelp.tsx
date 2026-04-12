@@ -1,7 +1,8 @@
-﻿import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
-import { ProHelp, ProHelpPanel, ProHelpSelect } from '@xxlabs/pro-components';
 import { App, Typography } from 'antd';
 import Draggable from 'react-draggable';
+
+import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
+import { ProHelp, ProHelpPanel, ProHelpSelect } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const map = new Map<
@@ -62,11 +63,7 @@ const Demo = () => {
             return (
               <div key={index}>
                 <Typography.Text>
-                  {child.href ? (
-                    <a href={child.href}>{child.title}</a>
-                  ) : (
-                    child.title
-                  )}
+                  {child.href ? <a href={child.href}>{child.title}</a> : child.title}
                 </Typography.Text>
               </div>
             );
@@ -335,7 +332,10 @@ const Demo = () => {
                 width: 900,
               }}
             >
-              <ProHelpPanel defaultSelectedKey="1" height={448} />
+              <ProHelpPanel
+                defaultSelectedKey="1"
+                height={448}
+              />
             </div>
           </Draggable>
         </ProHelp>

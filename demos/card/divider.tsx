@@ -1,7 +1,8 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { ProCard } from '@xxlabs/pro-components';
 import { Statistic } from 'antd';
 import { useState } from 'react';
+
+import { ProCard } from '@xxlabs/pro-components';
 
 const { Divider } = ProCard;
 
@@ -19,11 +20,19 @@ const Demo = () => {
         direction={responsive ? 'column' : 'row'}
       >
         <ProCard>
-          <Statistic title="Today's UV" value={79.0} precision={2} />
+          <Statistic
+            title="Today's UV"
+            value={79.0}
+            precision={2}
+          />
         </ProCard>
         <Divider orientation={responsive ? 'horizontal' : 'vertical'} />
         <ProCard>
-          <Statistic title="Frozen Amount" value={112893.0} precision={2} />
+          <Statistic
+            title="Frozen Amount"
+            value={112893.0}
+            precision={2}
+          />
         </ProCard>
         <Divider orientation={responsive ? 'horizontal' : 'vertical'} />
         <ProCard>
@@ -35,7 +44,10 @@ const Demo = () => {
         </ProCard>
         <Divider orientation={responsive ? 'horizontal' : 'vertical'} />
         <ProCard>
-          <Statistic title="Frozen Amount" value={112893.0} />
+          <Statistic
+            title="Frozen Amount"
+            value={112893.0}
+          />
         </ProCard>
       </ProCard.Group>
     </RcResizeObserver>

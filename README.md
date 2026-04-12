@@ -26,9 +26,7 @@ pnpm add @xxlabs/pro-components antd react react-dom
 import { ProTable } from '@xxlabs/pro-components';
 import { Tag } from 'antd';
 
-const dataSource = [
-  { id: 1, name: '示例记录', status: 'online' },
-];
+const dataSource = [{ id: 1, name: '示例记录', status: 'online' }];
 
 export default function Demo() {
   return (

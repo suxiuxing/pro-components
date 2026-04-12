@@ -3,13 +3,11 @@ import type { CheckboxProps, CheckboxRef } from 'antd';
 import { Checkbox } from 'antd';
 import type { CheckboxGroupProps } from 'antd/lib/checkbox';
 import React from 'react';
+
 import { FieldCheckbox } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
 import { runFunction } from '../../../utils';
-import type {
-  ProFormFieldItemProps,
-  ProFormFieldRemoteProps,
-} from '../../typing';
+import type { ProFormFieldItemProps, ProFormFieldRemoteProps } from '../../typing';
 import ProFormField from '../Field';
 import warpField from '../FormItem/warpField';
 
@@ -26,9 +24,17 @@ const CheckboxGroup: React.FC<ProFormCheckboxGroupProps> = React.forwardRef(
     <ProConfigProvider
       valueTypeMap={{
         checkbox: {
-          render: (text, props) => <FieldCheckbox {...props} text={text} />,
+          render: (text, props) => (
+            <FieldCheckbox
+              {...props}
+              text={text}
+            />
+          ),
           formItemRender: (text, props) => (
-            <FieldCheckbox {...props} text={text} />
+            <FieldCheckbox
+              {...props}
+              text={text}
+            />
           ),
         },
       }}
@@ -77,24 +83,24 @@ export type ProFormCheckboxProps = ProFormFieldItemProps<CheckboxProps>;
  *
  * @param
  */
-const ProFormCheckboxComponents: React.FC<ProFormCheckboxProps> =
-  React.forwardRef<CheckboxRef, ProFormCheckboxProps>(
-    ({ fieldProps, children }, ref) => {
-      const { ...restFieldProps } = fieldProps || {};
-      return (
-        <Checkbox ref={ref} {...omit(restFieldProps, ['allowClear'])}>
-          {children}
-        </Checkbox>
-      );
-    },
+const ProFormCheckboxComponents: React.FC<ProFormCheckboxProps> = React.forwardRef<
+  CheckboxRef,
+  ProFormCheckboxProps
+>(({ fieldProps, children }, ref) => {
+  const { ...restFieldProps } = fieldProps || {};
+  return (
+    <Checkbox
+      ref={ref}
+      {...omit(restFieldProps, ['allowClear'])}
+    >
+      {children}
+    </Checkbox>
   );
+});
 
-const ProFormCheckbox = warpField<ProFormCheckboxProps>?.(
-  ProFormCheckboxComponents,
-  {
-    valuePropName: 'checked',
-  },
-);
+const ProFormCheckbox = warpField<ProFormCheckboxProps>?.(ProFormCheckboxComponents, {
+  valuePropName: 'checked',
+});
 
 const WrappedProFormCheckbox: typeof ProFormCheckboxComponents & {
   Group: typeof CheckboxGroup;

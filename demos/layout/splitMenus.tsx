@@ -1,18 +1,24 @@
-import {
-  PageContainer,
-  ProLayout,
-  SettingDrawer,
-} from '@xxlabs/pro-components';
+import { PageContainer, ProLayout, SettingDrawer } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 import { demoOnMenuHeaderClick } from './_demoHandlers';
 
 const Demo = () => {
   return (
     <>
-      <ProLayout {...defaultProps} layout="mix" splitMenus pure>
+      <ProLayout
+        {...defaultProps}
+        layout="mix"
+        splitMenus
+        pure
+      >
         <PageContainer>splitMenus + pure</PageContainer>
       </ProLayout>
-      <ProLayout {...defaultProps} layout="mix" splitMenus>
+      <ProLayout
+        {...defaultProps}
+        layout="mix"
+        splitMenus
+      >
         <PageContainer>splitMenus</PageContainer>
       </ProLayout>
       <ProLayout
@@ -90,7 +96,10 @@ const Demo = () => {
         }}
         openKeys={false}
         actionsRender={() => [
-          <a key="docs" href="https://suxiuxing.github.io/pro-components/">
+          <a
+            key="docs"
+            href="https://suxiuxing.github.io/pro-components/"
+          >
             文档
           </a>,
         ]}

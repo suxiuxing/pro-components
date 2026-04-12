@@ -40,17 +40,18 @@ When the built-in form items don't meet our basic needs, we need to customize th
 `formItemRender` does the rewriting logic, passing in item and props for rendering, but note that we have to assign `value` and `onChange` to the props, otherwise the form won't get the parameters.
 
 ```tsx | pure
-formItemRender: (
-  _,
-  { type, defaultRender, formItemProps, fieldProps, ...rest },
-  form,
-) => {
+formItemRender: (_, { type, defaultRender, formItemProps, fieldProps, ...rest }, form) => {
   if (type === 'form') {
     return null;
   }
   const status = form.getFieldValue('state');
   if (status !== 'open') {
-    return <Input {...fieldProps} placeholder="Please enter" />;
+    return (
+      <Input
+        {...fieldProps}
+        placeholder="Please enter"
+      />
+    );
   }
   return defaultRender(_);
 };

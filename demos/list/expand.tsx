@@ -1,7 +1,8 @@
-import { ProList } from '@xxlabs/pro-components';
 import { Button, Progress, Space, Tag } from 'antd';
 import type { Key } from 'react';
 import { useState } from 'react';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const dataSource = [
   {
@@ -35,7 +36,10 @@ const Demo = () => {
       headerTitle="支持展开的列表"
       toolBarRender={() => {
         return [
-          <Button key="3" type="primary">
+          <Button
+            key="3"
+            type="primary"
+          >
             新建
           </Button>,
         ];

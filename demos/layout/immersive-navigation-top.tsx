@@ -1,7 +1,9 @@
 import { CrownOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
-import { PageContainer, ProLayout } from '@xxlabs/pro-components';
 import { Button, Input, Result, Tag } from 'antd';
 import { useState } from 'react';
+
+import { PageContainer, ProLayout } from '@xxlabs/pro-components';
+
 import { demoOnMenuHeaderClick } from './_demoHandlers';
 
 const defaultProps = {
@@ -78,7 +80,10 @@ const Demo = () => {
               }}
             />,
             <Button key="3">操作一</Button>,
-            <Button key="2" type="primary">
+            <Button
+              key="2"
+              type="primary"
+            >
               操作一
             </Button>,
           ]}

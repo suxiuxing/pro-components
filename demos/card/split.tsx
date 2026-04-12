@@ -1,6 +1,7 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { ProCard } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { ProCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [responsive, setResponsive] = useState(false);

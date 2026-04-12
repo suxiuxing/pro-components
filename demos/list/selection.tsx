@@ -1,7 +1,8 @@
-import { ProList } from '@xxlabs/pro-components';
 import { Button, Progress } from 'antd';
 import type { Key } from 'react';
 import { useState } from 'react';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const dataSource = [
   {
@@ -37,7 +38,10 @@ const Demo = () => {
     <ProList<{ title: string }>
       toolBarRender={() => {
         return [
-          <Button key="3" type="primary">
+          <Button
+            key="3"
+            type="primary"
+          >
             新建
           </Button>,
         ];
@@ -66,7 +70,10 @@ const Demo = () => {
           listSlot: 'actions',
           render: () => [
             <a key="init">邀请</a>,
-            <Button key="publish" type="text">
+            <Button
+              key="publish"
+              type="text"
+            >
               发布
             </Button>,
           ],

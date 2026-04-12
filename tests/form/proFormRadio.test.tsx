@@ -1,14 +1,9 @@
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ProForm, ProFormRadio } from '@xxlabs/pro-components';
 import { Form } from 'antd';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProForm, ProFormRadio } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -30,30 +25,32 @@ describe('ProFormRadio', () => {
   it('📦 ProFormRadio should support checked prop', () => {
     const { container } = render(
       <ProForm>
-        <ProFormRadio name="test" fieldProps={{ checked: true }}>
+        <ProFormRadio
+          name="test"
+          fieldProps={{ checked: true }}
+        >
           Test Radio
         </ProFormRadio>
       </ProForm>,
     );
 
-    const radio = container.querySelector(
-      '.ant-radio-input',
-    ) as HTMLInputElement;
+    const radio = container.querySelector('.ant-radio-input') as HTMLInputElement;
     expect(radio.checked).toBe(true);
   });
 
   it('📦 ProFormRadio should support defaultChecked prop', () => {
     const { container } = render(
       <ProForm>
-        <ProFormRadio name="test" fieldProps={{ defaultChecked: true }}>
+        <ProFormRadio
+          name="test"
+          fieldProps={{ defaultChecked: true }}
+        >
           Test Radio
         </ProFormRadio>
       </ProForm>,
     );
 
-    const radio = container.querySelector(
-      '.ant-radio-input',
-    ) as HTMLInputElement;
+    const radio = container.querySelector('.ant-radio-input') as HTMLInputElement;
     expect(radio.checked).toBe(true);
   });
 
@@ -63,15 +60,16 @@ describe('ProFormRadio', () => {
 
     const { container } = render(
       <ProForm>
-        <ProFormRadio name="test" fieldProps={{ onChange }}>
+        <ProFormRadio
+          name="test"
+          fieldProps={{ onChange }}
+        >
           Test Radio
         </ProFormRadio>
       </ProForm>,
     );
 
-    const radio = container.querySelector(
-      '.ant-radio-input',
-    ) as HTMLInputElement;
+    const radio = container.querySelector('.ant-radio-input') as HTMLInputElement;
     await user.click(radio);
 
     expect(onChange).toHaveBeenCalledTimes(1);
@@ -87,15 +85,16 @@ describe('ProFormRadio', () => {
   it('📦 ProFormRadio should support disabled prop', () => {
     const { container } = render(
       <ProForm>
-        <ProFormRadio name="test" fieldProps={{ disabled: true }}>
+        <ProFormRadio
+          name="test"
+          fieldProps={{ disabled: true }}
+        >
           Test Radio
         </ProFormRadio>
       </ProForm>,
     );
 
-    const radio = container.querySelector(
-      '.ant-radio-input',
-    ) as HTMLInputElement;
+    const radio = container.querySelector('.ant-radio-input') as HTMLInputElement;
     expect(radio.disabled).toBe(true);
     expect(container.querySelector('.ant-radio-wrapper-disabled')).toBeTruthy();
   });
@@ -109,7 +108,10 @@ describe('ProFormRadio', () => {
 
     const { container } = render(
       <ProForm>
-        <ProFormRadio.Group name="radioGroup" options={options} />
+        <ProFormRadio.Group
+          name="radioGroup"
+          options={options}
+        />
       </ProForm>,
     );
 
@@ -127,7 +129,10 @@ describe('ProFormRadio', () => {
 
     const { container } = render(
       <ProForm>
-        <ProFormRadio.Group name="radioGroup" options={options} />
+        <ProFormRadio.Group
+          name="radioGroup"
+          options={options}
+        />
       </ProForm>,
     );
 
@@ -175,9 +180,7 @@ describe('ProFormRadio', () => {
       </ProForm>,
     );
 
-    expect(container.querySelectorAll('.ant-radio-button-wrapper').length).toBe(
-      2,
-    );
+    expect(container.querySelectorAll('.ant-radio-button-wrapper').length).toBe(2);
     expect(screen.getByText('Option 1')).toBeTruthy();
     expect(screen.getByText('Option 2')).toBeTruthy();
   });
@@ -199,9 +202,7 @@ describe('ProFormRadio', () => {
     );
 
     expect(container.querySelectorAll('.ant-radio-wrapper').length).toBe(2);
-    expect(container.querySelectorAll('.ant-radio-button-wrapper').length).toBe(
-      0,
-    );
+    expect(container.querySelectorAll('.ant-radio-button-wrapper').length).toBe(0);
   });
 
   it('📦 ProFormRadio.Group should support defaultValue', () => {
@@ -212,7 +213,10 @@ describe('ProFormRadio', () => {
 
     const { container } = render(
       <ProForm initialValues={{ radioGroup: 'b' }}>
-        <ProFormRadio.Group name="radioGroup" options={options} />
+        <ProFormRadio.Group
+          name="radioGroup"
+          options={options}
+        />
       </ProForm>,
     );
 
@@ -241,9 +245,7 @@ describe('ProFormRadio', () => {
       </ProForm>,
     );
 
-    const firstRadio = container.querySelector(
-      'input[value="a"]',
-    ) as HTMLInputElement;
+    const firstRadio = container.querySelector('input[value="a"]') as HTMLInputElement;
     await user.click(firstRadio);
 
     expect(onChange).toHaveBeenCalledTimes(1);
@@ -289,7 +291,10 @@ describe('ProFormRadio', () => {
 
     const { container } = render(
       <ProForm>
-        <ProFormRadio.Group name="radioGroup" valueEnum={valueEnum} />
+        <ProFormRadio.Group
+          name="radioGroup"
+          valueEnum={valueEnum}
+        />
       </ProForm>,
     );
 
@@ -307,7 +312,10 @@ describe('ProFormRadio', () => {
 
     const { container } = render(
       <ProForm>
-        <ProFormRadio.Group name="radioGroup" valueEnum={valueEnum} />
+        <ProFormRadio.Group
+          name="radioGroup"
+          valueEnum={valueEnum}
+        />
       </ProForm>,
     );
 
@@ -326,7 +334,10 @@ describe('ProFormRadio', () => {
     ];
 
     const { container } = render(
-      <ProForm onFinish={onFinish} onFinishFailed={onFinishFailed}>
+      <ProForm
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
         <ProFormRadio.Group
           name="radioGroup"
           options={options}
@@ -362,7 +373,10 @@ describe('ProFormRadio', () => {
     ];
 
     const { container } = render(
-      <ProForm onFinish={onFinish} onFinishFailed={onFinishFailed}>
+      <ProForm
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
         <ProFormRadio.Group
           name="radioGroup"
           options={options}
@@ -373,9 +387,7 @@ describe('ProFormRadio', () => {
     );
 
     // 选择一个选项
-    const firstRadio = container.querySelector(
-      'input[value="a"]',
-    ) as HTMLInputElement;
+    const firstRadio = container.querySelector('input[value="a"]') as HTMLInputElement;
     await user.click(firstRadio);
 
     const submitButton = screen.getByText('Submit');
@@ -395,8 +407,14 @@ describe('ProFormRadio', () => {
     ];
 
     render(
-      <ProForm initialValues={{ radioGroup: 'a' }} readonly>
-        <ProFormRadio.Group name="radioGroup" options={options} />
+      <ProForm
+        initialValues={{ radioGroup: 'a' }}
+        readonly
+      >
+        <ProFormRadio.Group
+          name="radioGroup"
+          options={options}
+        />
       </ProForm>,
     );
 
@@ -421,7 +439,10 @@ describe('ProFormRadio', () => {
 
     render(
       <ProForm>
-        <ProFormRadio name="test" fieldProps={customProps}>
+        <ProFormRadio
+          name="test"
+          fieldProps={customProps}
+        >
           Custom Radio
         </ProFormRadio>
       </ProForm>,
@@ -438,7 +459,10 @@ describe('ProFormRadio', () => {
 
     render(
       <ProForm>
-        <ProFormRadio.Group name="radioGroup" options={options} />
+        <ProFormRadio.Group
+          name="radioGroup"
+          options={options}
+        />
       </ProForm>,
     );
 
@@ -451,7 +475,10 @@ describe('ProFormRadio', () => {
   it('📦 ProFormRadio.Group should handle empty options', () => {
     const { container } = render(
       <ProForm>
-        <ProFormRadio.Group name="radioGroup" options={[]} />
+        <ProFormRadio.Group
+          name="radioGroup"
+          options={[]}
+        />
       </ProForm>,
     );
 
@@ -467,13 +494,14 @@ describe('ProFormRadio', () => {
 
     const { container } = render(
       <ProForm>
-        <ProFormRadio.Group name="radioGroup" options={options} />
+        <ProFormRadio.Group
+          name="radioGroup"
+          options={options}
+        />
       </ProForm>,
     );
 
-    const disabledRadio = container.querySelector(
-      'input[value="b"]',
-    ) as HTMLInputElement;
+    const disabledRadio = container.querySelector('input[value="b"]') as HTMLInputElement;
     expect(disabledRadio.disabled).toBe(true);
   });
 
@@ -482,7 +510,10 @@ describe('ProFormRadio', () => {
 
     render(
       <ProForm>
-        <ProFormRadio.Group name="radioGroup" options={options} />
+        <ProFormRadio.Group
+          name="radioGroup"
+          options={options}
+        />
       </ProForm>,
     );
 
@@ -530,7 +561,10 @@ describe('ProFormRadio', () => {
                   ]}
                 />
               ))}
-              <button type="button" onClick={() => add()}>
+              <button
+                type="button"
+                onClick={() => add()}
+              >
                 Add User
               </button>
             </>

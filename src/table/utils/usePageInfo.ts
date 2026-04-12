@@ -1,5 +1,6 @@
 import { useControlledState } from '@rc-component/util';
 import { useCallback } from 'react';
+
 import { useRefFunction } from '../../utils';
 import type { PageInfo, UseFetchProps } from '../typing';
 
@@ -33,9 +34,7 @@ export function usePageInfo(options: UseFetchProps) {
     (updater: PageInfo | ((prev: PageInfo) => PageInfo)) => {
       setPageInfoStateInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: PageInfo) => PageInfo)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: PageInfo) => PageInfo)(prev) : updater;
         options?.onPageInfoChange?.(next);
         return next;
       });

@@ -1,4 +1,5 @@
-﻿import React from 'react';
+import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 
 type Props = Parameters<

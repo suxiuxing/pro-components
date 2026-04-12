@@ -1,6 +1,4 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Button, ConfigProvider, Select, Space } from 'antd';
 import caESIntl from 'antd/lib/locale/ca_ES';
 import enGBIntl from 'antd/lib/locale/en_GB';
@@ -19,6 +17,9 @@ import zhCNIntl from 'antd/lib/locale/zh_CN';
 import zhTWIntl from 'antd/lib/locale/zh_TW';
 import dayjs from 'dayjs';
 import { useRef, useState } from 'react';
+
+import type { ActionType, ProColumns } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 const intlMap = {
   zhCNIntl,
@@ -109,7 +110,10 @@ const Demo = () => {
           </Space>
         }
         toolBarRender={() => [
-          <Button key="new" type="primary">
+          <Button
+            key="new"
+            type="primary"
+          >
             <PlusOutlined />
             新建
           </Button>,

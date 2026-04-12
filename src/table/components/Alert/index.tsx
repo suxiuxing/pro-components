@@ -1,6 +1,7 @@
 import { ConfigProvider, Space } from 'antd';
 import { clsx } from 'clsx';
 import React, { Key, useContext } from 'react';
+
 import type { IntlType } from '../../../provider';
 import { useIntl } from '../../../provider';
 import { useStyle } from './style';
@@ -23,13 +24,13 @@ export type TableAlertProps<T> = {
   alertOptionRender?: AlertRenderType<T>;
 };
 
-const defaultAlertOptionRender = (props: {
-  intl: IntlType;
-  onCleanSelected: () => void;
-}) => {
+const defaultAlertOptionRender = (props: { intl: IntlType; onCleanSelected: () => void }) => {
   const { intl, onCleanSelected } = props;
   return [
-    <a onClick={onCleanSelected} key="0">
+    <a
+      onClick={onCleanSelected}
+      key="0"
+    >
       {intl.getMessage('alert.clear', '清空')}
     </a>,
   ];
@@ -80,14 +81,8 @@ function TableAlert<T>({
     <div className={clsx(className, hashId)}>
       <div className={clsx(`${className}-container`, hashId)}>
         <div className={clsx(`${className}-info`, hashId)}>
-          <div className={clsx(`${className}-info-content`, hashId)}>
-            {dom}
-          </div>
-          {option ? (
-            <div className={clsx(`${className}-info-option`, hashId)}>
-              {option}
-            </div>
-          ) : null}
+          <div className={clsx(`${className}-info-content`, hashId)}>{dom}</div>
+          {option ? <div className={clsx(`${className}-info-option`, hashId)}>{option}</div> : null}
         </div>
       </div>
     </div>,

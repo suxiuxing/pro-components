@@ -1,5 +1,6 @@
 import type { SwitchProps } from 'antd';
 import React from 'react';
+
 import { FieldSwitch } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
 import type { ProFormFieldItemProps } from '../../typing';
@@ -18,17 +19,22 @@ export type ProFormSwitchProps = Omit<
  * @en-us Single Choice Switch
  */
 const ProFormSwitch: React.FC<ProFormSwitchProps> = React.forwardRef(
-  (
-    { fieldProps, unCheckedChildren, checkedChildren, proFieldProps, ...rest },
-    ref: any,
-  ) => {
+  ({ fieldProps, unCheckedChildren, checkedChildren, proFieldProps, ...rest }, ref: any) => {
     return (
       <ProConfigProvider
         valueTypeMap={{
           switch: {
-            render: (text, props) => <FieldSwitch {...props} text={text} />,
+            render: (text, props) => (
+              <FieldSwitch
+                {...props}
+                text={text}
+              />
+            ),
             formItemRender: (text, props) => (
-              <FieldSwitch {...props} text={text} />
+              <FieldSwitch
+                {...props}
+                text={text}
+              />
             ),
           },
         }}

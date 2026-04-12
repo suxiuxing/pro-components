@@ -1,16 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
-import type { ActionType } from '@xxlabs/pro-components';
-import { ProTable, TableDropdown } from '@xxlabs/pro-components';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Button, Input, Popover } from 'antd';
 import React, { act, useRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import type { ActionType } from '@xxlabs/pro-components';
+import { ProTable, TableDropdown } from '@xxlabs/pro-components';
+
 import { columns, request } from './fixtures';
 
 afterEach(() => {
@@ -171,9 +167,7 @@ describe('BasicTable', () => {
         }
       });
 
-    vi.spyOn(document, 'visibilityState' as any, 'get').mockReturnValue(
-      'visible',
-    );
+    vi.spyOn(document, 'visibilityState' as any, 'get').mockReturnValue('visible');
 
     const html = render(
       <ProTable
@@ -226,9 +220,7 @@ describe('BasicTable', () => {
     );
 
     await waitFor(() => {
-      expect(
-        !!html.baseElement.querySelector('.ant-pro-table-search'),
-      ).toBeFalsy();
+      expect(!!html.baseElement.querySelector('.ant-pro-table-search')).toBeFalsy();
     });
     html.unmount();
   });
@@ -575,9 +567,7 @@ describe('BasicTable', () => {
     });
 
     await waitFor(() => {
-      expect(
-        !!html.baseElement.querySelector('ul.ant-pagination'),
-      ).toBeTruthy();
+      expect(!!html.baseElement.querySelector('ul.ant-pagination')).toBeTruthy();
     });
   });
 
@@ -911,10 +901,7 @@ describe('BasicTable', () => {
     });
 
     await waitFor(() => {
-      expect(reloadFn).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.anything(),
-      );
+      expect(reloadFn).toHaveBeenCalledWith(expect.anything(), expect.anything());
     });
 
     act(() => {
@@ -926,10 +913,7 @@ describe('BasicTable', () => {
     });
 
     await waitFor(() => {
-      expect(fullScreenFn).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.anything(),
-      );
+      expect(fullScreenFn).toHaveBeenCalledWith(expect.anything(), expect.anything());
     });
   });
 
@@ -1020,9 +1004,7 @@ describe('BasicTable', () => {
 
     act(() => {
       html.baseElement
-        .querySelector<HTMLDivElement>(
-          '.ant-dropdown-menu .ant-dropdown-menu-item',
-        )
+        .querySelector<HTMLDivElement>('.ant-dropdown-menu .ant-dropdown-menu-item')
         ?.click();
     });
 
@@ -1312,9 +1294,7 @@ describe('BasicTable', () => {
     });
 
     act(() => {
-      fireEvent.click(
-        html.baseElement.querySelectorAll('li.ant-dropdown-menu-item')[1],
-      );
+      fireEvent.click(html.baseElement.querySelectorAll('li.ant-dropdown-menu-item')[1]);
     });
 
     await waitFor(() => {
@@ -1365,9 +1345,7 @@ describe('BasicTable', () => {
 
     act(() => {
       fireEvent.change(
-        html.baseElement.querySelector(
-          '.ant-pro-table-list-toolbar-search input',
-        )!,
+        html.baseElement.querySelector('.ant-pro-table-list-toolbar-search input')!,
         {
           target: {
             value: 'name',
@@ -1380,9 +1358,7 @@ describe('BasicTable', () => {
 
     act(() => {
       fireEvent.keyDown(
-        html.baseElement.querySelector(
-          '.ant-pro-table-list-toolbar-search input',
-        )!,
+        html.baseElement.querySelector('.ant-pro-table-list-toolbar-search input')!,
         { key: 'Enter', keyCode: 13 },
       );
     });
@@ -1419,9 +1395,7 @@ describe('BasicTable', () => {
 
     act(() => {
       fireEvent.change(
-        html.baseElement.querySelector(
-          '.ant-pro-table-list-toolbar-search input',
-        )!,
+        html.baseElement.querySelector('.ant-pro-table-list-toolbar-search input')!,
         {
           target: {
             value: 'name',
@@ -1433,9 +1407,7 @@ describe('BasicTable', () => {
 
     act(() => {
       fireEvent.keyDown(
-        html.baseElement.querySelector(
-          '.ant-pro-table-list-toolbar-search input',
-        )!,
+        html.baseElement.querySelector('.ant-pro-table-list-toolbar-search input')!,
         { key: 'Enter', keyCode: 13 },
       );
     });
@@ -1469,10 +1441,7 @@ describe('BasicTable', () => {
       />,
     );
     const input = await waitFor(
-      () =>
-        html.baseElement.querySelector(
-          '.ant-pro-table-list-toolbar-search input',
-        )!,
+      () => html.baseElement.querySelector('.ant-pro-table-list-toolbar-search input')!,
     );
     await html.findByText('查 询');
 
@@ -1535,13 +1504,9 @@ describe('BasicTable', () => {
     );
 
     expect(
-      !!html.baseElement.querySelector(
-        '.ant-pro-table-search-query-filter.ant-pro-card-bordered',
-      ),
+      !!html.baseElement.querySelector('.ant-pro-table-search-query-filter.ant-pro-card-bordered'),
     ).toBeTruthy();
-    expect(
-      !!html.baseElement.querySelector('.ant-pro-card.ant-pro-card-border'),
-    ).toBeTruthy();
+    expect(!!html.baseElement.querySelector('.ant-pro-card.ant-pro-card-border')).toBeTruthy();
   });
 
   it('🎏 bordered = {search = true, table = false}', async () => {
@@ -1564,13 +1529,9 @@ describe('BasicTable', () => {
         }}
       />,
     );
+    expect(!!html.baseElement.querySelector('.ant-pro-card.ant-card-bordered')).toBeFalsy();
     expect(
-      !!html.baseElement.querySelector('.ant-pro-card.ant-card-bordered'),
-    ).toBeFalsy();
-    expect(
-      !!html.baseElement.querySelector(
-        '.ant-pro-table-search-query-filter.ant-pro-card-bordered',
-      ),
+      !!html.baseElement.querySelector('.ant-pro-table-search-query-filter.ant-pro-card-bordered'),
     ).toBeTruthy();
   });
 
@@ -1656,8 +1617,7 @@ describe('BasicTable', () => {
     );
     await html.findByText('展开(9)');
     expect(
-      html.baseElement.querySelector('.ant-pro-query-filter-collapse-button')
-        ?.textContent,
+      html.baseElement.querySelector('.ant-pro-query-filter-collapse-button')?.textContent,
     ).toBe('展开(9)');
   });
 
@@ -1680,10 +1640,11 @@ describe('BasicTable', () => {
           open={open}
           onOpenChange={setOpen}
         >
-          <Button type="link" onClick={() => setOpen(true)}>
-            {typeof schema.title === 'function'
-              ? '标题'
-              : (schema.title ?? '标题')}
+          <Button
+            type="link"
+            onClick={() => setOpen(true)}
+          >
+            {typeof schema.title === 'function' ? '标题' : (schema.title ?? '标题')}
           </Button>
         </Popover>
       );
@@ -1722,9 +1683,7 @@ describe('BasicTable', () => {
       expect(html.baseElement.querySelector('.ant-btn-link')).toBeTruthy();
     });
 
-    const titleButton = html.baseElement.querySelector(
-      '.ant-btn-link',
-    ) as HTMLElement;
+    const titleButton = html.baseElement.querySelector('.ant-btn-link') as HTMLElement;
 
     expect(titleButton).toBeTruthy();
 
@@ -1736,9 +1695,7 @@ describe('BasicTable', () => {
     await waitFor(
       () => {
         // 验证只有一个 Popover 弹出层
-        const popovers = html.baseElement.querySelectorAll(
-          '.ant-popover:not(.ant-popover-hidden)',
-        );
+        const popovers = html.baseElement.querySelectorAll('.ant-popover:not(.ant-popover-hidden)');
         // 应该只有一个可见的 Popover（不包括隐藏的）
         const visiblePopovers = Array.from(popovers).filter(
           (popover) => !popover.classList.contains('ant-popover-hidden'),

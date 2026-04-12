@@ -2,26 +2,15 @@ import type { TableColumnType, TableProps } from 'antd';
 import { Table } from 'antd';
 import type { AnyObject } from 'antd/lib/_util/type';
 import type { SortOrder } from 'antd/lib/table/interface';
+
 import type { ProFieldEmptyText } from '../../field';
 import { proFieldParsingValueEnumToArray } from '../../field';
 import type { ProSchemaComponentTypes, UseEditableUtilType } from '../../utils';
-import {
-  omitBoolean,
-  omitUndefinedAndEmptyArr,
-  runFunction,
-} from '../../utils';
+import { omitBoolean, omitUndefinedAndEmptyArr, runFunction } from '../../utils';
 import type { ContainerType } from '../Store/Provide';
 import type { FilterValue, ProColumns } from '../typing';
-import {
-  columnRender,
-  defaultOnFilter,
-  renderColumnsTitle,
-} from './columnRender';
-import {
-  genColumnKey,
-  parseProFilteredValue,
-  parseProSortOrder,
-} from './index';
+import { columnRender, defaultOnFilter, renderColumnsTitle } from './columnRender';
+import { genColumnKey, parseProFilteredValue, parseProSortOrder } from './index';
 
 type ColumnToColumnReturnType<T> = (TableColumnType<T> & {
   index?: number;
@@ -42,8 +31,7 @@ export type TableColumnContext<T> = {
 function resolveOnFilter<T>(columnProps: ProColumns<T, any>) {
   const { onFilter, dataIndex } = columnProps;
   if (onFilter === true) {
-    return (value: string, row: T) =>
-      defaultOnFilter(value, row, dataIndex as string[]);
+    return (value: string, row: T) => defaultOnFilter(value, row, dataIndex as string[]);
   }
   return omitBoolean(onFilter);
 }
@@ -51,9 +39,9 @@ function resolveOnFilter<T>(columnProps: ProColumns<T, any>) {
 function resolveFilters<T>(columnProps: ProColumns<T, any>) {
   const { filters = [], valueEnum } = columnProps;
   if (filters === true) {
-    return proFieldParsingValueEnumToArray(
-      runFunction<[undefined]>(valueEnum, undefined),
-    ).filter((valueItem) => valueItem && valueItem.value !== 'all');
+    return proFieldParsingValueEnumToArray(runFunction<[undefined]>(valueEnum, undefined)).filter(
+      (valueItem) => valueItem && valueItem.value !== 'all',
+    );
   }
   return filters;
 }
@@ -85,11 +73,7 @@ function updateSubNameRecord<T>(
   childrenColumnName: string,
   subNameRecord: Map<unknown, unknown[]>,
 ): unknown {
-  if (
-    typeof rowData !== 'object' ||
-    rowData === null ||
-    !Reflect.has(rowData as object, keyName)
-  ) {
+  if (typeof rowData !== 'object' || rowData === null || !Reflect.has(rowData as object, keyName)) {
     return undefined;
   }
   const record = rowData as Record<string, any>;
@@ -98,10 +82,7 @@ function updateSubNameRecord<T>(
   record[childrenColumnName]?.forEach((item: any) => {
     const itemUniqueKey = item[keyName];
     if (!subNameRecord.has(itemUniqueKey)) {
-      subNameRecord.set(
-        itemUniqueKey,
-        parentInfo.concat([index, childrenColumnName]),
-      );
+      subNameRecord.set(itemUniqueKey, parentInfo.concat([index, childrenColumnName]));
     }
   });
   return uniqueKey;
@@ -182,11 +163,7 @@ export function genProColumnToColumn<T extends AnyObject>(params: {
         context.proSort,
         columnProps,
       );
-      const { fixed } = getColumnConfig(
-        context.counter.columnsMap,
-        columnKey,
-        columnProps,
-      );
+      const { fixed } = getColumnConfig(context.counter.columnsMap, columnKey, columnProps);
 
       const tempColumns = {
         index: columnsIndex,
@@ -211,7 +188,5 @@ export function genProColumnToColumn<T extends AnyObject>(params: {
       };
       return omitUndefinedAndEmptyArr(tempColumns);
     })
-    ?.filter(
-      (item) => !item.hideInTable,
-    ) as unknown as ColumnToColumnReturnType<T>;
+    ?.filter((item) => !item.hideInTable) as unknown as ColumnToColumnReturnType<T>;
 }

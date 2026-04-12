@@ -1,6 +1,7 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { ProCard } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { ProCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [responsive, setResponsive] = useState(false);
@@ -19,7 +20,10 @@ const Demo = () => {
           variant="outlined"
           headerBordered
         >
-          <ProCard title="Left Details" colSpan="50%">
+          <ProCard
+            title="Left Details"
+            colSpan="50%"
+          >
             <div style={{ height: 360 }}>Left Content</div>
           </ProCard>
           <ProCard title="Traffic Usage">

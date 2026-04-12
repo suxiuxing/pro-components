@@ -1,3 +1,6 @@
+import { ConfigProvider } from 'antd';
+import { useState } from 'react';
+
 import {
   ProForm,
   ProFormDatePicker,
@@ -9,8 +12,6 @@ import {
   ProFormSelect,
   ProFormText,
 } from '@xxlabs/pro-components';
-import { ConfigProvider } from 'antd';
-import { useState } from 'react';
 
 const Demo = () => {
   const [position, setPosition] = useState<'bottom' | 'top'>('bottom');
@@ -32,8 +33,15 @@ const Demo = () => {
           },
         ]}
       />
-      <ProForm name="group-list-demo" onFinish={async (values) => {}}>
-        <ProFormText width="sm" name="id" label="主合同编号" />
+      <ProForm
+        name="group-list-demo"
+        onFinish={async (values) => {}}
+      >
+        <ProFormText
+          width="sm"
+          name="id"
+          label="主合同编号"
+        />
         <ProFormText
           name="project"
           width="md"
@@ -87,7 +95,11 @@ const Demo = () => {
               name="name"
               label="姓名"
             />
-            <ProFormDigit name="age" label="年龄" width="sm" />
+            <ProFormDigit
+              name="age"
+              label="年龄"
+              width="sm"
+            />
             <ProFormSelect
               label="性别"
               name="sex"
@@ -97,8 +109,14 @@ const Demo = () => {
                 woman: '女性',
               }}
             />
-            <ProFormDatePicker name="birth" label="出生日期" />
-            <ProFormFieldSet name="addr" label="地址">
+            <ProFormDatePicker
+              name="birth"
+              label="出生日期"
+            />
+            <ProFormFieldSet
+              name="addr"
+              label="地址"
+            >
               <ProFormSelect
                 valueEnum={{
                   taiyuan: '山西',

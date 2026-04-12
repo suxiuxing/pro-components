@@ -1,10 +1,6 @@
-﻿import {
-  ProForm,
-  ProFormCheckbox,
-  ProFormRadio,
-  ProFormText,
-} from '@xxlabs/pro-components';
 import { Button } from 'antd';
+
+import { ProForm, ProFormCheckbox, ProFormRadio, ProFormText } from '@xxlabs/pro-components';
 
 const layout = {
   labelCol: { span: 8 },
@@ -24,21 +20,33 @@ const Demo = () => {
         name="basic"
         initialValues={{ remember: true }}
       >
-        <ProFormText label="Name" name="name" />
+        <ProFormText
+          label="Name"
+          name="name"
+        />
 
         <ProFormText.Password
           label="Password"
           name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         />
-        <ProFormCheckbox name="remember" {...tailLayout}>
+        <ProFormCheckbox
+          name="remember"
+          {...tailLayout}
+        >
           Remember me
         </ProFormCheckbox>
-        <ProFormRadio name="remember" {...tailLayout}>
+        <ProFormRadio
+          name="remember"
+          {...tailLayout}
+        >
           Remember me
         </ProFormRadio>
         <ProForm.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          <Button
+            type="primary"
+            htmlType="submit"
+          >
             Submit
           </Button>
         </ProForm.Item>

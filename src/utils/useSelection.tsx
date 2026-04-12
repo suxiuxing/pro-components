@@ -18,22 +18,14 @@ function useSelection<RecordType>(
   rowSelection?: TableRowSelection<RecordType>,
 ): readonly [
   (columns?: any[]) => Array<{
-    render: (
-      text: any,
-      record: RecordType,
-      index: number,
-    ) => React.ReactElement;
+    render: (text: any, record: RecordType, index: number) => React.ReactElement;
   }>,
   Set<React.Key>,
 ] {
   const { getRowKey, data } = config;
 
-  const controlledKeys = rowSelection?.selectedRowKeys as
-    | React.Key[]
-    | undefined;
-  const [innerKeys, setInnerKeys] = React.useState<React.Key[]>(
-    controlledKeys || [],
-  );
+  const controlledKeys = rowSelection?.selectedRowKeys as React.Key[] | undefined;
+  const [innerKeys, setInnerKeys] = React.useState<React.Key[]>(controlledKeys || []);
 
   // Keep in sync with controlled keys
   React.useEffect(() => {
@@ -72,9 +64,7 @@ function useSelection<RecordType>(
         const nextKeys = Array.from(next);
 
         // Fire callbacks similar to antd rowSelection
-        const selectedRows = data.filter((item, idx) =>
-          next.has(getRowKey(item, idx)),
-        );
+        const selectedRows = data.filter((item, idx) => next.has(getRowKey(item, idx)));
         rowSelection?.onChange?.(nextKeys, selectedRows, {
           type: 'multiple',
           selectedRows,

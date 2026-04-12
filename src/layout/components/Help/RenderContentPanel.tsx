@@ -1,7 +1,8 @@
-﻿import type { ImageProps } from 'antd';
+import type { ImageProps } from 'antd';
 import { Image, Typography } from 'antd';
 import type { AnchorHTMLAttributes } from 'react';
 import React, { useContext, useEffect, useRef } from 'react';
+
 import type { ProHelpDataSourceChildren } from './HelpProvide';
 import { ProHelpProvide } from './HelpProvide';
 import { SelectKeyProvide } from './ProHelpPanel';
@@ -19,7 +20,12 @@ const HTMLRender: React.FC<{
     if (ref.current) ref.current.innerHTML = props.children;
   }, [props.children]);
   // 返回一个div元素作为容器，并传递ref和className作为props
-  return <div ref={ref} className={props.className || 'inner-html'} />;
+  return (
+    <div
+      ref={ref}
+      className={props.className || 'inner-html'}
+    />
+  );
 };
 
 const NavigationSwitch: React.FC<{
@@ -129,9 +135,7 @@ export const RenderContentPanel: React.FC<{
       return (
         <div key={index}>
           <Typography.Text key={index}>
-            <a
-              {...(item.children as AnchorHTMLAttributes<HTMLAnchorElement>)}
-            />
+            <a {...(item.children as AnchorHTMLAttributes<HTMLAnchorElement>)} />
           </Typography.Text>
         </div>
       );
@@ -147,9 +151,7 @@ export const RenderContentPanel: React.FC<{
         />
       );
     }
-    return (
-      <Typography.Text key={index}>{item.children as string}</Typography.Text>
-    );
+    return <Typography.Text key={index}>{item.children as string}</Typography.Text>;
   };
 
   return <div ref={divRef}>{dataSourceChildren?.map(itemRender)}</div>;

@@ -1,11 +1,8 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import {
-  ProForm,
-  ProFormDependency,
-  ProFormText,
-} from '@xxlabs/pro-components';
 import { Input, Space, Tag } from 'antd';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProForm, ProFormDependency, ProFormText } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -48,7 +45,10 @@ describe('ProForm.Item', () => {
         onValuesChange={({ name }) => onValuesChange(name)}
       >
         <ProForm.Item name="name">
-          <Input onChange={(e) => onChange(e.target.value)} id="name" />
+          <Input
+            onChange={(e) => onChange(e.target.value)}
+            id="name"
+          />
         </ProForm.Item>
       </ProForm>,
     );
@@ -75,13 +75,20 @@ describe('ProForm.Item', () => {
           affiliatedOrganizationIds: '',
         }}
       >
-        <ProFormText name="primaryOrganizationId" hidden />
-        <ProFormText name="primaryOrganizationName" hidden />
-        <ProFormText name="affiliatedOrganizationIds" hidden />
+        <ProFormText
+          name="primaryOrganizationId"
+          hidden
+        />
+        <ProFormText
+          name="primaryOrganizationName"
+          hidden
+        />
+        <ProFormText
+          name="affiliatedOrganizationIds"
+          hidden
+        />
 
-        <ProFormDependency
-          name={['primaryOrganizationName', 'primaryOrganizationId']}
-        >
+        <ProFormDependency name={['primaryOrganizationName', 'primaryOrganizationId']}>
           {({ primaryOrganizationName, primaryOrganizationId }) => (
             <ProFormText
               label="组织名称"
@@ -89,7 +96,10 @@ describe('ProForm.Item', () => {
               required
               extra="主组织与从属组织"
             >
-              <Space size={[0, 8]} wrap>
+              <Space
+                size={[0, 8]}
+                wrap
+              >
                 <Tag>
                   {primaryOrganizationName}
                   <span
@@ -113,9 +123,7 @@ describe('ProForm.Item', () => {
     expect(getByText('主组织')).toBeInTheDocument();
 
     const onBlurWarning = consoleSpy.mock.calls.find(
-      (args) =>
-        String(args[0]).includes('onBlur') &&
-        String(args[0]).includes('function'),
+      (args) => String(args[0]).includes('onBlur') && String(args[0]).includes('function'),
     );
     consoleSpy.mockRestore();
     expect(

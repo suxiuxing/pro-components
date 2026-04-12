@@ -1,5 +1,6 @@
 import type { GetRowKey } from 'antd/lib/table/interface';
 import React from 'react';
+
 import { ParamsType } from '../../../provider';
 import { ProColumns } from '../../typing';
 import EditableProTable, { EditableProTableProps } from './index';
@@ -44,8 +45,7 @@ export function CellEditorTable<
           return {
             ...item,
             editable:
-              dataIndex.flat(1).join('.') ===
-              [item.dataIndex || item.key].flat(1).join('.')
+              dataIndex.flat(1).join('.') === [item.dataIndex || item.key].flat(1).join('.')
                 ? undefined
                 : false,
             onCell: (record: any, rowIndex: any) => {

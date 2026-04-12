@@ -1,18 +1,13 @@
 import { cleanup, render, waitFor } from '@testing-library/react';
-import {
-  ProForm,
-  ProFormGroup,
-  ProFormText,
-  QueryFilter,
-} from '@xxlabs/pro-components';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProForm, ProFormGroup, ProFormText, QueryFilter } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
 });
 
-const FRAGMENT_AUTOFOCUS_WARNING =
-  'Invalid prop `autoFocus` supplied to `React.Fragment`';
+const FRAGMENT_AUTOFOCUS_WARNING = 'Invalid prop `autoFocus` supplied to `React.Fragment`';
 
 describe('autoFocus with React.Fragment', () => {
   it('ProForm with autoFocusFirstInput should not pass autoFocus to Fragment when first child is Fragment', () => {
@@ -21,8 +16,14 @@ describe('autoFocus with React.Fragment', () => {
     render(
       <ProForm autoFocusFirstInput>
         <>
-          <ProFormText label="a" name="a" />
-          <ProFormText label="b" name="b" />
+          <ProFormText
+            label="a"
+            name="a"
+          />
+          <ProFormText
+            label="b"
+            name="b"
+          />
         </>
       </ProForm>,
     );
@@ -41,8 +42,14 @@ describe('autoFocus with React.Fragment', () => {
     render(
       <QueryFilter autoFocusFirstInput>
         <>
-          <ProFormText label="a" name="a" />
-          <ProFormText label="b" name="b" />
+          <ProFormText
+            label="a"
+            name="a"
+          />
+          <ProFormText
+            label="b"
+            name="b"
+          />
         </>
       </QueryFilter>,
     );
@@ -60,10 +67,19 @@ describe('autoFocus with React.Fragment', () => {
 
     render(
       <ProForm>
-        <ProFormGroup autoFocus title="group">
+        <ProFormGroup
+          autoFocus
+          title="group"
+        >
           <>
-            <ProFormText label="a" name="a" />
-            <ProFormText label="b" name="b" />
+            <ProFormText
+              label="a"
+              name="a"
+            />
+            <ProFormText
+              label="b"
+              name="b"
+            />
           </>
         </ProFormGroup>
       </ProForm>,
@@ -80,8 +96,14 @@ describe('autoFocus with React.Fragment', () => {
   it('ProForm with autoFocusFirstInput should still pass autoFocus when first child is not Fragment', async () => {
     const { container } = render(
       <ProForm autoFocusFirstInput>
-        <ProFormText label="a" name="a" />
-        <ProFormText label="b" name="b" />
+        <ProFormText
+          label="a"
+          name="a"
+        />
+        <ProFormText
+          label="b"
+          name="b"
+        />
       </ProForm>,
     );
 
@@ -99,7 +121,10 @@ describe('autoFocus with React.Fragment', () => {
   it('should not apply autoFocus when autoFocusFirstInput is false', () => {
     const { container } = render(
       <ProForm autoFocusFirstInput={false}>
-        <ProFormText label="a" name="a" />
+        <ProFormText
+          label="a"
+          name="a"
+        />
       </ProForm>,
     );
     expect(container.querySelector('.ant-input')).toBeTruthy();
@@ -112,9 +137,15 @@ describe('autoFocus with React.Fragment', () => {
       <ProForm autoFocusFirstInput>
         <>
           <>
-            <ProFormText label="a" name="a" />
+            <ProFormText
+              label="a"
+              name="a"
+            />
           </>
-          <ProFormText label="b" name="b" />
+          <ProFormText
+            label="b"
+            name="b"
+          />
         </>
       </ProForm>,
     );

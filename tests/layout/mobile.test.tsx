@@ -1,15 +1,9 @@
-﻿import { cleanup, render, waitFor } from '@testing-library/react';
-import { ProLayout } from '@xxlabs/pro-components';
+import { cleanup, render, waitFor } from '@testing-library/react';
 import { act } from 'react';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+
+import { ProLayout } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 import defaultProps from './defaultProps';
 
@@ -46,7 +40,11 @@ describe('mobile BasicLayout', () => {
 
   it('📱 base use', async () => {
     const html = render(
-      <ProLayout {...defaultProps} getContainer={false} onCollapse={() => {}}>
+      <ProLayout
+        {...defaultProps}
+        getContainer={false}
+        onCollapse={() => {}}
+      >
         welcome
       </ProLayout>,
     );
@@ -59,7 +57,11 @@ describe('mobile BasicLayout', () => {
 
   it('📱 collapsed=false', async () => {
     const html = render(
-      <ProLayout {...defaultProps} getContainer={false} collapsed={false}>
+      <ProLayout
+        {...defaultProps}
+        getContainer={false}
+        collapsed={false}
+      >
         welcome
       </ProLayout>,
     );
@@ -203,9 +205,7 @@ describe('mobile BasicLayout', () => {
     });
 
     await act(async () => {
-      const mask = html.baseElement?.querySelector<HTMLDivElement>(
-        'div.ant-drawer-mask',
-      );
+      const mask = html.baseElement?.querySelector<HTMLDivElement>('div.ant-drawer-mask');
       if (mask) {
         mask.click();
       }

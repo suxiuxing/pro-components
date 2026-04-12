@@ -1,12 +1,8 @@
-﻿import { CloseCircleOutlined, SmileOutlined } from '@ant-design/icons';
-import {
-  ProForm,
-  ProFormGroup,
-  ProFormList,
-  ProFormText,
-} from '@xxlabs/pro-components';
+import { CloseCircleOutlined, SmileOutlined } from '@ant-design/icons';
 import { Segmented } from 'antd';
 import { useState } from 'react';
+
+import { ProForm, ProFormGroup, ProFormList, ProFormText } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [readonly, setReadonly] = useState(false);
@@ -41,7 +37,10 @@ const Demo = () => {
         readonly={readonly}
         onFinish={async (e) => console.log(e)}
       >
-        <ProFormText name="name" label="姓名" />
+        <ProFormText
+          name="name"
+          label="姓名"
+        />
         <ProFormList
           name="labels"
           label="用户信息"
@@ -58,8 +57,14 @@ const Demo = () => {
           }}
         >
           <ProFormGroup key="group">
-            <ProFormText name="value" label="值" />
-            <ProFormText name="label" label="显示名称" />
+            <ProFormText
+              name="value"
+              label="值"
+            />
+            <ProFormText
+              name="label"
+              label="显示名称"
+            />
           </ProFormGroup>
         </ProFormList>
       </ProForm>

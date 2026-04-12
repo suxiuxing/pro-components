@@ -6,6 +6,10 @@ import {
   UserOutlined,
   WeiboOutlined,
 } from '@ant-design/icons';
+import { Button, Divider, Space, Tabs, message, theme } from 'antd';
+import type { CSSProperties } from 'react';
+import { useState } from 'react';
+
 import {
   LoginFormPage,
   ProConfigProvider,
@@ -13,9 +17,6 @@ import {
   ProFormCheckbox,
   ProFormText,
 } from '@xxlabs/pro-components';
-import { Button, Divider, Space, Tabs, message, theme } from 'antd';
-import type { CSSProperties } from 'react';
-import { useState } from 'react';
 
 type LoginType = 'phone' | 'account';
 
@@ -90,7 +91,10 @@ const Page = () => {
                 其他登录方式
               </span>
             </Divider>
-            <Space align="center" size={24}>
+            <Space
+              align="center"
+              size={24}
+            >
               <div
                 style={{
                   display: 'flex',
@@ -256,7 +260,10 @@ const Page = () => {
             marginBlockEnd: 24,
           }}
         >
-          <ProFormCheckbox noStyle name="autoLogin">
+          <ProFormCheckbox
+            noStyle
+            name="autoLogin"
+          >
             自动登录
           </ProFormCheckbox>
           <a

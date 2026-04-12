@@ -1,4 +1,4 @@
-﻿export type FieldDigitProps = {
+export type FieldDigitProps = {
   text: number;
   placeholder?: string;
 };

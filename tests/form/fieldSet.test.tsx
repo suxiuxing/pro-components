@@ -1,13 +1,8 @@
-﻿import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
-import { ProForm, ProFormFieldSet, ProFormText } from '@xxlabs/pro-components';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Input } from 'antd';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import { ProForm, ProFormFieldSet, ProFormText } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -93,7 +88,10 @@ describe('ProFormFieldSet', () => {
     const { container } = render(
       <ProForm>
         <ProFormFieldSet name="list">
-          <Input id="filedSet1" key="filedSet1" />
+          <Input
+            id="filedSet1"
+            key="filedSet1"
+          />
           <ProFormText
             fieldProps={{
               id: 'filedSet2',

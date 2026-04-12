@@ -1,7 +1,8 @@
 import { cleanup, render, waitFor } from '@testing-library/react';
-import { CheckCard } from '@xxlabs/pro-components';
 import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -25,9 +26,7 @@ describe('CheckCard', () => {
      */
     act(() => {
       // 从组件渲染后生成的容器中选择 `.ant-pro-checkcard` 元素，并模拟点击事件。
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('.ant-pro-checkcard')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-pro-checkcard')?.click();
     });
 
     /**
@@ -55,27 +54,21 @@ describe('CheckCard', () => {
       />,
     );
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('.ant-pro-checkcard')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-pro-checkcard')?.click();
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenLastCalledWith('Apple');
     });
 
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('.ant-pro-checkcard')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-pro-checkcard')?.click();
     });
 
     await waitFor(() => {
       expect(onChange).toHaveBeenLastCalledWith(undefined);
     });
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLDivElement>('.ant-pro-checkcard')[1]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLDivElement>('.ant-pro-checkcard')[1]?.click();
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenLastCalledWith('Pear');
@@ -94,9 +87,7 @@ describe('CheckCard', () => {
     );
 
     expect(
-      wrapper.baseElement.querySelectorAll<HTMLDivElement>(
-        '.ant-pro-checkcard-checked',
-      ).length,
+      wrapper.baseElement.querySelectorAll<HTMLDivElement>('.ant-pro-checkcard-checked').length,
     ).toBe(0);
     act(() => {
       wrapper.rerender(
@@ -111,9 +102,7 @@ describe('CheckCard', () => {
       );
     });
     expect(
-      wrapper.baseElement.querySelectorAll<HTMLDivElement>(
-        '.ant-pro-checkcard-checked',
-      ).length,
+      wrapper.baseElement.querySelectorAll<HTMLDivElement>('.ant-pro-checkcard-checked').length,
     ).toBe(0);
 
     wrapper.unmount();
@@ -130,26 +119,20 @@ describe('CheckCard', () => {
       />,
     );
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('.ant-pro-checkcard')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-pro-checkcard')?.click();
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenLastCalledWith(['Apple']);
     });
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLDivElement>('.ant-pro-checkcard')[1]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLDivElement>('.ant-pro-checkcard')[1]?.click();
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenLastCalledWith(['Apple', 'Pear']);
     });
 
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLDivElement>('.ant-pro-checkcard')[1]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLDivElement>('.ant-pro-checkcard')[1]?.click();
     });
 
     await waitFor(() => {
@@ -160,9 +143,20 @@ describe('CheckCard', () => {
   it('should support defaultValue', async () => {
     const onChange = vi.fn();
     const wrapper = render(
-      <CheckCard.Group onChange={(e) => onChange(e)} defaultValue="A">
-        <CheckCard title="Card A" description="选项一" value="A" />
-        <CheckCard title="Card B" description="选项二" value="B" />
+      <CheckCard.Group
+        onChange={(e) => onChange(e)}
+        defaultValue="A"
+      >
+        <CheckCard
+          title="Card A"
+          description="选项一"
+          value="A"
+        />
+        <CheckCard
+          title="Card B"
+          description="选项二"
+          value="B"
+        />
       </CheckCard.Group>,
     );
 
@@ -173,18 +167,14 @@ describe('CheckCard', () => {
     ).toBeTruthy();
 
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('.ant-pro-checkcard')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-pro-checkcard')?.click();
     });
 
     await waitFor(() => {
       expect(onChange).toHaveBeenCalledWith(undefined);
     });
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('.ant-pro-checkcard')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-pro-checkcard')?.click();
     });
 
     await waitFor(() => {
@@ -200,8 +190,16 @@ describe('CheckCard', () => {
         defaultValue={['A']}
         multiple
       >
-        <CheckCard title="Card A" description="选项一" value="A" />
-        <CheckCard title="Card B" description="选项二" value="B" />
+        <CheckCard
+          title="Card A"
+          description="选项一"
+          value="A"
+        />
+        <CheckCard
+          title="Card B"
+          description="选项二"
+          value="B"
+        />
       </CheckCard.Group>,
     );
     expect(
@@ -211,17 +209,13 @@ describe('CheckCard', () => {
     ).toBeTruthy();
 
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('.ant-pro-checkcard')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-pro-checkcard')?.click();
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenCalledWith([]);
     });
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLDivElement>('.ant-pro-checkcard')[1]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLDivElement>('.ant-pro-checkcard')[1]?.click();
     });
     await waitFor(() => {
       expect(onChange).toHaveBeenCalledWith(['B']);
@@ -231,15 +225,25 @@ describe('CheckCard', () => {
   it('should disabled onChange when group disabled', async () => {
     const onChange = vi.fn();
     const wrapper = render(
-      <CheckCard.Group onChange={(e) => onChange(e)} disabled defaultValue="A">
-        <CheckCard title="Card A" description="选项一" value="A" />
-        <CheckCard title="Card B" description="选项二" value="B" />
+      <CheckCard.Group
+        onChange={(e) => onChange(e)}
+        disabled
+        defaultValue="A"
+      >
+        <CheckCard
+          title="Card A"
+          description="选项一"
+          value="A"
+        />
+        <CheckCard
+          title="Card B"
+          description="选项二"
+          value="B"
+        />
       </CheckCard.Group>,
     );
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('.ant-pro-checkcard')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-pro-checkcard')?.click();
     });
 
     await waitFor(() => {
@@ -251,9 +255,7 @@ describe('CheckCard', () => {
     const wrapper = render(<CheckCard title={0} />);
 
     expect(
-      wrapper.baseElement.querySelector<HTMLDivElement>(
-        '.ant-pro-checkcard-title',
-      )?.innerHTML,
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-pro-checkcard-title')?.innerHTML,
     ).toBe('0');
   });
 });

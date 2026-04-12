@@ -1,26 +1,25 @@
 import { LikeOutlined, UserOutlined } from '@ant-design/icons';
-import type { ProSettings } from '@xxlabs/pro-components';
-import {
-  PageContainer,
-  ProLayout,
-  SettingDrawer,
-} from '@xxlabs/pro-components';
 import { Button, Descriptions, Result, Space, Statistic } from 'antd';
 import { useState } from 'react';
+
+import type { ProSettings } from '@xxlabs/pro-components';
+import { PageContainer, ProLayout, SettingDrawer } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 import { demoOnMenuHeaderClick } from './_demoHandlers';
 
 const content = (
-  <Descriptions size="small" column={2}>
+  <Descriptions
+    size="small"
+    column={2}
+  >
     <Descriptions.Item label="创建人">书琰</Descriptions.Item>
     <Descriptions.Item label="联系方式">
       <a>421421</a>
     </Descriptions.Item>
     <Descriptions.Item label="创建时间">2017-01-10</Descriptions.Item>
     <Descriptions.Item label="更新时间">2017-10-10</Descriptions.Item>
-    <Descriptions.Item label="备注">
-      中国浙江省杭州市西湖区古翠路
-    </Descriptions.Item>
+    <Descriptions.Item label="备注">中国浙江省杭州市西湖区古翠路</Descriptions.Item>
   </Descriptions>
 );
 
@@ -106,19 +105,29 @@ const Demo = () => {
                 value={1128}
                 prefix={<LikeOutlined />}
               />
-              <Statistic title="Unmerged" value={93} suffix="/ 100" />
+              <Statistic
+                title="Unmerged"
+                value={93}
+                suffix="/ 100"
+              />
             </Space>
           }
           extra={[
             <Button key="3">操作</Button>,
             <Button key="2">操作</Button>,
-            <Button key="1" type="primary">
+            <Button
+              key="1"
+              type="primary"
+            >
               主操作
             </Button>,
           ]}
           footer={[
             <Button key="3">重置</Button>,
-            <Button key="2" type="primary">
+            <Button
+              key="2"
+              type="primary"
+            >
               提交
             </Button>,
           ]}

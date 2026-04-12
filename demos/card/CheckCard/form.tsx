@@ -1,5 +1,6 @@
-import { CheckCard } from '@xxlabs/pro-components';
 import { Avatar, Button, Form } from 'antd';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [form] = Form.useForm();
@@ -8,8 +9,15 @@ const Demo = () => {
   return (
     <>
       <div>
-        <Form form={form} onFinish={handleSubmit} layout="vertical">
-          <Form.Item name="checkbox-group" label="技术栈">
+        <Form
+          form={form}
+          onFinish={handleSubmit}
+          layout="vertical"
+        >
+          <Form.Item
+            name="checkbox-group"
+            label="技术栈"
+          >
             <CheckCard.Group style={{ width: '100%' }}>
               <CheckCard
                 title="Spring Boot"
@@ -47,7 +55,10 @@ const Demo = () => {
             </CheckCard.Group>
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+            >
               Submit
             </Button>
           </Form.Item>
@@ -65,8 +76,7 @@ const Demo = () => {
         <h4>CheckCard 与 Form 集成说明：</h4>
         <ul>
           <li>
-            <strong>Form.Item</strong>: 将 CheckCard.Group 包装在 Form.Item
-            中作为表单控件
+            <strong>Form.Item</strong>: 将 CheckCard.Group 包装在 Form.Item 中作为表单控件
           </li>
           <li>
             <strong>name</strong>: Form.Item 的 name 属性用于标识表单字段
@@ -93,8 +103,7 @@ const Demo = () => {
             <strong>自动绑定</strong>: 自动与 Form 的 name 字段绑定
           </li>
           <li>
-            <strong>值收集</strong>: 选中的 CheckCard 的 value
-            会自动收集到表单数据中
+            <strong>值收集</strong>: 选中的 CheckCard 的 value 会自动收集到表单数据中
           </li>
           <li>
             <strong>验证支持</strong>: 支持 Form 的验证规则

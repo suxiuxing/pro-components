@@ -1,5 +1,9 @@
-﻿export const Logo = () => (
-  <svg width="1em" height="1em" viewBox="0 0 200 200">
+export const Logo = () => (
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 200 200"
+  >
     <defs>
       <linearGradient
         x1="62.1023273%"
@@ -8,8 +12,14 @@
         y2="37.8635764%"
         id="linearGradient-1"
       >
-        <stop stopColor="#4285EB" offset="0%" />
-        <stop stopColor="#2EC7FF" offset="100%" />
+        <stop
+          stopColor="#4285EB"
+          offset="0%"
+        />
+        <stop
+          stopColor="#2EC7FF"
+          offset="100%"
+        />
       </linearGradient>
       <linearGradient
         x1="69.644116%"
@@ -18,9 +28,18 @@
         y2="108.456714%"
         id="linearGradient-2"
       >
-        <stop stopColor="#29CDFF" offset="0%" />
-        <stop stopColor="#148EFF" offset="37.8600687%" />
-        <stop stopColor="#0A60FF" offset="100%" />
+        <stop
+          stopColor="#29CDFF"
+          offset="0%"
+        />
+        <stop
+          stopColor="#148EFF"
+          offset="37.8600687%"
+        />
+        <stop
+          stopColor="#0A60FF"
+          offset="100%"
+        />
       </linearGradient>
       <linearGradient
         x1="69.6908165%"
@@ -29,9 +48,18 @@
         y2="117.391248%"
         id="linearGradient-3"
       >
-        <stop stopColor="#FA816E" offset="0%" />
-        <stop stopColor="#F74A5C" offset="41.472606%" />
-        <stop stopColor="#F51D2C" offset="100%" />
+        <stop
+          stopColor="#FA816E"
+          offset="0%"
+        />
+        <stop
+          stopColor="#F74A5C"
+          offset="41.472606%"
+        />
+        <stop
+          stopColor="#F51D2C"
+          offset="100%"
+        />
       </linearGradient>
       <linearGradient
         x1="68.1279872%"
@@ -40,12 +68,26 @@
         y2="114.942679%"
         id="linearGradient-4"
       >
-        <stop stopColor="#FA8E7D" offset="0%" />
-        <stop stopColor="#F74A5C" offset="51.2635191%" />
-        <stop stopColor="#F51D2C" offset="100%" />
+        <stop
+          stopColor="#FA8E7D"
+          offset="0%"
+        />
+        <stop
+          stopColor="#F74A5C"
+          offset="51.2635191%"
+        />
+        <stop
+          stopColor="#F51D2C"
+          offset="100%"
+        />
       </linearGradient>
     </defs>
-    <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
+    <g
+      stroke="none"
+      strokeWidth={1}
+      fill="none"
+      fillRule="evenodd"
+    >
       <g transform="translate(-20.000000, -20.000000)">
         <g transform="translate(20.000000, 20.000000)">
           <g>

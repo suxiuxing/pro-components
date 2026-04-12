@@ -1,28 +1,13 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
-import type {
-  ActionType,
-  EditableFormInstance,
-  ProColumns,
-} from '@xxlabs/pro-components';
-import { EditableProTable, ProForm, ProFormText } from '@xxlabs/pro-components';
-import { InputNumber } from 'antd';
 import crypto from 'crypto';
+
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import { InputNumber } from 'antd';
 import React from 'react';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+
+import type { ActionType, EditableFormInstance, ProColumns } from '@xxlabs/pro-components';
+import { EditableProTable, ProForm, ProFormText } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 type DataSourceType = {
@@ -280,9 +265,8 @@ describe('EditorProTable', () => {
 
     await waitFor(() => {
       expect(
-        wrapper.container
-          .querySelector('.ant-table-tbody')
-          ?.querySelectorAll('tr.ant-table-row').length,
+        wrapper.container.querySelector('.ant-table-tbody')?.querySelectorAll('tr.ant-table-row')
+          .length,
       ).toBe(defaultData.length);
     });
 
@@ -293,9 +277,7 @@ describe('EditorProTable', () => {
 
       act(() => {
         fireEvent.change(
-          wrapper.container.querySelectorAll(
-            `.ant-form-item-control-input input`,
-          )[1],
+          wrapper.container.querySelectorAll(`.ant-form-item-control-input input`)[1],
           {
             target: {
               value: inputValue,
@@ -329,9 +311,7 @@ describe('EditorProTable', () => {
     });
     await waitFor(() => {
       expect(
-        wrapper.container
-          .querySelectorAll('.ant-table-tbody')[0]
-          .querySelectorAll('input').length,
+        wrapper.container.querySelectorAll('.ant-table-tbody')[0].querySelectorAll('input').length,
       ).toBe(4);
     });
     await waitFor(() => {
@@ -448,10 +428,7 @@ describe('EditorProTable', () => {
           childrenColumnName: 'children',
         }}
         onChange={(data) => {
-          console.log(
-            'onChange called with data:',
-            JSON.stringify(data, null, 2),
-          );
+          console.log('onChange called with data:', JSON.stringify(data, null, 2));
           onchange(data[0]?.children?.[0]?.children?.length ?? 0);
         }}
         recordCreatorProps={{
@@ -613,9 +590,8 @@ describe('EditorProTable', () => {
         .querySelectorAll('input'),
     ).toBeTruthy();
     expect(
-      wrapper.container
-        .querySelector('.ant-table-tbody')
-        ?.querySelectorAll('tr.ant-table-row').length,
+      wrapper.container.querySelector('.ant-table-tbody')?.querySelectorAll('tr.ant-table-row')
+        .length,
     ).toBe(6);
 
     act(() => {
@@ -627,10 +603,9 @@ describe('EditorProTable', () => {
 
     await waitForWaitTime(100);
 
-    expect(
-      wrapper.container.querySelectorAll('.ant-table-row.ant-table-row-level-1')
-        .length,
-    ).toBe(2);
+    expect(wrapper.container.querySelectorAll('.ant-table-row.ant-table-row-level-1').length).toBe(
+      2,
+    );
 
     wrapper.unmount();
   });
@@ -645,9 +620,7 @@ describe('EditorProTable', () => {
       />,
     );
     await waitForWaitTime(100);
-    expect(
-      wrapper.container.querySelectorAll('button.ant-btn-dashed').length,
-    ).toBe(0);
+    expect(wrapper.container.querySelectorAll('button.ant-btn-dashed').length).toBe(0);
 
     act(() => {
       wrapper.rerender(
@@ -665,9 +638,7 @@ describe('EditorProTable', () => {
 
     await waitForWaitTime(100);
 
-    expect(
-      wrapper.container.querySelectorAll('button.ant-btn-dashed').length,
-    ).toBe(1);
+    expect(wrapper.container.querySelectorAll('button.ant-btn-dashed').length).toBe(1);
   });
 
   it('📝 EditableProTable support editableFormRef', async () => {
@@ -687,13 +658,9 @@ describe('EditorProTable', () => {
 
     const firstRowKey = defaultData[0]?.id || 0;
 
-    expect(editorRef.current?.getRowData?.(firstRowKey)?.title).toBe(
-      defaultData?.[0]?.title,
-    );
+    expect(editorRef.current?.getRowData?.(firstRowKey)?.title).toBe(defaultData?.[0]?.title);
 
-    expect(editorRef.current?.getRowData?.(0)?.title).toBe(
-      defaultData?.[0]?.title,
-    );
+    expect(editorRef.current?.getRowData?.(0)?.title).toBe(defaultData?.[0]?.title);
 
     await waitForWaitTime(100);
 
@@ -701,9 +668,7 @@ describe('EditorProTable', () => {
       editorRef.current?.setRowData?.(firstRowKey, { title: 'test-title' });
     });
 
-    expect(editorRef.current?.getRowData?.(firstRowKey)?.title).toBe(
-      'test-title',
-    );
+    expect(editorRef.current?.getRowData?.(firstRowKey)?.title).toBe('test-title');
 
     expect(editorRef.current?.getRowsData?.()?.length).toBe(3);
 
@@ -764,21 +729,15 @@ describe('EditorProTable', () => {
 
     const firstRowKey = defaultData?.[0]?.id || 0;
 
-    expect(editorRef.current?.getRowData?.(firstRowKey)?.title).toBe(
-      defaultData?.[0]?.title,
-    );
+    expect(editorRef.current?.getRowData?.(firstRowKey)?.title).toBe(defaultData?.[0]?.title);
 
-    expect(editorRef.current?.getRowData?.(0)?.title).toBe(
-      defaultData?.[0]?.title,
-    );
+    expect(editorRef.current?.getRowData?.(0)?.title).toBe(defaultData?.[0]?.title);
 
     act(() => {
       editorRef.current?.setRowData?.(firstRowKey, { title: 'test-title' });
     });
 
-    expect(editorRef.current?.getRowData?.(firstRowKey)?.title).toBe(
-      'test-title',
-    );
+    expect(editorRef.current?.getRowData?.(firstRowKey)?.title).toBe('test-title');
 
     expect(editorRef.current?.getRowsData?.()?.length).toBe(3);
 
@@ -811,8 +770,7 @@ describe('EditorProTable', () => {
     );
 
     await waitFor(() => {
-      const addBtn =
-        wrapper.container.querySelector<HTMLButtonElement>('#new-button');
+      const addBtn = wrapper.container.querySelector<HTMLButtonElement>('#new-button');
       expect(addBtn).toBeTruthy();
       addBtn?.click();
     });
@@ -846,8 +804,7 @@ describe('EditorProTable', () => {
     );
 
     await waitFor(() => {
-      const addBtn =
-        wrapper.container.querySelector<HTMLButtonElement>('#new-button');
+      const addBtn = wrapper.container.querySelector<HTMLButtonElement>('#new-button');
       expect(addBtn).toBeTruthy();
       addBtn?.click();
     });
@@ -888,7 +845,10 @@ describe('EditorProTable', () => {
         editable={{
           editableKeys: [624748504],
           actionRender: () => [
-            <div key="test" id="test">
+            <div
+              key="test"
+              id="test"
+            >
               xx
             </div>,
           ],
@@ -946,9 +906,8 @@ describe('EditorProTable', () => {
     );
     await waitForWaitTime(200);
     expect(
-      wrapper.container.querySelectorAll<HTMLInputElement>(
-        '.ant-form-item-control-input input',
-      )[1].value,
+      wrapper.container.querySelectorAll<HTMLInputElement>('.ant-form-item-control-input input')[1]
+        .value,
     ).toBe('🐛 [BUG]yarn install命令 antd2.4.5会报错');
 
     act(() => {
@@ -982,9 +941,8 @@ describe('EditorProTable', () => {
 
     await waitForWaitTime(100);
     expect(
-      wrapper.container.querySelectorAll<HTMLInputElement>(
-        '.ant-form-item-control-input input',
-      )[1].value,
+      wrapper.container.querySelectorAll<HTMLInputElement>('.ant-form-item-control-input input')[1]
+        .value,
     ).toBe('🐛 [BUG]无法创建工程npm create umi');
   });
 
@@ -1564,9 +1522,7 @@ describe('EditorProTable', () => {
       await waitForWaitTime(100);
 
       expect(fn).toHaveBeenCalledWith(recordId);
-      const trDoms = wrapper.container.querySelectorAll(
-        '.ant-table-tbody tr.ant-table-row',
-      );
+      const trDoms = wrapper.container.querySelectorAll('.ant-table-tbody tr.ant-table-row');
       expect(trDoms.length).toBe((hasChildren ? depth + 1 : depth) + 1);
       const index = topOrBottom !== 'top' && hasChildren ? depth + 1 : depth;
       const { dataset } = trDoms[index] as HTMLElement;
@@ -1603,9 +1559,7 @@ describe('EditorProTable', () => {
     await waitFor(
       () => {
         expect(
-          wrapper.container.querySelectorAll(
-            '.ant-form-item-control-input input',
-          ).length,
+          wrapper.container.querySelectorAll('.ant-form-item-control-input input').length,
         ).toBeGreaterThan(0);
       },
       { timeout: 2000 },
@@ -1613,9 +1567,7 @@ describe('EditorProTable', () => {
 
     // 查找删除按钮（在编辑状态下，删除按钮应该显示）
     const allButtons = wrapper.container.querySelectorAll('a, button');
-    const deleteBtn = Array.from(allButtons).find((btn) =>
-      btn.textContent?.includes('删除'),
-    );
+    const deleteBtn = Array.from(allButtons).find((btn) => btn.textContent?.includes('删除'));
 
     if (deleteBtn) {
       await act(async () => {
@@ -1623,9 +1575,7 @@ describe('EditorProTable', () => {
       });
       await waitForWaitTime(200);
       // 确认删除
-      const confirmBtn = wrapper.container.querySelector(
-        '.ant-popconfirm .ant-btn-primary',
-      );
+      const confirmBtn = wrapper.container.querySelector('.ant-popconfirm .ant-btn-primary');
       if (confirmBtn) {
         await act(async () => {
           fireEvent.click(confirmBtn as HTMLElement);
@@ -1667,9 +1617,7 @@ describe('EditorProTable', () => {
     await waitFor(
       () => {
         expect(
-          wrapper.container.querySelectorAll(
-            '.ant-form-item-control-input input',
-          ).length,
+          wrapper.container.querySelectorAll('.ant-form-item-control-input input').length,
         ).toBeGreaterThan(0);
       },
       { timeout: 2000 },
@@ -1679,18 +1627,14 @@ describe('EditorProTable', () => {
 
     // 查找删除按钮
     const allElements = wrapper.container.querySelectorAll('a, button');
-    const deleteBtn = Array.from(allElements).find((btn) =>
-      btn.textContent?.includes('删除'),
-    );
+    const deleteBtn = Array.from(allElements).find((btn) => btn.textContent?.includes('删除'));
 
     if (deleteBtn) {
       await act(async () => {
         fireEvent.click(deleteBtn as HTMLElement);
       });
       await waitForWaitTime(200);
-      const confirmBtn = wrapper.container.querySelector(
-        '.ant-popconfirm .ant-btn-primary',
-      );
+      const confirmBtn = wrapper.container.querySelector('.ant-popconfirm .ant-btn-primary');
       if (confirmBtn) {
         await act(async () => {
           fireEvent.click(confirmBtn as HTMLElement);
@@ -1732,9 +1676,7 @@ describe('EditorProTable', () => {
     await waitFor(
       () => {
         expect(
-          wrapper.container.querySelectorAll(
-            '.ant-form-item-control-input input',
-          ).length,
+          wrapper.container.querySelectorAll('.ant-form-item-control-input input').length,
         ).toBeGreaterThan(0);
       },
       { timeout: 2000 },
@@ -1742,9 +1684,7 @@ describe('EditorProTable', () => {
 
     // 查找删除按钮
     const allElements = wrapper.container.querySelectorAll('a, button');
-    const deleteBtn = Array.from(allElements).find((btn) =>
-      btn.textContent?.includes('删除'),
-    );
+    const deleteBtn = Array.from(allElements).find((btn) => btn.textContent?.includes('删除'));
     if (deleteBtn) {
       await act(async () => {
         fireEvent.click(deleteBtn as HTMLElement);
@@ -1790,9 +1730,7 @@ describe('EditorProTable', () => {
     // 修改数据
     act(() => {
       fireEvent.change(
-        wrapper.container.querySelectorAll(
-          `.ant-form-item-control-input input`,
-        )[1],
+        wrapper.container.querySelectorAll(`.ant-form-item-control-input input`)[1],
         {
           target: {
             value: 'test value',
@@ -1842,8 +1780,7 @@ describe('EditorProTable', () => {
     await waitForWaitTime(200);
 
     expect(
-      wrapper.container.querySelectorAll('.ant-table-tbody tr.ant-table-row')
-        .length,
+      wrapper.container.querySelectorAll('.ant-table-tbody tr.ant-table-row').length,
     ).toBeGreaterThan(0);
 
     wrapper.unmount();
@@ -1866,10 +1803,7 @@ describe('EditorProTable', () => {
     );
     await waitForWaitTime(100);
 
-    expect(
-      wrapper.container.querySelectorAll('.ant-table-tbody tr.ant-table-row')
-        .length,
-    ).toBe(1);
+    expect(wrapper.container.querySelectorAll('.ant-table-tbody tr.ant-table-row').length).toBe(1);
 
     wrapper.unmount();
   });
@@ -1896,9 +1830,7 @@ describe('EditorProTable', () => {
     // 修改数据
     act(() => {
       fireEvent.change(
-        wrapper.container.querySelectorAll(
-          `.ant-form-item-control-input input`,
-        )[1],
+        wrapper.container.querySelectorAll(`.ant-form-item-control-input input`)[1],
         {
           target: {
             value: 'modified value',
@@ -1916,9 +1848,7 @@ describe('EditorProTable', () => {
     // 取消编辑
     const cancelButtons = wrapper.container.querySelectorAll('a, button');
     const cancelBtn = Array.from(cancelButtons).find(
-      (btn) =>
-        btn.textContent?.includes('取消') ||
-        btn.querySelector('.anticon-close'),
+      (btn) => btn.textContent?.includes('取消') || btn.querySelector('.anticon-close'),
     );
 
     if (cancelBtn) {
@@ -1960,9 +1890,7 @@ describe('EditorProTable', () => {
     // 修改数据
     act(() => {
       fireEvent.change(
-        wrapper.container.querySelectorAll(
-          `.ant-form-item-control-input input`,
-        )[1],
+        wrapper.container.querySelectorAll(`.ant-form-item-control-input input`)[1],
         {
           target: {
             value: 'test value',
@@ -1976,9 +1904,7 @@ describe('EditorProTable', () => {
     // 尝试取消
     const cancelButtons = wrapper.container.querySelectorAll('a, button');
     const cancelBtn = Array.from(cancelButtons).find(
-      (btn) =>
-        btn.textContent?.includes('取消') ||
-        btn.querySelector('.anticon-close'),
+      (btn) => btn.textContent?.includes('取消') || btn.querySelector('.anticon-close'),
     );
 
     if (cancelBtn) {
@@ -1993,8 +1919,7 @@ describe('EditorProTable', () => {
       expect(onCancel).toHaveBeenCalled();
       // 由于返回 false，应该仍在编辑状态
       expect(
-        wrapper.container.querySelectorAll('.ant-form-item-control-input input')
-          .length,
+        wrapper.container.querySelectorAll('.ant-form-item-control-input input').length,
       ).toBeGreaterThan(0);
     });
 
@@ -2006,7 +1931,10 @@ describe('EditorProTable', () => {
       return [
         defaultDom.save,
         defaultDom.cancel,
-        <a key="custom" id="custom-action">
+        <a
+          key="custom"
+          id="custom-action"
+        >
           自定义操作
         </a>,
       ];
@@ -2166,8 +2094,7 @@ describe('EditorProTable', () => {
 
     await waitFor(() => {
       expect(
-        wrapper.container.querySelectorAll('.ant-table-tbody tr.ant-table-row')
-          .length,
+        wrapper.container.querySelectorAll('.ant-table-tbody tr.ant-table-row').length,
       ).toBeLessThanOrEqual(10);
     });
 
@@ -2198,9 +2125,7 @@ describe('EditorProTable', () => {
     await waitFor(
       () => {
         expect(
-          wrapper.container.querySelectorAll(
-            '.ant-form-item-control-input input',
-          ).length,
+          wrapper.container.querySelectorAll('.ant-form-item-control-input input').length,
         ).toBeGreaterThan(0);
       },
       { timeout: 2000 },
@@ -2218,9 +2143,7 @@ describe('EditorProTable', () => {
       });
       await waitForWaitTime(200);
 
-      const confirmBtn = wrapper.container.querySelector(
-        '.ant-popconfirm .ant-btn-primary',
-      );
+      const confirmBtn = wrapper.container.querySelector('.ant-popconfirm .ant-btn-primary');
       if (confirmBtn) {
         await act(async () => {
           fireEvent.click(confirmBtn as HTMLElement);
@@ -2259,9 +2182,7 @@ describe('EditorProTable', () => {
     // 验证多行都在编辑状态
     await waitFor(
       () => {
-        const inputs = wrapper.container.querySelectorAll(
-          '.ant-form-item-control-input input',
-        );
+        const inputs = wrapper.container.querySelectorAll('.ant-form-item-control-input input');
         expect(inputs.length).toBeGreaterThan(2);
       },
       { timeout: 2000 },
@@ -2270,9 +2191,7 @@ describe('EditorProTable', () => {
     // 修改第一行
     act(() => {
       fireEvent.change(
-        wrapper.container.querySelectorAll(
-          `.ant-form-item-control-input input`,
-        )[1],
+        wrapper.container.querySelectorAll(`.ant-form-item-control-input input`)[1],
         {
           target: {
             value: 'modified row 1',
@@ -2283,9 +2202,7 @@ describe('EditorProTable', () => {
 
     // 修改第二行
     act(() => {
-      const inputs = wrapper.container.querySelectorAll(
-        `.ant-form-item-control-input input`,
-      );
+      const inputs = wrapper.container.querySelectorAll(`.ant-form-item-control-input input`);
       if (inputs.length > 4) {
         fireEvent.change(inputs[5], {
           target: {
@@ -2335,9 +2252,7 @@ describe('EditorProTable', () => {
     // 修改第一行
     act(() => {
       fireEvent.change(
-        wrapper.container.querySelectorAll(
-          `.ant-form-item-control-input input`,
-        )[1],
+        wrapper.container.querySelectorAll(`.ant-form-item-control-input input`)[1],
         {
           target: {
             value: 'batch save row 1',
@@ -2357,9 +2272,7 @@ describe('EditorProTable', () => {
 
     // 修改第二行
     act(() => {
-      const inputs = wrapper.container.querySelectorAll(
-        `.ant-form-item-control-input input`,
-      );
+      const inputs = wrapper.container.querySelectorAll(`.ant-form-item-control-input input`);
       if (inputs.length > 4) {
         fireEvent.change(inputs[5], {
           target: {
@@ -2422,9 +2335,7 @@ describe('EditorProTable', () => {
     // 修改标题字段
     act(() => {
       fireEvent.change(
-        wrapper.container.querySelectorAll(
-          `.ant-form-item-control-input input`,
-        )[0],
+        wrapper.container.querySelectorAll(`.ant-form-item-control-input input`)[0],
         {
           target: {
             value: 'new title',
@@ -2479,9 +2390,8 @@ describe('EditorProTable', () => {
     await waitFor(
       () => {
         expect(
-          wrapper.container.querySelectorAll(
-            '.ant-table-tbody .ant-form-item-control-input input',
-          ).length,
+          wrapper.container.querySelectorAll('.ant-table-tbody .ant-form-item-control-input input')
+            .length,
         ).toBeGreaterThan(0);
       },
       { timeout: 2000 },
@@ -2535,9 +2445,8 @@ describe('EditorProTable', () => {
     await waitFor(
       () => {
         expect(
-          wrapper.container.querySelectorAll(
-            '.ant-table-tbody .ant-form-item-control-input input',
-          ).length,
+          wrapper.container.querySelectorAll('.ant-table-tbody .ant-form-item-control-input input')
+            .length,
         ).toBeGreaterThan(0);
       },
       { timeout: 2000 },
@@ -2550,9 +2459,7 @@ describe('EditorProTable', () => {
     const deleteButtons = wrapper.container.querySelectorAll(
       '.ant-table-tbody a, .ant-table-tbody button',
     );
-    const deleteBtn = Array.from(deleteButtons).find((btn) =>
-      btn.textContent?.includes('删除'),
-    );
+    const deleteBtn = Array.from(deleteButtons).find((btn) => btn.textContent?.includes('删除'));
 
     if (deleteBtn) {
       await act(async () => {
@@ -2562,9 +2469,7 @@ describe('EditorProTable', () => {
 
       await waitFor(
         () => {
-          const confirmBtn = wrapper.container.querySelector(
-            '.ant-popconfirm .ant-btn-primary',
-          );
+          const confirmBtn = wrapper.container.querySelector('.ant-popconfirm .ant-btn-primary');
           if (confirmBtn) {
             return confirmBtn;
           }
@@ -2573,9 +2478,7 @@ describe('EditorProTable', () => {
         { timeout: 1000 },
       );
 
-      const confirmBtn = wrapper.container.querySelector(
-        '.ant-popconfirm .ant-btn-primary',
-      );
+      const confirmBtn = wrapper.container.querySelector('.ant-popconfirm .ant-btn-primary');
       if (confirmBtn) {
         await act(async () => {
           fireEvent.click(confirmBtn as HTMLElement);
@@ -2636,9 +2539,8 @@ describe('EditorProTable', () => {
     await waitFor(
       () => {
         expect(
-          wrapper.container.querySelectorAll(
-            '.ant-table-tbody .ant-form-item-control-input input',
-          ).length,
+          wrapper.container.querySelectorAll('.ant-table-tbody .ant-form-item-control-input input')
+            .length,
         ).toBeGreaterThan(0);
       },
       { timeout: 2000 },
@@ -2654,9 +2556,7 @@ describe('EditorProTable', () => {
         const titleInput =
           Array.from(inputs).find((input) => {
             const formItem = (input as HTMLElement).closest('.ant-form-item');
-            return formItem
-              ?.querySelector('.ant-form-item-label')
-              ?.textContent?.includes('标题');
+            return formItem?.querySelector('.ant-form-item-label')?.textContent?.includes('标题');
           }) ||
           inputs[1] ||
           inputs[0];

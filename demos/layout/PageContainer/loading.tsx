@@ -1,19 +1,16 @@
-import { PageContainer } from '@xxlabs/pro-components';
 import { Card } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react';
+
+import { PageContainer } from '@xxlabs/pro-components';
 
 export default () => {
   const customLoadingDom = useMemo(
     () => (
-      <div style={{ color: 'red', padding: '30px', textAlign: 'center' }}>
-        Custom loading...
-      </div>
+      <div style={{ color: 'red', padding: '30px', textAlign: 'center' }}>Custom loading...</div>
     ),
     [],
   );
-  const [customLoading, setCustomLoading] = useState<React.ReactNode | boolean>(
-    customLoadingDom,
-  );
+  const [customLoading, setCustomLoading] = useState<React.ReactNode | boolean>(customLoadingDom);
 
   useEffect(() => {
     if (process.env.NODE_ENV?.toLocaleLowerCase() === 'test') {

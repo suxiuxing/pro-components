@@ -40,11 +40,9 @@ const StatisticSkeleton: React.FC<{
   );
   const col = useBreakpoint() || defaultCol;
 
-  const colSize =
-    Object.keys(col).filter((key) => col[key as 'md'] === true)[0] || 'md';
+  const colSize = Object.keys(col).filter((key) => col[key as 'md'] === true)[0] || 'md';
 
-  const arraySize =
-    size === undefined ? MediaQueryKeyEnum[colSize as 'md'] || 6 : size;
+  const arraySize = size === undefined ? MediaQueryKeyEnum[colSize as 'md'] || 6 : size;
   const firstWidth = (index: number) => {
     if (index === 0) {
       return 0;
@@ -69,14 +67,12 @@ const StatisticSkeleton: React.FC<{
           display: 'flex',
         }}
       >
-        {new Array(arraySize).fill(null).map((_, index) => (
+        {Array.from({ length: arraySize }, (_, index) => (
           <div
             key={index}
             style={{
               borderInlineStart:
-                arraySize > 2 && index === 1
-                  ? '1px solid rgba(0,0,0,0.06)'
-                  : undefined,
+                arraySize > 2 && index === 1 ? '1px solid rgba(0,0,0,0.06)' : undefined,
               paddingInlineStart: firstWidth(index),
               flex: 1,
               marginInlineEnd: index === 0 ? 16 : 0,
@@ -172,8 +168,11 @@ export const ListSkeleton: React.FC<{
       },
     }}
   >
-    {new Array(size).fill(null).map((_, index) => (
-      <ListSkeletonItem key={index} active={!!active} />
+    {Array.from({ length: size }, (_, index) => (
+      <ListSkeletonItem
+        key={index}
+        active={!!active}
+      />
     ))}
 
     {actionButton !== false && (
@@ -220,7 +219,10 @@ export const PageHeaderSkeleton = ({ active }: { active: boolean }) => (
         width: 185,
       }}
     />
-    <Skeleton.Button active={active} size="small" />
+    <Skeleton.Button
+      active={active}
+      size="small"
+    />
   </div>
 );
 
@@ -257,10 +259,22 @@ export const ListToolbarSkeleton = ({ active }: { active: boolean }) => (
         justifyContent: 'space-between',
       }}
     >
-      <Skeleton.Button active={active} style={{ width: 200 }} size="small" />
+      <Skeleton.Button
+        active={active}
+        style={{ width: 200 }}
+        size="small"
+      />
       <Space>
-        <Skeleton.Button active={active} size="small" style={{ width: 120 }} />
-        <Skeleton.Button active={active} size="small" style={{ width: 80 }} />
+        <Skeleton.Button
+          active={active}
+          size="small"
+          style={{ width: 120 }}
+        />
+        <Skeleton.Button
+          active={active}
+          size="small"
+          style={{ width: 80 }}
+        />
       </Space>
     </Space>
   </Card>
@@ -281,7 +295,10 @@ const ListPageSkeleton: React.FC<ListPageSkeletonProps> = ({
   >
     {pageHeader !== false && <PageHeaderSkeleton active={active} />}
     {statistic !== false && (
-      <StatisticSkeleton size={statistic as number} active={active} />
+      <StatisticSkeleton
+        size={statistic as number}
+        active={active}
+      />
     )}
     {(toolbar !== false || list !== false) && (
       <Card

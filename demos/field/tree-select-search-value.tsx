@@ -1,6 +1,7 @@
-﻿import { ProForm, ProFormTreeSelect } from '@xxlabs/pro-components';
 import { message } from 'antd';
 import { useState } from 'react';
+
+import { ProForm, ProFormTreeSelect } from '@xxlabs/pro-components';
 
 const treeData = [
   {

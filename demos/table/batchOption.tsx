@@ -1,6 +1,7 @@
+import { Button, DatePicker, Space, Table } from 'antd';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
-import { Button, DatePicker, Space, Table } from 'antd';
 
 import { createTableDataSource, DEMO_CREATOR_VALUE_ENUM } from '../mockData';
 
@@ -104,16 +105,15 @@ const Demo = () => {
         selections: [Table.SELECTION_ALL, Table.SELECTION_INVERT],
         defaultSelectedRowKeys: [1],
       }}
-      tableAlertRender={({
-        selectedRowKeys,
-        selectedRows,
-        onCleanSelected,
-      }) => {
+      tableAlertRender={({ selectedRowKeys, selectedRows, onCleanSelected }) => {
         return (
           <Space size={24}>
             <span>
               已选 {selectedRowKeys.length} 项
-              <a style={{ marginInlineStart: 8 }} onClick={onCleanSelected}>
+              <a
+                style={{ marginInlineStart: 8 }}
+                onClick={onCleanSelected}
+              >
                 取消选择
               </a>
             </span>

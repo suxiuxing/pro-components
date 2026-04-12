@@ -1,9 +1,7 @@
-﻿import { Spin } from 'antd';
+import { Spin } from 'antd';
 import React, { useImperativeHandle, useRef } from 'react';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import type { FieldSelectProps } from '../Select';
 import { useFieldFetchData } from '../Select';
@@ -19,14 +17,7 @@ const FieldSegmented: ProFieldFC<
     emptyText?: React.ReactNode;
   } & FieldSelectProps
 > = (props, ref) => {
-  const {
-    mode,
-    render,
-    formItemRender,
-    fieldProps,
-    emptyText = '-',
-    ...rest
-  } = props;
+  const { mode, render, formItemRender, fieldProps, emptyText = '-', ...rest } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,7 +26,7 @@ const FieldSegmented: ProFieldFC<
   useImperativeHandle(
     ref,
     () => ({
-      ...(inputRef.current || {}),
+      ...inputRef.current,
       fetchData: (keyWord: string) => fetchData(keyWord),
     }),
     [fetchData],

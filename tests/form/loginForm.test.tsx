@@ -5,9 +5,11 @@ import {
   WeiboCircleOutlined,
 } from '@ant-design/icons';
 import { cleanup, render, waitFor } from '@testing-library/react';
-import { LoginForm, LoginFormPage, ProFormText } from '@xxlabs/pro-components';
 import { Alert, Space } from 'antd';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { LoginForm, LoginFormPage, ProFormText } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 afterEach(() => {
@@ -16,7 +18,12 @@ afterEach(() => {
 
 describe('LoginForm', () => {
   it('📦 LoginForm should show login message correctly', async () => {
-    const loginMessage = <Alert type="error" title="登录失败" />;
+    const loginMessage = (
+      <Alert
+        type="error"
+        title="登录失败"
+      />
+    );
 
     const { container } = render(
       <LoginForm message={loginMessage}>
@@ -24,9 +31,7 @@ describe('LoginForm', () => {
       </LoginForm>,
     );
 
-    expect(
-      container.querySelectorAll('.ant-alert.ant-alert-error'),
-    ).toHaveLength(1);
+    expect(container.querySelectorAll('.ant-alert.ant-alert-error')).toHaveLength(1);
     // antd@6 中直接从 Alert 元素获取文本内容
     const alertElement = container.querySelector('.ant-alert.ant-alert-error');
     expect(alertElement?.textContent).toContain('登录失败');
@@ -48,9 +53,7 @@ describe('LoginForm', () => {
       </LoginForm>,
     );
 
-    expect(
-      container.querySelectorAll('.ant-pro-form-login-main-other .anticon'),
-    ).toHaveLength(3);
+    expect(container.querySelectorAll('.ant-pro-form-login-main-other .anticon')).toHaveLength(3);
   });
 
   it('📦 LoginForm support string logo', async () => {
@@ -83,9 +86,7 @@ describe('LoginForm', () => {
 
     const logoImg = await findByTestId('test');
     expect(logoImg).toBeTruthy();
-    expect(logoImg.getAttribute('src')).toBe(
-      'https://avatars.githubusercontent.com/u/8186664?v=4',
-    );
+    expect(logoImg.getAttribute('src')).toBe('https://avatars.githubusercontent.com/u/8186664?v=4');
   });
 
   it('📦 LoginForm support submitter=false', async () => {
@@ -167,9 +168,7 @@ describe('LoginForm', () => {
     );
 
     await waitForWaitTime(100);
-    const dom = await wrapper.baseElement.querySelector(
-      '.ant-pro-form-login-page-header',
-    );
+    const dom = await wrapper.baseElement.querySelector('.ant-pro-form-login-page-header');
 
     expect(dom).toBeFalsy();
   });

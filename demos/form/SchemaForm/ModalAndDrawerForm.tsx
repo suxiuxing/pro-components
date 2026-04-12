@@ -1,7 +1,8 @@
-﻿import type { ProFormLayoutType } from '@xxlabs/pro-components';
-import { BetaSchemaForm, ProFormSelect } from '@xxlabs/pro-components';
 import { Alert, Button, Space } from 'antd';
 import { useState } from 'react';
+
+import type { ProFormLayoutType } from '@xxlabs/pro-components';
+import { BetaSchemaForm, ProFormSelect } from '@xxlabs/pro-components';
 
 type DataItem = {
   name: string;

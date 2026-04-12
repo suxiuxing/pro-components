@@ -1,15 +1,10 @@
-﻿import {
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-  within,
-} from '@testing-library/react';
-import type { ProCoreActionType } from '@xxlabs/pro-components';
-import { ProDescriptions } from '@xxlabs/pro-components';
+import { cleanup, fireEvent, render, waitFor, within } from '@testing-library/react';
 import { Badge, Button, Input } from 'antd';
 import React, { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import type { ProCoreActionType } from '@xxlabs/pro-components';
+import { ProDescriptions } from '@xxlabs/pro-components';
 afterEach(() => {
   cleanup();
 });
@@ -39,9 +34,7 @@ describe('descriptions', () => {
     );
 
     await waitFor(() =>
-      expect(
-        container.querySelector('span.ant-badge-status-text')?.innerHTML,
-      ).toBe('关闭'),
+      expect(container.querySelector('span.ant-badge-status-text')?.innerHTML).toBe('关闭'),
     );
   });
 
@@ -218,7 +211,10 @@ describe('descriptions', () => {
           });
         }}
         extra={
-          <Button type="link" id="reload">
+          <Button
+            type="link"
+            id="reload"
+          >
             修改
           </Button>
         }
@@ -252,7 +248,10 @@ describe('descriptions', () => {
             });
           }}
           extra={
-            <Button type="link" id="reload">
+            <Button
+              type="link"
+              id="reload"
+            >
               修改
             </Button>
           }
@@ -287,7 +286,10 @@ describe('descriptions', () => {
         }}
         onRequestError={fn}
         extra={
-          <Button type="link" id="reload">
+          <Button
+            type="link"
+            id="reload"
+          >
             修改
           </Button>
         }
@@ -315,9 +317,7 @@ describe('descriptions', () => {
       />,
     );
     await waitFor(() => {
-      expect(
-        html.baseElement.querySelector('.ant-progress-indicator')?.textContent,
-      ).toEqual('40%');
+      expect(html.baseElement.querySelector('.ant-progress-indicator')?.textContent).toEqual('40%');
     });
 
     await waitFor(() => {
@@ -409,9 +409,8 @@ describe('descriptions', () => {
 
     await waitFor(() => {
       expect(
-        wrapper.baseElement.querySelectorAll(
-          '.ant-descriptions-item-content .ant-typography-copy',
-        ).length,
+        wrapper.baseElement.querySelectorAll('.ant-descriptions-item-content .ant-typography-copy')
+          .length,
       ).toBe(0);
     });
 
@@ -444,11 +443,7 @@ describe('descriptions', () => {
               renderText: (text, row) =>
                 text ? (
                   <span>
-                    {row.phoneVerified ? (
-                      <Badge status="success" />
-                    ) : (
-                      <Badge status="error" />
-                    )}
+                    {row.phoneVerified ? <Badge status="success" /> : <Badge status="error" />}
                     &nbsp;
                     {text}
                   </span>

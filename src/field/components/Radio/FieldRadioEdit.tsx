@@ -1,6 +1,7 @@
-﻿import { Radio } from 'antd';
+import { Radio } from 'antd';
 import { clsx } from 'clsx';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import type { GroupProps } from './types';
 
@@ -47,13 +48,7 @@ export function FieldRadioEdit(props: Props) {
     />,
   );
   if (formItemRender) {
-    return (
-      formItemRender(
-        rest.text,
-        { mode, ...rest.fieldProps, options, loading },
-        dom,
-      ) ?? null
-    );
+    return formItemRender(rest.text, { mode, ...rest.fieldProps, options, loading }, dom) ?? null;
   }
   return dom;
 }

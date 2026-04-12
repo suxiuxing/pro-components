@@ -1,4 +1,4 @@
-﻿import { ProField, defaultRenderText } from './AllProField';
+import { ProField, defaultRenderText } from './AllProField';
 import FieldCascader from './components/Cascader';
 import FieldCheckbox from './components/Checkbox';
 import FieldCode from './components/Code';
@@ -19,9 +19,7 @@ import FieldRangePicker from './components/RangePicker';
 import FieldRate from './components/Rate';
 import FieldSecond from './components/Second';
 import FieldSegmented from './components/Segmented';
-import FieldSelect, {
-  proFieldParsingValueEnumToArray,
-} from './components/Select';
+import FieldSelect, { proFieldParsingValueEnumToArray } from './components/Select';
 import FieldSlider from './components/Slider';
 import FieldStatus, { ProFieldBadgeColor } from './components/Status';
 import FieldSwitch from './components/Switch';
@@ -36,12 +34,7 @@ import {
   PureProField,
 } from './PureProField';
 
-export type {
-  FieldMoneyProps,
-  ProFieldEmptyText,
-  ProFieldMoneyProps,
-  ProFieldPropsType,
-};
+export type { FieldMoneyProps, ProFieldEmptyText, ProFieldMoneyProps, ProFieldPropsType };
 
 export {
   FieldCascader,

@@ -1,9 +1,10 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import type { ProColumns } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Button, Result, Switch } from 'antd';
 import type { ErrorInfo } from 'react';
 import React, { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 class CustomBoundary extends React.Component<
   Record<string, any>,
@@ -70,8 +71,8 @@ class CustomBoundary extends React.Component<
                     ）
                   </li>
                   <li>
-                    异步代码（例如 <code>setTimeout</code> 或{' '}
-                    <code>requestAnimationFrame</code> 回调函数）
+                    异步代码（例如 <code>setTimeout</code> 或 <code>requestAnimationFrame</code>{' '}
+                    回调函数）
                   </li>
                   <li>服务端渲染</li>
                   <li>它自身抛出来的错误（并非它的子组件）</li>

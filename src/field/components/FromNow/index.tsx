@@ -1,11 +1,9 @@
-﻿import dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import React from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldFromNowEdit } from './FieldFromNowEdit';
 import { FieldFromNowRead } from './FieldFromNowRead';

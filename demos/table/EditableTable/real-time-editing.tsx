@@ -1,11 +1,8 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import {
-  EditableProTable,
-  ProCard,
-  ProFormField,
-} from '@xxlabs/pro-components';
 import { Button } from 'antd';
 import React, { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { EditableProTable, ProCard, ProFormField } from '@xxlabs/pro-components';
 
 type DataSourceType = {
   id: React.Key;
@@ -74,9 +71,7 @@ const Demo = () => {
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() =>
     defaultData.map((item) => item.id),
   );
-  const [dataSource, setDataSource] = useState<readonly DataSourceType[]>(
-    () => defaultData,
-  );
+  const [dataSource, setDataSource] = useState<readonly DataSourceType[]>(() => defaultData);
 
   const columns: ProColumns<DataSourceType>[] = [
     {
@@ -180,7 +175,12 @@ const Demo = () => {
           onChange: setEditableRowKeys,
         }}
       />
-      <ProCard title="表格数据" headerBordered collapsible defaultCollapsed>
+      <ProCard
+        title="表格数据"
+        headerBordered
+        collapsible
+        defaultCollapsed
+      >
         <ProFormField
           ignoreFormItem
           fieldProps={{

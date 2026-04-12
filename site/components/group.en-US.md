@@ -139,8 +139,15 @@ return (
         get all data
       </Button>
     </Space>
-    <ProFormList actionGuard={actionGuard} actionRef={actionRef}>
-      <ProFormText key="useMode" name="name" label="name" />
+    <ProFormList
+      actionGuard={actionGuard}
+      actionRef={actionRef}
+    >
+      <ProFormText
+        key="useMode"
+        name="name"
+        label="name"
+      />
     </ProFormList>
   </>
 );
@@ -176,8 +183,15 @@ const actionGuard = {
   },
 };
 return (
-  <ProFormList actionGuard={actionGuard} actionRef={actionRef}>
-    <ProFormText key="useMode" name="name" label="name" />
+  <ProFormList
+    actionGuard={actionGuard}
+    actionRef={actionRef}
+  >
+    <ProFormText
+      key="useMode"
+      name="name"
+      label="name"
+    />
   </ProFormList>
 );
 ```

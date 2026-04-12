@@ -9,10 +9,18 @@ const Demo = () => {
         headerBordered
         gutter={16}
       >
-        <ProCard title="Inner Card Title" type="inner" variant="outlined">
+        <ProCard
+          title="Inner Card Title"
+          type="inner"
+          variant="outlined"
+        >
           Inner Card Content
         </ProCard>
-        <ProCard title="Inner Card Title" type="inner" variant="outlined">
+        <ProCard
+          title="Inner Card Title"
+          type="inner"
+          variant="outlined"
+        >
           Inner Card Content
         </ProCard>
       </ProCard>
@@ -25,10 +33,18 @@ const Demo = () => {
         gutter={[0, 16]}
         style={{ marginBlockStart: 8 }}
       >
-        <ProCard title="Inner Card Title" type="inner" variant="outlined">
+        <ProCard
+          title="Inner Card Title"
+          type="inner"
+          variant="outlined"
+        >
           Inner Card Content
         </ProCard>
-        <ProCard title="Inner Card Title" type="inner" variant="outlined">
+        <ProCard
+          title="Inner Card Title"
+          type="inner"
+          variant="outlined"
+        >
           Inner Card Content
         </ProCard>
       </ProCard>

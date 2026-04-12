@@ -13,6 +13,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+
 import { useIntl } from '../../../provider';
 import { FieldLabel, FilterDropdown } from '../../../utils';
 import type { CommonFormProps, ProFormInstance } from '../../BaseForm';
@@ -113,11 +114,7 @@ const LightFilterContainer: React.FC<{
   const collapseLabelNode = useMemo(() => {
     if (collapseLabel) return collapseLabel;
     if (collapse) {
-      return (
-        <FilterOutlined
-          className={clsx(`${lightFilterClassName}-collapse-icon`, hashId)}
-        />
-      );
+      return <FilterOutlined className={clsx(`${lightFilterClassName}-collapse-icon`, hashId)} />;
     }
     return (
       <FieldLabel
@@ -126,15 +123,7 @@ const LightFilterContainer: React.FC<{
         label={intl.getMessage('form.lightFilter.more', '更多筛选')}
       />
     );
-  }, [
-    collapseLabel,
-    collapse,
-    lightFilterClassName,
-    hashId,
-    variant,
-    size,
-    intl,
-  ]);
+  }, [collapseLabel, collapse, lightFilterClassName, hashId, variant, size, intl]);
 
   const { collapseItems, outsideItems } = useMemo(() => {
     const collapseItemsArr: React.ReactNode[] = [];
@@ -155,17 +144,11 @@ const LightFilterContainer: React.FC<{
 
   return wrapSSR(
     <div
-      className={clsx(
-        lightFilterClassName,
-        hashId,
-        `${lightFilterClassName}-${size}`,
-        {
-          [`${lightFilterClassName}-effective`]: Object.keys(values).some(
-            (key) =>
-              Array.isArray(values[key]) ? values[key].length > 0 : values[key],
-          ),
-        },
-      )}
+      className={clsx(lightFilterClassName, hashId, `${lightFilterClassName}-${size}`, {
+        [`${lightFilterClassName}-effective`]: Object.keys(values).some((key) =>
+          Array.isArray(values[key]) ? values[key].length > 0 : values[key],
+        ),
+      })}
     >
       <div className={clsx(`${lightFilterClassName}-container`, hashId)}>
         {outsideItems.map((child: any, index) => {
@@ -174,9 +157,7 @@ const LightFilterContainer: React.FC<{
           }
           const { key } = child;
           const { fieldProps } = child?.props || {};
-          const newPlacement = fieldProps?.placement
-            ? fieldProps?.placement
-            : placement;
+          const newPlacement = fieldProps?.placement ? fieldProps?.placement : placement;
 
           return (
             <div
@@ -214,7 +195,7 @@ const LightFilterContainer: React.FC<{
               }}
               placement={placement}
               popoverProps={popoverProps}
-                label={collapseLabelNode}
+              label={collapseLabelNode}
               footerRender={footerRender}
               footer={{
                 onConfirm: () => {
@@ -247,12 +228,9 @@ const LightFilterContainer: React.FC<{
                   },
                 };
                 if (moreValues.hasOwnProperty(name)) {
-                  newFieldProps[child.props.valuePropName || 'value'] =
-                    moreValues[name];
+                  newFieldProps[child.props.valuePropName || 'value'] = moreValues[name];
                 }
-                const newPlacement = fieldProps?.placement
-                  ? fieldProps?.placement
-                  : placement;
+                const newPlacement = fieldProps?.placement ? fieldProps?.placement : placement;
                 return (
                   <div
                     className={clsx(`${lightFilterClassName}-line`, hashId)}
@@ -314,8 +292,7 @@ function LightFilter<T = Record<string, any>>(props: LightFilterProps<T>) {
             items={items?.flatMap((item: any) => {
               if (!item || !item?.type) return item;
               /** 如果是 ProFormGroup，直接拼接dom */
-              if (item?.type?.displayName === 'ProForm-Group')
-                return item.props.children;
+              if (item?.type?.displayName === 'ProForm-Group') return item.props.children;
               return item;
             })}
             size={size}

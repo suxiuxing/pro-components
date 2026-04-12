@@ -1,10 +1,5 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import {
-  get,
-  warning as rcWarning,
-  set,
-  useControlledState,
-} from '@rc-component/util';
+import { get, warning as rcWarning, set, useControlledState } from '@rc-component/util';
 import type { FormInstance, FormProps } from 'antd';
 import { Form, Popconfirm, message } from 'antd';
 import type { AnyObject } from 'antd/lib/_util/type';
@@ -21,6 +16,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+
 import { useDebounceFn, useRefFunction } from '..';
 import { useIntl } from '../../provider';
 import { ProFormContext } from '../components/ProFormContext';
@@ -103,10 +99,7 @@ export type RowEditableConfig<DataType> = {
   /** @name 正在编辑的列 */
   editableKeys?: React.Key[];
   /** 正在编辑的列修改的时候 */
-  onChange?: (
-    editableKeys: React.Key[],
-    editableRows: DataType[] | DataType,
-  ) => void;
+  onChange?: (editableKeys: React.Key[], editableRows: DataType[] | DataType) => void;
   /** 正在编辑的列修改的时候 */
   onValuesChange?: (record: DataType, dataSource: DataType[]) => void;
   /** @name 自定义编辑的操作 */
@@ -135,10 +128,7 @@ export type RowEditableConfig<DataType> = {
     newLineConfig?: NewLineConfig<DataType>,
   ) => Promise<any | void>;
   /** 行删除的时候 */
-  onDelete?: (
-    key: RecordKey,
-    row: DataType & { index?: number },
-  ) => Promise<any | void>;
+  onDelete?: (key: RecordKey, row: DataType & { index?: number }) => Promise<any | void>;
   /** 删除行时的确认消息 */
   deletePopconfirmMessage?: React.ReactNode;
   /** 只能编辑一行的的提示 */
@@ -198,10 +188,7 @@ function flattenRecordsToMap<RecordType>(
   childrenColumnName: string,
   parentKey?: React.Key,
   parentIndex?: number,
-): Map<
-  string,
-  RecordType & { map_row_key?: string; map_row_parentKey?: React.Key }
-> {
+): Map<string, RecordType & { map_row_key?: string; map_row_parentKey?: React.Key }> {
   const kvMap = new Map<
     string,
     RecordType & { map_row_key?: string; map_row_parentKey?: React.Key }
@@ -211,8 +198,7 @@ function flattenRecordsToMap<RecordType>(
     const eachIndex = (parentIndex || 0) * 10 + index;
     const recordKey = getRowKey(record, eachIndex).toString();
 
-    const hasChildren =
-      record && typeof record === 'object' && childrenColumnName in record;
+    const hasChildren = record && typeof record === 'object' && childrenColumnName in record;
 
     if (hasChildren) {
       const children = (record as any)[childrenColumnName] || [];
@@ -245,10 +231,7 @@ function flattenRecordsToMap<RecordType>(
  * 重建树结构
  */
 function rebuildTreeStructure<RecordType>(
-  map: Map<
-    string,
-    RecordType & { map_row_parentKey?: React.Key; map_row_key?: string }
-  >,
+  map: Map<string, RecordType & { map_row_parentKey?: React.Key; map_row_key?: string }>,
   childrenColumnName: string,
   action: 'update' | 'top' | 'delete',
 ): RecordType[] {
@@ -276,14 +259,12 @@ function rebuildTreeStructure<RecordType>(
   // 这一步不获取 children，只是添加节点到对应的父节点下
   map.forEach((value) => {
     if (value.map_row_parentKey != null && value.map_row_key) {
-      const { map_row_parentKey, map_row_key, isNewRecord, ...rest } =
-        value as any;
+      const { map_row_parentKey, map_row_key, isNewRecord, ...rest } = value as any;
       const record = { ...rest, map_row_key } as any;
       // 确保 parentKey 的类型转换与 flattenRecordsToMap 中的 recordKey 一致
       // 在 flattenRecordsToMap 中，recordKey 被转换为字符串：getRowKey(record, eachIndex).toString()
       // 所以这里也需要确保 parentKey 被转换为字符串，并且类型一致
-      const parentKeyStr =
-        map_row_parentKey != null ? String(map_row_parentKey) : null;
+      const parentKeyStr = map_row_parentKey != null ? String(map_row_parentKey) : null;
 
       if (!parentKeyStr) {
         return;
@@ -307,8 +288,7 @@ function rebuildTreeStructure<RecordType>(
   map.forEach((value) => {
     if (value.map_row_parentKey != null && value.map_row_key) {
       const { map_row_parentKey, map_row_key } = value as any;
-      const parentKeyStr =
-        map_row_parentKey != null ? String(map_row_parentKey) : null;
+      const parentKeyStr = map_row_parentKey != null ? String(map_row_parentKey) : null;
 
       if (!parentKeyStr) {
         return;
@@ -439,13 +419,8 @@ export function SaveEditableAction<T>(
         // `getFieldFormatValue` will unwrap object results (by returning the first value),
         // which breaks editable row save when `namePath` points to a row object.
         // Prefer `getFieldFormatValueObject` and then pick the row by `namePath`.
-        const formattedObject = context?.getFieldFormatValueObject?.(
-          namePath as any,
-        );
-        const formattedRow =
-          formattedObject != null
-            ? get(formattedObject, namePath as any)
-            : null;
+        const formattedObject = context?.getFieldFormatValueObject?.(namePath as any);
+        const formattedRow = formattedObject != null ? get(formattedObject, namePath as any) : null;
         return formattedRow ?? form.getFieldValue(namePath);
       })();
       // 处理 dataIndex 为数组的情况
@@ -515,9 +490,7 @@ export type SaveEditableActionRef<T = any> = {
    *
    * @throws 如果校验失败，会抛出异常
    *  */
-  save: () =>
-    | ReturnType<NonNullable<RowEditableConfig<T>['onSave']>>
-    | Promise<void>;
+  save: () => ReturnType<NonNullable<RowEditableConfig<T>['onSave']>> | Promise<void>;
 };
 
 /**
@@ -525,9 +498,7 @@ export type SaveEditableActionRef<T = any> = {
  *
  * @param ActionRenderConfig
  */
-export const DeleteEditableAction: React.FC<
-  ActionRenderConfig<any> & { row: any }
-> = ({
+export const DeleteEditableAction: React.FC<ActionRenderConfig<any> & { row: any }> = ({
   recordKey,
   onDelete,
   preEditRowRef,
@@ -565,9 +536,7 @@ export const DeleteEditableAction: React.FC<
       key="delete"
       title={deletePopconfirmMessage || '确定要删除这条记录吗？'}
       onConfirm={onConfirm}
-      getPopupContainer={(triggerNode) =>
-        triggerNode.parentElement || document.body
-      }
+      getPopupContainer={(triggerNode) => triggerNode.parentElement || document.body}
     >
       <a>
         {loading ? (
@@ -583,9 +552,7 @@ export const DeleteEditableAction: React.FC<
   ) : null;
 };
 
-const CancelEditableAction: React.FC<ActionRenderConfig<any> & { row: any }> = (
-  props,
-) => {
+const CancelEditableAction: React.FC<ActionRenderConfig<any> & { row: any }> = (props) => {
   const {
     recordKey,
     tableName,
@@ -610,22 +577,16 @@ const CancelEditableAction: React.FC<ActionRenderConfig<any> & { row: any }> = (
         const recordKeyStr = recordKeyToString(recordKey)?.toString();
         const namePath = normalizeNamePath(tableName, recordKey) as string[];
         const fields = (() => {
-          const formattedObject = context?.getFieldFormatValueObject?.(
-            namePath as any,
-          );
+          const formattedObject = context?.getFieldFormatValueObject?.(namePath as any);
           const formattedRow =
-            formattedObject != null
-              ? get(formattedObject, namePath as any)
-              : null;
+            formattedObject != null ? get(formattedObject, namePath as any) : null;
           return formattedRow ?? form?.getFieldValue(namePath);
         })();
         const record = isMapEditor ? set({}, namePath, fields) : fields;
 
         // 在清理编辑态前，先捕获“编辑前快照”（多行编辑时必须按 key 取值）
         const cachedPreEditRow =
-          recordKeyStr != null
-            ? preEditRowRefs?.current?.get(recordKeyStr)
-            : undefined;
+          recordKeyStr != null ? preEditRowRefs?.current?.get(recordKeyStr) : undefined;
 
         const isNewLineKeyMatch = (() => {
           const newLineKey = newLineConfig?.options?.recordKey;
@@ -642,9 +603,7 @@ const CancelEditableAction: React.FC<ActionRenderConfig<any> & { row: any }> = (
         const restoreRow = cachedPreEditRow ?? preEditRowRef?.current ?? row;
         const shouldDeleteNewRow =
           cachedPreEditRow === null ||
-          (cachedPreEditRow === undefined &&
-            preEditRowRef?.current === null &&
-            isNewLineKeyMatch);
+          (cachedPreEditRow === undefined && preEditRowRef?.current === null && isNewLineKeyMatch);
 
         if (shouldDeleteNewRow) {
           // 如果不存在历史值，说明是新的行，干掉他
@@ -666,14 +625,9 @@ const CancelEditableAction: React.FC<ActionRenderConfig<any> & { row: any }> = (
   );
 };
 
-export function defaultActionRender<T>(
-  row: T,
-  config: ActionRenderConfig<T, NewLineConfig<T>>,
-) {
+export function defaultActionRender<T>(row: T, config: ActionRenderConfig<T, NewLineConfig<T>>) {
   const { recordKey, newLineConfig, saveText, deleteText } = config;
-  const SaveEditableActionRef = forwardRef(
-    SaveEditableAction as typeof SaveEditableAction<T>,
-  );
+  const SaveEditableActionRef = forwardRef(SaveEditableAction as typeof SaveEditableAction<T>);
   const saveRef = createRef<SaveEditableActionRef<T>>();
 
   return {
@@ -690,12 +644,20 @@ export function defaultActionRender<T>(
     saveRef,
     delete:
       newLineConfig?.options.recordKey !== recordKey ? (
-        <DeleteEditableAction key={'delete' + recordKey} {...config} row={row}>
+        <DeleteEditableAction
+          key={'delete' + recordKey}
+          {...config}
+          row={row}
+        >
           {deleteText}
         </DeleteEditableAction>
       ) : undefined,
     cancel: (
-      <CancelEditableAction key={'cancel' + recordKey} {...config} row={row} />
+      <CancelEditableAction
+        key={'cancel' + recordKey}
+        {...config}
+        row={row}
+      />
     ),
   };
 }
@@ -735,8 +697,7 @@ export function useEditableArray<RecordType extends AnyObject>(
 
     const traverseRecords = (records: RecordType[], parentKey?: string) => {
       records?.forEach((record, index) => {
-        const indexKey =
-          parentKey == null ? index.toString() : `${parentKey}_${index}`;
+        const indexKey = parentKey == null ? index.toString() : `${parentKey}_${index}`;
         const recordKey = recordKeyToString(props.getRowKey(record, -1));
 
         // 如果 recordKey 是 undefined 或 null，跳过
@@ -747,9 +708,7 @@ export function useEditableArray<RecordType extends AnyObject>(
         map.set(indexKey, recordKey);
         map.set(recordKey.toString(), indexKey);
 
-        const children =
-          props.childrenColumnName &&
-          (record as any)?.[props.childrenColumnName];
+        const children = props.childrenColumnName && (record as any)?.[props.childrenColumnName];
         if (children) {
           traverseRecords(children, indexKey);
         }
@@ -759,17 +718,10 @@ export function useEditableArray<RecordType extends AnyObject>(
     traverseRecords(props.dataSource);
     return map;
   });
-  const initDataSourceKeyIndexMap = useMemo(
-    () => buildDataSourceKeyIndexMap(),
-    [],
-  );
+  const initDataSourceKeyIndexMap = useMemo(() => buildDataSourceKeyIndexMap(), []);
 
-  const dataSourceKeyIndexMapRef = useRef<Map<React.Key, React.Key>>(
-    initDataSourceKeyIndexMap,
-  );
-  const newLineRecordRef = useRef<NewLineConfig<RecordType> | undefined>(
-    undefined,
-  );
+  const dataSourceKeyIndexMapRef = useRef<Map<React.Key, React.Key>>(initDataSourceKeyIndexMap);
+  const newLineRecordRef = useRef<NewLineConfig<RecordType> | undefined>(undefined);
 
   useDeepCompareEffectDebounce(() => {
     dataSourceKeyIndexMapRef.current = buildDataSourceKeyIndexMap();
@@ -779,15 +731,12 @@ export function useEditableArray<RecordType extends AnyObject>(
   newLineRecordRef.current = newLineRecordCache;
 
   const editableType = props.type || 'single';
-  const [getRecordByKey] = useLazyKVMap(
-    props.dataSource,
-    'children',
-    props.getRowKey,
-  );
+  const [getRecordByKey] = useLazyKVMap(props.dataSource, 'children', props.getRowKey);
 
-  const [editableKeys, setEditableRowKeysInner] = useControlledState<
-    React.Key[] | undefined
-  >([], props.editableKeys);
+  const [editableKeys, setEditableRowKeysInner] = useControlledState<React.Key[] | undefined>(
+    [],
+    props.editableKeys,
+  );
   const setEditableRowKeys = useCallback(
     (
       updater:
@@ -798,19 +747,13 @@ export function useEditableArray<RecordType extends AnyObject>(
       setEditableRowKeysInner((prev) => {
         const next =
           typeof updater === 'function'
-            ? (
-                updater as (
-                  p: React.Key[] | undefined,
-                ) => React.Key[] | undefined
-              )(prev)
+            ? (updater as (p: React.Key[] | undefined) => React.Key[] | undefined)(prev)
             : updater;
         props?.onChange?.(
           next?.filter((key) => key !== undefined) ?? [],
           (next
             ?.map((key) => getRecordByKey(key))
-            .filter((k): k is RecordType => k !== undefined) ?? []) as
-            | RecordType
-            | RecordType[],
+            .filter((k): k is RecordType => k !== undefined) ?? []) as RecordType | RecordType[],
         );
         return next;
       });
@@ -823,20 +766,16 @@ export function useEditableArray<RecordType extends AnyObject>(
   /**
    * 检查 key 是否在编辑列表中
    */
-  const checkKeyInEditableList = useRefFunction(
-    (key: string, keysList: string[]): boolean => {
-      return keysList.includes(key);
-    },
-  );
+  const checkKeyInEditableList = useRefFunction((key: string, keysList: string[]): boolean => {
+    return keysList.includes(key);
+  });
 
   /** 这行是不是编辑状态 */
   const isEditable = useRefFunction((row: RecordType & { index: number }) => {
     const recordKeyWithIndex = props.getRowKey(row, row.index)?.toString();
     const recordKey = props.getRowKey(row, -1)?.toString();
-    const stringEditableKeys =
-      editableKeys?.map((key) => key?.toString()) || [];
-    const stringEditableKeysRef =
-      editableKeysRef?.map((key) => key?.toString()) || [];
+    const stringEditableKeys = editableKeys?.map((key) => key?.toString()) || [];
+    const stringEditableKeysRef = editableKeysRef?.map((key) => key?.toString()) || [];
 
     const preIsEditable =
       checkKeyInEditableList(recordKey, stringEditableKeysRef) ||
@@ -863,10 +802,7 @@ export function useEditableArray<RecordType extends AnyObject>(
     ) {
       warning(
         props.onlyOneLineEditorAlertMessage ||
-          intl.getMessage(
-            'editableTable.onlyOneLineEditor',
-            '只能同时编辑一行',
-          ),
+          intl.getMessage('editableTable.onlyOneLineEditor', '只能同时编辑一行'),
       );
       return false;
     }
@@ -876,45 +812,39 @@ export function useEditableArray<RecordType extends AnyObject>(
   /**
    * 查找记录
    */
-  const findRecordByKey = useRefFunction(
-    (recordKey: React.Key): RecordType | null => {
-      return (
-        props.dataSource?.find((recordData, index) => {
-          return props.getRowKey(recordData, index) === recordKey;
-        }) ?? null
-      );
-    },
-  );
+  const findRecordByKey = useRefFunction((recordKey: React.Key): RecordType | null => {
+    return (
+      props.dataSource?.find((recordData, index) => {
+        return props.getRowKey(recordData, index) === recordKey;
+      }) ?? null
+    );
+  });
 
   /**
    * 进入编辑状态
    */
-  const startEditable = useRefFunction(
-    (recordKey: React.Key, record?: RecordType) => {
-      if (!validateCanStartEdit()) {
-        return false;
-      }
+  const startEditable = useRefFunction((recordKey: React.Key, record?: RecordType) => {
+    if (!validateCanStartEdit()) {
+      return false;
+    }
 
-      const isAlreadyEditable = editableKeys?.some(
-        (key) => key === recordKey || key?.toString() === recordKey?.toString(),
-      );
+    const isAlreadyEditable = editableKeys?.some(
+      (key) => key === recordKey || key?.toString() === recordKey?.toString(),
+    );
 
-      if (!isAlreadyEditable) {
-        const newKeys = editableKeys
-          ? [...editableKeys, recordKey]
-          : [recordKey];
-        setEditableRowKeys(newKeys);
-      }
+    if (!isAlreadyEditable) {
+      const newKeys = editableKeys ? [...editableKeys, recordKey] : [recordKey];
+      setEditableRowKeys(newKeys);
+    }
 
-      preEditRowRef.current = record ?? findRecordByKey(recordKey) ?? null;
-      const recordKeyStr = recordKeyToString(recordKey)?.toString();
-      if (recordKeyStr) {
-        preEditRowRefs.current.set(recordKeyStr, preEditRowRef.current);
-      }
+    preEditRowRef.current = record ?? findRecordByKey(recordKey) ?? null;
+    const recordKeyStr = recordKeyToString(recordKey)?.toString();
+    if (recordKeyStr) {
+      preEditRowRefs.current.set(recordKeyStr, preEditRowRef.current);
+    }
 
-      return true;
-    },
-  );
+    return true;
+  });
 
   /**
    * 清理编辑状态
@@ -926,9 +856,7 @@ export function useEditableArray<RecordType extends AnyObject>(
       return;
     }
     const newKeys =
-      editableKeys?.filter(
-        (key) => key?.toString() !== relayKeyStr && key !== relayKey,
-      ) ?? [];
+      editableKeys?.filter((key) => key?.toString() !== relayKeyStr && key !== relayKey) ?? [];
     setEditableRowKeys(newKeys);
   });
 
@@ -940,21 +868,14 @@ export function useEditableArray<RecordType extends AnyObject>(
       const relayKey = recordKeyToString(recordKey);
       const relayKeyStr = relayKey != null ? relayKey.toString() : null;
       const mappedKey =
-        relayKeyStr != null
-          ? dataSourceKeyIndexMapRef.current.get(relayKeyStr)
-          : undefined;
+        relayKeyStr != null ? dataSourceKeyIndexMapRef.current.get(relayKeyStr) : undefined;
 
       const isInEditableSet = editableKeys?.some((key) => {
         if (relayKeyStr == null) return false;
         return key?.toString() === relayKeyStr || key === relayKey;
       });
 
-      if (
-        !isInEditableSet &&
-        mappedKey &&
-        (needReTry ?? true) &&
-        props.tableName
-      ) {
+      if (!isInEditableSet && mappedKey && (needReTry ?? true) && props.tableName) {
         return await cancelEditable(mappedKey, false);
       }
 
@@ -968,17 +889,14 @@ export function useEditableArray<RecordType extends AnyObject>(
         // newLineRecordCache.options.recordKey 是 addEditRecord 时设置的 recordKey
         // 而 recordKey 是 cancelEditable 的参数，需要确保它们匹配
         const cacheRecordKey = newLineRecordCache?.options?.recordKey;
-        const cacheKey =
-          cacheRecordKey != null ? recordKeyToString(cacheRecordKey) : null;
+        const cacheKey = cacheRecordKey != null ? recordKeyToString(cacheRecordKey) : null;
         const cacheKeyStr = cacheKey != null ? cacheKey.toString() : null;
         // 检查 newLineRecordCache 是否匹配当前的 recordKey
         const newLineConfig =
           newLineRecordCache != null &&
           cacheRecordKey != null &&
           (cacheRecordKey === recordKey ||
-            (cacheKeyStr != null &&
-              relayKeyStr != null &&
-              cacheKeyStr === relayKeyStr) ||
+            (cacheKeyStr != null && relayKeyStr != null && cacheKeyStr === relayKeyStr) ||
             cacheRecordKey?.toString() === recordKey?.toString() ||
             String(cacheRecordKey) === String(recordKey))
             ? newLineRecordCache
@@ -990,10 +908,7 @@ export function useEditableArray<RecordType extends AnyObject>(
           await props.onCancel(
             recordKey,
             record || (newLineConfig?.defaultValue as any) || ({} as any),
-            originRow ||
-              record ||
-              (newLineConfig?.defaultValue as any) ||
-              ({} as any),
+            originRow || record || (newLineConfig?.defaultValue as any) || ({} as any),
             newLineConfig,
           );
         } catch (error) {
@@ -1007,14 +922,10 @@ export function useEditableArray<RecordType extends AnyObject>(
         const cacheRecordKey = newLineRecordCache.options.recordKey;
         // 重用之前计算的 relayKeyStr
         const cacheKeyStr =
-          cacheRecordKey != null
-            ? recordKeyToString(cacheRecordKey)?.toString()
-            : null;
+          cacheRecordKey != null ? recordKeyToString(cacheRecordKey)?.toString() : null;
         if (
           cacheRecordKey === recordKey ||
-          (cacheKeyStr != null &&
-            relayKeyStr != null &&
-            cacheKeyStr === relayKeyStr) ||
+          (cacheKeyStr != null && relayKeyStr != null && cacheKeyStr === relayKeyStr) ||
           cacheRecordKey?.toString() === recordKey?.toString() ||
           String(cacheRecordKey) === String(recordKey)
         ) {
@@ -1025,11 +936,7 @@ export function useEditableArray<RecordType extends AnyObject>(
       // 先清理 preEditRowRef 并重置表单字段，然后再清除编辑状态
       // 这样在清除编辑状态前，表单字段已经被清除，表格重新渲染时就不会显示输入框
       const originRow = preEditRowRef.current;
-      if (
-        originRow &&
-        props.getRowKey(originRow, -1) === recordKey &&
-        isInEditableSet
-      ) {
+      if (originRow && props.getRowKey(originRow, -1) === recordKey && isInEditableSet) {
         try {
           // 尝试通过 formProps.formRef 访问 form
           const formRef = props.formProps?.formRef as any;
@@ -1038,10 +945,7 @@ export function useEditableArray<RecordType extends AnyObject>(
           if (form) {
             if (props.tableName) {
               // name 模式：重置为原始值
-              const namePath = normalizeNamePath(
-                props.tableName,
-                recordKey,
-              ) as string[];
+              const namePath = normalizeNamePath(props.tableName, recordKey) as string[];
               form.setFieldsValue(set({}, namePath, originRow));
             } else {
               // 非 name 模式：清除该行的所有表单字段
@@ -1063,10 +967,7 @@ export function useEditableArray<RecordType extends AnyObject>(
                   });
                 } catch (error) {
                   // 如果清除失败，忽略错误
-                  console.warn(
-                    'Failed to clear form fields in cancelEditable:',
-                    error,
-                  );
+                  console.warn('Failed to clear form fields in cancelEditable:', error);
                 }
               }
             }
@@ -1094,9 +995,7 @@ export function useEditableArray<RecordType extends AnyObject>(
    * 构建表单字段路径
    */
   const buildFormFieldPath = useRefFunction((recordKey: string): string[] => {
-    return [props.tableName || '', recordKey]
-      .flat(1)
-      .filter((key) => key || key === 0) as string[];
+    return [props.tableName || '', recordKey].flat(1).filter((key) => key || key === 0) as string[];
   });
 
   /**
@@ -1139,11 +1038,7 @@ export function useEditableArray<RecordType extends AnyObject>(
    * 获取当前编辑的行数据
    */
   const getCurrentEditRow = useRefFunction(
-    (
-      value: RecordType,
-      values: RecordType,
-      dataSource: RecordType[],
-    ): RecordType => {
+    (value: RecordType, values: RecordType, dataSource: RecordType[]): RecordType => {
       const valueKeys = Object.keys(value || {});
       if (valueKeys.length === 0) {
         return newLineRecordCache?.defaultValue || ({} as RecordType);
@@ -1160,9 +1055,7 @@ export function useEditableArray<RecordType extends AnyObject>(
         ...get(values, fieldPath),
       };
 
-      const existsInDataSource = dataSourceKeyIndexMapRef.current.has(
-        recordKeyToString(recordKey),
-      );
+      const existsInDataSource = dataSourceKeyIndexMapRef.current.has(recordKeyToString(recordKey));
 
       if (existsInDataSource) {
         const foundRow = dataSource.find((item, index) => {
@@ -1176,30 +1069,23 @@ export function useEditableArray<RecordType extends AnyObject>(
     },
   );
 
-  const onValuesChange = useRefFunction(
-    (value: RecordType, values: RecordType) => {
-      if (!props.onValuesChange) {
-        return;
-      }
+  const onValuesChange = useRefFunction((value: RecordType, values: RecordType) => {
+    if (!props.onValuesChange) {
+      return;
+    }
 
-      const updatedDataSource = updateDataSourceWithEditableRows(
-        props.dataSource,
-        values,
-      );
-      const editRow = getCurrentEditRow(value, values, updatedDataSource);
+    const updatedDataSource = updateDataSourceWithEditableRows(props.dataSource, values);
+    const editRow = getCurrentEditRow(value, values, updatedDataSource);
 
-      propsOnValuesChange.run(editRow, updatedDataSource);
-    },
+    propsOnValuesChange.run(editRow, updatedDataSource);
+  });
+
+  const saveRefsMap = useRef<Map<React.Key, React.RefObject<SaveEditableActionRef | null>>>(
+    new Map<React.Key, React.RefObject<SaveEditableActionRef | null>>(),
   );
 
-  const saveRefsMap = useRef<
-    Map<React.Key, React.RefObject<SaveEditableActionRef | null>>
-  >(new Map<React.Key, React.RefObject<SaveEditableActionRef | null>>());
-
   useEffect(() => {
-    const editableKeysSet = new Set(
-      editableKeys?.map((key) => key?.toString()) ?? [],
-    );
+    const editableKeysSet = new Set(editableKeys?.map((key) => key?.toString()) ?? []);
     saveRefsMap.current.forEach((ref, key) => {
       if (!editableKeysSet.has(key?.toString())) {
         saveRefsMap.current.delete(key);
@@ -1212,10 +1098,7 @@ export function useEditableArray<RecordType extends AnyObject>(
    */
   const getSaveRef = useRefFunction((recordKey: RecordKey) => {
     const relayKey = recordKeyToString(recordKey);
-    return (
-      saveRefsMap.current.get(relayKey) ||
-      saveRefsMap.current.get(relayKey.toString())
-    );
+    return saveRefsMap.current.get(relayKey) || saveRefsMap.current.get(relayKey.toString());
   });
 
   /**
@@ -1231,12 +1114,7 @@ export function useEditableArray<RecordType extends AnyObject>(
         (key) => key?.toString() === relayKeyStr || key === relayKey,
       );
 
-      if (
-        !isInEditableSet &&
-        mappedKey &&
-        (needReTry ?? true) &&
-        props.tableName
-      ) {
+      if (!isInEditableSet && mappedKey && (needReTry ?? true) && props.tableName) {
         return await saveEditable(mappedKey, false);
       }
 
@@ -1254,36 +1132,29 @@ export function useEditableArray<RecordType extends AnyObject>(
   /**
    * 验证是否可以新增记录
    */
-  const validateCanAddRecord = useRefFunction(
-    (options?: AddLineOptions): boolean => {
-      if (
-        options?.parentKey &&
-        !dataSourceKeyIndexMapRef.current.has(
-          recordKeyToString(options?.parentKey).toString(),
-        )
-      ) {
-        console.warn("can't find record by key", options?.parentKey);
-        return false;
-      }
+  const validateCanAddRecord = useRefFunction((options?: AddLineOptions): boolean => {
+    if (
+      options?.parentKey &&
+      !dataSourceKeyIndexMapRef.current.has(recordKeyToString(options?.parentKey).toString())
+    ) {
+      console.warn("can't find record by key", options?.parentKey);
+      return false;
+    }
 
-      if (
-        newLineRecordRef.current &&
-        props.onlyAddOneLineAlertMessage !== false
-      ) {
-        warning(
-          props.onlyAddOneLineAlertMessage ||
-            intl.getMessage('editableTable.onlyAddOneLine', '只能新增一行'),
-        );
-        return false;
-      }
+    if (newLineRecordRef.current && props.onlyAddOneLineAlertMessage !== false) {
+      warning(
+        props.onlyAddOneLineAlertMessage ||
+          intl.getMessage('editableTable.onlyAddOneLine', '只能新增一行'),
+      );
+      return false;
+    }
 
-      if (!validateCanStartEdit()) {
-        return false;
-      }
+    if (!validateCanStartEdit()) {
+      return false;
+    }
 
-      return true;
-    },
-  );
+    return true;
+  });
 
   /**
    * 验证记录 key 是否有效
@@ -1301,79 +1172,67 @@ export function useEditableArray<RecordType extends AnyObject>(
   /**
    * 增加新的行
    */
-  const addEditRecord = useRefFunction(
-    (row: RecordType, options?: AddLineOptions) => {
-      if (!validateCanAddRecord(options)) {
-        return false;
-      }
+  const addEditRecord = useRefFunction((row: RecordType, options?: AddLineOptions) => {
+    if (!validateCanAddRecord(options)) {
+      return false;
+    }
 
-      const recordKey = props.getRowKey(row, -1);
-      validateRecordKey(recordKey);
-      const recordKeyStr = recordKeyToString(recordKey)?.toString();
-      if (recordKeyStr) {
-        // 新建行：用 null 作为快照标记，避免多行编辑取消时误删其他行
-        preEditRowRefs.current.set(recordKeyStr, null);
-      }
+    const recordKey = props.getRowKey(row, -1);
+    validateRecordKey(recordKey);
+    const recordKeyStr = recordKeyToString(recordKey)?.toString();
+    if (recordKeyStr) {
+      // 新建行：用 null 作为快照标记，避免多行编辑取消时误删其他行
+      preEditRowRefs.current.set(recordKeyStr, null);
+    }
 
-      const isAlreadyEditable = editableKeys?.some(
-        (key) => key === recordKey || key?.toString() === recordKey?.toString(),
+    const isAlreadyEditable = editableKeys?.some(
+      (key) => key === recordKey || key?.toString() === recordKey?.toString(),
+    );
+
+    if (!isAlreadyEditable) {
+      const newKeys = editableKeys ? [...editableKeys, recordKey] : [recordKey];
+      setEditableRowKeys(newKeys);
+    }
+
+    // 处理 parentKey：如果是函数，调用它
+    const parentKeyValue =
+      typeof options?.parentKey === 'function' ? (options.parentKey as any)() : options?.parentKey;
+
+    const isDataSourceMode =
+      options?.newRecordType === 'dataSource' ||
+      (props.tableName && options?.newRecordType !== 'cache');
+    if (isDataSourceMode) {
+      const actionProps = {
+        data: props.dataSource,
+        getRowKey: props.getRowKey,
+        row: {
+          ...row,
+          map_row_parentKey: parentKeyValue
+            ? recordKeyToString(parentKeyValue)?.toString()
+            : undefined,
+        },
+        key: recordKey,
+        childrenColumnName: props.childrenColumnName || 'children',
+      };
+      props.setDataSource(
+        editableRowByKey(actionProps, options?.position === 'top' ? 'top' : 'update'),
       );
+    } else {
+      setNewLineRecordCache({
+        defaultValue: row,
+        options: {
+          ...options,
+          parentKey: parentKeyValue,
+          recordKey,
+        },
+      });
+    }
+    return true;
+  });
 
-      if (!isAlreadyEditable) {
-        const newKeys = editableKeys
-          ? [...editableKeys, recordKey]
-          : [recordKey];
-        setEditableRowKeys(newKeys);
-      }
-
-      // 处理 parentKey：如果是函数，调用它
-      const parentKeyValue =
-        typeof options?.parentKey === 'function'
-          ? (options.parentKey as any)()
-          : options?.parentKey;
-
-      const isDataSourceMode =
-        options?.newRecordType === 'dataSource' ||
-        (props.tableName && options?.newRecordType !== 'cache');
-      if (isDataSourceMode) {
-        const actionProps = {
-          data: props.dataSource,
-          getRowKey: props.getRowKey,
-          row: {
-            ...row,
-            map_row_parentKey: parentKeyValue
-              ? recordKeyToString(parentKeyValue)?.toString()
-              : undefined,
-          },
-          key: recordKey,
-          childrenColumnName: props.childrenColumnName || 'children',
-        };
-        props.setDataSource(
-          editableRowByKey(
-            actionProps,
-            options?.position === 'top' ? 'top' : 'update',
-          ),
-        );
-      } else {
-        setNewLineRecordCache({
-          defaultValue: row,
-          options: {
-            ...options,
-            parentKey: parentKeyValue,
-            recordKey,
-          },
-        });
-      }
-      return true;
-    },
-  );
-
-  const saveText =
-    props?.saveText || intl.getMessage('editableTable.action.save', '保存');
-  const deleteText =
-    props?.deleteText || intl.getMessage('editableTable.action.delete', '删除');
-  const cancelText =
-    props?.cancelText || intl.getMessage('editableTable.action.cancel', '取消');
+  const saveText = props?.saveText || intl.getMessage('editableTable.action.save', '保存');
+  const deleteText = props?.deleteText || intl.getMessage('editableTable.action.delete', '删除');
+  const cancelText = props?.cancelText || intl.getMessage('editableTable.action.cancel', '取消');
 
   const actionSaveRef = useRefFunction(
     async (
@@ -1409,19 +1268,14 @@ export function useEditableArray<RecordType extends AnyObject>(
           row: options
             ? {
                 ...editRow,
-                map_row_parentKey: recordKeyToString(
-                  options?.parentKey ?? '',
-                )?.toString(),
+                map_row_parentKey: recordKeyToString(options?.parentKey ?? '')?.toString(),
               }
             : editRow,
           key: recordKey,
           childrenColumnName: props.childrenColumnName || 'children',
         };
         props.setDataSource(
-          editableRowByKey(
-            actionProps,
-            options?.position === 'top' ? 'top' : 'update',
-          ),
+          editableRowByKey(actionProps, options?.position === 'top' ? 'top' : 'update'),
         );
       }
 
@@ -1475,22 +1329,14 @@ export function useEditableArray<RecordType extends AnyObject>(
       originRow: RecordType & { index?: number },
       newLine?: NewLineConfig<RecordType>,
     ) => {
-      const res = await props?.onCancel?.(
-        recordKey,
-        editRow,
-        originRow,
-        newLine,
-      );
+      const res = await props?.onCancel?.(recordKey, editRow, originRow, newLine);
       return res;
     },
   );
 
   // 如果传入了自定义的actionRender，使用useRefFunction以确保内部的事件处理函数可以访问最新的state
-  const existCustomActionRender =
-    props.actionRender && typeof props.actionRender === 'function';
-  const customActionRender = existCustomActionRender
-    ? props.actionRender
-    : () => {};
+  const existCustomActionRender = props.actionRender && typeof props.actionRender === 'function';
+  const customActionRender = existCustomActionRender ? props.actionRender : () => {};
   const customActionRenderRef = useRefFunction(
     customActionRender as ActionRenderFunction<RecordType>,
   );
@@ -1515,16 +1361,14 @@ export function useEditableArray<RecordType extends AnyObject>(
       preEditRowRef,
       preEditRowRefs,
       deletePopconfirmMessage:
-        props.deletePopconfirmMessage ||
-        `${intl.getMessage('deleteThisLine', '删除此项')}?`,
+        props.deletePopconfirmMessage || `${intl.getMessage('deleteThisLine', '删除此项')}?`,
     };
 
     const renderResult = defaultActionRender<RecordType>(row, config);
     // 缓存一下saveRef
     if (props.tableName) {
       saveRefsMap.current.set(
-        dataSourceKeyIndexMapRef.current.get(recordKeyToString(key)) ||
-          recordKeyToString(key),
+        dataSourceKeyIndexMapRef.current.get(recordKeyToString(key)) || recordKeyToString(key),
         renderResult.saveRef,
       );
     } else {

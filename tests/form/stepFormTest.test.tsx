@@ -1,16 +1,11 @@
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import type { StepsFormRef } from '@xxlabs/pro-components';
-import { ProFormText, StepsForm } from '@xxlabs/pro-components';
 import { Button } from 'antd';
 import React, { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import type { StepsFormRef } from '@xxlabs/pro-components';
+import { ProFormText, StepsForm } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -33,28 +28,31 @@ describe('StepsForm', () => {
     );
 
     expect(container.querySelectorAll('.ant-steps-item-icon')).toHaveLength(3);
-    expect(
-      container.querySelectorAll('div.ant-steps-item-title')[0],
-    ).toHaveTextContent('表单1');
-    expect(
-      container.querySelectorAll('div.ant-steps-item-title')[1],
-    ).toHaveTextContent('表单2');
-    expect(
-      container.querySelectorAll('div.ant-steps-item-title')[2],
-    ).toHaveTextContent('表单3');
+    expect(container.querySelectorAll('div.ant-steps-item-title')[0]).toHaveTextContent('表单1');
+    expect(container.querySelectorAll('div.ant-steps-item-title')[1]).toHaveTextContent('表单2');
+    expect(container.querySelectorAll('div.ant-steps-item-title')[2]).toHaveTextContent('表单3');
     unmount();
   });
 
   it('🐲 stepsRender', async () => {
     const { container, rerender, unmount } = render(
       <StepsForm stepsRender={() => null}>
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="extraInfo" title="表单3">
+        <StepsForm.StepForm
+          name="extraInfo"
+          title="表单3"
+        >
           <ProFormText name="地址" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -64,13 +62,22 @@ describe('StepsForm', () => {
 
     rerender(
       <StepsForm stepsRender={(_, dom) => <div id="test">{dom}</div>}>
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="extraInfo" title="表单3">
+        <StepsForm.StepForm
+          name="extraInfo"
+          title="表单3"
+        >
           <ProFormText name="地址" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -90,13 +97,22 @@ describe('StepsForm', () => {
           onCurrentChange(current);
         }}
       >
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="extraInfo" title="表单3">
+        <StepsForm.StepForm
+          name="extraInfo"
+          title="表单3"
+        >
           <ProFormText name="地址" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -114,7 +130,10 @@ describe('StepsForm', () => {
     const onFinish = vi.fn();
 
     const html = render(
-      <StepsForm onCurrentChange={currentFn} onFinish={onFinish}>
+      <StepsForm
+        onCurrentChange={currentFn}
+        onFinish={onFinish}
+      >
         <StepsForm.StepForm
           name="base"
           title="表单1"
@@ -125,7 +144,10 @@ describe('StepsForm', () => {
         >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -167,8 +189,14 @@ describe('StepsForm', () => {
         >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
-          <ProFormText label="邮箱" name="邮箱" />
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
+          <ProFormText
+            label="邮箱"
+            name="邮箱"
+          />
         </StepsForm.StepForm>
       </StepsForm>,
     );
@@ -202,10 +230,16 @@ describe('StepsForm', () => {
           return true;
         }}
       >
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -227,18 +261,22 @@ describe('StepsForm', () => {
           render: false,
         }}
       >
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
     );
 
-    expect(
-      !!container.querySelectorAll('button.ant-btn.ant-btn-primary').length,
-    ).toBeFalsy();
+    expect(!!container.querySelectorAll('button.ant-btn.ant-btn-primary').length).toBeFalsy();
   });
 
   it('🐲 submitter render props', async () => {
@@ -250,17 +288,27 @@ describe('StepsForm', () => {
         submitter={{
           render: (props) => {
             return (
-              <button type="button" id="rest" onClick={() => props?.onPre?.()}>
+              <button
+                type="button"
+                id="rest"
+                onClick={() => props?.onPre?.()}
+              >
                 rest
               </button>
             );
           },
         }}
       >
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -298,10 +346,16 @@ describe('StepsForm', () => {
           },
         }}
       >
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -337,10 +391,16 @@ describe('StepsForm', () => {
           },
         }}
       >
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -357,19 +417,23 @@ describe('StepsForm', () => {
   it('🐲 submitter=false', async () => {
     const { container, unmount } = render(
       <StepsForm submitter={false}>
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
     );
 
     expect(
-      !!container.querySelector(
-        '.ant-pro-steps-form-step-active button.ant-btn.ant-btn-primary',
-      ),
+      !!container.querySelector('.ant-pro-steps-form-step-active button.ant-btn.ant-btn-primary'),
     ).toBeFalsy();
     unmount();
   });
@@ -380,17 +444,26 @@ describe('StepsForm', () => {
         submitter={{
           render: () => {
             return (
-              <Button id="next" key="next">
+              <Button
+                id="next"
+                key="next"
+              >
                 下一步
               </Button>
             );
           },
         }}
       >
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -412,10 +485,16 @@ describe('StepsForm', () => {
           );
         }}
       >
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -434,10 +513,16 @@ describe('StepsForm', () => {
           return <div id="content">{dom}</div>;
         }}
       >
-        <StepsForm.StepForm name="base" title="表单1">
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
           <ProFormText name="姓名" />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
           <ProFormText name="邮箱" />
         </StepsForm.StepForm>
       </StepsForm>,
@@ -459,11 +544,23 @@ describe('StepsForm', () => {
         }}
         onFinish={submit}
       >
-        <StepsForm.StepForm name="base" title="表单1">
-          <ProFormText name={['info', 'name']} initialValue={'chenshuai'} />
+        <StepsForm.StepForm
+          name="base"
+          title="表单1"
+        >
+          <ProFormText
+            name={['info', 'name']}
+            initialValue={'chenshuai'}
+          />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="moreInfo" title="表单2">
-          <ProFormText name={['info', 'age']} initialValue={'22'} />
+        <StepsForm.StepForm
+          name="moreInfo"
+          title="表单2"
+        >
+          <ProFormText
+            name={['info', 'age']}
+            initialValue={'22'}
+          />
         </StepsForm.StepForm>
       </StepsForm>,
     );
@@ -488,17 +585,29 @@ describe('StepsForm', () => {
       const [show, setShow] = React.useState(true);
       return (
         <StepsForm>
-          <StepsForm.StepForm name="step1" title="表单1">
+          <StepsForm.StepForm
+            name="step1"
+            title="表单1"
+          >
             表单 1
-            <button type="button" onClick={() => setShow(false)}>
+            <button
+              type="button"
+              onClick={() => setShow(false)}
+            >
               隐藏表单3
             </button>
           </StepsForm.StepForm>
-          <StepsForm.StepForm name="step2" title="表单2">
+          <StepsForm.StepForm
+            name="step2"
+            title="表单2"
+          >
             表单 2
           </StepsForm.StepForm>
           {show ? (
-            <StepsForm.StepForm name="step3" title="表单3">
+            <StepsForm.StepForm
+              name="step3"
+              title="表单3"
+            >
               表单 3
             </StepsForm.StepForm>
           ) : null}
@@ -517,12 +626,27 @@ describe('StepsForm', () => {
   it('🐲 stepsFormRef merges values from all steps', async () => {
     const stepsFormRef = React.createRef<StepsFormRef | null>();
     const html = render(
-      <StepsForm stepsFormRef={stepsFormRef} onFinish={vi.fn()}>
-        <StepsForm.StepForm name="a" title="表单1">
-          <ProFormText name="x" initialValue="1" />
+      <StepsForm
+        stepsFormRef={stepsFormRef}
+        onFinish={vi.fn()}
+      >
+        <StepsForm.StepForm
+          name="a"
+          title="表单1"
+        >
+          <ProFormText
+            name="x"
+            initialValue="1"
+          />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="b" title="表单2">
-          <ProFormText name="y" initialValue="2" />
+        <StepsForm.StepForm
+          name="b"
+          title="表单2"
+        >
+          <ProFormText
+            name="y"
+            initialValue="2"
+          />
         </StepsForm.StepForm>
       </StepsForm>,
     );

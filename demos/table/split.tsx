@@ -1,8 +1,9 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import { ProCard, ProTable } from '@xxlabs/pro-components';
 import type { BadgeProps } from 'antd';
 import { Badge, Button } from 'antd';
 import React, { useEffect, useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProCard, ProTable } from '@xxlabs/pro-components';
 
 import { FIXED_BASE_TIMESTAMP } from '../mockData';
 
@@ -112,7 +113,12 @@ const ServerList: React.FC<ServerListProps> = (props) => {
       key: 'ip',
       dataIndex: 'ip',
       render: (_, item) => {
-        return <Badge status={item.status} text={item.ip} />;
+        return (
+          <Badge
+            status={item.status}
+            text={item.ip}
+          />
+        );
       },
     },
     {
@@ -162,7 +168,10 @@ const ServerList: React.FC<ServerListProps> = (props) => {
           },
         },
         actions: [
-          <Button key="add" type="primary">
+          <Button
+            key="add"
+            type="primary"
+          >
             添加节点
           </Button>,
         ],
@@ -187,8 +196,14 @@ const Demo: React.FC = () => {
   const [ip, setIp] = useState('10.0.1.100');
   return (
     <ProCard split="vertical">
-      <ProCard colSpan="384px" ghost>
-        <ServerList onChange={(cIp) => setIp(cIp)} ip={ip} />
+      <ProCard
+        colSpan="384px"
+        ghost
+      >
+        <ServerList
+          onChange={(cIp) => setIp(cIp)}
+          ip={ip}
+        />
       </ProCard>
       <ProCard title={ip}>
         <ServerDetail ip={ip} />

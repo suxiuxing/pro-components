@@ -1,6 +1,8 @@
-﻿import { act, render } from '@testing-library/react';
-import { ProForm, ProFormText } from '@xxlabs/pro-components';
+import { act, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
+import { ProForm, ProFormText } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 describe('ProForm transform (docs + regression tests)', () => {
@@ -15,7 +17,10 @@ describe('ProForm transform (docs + regression tests)', () => {
           fn(values);
         }}
       >
-        <ProFormText name="name" transform={(value) => `${value}:suffix`} />
+        <ProFormText
+          name="name"
+          transform={(value) => `${value}:suffix`}
+        />
       </ProForm>,
     );
 

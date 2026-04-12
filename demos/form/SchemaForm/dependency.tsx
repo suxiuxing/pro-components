@@ -1,4 +1,4 @@
-﻿import type { ProFormColumnsType } from '@xxlabs/pro-components';
+import type { ProFormColumnsType } from '@xxlabs/pro-components';
 import { BetaSchemaForm, ProForm } from '@xxlabs/pro-components';
 
 const valueEnum = {

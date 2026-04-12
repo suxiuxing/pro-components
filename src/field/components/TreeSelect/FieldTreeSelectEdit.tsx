@@ -1,15 +1,13 @@
-﻿import type { TreeSelectProps } from 'antd';
+import type { TreeSelectProps } from 'antd';
 import { Spin, TreeSelect } from 'antd';
 import { clsx } from 'clsx';
 import React from 'react';
+
 import type { IntlType, ProFieldFCRenderProps } from '../../../provider';
 import { FieldLabel } from '../../../utils';
 import type { TreeSelectFieldProps } from './types';
 
-type TreeSelectShowSearchObject = Exclude<
-  TreeSelectProps['showSearch'],
-  boolean | undefined
->;
+type TreeSelectShowSearchObject = Exclude<TreeSelectProps['showSearch'], boolean | undefined>;
 
 export interface FieldTreeSelectEditProps {
   text: string;
@@ -36,10 +34,7 @@ export interface FieldTreeSelectEditProps {
   showSearchConfig: TreeSelectShowSearchObject | Record<string, never>;
   searchValue: string | undefined;
   setSearchValue: (
-    updater:
-      | string
-      | undefined
-      | ((prev: string | undefined) => string | undefined),
+    updater: string | undefined | ((prev: string | undefined) => string | undefined),
   ) => void;
   autoClearSearchValue: boolean | undefined;
   onClear?: () => void;
@@ -78,9 +73,7 @@ export function FieldTreeSelectEdit({
   onBlur,
   layoutClassName,
 }: FieldTreeSelectEditProps) {
-  const valuesLength = Array.isArray(fieldProps?.value)
-    ? fieldProps?.value?.length
-    : 0;
+  const valuesLength = Array.isArray(fieldProps?.value) ? fieldProps?.value?.length : 0;
 
   let dom: React.ReactNode = (
     <Spin spinning={loading}>

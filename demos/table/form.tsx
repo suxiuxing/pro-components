@@ -1,7 +1,8 @@
-import type { ProColumns, ProFormInstance } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
+
+import type { ProColumns, ProFormInstance } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 export type TableListItem = {
   key: number;

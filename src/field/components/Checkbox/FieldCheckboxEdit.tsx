@@ -1,6 +1,7 @@
-﻿import { Checkbox } from 'antd';
+import { Checkbox } from 'antd';
 import { clsx } from 'clsx';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import type { GroupProps } from './types';
 
@@ -28,36 +29,21 @@ export function FieldCheckboxEdit(props: Props) {
     ...rest
   } = props;
 
-  const {
-    fieldNames: _fieldNames,
-    variant,
-    ...restFieldProps
-  } = rest.fieldProps || {};
+  const { fieldNames: _fieldNames, variant, ...restFieldProps } = rest.fieldProps || {};
 
   const dom = wrapSSR(
     <Checkbox.Group
       {...restFieldProps}
       variant={variant}
-      className={clsx(
-        rest.fieldProps?.className,
-        hashId,
-        `${layoutClassName}-${layout}`,
-        {
-          [`${layoutClassName}-error`]: status?.status === 'error',
-          [`${layoutClassName}-warning`]: status?.status === 'warning',
-        },
-      )}
+      className={clsx(rest.fieldProps?.className, hashId, `${layoutClassName}-${layout}`, {
+        [`${layoutClassName}-error`]: status?.status === 'error',
+        [`${layoutClassName}-warning`]: status?.status === 'warning',
+      })}
       options={options}
     />,
   );
   if (formItemRender) {
-    return (
-      formItemRender(
-        rest.text,
-        { mode, ...rest.fieldProps, options, loading },
-        dom,
-      ) ?? null
-    );
+    return formItemRender(rest.text, { mode, ...rest.fieldProps, options, loading }, dom) ?? null;
   }
   return dom;
 }

@@ -1,10 +1,8 @@
-﻿import { useControlledState } from '@rc-component/util';
+import { useControlledState } from '@rc-component/util';
 import React, { useCallback, useRef } from 'react';
+
 import { proTheme, useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldDigitRangeEdit } from './FieldDigitRangeEdit';
 import { FieldDigitRangeRead } from './FieldDigitRangeRead';
@@ -32,23 +30,13 @@ const FieldDigitRange: ProFieldFC<FieldDigitRangeProps> = (
   const intl = useIntl();
 
   const { token } = proTheme.useToken();
-  const [valuePair, setValuePairInner] = useControlledState(
-    () => defaultValue,
-    value,
-  );
+  const [valuePair, setValuePairInner] = useControlledState(() => defaultValue, value);
   const setValuePair = useCallback(
-    (
-      updater:
-        | ValuePair
-        | undefined
-        | ((prev: ValuePair | undefined) => ValuePair | undefined),
-    ) => {
+    (updater: ValuePair | undefined | ((prev: ValuePair | undefined) => ValuePair | undefined)) => {
       setValuePairInner((prev: ValuePair | undefined) => {
         const next =
           typeof updater === 'function'
-            ? (updater as (p: ValuePair | undefined) => ValuePair | undefined)(
-                prev,
-              )
+            ? (updater as (p: ValuePair | undefined) => ValuePair | undefined)(prev)
             : updater;
         onChange?.(next);
         return next;

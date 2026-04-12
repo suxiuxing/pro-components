@@ -6,6 +6,7 @@ import type { PaginationConfig } from 'antd/lib/pagination';
 import type { GetRowKey, TableRowSelection } from 'antd/lib/table/interface';
 import { clsx } from 'clsx';
 import React, { useContext } from 'react';
+
 import type { CheckCardProps } from '../card';
 import { ProProvider } from '../provider';
 import type { ActionType } from '../table';
@@ -30,14 +31,8 @@ export type ProListItemRender<RecordType> = (
   defaultDom: React.ReactElement,
 ) => React.ReactNode;
 
-export type ListViewProps<RecordType> = Omit<
-  AntdListProps<RecordType>,
-  'renderItem'
-> &
-  Pick<
-    TableProps<RecordType>,
-    'columns' | 'dataSource' | 'expandable' | 'pagination'
-  > & {
+export type ListViewProps<RecordType> = Omit<AntdListProps<RecordType>, 'renderItem'> &
+  Pick<TableProps<RecordType>, 'columns' | 'dataSource' | 'expandable' | 'pagination'> & {
     rowKey?: string | keyof RecordType | GetRowKey<RecordType>;
     rowSelection?: TableRowSelection<RecordType>;
     prefixCls?: string;
@@ -57,9 +52,7 @@ export type ListViewProps<RecordType> = Omit<
     hashId?: string;
   };
 
-function ListView<RecordType extends AnyObject>(
-  props: ListViewProps<RecordType>,
-) {
+function ListView<RecordType extends AnyObject>(props: ListViewProps<RecordType>) {
   const {
     dataSource,
     columns,
@@ -85,25 +78,18 @@ function ListView<RecordType extends AnyObject>(
 
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
 
-  const getRowKey = React.useMemo<
-    GetRowKey<RecordType>
-  >((): GetRowKey<RecordType> => {
+  const getRowKey = React.useMemo<GetRowKey<RecordType>>((): GetRowKey<RecordType> => {
     if (typeof rowKey === 'function') {
       return rowKey;
     }
 
-    return (record: RecordType, index?: number) =>
-      (record as any)[rowKey as string] || index;
+    return (record: RecordType, index?: number) => (record as any)[rowKey as string] || index;
   }, [rowKey]);
 
   const [getRecordByKey] = useLazyKVMap(dataSource, 'children', getRowKey);
 
   // 合并分页配置，兼容 antd 的分页
-  const [mergedPagination] = usePagination(
-    dataSource.length,
-    () => {},
-    pagination,
-  );
+  const [mergedPagination] = usePagination(dataSource.length, () => {}, pagination);
   /** 根据分页来返回不同的数据，模拟 table */
   const pageData = React.useMemo<readonly RecordType[]>(() => {
     if (
@@ -146,17 +132,15 @@ function ListView<RecordType extends AnyObject>(
   } = expandableConfig || {};
 
   /** 展开收起功能区域 star */
-  const [innerExpandedKeys, setInnerExpandedKeys] = React.useState<Key[]>(
-    () => {
-      if (defaultExpandedRowKeys) {
-        return defaultExpandedRowKeys as Key[];
-      }
-      if (defaultExpandAllRows !== false) {
-        return dataSource.map(getRowKey);
-      }
-      return [];
-    },
-  );
+  const [innerExpandedKeys, setInnerExpandedKeys] = React.useState<Key[]>(() => {
+    if (defaultExpandedRowKeys) {
+      return defaultExpandedRowKeys as Key[];
+    }
+    if (defaultExpandAllRows !== false) {
+      return dataSource.map(getRowKey);
+    }
+    return [];
+  });
 
   const mergedExpandedKeys = React.useMemo(
     () => new Set(expandedRowKeys || innerExpandedKeys || []),
@@ -196,16 +180,10 @@ function ListView<RecordType extends AnyObject>(
         rest.className,
       )}
       dataSource={pageData as RecordType[]}
-      pagination={
-        pagination &&
-        (mergedPagination as ListViewProps<RecordType>['pagination'])
-      }
+      pagination={pagination && (mergedPagination as ListViewProps<RecordType>['pagination'])}
       renderItem={(item, index) => {
         const listItemProps: Partial<ItemProps<RecordType>> = {
-          className:
-            typeof rowClassName === 'function'
-              ? rowClassName(item, index)
-              : rowClassName,
+          className: typeof rowClassName === 'function' ? rowClassName(item, index) : rowClassName,
         };
 
         (
@@ -217,30 +195,20 @@ function ListView<RecordType extends AnyObject>(
           if (!PRO_LIST_KEYS_MAP.has(listSlot)) {
             return;
           }
-          const dataIndex = (column.dataIndex ||
-            listSlot ||
-            column.key) as string;
+          const dataIndex = (column.dataIndex || listSlot || column.key) as string;
           const rawData = Array.isArray(dataIndex)
             ? get(item, dataIndex as string[])
             : item[dataIndex];
 
           // 调用protable的列配置渲染数据
-          const data = column.render
-            ? column.render(rawData, item, index)
-            : rawData;
+          const data = column.render ? column.render(rawData, item, index) : rawData;
           // aside 是 extra 的新名称，映射到 Item 的 extra 属性
-          const propKey =
-            column.listSlot === 'aside' ? 'extra' : column.listSlot;
+          const propKey = column.listSlot === 'aside' ? 'extra' : column.listSlot;
           if (data !== '-') (listItemProps as any)[propKey] = data;
         });
-        const checkboxDom = selectItemDom?.render?.(
-          item,
-          item,
-          index,
-        ) as React.ReactNode;
+        const checkboxDom = selectItemDom?.render?.(item, item, index) as React.ReactNode;
 
-        const { isEditable, recordKey } =
-          actionRef.current?.isEditable({ ...item, index }) || {};
+        const { isEditable, recordKey } = actionRef.current?.isEditable({ ...item, index }) || {};
 
         const itemKey = getRowKey(item, index);
         const isChecked = selectedKeySet.has(itemKey);
@@ -252,9 +220,7 @@ function ListView<RecordType extends AnyObject>(
               checked: isChecked,
               onChange: React.isValidElement(checkboxDom)
                 ? (changeChecked: boolean) =>
-                    (
-                      (checkboxDom as React.JSX.Element)?.props as any
-                    )?.onChange({
+                    ((checkboxDom as React.JSX.Element)?.props as any)?.onChange({
                       nativeEvent: {},
                       target: { checked: changeChecked },
                       changeChecked,
@@ -286,9 +252,7 @@ function ListView<RecordType extends AnyObject>(
           />
         );
 
-        const renderedContent = itemRender
-          ? itemRender(item, index, defaultDom)
-          : defaultDom;
+        const renderedContent = itemRender ? itemRender(item, index, defaultDom) : defaultDom;
 
         return renderedContent;
       }}

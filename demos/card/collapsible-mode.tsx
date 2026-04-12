@@ -1,4 +1,4 @@
-﻿import { ProCard } from '@xxlabs/pro-components';
+import { ProCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -14,7 +14,10 @@ const Demo = () => {
         </ProCard>
       </ProCard>
 
-      <ProCard title="图标触发折叠" style={{ marginBlockStart: 24 }}>
+      <ProCard
+        title="图标触发折叠"
+        style={{ marginBlockStart: 24 }}
+      >
         <ProCard
           title="图标触发的卡片"
           tooltip="collapsible: icon"
@@ -26,7 +29,10 @@ const Demo = () => {
         </ProCard>
       </ProCard>
 
-      <ProCard title="标题触发折叠" style={{ marginBlockStart: 24 }}>
+      <ProCard
+        title="标题触发折叠"
+        style={{ marginBlockStart: 24 }}
+      >
         <ProCard
           title="标题触发的卡片"
           tooltip="collapsible: header"

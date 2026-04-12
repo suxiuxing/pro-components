@@ -8,15 +8,7 @@ import { clsx } from 'clsx';
 import React, { useContext, useMemo } from 'react';
 
 export type ColumnCount = number;
-export type ColumnType =
-  | 'gutter'
-  | 'column'
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | 'xxl';
+export type ColumnType = 'gutter' | 'column' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 export interface ListGridType {
   gutter?: number | [number, number];
   column?: ColumnCount;
@@ -48,11 +40,7 @@ export interface ListProps<T = any> {
   pagination?: PaginationConfig | false;
   prefixCls?: string;
   rowKey?: ((item: T) => React.Key) | keyof T;
-  renderItem?: (
-    item: T,
-    index: number,
-    defaultDom: React.JSX.Element | null,
-  ) => React.ReactNode;
+  renderItem?: (item: T, index: number, defaultDom: React.JSX.Element | null) => React.ReactNode;
   size?: ListSize;
   split?: boolean;
   header?: React.ReactNode;
@@ -91,18 +79,15 @@ export const ProListItemMeta: React.FC<ListItemMetaProps> = ({
     title || description ? (
       <div className={`${prefixCls}-item-meta-content`}>
         {title && <h4 className={`${prefixCls}-item-meta-title`}>{title}</h4>}
-        {description && (
-          <div className={`${prefixCls}-item-meta-description`}>
-            {description}
-          </div>
-        )}
+        {description && <div className={`${prefixCls}-item-meta-description`}>{description}</div>}
       </div>
     ) : null;
   return (
-    <div {...rest} className={classString}>
-      {avatar && (
-        <div className={`${prefixCls}-item-meta-avatar`}>{avatar}</div>
-      )}
+    <div
+      {...rest}
+      className={classString}
+    >
+      {avatar && <div className={`${prefixCls}-item-meta-avatar`}>{avatar}</div>}
       {content}
     </div>
   );
@@ -117,75 +102,71 @@ export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   actions?: React.ReactNode[];
 }
 
-const InternalProListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
-  (props, ref) => {
-    const {
-      prefixCls: customizePrefixCls,
-      children,
-      actions,
-      extra,
-      className,
-      ...rest
-    } = props;
-    const { grid, itemLayout } = useContext(ProListContext);
-    const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
-    const prefixCls = getPrefixCls('pro-list', customizePrefixCls);
+const InternalProListItem = React.forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
+  const { prefixCls: customizePrefixCls, children, actions, extra, className, ...rest } = props;
+  const { grid, itemLayout } = useContext(ProListContext);
+  const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
+  const prefixCls = getPrefixCls('pro-list', customizePrefixCls);
 
-    const actionsContent =
-      actions && actions.length > 0 ? (
-        <div
-          key="actions"
-          className={`${prefixCls}-item-action`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {actions.map((action, i) => (
-            <div key={i} className={`${prefixCls}-item-action-item`}>
-              {action}
-            </div>
-          ))}
-        </div>
-      ) : null;
-
-    const isVerticalWithExtra = itemLayout === 'vertical' && extra != null;
-
-    const extraContent =
-      extra != null ? (
-        <div className={`${prefixCls}-item-extra`} key="extra">
-          {extra}
-        </div>
-      ) : null;
-
-    const mainContent = (
-      <div className={`${prefixCls}-item-main`} key="main">
-        {children}
-        {actionsContent}
-        {!isVerticalWithExtra && extraContent}
-      </div>
-    );
-
-    const itemChildren = (
+  const actionsContent =
+    actions && actions.length > 0 ? (
       <div
-        ref={ref}
-        {...(rest as React.HTMLAttributes<HTMLElement>)}
-        className={clsx(`${prefixCls}-item`, className)}
+        key="actions"
+        className={`${prefixCls}-item-action`}
+        onClick={(e) => e.stopPropagation()}
       >
-        {mainContent}
-        {isVerticalWithExtra && extraContent}
+        {actions.map((action, i) => (
+          <div
+            key={i}
+            className={`${prefixCls}-item-action-item`}
+          >
+            {action}
+          </div>
+        ))}
       </div>
-    );
+    ) : null;
 
-    if (grid) {
-      return (
-        <div
-          style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
-        >
-          {itemChildren}
-        </div>
-      );
-    }
-    return itemChildren as React.ReactElement;
-  },
-);
+  const isVerticalWithExtra = itemLayout === 'vertical' && extra != null;
+
+  const extraContent =
+    extra != null ? (
+      <div
+        className={`${prefixCls}-item-extra`}
+        key="extra"
+      >
+        {extra}
+      </div>
+    ) : null;
+
+  const mainContent = (
+    <div
+      className={`${prefixCls}-item-main`}
+      key="main"
+    >
+      {children}
+      {actionsContent}
+      {!isVerticalWithExtra && extraContent}
+    </div>
+  );
+
+  const itemChildren = (
+    <div
+      ref={ref}
+      {...(rest as React.HTMLAttributes<HTMLElement>)}
+      className={clsx(`${prefixCls}-item`, className)}
+    >
+      {mainContent}
+      {isVerticalWithExtra && extraContent}
+    </div>
+  );
+
+  if (grid) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>{itemChildren}</div>
+    );
+  }
+  return itemChildren as React.ReactElement;
+});
 InternalProListItem.displayName = 'ProListItem';
 
 export const ProListItem = InternalProListItem as typeof InternalProListItem & {
@@ -193,11 +174,7 @@ export const ProListItem = InternalProListItem as typeof InternalProListItem & {
 };
 ProListItem.Meta = ProListItemMeta;
 
-function getRowKey<T>(
-  item: T,
-  index: number,
-  rowKey?: ListProps<T>['rowKey'],
-): React.Key {
+function getRowKey<T>(item: T, index: number, rowKey?: ListProps<T>['rowKey']): React.Key {
   if (typeof rowKey === 'function') {
     return rowKey(item);
   }
@@ -254,17 +231,13 @@ const ProListContainerInner = React.forwardRef<HTMLDivElement, ListProps>(
     const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
     const prefixCls = getPrefixCls('pro-list', customizePrefixCls);
 
-    const paginationObj =
-      pagination && typeof pagination === 'object' ? pagination : {};
+    const paginationObj = pagination && typeof pagination === 'object' ? pagination : {};
     const [paginationCurrent, setPaginationCurrent] = React.useState(
       paginationObj.defaultCurrent ?? 1,
     );
-    const [paginationSize, setPaginationSize] = React.useState(
-      paginationObj.defaultPageSize ?? 10,
-    );
+    const [paginationSize, setPaginationSize] = React.useState(paginationObj.defaultPageSize ?? 10);
 
-    const sizeCls =
-      customizeSize === 'large' ? 'lg' : customizeSize === 'small' ? 'sm' : '';
+    const sizeCls = customizeSize === 'large' ? 'lg' : customizeSize === 'small' ? 'sm' : '';
     const isSomethingAfterLastItem = !!(loadMore || pagination || footer);
 
     const paginationProps = useMemo(
@@ -277,13 +250,8 @@ const ProListContainerInner = React.forwardRef<HTMLDivElement, ListProps>(
       }),
       [dataSource.length, pagination, paginationCurrent, paginationSize],
     );
-    const largestPage = Math.ceil(
-      paginationProps.total / (paginationProps.pageSize || 10),
-    );
-    const currentPage = Math.min(
-      paginationProps.current ?? 1,
-      Math.max(1, largestPage),
-    );
+    const largestPage = Math.ceil(paginationProps.total / (paginationProps.pageSize || 10));
+    const currentPage = Math.min(paginationProps.current ?? 1, Math.max(1, largestPage));
 
     const splitDataSource = useMemo(() => {
       if (!pagination || !dataSource.length) {
@@ -292,31 +260,17 @@ const ProListContainerInner = React.forwardRef<HTMLDivElement, ListProps>(
       const pageSize = paginationProps.pageSize ?? 10;
       const total = paginationProps.total ?? 0;
       // 父组件已分页（如 ListView 传入 pageData）时不再二次 slice
-      if (
-        total > 0 &&
-        dataSource.length <= pageSize &&
-        total > dataSource.length
-      ) {
+      if (total > 0 && dataSource.length <= pageSize && total > dataSource.length) {
         return dataSource;
       }
       const start = (currentPage - 1) * pageSize;
       return dataSource.slice(start, start + pageSize);
-    }, [
-      dataSource,
-      pagination,
-      currentPage,
-      paginationProps.pageSize,
-      paginationProps.total,
-    ]);
+    }, [dataSource, pagination, currentPage, paginationProps.pageSize, paginationProps.total]);
 
     const renderInternalItem = (item: any, index: number) => {
       if (!renderItem) return null;
       const key = getRowKey(item, index, rowKey);
-      return (
-        <React.Fragment key={key}>
-          {renderItem(item, index, null)}
-        </React.Fragment>
-      );
+      return <React.Fragment key={key}>{renderItem(item, index, null)}</React.Fragment>;
     };
 
     const rawScreens = Grid.useBreakpoint();
@@ -396,9 +350,7 @@ const ProListContainerInner = React.forwardRef<HTMLDivElement, ListProps>(
       };
 
       if (gutter) {
-        const [horizontal, vertical] = Array.isArray(gutter)
-          ? gutter
-          : [gutter, gutter];
+        const [horizontal, vertical] = Array.isArray(gutter) ? gutter : [gutter, gutter];
         const h = Number(horizontal) || 0;
         const v = Number(vertical) || 0;
 
@@ -419,13 +371,10 @@ const ProListContainerInner = React.forwardRef<HTMLDivElement, ListProps>(
 
     const { renderEmpty } = useContext(ConfigProvider.ConfigContext);
     let childrenContent: React.ReactNode;
-    const isLoading =
-      typeof loading === 'boolean' ? loading : !!loading?.spinning;
+    const isLoading = typeof loading === 'boolean' ? loading : !!loading?.spinning;
 
     if (splitDataSource.length > 0) {
-      const items = splitDataSource.map((item, idx) =>
-        renderInternalItem(item, idx),
-      );
+      const items = splitDataSource.map((item, idx) => renderInternalItem(item, idx));
       childrenContent = grid ? (
         <div
           className={`${prefixCls}-grid-container`}
@@ -449,20 +398,16 @@ const ProListContainerInner = React.forwardRef<HTMLDivElement, ListProps>(
         (typeof renderEmpty === 'function' ? renderEmpty('List') : null) ?? (
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
         );
-      childrenContent = (
-        <div className={`${prefixCls}-empty-text`}>{emptyContent}</div>
-      );
+      childrenContent = <div className={`${prefixCls}-empty-text`}>{emptyContent}</div>;
     } else {
       childrenContent = children;
     }
 
     const paginationPosition = paginationProps.position ?? 'bottom';
     const showPaginationTop =
-      pagination &&
-      (paginationPosition === 'top' || paginationPosition === 'both');
+      pagination && (paginationPosition === 'top' || paginationPosition === 'both');
     const showPaginationBottom =
-      pagination &&
-      (paginationPosition === 'bottom' || paginationPosition === 'both');
+      pagination && (paginationPosition === 'bottom' || paginationPosition === 'both');
 
     const paginationNode = pagination && (
       <div className={`${prefixCls}-pagination`}>
@@ -484,10 +429,7 @@ const ProListContainerInner = React.forwardRef<HTMLDivElement, ListProps>(
       </div>
     );
 
-    const contextValue = useMemo(
-      () => ({ grid, itemLayout }),
-      [JSON.stringify(grid), itemLayout],
-    );
+    const contextValue = useMemo(() => ({ grid, itemLayout }), [JSON.stringify(grid), itemLayout]);
 
     const classString = clsx(
       prefixCls,
@@ -525,12 +467,9 @@ const ProListContainerInner = React.forwardRef<HTMLDivElement, ListProps>(
       </ProListContext.Provider>
     );
   },
-) as <T>(
-  props: ListProps<T> & { ref?: React.Ref<HTMLDivElement> },
-) => React.ReactElement;
+) as <T>(props: ListProps<T> & { ref?: React.Ref<HTMLDivElement> }) => React.ReactElement;
 
-(
-  ProListContainerInner as React.FC<unknown> & { displayName?: string }
-).displayName = 'ProListContainer';
+(ProListContainerInner as React.FC<unknown> & { displayName?: string }).displayName =
+  'ProListContainer';
 
 export const ProListContainer = ProListContainerInner;

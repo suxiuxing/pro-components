@@ -1,10 +1,5 @@
-﻿import type { ProFormColumnsType } from '@xxlabs/pro-components';
-import {
-  BetaSchemaForm,
-  ProForm,
-  ProFormSelect,
-  ProFormText,
-} from '@xxlabs/pro-components';
+import type { ProFormColumnsType } from '@xxlabs/pro-components';
+import { BetaSchemaForm, ProForm, ProFormSelect, ProFormText } from '@xxlabs/pro-components';
 
 const valueEnum = {
   all: { text: '全部', status: 'Default' },
@@ -77,7 +72,10 @@ const Demo = () => {
         ]}
       />
       <h1>表单1 </h1>
-      <BetaSchemaForm<DataItem> layoutType="Embed" columns={columns} />
+      <BetaSchemaForm<DataItem>
+        layoutType="Embed"
+        columns={columns}
+      />
       <h1>表单2</h1>
       <BetaSchemaForm<DataItem>
         layoutType="Embed"

@@ -1,9 +1,4 @@
-import type {
-  AffixProps,
-  BreadcrumbProps,
-  TabPaneProps,
-  TabsProps,
-} from 'antd';
+import type { AffixProps, BreadcrumbProps, TabPaneProps, TabsProps } from 'antd';
 import {
   Affix,
   Breadcrumb,
@@ -16,6 +11,7 @@ import {
 import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 import React, { useContext, useEffect, useMemo } from 'react';
+
 import type { GenerateStyle } from '../../../provider';
 import { ProConfigProvider, ProProvider } from '../../../provider';
 import { RouteContext } from '../../context/RouteContext';
@@ -172,17 +168,9 @@ const renderPageHeader = (
     <div className={clsx(`${prefixedClassName}-detail`, hashId)}>
       <div className={clsx(`${prefixedClassName}-main`, hashId)}>
         <div className={clsx(`${prefixedClassName}-row`, hashId)}>
-          {content && (
-            <div className={clsx(`${prefixedClassName}-content`, hashId)}>
-              {content}
-            </div>
-          )}
+          {content && <div className={clsx(`${prefixedClassName}-content`, hashId)}>{content}</div>}
           {extraContent && (
-            <div
-              className={clsx(`${prefixedClassName}-extraContent`, hashId)}
-            >
-              {extraContent}
-            </div>
+            <div className={clsx(`${prefixedClassName}-extraContent`, hashId)}>{extraContent}</div>
           )}
         </div>
       </div>
@@ -273,19 +261,12 @@ const memoRenderPageHeader = (
   };
 
   const noHasBreadCrumb =
-    (!breadcrumb || (!breadcrumb?.itemRender && !breadcrumb?.items?.length)) &&
-    !breadcrumbRender;
+    (!breadcrumb || (!breadcrumb?.itemRender && !breadcrumb?.items?.length)) && !breadcrumbRender;
 
   if (
-    [
-      'title',
-      'subTitle',
-      'extra',
-      'tags',
-      'footer',
-      'avatar',
-      'backIcon',
-    ].every((item) => !pageHeaderProps[item as 'backIcon']) &&
+    ['title', 'subTitle', 'extra', 'tags', 'footer', 'avatar', 'backIcon'].every(
+      (item) => !pageHeaderProps[item as 'backIcon'],
+    ) &&
     noHasBreadCrumb &&
     !content &&
     !extraContent
@@ -305,8 +286,7 @@ const memoRenderPageHeader = (
       breadcrumbRender={getBreadcrumbRender()}
       prefixCls={prefixCls}
     >
-      {header?.children ||
-        renderPageHeader(content, extraContent, prefixedClassName, hashId)}
+      {header?.children || renderPageHeader(content, extraContent, prefixedClassName, hashId)}
     </PageHeader>
   );
 };
@@ -345,12 +325,9 @@ const PageContainerBase: React.FC<PageContainerProps> = (props) => {
 
   const { wrapSSR, hashId } = useStyle(basePageContainer, propsToken);
 
-  const stylish = useStylish(
-    `${basePageContainer}.${basePageContainer}-stylish`,
-    {
-      stylish: props.stylish,
-    },
-  );
+  const stylish = useStylish(`${basePageContainer}.${basePageContainer}-stylish`, {
+    stylish: props.stylish,
+  });
 
   const memoBreadcrumbRender = useMemo(() => {
     if (breadcrumbRender == false) return false;
@@ -387,8 +364,7 @@ const PageContainerBase: React.FC<PageContainerProps> = (props) => {
       <>
         <div
           className={clsx(hashId, `${basePageContainer}-children-container`, {
-            [`${basePageContainer}-children-container-no-header`]:
-              !pageHeaderDom,
+            [`${basePageContainer}-children-container-no-header`]: !pageHeaderDom,
           })}
           style={childrenContentStyle}
         >
@@ -429,16 +405,12 @@ const PageContainerBase: React.FC<PageContainerProps> = (props) => {
             // 在 hasHeader 且 fixedHeader 的情况下，才需要设置高度
             <Affix
               offsetTop={
-                value.hasHeader && value.fixedHeader
-                  ? token.layout?.header?.heightLayoutHeader
-                  : 1
+                value.hasHeader && value.fixedHeader ? token.layout?.header?.heightLayoutHeader : 1
               }
               {...affixProps}
               className={clsx(`${basePageContainer}-affix`, hashId)}
             >
-              <div className={clsx(`${basePageContainer}-warp`, hashId)}>
-                {pageHeaderDom}
-              </div>
+              <div className={clsx(`${basePageContainer}-warp`, hashId)}>{pageHeaderDom}</div>
             </Affix>
           ) : (
             pageHeaderDom
@@ -467,9 +439,7 @@ const PageContainer: React.FC<PageContainerProps> = (props) => {
   );
 };
 
-const ProPageHeader = (
-  props: PageContainerProps & { prefixedClassName: string },
-) => {
+const ProPageHeader = (props: PageContainerProps & { prefixedClassName: string }) => {
   const value = useContext(RouteContext);
   return memoRenderPageHeader({
     ...props,

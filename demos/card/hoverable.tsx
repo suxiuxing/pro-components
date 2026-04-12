@@ -3,7 +3,11 @@ import { ProCard } from '@xxlabs/pro-components';
 const Demo = () => {
   return (
     <>
-      <ProCard style={{ maxWidth: 300 }} hoverable variant="outlined">
+      <ProCard
+        style={{ maxWidth: 300 }}
+        hoverable
+        variant="outlined"
+      >
         Content
       </ProCard>
 

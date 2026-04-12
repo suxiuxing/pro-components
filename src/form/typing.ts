@@ -1,11 +1,7 @@
-﻿import type { ColProps, FormItemProps, RowProps } from 'antd';
+import type { ColProps, FormItemProps, RowProps } from 'antd';
 import type React from 'react';
-import type {
-  ProFieldProps,
-  ProFormBaseGroupProps,
-  ProSchema,
-  SearchConvertKeyFn,
-} from '../utils';
+
+import type { ProFieldProps, ProFormBaseGroupProps, ProSchema, SearchConvertKeyFn } from '../utils';
 import type { ProFieldValueType } from '../utils/typing';
 import type { ProFormInstance } from './BaseForm';
 import type { ProFormItemProps } from './components';
@@ -57,9 +53,7 @@ export type ExtendsProps = {
    *
    * @name 网络请求用的输出，会触发reload
    */
-  params?:
-    | ((form: ProFormInstance) => Record<string, any>)
-    | Record<string, any>;
+  params?: ((form: ProFormInstance) => Record<string, any>) | Record<string, any>;
 
   /** @name 需要放在formItem 时使用 */
   ignoreFormItem?: boolean;

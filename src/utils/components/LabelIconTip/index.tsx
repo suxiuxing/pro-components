@@ -2,6 +2,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { ConfigProvider, Tooltip } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext } from 'react';
+
 import type { ProEllipsis } from '../../genCopyable';
 import type { LabelTooltipType, WrapperTooltipProps } from '../../typing';
 import { useStyle } from './style';
@@ -46,9 +47,7 @@ export const LabelIconTip: React.FC<{
       >
         {label}
       </div>
-      {subTitle && (
-        <div className={clsx(`${className}-subtitle`, hashId)}>{subTitle}</div>
-      )}
+      {subTitle && <div className={clsx(`${className}-subtitle`, hashId)}>{subTitle}</div>}
       {tooltip && (
         <Tooltip {...tooltipProps}>
           <span className={clsx(`${className}-icon`, hashId)}>{icon}</span>

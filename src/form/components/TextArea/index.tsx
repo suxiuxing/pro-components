@@ -1,6 +1,7 @@
 import type { TextAreaProps } from 'antd/lib/input';
 import type { TextAreaRef } from 'antd/lib/input/TextArea';
 import React from 'react';
+
 import { FieldTextArea } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
 import type { ProFormFieldItemProps } from '../../typing';
@@ -18,9 +19,17 @@ const ProFormTextArea: React.ForwardRefRenderFunction<
     <ProConfigProvider
       valueTypeMap={{
         textarea: {
-          render: (text, props) => <FieldTextArea {...props} text={text} />,
+          render: (text, props) => (
+            <FieldTextArea
+              {...props}
+              text={text}
+            />
+          ),
           formItemRender: (text, props) => (
-            <FieldTextArea {...props} text={text} />
+            <FieldTextArea
+              {...props}
+              text={text}
+            />
           ),
         },
       }}

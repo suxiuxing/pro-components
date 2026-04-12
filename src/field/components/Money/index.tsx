@@ -1,9 +1,7 @@
-﻿import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
+
 import { intlMap as allIntlMap, useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldMoneyEdit } from './FieldMoneyEdit';
 import { FieldMoneyRead } from './FieldMoneyRead';
@@ -38,8 +36,7 @@ const FieldMoney: ProFieldFC<FieldMoneyProps> = (
   if (locale && allIntlMap[locale as 'zh-CN']) {
     intl = allIntlMap[locale as 'zh-CN'];
   }
-  const placeholderValue =
-    placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
+  const placeholderValue = placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
 
   const moneySymbol = useMemo((): string | undefined => {
     if (customSymbol) {
@@ -55,9 +52,7 @@ const FieldMoney: ProFieldFC<FieldMoneyProps> = (
   const getFormateValue = useCallback(
     (value?: string | number) => {
       const reg = new RegExp(
-        `\\B(?=(\\d{${
-          3 + Math.max(precision - DefaultPrecisionCont, 0)
-        }})+(?!\\d))`,
+        `\\B(?=(\\d{${3 + Math.max(precision - DefaultPrecisionCont, 0)}})+(?!\\d))`,
         'g',
       );
       const [intStr, floatStr] = String(value).split('.');

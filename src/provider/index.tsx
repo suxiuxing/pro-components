@@ -1,4 +1,4 @@
-﻿import type { Theme } from '@ant-design/cssinjs';
+import type { Theme } from '@ant-design/cssinjs';
 import { useCacheToken } from '@ant-design/cssinjs';
 import { ConfigProvider as AntdConfigProvider, theme as antdTheme } from 'antd';
 import zh_CN from 'antd/es/locale/zh_CN';
@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { SWRConfig, useSWRConfig } from 'swr';
+
 import type { IntlType } from './intl';
 import { findIntlKeyByAntdLocaleKey, intlMap, zhCNIntl } from './intl';
 import type { DeepPartial, ProTokenType } from './typing/layoutToken';
@@ -22,9 +23,7 @@ type OmitUndefined<T> = {
   [P in keyof T]: NonNullable<T[P]>;
 };
 
-const omitUndefined = <T extends Record<string, any>>(
-  obj: T,
-): OmitUndefined<T> => {
+const omitUndefined = <T extends Record<string, any>>(obj: T): OmitUndefined<T> => {
   const newObj = {} as Record<string, any> as T;
   Object.keys(obj || {}).forEach((key) => {
     if (obj[key] !== undefined) {
@@ -82,10 +81,7 @@ type ProSchemaValueEnumMap = Map<
 /**
  * 支持 Map 和 Object
  */
-type ProSchemaValueEnumObj = Record<
-  string,
-  ProSchemaValueEnumType | React.ReactNode
->;
+type ProSchemaValueEnumObj = Record<string, ProSchemaValueEnumType | React.ReactNode>;
 
 /**
  * BaseProFieldFC 的类型设置
@@ -144,11 +140,7 @@ export type ProRenderFieldPropsType = {
    * @return 返回一个用于编辑的dom
    */
   formItemRender?:
-    | ((
-        text: any,
-        props: ProFieldFCRenderProps,
-        dom: React.JSX.Element,
-      ) => React.JSX.Element)
+    | ((text: any, props: ProFieldFCRenderProps, dom: React.JSX.Element) => React.JSX.Element)
     | undefined;
 };
 
@@ -230,9 +222,7 @@ const ConfigProviderContainer: React.FC<{
     prefixCls,
     intl,
   } = props;
-  const { locale, getPrefixCls, ...restConfig } = useContext(
-    AntdConfigProvider.ConfigContext,
-  );
+  const { locale, getPrefixCls, ...restConfig } = useContext(AntdConfigProvider.ConfigContext);
   const tokenContext = antdTheme.useToken?.();
   const proProvide = useContext(ProConfigContext);
 
@@ -242,9 +232,7 @@ const ConfigProviderContainer: React.FC<{
    * @example .ant-pro
    */
 
-  const proComponentsCls = prefixCls
-    ? `.${prefixCls}`
-    : `.${getPrefixCls()}-pro`;
+  const proComponentsCls = prefixCls ? `.${prefixCls}` : `.${getPrefixCls()}-pro`;
 
   const antCls = '.' + getPrefixCls();
 
@@ -289,7 +277,7 @@ const ConfigProviderContainer: React.FC<{
   ]);
 
   const finalToken = {
-    ...(proProvideValue.token || {}),
+    ...proProvideValue.token,
     proComponentsCls,
   };
 
@@ -351,19 +339,14 @@ const ConfigProviderContainer: React.FC<{
       hashId,
       prefixCls,
     };
-  }, [
-    proProvideValue,
-    valueTypeMap,
-    token,
-    tokenContext.theme,
-    hashed,
-    hashId,
-    prefixCls,
-  ]);
+  }, [proProvideValue, valueTypeMap, token, tokenContext.theme, hashed, hashId, prefixCls]);
 
   const configProviderDom = useMemo(() => {
     return (
-      <AntdConfigProvider {...restConfig} theme={themeConfig}>
+      <AntdConfigProvider
+        {...restConfig}
+        theme={themeConfig}
+      >
         <ProConfigContext.Provider value={proConfigContextValue}>
           <>
             {autoClearCache && <CacheClean />}
@@ -372,21 +355,11 @@ const ConfigProviderContainer: React.FC<{
         </ProConfigContext.Provider>
       </AntdConfigProvider>
     );
-  }, [
-    restConfig,
-    themeConfig,
-    proConfigContextValue,
-    autoClearCache,
-    children,
-  ]);
+  }, [restConfig, themeConfig, proConfigContextValue, autoClearCache, children]);
 
   if (!autoClearCache) return configProviderDom;
 
-  return (
-    <SWRConfig value={{ provider: () => new Map() }}>
-      {configProviderDom}
-    </SWRConfig>
-  );
+  return <SWRConfig value={{ provider: () => new Map() }}>{configProviderDom}</SWRConfig>;
 };
 
 /**
@@ -407,9 +380,7 @@ export const ProConfigProvider: React.FC<{
 }> = (props) => {
   const { needDeps, dark, token } = props;
   const proProvide = useContext(ProConfigContext);
-  const { locale, theme, ...rest } = useContext(
-    AntdConfigProvider.ConfigContext,
-  );
+  const { locale, theme, ...rest } = useContext(AntdConfigProvider.ConfigContext);
 
   // 是不是不需要渲染 provide
   const isNullProvide =
@@ -423,9 +394,7 @@ export const ProConfigProvider: React.FC<{
     const isDark = dark ?? proProvide.dark;
 
     if (isDark) {
-      return [theme?.algorithm, antdTheme.darkAlgorithm]
-        .flat(1)
-        .filter(Boolean);
+      return [theme?.algorithm, antdTheme.darkAlgorithm].flat(1).filter(Boolean);
     }
     return theme?.algorithm;
   };
@@ -441,7 +410,10 @@ export const ProConfigProvider: React.FC<{
 
   return (
     <AntdConfigProvider {...configProvider}>
-      <ConfigProviderContainer {...props} token={token} />
+      <ConfigProviderContainer
+        {...props}
+        token={token}
+      />
     </AntdConfigProvider>
   );
 };
@@ -463,9 +435,7 @@ export function useIntl(): IntlType {
   }
 
   if (locale?.locale) {
-    return (
-      intlMap[findIntlKeyByAntdLocaleKey(locale.locale) as 'zh-CN'] || zhCNIntl
-    );
+    return intlMap[findIntlKeyByAntdLocaleKey(locale.locale) as 'zh-CN'] || zhCNIntl;
   }
 
   return zhCNIntl;

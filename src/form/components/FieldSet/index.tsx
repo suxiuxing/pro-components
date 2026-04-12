@@ -3,6 +3,7 @@ import type { SpaceProps } from 'antd';
 import { Space } from 'antd';
 import type { GroupProps } from 'antd/lib/input';
 import React, { useCallback, useImperativeHandle } from 'react';
+
 import { runFunction, useRefFunction } from '../../../utils';
 import type { LightWrapperProps } from '../../BaseForm';
 import { useGridHelpers } from '../../helpers';
@@ -18,9 +19,7 @@ export type ProFormFieldSetProps<T = any> = {
   fieldProps?: any;
   convertValue?: ProFormItemProps['convertValue'];
   transform?: ProFormItemProps['transform'];
-  children?:
-    | ((value: T[], props: ProFormFieldSetProps) => React.ReactNode)
-    | React.ReactNode;
+  children?: ((value: T[], props: ProFormFieldSetProps) => React.ReactNode) | React.ReactNode;
   lightProps?: LightWrapperProps;
 };
 
@@ -60,10 +59,7 @@ const FieldSet: React.FC<ProFormFieldSetProps> = (props) => {
    */
   const fieldSetOnChange = useRefFunction((fileValue: any, index: number) => {
     const newValues = [...value];
-    newValues[index] = defaultGetValueFromEvent(
-      valuePropName || 'value',
-      fileValue,
-    );
+    newValues[index] = defaultGetValueFromEvent(valuePropName || 'value', fileValue);
 
     onChange?.(newValues);
     fieldProps?.onChange?.(newValues);
@@ -81,7 +77,7 @@ const FieldSet: React.FC<ProFormFieldSetProps> = (props) => {
         ? {
             key: index,
             ignoreFormItem: true,
-            ...((item.props as any) || {}),
+            ...(item.props as any),
             // 如果不是我们自定义的组件 fieldProps 无法识别
             fieldProps: {
               ...(item?.props as any)?.fieldProps,
@@ -94,7 +90,7 @@ const FieldSet: React.FC<ProFormFieldSetProps> = (props) => {
           }
         : {
             key: index,
-            ...((item.props as any) || {}),
+            ...(item.props as any),
             value: value?.[index],
             onChange: (itemValue: any) => {
               fieldSetOnChange(itemValue, index);
@@ -130,26 +126,23 @@ const FieldSet: React.FC<ProFormFieldSetProps> = (props) => {
   return <RowWrapper Wrapper={Wrapper}>{list}</RowWrapper>;
 };
 
-const BaseProFormFieldSet: React.FC<
-  Omit<ProFormItemProps, 'children'> & ProFormFieldSetProps
-> = React.forwardRef(({ children, space, valuePropName, ...rest }, ref) => {
-  useImperativeHandle(ref, () => ({}));
-  return (
-    <FieldSet
-      space={space}
-      valuePropName={valuePropName}
-      {...rest.fieldProps}
-      // 把 fieldProps 里的重置掉
-      onChange={undefined}
-      {...rest}
-    >
-      {children}
-    </FieldSet>
-  );
-});
+const BaseProFormFieldSet: React.FC<Omit<ProFormItemProps, 'children'> & ProFormFieldSetProps> =
+  React.forwardRef(({ children, space, valuePropName, ...rest }, ref) => {
+    useImperativeHandle(ref, () => ({}));
+    return (
+      <FieldSet
+        space={space}
+        valuePropName={valuePropName}
+        {...rest.fieldProps}
+        // 把 fieldProps 里的重置掉
+        onChange={undefined}
+        {...rest}
+      >
+        {children}
+      </FieldSet>
+    );
+  });
 
-const ProFormFieldSet = warpField<Omit<ProFormItemProps, 'children'>>?.(
-  BaseProFormFieldSet,
-);
+const ProFormFieldSet = warpField<Omit<ProFormItemProps, 'children'>>?.(BaseProFormFieldSet);
 
 export default ProFormFieldSet as typeof BaseProFormFieldSet;

@@ -1,6 +1,7 @@
-﻿import { cleanup } from '@testing-library/react';
-import { getPageTitle } from '@xxlabs/pro-components';
+import { cleanup } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import { getPageTitle } from '@xxlabs/pro-components';
 
 const pageProps = {
   pathname: '/welcome',
@@ -48,9 +49,7 @@ const pageProps = {
           ],
         },
       ],
-      pro_layout_parentKeys: [
-        '/564f79ec010d02670f2cd38274f84017d6ddf17759857629a1399aed6bb20925',
-      ],
+      pro_layout_parentKeys: ['/564f79ec010d02670f2cd38274f84017d6ddf17759857629a1399aed6bb20925'],
     },
     '/': {
       path: '/',

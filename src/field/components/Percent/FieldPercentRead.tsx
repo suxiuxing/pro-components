@@ -1,12 +1,8 @@
-﻿import type { ReactNode } from 'react';
 import React, { Fragment } from 'react';
+
 import type { ProFieldFC } from '../../types';
 import type { PercentPropInt } from './types';
-import {
-  getColorByRealValue,
-  getRealTextWithPrecision,
-  getSymbolByRealValue,
-} from './util';
+import { getColorByRealValue, getRealTextWithPrecision, getSymbolByRealValue } from './util';
 
 type Props = Parameters<ProFieldFC<PercentPropInt>>[0] & {
   realValue: number;
@@ -30,19 +26,18 @@ export function FieldPercentRead(props: Props, ref: React.Ref<unknown>) {
   const style = showColor ? { color: getColorByRealValue(realValue) } : {};
 
   const dom = (
-    <span style={style} ref={ref as React.Ref<HTMLSpanElement>}>
+    <span
+      style={style}
+      ref={ref as React.Ref<HTMLSpanElement>}
+    >
       {prefix && <span>{prefix}</span>}
       {showSymbol && <Fragment>{getSymbolByRealValue(realValue)} </Fragment>}
       {getRealTextWithPrecision(Math.abs(realValue), precision)}
-      {suffix && (suffix as ReactNode)}
+      {suffix}
     </span>
   );
   if (render) {
-    return render(
-      text,
-      { mode, ...fieldProps, prefix, precision, showSymbol, suffix },
-      dom,
-    );
+    return render(text, { mode, ...fieldProps, prefix, precision, showSymbol, suffix }, dom);
   }
   return dom;
 }

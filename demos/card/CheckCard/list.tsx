@@ -1,5 +1,6 @@
-import { CheckCard } from '@xxlabs/pro-components';
 import { Avatar } from 'antd';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 const dataSource = [
   {

@@ -1,9 +1,7 @@
-﻿import React from 'react';
+import React from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldTextAreaEdit } from './FieldTextAreaEdit';
 import { FieldTextAreaRead } from './FieldTextAreaRead';

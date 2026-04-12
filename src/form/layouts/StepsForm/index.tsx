@@ -1,4 +1,4 @@
-﻿import { toArray, useControlledState } from '@rc-component/util';
+import { toArray, useControlledState } from '@rc-component/util';
 import type { FormInstance, StepsProps } from 'antd';
 import { Button, Col, ConfigProvider, Form, Row, Space, Steps } from 'antd';
 import type { FormProviderProps } from 'antd/lib/form/context';
@@ -11,6 +11,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+
 import { ProConfigProvider, useIntl } from '../../../provider';
 import { merge, useRefFunction } from '../../../utils';
 import type { ProFormInstance } from '../../BaseForm';
@@ -69,9 +70,7 @@ type StepsFormProps<T = Record<string, any>> = {
    */
   stepsFormRef?: React.MutableRefObject<StepsFormRef | null | undefined>;
   /** @name 所有表单的 formMapRef */
-  formMapRef?: React.MutableRefObject<
-    React.MutableRefObject<FormInstance<any> | undefined>[]
-  >;
+  formMapRef?: React.MutableRefObject<React.MutableRefObject<FormInstance<any> | undefined>[]>;
   /**
    * 是否允许点击步骤条切换步骤（不触发表单校验；若多步存在同名字段，合并规则与提交一致）
    * @default false
@@ -90,10 +89,7 @@ type StepsFormProps<T = Record<string, any>> = {
    * @param form From 的 dom，可以放置到别的位置
    * @param submitter 操作按钮
    */
-  stepsFormRender?: (
-    from: React.ReactNode,
-    submitter: React.ReactNode,
-  ) => React.ReactNode;
+  stepsFormRender?: (from: React.ReactNode, submitter: React.ReactNode) => React.ReactNode;
   /** 按钮的统一配置，优先级低于分步表单的配置 */
   submitter?:
     | SubmitterProps<{
@@ -121,9 +117,7 @@ export const StepsFormProvide = React.createContext<
       unRegForm: (name: string) => void;
       onFormFinish: (name: string, formData: any) => void;
       keyArray: string[];
-      formArrayRef: React.MutableRefObject<
-        React.MutableRefObject<FormInstance<any> | undefined>[]
-      >;
+      formArrayRef: React.MutableRefObject<React.MutableRefObject<FormInstance<any> | undefined>[]>;
       loading: boolean;
       setLoading: (loading: boolean) => void;
       lastStep: boolean;
@@ -145,9 +139,7 @@ export const StepsFormProvide = React.createContext<
 export function useStepsFormContext() {
   const ctx = useContext(StepsFormProvide);
   if (!ctx) {
-    throw new Error(
-      '[@xxlabs/pro-components] useStepsFormContext must be used within StepsForm',
-    );
+    throw new Error('[@xxlabs/pro-components] useStepsFormContext must be used within StepsForm');
   }
   return ctx;
 }
@@ -157,10 +149,7 @@ interface LayoutRenderDom {
   formDom: React.ReactElement;
 }
 
-const StepsLayoutStrategy: Record<
-  string,
-  (dom: LayoutRenderDom) => React.ReactNode
-> = {
+const StepsLayoutStrategy: Record<string, (dom: LayoutRenderDom) => React.ReactNode> = {
   horizontal({ stepsDom, formDom }) {
     return (
       <>
@@ -175,16 +164,24 @@ const StepsLayoutStrategy: Record<
   },
   vertical({ stepsDom, formDom }) {
     return (
-      <Row align="stretch" wrap={true} gutter={{ xs: 8, sm: 16, md: 24 }}>
-        <Col xxl={4} xl={6} lg={7} md={8} sm={10} xs={12}>
-          {React.cloneElement(
-            stepsDom as React.ReactElement<Record<string, any>>,
-            {
-              style: {
-                height: '100%',
-              },
+      <Row
+        align="stretch"
+        wrap={true}
+        gutter={{ xs: 8, sm: 16, md: 24 }}
+      >
+        <Col
+          xxl={4}
+          xl={6}
+          lg={7}
+          md={8}
+          sm={10}
+          xs={12}
+        >
+          {React.cloneElement(stepsDom as React.ReactElement<Record<string, any>>, {
+            style: {
+              height: '100%',
             },
-          )}
+          })}
         </Col>
         <Col>
           <div
@@ -206,9 +203,7 @@ const StepsLayoutStrategy: Record<
 /**
  * 给  StepForm 传递信息
  */
-export const StepFormProvide = React.createContext<StepFormProps<any> | null>(
-  null,
-);
+export const StepFormProvide = React.createContext<StepFormProps<any> | null>(null);
 
 function StepsForm<T = Record<string, any>>(
   props: StepsFormProps<T> & {
@@ -241,9 +236,7 @@ function StepsForm<T = Record<string, any>>(
 
   const formDataRef = useRef(new Map<string, Record<string, any>>());
   const formMapRef = useRef(new Map<string, StepFormProps>());
-  const formArrayRef = useRef<
-    React.MutableRefObject<FormInstance<any> | undefined>[]
-  >([]);
+  const formArrayRef = useRef<React.MutableRefObject<FormInstance<any> | undefined>[]>([]);
   const [formArray, setFormArray] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const intl = useIntl();
@@ -268,9 +261,7 @@ function StepsForm<T = Record<string, any>>(
     (updater: number | ((prev: number) => number)) => {
       setStepInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: number) => number)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: number) => number)(prev) : updater;
         queueMicrotask(() => {
           onCurrentChangeCallback(next);
         });
@@ -284,23 +275,17 @@ function StepsForm<T = Record<string, any>>(
     return StepsLayoutStrategy[stepsProps?.orientation || 'horizontal'];
   }, [stepsProps?.orientation]);
 
-  const lastStep = useMemo(
-    () => step === formArray.length - 1,
-    [formArray.length, step],
-  );
+  const lastStep = useMemo(() => step === formArray.length - 1, [formArray.length, step]);
 
   /**
    * 注册一个form进入，方便进行 props 的修改
    */
-  const regForm = useCallback(
-    (name: string, childrenFormProps: StepFormProps) => {
-      if (!formMapRef.current.has(name)) {
-        setFormArray((oldFormArray) => [...oldFormArray, name]);
-      }
-      formMapRef.current.set(name, childrenFormProps);
-    },
-    [],
-  );
+  const regForm = useCallback((name: string, childrenFormProps: StepFormProps) => {
+    if (!formMapRef.current.has(name)) {
+      setFormArray((oldFormArray) => [...oldFormArray, name]);
+    }
+    formMapRef.current.set(name, childrenFormProps);
+  }, []);
 
   /**
    * 解除挂载掉这个 form，同时步数 -1
@@ -352,9 +337,7 @@ function StepsForm<T = Record<string, any>>(
         setCurrentStepSafe(index);
       },
       getStepFormInstance: (index: number) => {
-        return formArrayRef.current[index]?.current as
-          | ProFormInstance
-          | undefined;
+        return formArrayRef.current[index]?.current as ProFormInstance | undefined;
       },
       resetSteps: () => {
         formDataRef.current.clear();
@@ -379,10 +362,7 @@ function StepsForm<T = Record<string, any>>(
       }
 
       setLoading(true);
-      const values: any = merge(
-        {},
-        ...Array.from(formDataRef.current.values()),
-      );
+      const values: any = merge({}, ...Array.from(formDataRef.current.values()));
       try {
         const success = await onFinish(values);
         if (success) {
@@ -438,15 +418,7 @@ function StepsForm<T = Record<string, any>>(
         />
       </div>
     );
-  }, [
-    allowStepSelect,
-    formArray,
-    hashId,
-    prefixCls,
-    setCurrentStepSafe,
-    step,
-    stepsProps,
-  ]);
+  }, [allowStepSelect, formArray, hashId, prefixCls, setCurrentStepSafe, step, stepsProps]);
 
   const onSubmit = useRefFunction(() => {
     const from = formArrayRef.current[step];
@@ -547,10 +519,7 @@ function StepsForm<T = Record<string, any>>(
         onPre: prePage,
       };
 
-      return submitter.render(
-        submitterProps,
-        buttons as React.ReactElement[],
-      ) as React.ReactNode;
+      return submitter.render(submitterProps, buttons as React.ReactElement[]) as React.ReactNode;
     }
     if (submitter && submitter?.render === false) {
       return null;

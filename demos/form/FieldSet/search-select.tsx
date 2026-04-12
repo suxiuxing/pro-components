@@ -1,6 +1,7 @@
-﻿import { ProForm, ProFormSelect } from '@xxlabs/pro-components';
 import { Switch } from 'antd';
 import { useState } from 'react';
+
+import { ProForm, ProFormSelect } from '@xxlabs/pro-components';
 
 export default () => {
   const [readonly, setReadonly] = useState(false);
@@ -19,7 +20,10 @@ export default () => {
         unCheckedChildren="Read Only"
         onChange={setReadonly}
       />
-      <ProForm name="search-select-demo" readonly={readonly}>
+      <ProForm
+        name="search-select-demo"
+        readonly={readonly}
+      >
         <ProForm.Group>
           <ProFormSelect.SearchSelect
             name="userQuery"

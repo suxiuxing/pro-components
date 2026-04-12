@@ -1,4 +1,6 @@
-﻿import {
+import { useState } from 'react';
+
+import {
   ProCard,
   ProDescriptions,
   ProForm,
@@ -10,7 +12,6 @@
   ProFormText,
   ProFormTextArea,
 } from '@xxlabs/pro-components';
-import { useState } from 'react';
 
 const valueTypeArray = [
   'password',
@@ -100,13 +101,25 @@ const initialValues = {
       title: '操作',
       valueType: 'option',
       render: () => [
-        <a target="_blank" rel="noopener noreferrer" key="link">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          key="link"
+        >
           链路
         </a>,
-        <a target="_blank" rel="noopener noreferrer" key="warning">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          key="warning"
+        >
           报警
         </a>,
-        <a target="_blank" rel="noopener noreferrer" key="view">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          key="view"
+        >
           查看
         </a>,
       ],
@@ -163,7 +176,10 @@ const Demo = () => {
                   key: 'base',
                   children: (
                     <>
-                      <ProFormText label="标题" name="title" />
+                      <ProFormText
+                        label="标题"
+                        name="title"
+                      />
                       <ProForm.Group>
                         <ProFormSelect
                           name="layout"
@@ -210,7 +226,11 @@ const Demo = () => {
                           tooltip="bordered"
                           name="bordered"
                         />
-                        <ProFormDigit width="xs" label="列数" name="column" />
+                        <ProFormDigit
+                          width="xs"
+                          label="列数"
+                          name="column"
+                        />
                       </ProForm.Group>
                     </>
                   ),
@@ -248,8 +268,14 @@ const Demo = () => {
                         );
                       }}
                     >
-                      <ProForm.Group size={16} key="Group">
-                        <ProFormText label="标题" name="title" />
+                      <ProForm.Group
+                        size={16}
+                        key="Group"
+                      >
+                        <ProFormText
+                          label="标题"
+                          name="title"
+                        />
                         <ProFormDigit
                           width="xs"
                           initialValue={1}

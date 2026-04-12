@@ -1,9 +1,7 @@
-﻿import React, { useMemo } from 'react';
+import React, { useMemo } from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldPercentEdit } from './FieldPercentEdit';
 import { FieldPercentRead } from './FieldPercentRead';
@@ -26,8 +24,7 @@ const FieldPercent: ProFieldFC<PercentPropInt> = (props, ref) => {
     showSymbol: propsShowSymbol,
   } = props;
   const intl = useIntl();
-  const placeholderValue =
-    placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
+  const placeholderValue = placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
   const realValue = useMemo(
     () =>
       typeof text === 'string' && (text as string).includes('%')

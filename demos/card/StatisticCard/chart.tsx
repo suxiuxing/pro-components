@@ -1,4 +1,5 @@
 import { EllipsisOutlined } from '@ant-design/icons';
+
 import { StatisticCard } from '@xxlabs/pro-components';
 
 const Demo = () => {

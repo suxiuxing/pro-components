@@ -1,10 +1,11 @@
+import { message } from 'antd';
+
 import {
   ProForm,
   ProFormDatePicker,
   ProFormDateRangePicker,
   ProFormSelect,
 } from '@xxlabs/pro-components';
-import { message } from 'antd';
 
 const Demo = () => {
   return (
@@ -20,9 +21,7 @@ const Demo = () => {
           return {
             ...values,
             createTimeRanger:
-              values.startTime || values.endTime
-                ? [values.startTime, values.endTime]
-                : undefined,
+              values.startTime || values.endTime ? [values.startTime, values.endTime] : undefined,
           };
         }
         // expirationTime is not synchronized to the URL

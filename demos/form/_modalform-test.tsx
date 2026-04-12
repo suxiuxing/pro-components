@@ -1,12 +1,7 @@
-﻿import { PlusOutlined } from '@ant-design/icons';
-import {
-  ModalForm,
-  ProCard,
-  ProForm,
-  ProFormList,
-  ProFormText,
-} from '@xxlabs/pro-components';
+import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+
+import { ModalForm, ProCard, ProForm, ProFormList, ProFormText } from '@xxlabs/pro-components';
 
 // 弹窗表单
 const FormModal = () => {
@@ -27,7 +22,11 @@ const FormModal = () => {
         return true;
       }}
     >
-      <ProFormText width="sm" name="id" label="主合同编号" />
+      <ProFormText
+        width="sm"
+        name="id"
+        label="主合同编号"
+      />
     </ModalForm>
   );
 };
@@ -41,7 +40,10 @@ const Demo = () => {
       </div>
       <div>
         在form里面可以
-        <ProForm name="modalform-test-demo" layout="horizontal">
+        <ProForm
+          name="modalform-test-demo"
+          layout="horizontal"
+        >
           <FormModal />
           <ProFormList
             name="attributes"
@@ -99,7 +101,11 @@ const Demo = () => {
                   </div>
                 )}
               >
-                <ProFormText allowClear={false} width="xs" name={['name']} />
+                <ProFormText
+                  allowClear={false}
+                  width="xs"
+                  name={['name']}
+                />
                 <div>
                   在内层formlist拿不到
                   <FormModal />

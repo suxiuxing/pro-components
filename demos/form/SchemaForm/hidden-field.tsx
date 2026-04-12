@@ -1,6 +1,7 @@
+import { useState } from 'react';
+
 import type { ProFormColumnsType } from '@xxlabs/pro-components';
 import { BetaSchemaForm } from '@xxlabs/pro-components';
-import { useState } from 'react';
 
 type DataItem = {
   name: string;

@@ -33,15 +33,9 @@ const normalizeCopyText = (text: unknown) => {
   return text === null || text === undefined ? '' : String(text).trimEnd();
 };
 
-const isReactElement = (value: unknown): value is React.ReactElement =>
-  React.isValidElement(value);
+const isReactElement = (value: unknown): value is React.ReactElement => React.isValidElement(value);
 
-const genEllipsis = (
-  dom: React.ReactNode,
-  item: any,
-  text: string,
-  rawText: unknown,
-) => {
+const genEllipsis = (dom: React.ReactNode, item: any, text: string, rawText: unknown) => {
   const ellipsis = getEllipsis(item);
   if (!ellipsis) {
     return false;
@@ -104,8 +98,7 @@ export const genCopyable = (
 
   const normalizedText = normalizeCopyText(text);
   // renderText 返回 JSX 时使用原始文本避免复制 [object Object]
-  const resolvedCopyText =
-    copyText !== undefined ? normalizeCopyText(copyText) : normalizedText;
+  const resolvedCopyText = copyText !== undefined ? normalizeCopyText(copyText) : normalizedText;
   const ellipsis = genEllipsis(dom, item, normalizedText, text);
 
   // `Typography.Text` with `copyable` will render an internal separator whitespace

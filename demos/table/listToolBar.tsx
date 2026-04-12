@@ -1,11 +1,8 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import {
-  LightFilter,
-  ProFormDatePicker,
-  ProTable,
-} from '@xxlabs/pro-components';
 import { Badge, Button } from 'antd';
 import React, { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { LightFilter, ProFormDatePicker, ProTable } from '@xxlabs/pro-components';
 
 import { createTableDataSource, DEMO_CREATOR_VALUE_ENUM } from '../mockData';
 
@@ -60,9 +57,7 @@ const columns: ProColumns<TableListItem>[] = [
     valueType: 'option',
     render: (_, record) => [
       record.status === 'close' && <a key="publish">发布</a>,
-      (record.status === 'running' || record.status === 'online') && (
-        <a key="stop">停用</a>
-      ),
+      (record.status === 'running' || record.status === 'online') && <a key="stop">停用</a>,
       record.status === 'error' && <a key="republish">重新发布</a>,
       <a
         key="monitor"
@@ -112,7 +107,10 @@ const Demo = () => {
       toolbar={{
         filter: (
           <LightFilter>
-            <ProFormDatePicker name="startdate" label="部署日期" />
+            <ProFormDatePicker
+              name="startdate"
+              label="部署日期"
+            />
           </LightFilter>
         ),
         menu: {
@@ -137,7 +135,10 @@ const Demo = () => {
           },
         },
         actions: [
-          <Button key="primary" type="primary">
+          <Button
+            key="primary"
+            type="primary"
+          >
             新建应用
           </Button>,
         ],

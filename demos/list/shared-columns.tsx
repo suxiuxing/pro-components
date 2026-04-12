@@ -1,10 +1,11 @@
+import { Radio, Space, Tag } from 'antd';
+import { useState } from 'react';
+
 /**
  * 同一份 columns 同时用于 ProTable 和 ProList，一键切换视图
  */
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProList, ProTable } from '@xxlabs/pro-components';
-import { Radio, Space, Tag } from 'antd';
-import { useState } from 'react';
 
 type DataItem = {
   id: string;
@@ -71,7 +72,10 @@ const columns: ProColumns<DataItem>[] = [
     render: (_, row) => (
       <Space size={4}>
         {row.labels?.map((label) => (
-          <Tag color="blue" key={label}>
+          <Tag
+            color="blue"
+            key={label}
+          >
             {label}
           </Tag>
         ))}

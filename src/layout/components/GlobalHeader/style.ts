@@ -1,4 +1,4 @@
-﻿import type { GenerateStyle, ProAliasToken } from '../../../provider';
+import type { GenerateStyle, ProAliasToken } from '../../../provider';
 import { useStyle as useAntdStyle } from '../../../provider';
 
 export interface GlobalHeaderToken extends ProAliasToken {
@@ -45,8 +45,7 @@ const genGlobalHeaderStyle: GenerateStyle<GlobalHeaderToken> = (token) => {
           marginInline: 0,
           marginInlineStart: 8,
           fontWeight: '600',
-          color:
-            token.layout?.header?.colorHeaderTitle || token.colorTextHeading,
+          color: token.layout?.header?.colorHeaderTitle || token.colorTextHeading,
           fontSize: '18px',
           lineHeight: '32px',
         },

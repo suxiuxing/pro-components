@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+
 import type { GenerateStyle } from '../../../provider';
 import { isBrowser } from '../../../utils';
 import type { RouteContextType } from '../../index';
@@ -36,9 +37,7 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
     renderContent,
     ...restProps
   } = props;
-  const { getPrefixCls, getTargetContainer } = useContext(
-    ConfigProvider.ConfigContext,
-  );
+  const { getPrefixCls, getTargetContainer } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = props.prefixCls || getPrefixCls('pro');
 
   const baseClassName = `${prefixCls}-footer-bar`;
@@ -58,8 +57,7 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
   }, [value.collapsed, value.hasSiderMenu, value.isMobile, value.siderWidth]);
 
   const containerDom = useMemo(() => {
-    if (typeof window === 'undefined' || typeof document === 'undefined')
-      return null;
+    if (typeof window === 'undefined' || typeof document === 'undefined') return null;
     // 只读取一次就行了，不然总是的渲染
     return getTargetContainer?.() || document.body;
   }, []);
@@ -70,9 +68,7 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
   const dom = (
     <>
       <div className={clsx(`${baseClassName}-left`, hashId)}>{extra}</div>
-      <div className={clsx(`${baseClassName}-right`, hashId)}>
-        {children}
-      </div>
+      <div className={clsx(`${baseClassName}-right`, hashId)}>{children}</div>
     </>
   );
 
@@ -112,9 +108,7 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
       ? renderDom
       : createPortal(renderDom, containerDom as Element, baseClassName);
 
-  return stylish.wrapSSR(
-    wrapSSR(<React.Fragment key={baseClassName}>{ssrDom}</React.Fragment>),
-  );
+  return stylish.wrapSSR(wrapSSR(<React.Fragment key={baseClassName}>{ssrDom}</React.Fragment>));
 };
 
 export { FooterToolbar };

@@ -1,4 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
+import { Button, Space, message } from 'antd';
+import { useRef } from 'react';
+
 import {
   DrawerForm,
   ModalForm,
@@ -7,8 +10,6 @@ import {
   ProFormSelect,
   ProFormText,
 } from '@xxlabs/pro-components';
-import { Button, Space, message } from 'antd';
-import { useRef } from 'react';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -129,7 +130,11 @@ const Demo = () => {
                 label="合同约定失效效方式"
               />
             </ProForm.Group>
-            <ProFormText width="sm" name="id" label="主合同编号" />
+            <ProFormText
+              width="sm"
+              name="id"
+              label="主合同编号"
+            />
             <ProFormText
               name="project"
               disabled
@@ -247,7 +252,11 @@ const Demo = () => {
                 label="合同约定失效效方式"
               />
             </ProForm.Group>
-            <ProFormText width="sm" name="id" label="主合同编号" />
+            <ProFormText
+              width="sm"
+              name="id"
+              label="主合同编号"
+            />
             <ProFormText
               name="project"
               disabled

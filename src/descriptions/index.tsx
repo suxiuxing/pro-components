@@ -1,4 +1,4 @@
-﻿export { FieldRender } from './FieldRender';
+export { FieldRender } from './FieldRender';
 export { ProDescriptions } from './ProDescriptions';
 export { default } from './ProDescriptions';
 

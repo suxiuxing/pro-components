@@ -1,6 +1,7 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import { CheckCard } from '@xxlabs/pro-components';
 import { Dropdown, message } from 'antd';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 const Demo = () => (
   <>
@@ -69,8 +70,7 @@ const Demo = () => (
           <strong>字符串</strong>: 直接传入字符串，显示简单文本
         </li>
         <li>
-          <strong>组件</strong>: 传入 React
-          节点，可以包含下拉菜单、按钮等复杂操作
+          <strong>组件</strong>: 传入 React 节点，可以包含下拉菜单、按钮等复杂操作
         </li>
       </ul>
       <h4>Dropdown 组件 Props：</h4>

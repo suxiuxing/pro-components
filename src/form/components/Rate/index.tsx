@@ -1,5 +1,6 @@
 import type { RateProps } from 'antd';
 import React from 'react';
+
 import { FieldRate } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
 import type { ProFormFieldItemProps } from '../../typing';
@@ -9,16 +10,26 @@ import ProField from '../Field';
  *
  * @param
  */
-const ProFormRate: React.ForwardRefRenderFunction<
-  any,
-  ProFormFieldItemProps<RateProps>
-> = ({ fieldProps, proFieldProps, ...rest }, ref) => {
+const ProFormRate: React.ForwardRefRenderFunction<any, ProFormFieldItemProps<RateProps>> = (
+  { fieldProps, proFieldProps, ...rest },
+  ref,
+) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
         rate: {
-          render: (text, props) => <FieldRate {...props} text={text} />,
-          formItemRender: (text, props) => <FieldRate {...props} text={text} />,
+          render: (text, props) => (
+            <FieldRate
+              {...props}
+              text={text}
+            />
+          ),
+          formItemRender: (text, props) => (
+            <FieldRate
+              {...props}
+              text={text}
+            />
+          ),
         },
       }}
     >

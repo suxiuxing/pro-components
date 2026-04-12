@@ -8,7 +8,14 @@ export function SubIcon() {
       viewBox="0 0 104 104"
     >
       <defs>
-        <rect id="path-1" width="90" height="72" x="0" y="0" rx="10" />
+        <rect
+          id="path-1"
+          width="90"
+          height="72"
+          x="0"
+          y="0"
+          rx="10"
+        />
         <filter
           id="filter-2"
           width="152.2%"
@@ -84,12 +91,27 @@ export function SubIcon() {
           </feMerge>
         </filter>
       </defs>
-      <g fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">
+      <g
+        fill="none"
+        fillRule="evenodd"
+        stroke="none"
+        strokeWidth="1"
+      >
         <g>
-          <use fill="#000" filter="url(#filter-2)" xlinkHref="#path-1" />
-          <use fill="#F0F2F5" xlinkHref="#path-1" />
+          <use
+            fill="#000"
+            filter="url(#filter-2)"
+            xlinkHref="#path-1"
+          />
+          <use
+            fill="#F0F2F5"
+            xlinkHref="#path-1"
+          />
         </g>
-        <path fill="#FFF" d="M26 0h55c5.523 0 10 4.477 10 10v8H26V0z" />
+        <path
+          fill="#FFF"
+          d="M26 0h55c5.523 0 10 4.477 10 10v8H26V0z"
+        />
         <path
           fill="#001529"
           d="M10 0h19v72H10C4.477 72 0 67.523 0 62V10C0 4.477 4.477 0 10 0z"

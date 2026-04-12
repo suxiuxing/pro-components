@@ -1,14 +1,12 @@
-﻿import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import type { FormInstance } from 'antd';
 import React from 'react';
+
 import ProForm, { ProFormField } from '../form';
 import { proTheme } from '../provider';
 import type { ProCoreActionType, UseEditableMapUtilType } from '../utils';
+import { InlineErrorFormItem, getFieldPropsOrFormItemProps } from '../utils';
 import type { ProFieldValueTypeInput } from '../utils/typing';
-import {
-  InlineErrorFormItem,
-  getFieldPropsOrFormItemProps,
-} from '../utils';
 import type { ProDescriptionsColumn } from './typing';
 
 /**
@@ -44,7 +42,7 @@ export const FieldRender: React.FC<
   } = props;
   const form = ProForm.useFormInstance();
 
-  const { token } = proTheme.useToken?.();
+  const { token } = proTheme.useToken();
 
   const fieldConfig = {
     text,
@@ -69,17 +67,17 @@ export const FieldRender: React.FC<
   };
 
   if (mode === 'read' || !mode || valueType === 'option') {
-    const fieldProps = getFieldPropsOrFormItemProps(
-      props.fieldProps,
-      undefined,
-      {
-        ...props,
-        rowKey: dataIndex,
-        isEditable: false,
-      },
-    );
+    const fieldProps = getFieldPropsOrFormItemProps(props.fieldProps, undefined, {
+      ...props,
+      rowKey: dataIndex,
+      isEditable: false,
+    });
     return (
-      <ProFormField name={dataIndex} {...fieldConfig} fieldProps={fieldProps} />
+      <ProFormField
+        name={dataIndex}
+        {...fieldConfig}
+        fieldProps={fieldProps}
+      />
     );
   }
 
@@ -93,26 +91,20 @@ export const FieldRender: React.FC<
         isEditable: true,
       },
     );
-    const fieldProps = getFieldPropsOrFormItemProps(
-      props.fieldProps,
-      form as FormInstance<any>,
-      {
-        ...props,
-        rowKey: dataIndex,
-        isEditable: true,
-      },
-    );
+    const fieldProps = getFieldPropsOrFormItemProps(props.fieldProps, form as FormInstance<any>, {
+      ...props,
+      rowKey: dataIndex,
+      isEditable: true,
+    });
 
     return (
-      <div
-        style={{ display: 'flex', gap: token.marginXS, alignItems: 'baseline' }}
-      >
+      <div style={{ display: 'flex', gap: token.marginXS, alignItems: 'baseline' }}>
         <InlineErrorFormItem
           name={dataIndex}
           {...formItemProps}
           style={{
             margin: 0,
-            ...(formItemProps?.style || {}),
+            ...formItemProps?.style,
           }}
           initialValue={text || formItemProps?.initialValue}
         >
@@ -130,9 +122,7 @@ export const FieldRender: React.FC<
                       {
                         isEditable: true,
                         recordKey: dataIndex as React.Key,
-                        record: form.getFieldValue(
-                          [dataIndex].flat(1) as (string | number)[],
-                        ),
+                        record: form.getFieldValue([dataIndex].flat(1) as (string | number)[]),
                         defaultRender: () => (
                           <ProFormField
                             {...fieldConfig}

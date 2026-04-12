@@ -12,13 +12,10 @@ import type {
 import type dayjs from 'dayjs';
 import type React from 'react';
 import type { CSSProperties, Key } from 'react';
+
 import type { ProCardProps } from '../card';
 import type { ProFieldEmptyText } from '../field';
-import type {
-  LightWrapperProps,
-  ProFormProps,
-  QueryFilterProps,
-} from '../form';
+import type { LightWrapperProps, ProFormProps, QueryFilterProps } from '../form';
 import type {
   LabelTooltipType,
   ProCoreActionType,
@@ -191,10 +188,7 @@ export type ProColumnType<T = unknown, ValueType = 'text'> = ProSchema<
   }
 >;
 
-export type ProColumns<T = any, ValueType = 'text'> = ProColumnType<
-  T,
-  ValueType
->;
+export type ProColumns<T = any, ValueType = 'text'> = ProColumnType<T, ValueType>;
 
 export type BorderedType = 'search' | 'table';
 
@@ -612,7 +606,5 @@ export type UseFetchProps = {
 
 export type OptionSearchProps = Omit<SearchProps, 'onSearch'> & {
   /** 如果 onSearch 返回一个false，直接拦截请求 */
-  onSearch?: (
-    keyword: string,
-  ) => Promise<boolean | undefined> | boolean | undefined;
+  onSearch?: (keyword: string) => Promise<boolean | undefined> | boolean | undefined;
 };

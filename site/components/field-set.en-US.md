@@ -17,7 +17,10 @@ ProFormText is the product of FormItem + Input and can be analogous to the follo
 const ProFormText = (props) => {
   return (
     <ProForm.Item {...props}>
-      <Input placeholder={props.placeholder} {...props.fieldProps} />
+      <Input
+        placeholder={props.placeholder}
+        {...props.fieldProps}
+      />
     </ProForm.Item>
   );
 };
@@ -134,9 +137,7 @@ ProFormCaptcha is a component developed to support common CAPTCHA functionality 
   // throw new Error("Error getting captcha")
   onGetCaptcha={async (phone) => {
     await waitTime(1000);
-    message.success(
-      `phone number ${phone} Verification code sent successfully! `,
-    );
+    message.success(`phone number ${phone} Verification code sent successfully! `);
   }}
 />
 ```
@@ -153,7 +154,10 @@ ProFormCaptcha is a component developed to support common CAPTCHA functionality 
 Same as [Input.Password](https://ant.design/components/input/#Input.Password).
 
 ```tsx | pure
-<ProFormText.Password label="InputPassword" name="input-password" />
+<ProFormText.Password
+  label="InputPassword"
+  name="input-password"
+/>
 ```
 
 ### ProFormTextArea
@@ -174,7 +178,12 @@ Same as [Input.TextArea](https://ant.design/components/input/#Input.TextArea).
 Same as [inputNumber](https://ant.design/components/input-number/). It comes with a formatting (retains 2 decimal places, minimum value is 0), you can turn it off if needed.
 
 ```tsx | pure
-<ProFormDigit label="InputNumber" name="input-number" min={1} max={10} />
+<ProFormDigit
+  label="InputNumber"
+  name="input-number"
+  min={1}
+  max={10}
+/>
 ```
 
 If you want to change the number of decimal places.
@@ -194,7 +203,10 @@ If you want to change the number of decimal places.
 Same as [inputNumber](https://ant.design/components/input-number/). It provides numeric range input.
 
 ```tsx | pure
-<ProFormDigitRange label="InputNumberRange" name="input-number-range" />
+<ProFormDigitRange
+  label="InputNumberRange"
+  name="input-number-range"
+/>
 ```
 
 ### ProFormDatePicker
@@ -202,7 +214,10 @@ Same as [inputNumber](https://ant.design/components/input-number/). It provides 
 Same as [DatePicker](https://ant.design/components/date-picker/).
 
 ```tsx | pure
-<ProFormDatePicker name="date" label="date" />
+<ProFormDatePicker
+  name="date"
+  label="date"
+/>
 ```
 
 ### ProFormDateTimePicker
@@ -210,7 +225,10 @@ Same as [DatePicker](https://ant.design/components/date-picker/).
 Same as [DatePicker](https://ant.design/components/date-picker/).
 
 ```tsx | pure
-<ProFormDateTimePicker name="datetime" label="datetime" />
+<ProFormDateTimePicker
+  name="datetime"
+  label="datetime"
+/>
 ```
 
 ### ProFormDateRangePicker
@@ -218,7 +236,10 @@ Same as [DatePicker](https://ant.design/components/date-picker/).
 Same as [DatePicker.RangePicker](https://ant.design/components/date-picker/#RangePicker).
 
 ```tsx | pure
-<ProFormDateRangePicker name="dateRange" label="date" />
+<ProFormDateRangePicker
+  name="dateRange"
+  label="date"
+/>
 ```
 
 ### ProFormDateTimeRangePicker
@@ -226,7 +247,10 @@ Same as [DatePicker.RangePicker](https://ant.design/components/date-picker/#Rang
 Same as [DatePicker.RangePicker](https://ant.design/components/date-picker/#RangePicker).
 
 ```tsx | pure
-<ProFormDateTimeRangePicker name="datetimeRange" label="datetime" />
+<ProFormDateTimeRangePicker
+  name="datetimeRange"
+  label="datetime"
+/>
 ```
 
 ### ProFormTimePicker
@@ -234,7 +258,10 @@ Same as [DatePicker.RangePicker](https://ant.design/components/date-picker/#Rang
 Same as [DatePicker](https://ant.design/components/date-picker/)
 
 ```tsx | pure
-<ProFormDateRangePicker name="time" label="time" />
+<ProFormDateRangePicker
+  name="time"
+  label="time"
+/>
 ```
 
 ### ProFormSelect
@@ -503,7 +530,10 @@ Same as [switch](https://ant.design/components/switch/), configure Switch data t
 | fieldProps | Props of Ant Design component | `SwitchProps` | -       |
 
 ```tsx | pure
-<ProFormSwitch name="switch" label="Switch" />
+<ProFormSwitch
+  name="switch"
+  label="Switch"
+/>
 ```
 
 ### ProFormRate
@@ -515,7 +545,10 @@ Same as [rate](https://ant.design/components/rate/), configure Rate data through
 | fieldProps | Props of Ant Design component | `RateProps` | -       |
 
 ```tsx | pure
-<ProFormRate name="rate" label="Rate" />
+<ProFormRate
+  name="rate"
+  label="Rate"
+/>
 ```
 
 ### ProFormSlider
@@ -552,7 +585,11 @@ Same as [upload](https://ant.design/components/upload/). Dragger style is preset
 | description | Dragger's description     | `ReactNode` | 'Support single or bulk uploads'             |
 
 ```tsx | pure
-<ProFormUploadDragger label="Dragger" name="dragger" action="upload.do" />
+<ProFormUploadDragger
+  label="Dragger"
+  name="dragger"
+  action="upload.do"
+/>
 ```
 
 ### ProFormUploadButton

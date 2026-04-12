@@ -1,7 +1,8 @@
 import { DownOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
-import { Button } from 'antd';
 
 import { createTableDataSource, DEMO_STATUS_VALUE_ENUM } from '../mockData';
 
@@ -79,7 +80,10 @@ const Demo = () => {
           导出数据
           <DownOutlined />
         </Button>,
-        <Button type="primary" key="primary">
+        <Button
+          type="primary"
+          key="primary"
+        >
           部署应用
         </Button>,
       ]}

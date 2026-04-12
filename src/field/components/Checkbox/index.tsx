@@ -1,10 +1,8 @@
-﻿import { ConfigProvider, Form, Spin } from 'antd';
+import { ConfigProvider, Form, Spin } from 'antd';
 import React, { useContext, useImperativeHandle, useRef } from 'react';
+
 import { useStyle } from '../../../utils';
-import {
-  isProFieldEditOnlyMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOnlyMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { useFieldFetchData } from '../Select';
 import { FieldCheckboxEdit } from './FieldCheckboxEdit';
@@ -41,10 +39,9 @@ const FieldCheckbox: ProFieldFC<GroupProps> = (
           [`&${token.antCls}-checkbox-group`]: {
             display: 'inline-block',
           },
-          [`${token.antCls}-checkbox-wrapper+${token.antCls}-checkbox-wrapper`]:
-            {
-              'margin-inline-start': '0  !important',
-            },
+          [`${token.antCls}-checkbox-wrapper+${token.antCls}-checkbox-wrapper`]: {
+            'margin-inline-start': '0  !important',
+          },
           [`${token.antCls}-checkbox-group-item`]: {
             display: 'flex',
             marginInlineEnd: 0,
@@ -58,7 +55,7 @@ const FieldCheckbox: ProFieldFC<GroupProps> = (
   useImperativeHandle(
     ref,
     () => ({
-      ...(checkBoxRef.current || {}),
+      ...checkBoxRef.current,
       fetchData: (keyWord: string) => fetchData(keyWord),
     }),
     [fetchData],

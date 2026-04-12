@@ -1,10 +1,11 @@
+import { Space, Tag } from 'antd';
+import { useState } from 'react';
+
 /**
  * columns API 配合可编辑列表
  */
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProList } from '@xxlabs/pro-components';
-import { Space, Tag } from 'antd';
-import { useState } from 'react';
 
 const defaultData = [
   {

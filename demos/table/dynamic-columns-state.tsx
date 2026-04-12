@@ -1,14 +1,11 @@
 import { QuestionCircleOutlined, SearchOutlined } from '@ant-design/icons';
-import type { ProColumns } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Input, Tooltip } from 'antd';
 import { useState } from 'react';
 
-import {
-  DEMO_APP_NAMES,
-  DEMO_CREATORS,
-  FIXED_BASE_TIMESTAMP,
-} from '../mockData';
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
+
+import { DEMO_APP_NAMES, DEMO_CREATORS, FIXED_BASE_TIMESTAMP } from '../mockData';
 
 const valueEnum: Record<string, string> = {
   0: 'close',
@@ -28,24 +25,21 @@ export type TableListItem = {
   statusText: string;
 };
 
-const tableListDataSource: TableListItem[] = Array.from(
-  { length: 5 },
-  (_, i) => ({
-    key: i,
-    name: DEMO_APP_NAMES[i % DEMO_APP_NAMES.length],
-    containers: ((i * 3 + 2) % 12) + 1,
-    creator: DEMO_CREATORS[i % DEMO_CREATORS.length],
-    status: valueEnum[String(i % 2)],
-    createdAt: FIXED_BASE_TIMESTAMP - i * 86400000,
-    money: ((i * 3456 + 7890) % 50000) * 100,
-    progress: ((i * 17 + 23) % 100) + 1,
-    memo:
-      i % 2 === 1
-        ? '核心服务，承载全站用户登录与鉴权，高峰期需要关注性能指标'
-        : '日常运维中，当前运行状态正常',
-    statusText: i % 2 === 0 ? '已关闭，等待重新部署' : '运行中，CPU 占用 35%',
-  }),
-);
+const tableListDataSource: TableListItem[] = Array.from({ length: 5 }, (_, i) => ({
+  key: i,
+  name: DEMO_APP_NAMES[i % DEMO_APP_NAMES.length],
+  containers: ((i * 3 + 2) % 12) + 1,
+  creator: DEMO_CREATORS[i % DEMO_CREATORS.length],
+  status: valueEnum[String(i % 2)],
+  createdAt: FIXED_BASE_TIMESTAMP - i * 86400000,
+  money: ((i * 3456 + 7890) % 50000) * 100,
+  progress: ((i * 17 + 23) % 100) + 1,
+  memo:
+    i % 2 === 1
+      ? '核心服务，承载全站用户登录与鉴权，高峰期需要关注性能指标'
+      : '日常运维中，当前运行状态正常',
+  statusText: i % 2 === 0 ? '已关闭，等待重新部署' : '运行中，CPU 占用 35%',
+}));
 
 const columns: ProColumns<TableListItem>[] = [
   {
@@ -75,7 +69,10 @@ const columns: ProColumns<TableListItem>[] = [
     title: (
       <>
         部署时间
-        <Tooltip placement="top" title="最近一次部署的时间">
+        <Tooltip
+          placement="top"
+          title="最近一次部署的时间"
+        >
           <QuestionCircleOutlined style={{ marginLeft: 4 }} />
         </Tooltip>
       </>

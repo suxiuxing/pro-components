@@ -6,6 +6,9 @@ export default () => (
       padding: 24,
     }}
   >
-    <ProSkeleton statistic={2} type="list" />
+    <ProSkeleton
+      statistic={2}
+      type="list"
+    />
   </div>
 );

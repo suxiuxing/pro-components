@@ -26,15 +26,14 @@ const genProStyle: GenerateStyle<ProToken> = (token) => {
       '&-active': {
         paddingBlock: 0,
         paddingInline: 8,
-        [`&${token.componentCls}-allow-clear:hover:not(${token.componentCls}-disabled)`]:
-          {
-            [`${token.componentCls}-arrow`]: {
-              display: 'none',
-            },
-            [`${token.componentCls}-close`]: {
-              display: 'inline-flex',
-            },
+        [`&${token.componentCls}-allow-clear:hover:not(${token.componentCls}-disabled)`]: {
+          [`${token.componentCls}-arrow`]: {
+            display: 'none',
           },
+          [`${token.componentCls}-close`]: {
+            display: 'inline-flex',
+          },
+        },
       },
       [`${token.antCls}-select`]: {
         [`${token.antCls}-select-clear`]: {

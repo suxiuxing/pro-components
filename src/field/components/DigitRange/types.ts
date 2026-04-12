@@ -1,4 +1,4 @@
-﻿export type Value = string | number | undefined | null;
+export type Value = string | number | undefined | null;
 
 export type ValuePair = Value[];
 

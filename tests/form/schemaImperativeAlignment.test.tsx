@@ -1,8 +1,10 @@
-﻿import { cleanup, render, waitFor } from '@testing-library/react';
-import type {
-  ProFormColumnsType,
-  ProFormInstance,
-} from '@xxlabs/pro-components';
+import { cleanup, render, waitFor } from '@testing-library/react';
+import dayjs from 'dayjs';
+import type { ReactNode } from 'react';
+import { createRef } from 'react';
+import { afterEach, describe, expect, it } from 'vitest';
+
+import type { ProFormColumnsType, ProFormInstance } from '@xxlabs/pro-components';
 import {
   BetaSchemaForm,
   ProForm,
@@ -16,10 +18,6 @@ import {
   ProFormText,
   ProFormTextArea,
 } from '@xxlabs/pro-components';
-import dayjs from 'dayjs';
-import type { ReactNode } from 'react';
-import { createRef } from 'react';
-import { afterEach, describe, expect, it } from 'vitest';
 
 /**
  * RFC 阶段 3 / ProField 路径：同一 `initialValues` 下，`BetaSchemaForm` 与手写 `ProFormXxx`（或 `ProFormField`）
@@ -46,9 +44,7 @@ async function readSchemaFieldsValue(
       initialValues={initialValues}
     />,
   );
-  await waitFor(() =>
-    expect(schemaRef.current?.getFieldsValue?.()).toBeDefined(),
-  );
+  await waitFor(() => expect(schemaRef.current?.getFieldsValue?.()).toBeDefined());
   const values = schemaRef.current!.getFieldsValue(true);
   unmount();
   cleanup();
@@ -61,7 +57,10 @@ async function readImperativeFieldsValue(
 ): Promise<Record<string, any>> {
   const ref = createRef<ProFormInstance>();
   const { unmount } = render(
-    <ProForm formRef={ref} initialValues={initialValues}>
+    <ProForm
+      formRef={ref}
+      initialValues={initialValues}
+    >
       {children}
     </ProForm>,
   );
@@ -126,7 +125,10 @@ describe('Schema vs imperative alignment', () => {
     const schemaValues = await readSchemaFieldsValue(columns, initialValues);
     const imperativeValues = await readImperativeFieldsValue(
       initialValues,
-      <ProFormSelect name="fieldSel" valueEnum={valueEnum} />,
+      <ProFormSelect
+        name="fieldSel"
+        valueEnum={valueEnum}
+      />,
     );
 
     expect(schemaValues.fieldSel).toBe(imperativeValues.fieldSel);
@@ -224,7 +226,10 @@ describe('Schema vs imperative alignment', () => {
     const schemaValues = await readSchemaFieldsValue(columns, initialValues);
     const imperativeValues = await readImperativeFieldsValue(
       initialValues,
-      <ProFormField name="fieldPw" valueType="password" />,
+      <ProFormField
+        name="fieldPw"
+        valueType="password"
+      />,
     );
 
     expect(schemaValues.fieldPw).toBe(imperativeValues.fieldPw);

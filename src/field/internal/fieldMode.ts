@@ -1,4 +1,4 @@
-﻿import type { ProFieldFCMode } from '../../provider';
+import type { ProFieldFCMode } from '../../provider';
 
 /**
  * Shared mode checks for Field* components (read vs edit branches).
@@ -13,15 +13,11 @@ export function isProFieldReadMode(mode: ProFieldFCMode | undefined): boolean {
 }
 
 /** `edit` or `update` — most Field* interactive branches. */
-export function isProFieldEditOrUpdateMode(
-  mode: ProFieldFCMode | undefined,
-): boolean {
+export function isProFieldEditOrUpdateMode(mode: ProFieldFCMode | undefined): boolean {
   return mode === 'edit' || mode === 'update';
 }
 
 /** Strict `edit` only — used where `update` previously fell through (e.g. Radio). */
-export function isProFieldEditOnlyMode(
-  mode: ProFieldFCMode | undefined,
-): boolean {
+export function isProFieldEditOnlyMode(mode: ProFieldFCMode | undefined): boolean {
   return mode === 'edit';
 }

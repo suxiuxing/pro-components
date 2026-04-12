@@ -1,4 +1,4 @@
-﻿import { omit, useControlledState } from '@rc-component/util';
+import { omit, useControlledState } from '@rc-component/util';
 import type { TreeSelectProps } from 'antd';
 import { ConfigProvider } from 'antd';
 import React, {
@@ -9,11 +9,9 @@ import React, {
   useRef,
   useState,
 } from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOnlyMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOnlyMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import type { FieldSelectProps } from '../Select';
 import { useFieldFetchData } from '../Select';
@@ -36,15 +34,7 @@ export type { TreeSelectFieldProps };
  * @param ref
  */
 const FieldTreeSelect: ProFieldFC<{} & FieldSelectProps> = (
-  {
-    formItemRender,
-    mode,
-    light,
-    label,
-    render,
-    variant: propsVariant,
-    ...rest
-  },
+  { formItemRender, mode, light, label, render, variant: propsVariant, ...rest },
   ref,
 ) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
@@ -66,9 +56,7 @@ const FieldTreeSelect: ProFieldFC<{} & FieldSelectProps> = (
   const showSearchConfig = typeof showSearch === 'object' ? showSearch : {};
 
   const onSearch =
-    showSearchConfig?.onSearch !== undefined
-      ? showSearchConfig.onSearch
-      : propsOnSearch;
+    showSearchConfig?.onSearch !== undefined ? showSearchConfig.onSearch : propsOnSearch;
   //兼容过时API autoClearSearchValue
   const autoClearSearchValue =
     showSearchConfig?.autoClearSearchValue !== undefined
@@ -89,16 +77,12 @@ const FieldTreeSelect: ProFieldFC<{} & FieldSelectProps> = (
     defaultKeyWords: propsSearchValue,
   });
 
-  const [searchValue, setSearchValueInner] = useControlledState<
-    string | undefined
-  >(undefined, propsSearchValue);
+  const [searchValue, setSearchValueInner] = useControlledState<string | undefined>(
+    undefined,
+    propsSearchValue,
+  );
   const setSearchValue = useCallback(
-    (
-      updater:
-        | string
-        | undefined
-        | ((prev: string | undefined) => string | undefined),
-    ) => {
+    (updater: string | undefined | ((prev: string | undefined) => string | undefined)) => {
       setSearchValueInner((prev) => {
         const next =
           typeof updater === 'function'
@@ -112,7 +96,7 @@ const FieldTreeSelect: ProFieldFC<{} & FieldSelectProps> = (
   );
 
   useImperativeHandle(ref, () => ({
-    ...(treeSelectRef.current || {}),
+    ...treeSelectRef.current,
     fetchData: (keyWord: string) => fetchData(keyWord),
   }));
 
@@ -148,11 +132,7 @@ const FieldTreeSelect: ProFieldFC<{} & FieldSelectProps> = (
     return traverseOptions(options);
   }, [fieldProps?.fieldNames, mode, options]);
 
-  const onChange: TreeSelectProps<any>['onChange'] = (
-    value,
-    optionList,
-    extra,
-  ) => {
+  const onChange: TreeSelectProps<any>['onChange'] = (value, optionList, extra) => {
     // 将搜索框置空 和 antd 行为保持一致
     if (showSearch && autoClearSearchValue) {
       fetchData(undefined);

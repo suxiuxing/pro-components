@@ -1,4 +1,5 @@
 import { match } from 'path-to-regexp';
+
 import type { ProSettings } from './defaultSettings';
 import type { MenuDataItem } from './typing';
 
@@ -130,9 +131,6 @@ export const getPageTitleInfo = (
   };
 };
 
-export const getPageTitle = (
-  props: GetPageTitleProps,
-  ignoreTitle?: boolean,
-) => {
+export const getPageTitle = (props: GetPageTitleProps, ignoreTitle?: boolean) => {
   return getPageTitleInfo(props, ignoreTitle).title;
 };

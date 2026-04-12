@@ -1,6 +1,7 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { ProCard, StatisticCard } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { ProCard, StatisticCard } from '@xxlabs/pro-components';
 
 const { Statistic } = StatisticCard;
 
@@ -110,8 +111,7 @@ const Demo = () => {
             <strong>extra</strong>: 卡片右上角额外信息
           </li>
           <li>
-            <strong>split</strong>: 分割方式，'horizontal'
-            表示水平分割，'vertical' 表示垂直分割
+            <strong>split</strong>: 分割方式，'horizontal' 表示水平分割，'vertical' 表示垂直分割
           </li>
           <li>
             <strong>headerBordered</strong>: 是否显示头部边框
@@ -129,8 +129,7 @@ const Demo = () => {
             <strong>statistic.value</strong>: 统计数值
           </li>
           <li>
-            <strong>statistic.description</strong>: 统计描述，可以是 Statistic
-            组件
+            <strong>statistic.description</strong>: 统计描述，可以是 Statistic 组件
           </li>
           <li>
             <strong>statistic.suffix</strong>: 数值后缀

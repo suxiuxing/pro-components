@@ -1,6 +1,7 @@
-import { ProForm, ProFormCaptcha } from '@xxlabs/pro-components';
 import { Button, message } from 'antd';
 import { useRef } from 'react';
+
+import { ProForm, ProFormCaptcha } from '@xxlabs/pro-components';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {

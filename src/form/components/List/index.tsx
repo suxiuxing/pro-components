@@ -7,21 +7,12 @@ import {
 import { warning } from '@rc-component/util';
 import type { ColProps } from 'antd';
 import { ConfigProvider, Form } from 'antd';
-import type {
-  FormListFieldData,
-  FormListOperation,
-  FormListProps,
-} from 'antd/lib/form/FormList';
+import type { FormListFieldData, FormListOperation, FormListProps } from 'antd/lib/form/FormList';
 import type { NamePath } from 'antd/lib/form/interface';
 import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
-import React, {
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-} from 'react';
+import React, { useContext, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+
 import { useIntl } from '../../../provider';
 import type { LabelTooltipType } from '../../../utils';
 import { ProFormContext } from '../../../utils';
@@ -29,11 +20,7 @@ import FieldContext from '../../FieldContext';
 import { useGridHelpers } from '../../helpers';
 import type { ProFormGridConfig } from '../../typing';
 import { ProFormListContainer } from './ListContainer';
-import type {
-  ChildrenItemFunction,
-  FormListActionGuard,
-  ProFromListCommonProps,
-} from './ListItem';
+import type { ChildrenItemFunction, FormListActionGuard, ProFromListCommonProps } from './ListItem';
 import { useStyle } from './style';
 
 const { noteOnce } = warning;
@@ -103,15 +90,11 @@ export type ProFormListProps<T> = Omit<FormListProps, 'children' | 'rules'> &
     /**
      * 数据新增成功回调
      */
-    onAfterAdd?: (
-      ...params: [...Parameters<FormListOperation['add']>, number]
-    ) => void;
+    onAfterAdd?: (...params: [...Parameters<FormListOperation['add']>, number]) => void;
     /**
      * 数据移除成功回调
      */
-    onAfterRemove?: (
-      ...params: [...Parameters<FormListOperation['remove']>, number]
-    ) => void;
+    onAfterRemove?: (...params: [...Parameters<FormListOperation['remove']>, number]) => void;
     /** 是否同时校验列表是否为空 */
     isValidateList?: boolean;
     /** 当 isValidateList 为 true 时执行为空提示 */
@@ -203,22 +186,15 @@ function ProFormList<T>(props: ProFormListProps<T>) {
       ({
         ...actionRefs.current,
         get: (index: number) => {
-          return proFormContext.formRef!.current!.getFieldValue([
-            ...name,
-            index,
-          ]);
+          return proFormContext.formRef!.current!.getFieldValue([...name, index]);
         },
-        getList: () =>
-          proFormContext.formRef!.current!.getFieldValue([...name]),
+        getList: () => proFormContext.formRef!.current!.getFieldValue([...name]),
       }) as any,
     [name, proFormContext.formRef],
   );
 
   useEffect(() => {
-    noteOnce(
-      !!proFormContext.formRef,
-      `ProFormList 必须要放到 ProForm 中,否则会造成行为异常。`,
-    );
+    noteOnce(!!proFormContext.formRef, `ProFormList 必须要放到 ProForm 中,否则会造成行为异常。`);
     noteOnce(
       !!proFormContext.formRef,
       `Proformlist must be placed in ProForm, otherwise it will cause abnormal behavior.`,
@@ -247,7 +223,10 @@ function ProFormList<T>(props: ProFormListProps<T>) {
   if (!proFormContext.formRef) return null;
   return wrapSSR(
     <ColWrapper>
-      <div className={clsx(baseClassName, hashId)} style={style}>
+      <div
+        className={clsx(baseClassName, hashId)}
+        style={style}
+      >
         <Form.Item
           label={label}
           prefixCls={prefixCls}
@@ -274,7 +253,11 @@ function ProFormList<T>(props: ProFormListProps<T>) {
               : undefined
           }
         >
-          <Form.List rules={rules} {...rest} name={name}>
+          <Form.List
+            rules={rules}
+            {...rest}
+            name={name}
+          >
             {(fields, action, meta) => {
               // 将 action 暴露给外部
               actionRefs.current = action;
@@ -314,9 +297,7 @@ function ProFormList<T>(props: ProFormListProps<T>) {
                     onAfterRemove={(index, count) => {
                       if (isValidateList) {
                         if (count === 0) {
-                          proFormContext.formRef!.current!.validateFields([
-                            name,
-                          ]);
+                          proFormContext.formRef!.current!.validateFields([name]);
                         }
                       }
                       onAfterRemove?.(index, count);

@@ -1,4 +1,7 @@
 import { DownOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import { useRef, useState } from 'react';
+
 import type { ProColumnType, ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProCard,
@@ -15,8 +18,6 @@ import {
   ProTable,
   useDebounceFn,
 } from '@xxlabs/pro-components';
-import { Button } from 'antd';
-import { useRef, useState } from 'react';
 
 const valueTypeArray = [
   'password',
@@ -94,7 +95,10 @@ const columns: ProColumnType<DataType>[] = [
     valueType: 'option',
     render: () => [
       <a key="delete">Delete</a>,
-      <a key="link" className="ant-dropdown-link">
+      <a
+        key="link"
+        className="ant-dropdown-link"
+      >
         More actions <DownOutlined />
       </a>,
     ],
@@ -200,16 +204,17 @@ const DynamicSettings = () => {
           search={config.search?.show ? config.search : {}}
           expandable={
             config.expandable && {
-              expandedRowRender: (record: DataType) => (
-                <p>{record.description}</p>
-              ),
+              expandedRowRender: (record: DataType) => <p>{record.description}</p>,
             }
           }
           options={config.options?.show ? config.options : false}
           toolBarRender={
             config?.toolBarRender
               ? () => [
-                  <Button key="refresh" type="primary">
+                  <Button
+                    key="refresh"
+                    type="primary"
+                  >
                     刷新
                   </Button>,
                 ]
@@ -640,8 +645,14 @@ const DynamicSettings = () => {
                         marginBlockStart: 8,
                       }}
                     >
-                      <ProFormSwitch label="过长省略" name="ellipsis" />
-                      <ProFormSwitch label="复制按钮" name="copyable" />
+                      <ProFormSwitch
+                        label="过长省略"
+                        name="ellipsis"
+                      />
+                      <ProFormSwitch
+                        label="复制按钮"
+                        name="copyable"
+                      />
                     </ProFormGroup>
                     <ProFormGroup
                       style={{
@@ -682,7 +693,11 @@ const DynamicSettings = () => {
                       }}
                       size={8}
                     >
-                      <ProFormText width="xs" label="列提示" name="tooltip" />
+                      <ProFormText
+                        width="xs"
+                        label="列提示"
+                        name="tooltip"
+                      />
                     </ProFormGroup>
                     <ProFormDependency name={['valueType', 'valueEnum']}>
                       {({ valueType, valueEnum }) => {

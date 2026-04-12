@@ -11,7 +11,10 @@ const PageLoading: React.FC<SpinProps & any> = ({
   ...reset
 }) => (
   <div style={{ paddingBlockStart: 100, textAlign: 'center' }}>
-    <Spin size="large" {...reset} />
+    <Spin
+      size="large"
+      {...reset}
+    />
   </div>
 );
 

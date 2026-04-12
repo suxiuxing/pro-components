@@ -1,4 +1,4 @@
-﻿import { ProDescriptions } from '@xxlabs/pro-components';
+import { ProDescriptions } from '@xxlabs/pro-components';
 
 import { FIXED_BASE_DATE } from '../mockData';
 
@@ -24,10 +24,7 @@ const Demo = () => {
               format: 'YYYY.MM.DD HH:mm:ss',
             },
             valueType: 'dateTimeRange',
-            children: [
-              FIXED_BASE_DATE.add(-1, 'd').valueOf(),
-              FIXED_BASE_DATE.valueOf(),
-            ],
+            children: [FIXED_BASE_DATE.add(-1, 'd').valueOf(), FIXED_BASE_DATE.valueOf()],
           },
           {
             label: '时间',

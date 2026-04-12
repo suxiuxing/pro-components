@@ -1,7 +1,8 @@
-import { ProDescriptions, ProProvider } from '@xxlabs/pro-components';
 import type { InputRef } from 'antd';
 import { Input, Space, Tag } from 'antd';
 import React, { useContext, useRef, useState } from 'react';
+
+import { ProDescriptions, ProProvider } from '@xxlabs/pro-components';
 
 const valueEnum = {
   0: 'close',
@@ -60,14 +61,8 @@ const TagList: React.FC<{
 
   const handleInputConfirm = () => {
     let tempsTags = [...(value || [])];
-    if (
-      inputValue &&
-      tempsTags.filter((tag) => tag.label === inputValue).length === 0
-    ) {
-      tempsTags = [
-        ...tempsTags,
-        { key: `new-${tempsTags.length}`, label: inputValue },
-      ];
+    if (inputValue && tempsTags.filter((tag) => tag.label === inputValue).length === 0) {
+      tempsTags = [...tempsTags, { key: `new-${tempsTags.length}`, label: inputValue }];
     }
     onChange?.(tempsTags);
     setNewTags([]);
@@ -104,7 +99,10 @@ const Demo = () => {
             link: {
               render: (text) => <a>{text}</a>,
               formItemRender: (text, props) => (
-                <Input placeholder="请输入链接" {...props?.fieldProps} />
+                <Input
+                  placeholder="请输入链接"
+                  {...props?.fieldProps}
+                />
               ),
             },
             tags: {
@@ -118,7 +116,10 @@ const Demo = () => {
                 );
               },
               formItemRender: (text, props) => (
-                <TagList {...props} {...props?.fieldProps} />
+                <TagList
+                  {...props}
+                  {...props?.fieldProps}
+                />
               ),
             },
           },
@@ -265,8 +266,7 @@ const Demo = () => {
             <strong>TableListItem</strong>: 表格数据项类型
           </li>
           <li>
-            <strong>泛型支持</strong>: ProDescriptions&lt;TableListItem, 'link'
-            | 'tags'&gt;
+            <strong>泛型支持</strong>: ProDescriptions&lt;TableListItem, 'link' | 'tags'&gt;
           </li>
           <li>
             <strong>类型安全</strong>: 提供完整的类型检查

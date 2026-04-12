@@ -5,6 +5,7 @@ import { Avatar, Breadcrumb, ConfigProvider, Space } from 'antd';
 import type { DirectionType } from 'antd/lib/config-provider';
 import { clsx } from 'clsx';
 import React from 'react';
+
 import type { ContentWidth } from '../../defaultSettings';
 import useStyle from './style';
 
@@ -16,10 +17,7 @@ export interface PageHeaderProps {
   style?: React.CSSProperties;
   childrenContentStyle?: React.CSSProperties;
   breadcrumb?: Partial<BreadcrumbProps> | React.ReactElement<typeof Breadcrumb>;
-  breadcrumbRender?: (
-    props: PageHeaderProps,
-    defaultDom: React.ReactNode,
-  ) => React.ReactNode;
+  breadcrumbRender?: (props: PageHeaderProps, defaultDom: React.ReactNode) => React.ReactNode;
   tags?: React.ReactElement<TagType> | React.ReactElement<TagType>[];
   footer?: React.ReactNode;
   extra?: React.ReactNode;
@@ -67,10 +65,7 @@ const renderBreadcrumb = (breadcrumb: BreadcrumbProps, prefixCls: string) => {
   );
 };
 
-const getBackIcon = (
-  props: PageHeaderProps,
-  direction: DirectionType = 'ltr',
-) => {
+const getBackIcon = (props: PageHeaderProps, direction: DirectionType = 'ltr') => {
   if (props.backIcon !== undefined) {
     return props.backIcon;
   }
@@ -100,11 +95,7 @@ const renderTitle = (
           {backIconDom}
           {avatar && (
             <Avatar
-              className={clsx(
-                `${headingPrefixCls}-avatar`,
-                hashId,
-                avatar.className,
-              )}
+              className={clsx(`${headingPrefixCls}-avatar`, hashId, avatar.className)}
               {...avatar}
             />
           )}
@@ -124,11 +115,7 @@ const renderTitle = (
               {subTitle}
             </span>
           )}
-          {tags && (
-            <span className={clsx(`${headingPrefixCls}-tags`, hashId)}>
-              {tags}
-            </span>
-          )}
+          {tags && <span className={clsx(`${headingPrefixCls}-tags`, hashId)}>{tags}</span>}
         </div>
       )}
       {extra && (
@@ -140,33 +127,23 @@ const renderTitle = (
   );
 };
 
-const renderFooter = (
-  prefixCls: string,
-  footer: React.ReactNode,
-  hashId: string,
-) => {
+const renderFooter = (prefixCls: string, footer: React.ReactNode, hashId: string) => {
   if (footer) {
-    return (
-      <div className={clsx(`${prefixCls}-footer`, hashId)}>{footer}</div>
-    );
+    return <div className={clsx(`${prefixCls}-footer`, hashId)}>{footer}</div>;
   }
   return null;
 };
 
-const renderChildren = (
-  prefixCls: string,
-  children: React.ReactNode,
-  hashId: string,
-) => <div className={clsx(`${prefixCls}-content`, hashId)}>{children}</div>;
+const renderChildren = (prefixCls: string, children: React.ReactNode, hashId: string) => (
+  <div className={clsx(`${prefixCls}-content`, hashId)}>{children}</div>
+);
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
   const [compact, updateCompact] = React.useState<boolean>(false);
 
   const onResize = ({ width }: { width: number }) => updateCompact(width < 768);
 
-  const { getPrefixCls, direction } = React.useContext(
-    ConfigProvider.ConfigContext,
-  );
+  const { getPrefixCls, direction } = React.useContext(ConfigProvider.ConfigContext);
 
   const {
     prefixCls: customizePrefixCls,
@@ -197,8 +174,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
 
   // support breadcrumbRender function
   const breadcrumbRenderDomFromProps =
-    breadcrumbRender?.({ ...props, prefixCls }, defaultBreadcrumbDom) ??
-    defaultBreadcrumbDom;
+    breadcrumbRender?.({ ...props, prefixCls }, defaultBreadcrumbDom) ?? defaultBreadcrumbDom;
 
   // 如果 breadcrumbRender 返回的是数组，需要转换为 Breadcrumb 组件
   // 如果返回的是 React.ReactNode，直接使用

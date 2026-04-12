@@ -1,10 +1,11 @@
+import { Button, Space, Tag } from 'antd';
+import request from 'umi-request';
+
 /**
  * columns API 配合 request 和搜索表单
  */
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProList } from '@xxlabs/pro-components';
-import { Button, Space, Tag } from 'antd';
-import request from 'umi-request';
 
 type GithubIssueItem = {
   url: string;
@@ -45,7 +46,10 @@ const columns: ProColumns<GithubIssueItem>[] = [
     render: (_, row) => (
       <Space size={8}>
         {row.labels?.map((label: { name: string }) => (
-          <Tag color="blue" key={label.name}>
+          <Tag
+            color="blue"
+            key={label.name}
+          >
             {label.name}
           </Tag>
         ))}
@@ -56,10 +60,20 @@ const columns: ProColumns<GithubIssueItem>[] = [
     listSlot: 'actions',
     search: false,
     render: (_, row) => [
-      <a href={row.url} target="_blank" rel="noopener noreferrer" key="link">
+      <a
+        href={row.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="link"
+      >
         链路
       </a>,
-      <a href={row.url} target="_blank" rel="noopener noreferrer" key="view">
+      <a
+        href={row.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="view"
+      >
         查看
       </a>,
     ],
@@ -79,7 +93,10 @@ const columns: ProColumns<GithubIssueItem>[] = [
 const Demo = () => (
   <ProList<GithubIssueItem>
     toolBarRender={() => [
-      <Button key="add" type="primary">
+      <Button
+        key="add"
+        type="primary"
+      >
         新建
       </Button>,
     ]}
@@ -87,10 +104,9 @@ const Demo = () => (
     rowKey="id"
     headerTitle="搜索列表（columns API）"
     request={async (params = {} as Record<string, any>) =>
-      request<{ data: GithubIssueItem[] }>(
-        'https://proapi.azurewebsites.net/github/issues',
-        { params },
-      )
+      request<{ data: GithubIssueItem[] }>('https://proapi.azurewebsites.net/github/issues', {
+        params,
+      })
     }
     pagination={{ pageSize: 5 }}
     columns={columns}

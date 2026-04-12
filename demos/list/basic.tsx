@@ -1,6 +1,7 @@
+import { Avatar, Space, Tag } from 'antd';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProList } from '@xxlabs/pro-components';
-import { Avatar, Space, Tag } from 'antd';
 
 type ProjectItem = {
   id: string;
@@ -29,8 +30,7 @@ const dataSource: ProjectItem[] = [
     status: 'active',
     owner: {
       name: '书琰',
-      avatar:
-        'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
     },
     tags: ['React', 'TypeScript', 'Ant Design'],
     updatedAt: '2024-02-09',
@@ -55,8 +55,7 @@ const dataSource: ProjectItem[] = [
     status: 'active',
     owner: {
       name: '期贤',
-      avatar:
-        'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
     },
     tags: ['Framework', 'React'],
     updatedAt: '2024-02-07',
@@ -81,8 +80,7 @@ const dataSource: ProjectItem[] = [
     status: 'archived',
     owner: {
       name: '怀渊',
-      avatar:
-        'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
     },
     tags: ['Charts', 'Visualization'],
     updatedAt: '2024-02-05',
@@ -105,7 +103,10 @@ const columns: ProColumns<ProjectItem>[] = [
     dataIndex: ['owner', 'avatar'],
     listSlot: 'avatar',
     render: (_, record) => (
-      <Avatar src={record.owner.avatar} alt={record.owner.name} />
+      <Avatar
+        src={record.owner.avatar}
+        alt={record.owner.name}
+      />
     ),
   },
   {
@@ -113,9 +114,7 @@ const columns: ProColumns<ProjectItem>[] = [
     dataIndex: 'status',
     listSlot: 'subTitle',
     render: (_, record) => (
-      <Tag color={statusMap[record.status].color}>
-        {statusMap[record.status].text}
-      </Tag>
+      <Tag color={statusMap[record.status].color}>{statusMap[record.status].text}</Tag>
     ),
   },
   {
@@ -123,7 +122,10 @@ const columns: ProColumns<ProjectItem>[] = [
     dataIndex: 'tags',
     listSlot: 'content',
     render: (_, record) => (
-      <Space size={4} wrap>
+      <Space
+        size={4}
+        wrap
+      >
         {record.tags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>
         ))}

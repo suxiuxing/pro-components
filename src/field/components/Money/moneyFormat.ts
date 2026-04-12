@@ -1,4 +1,4 @@
-﻿/** Default fraction digits for money input */
+/** Default fraction digits for money input */
 export const DefaultPrecisionCont = 2;
 
 // Money locale formatting
@@ -62,9 +62,7 @@ export const getTextByLocale = (
   config?: any,
   moneySymbol: string = '',
 ) => {
-  let moneyText: number | string | undefined = paramsText
-    ?.toString()
-    .replaceAll(',', '');
+  let moneyText: number | string | undefined = paramsText?.toString().replaceAll(',', '');
   if (typeof moneyText === 'string') {
     const parsedNum = Number(moneyText);
     // 转换数字为NaN时，返回原始值展示
@@ -86,12 +84,9 @@ export const getTextByLocale = (
   try {
     // Formatting the number, when readonly moneySymbol = false, unused currency.
     const initNumberFormatter = new Intl.NumberFormat(
-      supportFormat && locale !== false
-        ? locale?.replace('_', '-') || 'zh-Hans-CN'
-        : 'zh-Hans-CN',
+      supportFormat && locale !== false ? locale?.replace('_', '-') || 'zh-Hans-CN' : 'zh-Hans-CN',
       {
-        ...(intlMap[(locale as 'zh-Hans-CN') || 'zh-Hans-CN'] ||
-          defaultMoneyIntl),
+        ...(intlMap[(locale as 'zh-Hans-CN') || 'zh-Hans-CN'] || defaultMoneyIntl),
         maximumFractionDigits: precision,
         ...config,
       },

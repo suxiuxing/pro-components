@@ -1,30 +1,25 @@
-import { ProList } from '@xxlabs/pro-components';
 import { Avatar, theme } from 'antd';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const APPLICATIONS = [
   {
     id: '1',
     title: '帆软 SSO',
-    avatar:
-      'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
-    description:
-      'FineReport 是一款用于报表制作、分析和展示的软件，支持数据填报与可视化大屏。',
+    avatar: 'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
+    description: 'FineReport 是一款用于报表制作、分析和展示的软件，支持数据填报与可视化大屏。',
   },
   {
     id: '2',
     title: '泛微 E9 SSO',
-    avatar:
-      'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
-    description:
-      '泛微 E9 是一款成熟的协同办公软件，以流程管理、知识管理为核心。',
+    avatar: 'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
+    description: '泛微 E9 是一款成熟的协同办公软件，以流程管理、知识管理为核心。',
   },
   {
     id: '3',
     title: '销售易',
-    avatar:
-      'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
-    description:
-      'SAML (Security Assertion Markup Language) 是一种用于身份认证与授权的标准协议。',
+    avatar: 'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
+    description: 'SAML (Security Assertion Markup Language) 是一种用于身份认证与授权的标准协议。',
   },
 ];
 

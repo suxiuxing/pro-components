@@ -5,10 +5,12 @@ import {
   QuestionCircleFilled,
   SearchOutlined,
 } from '@ant-design/icons';
-import type { ProSettings } from '@xxlabs/pro-components';
-import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
 import { Alert, Button, Input, Space } from 'antd';
 import React, { useState } from 'react';
+
+import type { ProSettings } from '@xxlabs/pro-components';
+import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 
 const Demo = () => {
@@ -42,8 +44,8 @@ const Demo = () => {
                       color: 'white',
                     }}
                   >
-                    本网站提供的部分服务在你当前浏览器中无法使用，建议你更换为
-                    Chrome 浏览器查看本网站。
+                    本网站提供的部分服务在你当前浏览器中无法使用，建议你更换为 Chrome
+                    浏览器查看本网站。
                   </div>
                 }
                 icon={
@@ -87,7 +89,10 @@ const Demo = () => {
               }}
             >
               <Button key="1">上一步</Button>
-              <Button key="2" type="primary">
+              <Button
+                key="2"
+                type="primary"
+              >
                 保存
               </Button>
             </Space>

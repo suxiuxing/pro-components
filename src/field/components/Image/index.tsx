@@ -1,9 +1,7 @@
-﻿import React from 'react';
+import React from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldImageEdit } from './FieldImageEdit';
 import { FieldImageRead } from './FieldImageRead';
@@ -55,9 +53,8 @@ const FieldImage: ProFieldFC<FieldImageProps> = (
   return null;
 };
 
-const ForwardRefFieldImage = React.forwardRef<
-  any,
-  Parameters<ProFieldFC<FieldImageProps>>[0]
->(FieldImage);
+const ForwardRefFieldImage = React.forwardRef<any, Parameters<ProFieldFC<FieldImageProps>>[0]>(
+  FieldImage,
+);
 
 export default ForwardRefFieldImage;

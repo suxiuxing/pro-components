@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { isBrowser } from '../../isBrowser';
 
 export function useDocumentTitle(
@@ -9,8 +10,7 @@ export function useDocumentTitle(
   },
   appDefaultTitle: string | false,
 ) {
-  const titleText =
-    typeof titleInfo.title === 'string' ? titleInfo.title : appDefaultTitle;
+  const titleText = typeof titleInfo.title === 'string' ? titleInfo.title : appDefaultTitle;
   useEffect(() => {
     if (isBrowser() && titleText) {
       document.title = titleText;

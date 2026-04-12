@@ -1,7 +1,8 @@
-import { ProList } from '@xxlabs/pro-components';
 import { Button, Progress, Select, Tag } from 'antd';
 import type { Key } from 'react';
 import { useState } from 'react';
+
+import { ProList } from '@xxlabs/pro-components';
 
 type ProjectItem = {
   title: string;
@@ -49,9 +50,7 @@ const dataSource: ProjectItem[] = [
 const Demo = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
   const [expandedRowKeys, setExpandedRowKeys] = useState<readonly Key[]>([]);
-  const [size, setSize] = useState<'small' | 'default' | 'large' | undefined>(
-    'default',
-  );
+  const [size, setSize] = useState<'small' | 'default' | 'large' | undefined>('default');
   const [split, setSplit] = useState<0 | 1>(1);
   const rowSelection = {
     selectedRowKeys,
@@ -85,7 +84,10 @@ const Demo = () => {
         split={split === 1}
         toolBarRender={() => {
           return [
-            <Button key="new" type="primary">
+            <Button
+              key="new"
+              type="primary"
+            >
               新建
             </Button>,
           ];
@@ -108,13 +110,14 @@ const Demo = () => {
                 <div style={{ width: 200 }}>
                   <div>
                     {record.status}{' '}
-                    <Tag
-                      color={record.progress === 100 ? 'success' : 'processing'}
-                    >
+                    <Tag color={record.progress === 100 ? 'success' : 'processing'}>
                       {record.progress}%
                     </Tag>
                   </div>
-                  <Progress percent={record.progress} showInfo={false} />
+                  <Progress
+                    percent={record.progress}
+                    showInfo={false}
+                  />
                 </div>
               </div>
             ),

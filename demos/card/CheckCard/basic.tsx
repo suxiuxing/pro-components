@@ -32,8 +32,7 @@ const Demo = () => (
           <strong>description</strong>: 卡片描述信息，可以是字符串或 React 节点
         </li>
         <li>
-          <strong>onChange</strong>: 选中状态改变时的回调函数，参数为
-          checked（布尔值）
+          <strong>onChange</strong>: 选中状态改变时的回调函数，参数为 checked（布尔值）
         </li>
         <li>
           <strong>defaultChecked</strong>: 默认是否选中，布尔值

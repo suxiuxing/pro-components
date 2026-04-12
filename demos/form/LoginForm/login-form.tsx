@@ -6,6 +6,10 @@ import {
   UserOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
+import { Space, Tabs, message, theme } from 'antd';
+import type { CSSProperties } from 'react';
+import { useState } from 'react';
+
 import {
   LoginForm,
   ProConfigProvider,
@@ -14,9 +18,6 @@ import {
   ProFormText,
   setAlpha,
 } from '@xxlabs/pro-components';
-import { Space, Tabs, message, theme } from 'antd';
-import type { CSSProperties } from 'react';
-import { useState } from 'react';
 
 type LoginType = 'phone' | 'account';
 
@@ -92,22 +93,12 @@ const Demo = () => {
                     };
                     const status = getStatus();
                     if (status === 'pass') {
-                      return (
-                        <div style={{ color: token.colorWarning }}>
-                          强度：中
-                        </div>
-                      );
+                      return <div style={{ color: token.colorWarning }}>强度：中</div>;
                     }
                     if (status === 'ok') {
-                      return (
-                        <div style={{ color: token.colorSuccess }}>
-                          强度：强
-                        </div>
-                      );
+                      return <div style={{ color: token.colorSuccess }}>强度：强</div>;
                     }
-                    return (
-                      <div style={{ color: token.colorError }}>强度：弱</div>
-                    );
+                    return <div style={{ color: token.colorError }}>强度：弱</div>;
                   },
                 }}
                 placeholder={'密码: ant.design'}
@@ -173,7 +164,10 @@ const Demo = () => {
               marginBlockEnd: 24,
             }}
           >
-            <ProFormCheckbox noStyle name="autoLogin">
+            <ProFormCheckbox
+              noStyle
+              name="autoLogin"
+            >
               自动登录
             </ProFormCheckbox>
             <a

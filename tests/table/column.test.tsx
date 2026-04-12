@@ -1,8 +1,10 @@
 import { cleanup, render, waitFor } from '@testing-library/react';
-import { ProTable } from '@xxlabs/pro-components';
 import { Badge, ConfigProvider, Table } from 'antd';
 import dayjs from 'dayjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProTable } from '@xxlabs/pro-components';
+
 import { request } from './fixtures';
 
 afterEach(() => {
@@ -264,9 +266,7 @@ describe('Table ColumnSetting', () => {
     );
 
     await waitFor(() => {
-      expect(container.querySelector('tbody td')?.textContent).toContain(
-        '中文',
-      );
+      expect(container.querySelector('tbody td')?.textContent).toContain('中文');
     });
 
     const td = container.querySelector('tbody td')!;
@@ -291,11 +291,7 @@ describe('Table ColumnSetting', () => {
             renderText: (text, row) =>
               text ? (
                 <span>
-                  {row.phoneVerified ? (
-                    <Badge status="success" />
-                  ) : (
-                    <Badge status="error" />
-                  )}
+                  {row.phoneVerified ? <Badge status="success" /> : <Badge status="error" />}
                   &nbsp;
                   {text}
                 </span>
@@ -316,9 +312,7 @@ describe('Table ColumnSetting', () => {
     );
 
     await waitFor(() => {
-      expect(container.querySelector('tbody td')?.textContent).toContain(
-        '13800138000',
-      );
+      expect(container.querySelector('tbody td')?.textContent).toContain('13800138000');
     });
 
     // 修复：renderText 返回 JSX 时 ellipsis tooltip 不应显示 [object Object]

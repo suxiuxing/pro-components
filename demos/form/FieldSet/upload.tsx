@@ -1,8 +1,4 @@
-﻿import {
-  ProForm,
-  ProFormUploadButton,
-  ProFormUploadDragger,
-} from '@xxlabs/pro-components';
+import { ProForm, ProFormUploadButton, ProFormUploadDragger } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -29,7 +25,11 @@ const Demo = () => {
         action="/upload.do"
         extra="extra"
       />
-      <ProFormUploadDragger max={4} label="Dragger" name="dragger" />
+      <ProFormUploadDragger
+        max={4}
+        label="Dragger"
+        name="dragger"
+      />
     </ProForm>
   );
 };

@@ -1,10 +1,8 @@
-﻿import dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import React, { useCallback } from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC, ProFieldLightProps } from '../../types';
 import { FieldRangePickerEdit } from './FieldRangePickerEdit';
 import { FieldRangePickerRead } from './FieldRangePickerRead';
@@ -53,9 +51,7 @@ const FieldRangePicker: ProFieldFC<
   const parsedStartText: string = startText
     ? dayjs(startText).format(genFormatText(dayjs(startText)))
     : '';
-  const parsedEndText: string = endText
-    ? dayjs(endText).format(genFormatText(dayjs(endText)))
-    : '';
+  const parsedEndText: string = endText ? dayjs(endText).format(genFormatText(dayjs(endText))) : '';
 
   if (isProFieldReadMode(mode)) {
     return FieldRangePickerRead(

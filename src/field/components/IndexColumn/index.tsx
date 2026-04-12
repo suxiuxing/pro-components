@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext } from 'react';
+
 import { useStyle } from '../../../utils';
 
 /**
@@ -8,10 +9,10 @@ import { useStyle } from '../../../utils';
  *
  * @param param0
  */
-const IndexColumn: React.ForwardRefRenderFunction<
-  any,
-  { border?: boolean; children: number }
-> = ({ border = false, children }, ref) => {
+const IndexColumn: React.ForwardRefRenderFunction<any, { border?: boolean; children: number }> = (
+  { border = false, children },
+  ref,
+) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
 
   const className = getPrefixCls('pro-field-index-column');

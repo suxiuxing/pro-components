@@ -1,5 +1,6 @@
-import { ProForm, ProFormSelect } from '@xxlabs/pro-components';
 import { message } from 'antd';
+
+import { ProForm, ProFormSelect } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (

@@ -4,6 +4,7 @@ import type { SelectProps } from 'antd';
 import { ConfigProvider, Input, Select } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo, useState } from 'react';
+
 import { FieldLabel, useStyle } from '../../../../utils';
 import type { ProFieldLightProps } from '../../../types';
 
@@ -80,8 +81,7 @@ export const LightSelect: React.ForwardRefRenderFunction<
     ...restProps
   } = props;
   const { placeholder = label } = props;
-  const { label: labelPropsName = 'label', value: valuePropsName = 'value' } =
-    fieldNames || {};
+  const { label: labelPropsName = 'label', value: valuePropsName = 'value' } = fieldNames || {};
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = getPrefixCls('pro-field-select-light-select');
   const [open, setOpen] = useState<boolean>(false);
@@ -243,13 +243,8 @@ export const LightSelect: React.ForwardRefRenderFunction<
                     .includes(keyword);
                 }
                 return (
-                  String(o[labelPropsName])
-                    ?.toLowerCase()
-                    ?.includes(keyword?.toLowerCase()) ||
-                  o[valuePropsName]
-                    ?.toString()
-                    ?.toLowerCase()
-                    ?.includes(keyword?.toLowerCase())
+                  String(o[labelPropsName])?.toLowerCase()?.includes(keyword?.toLowerCase()) ||
+                  o[valuePropsName]?.toString()?.toLowerCase()?.includes(keyword?.toLowerCase())
                 );
               })
         }

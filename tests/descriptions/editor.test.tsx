@@ -1,14 +1,15 @@
 import { useControlledState } from '@rc-component/util';
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import { Form, InputNumber } from 'antd';
+import React, { act, useCallback, useRef } from 'react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import type {
   ProDescriptionsActionType,
   ProDescriptionsItemProps,
   RowEditableConfig,
 } from '@xxlabs/pro-components';
 import { ProDescriptions } from '@xxlabs/pro-components';
-import { Form, InputNumber } from 'antd';
-import React, { act, useCallback, useRef } from 'react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
 type DataSourceType = {
   id: number;
   title?: string;
@@ -202,9 +203,7 @@ describe('Descriptions', () => {
     await wrapper.findAllByText('重置');
 
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLSpanElement>('span.anticon-edit')[0]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLSpanElement>('span.anticon-edit')[0]?.click();
     });
 
     await waitFor(() => {
@@ -235,9 +234,7 @@ describe('Descriptions', () => {
       wrapper.queryByText('重置')?.click();
     });
     await waitFor(() => {
-      expect(
-        wrapper.queryByDisplayValue('🐛 [BUG]yarn install命令 antd2.4.5会报错'),
-      ).toBeTruthy();
+      expect(wrapper.queryByDisplayValue('🐛 [BUG]yarn install命令 antd2.4.5会报错')).toBeTruthy();
     });
   });
 
@@ -291,7 +288,10 @@ describe('Descriptions', () => {
         editable={{
           editableKeys: ['title'],
           actionRender: () => [
-            <div key="test" id="test">
+            <div
+              key="test"
+              id="test"
+            >
               xx
             </div>,
           ],
@@ -317,24 +317,18 @@ describe('Descriptions', () => {
   it('📝 support editorRowKeys', async () => {
     const wrapper = render(<DescriptionsDemo editorRowKeys={['title']} />);
 
-    await wrapper.findAllByDisplayValue(
-      '🐛 [BUG]yarn install命令 antd2.4.5会报错',
-    );
+    await wrapper.findAllByDisplayValue('🐛 [BUG]yarn install命令 antd2.4.5会报错');
     // 第一行应该编辑态
     expect(
       wrapper.baseElement
-        .querySelectorAll(
-          'td.ant-descriptions-item .ant-descriptions-item-content',
-        )[0]
+        .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
         .querySelectorAll('input').length > 0,
     ).toBeTruthy();
 
     // 第二行不应该是编辑态
     expect(
       wrapper.baseElement
-        .querySelectorAll(
-          'td.ant-descriptions-item .ant-descriptions-item-content',
-        )[1]
+        .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[1]
         .querySelectorAll('input').length > 0,
     ).toBeFalsy();
   });
@@ -350,34 +344,26 @@ describe('Descriptions', () => {
     );
     await wrapper.findAllByText('重置');
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('span.anticon-edit')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('span.anticon-edit')?.click();
     });
     await waitFor(() => {
       expect(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[0]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
           .querySelectorAll('input').length > 0,
       ).toBeTruthy();
     });
 
     act(() => {
       wrapper.baseElement
-        .querySelectorAll(
-          'td.ant-descriptions-item .ant-descriptions-item-content',
-        )[0]
+        .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
         .querySelector<HTMLSpanElement>(`span.anticon-close`)
         ?.click();
     });
     await waitFor(() => {
       expect(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[0]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
           .querySelectorAll('input').length > 0,
       ).toBeFalsy();
     });
@@ -395,25 +381,19 @@ describe('Descriptions', () => {
     );
     await wrapper.findAllByText('重置');
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLSpanElement>('span.anticon-edit')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLSpanElement>('span.anticon-edit')?.click();
     });
     await waitFor(() => {
       expect(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[0]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
           .querySelectorAll('input').length > 0,
       ).toBeTruthy();
     });
 
     act(() => {
       wrapper.baseElement
-        .querySelector<HTMLSpanElement>(
-          'td.ant-descriptions-item .ant-descriptions-item-content',
-        )
+        .querySelector<HTMLSpanElement>('td.ant-descriptions-item .ant-descriptions-item-content')
         ?.querySelector<HTMLSpanElement>(`span.anticon-close`)
         ?.click();
     });
@@ -421,9 +401,7 @@ describe('Descriptions', () => {
     await waitFor(() => {
       expect(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[0]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
           .querySelectorAll('input').length > 0,
       ).toBeFalsy();
     });
@@ -441,9 +419,7 @@ describe('Descriptions', () => {
     );
     await wrapper.findAllByText('重置');
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLSpanElement>('span.anticon-edit')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLSpanElement>('span.anticon-edit')?.click();
     });
 
     await waitFor(() => {
@@ -464,9 +440,7 @@ describe('Descriptions', () => {
     );
     await wrapper.findAllByText('重置');
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLSpanElement>('span.anticon-edit')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLSpanElement>('span.anticon-edit')?.click();
     });
     await waitFor(() => {
       expect(fn).toHaveBeenCalledWith(['state', 'title']);
@@ -478,26 +452,20 @@ describe('Descriptions', () => {
     const wrapper = render(<DescriptionsDemo onSave={(key) => fn(key)} />);
     await wrapper.findAllByText('重置');
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLSpanElement>('span.anticon-edit')[1]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLSpanElement>('span.anticon-edit')[1]?.click();
     });
 
     await waitFor(() => {
       expect(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[1]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[1]
           .querySelectorAll('input').length > 0,
       ).toBeTruthy();
     });
 
     act(() => {
       wrapper.baseElement
-        .querySelectorAll(
-          'td.ant-descriptions-item .ant-descriptions-item-content',
-        )[1]
+        .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[1]
         .querySelector<HTMLSpanElement>('span.anticon-check')
         ?.click();
     });
@@ -520,26 +488,20 @@ describe('Descriptions', () => {
     await wrapper.findAllByText('重置');
 
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLSpanElement>('span.anticon-edit')[1]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLSpanElement>('span.anticon-edit')[1]?.click();
     });
 
     await waitFor(() => {
       expect(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[1]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[1]
           .querySelectorAll('input').length > 0,
       ).toBeTruthy();
     });
 
     act(() => {
       wrapper.baseElement
-        .querySelectorAll(
-          'td.ant-descriptions-item .ant-descriptions-item-content',
-        )[1]
+        .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[1]
         .querySelector<HTMLSpanElement>(`span.anticon-check`)
         ?.click();
     });
@@ -547,9 +509,7 @@ describe('Descriptions', () => {
     await waitFor(() => {
       expect(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[1]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[1]
           .querySelectorAll('input').length > 0,
       ).toBeTruthy();
     });
@@ -566,25 +526,19 @@ describe('Descriptions', () => {
     await wrapper.findAllByText('重置');
 
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLSpanElement>('span.anticon-edit')[1]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLSpanElement>('span.anticon-edit')[1]?.click();
     });
 
     await waitFor(() => {
       expect(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[1]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[1]
           .querySelectorAll('input').length > 0,
       ).toBeTruthy();
     });
     act(() => {
       wrapper.baseElement
-        .querySelectorAll(
-          'td.ant-descriptions-item .ant-descriptions-item-content',
-        )[1]
+        .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[1]
         .querySelector<HTMLSpanElement>(`span.anticon-close`)
         ?.click();
     });
@@ -596,24 +550,18 @@ describe('Descriptions', () => {
 
   it('📝 support form rules', async () => {
     const fn = vi.fn();
-    const wrapper = render(
-      <DescriptionsDemo onSave={(key, row) => fn(row.title)} />,
-    );
+    const wrapper = render(<DescriptionsDemo onSave={(key, row) => fn(row.title)} />);
 
     await wrapper.findAllByText('重置');
 
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLSpanElement>('span.anticon-edit')[0]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLSpanElement>('span.anticon-edit')[0]?.click();
     });
 
     await waitFor(() => {
       expect(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[0]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
           .querySelectorAll('input').length > 0,
       ).toBeTruthy();
     });
@@ -621,9 +569,7 @@ describe('Descriptions', () => {
     act(() => {
       fireEvent.change(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[0]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
           .querySelectorAll('input')![0],
         {
           target: {
@@ -634,9 +580,7 @@ describe('Descriptions', () => {
     });
     act(() => {
       wrapper.baseElement
-        .querySelectorAll(
-          'td.ant-descriptions-item .ant-descriptions-item-content',
-        )[0]
+        .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
         .querySelectorAll<HTMLSpanElement>(`span.anticon-check`)[0]
         .click();
     });
@@ -649,9 +593,7 @@ describe('Descriptions', () => {
     act(() => {
       fireEvent.change(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[0]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
           .querySelectorAll('input')![0],
         {
           target: {
@@ -664,9 +606,7 @@ describe('Descriptions', () => {
     act(() => {
       fireEvent.click(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[0]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[0]
           .querySelector('span.anticon-check')!,
         {},
       );
@@ -679,23 +619,17 @@ describe('Descriptions', () => {
 
   it('📝 when dataIndex is array', async () => {
     const fn = vi.fn();
-    const wrapper = render(
-      <DescriptionsDemo onSave={(key, row) => fn(row?.time?.created_at)} />,
-    );
+    const wrapper = render(<DescriptionsDemo onSave={(key, row) => fn(row?.time?.created_at)} />);
     await wrapper.findAllByText('重置');
 
     act(() => {
-      wrapper.baseElement
-        .querySelectorAll<HTMLSpanElement>('span.anticon-edit')[2]
-        ?.click();
+      wrapper.baseElement.querySelectorAll<HTMLSpanElement>('span.anticon-edit')[2]?.click();
     });
 
     act(() => {
       fireEvent.change(
         wrapper.baseElement
-          .querySelectorAll(
-            'td.ant-descriptions-item .ant-descriptions-item-content',
-          )[2]
+          .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[2]
           .querySelector(`input.ant-input`)!,
         {
           target: {
@@ -707,9 +641,7 @@ describe('Descriptions', () => {
 
     act(() => {
       wrapper.baseElement
-        .querySelectorAll(
-          'td.ant-descriptions-item .ant-descriptions-item-content',
-        )[2]
+        .querySelectorAll('td.ant-descriptions-item .ant-descriptions-item-content')[2]
         .querySelectorAll<HTMLDivElement>(`span.anticon-check`)[0]
         ?.click();
     });

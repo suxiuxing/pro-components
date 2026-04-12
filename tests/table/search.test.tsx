@@ -1,19 +1,13 @@
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
-import type { ProFormInstance } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import type { FormInstance } from 'antd';
 import { Input } from 'antd';
 import dayjs from 'dayjs';
 import React, { act, createRef } from 'react';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+
+import type { ProFormInstance } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
+
 import { waitTime } from '../util';
 
 afterEach(() => {
@@ -305,9 +299,7 @@ describe('BasicTable Search', () => {
     );
 
     await waitFor(() => {
-      expect(
-        !!html.baseElement.querySelector('.ant-col.ant-col-12'),
-      ).toBeTruthy();
+      expect(!!html.baseElement.querySelector('.ant-col.ant-col-12')).toBeTruthy();
     });
   });
 
@@ -463,9 +455,7 @@ describe('BasicTable Search', () => {
 
     await html.findAllByText('Name');
 
-    expect(html.baseElement.querySelectorAll('div.ant-form-item').length).toBe(
-      2,
-    );
+    expect(html.baseElement.querySelectorAll('div.ant-form-item').length).toBe(2);
     expect(html.baseElement.querySelectorAll('.money-class').length).toBe(0);
 
     act(() => {
@@ -496,13 +486,9 @@ describe('BasicTable Search', () => {
     });
 
     await waitFor(() => {
-      expect(html.baseElement.querySelectorAll('div.money-class').length).toBe(
-        1,
-      );
+      expect(html.baseElement.querySelectorAll('div.money-class').length).toBe(1);
 
-      expect(
-        html.baseElement.querySelectorAll('div.ant-form-item').length,
-      ).toBe(3);
+      expect(html.baseElement.querySelectorAll('div.ant-form-item').length).toBe(3);
     });
 
     act(() => {
@@ -528,9 +514,7 @@ describe('BasicTable Search', () => {
       );
     });
     await waitFor(() => {
-      expect(
-        html.baseElement.querySelectorAll('div.ant-form-item').length,
-      ).toBe(3);
+      expect(html.baseElement.querySelectorAll('div.ant-form-item').length).toBe(3);
     });
   });
 
@@ -759,9 +743,7 @@ describe('BasicTable Search', () => {
     // 验证字段值已更新
     await waitFor(() => {
       const updatedFieldsValue = formRef.current?.getFieldsValue?.();
-      expect(updatedFieldsValue?.since?.format?.('YYYY-MM-DD')).toBe(
-        '2020-10-15',
-      );
+      expect(updatedFieldsValue?.since?.format?.('YYYY-MM-DD')).toBe('2020-10-15');
     });
 
     // 测试formRef的resetFields方法
@@ -772,9 +754,7 @@ describe('BasicTable Search', () => {
     // 验证字段已重置
     await waitFor(() => {
       const resetFieldsValue = formRef.current?.getFieldsValue?.();
-      expect(resetFieldsValue?.since?.format?.('YYYY-MM-DD')).toBe(
-        '2020-09-11',
-      );
+      expect(resetFieldsValue?.since?.format?.('YYYY-MM-DD')).toBe('2020-09-11');
     });
 
     // 测试formRef的getFieldValue方法
@@ -816,9 +796,7 @@ describe('BasicTable Search', () => {
 
     await waitFor(() => {
       // Should show validation error
-      expect(
-        container.querySelector('.ant-form-item-explain-error'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-form-item-explain-error')).toBeTruthy();
     });
 
     expect(requestFn).not.toHaveBeenCalled();
@@ -848,9 +826,7 @@ describe('BasicTable Search', () => {
 
     // Initial load should fail validation
     await waitFor(() => {
-      expect(
-        container.querySelector('.ant-form-item-explain-error'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-form-item-explain-error')).toBeTruthy();
     });
     expect(requestFn).not.toHaveBeenCalled();
 
@@ -872,9 +848,7 @@ describe('BasicTable Search', () => {
     await waitFor(() => {
       // Reset should clear input (back to empty initialValue).
       // And trigger validation.
-      expect(
-        container.querySelector('.ant-form-item-explain-error'),
-      ).toBeTruthy();
+      expect(container.querySelector('.ant-form-item-explain-error')).toBeTruthy();
     });
 
     // Request should NOT be called because validation failed

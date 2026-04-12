@@ -1,7 +1,8 @@
-﻿import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
 import type { DescriptionsItemType } from 'antd/es/descriptions';
 import React from 'react';
+
 import type { ProCoreActionType, UseEditableMapUtilType } from '../utils';
 import { LabelIconTip, genCopyable } from '../utils';
 import { FieldRender } from './FieldRender';
@@ -35,9 +36,7 @@ export function schemaToDescriptionsItem(
 
       const defaultData = getDataFromConfig(item, entity) ?? restItem.children;
 
-      const text = renderText
-        ? renderText(defaultData, row, index, action)
-        : defaultData;
+      const text = renderText ? renderText(defaultData, row, index, action) : defaultData;
 
       const title =
         typeof restItem.title === 'function'
@@ -46,9 +45,7 @@ export function schemaToDescriptionsItem(
 
       const valueType = resolveDescriptionsValueType(item, row);
 
-      const isEditable = editableUtils?.isEditable(
-        (dataIndex as React.Key) || index,
-      );
+      const isEditable = editableUtils?.isEditable((dataIndex as React.Key) || index);
 
       const fieldMode = mode || isEditable ? 'edit' : 'read';
 
@@ -61,9 +58,7 @@ export function schemaToDescriptionsItem(
       const Component = showEditIcon ? Space : React.Fragment;
 
       const contentDom: React.ReactNode =
-        fieldMode === 'edit'
-          ? text
-          : genCopyable(text, item, text, defaultData);
+        fieldMode === 'edit' ? text : genCopyable(text, item, text, defaultData);
 
       const key = restItem.key || restItem.label?.toString() || index;
       const label = (title || restItem.label || restItem.tooltip) && (
@@ -97,9 +92,7 @@ export function schemaToDescriptionsItem(
                   {showEditIcon && (
                     <EditOutlined
                       onClick={() => {
-                        editableUtils?.startEditable(
-                          (dataIndex as React.Key) || index,
-                        );
+                        editableUtils?.startEditable((dataIndex as React.Key) || index);
                       }}
                     />
                   )}
@@ -123,9 +116,7 @@ export function schemaToDescriptionsItem(
                   {showEditIcon && valueType !== 'option' && (
                     <EditOutlined
                       onClick={() => {
-                        editableUtils?.startEditable(
-                          (dataIndex as React.Key) || index,
-                        );
+                        editableUtils?.startEditable((dataIndex as React.Key) || index);
                       }}
                     />
                   )}

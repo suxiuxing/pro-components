@@ -5,6 +5,7 @@ import { Col, ConfigProvider, Form, Row, theme } from 'antd';
 import type { FormInstance, FormProps } from 'antd/lib/form/Form';
 import { clsx } from 'clsx';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
+
 import { ProProvider, useIntl } from '../../../provider';
 import { isBrowser, useRefFunction } from '../../../utils';
 import type { CommonFormProps } from '../../BaseForm';
@@ -122,10 +123,7 @@ export type SpanConfig =
       xxl: number;
     };
 
-export type BaseQueryFilterProps = Omit<
-  ActionsProps,
-  'submitter' | 'setCollapsed' | 'isForm'
-> & {
+export type BaseQueryFilterProps = Omit<ActionsProps, 'submitter' | 'setCollapsed' | 'isForm'> & {
   className?: string;
   defaultCollapsed?: boolean;
   /**
@@ -230,10 +228,7 @@ export type BaseQueryFilterProps = Omit<
   containerStyle?: React.CSSProperties;
 };
 
-const flatMapItems = (
-  items: React.ReactNode[],
-  ignoreRules?: boolean,
-): React.ReactNode[] => {
+const flatMapItems = (items: React.ReactNode[], ignoreRules?: boolean): React.ReactNode[] => {
   return items?.flatMap((item: any) => {
     if (item?.type?.displayName === 'ProForm-Group' && !item.props?.title) {
       return item.props.children;
@@ -252,10 +247,10 @@ const flatMapItems = (
   });
 };
 
-export type QueryFilterProps<
-  T = Record<string, any>,
-  U = Record<string, any>,
-> = Omit<FormProps<T>, 'onFinish'> &
+export type QueryFilterProps<T = Record<string, any>, U = Record<string, any>> = Omit<
+  FormProps<T>,
+  'onFinish'
+> &
   CommonFormProps<T, U> &
   BaseQueryFilterProps & {
     onReset?: (values: T) => void;
@@ -292,10 +287,8 @@ const QueryFilterContent: React.FC<{
 }> = (props) => {
   const intl = useIntl();
   const { hashId } = useContext(ProProvider);
-  const resetText =
-    props.resetText || intl.getMessage('tableForm.reset', '重置');
-  const searchText =
-    props.searchText || intl.getMessage('tableForm.search', '搜索');
+  const resetText = props.resetText || intl.getMessage('tableForm.reset', '重置');
+  const searchText = props.searchText || intl.getMessage('tableForm.search', '搜索');
 
   const [collapsed, setCollapsedInner] = useControlledState<boolean>(
     () => props.defaultCollapsed && !!props.submitter,
@@ -317,9 +310,7 @@ const QueryFilterContent: React.FC<{
     (updater: boolean | ((prev: boolean) => boolean)) => {
       setCollapsedInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         queueMicrotask(() => {
           onCollapseCallback(next);
         });
@@ -378,10 +369,7 @@ const QueryFilterContent: React.FC<{
 
   // 处理过，包含是否需要隐藏的 数组
   const processedList = flatMapItems(items, props.ignoreRules).map(
-    (
-      item,
-      index,
-    ): { itemDom: React.ReactNode; hidden: boolean; colSpan: number } => {
+    (item, index): { itemDom: React.ReactNode; hidden: boolean; colSpan: number } => {
       const itemElement = React.isValidElement<{
         colSize?: number;
         hidden?: boolean;
@@ -412,9 +400,7 @@ const QueryFilterContent: React.FC<{
 
       itemLength += 1;
 
-      const itemKey =
-        (itemElement && (itemElement.key || `${itemElement.props.name}`)) ||
-        index;
+      const itemKey = (itemElement && (itemElement.key || `${itemElement.props.name}`)) || index;
 
       if (itemElement && hidden) {
         if (!props.preserve) {
@@ -456,9 +442,7 @@ const QueryFilterContent: React.FC<{
 
     // 每一列的key, 一般是存在的
     const itemKey =
-      (itemDomElement &&
-        (itemDomElement.key || `${itemDomElement.props.name}`)) ||
-      index;
+      (itemDomElement && (itemDomElement.key || `${itemDomElement.props.name}`)) || index;
 
     if (24 - (currentSpan % 24) < colSpan) {
       // 如果当前行空余位置放不下，那么折行
@@ -495,8 +479,7 @@ const QueryFilterContent: React.FC<{
     );
   });
 
-  const hiddenNum =
-    showHiddenNum && processedList.filter((item) => item.hidden).length;
+  const hiddenNum = showHiddenNum && processedList.filter((item) => item.hidden).length;
 
   /** 是否需要展示 collapseRender */
   const needCollapseRender = useMemo(() => {
@@ -507,8 +490,7 @@ const QueryFilterContent: React.FC<{
   }, [totalSize, showLength, totalSpan]);
 
   const offset = useMemo(() => {
-    const offsetSpan =
-      (currentSpan % 24) + (props.submitterColSpanProps?.span ?? spanSize.span);
+    const offsetSpan = (currentSpan % 24) + (props.submitterColSpanProps?.span ?? spanSize.span);
     if (offsetSpan > 24) {
       return 24 - (props.submitterColSpanProps?.span ?? spanSize.span);
     }
@@ -621,9 +603,7 @@ function QueryFilter<T = Record<string, any>>(props: QueryFilterProps<T>) {
     if (defaultColsNumber !== undefined) {
       // 折叠为一行，需要处理多行的情况请使用 defaultFormItemsNumber
       const oneRowControlsNumber = 24 / spanSize.span - 1;
-      return defaultColsNumber > oneRowControlsNumber
-        ? oneRowControlsNumber
-        : defaultColsNumber;
+      return defaultColsNumber > oneRowControlsNumber ? oneRowControlsNumber : defaultColsNumber;
     }
     return Math.max(1, 24 / spanSize.span - 1);
   }, [defaultColsNumber, defaultFormItemsNumber, spanSize.span]);

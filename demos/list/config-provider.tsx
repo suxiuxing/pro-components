@@ -1,7 +1,8 @@
-import { ProList } from '@xxlabs/pro-components';
 import { ConfigProvider, Progress } from 'antd';
 import type { Key } from 'react';
 import { useState } from 'react';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const dataSource = [
   {

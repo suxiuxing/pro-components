@@ -1,14 +1,12 @@
-﻿import { cleanup, fireEvent, render } from '@testing-library/react';
-import {
-  ProForm,
-  ProFormUploadButton,
-  ProFormUploadDragger,
-} from '@xxlabs/pro-components';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import { Form } from 'antd';
 import type { UploadFile } from 'antd/lib/upload/interface';
 import { act } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import mock from 'xhr-mock';
+
+import { ProForm, ProFormUploadButton, ProFormUploadDragger } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 const mockFile = new File(['foo'], 'foo.png', {
@@ -67,14 +65,11 @@ describe('ProFormUpload', () => {
     );
 
     act(() => {
-      fireEvent.change(
-        wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload input')!,
-        {
-          target: {
-            files: [mockFile],
-          },
+      fireEvent.change(wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload input')!, {
+        target: {
+          files: [mockFile],
         },
-      );
+      });
     });
     await waitForWaitTime(1000);
     expect(fn).toHaveBeenCalled();
@@ -104,14 +99,11 @@ describe('ProFormUpload', () => {
     );
 
     act(() => {
-      fireEvent.change(
-        wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload input')!,
-        {
-          target: {
-            files: [mockFile],
-          },
+      fireEvent.change(wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload input')!, {
+        target: {
+          files: [mockFile],
         },
-      );
+      });
     });
     await waitForWaitTime(200);
 
@@ -137,8 +129,7 @@ describe('ProFormUpload', () => {
       </Form>,
     );
     expect(
-      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload')
-        ?.innerHTML,
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload')?.innerHTML,
     ).toMatchSnapshot();
     act(() => {
       wrapper.rerender(
@@ -207,14 +198,11 @@ describe('ProFormUpload', () => {
     );
 
     act(() => {
-      fireEvent.change(
-        wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload input')!,
-        {
-          target: {
-            files: [mockFile],
-          },
+      fireEvent.change(wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload input')!, {
+        target: {
+          files: [mockFile],
         },
-      );
+      });
     });
     await waitForWaitTime(200);
     expect(fn).toHaveBeenCalled();
@@ -237,9 +225,7 @@ describe('ProFormUpload', () => {
     await waitForWaitTime(200);
     expect(
       getComputedStyle(
-        wrapper.baseElement.querySelector<HTMLDivElement>(
-          '.ant-upload.ant-upload-drag',
-        )!,
+        wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload.ant-upload-drag')!,
       )?.display,
     ).toBe('none');
   });
@@ -261,9 +247,8 @@ describe('ProFormUpload', () => {
 
     await waitForWaitTime(200);
     expect(
-      wrapper.baseElement.querySelector<HTMLDivElement>(
-        '.ant-upload-drag .ant-upload-extra',
-      )?.textContent,
+      wrapper.baseElement.querySelector<HTMLDivElement>('.ant-upload-drag .ant-upload-extra')
+        ?.textContent,
     ).toBe(extra);
   });
 
@@ -282,9 +267,7 @@ describe('ProFormUpload', () => {
 
     await waitForWaitTime(200);
     expect(
-      wrapper.baseElement.querySelector<HTMLDivElement>(
-        '.anticon.anticon-upload',
-      ),
+      wrapper.baseElement.querySelector<HTMLDivElement>('.anticon.anticon-upload'),
     ).toBeFalsy();
   });
 });

@@ -1,10 +1,8 @@
-﻿import type {
-  ProFormColumnsType,
-  ProFormInstance,
-} from '@xxlabs/pro-components';
-import { BetaSchemaForm } from '@xxlabs/pro-components';
 import { message } from 'antd';
 import { useRef } from 'react';
+
+import type { ProFormColumnsType, ProFormInstance } from '@xxlabs/pro-components';
+import { BetaSchemaForm } from '@xxlabs/pro-components';
 
 const valueEnum = {
   all: { text: '全部', status: 'Default' },

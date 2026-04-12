@@ -1,4 +1,5 @@
-﻿import React from 'react';
+import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import type { FieldSecondProps } from './types';
 import { formatSecond } from './utils';

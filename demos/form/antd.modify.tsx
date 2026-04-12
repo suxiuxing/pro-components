@@ -1,6 +1,7 @@
-import { useControlModel, WithControlPropsType } from '@xxlabs/pro-components';
 import { Button, Form, Input, message, Select } from 'antd';
 import React from 'react';
+
+import { useControlModel, WithControlPropsType } from '@xxlabs/pro-components';
 
 export function PriceInput(
   props: WithControlPropsType<{
@@ -11,8 +12,15 @@ export function PriceInput(
 
   return (
     <span>
-      <Input type="text" {...model.number} style={{ width: 100 }} />
-      <Select {...model.currency} style={{ width: 80, margin: '0 8px' }}>
+      <Input
+        type="text"
+        {...model.number}
+        style={{ width: 100 }}
+      />
+      <Select
+        {...model.currency}
+        style={{ width: 80, margin: '0 8px' }}
+      >
         <Select.Option value="rmb">RMB</Select.Option>
         <Select.Option value="dollar">Dollar</Select.Option>
       </Select>
@@ -44,11 +52,18 @@ const App: React.FC = () => {
         },
       }}
     >
-      <Form.Item name="price" label="Price" rules={[{ validator: checkPrice }]}>
+      <Form.Item
+        name="price"
+        label="Price"
+        rules={[{ validator: checkPrice }]}
+      >
         <PriceInput />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+        >
           Submit
         </Button>
       </Form.Item>

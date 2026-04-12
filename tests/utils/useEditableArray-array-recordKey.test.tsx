@@ -1,21 +1,8 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Form } from 'antd';
 import React, { useState } from 'react';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+
 import {
   useEditableArray,
   type NewLineConfig,
@@ -87,9 +74,7 @@ describe('useEditableArray - Array recordKey Support', () => {
 
     return (
       <Form>
-        <div data-testid="editable-keys">
-          {editableUtils.editableKeys?.join(',') || 'none'}
-        </div>
+        <div data-testid="editable-keys">{editableUtils.editableKeys?.join(',') || 'none'}</div>
         <button
           data-testid="start-edit-1"
           onClick={() => editableUtils.startEditable(1)}
@@ -109,10 +94,7 @@ describe('useEditableArray - Array recordKey Support', () => {
     const tableName = 'testTable';
 
     // 模拟代码中的逻辑：构建 namePath
-    const namePath = [
-      tableName,
-      Array.isArray(recordKey) ? recordKey[0] : recordKey,
-    ]
+    const namePath = [tableName, Array.isArray(recordKey) ? recordKey[0] : recordKey]
       .map((key) => key?.toString())
       .flat(1)
       .filter(Boolean) as string[];
@@ -155,27 +137,24 @@ describe('useEditableArray - Array recordKey Support', () => {
       const curValue = getValue(fields, recordKeyPath as string[]);
       expect(curValue).toBe('updatedNested');
 
-      const updatedFields = setValue(
-        fields,
-        recordKeyPath as (string | number)[],
-        curValue,
-      );
+      const updatedFields = setValue(fields, recordKeyPath as (string | number)[], curValue);
       expect(updatedFields.nested.field).toBe('updatedNested');
     }
   });
 
   it('📝 保存时应该正确处理数组 recordKey（深层嵌套字段）', async () => {
-    const onSave = vi.fn(
-      async (key: RecordKey, record: TestRecordType & { index?: number }) => {
-        expect(Array.isArray(key)).toBe(true);
-        expect(key).toEqual([1, 'nested', 'deep', 'value']);
-        expect(record.nested?.deep?.value).toBeDefined();
-        return Promise.resolve();
-      },
-    );
+    const onSave = vi.fn(async (key: RecordKey, record: TestRecordType & { index?: number }) => {
+      expect(Array.isArray(key)).toBe(true);
+      expect(key).toEqual([1, 'nested', 'deep', 'value']);
+      expect(record.nested?.deep?.value).toBeDefined();
+      return Promise.resolve();
+    });
 
     const wrapper = render(
-      <TestComponent onSave={onSave} tableName="testTable" />,
+      <TestComponent
+        onSave={onSave}
+        tableName="testTable"
+      />,
     );
 
     act(() => {
@@ -206,17 +185,18 @@ describe('useEditableArray - Array recordKey Support', () => {
   });
 
   it('📝 保存时应该正确处理单个 recordKey（非数组）', async () => {
-    const onSave = vi.fn(
-      async (key: RecordKey, record: TestRecordType & { index?: number }) => {
-        expect(Array.isArray(key)).toBe(false);
-        expect(key).toBe(1);
-        expect(record.id).toBe(1);
-        return Promise.resolve();
-      },
-    );
+    const onSave = vi.fn(async (key: RecordKey, record: TestRecordType & { index?: number }) => {
+      expect(Array.isArray(key)).toBe(false);
+      expect(key).toBe(1);
+      expect(record.id).toBe(1);
+      return Promise.resolve();
+    });
 
     const wrapper = render(
-      <TestComponent onSave={onSave} tableName="testTable" />,
+      <TestComponent
+        onSave={onSave}
+        tableName="testTable"
+      />,
     );
 
     act(() => {
@@ -251,7 +231,10 @@ describe('useEditableArray - Array recordKey Support', () => {
     });
 
     const wrapper = render(
-      <TestComponent onSave={onSave} tableName="testTable" />,
+      <TestComponent
+        onSave={onSave}
+        tableName="testTable"
+      />,
     );
 
     act(() => {
@@ -315,10 +298,7 @@ describe('useEditableArray - Array recordKey Support', () => {
     // 无 tableName 时，namePath 应该只包含 recordKey[0]
     const recordKey: RecordKey = [1, 'nested', 'field'];
     const tableName = undefined;
-    const namePath = [
-      tableName,
-      Array.isArray(recordKey) ? recordKey[0] : recordKey,
-    ]
+    const namePath = [tableName, Array.isArray(recordKey) ? recordKey[0] : recordKey]
       .map((key) => key?.toString())
       .flat(1)
       .filter(Boolean) as string[];
@@ -341,10 +321,7 @@ describe('useEditableArray - Array recordKey Support', () => {
     // 有 tableName 时，namePath 应该包含 tableName 和 recordKey[0]
     const recordKey: RecordKey = [1, 'nested', 'field'];
     const tableName = 'testTable';
-    const namePath = [
-      tableName,
-      Array.isArray(recordKey) ? recordKey[0] : recordKey,
-    ]
+    const namePath = [tableName, Array.isArray(recordKey) ? recordKey[0] : recordKey]
       .map((key) => key?.toString())
       .flat(1)
       .filter(Boolean) as string[];
@@ -393,11 +370,7 @@ describe('useEditableArray - Array recordKey Support', () => {
     const curValue = getValue(fields, recordKeyPath as string[]);
     expect(curValue).toBe('originalValue');
 
-    const updatedFields = setValue(
-      fields,
-      recordKeyPath as (string | number)[],
-      curValue,
-    );
+    const updatedFields = setValue(fields, recordKeyPath as (string | number)[], curValue);
     expect(updatedFields.nested.field).toBe('originalValue');
   });
 
@@ -416,10 +389,7 @@ describe('useEditableArray - Array recordKey Support', () => {
     const tableName = 'testTable';
 
     // 构建 namePath
-    const namePath = [
-      tableName,
-      Array.isArray(recordKey) ? recordKey[0] : recordKey,
-    ]
+    const namePath = [tableName, Array.isArray(recordKey) ? recordKey[0] : recordKey]
       .map((key) => key?.toString())
       .flat(1)
       .filter(Boolean) as string[];
@@ -439,10 +409,7 @@ describe('useEditableArray - Array recordKey Support', () => {
     const tableName = 'testTable';
 
     // 步骤1: 构建 namePath（只取第一个元素）
-    const namePath = [
-      tableName,
-      Array.isArray(recordKey) ? recordKey[0] : recordKey,
-    ]
+    const namePath = [tableName, Array.isArray(recordKey) ? recordKey[0] : recordKey]
       .map((key) => key?.toString())
       .flat(1)
       .filter(Boolean) as string[];
@@ -487,11 +454,7 @@ describe('useEditableArray - Array recordKey Support', () => {
       const curValue = get(fields, recordKeyPath as string[]);
       expect(curValue).toBe('updatedDeepValue');
 
-      const updatedFields = set(
-        fields,
-        recordKeyPath as (string | number)[],
-        curValue,
-      );
+      const updatedFields = set(fields, recordKeyPath as (string | number)[], curValue);
       expect(updatedFields.nested.deep.value).toBe('updatedDeepValue');
     }
   });
@@ -501,10 +464,7 @@ describe('useEditableArray - Array recordKey Support', () => {
     const recordKey: RecordKey = [1, 'user', 'profile', 'address', 'city'];
     const tableName = 'users';
 
-    const namePath = [
-      tableName,
-      Array.isArray(recordKey) ? recordKey[0] : recordKey,
-    ]
+    const namePath = [tableName, Array.isArray(recordKey) ? recordKey[0] : recordKey]
       .map((key) => key?.toString())
       .flat(1)
       .filter(Boolean) as string[];

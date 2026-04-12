@@ -1,7 +1,8 @@
+import { useState } from 'react';
+
 import type { ProFieldValueType } from '@xxlabs/pro-components';
 import { BetaSchemaForm, ProFormSelect } from '@xxlabs/pro-components';
 
-import { useState } from 'react';
 import { FIXED_BASE_TIMESTAMP } from '../../mockData';
 
 const valueEnum = {
@@ -64,8 +65,7 @@ const options = [
   {
     value: `avatar`,
     label: `头像`,
-    initialValue:
-      'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    initialValue: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   },
   { value: `code`, label: `代码框`, initialValue: '# 2121' },
   { value: `switch`, label: `开关`, initialValue: 'open' },
@@ -77,8 +77,7 @@ const options = [
   {
     value: `image`,
     label: `图片`,
-    initialValue:
-      'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+    initialValue: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   },
   {
     value: `jsonCode`,

@@ -1,9 +1,11 @@
 import { FullscreenOutlined, SettingOutlined } from '@ant-design/icons';
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
-import { ListToolBar, ProTable } from '@xxlabs/pro-components';
 import { Button, Input } from 'antd';
 import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ListToolBar, ProTable } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 afterEach(() => {
@@ -71,9 +73,7 @@ describe('Table valueEnum', () => {
 
     act(() => {
       fireEvent.change(
-        wrapper.baseElement.querySelector(
-          '.ant-pro-table-list-toolbar-search .ant-input',
-        )!,
+        wrapper.baseElement.querySelector('.ant-pro-table-list-toolbar-search .ant-input')!,
         {
           target: {
             value: '1111111',
@@ -104,7 +104,10 @@ describe('Table valueEnum', () => {
       <ListToolBar
         // @ts-expect-error
         actions={
-          <Button key="add" type="primary">
+          <Button
+            key="add"
+            type="primary"
+          >
             添加
           </Button>
         }
@@ -129,7 +132,10 @@ describe('Table valueEnum', () => {
     const wrapper = render(
       <ListToolBar
         actions={[
-          <Button key="add" type="primary">
+          <Button
+            key="add"
+            type="primary"
+          >
             添加
           </Button>,
           'shuaxin',
@@ -162,14 +168,10 @@ describe('Table valueEnum', () => {
     );
     await waitForWaitTime(1000);
     act(() => {
-      wrapper.baseElement
-        .querySelector<HTMLDivElement>('.anticon-setting')
-        ?.click();
+      wrapper.baseElement.querySelector<HTMLDivElement>('.anticon-setting')?.click();
     });
     expect(onClick).toHaveBeenLastCalledWith('s-value');
-    expect(wrapper.baseElement.querySelectorAll('.ant-divider').length).toEqual(
-      0,
-    );
+    expect(wrapper.baseElement.querySelectorAll('.ant-divider').length).toEqual(0);
   });
 
   it('ListToolBar search left', async () => {
@@ -205,9 +207,9 @@ describe('Table valueEnum', () => {
       },
       { timeout: 2000 },
     );
-    expect(
-      (wrapper.getByDisplayValue('input 值') as HTMLInputElement).placeholder,
-    ).toEqual('自定义 placeholder');
+    expect((wrapper.getByDisplayValue('input 值') as HTMLInputElement).placeholder).toEqual(
+      '自定义 placeholder',
+    );
   });
 
   it('ListToolBar search right and custom input search', async () => {
@@ -216,7 +218,10 @@ describe('Table valueEnum', () => {
       <ListToolBar
         title="I am title"
         search={
-          <Input.Search placeholder="自定义 placeholder" onSearch={onSearch} />
+          <Input.Search
+            placeholder="自定义 placeholder"
+            onSearch={onSearch}
+          />
         }
       />,
     );
@@ -243,9 +248,9 @@ describe('Table valueEnum', () => {
       },
       { timeout: 2000 },
     );
-    expect(
-      (wrapper.getByDisplayValue('input 值') as HTMLInputElement).placeholder,
-    ).toEqual('自定义 placeholder');
+    expect((wrapper.getByDisplayValue('input 值') as HTMLInputElement).placeholder).toEqual(
+      '自定义 placeholder',
+    );
   });
 
   it('ListToolBar dropdown menu', async () => {
@@ -350,9 +355,6 @@ describe('Table valueEnum', () => {
       />,
     );
     await waitForWaitTime(1000);
-    expect(
-      wrapper.baseElement.querySelectorAll('.ant-pro-table-list-toolbar-menu')
-        .length,
-    ).toBe(0);
+    expect(wrapper.baseElement.querySelectorAll('.ant-pro-table-list-toolbar-menu').length).toBe(0);
   });
 });

@@ -1,8 +1,9 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@xxlabs/pro-components';
-import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 import { Button, ConfigProvider, Input, Space, Tag } from 'antd';
 import { useRef } from 'react';
+
+import type { ActionType, ProColumns } from '@xxlabs/pro-components';
+import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 
 type GithubIssueItem = {
   url: string;
@@ -122,7 +123,10 @@ const columns: ProColumns<GithubIssueItem>[] = [
     render: (_, record) => (
       <Space>
         {record.labels.map(({ name, color }) => (
-          <Tag color={color} key={name}>
+          <Tag
+            color={color}
+            key={name}
+          >
             {name}
           </Tag>
         ))}
@@ -157,7 +161,12 @@ const columns: ProColumns<GithubIssueItem>[] = [
     valueType: 'option',
     fixed: 'right',
     render: (text, record, _, action) => [
-      <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
+      <a
+        href={record.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="view"
+      >
         查看
       </a>,
       <TableDropdown
@@ -192,13 +201,19 @@ const Demo = () => {
         dateFormatter="string"
         headerTitle="高级表格"
         toolBarRender={() => [
-          <Button key="3" type="primary">
+          <Button
+            key="3"
+            type="primary"
+          >
             <PlusOutlined />
             新建
           </Button>,
         ]}
       />
-      <ProTable columns={nestedColumns} dataSource={nestedData} />
+      <ProTable
+        columns={nestedColumns}
+        dataSource={nestedData}
+      />
       <ProTable<GithubIssueItem>
         columns={columns}
         actionRef={staticTableActionRef}
@@ -244,7 +259,10 @@ const Demo = () => {
         dateFormatter="string"
         headerTitle="高级表格"
         toolBarRender={() => [
-          <Button key="3" type="primary">
+          <Button
+            key="3"
+            type="primary"
+          >
             <PlusOutlined />
             新建
           </Button>,

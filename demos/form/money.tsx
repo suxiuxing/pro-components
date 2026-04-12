@@ -1,7 +1,8 @@
-import type { ProFormInstance } from '@xxlabs/pro-components';
-import { ProForm, ProFormMoney, ProFormSwitch } from '@xxlabs/pro-components';
 import { message } from 'antd';
 import { useRef, useState } from 'react';
+
+import type { ProFormInstance } from '@xxlabs/pro-components';
+import { ProForm, ProFormMoney, ProFormSwitch } from '@xxlabs/pro-components';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {

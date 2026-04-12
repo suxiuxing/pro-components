@@ -1,11 +1,9 @@
-﻿import type { SegmentedProps } from 'antd';
+import type { SegmentedProps } from 'antd';
 import React from 'react';
+
 import { FieldSegmented } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
-import type {
-  ProFormFieldItemProps,
-  ProFormFieldRemoteProps,
-} from '../../typing';
+import type { ProFormFieldItemProps, ProFormFieldRemoteProps } from '../../typing';
 import ProFormField from '../Field';
 
 /**
@@ -21,9 +19,17 @@ const ProFormSegmented: React.ForwardRefRenderFunction<
     <ProConfigProvider
       valueTypeMap={{
         segmented: {
-          render: (text, props) => <FieldSegmented {...props} text={text} />,
+          render: (text, props) => (
+            <FieldSegmented
+              {...props}
+              text={text}
+            />
+          ),
           formItemRender: (text, props) => (
-            <FieldSegmented {...props} text={text} />
+            <FieldSegmented
+              {...props}
+              text={text}
+            />
           ),
         },
       }}

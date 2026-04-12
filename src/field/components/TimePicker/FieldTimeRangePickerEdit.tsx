@@ -1,6 +1,7 @@
-﻿import { TimePicker } from 'antd';
+import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
 import React from 'react';
+
 import type { IntlType } from '../../../provider';
 import { FieldLabel, parseValueToDay } from '../../../utils';
 import type { ProFieldFC, ProFieldLightProps } from '../../types';
@@ -21,10 +22,7 @@ type Props = Parameters<
   intl: IntlType;
 };
 
-export function FieldTimeRangePickerEdit(
-  props: Props,
-  ref: React.Ref<unknown>,
-) {
+export function FieldTimeRangePickerEdit(props: Props, ref: React.Ref<unknown>) {
   const {
     text,
     mode,
@@ -41,10 +39,7 @@ export function FieldTimeRangePickerEdit(
     intl,
   } = props;
 
-  const dayValue = parseValueToDay(
-    fieldProps.value,
-    finalFormat,
-  ) as dayjs.Dayjs[];
+  const dayValue = parseValueToDay(fieldProps.value, finalFormat) as dayjs.Dayjs[];
 
   let dom: React.ReactNode;
   if (light) {

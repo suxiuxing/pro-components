@@ -1,6 +1,8 @@
-import { PageContainer, ProLayout } from '@xxlabs/pro-components';
 import { Button, Switch } from 'antd';
 import { useRef, useState } from 'react';
+
+import { PageContainer, ProLayout } from '@xxlabs/pro-components';
+
 import customMenuDate from './customMenu';
 
 const waitTime = (time: number = 100) => {
@@ -39,7 +41,10 @@ const Demo = () => {
         <PageContainer content="欢迎使用">
           <div>
             当从服务器获取的菜单为空时隐藏Sider：
-            <Switch checked={toggle} onChange={setToggle} />
+            <Switch
+              checked={toggle}
+              onChange={setToggle}
+            />
           </div>
           Hello World
           <Button

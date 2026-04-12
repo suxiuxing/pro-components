@@ -8,14 +8,11 @@ import {
 import { set, toArray } from '@rc-component/util';
 import type { ButtonProps, FormInstance } from 'antd';
 import { ConfigProvider, Tooltip } from 'antd';
-import type {
-  FormListFieldData,
-  FormListOperation,
-  FormListProps,
-} from 'antd/lib/form/FormList';
+import type { FormListFieldData, FormListOperation, FormListProps } from 'antd/lib/form/FormList';
 import { clsx } from 'clsx';
 import type { CSSProperties, ReactNode } from 'react';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+
 import { FormListContext } from '.';
 import { ProProvider } from '../../../provider';
 import { SearchTransformKeyFn } from '../../../utils';
@@ -224,10 +221,7 @@ export type ProFromListCommonProps = {
    * @example 全部包再一个卡片里面
    * itemContainerRender: (doms,listMeta) => <Card title={listMeta.field.name}>{doms}</Card>
    */
-  itemContainerRender?: (
-    doms: ReactNode,
-    listMeta: FormListListListMete,
-  ) => ReactNode;
+  itemContainerRender?: (doms: ReactNode, listMeta: FormListListListMete) => ReactNode;
   /**
    * @name 自定义Item，可以用来将 action 放到别的地方
    *
@@ -289,15 +283,11 @@ export type ProFormListItemProps = ProFromListCommonProps & {
   /**
    * 数据新增成功回调
    */
-  onAfterAdd?: (
-    ...params: [...Parameters<FormListOperation['add']>, number]
-  ) => void;
+  onAfterAdd?: (...params: [...Parameters<FormListOperation['add']>, number]) => void;
   /**
    * 数据移除成功回调
    */
-  onAfterRemove?: (
-    ...params: [...Parameters<FormListOperation['remove']>, number]
-  ) => void;
+  onAfterRemove?: (...params: [...Parameters<FormListOperation['remove']>, number]) => void;
 
   /** 是否只读模式 */
   readonly: boolean;
@@ -372,7 +362,7 @@ const ProFormListItem: React.FC<
       const updateValues = set(oldTableDate, rowKeyName, {
         // 只是简单的覆盖，如果很复杂的话，需要自己处理
         ...getCurrentRowData(),
-        ...(data || {}),
+        ...data,
       });
       return formInstance.setFieldsValue(updateValues);
     },
@@ -408,7 +398,10 @@ const ProFormListItem: React.FC<
     if (copyIconProps === false || max === count) return null;
     const { Icon = CopyOutlined, tooltipText } = copyIconProps as IconConfig;
     return (
-      <Tooltip title={tooltipText} key="copy">
+      <Tooltip
+        title={tooltipText}
+        key="copy"
+      >
         {loadingCopy ? (
           <LoadingOutlined />
         ) : (
@@ -447,7 +440,10 @@ const ProFormListItem: React.FC<
     if (deleteIconProps === false || min === count) return null;
     const { Icon = DeleteOutlined, tooltipText } = deleteIconProps!;
     return (
-      <Tooltip title={tooltipText} key="delete">
+      <Tooltip
+        title={tooltipText}
+        key="delete"
+      >
         {loadingRemove ? (
           <LoadingOutlined />
         ) : (
@@ -464,16 +460,7 @@ const ProFormListItem: React.FC<
         )}
       </Tooltip>
     );
-  }, [
-    deleteIconProps,
-    min,
-    count,
-    loadingRemove,
-    prefixCls,
-    hashId,
-    action,
-    field.name,
-  ]);
+  }, [deleteIconProps, min, count, loadingRemove, prefixCls, hashId, action, field.name]);
   const upIcon = useMemo(() => {
     if (!arrowSort) {
       return null;
@@ -486,7 +473,10 @@ const ProFormListItem: React.FC<
     }
     const { Icon = ArrowUpOutlined, tooltipText } = upIconProps!;
     return (
-      <Tooltip title={tooltipText} key="up">
+      <Tooltip
+        title={tooltipText}
+        key="up"
+      >
         <Icon
           className={clsx(`${prefixCls}-action-icon action-up`, hashId)}
           onClick={async () => {
@@ -509,7 +499,10 @@ const ProFormListItem: React.FC<
     }
     const { Icon = ArrowDownOutlined, tooltipText } = downIconProps!;
     return (
-      <Tooltip title={tooltipText} key="down">
+      <Tooltip
+        title={tooltipText}
+        key="down"
+      >
         <Icon
           className={clsx(`${prefixCls}-action-icon action-down`, hashId)}
           onClick={async () => {
@@ -528,8 +521,7 @@ const ProFormListItem: React.FC<
     [copyIcon, deleteIcon, upIcon, downIcon],
   );
 
-  const actions =
-    actionRender?.(field, action, defaultActionDom, count) || defaultActionDom;
+  const actions = actionRender?.(field, action, defaultActionDom, count) || defaultActionDom;
 
   const dom =
     actions.length > 0 && mode !== 'read' ? (
@@ -551,9 +543,7 @@ const ProFormListItem: React.FC<
     field,
     index,
     record: formInstance?.getFieldValue?.(
-      [listContext.listName, originName, field.name]
-        .filter((item) => item !== undefined)
-        .flat(1),
+      [listContext.listName, originName, field.name].filter((item) => item !== undefined).flat(1),
     ),
     fields,
     operation: action,
@@ -562,8 +552,7 @@ const ProFormListItem: React.FC<
 
   const { grid } = useGridHelpers();
 
-  const itemContainer =
-    itemContainerRender?.(childrenArray, options) || childrenArray;
+  const itemContainer = itemContainerRender?.(childrenArray, options) || childrenArray;
 
   const contentDom = itemRender?.(
     {

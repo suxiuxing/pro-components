@@ -1,4 +1,7 @@
 import { cleanup, render } from '@testing-library/react';
+import { ConfigProvider } from 'antd';
+import { afterEach, describe, expect, it } from 'vitest';
+
 import {
   ProConfigProvider,
   ProForm,
@@ -6,8 +9,6 @@ import {
   createIntl,
   useStyle,
 } from '@xxlabs/pro-components';
-import { ConfigProvider } from 'antd';
-import { afterEach, describe, expect, it } from 'vitest';
 
 afterEach(() => {
   cleanup();
@@ -53,7 +54,10 @@ describe('ProConfigProvider', () => {
           })}
         >
           <ProForm>
-            <ProFormMoney name="amount" initialValue={44.33} />
+            <ProFormMoney
+              name="amount"
+              initialValue={44.33}
+            />
           </ProForm>
         </ProConfigProvider>
       </ConfigProvider>,

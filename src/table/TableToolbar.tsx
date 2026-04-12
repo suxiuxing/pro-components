@@ -1,5 +1,6 @@
 import type { Key } from 'react';
 import React, { useMemo } from 'react';
+
 import type { ActionType } from '.';
 import Toolbar from './components/ToolBar';
 import type { ProTableProps } from './typing';
@@ -58,7 +59,7 @@ export function TableToolbar<T extends Record<string, any>>(
         toolbar={toolbar}
         onFormSearchSubmit={(newValues) => {
           setFormSearch({
-            ...(formSearch || {}),
+            ...formSearch,
             ...newValues,
           });
         }}

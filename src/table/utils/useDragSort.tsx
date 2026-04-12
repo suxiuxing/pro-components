@@ -17,6 +17,7 @@ import {
 import { CSS } from '@dnd-kit/utilities';
 import type { TableComponents } from '@rc-component/table/es/interface';
 import React, { createContext, useCallback, useContext, useMemo } from 'react';
+
 import { useRefFunction } from '../../utils';
 
 const SortableItemContextValue = createContext<{
@@ -31,8 +32,9 @@ const SortableItemContextValue = createContext<{
  * @returns
  */
 const SortableRow = (props: any) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: props.id });
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: props.id,
+  });
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -66,7 +68,11 @@ const SortableRow = (props: any) => {
       doms.push(child);
     });
     return (
-      <tr {...rest} ref={setNodeRef} style={style}>
+      <tr
+        {...rest}
+        ref={setNodeRef}
+        style={style}
+      >
         {doms}
       </tr>
     );
@@ -135,11 +141,7 @@ export function useDragSort<T>(props: UseDragSortOptions<T>) {
           parseInt(active.id as string),
           parseInt(over.id as string),
         );
-        onDragSortEnd?.(
-          parseInt(active.id as string),
-          parseInt(over.id as string),
-          newData || [],
-        );
+        onDragSortEnd?.(parseInt(active.id as string), parseInt(over.id as string), newData || []);
       }
     },
     [dataSource, onDragSortEnd],
@@ -158,10 +160,7 @@ export function useDragSort<T>(props: UseDragSortOptions<T>) {
     const { ...restProps } = p;
     // function findIndex base on Table rowKey props and should always be a right array index
     const index = dataSource
-      .findIndex(
-        (item: any) =>
-          item[props.rowKey ?? 'index'] === restProps['data-row-key'],
-      )
+      .findIndex((item: any) => item[props.rowKey ?? 'index'] === restProps['data-row-key'])
       ?.toString();
 
     return (
@@ -182,7 +181,7 @@ export function useDragSort<T>(props: UseDragSortOptions<T>) {
       wrapper: DraggableContainer,
       row: DraggableBodyRow,
       cell: SortableItemCell,
-      ...(props.components?.body || {}),
+      ...props.components?.body,
     };
   }
 

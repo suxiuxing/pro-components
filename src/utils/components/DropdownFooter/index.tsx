@@ -1,6 +1,7 @@
 import { Button, ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext } from 'react';
+
 import { useIntl } from '../../../provider';
 import { useStyle } from './style';
 
@@ -67,8 +68,7 @@ const DropdownFooter: React.FC<DropdownFooterProps> = (props) => {
     <div
       className={clsx(prefixCls, hashId)}
       onClick={(e) =>
-        (e.target as Element).getAttribute('data-type') !== 'confirm' &&
-        e.stopPropagation()
+        (e.target as Element).getAttribute('data-type') !== 'confirm' && e.stopPropagation()
       }
     >
       {renderDom}

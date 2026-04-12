@@ -1,4 +1,4 @@
-﻿import {
+import {
   ProForm,
   ProFormDependency,
   ProFormList,
@@ -29,7 +29,10 @@ const Demo = () => {
                 name="rowKey"
                 label={`第 ${index} 配置`}
               />
-              <ProFormText name="name" label="姓名" />
+              <ProFormText
+                name="name"
+                label="姓名"
+              />
               <ProFormDependency name={['name']}>
                 {({ name }) => {
                   if (!name) {
@@ -43,7 +46,12 @@ const Demo = () => {
                       </span>
                     );
                   }
-                  return <ProFormText name="remark" label="昵称详情" />;
+                  return (
+                    <ProFormText
+                      name="remark"
+                      label="昵称详情"
+                    />
+                  );
                 }}
               </ProFormDependency>
               <ProFormSelect

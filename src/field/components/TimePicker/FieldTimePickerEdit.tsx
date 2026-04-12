@@ -1,6 +1,7 @@
-﻿import { DatePicker, TimePicker } from 'antd';
+import { DatePicker, TimePicker } from 'antd';
 import dayjs from 'dayjs';
 import React from 'react';
+
 import type { IntlType } from '../../../provider';
 import { FieldLabel, parseValueToDay } from '../../../utils';
 import type { ProFieldFC, ProFieldLightProps } from '../../types';
@@ -66,8 +67,7 @@ export function FieldTimePickerEdit(props: Props, ref: React.Ref<unknown>) {
               ref={ref as React.Ref<any>}
               {...fieldProps}
               placeholder={
-                fieldProps.placeholder ??
-                intl.getMessage('tableForm.selectPlaceholder', '请选择')
+                fieldProps.placeholder ?? intl.getMessage('tableForm.selectPlaceholder', '请选择')
               }
               value={dayValue}
               onOpenChange={(isOpen) => {

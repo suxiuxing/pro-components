@@ -49,8 +49,7 @@ const Demo = () => {
         <h4>ProCard 多行布局 Props 说明：</h4>
         <ul>
           <li>
-            <strong>gutter</strong>: 间距设置，[16, 16] 表示水平和垂直间距都是
-            16px
+            <strong>gutter</strong>: 间距设置，[16, 16] 表示水平和垂直间距都是 16px
           </li>
           <li>
             <strong>wrap</strong>: 是否允许换行，布尔值

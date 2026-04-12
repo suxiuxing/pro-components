@@ -1,3 +1,6 @@
+import type { Dayjs } from 'dayjs';
+import React, { useEffect, useRef } from 'react';
+
 // Mainly handles the scenarios of creating and editing
 import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
@@ -6,8 +9,6 @@ import {
   ProFormText,
   StepsForm,
 } from '@xxlabs/pro-components';
-import type { Dayjs } from 'dayjs';
-import React, { useEffect, useRef } from 'react';
 
 import { FIXED_BASE_DATE } from '../../mockData';
 
@@ -49,9 +50,7 @@ const jobType = [
   },
 ];
 const EditExample = () => {
-  const formMapRef = useRef<
-    React.MutableRefObject<ProFormInstance<any> | undefined>[]
-  >([]);
+  const formMapRef = useRef<React.MutableRefObject<ProFormInstance<any> | undefined>[]>([]);
   useEffect(() => {
     waitTime(1000).then(() => {
       // In the editing scenario, you need to use formMapRef to loop through and set formData
@@ -72,7 +71,10 @@ const EditExample = () => {
         name="add-or-edit-step-form-step1"
         title="Job Information"
       >
-        <ProFormText label="Name" name={['jobInfo', 'name']} />
+        <ProFormText
+          label="Name"
+          name={['jobInfo', 'name']}
+        />
         <ProFormSelect
           label="Job Type"
           name={['jobInfo', 'type']}
@@ -87,7 +89,10 @@ const EditExample = () => {
           label="Time Range"
           name={['syncTableInfo', 'timeRange']}
         />
-        <ProFormText label="Title" name={['syncTableInfo', 'title']} />
+        <ProFormText
+          label="Title"
+          name={['syncTableInfo', 'title']}
+        />
       </StepsForm.StepForm>
     </StepsForm>
   );

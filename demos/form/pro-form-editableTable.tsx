@@ -1,7 +1,8 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import { EditableProTable, ProForm, ProFormText } from '@xxlabs/pro-components';
 import { Input, message, Space } from 'antd';
 import React, { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { EditableProTable, ProForm, ProFormText } from '@xxlabs/pro-components';
 
 import { FIXED_BASE_TIMESTAMP } from '../mockData';
 
@@ -117,7 +118,11 @@ const Demo = () => {
           placeholder="请输入名称"
         />
       </ProForm.Group>
-      <ProFormText width="sm" name="id" label="主合同编号" />
+      <ProFormText
+        width="sm"
+        name="id"
+        label="主合同编号"
+      />
       <ProForm.Item
         label="数组数据"
         name="dataSource"

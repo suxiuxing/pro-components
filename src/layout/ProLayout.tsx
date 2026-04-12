@@ -6,22 +6,12 @@ import type { AnyObject } from 'antd/lib/_util/type';
 import type { ItemType } from 'antd/lib/breadcrumb/Breadcrumb';
 import { clsx } from 'clsx';
 import type { CSSProperties } from 'react';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
+
 import type { GenerateStyle, ProTokenType } from '../provider';
 import { ProConfigProvider, ProProvider, isNeedOpenHash } from '../provider';
-import {
-  isBrowser,
-  useBreakpoint,
-  useDocumentTitle,
-  useRefFunction,
-} from '../utils';
+import { isBrowser, useBreakpoint, useDocumentTitle, useRefFunction } from '../utils';
 import { Logo } from './assert/Logo';
 import { DefaultFooter as Footer } from './components/Footer';
 import type { HeaderViewProps } from './components/Header';
@@ -38,12 +28,7 @@ import { getPageTitleInfo } from './getPageTitle';
 import type { LocaleType } from './locales';
 import { gLocaleObject } from './locales';
 import { useStyle } from './style';
-import type {
-  MenuDataItem,
-  MessageDescriptor,
-  RouterTypes,
-  WithFalse,
-} from './typing';
+import type { MenuDataItem, MessageDescriptor, RouterTypes, WithFalse } from './typing';
 import type { BreadcrumbProLayoutProps } from './utils/getBreadcrumbProps';
 import { getBreadcrumbProps } from './utils/getBreadcrumbProps';
 import { getMenuData } from './utils/getMenuData';
@@ -103,10 +88,7 @@ export type ProLayoutProps = GlobalTypes & {
    * @example 设置 logo 为 false 不显示 logo  logo={false}
    * @example 设置 logo 为 方法  logo={()=> <img src="https://avatars1.githubusercontent.com/u/8186664?s=460&v=4" alt="" /> }
    * */
-  logo?:
-    | React.ReactNode
-    | React.JSX.Element
-    | WithFalse<() => React.ReactNode | React.JSX.Element>;
+  logo?: React.ReactNode | React.JSX.Element | WithFalse<() => React.ReactNode | React.JSX.Element>;
 
   /**
    * @name 页面切换的时候触发
@@ -169,9 +151,7 @@ export type ProLayoutProps = GlobalTypes & {
    * @example 删除首页 breadcrumbRender={(routers = []) => { return routers.filter(item => item.path !== '/')}
    * @example 不显示面包屑 breadcrumbRender={false}
    */
-  breadcrumbRender?: WithFalse<
-    (routers: BreadcrumbProps['items']) => BreadcrumbProps['items']
-  >;
+  breadcrumbRender?: WithFalse<(routers: BreadcrumbProps['items']) => BreadcrumbProps['items']>;
 
   /**
    * @name 设置页面的标题
@@ -294,10 +274,7 @@ const footerRender = (props: ProLayoutProps): React.ReactNode => {
   return null;
 };
 
-const renderSiderMenu = (
-  props: ProLayoutProps,
-  matchMenuKeys: string[],
-): React.ReactNode => {
+const renderSiderMenu = (props: ProLayoutProps, matchMenuKeys: string[]): React.ReactNode => {
   const {
     layout,
     isMobile,
@@ -316,8 +293,7 @@ const renderSiderMenu = (
   if (splitMenus && (openKeys !== false || layout === 'mix') && !isMobile) {
     const [key] = selectedKeys || matchMenuKeys;
     if (key) {
-      menuData =
-        props.menuData?.find((item) => item.key === key)?.children || [];
+      menuData = props.menuData?.find((item) => item.key === key)?.children || [];
     } else {
       menuData = [];
     }
@@ -325,11 +301,7 @@ const renderSiderMenu = (
   // 这里走了可以少一次循环
   const clearMenuData = clearMenuItem(menuData || []);
 
-  if (
-    clearMenuData &&
-    clearMenuData?.length < 1 &&
-    (splitMenus || suppressSiderWhenMenuEmpty)
-  ) {
+  if (clearMenuData && clearMenuData?.length < 1 && (splitMenus || suppressSiderWhenMenuEmpty)) {
     return null;
   }
   if (layout === 'top' && !isMobile) {
@@ -377,11 +349,7 @@ const defaultPageTitleRender = (
     };
   }
   if (pageTitleRender) {
-    const title = pageTitleRender(
-      pageProps,
-      pageTitleInfo.title,
-      pageTitleInfo,
-    );
+    const title = pageTitleRender(pageProps, pageTitleInfo.title, pageTitleInfo);
     if (typeof title === 'string') {
       return getPageTitleInfo({
         ...pageTitleInfo,
@@ -449,10 +417,7 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
 
   const prefixCls = props.prefixCls ?? context.getPrefixCls('pro');
 
-  const [menuLoadingState, _setMenuLoadingInner] = useControlledState(
-    false,
-    menu?.loading,
-  );
+  const [menuLoadingState, _setMenuLoadingInner] = useControlledState(false, menu?.loading);
 
   /**
    * 使用 useRefFunction 包装回调，确保引用稳定
@@ -473,14 +438,7 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
    * 如果没有用自己实现的
    */
   const formatMessage = useCallback(
-    ({
-      id,
-      defaultMessage,
-      ...restParams
-    }: {
-      id: string;
-      defaultMessage?: string;
-    }): string => {
+    ({ id, defaultMessage, ...restParams }: { id: string; defaultMessage?: string }): string => {
       if (propsFormatMessage) {
         return propsFormatMessage({
           id,
@@ -515,8 +473,7 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
     },
   );
 
-  const menuLoading =
-    menu?.loading ?? (menu?.request ? isValidating : menuLoadingState);
+  const menuLoading = menu?.loading ?? (menu?.request ? isValidating : menuLoadingState);
 
   const { cache } = useSWRConfig();
   useEffect(() => {
@@ -554,16 +511,12 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
   }, [location.pathname, menuData]);
 
   const matchMenuKeys = useMemo(
-    () =>
-      Array.from(
-        new Set(matchMenus.map((item) => item.key || item.path || '')),
-      ),
+    () => Array.from(new Set(matchMenus.map((item) => item.key || item.path || ''))),
     [matchMenus],
   );
 
   // 当前选中的menu，一般不会为空
-  const currentMenu = (matchMenus[matchMenus.length - 1] || {}) as ProSettings &
-    MenuDataItem;
+  const currentMenu = (matchMenus[matchMenus.length - 1] || {}) as ProSettings & MenuDataItem;
 
   const currentMenuLayoutProps = useCurrentMenuLayoutProps(currentMenu);
 
@@ -611,9 +564,7 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
     (updater: boolean | ((prev: boolean) => boolean)) => {
       onCollapseInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         queueMicrotask(() => {
           onCollapseCallback(next);
         });
@@ -695,39 +646,26 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
     ...defaultProps,
   });
 
-  const { isChildrenLayout: contextIsChildrenLayout } =
-    useContext(RouteContext);
+  const { isChildrenLayout: contextIsChildrenLayout } = useContext(RouteContext);
 
   // 如果 props 中定义，以 props 为准
   const isChildrenLayout =
-    propsIsChildrenLayout !== undefined
-      ? propsIsChildrenLayout
-      : contextIsChildrenLayout;
+    propsIsChildrenLayout !== undefined ? propsIsChildrenLayout : contextIsChildrenLayout;
 
   const proLayoutClassName = `${prefixCls}-layout`;
   const { wrapSSR, hashId } = useStyle(proLayoutClassName);
 
   // gen className
-  const className = clsx(
-    props.className,
-    hashId,
-    'ant-design-pro',
-    proLayoutClassName,
-    {
-      [`screen-${colSize}`]: colSize,
-      [`${proLayoutClassName}-top-menu`]: propsLayout === 'top',
-      [`${proLayoutClassName}-is-children`]: isChildrenLayout,
-      [`${proLayoutClassName}-fix-siderbar`]: fixSiderbar,
-      [`${proLayoutClassName}-${propsLayout}`]: propsLayout,
-    },
-  );
+  const className = clsx(props.className, hashId, 'ant-design-pro', proLayoutClassName, {
+    [`screen-${colSize}`]: colSize,
+    [`${proLayoutClassName}-top-menu`]: propsLayout === 'top',
+    [`${proLayoutClassName}-is-children`]: isChildrenLayout,
+    [`${proLayoutClassName}-fix-siderbar`]: fixSiderbar,
+    [`${proLayoutClassName}-${propsLayout}`]: propsLayout,
+  });
 
   /** 计算 slider 的宽度 */
-  const leftSiderWidth = getPaddingInlineStart(
-    !!hasLeftPadding,
-    collapsed,
-    siderWidth,
-  );
+  const leftSiderWidth = getPaddingInlineStart(!!hasLeftPadding, collapsed, siderWidth);
 
   // siderMenuDom 为空的时候，不需要 padding
   const genLayoutStyle: CSSProperties = {
@@ -759,11 +697,7 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
       return bgLayoutImgList?.map((item, index) => {
         return (
           <img
-            key={
-              item.src
-                ? `${item.src}-${index}`
-                : `bg-layout-${index}`
-            }
+            key={item.src ? `${item.src}-${index}` : `bg-layout-${index}`}
             src={item.src}
             alt=""
             style={{
@@ -804,11 +738,12 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
       {props.pure ? (
         <>{children}</>
       ) : (
-        <div className={className} data-testid="pro-layout">
+        <div
+          className={className}
+          data-testid="pro-layout"
+        >
           {bgImgStyleList || token.layout?.bgLayout ? (
-            <div className={clsx(`${proLayoutClassName}-bg-list`, hashId)}>
-              {bgImgStyleList}
-            </div>
+            <div className={clsx(`${proLayoutClassName}-bg-list`, hashId)}>{bgImgStyleList}</div>
           ) : null}
           <Layout
             style={{
@@ -822,40 +757,29 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
               theme={{
                 hashed: isNeedOpenHash(),
                 token: {
-                  controlHeightLG:
-                    token.layout?.sider?.menuHeight || token?.controlHeightLG,
+                  controlHeightLG: token.layout?.sider?.menuHeight || token?.controlHeightLG,
                 },
                 components: {
                   Menu: {
-                    itemBg:
-                      token.layout?.sider?.colorMenuBackground || 'transparent',
-                    subMenuItemBg:
-                      token.layout?.sider?.colorMenuBackground || 'transparent',
+                    itemBg: token.layout?.sider?.colorMenuBackground || 'transparent',
+                    subMenuItemBg: token.layout?.sider?.colorMenuBackground || 'transparent',
                     itemBorderRadius: token.borderRadius,
                     itemSelectedBg:
-                      token.layout?.sider?.colorBgMenuItemSelected ||
-                      token?.colorBgTextHover,
+                      token.layout?.sider?.colorBgMenuItemSelected || token?.colorBgTextHover,
                     itemHoverBg:
-                      token.layout?.sider?.colorBgMenuItemHover ||
-                      token?.colorBgTextHover,
+                      token.layout?.sider?.colorBgMenuItemHover || token?.colorBgTextHover,
                     itemActiveBg:
-                      token.layout?.sider?.colorBgMenuItemActive ||
-                      token?.colorBgTextActive,
+                      token.layout?.sider?.colorBgMenuItemActive || token?.colorBgTextActive,
                     horizontalItemSelectedBg:
-                      token.layout?.sider?.colorBgMenuItemSelected ||
-                      token?.colorBgTextHover,
+                      token.layout?.sider?.colorBgMenuItemSelected || token?.colorBgTextHover,
                     activeBarWidth: 0,
                     activeBarHeight: 0,
                     activeBarBorderWidth: 0,
-                    itemColor:
-                      token.layout?.sider?.colorTextMenu ||
-                      token?.colorTextSecondary,
+                    itemColor: token.layout?.sider?.colorTextMenu || token?.colorTextSecondary,
                     itemHoverColor:
-                      token.layout?.sider?.colorTextMenuItemHover ||
-                      'rgba(0, 0, 0, 0.85)', // 悬浮态
+                      token.layout?.sider?.colorTextMenuItemHover || 'rgba(0, 0, 0, 0.85)', // 悬浮态
                     itemSelectedColor:
-                      token.layout?.sider?.colorTextMenuSelected ||
-                      'rgba(0, 0, 0, 1)',
+                      token.layout?.sider?.colorTextMenuSelected || 'rgba(0, 0, 0, 1)',
                     popupBg: token?.colorBgElevated,
                     darkSubMenuItemBg: 'transparent',
                     darkPopupBg: token?.colorBgElevated,
@@ -886,9 +810,7 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
                   className={`${proLayoutClassName}-has-footer`}
                   style={{
                     height: 64,
-                    marginBlockStart:
-                      token.layout?.pageContainer
-                        ?.paddingBlockPageContainerContent,
+                    marginBlockStart: token.layout?.pageContainer?.paddingBlockPageContainerContent,
                   }}
                 />
               )}

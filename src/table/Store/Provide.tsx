@@ -1,14 +1,8 @@
 import { useControlledState } from '@rc-component/util';
 import type { TableColumnType } from 'antd';
 import merge from 'lodash-es/merge';
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { createContext, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
 import type { DensitySize } from '../components/ToolBar/DensityIcon';
 import type { ProTableProps } from '../index';
 import type { ActionType, ProColumns } from '../typing';
@@ -69,8 +63,7 @@ function useContainer(props: UseContainerProps = {} as Record<string, any>) {
 
   /** 默认全选中 */
   const defaultColumnKeyMap = useMemo(() => {
-    if (props?.columnsState?.defaultValue)
-      return props.columnsState.defaultValue;
+    if (props?.columnsState?.defaultValue) return props.columnsState.defaultValue;
     const columnKeyMap = {} as Record<string, any>;
     props.columns?.forEach(({ key, dataIndex, fixed, disable }, index) => {
       const columnKey = genColumnKey(key ?? (dataIndex as React.Key), index);
@@ -85,9 +78,7 @@ function useContainer(props: UseContainerProps = {} as Record<string, any>) {
     return columnKeyMap;
   }, [props.columns]);
 
-  const [columnsMap, setColumnsMapInner] = useControlledState<
-    Record<string, ColumnsState>
-  >(() => {
+  const [columnsMap, setColumnsMapInner] = useControlledState<Record<string, ColumnsState>>(() => {
     const { persistenceType, persistenceKey } = props.columnsState || {};
 
     if (persistenceKey && persistenceType && typeof window !== 'undefined') {
@@ -98,11 +89,7 @@ function useContainer(props: UseContainerProps = {} as Record<string, any>) {
         if (storageValue) {
           if (props?.columnsState?.defaultValue) {
             // 实际生产中，defaultValue往往作为系统方默认配置，则优先级不应高于用户配置的storageValue
-            return merge(
-              {},
-              props?.columnsState?.defaultValue,
-              JSON.parse(storageValue),
-            );
+            return merge({}, props?.columnsState?.defaultValue, JSON.parse(storageValue));
           }
           return JSON.parse(storageValue);
         }
@@ -110,29 +97,19 @@ function useContainer(props: UseContainerProps = {} as Record<string, any>) {
         console.warn(error);
       }
     }
-    return (
-      props.columnsState?.value ||
-      props.columnsState?.defaultValue ||
-      defaultColumnKeyMap
-    );
+    return props.columnsState?.value || props.columnsState?.defaultValue || defaultColumnKeyMap;
   }, props.columnsState?.value);
   const onColumnsMapChange = props.columnsState?.onChange;
   const setColumnsMap = useCallback(
     (
       updater:
         | Record<string, ColumnsState>
-        | ((
-            prev: Record<string, ColumnsState>,
-          ) => Record<string, ColumnsState>),
+        | ((prev: Record<string, ColumnsState>) => Record<string, ColumnsState>),
     ) => {
       setColumnsMapInner((prev) => {
         const next =
           typeof updater === 'function'
-            ? (
-                updater as (
-                  p: Record<string, ColumnsState>,
-                ) => Record<string, ColumnsState>
-              )(prev)
+            ? (updater as (p: Record<string, ColumnsState>) => Record<string, ColumnsState>)(prev)
             : updater;
         onColumnsMapChange?.(next);
         return next;
@@ -152,13 +129,7 @@ function useContainer(props: UseContainerProps = {} as Record<string, any>) {
         const storageValue = storage?.getItem(persistenceKey);
         if (storageValue) {
           if (props?.columnsState?.defaultValue) {
-            setColumnsMap(
-              merge(
-                {},
-                props?.columnsState?.defaultValue,
-                JSON.parse(storageValue),
-              ),
-            );
+            setColumnsMap(merge({}, props?.columnsState?.defaultValue, JSON.parse(storageValue)));
           } else {
             setColumnsMap(JSON.parse(storageValue));
           }
@@ -179,8 +150,7 @@ function useContainer(props: UseContainerProps = {} as Record<string, any>) {
   const clearPersistenceStorage = useCallback(() => {
     const { persistenceType, persistenceKey } = props.columnsState || {};
 
-    if (!persistenceKey || !persistenceType || typeof window === 'undefined')
-      return;
+    if (!persistenceKey || !persistenceType || typeof window === 'undefined') return;
 
     /** 给持久化中设置数据 */
     const storage = window[persistenceType];
@@ -192,10 +162,7 @@ function useContainer(props: UseContainerProps = {} as Record<string, any>) {
   }, [props.columnsState]);
 
   useEffect(() => {
-    if (
-      !props.columnsState?.persistenceKey ||
-      !props.columnsState?.persistenceType
-    ) {
+    if (!props.columnsState?.persistenceKey || !props.columnsState?.persistenceType) {
       return;
     }
     if (typeof window === 'undefined') return;
@@ -208,11 +175,7 @@ function useContainer(props: UseContainerProps = {} as Record<string, any>) {
       console.warn(error);
       clearPersistenceStorage();
     }
-  }, [
-    props.columnsState?.persistenceKey,
-    columnsMap,
-    props.columnsState?.persistenceType,
-  ]);
+  }, [props.columnsState?.persistenceKey, columnsMap, props.columnsState?.persistenceType]);
   const renderValue = {
     action: actionRef.current,
     setAction: (newAction?: ActionType) => {
@@ -264,11 +227,7 @@ const Container: React.FC<{
   children: React.ReactNode;
 }> = (props) => {
   const value = useContainer(props.initValue);
-  return (
-    <TableContext.Provider value={value}>
-      {props.children}
-    </TableContext.Provider>
-  );
+  return <TableContext.Provider value={value}>{props.children}</TableContext.Provider>;
 };
 
 export { Container, TableContext };

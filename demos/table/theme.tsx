@@ -1,17 +1,10 @@
 import { EllipsisOutlined, PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@xxlabs/pro-components';
-import { ProTable, TableDropdown } from '@xxlabs/pro-components';
-import {
-  Button,
-  ConfigProvider,
-  Dropdown,
-  message,
-  Space,
-  Tag,
-  theme,
-} from 'antd';
+import { Button, ConfigProvider, Dropdown, message, Space, Tag, theme } from 'antd';
 import { useRef } from 'react';
 import request from 'umi-request';
+
+import type { ActionType, ProColumns } from '@xxlabs/pro-components';
+import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 
 type GithubIssueItem = {
   url: string;
@@ -86,7 +79,10 @@ const columns: ProColumns<GithubIssueItem>[] = [
     render: (_, record) => (
       <Space>
         {record.labels.map(({ name, color }) => (
-          <Tag color={color} key={name}>
+          <Tag
+            color={color}
+            key={name}
+          >
             {name}
           </Tag>
         ))}
@@ -128,7 +124,12 @@ const columns: ProColumns<GithubIssueItem>[] = [
       >
         编辑
       </a>,
-      <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
+      <a
+        href={record.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        key="view"
+      >
         查看
       </a>,
       <TableDropdown
@@ -204,15 +205,17 @@ const Demo = () => {
           pagination={{
             pageSize: 5,
             onChange: (page, pageSize) => {
-              message.info(
-                `第 ${page} 页${pageSize ? `，每页 ${pageSize} 条` : ''}`,
-              );
+              message.info(`第 ${page} 页${pageSize ? `，每页 ${pageSize} 条` : ''}`);
             },
           }}
           dateFormatter="string"
           headerTitle="高级表格"
           toolBarRender={() => [
-            <Button key="button" icon={<PlusOutlined />} type="primary">
+            <Button
+              key="button"
+              icon={<PlusOutlined />}
+              type="primary"
+            >
               新建
             </Button>,
             <Dropdown

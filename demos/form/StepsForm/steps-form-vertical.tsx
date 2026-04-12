@@ -1,3 +1,6 @@
+import { message } from 'antd';
+import { useRef } from 'react';
+
 import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProCard,
@@ -9,8 +12,6 @@ import {
   ProFormTextArea,
   StepsForm,
 } from '@xxlabs/pro-components';
-import { message } from 'antd';
-import { useRef } from 'react';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -65,8 +66,14 @@ const Demo = () => {
             placeholder="请输入名称"
             rules={[{ required: true }]}
           />
-          <ProFormDatePicker name="date" label="日期" />
-          <ProFormDateRangePicker name="dateTime" label="时间区间" />
+          <ProFormDatePicker
+            name="date"
+            label="日期"
+          />
+          <ProFormDateRangePicker
+            name="dateTime"
+            label="时间区间"
+          />
           <ProFormTextArea
             name="remark"
             label="备注"
@@ -101,7 +108,10 @@ const Demo = () => {
             ]}
           />
           <ProForm.Group>
-            <ProFormText name="dbname" label="业务 DB 用户名" />
+            <ProFormText
+              name="dbname"
+              label="业务 DB 用户名"
+            />
             <ProFormDatePicker
               name="datetime"
               label="记录保存时间"
@@ -133,7 +143,10 @@ const Demo = () => {
             options={['结构迁移', '全量迁移', '全量校验', '增量替换']}
           />
           <ProForm.Group>
-            <ProFormText name="dbname" label="业务 DB 用户名" />
+            <ProFormText
+              name="dbname"
+              label="业务 DB 用户名"
+            />
             <ProFormDatePicker
               name="datetime"
               label="记录保存时间"

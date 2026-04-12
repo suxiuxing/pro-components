@@ -3,7 +3,11 @@ import { ProCard } from '@xxlabs/pro-components';
 const Demo = () => {
   return (
     <>
-      <ProCard style={{ marginBlockStart: 8 }} gutter={8} title="24 Grid">
+      <ProCard
+        style={{ marginBlockStart: 8 }}
+        gutter={8}
+        title="24 Grid"
+      >
         <ProCard
           colSpan={{ xs: 2, sm: 4, md: 6, lg: 8, xl: 10 }}
           layout="center"
@@ -44,7 +48,10 @@ const Demo = () => {
         >
           Col
         </ProCard>
-        <ProCard layout="center" variant="outlined">
+        <ProCard
+          layout="center"
+          variant="outlined"
+        >
           Auto
         </ProCard>
       </ProCard>
@@ -54,7 +61,10 @@ const Demo = () => {
         gutter={8}
         title="Specified Width Percentage"
       >
-        <ProCard layout="center" variant="outlined">
+        <ProCard
+          layout="center"
+          variant="outlined"
+        >
           Auto
         </ProCard>
         <ProCard
@@ -107,12 +117,10 @@ const Demo = () => {
         <h4>ColSpan 配置方式：</h4>
         <ul>
           <li>
-            <strong>数字值</strong>: 如 {'{'} xs: 2, sm: 4 {'}'}，使用 24
-            栅格系统
+            <strong>数字值</strong>: 如 {'{'} xs: 2, sm: 4 {'}'}，使用 24 栅格系统
           </li>
           <li>
-            <strong>像素值</strong>: 如 {'{'} xs: '50px', sm: '100px' {'}'}{' '}
-            ，固定宽度
+            <strong>像素值</strong>: 如 {'{'} xs: '50px', sm: '100px' {'}'} ，固定宽度
           </li>
           <li>
             <strong>百分比</strong>: 如 {'{'} xs: '10%', sm: '20%' {'}'}

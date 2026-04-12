@@ -1,15 +1,15 @@
-﻿import type { PopoverProps, ColorPickerProps } from 'antd';
+import type { PopoverProps, ColorPickerProps } from 'antd';
 import React from 'react';
+
 import { FieldColorPicker } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
 import type { ProFormFieldItemProps } from '../../typing';
 import ProFromField from '../Field';
 
-export type ProFormColorPickerProps =
-  ProFormFieldItemProps<ColorPickerProps> & {
-    popoverProps?: PopoverProps;
-    colors?: string[];
-  };
+export type ProFormColorPickerProps = ProFormFieldItemProps<ColorPickerProps> & {
+  popoverProps?: PopoverProps;
+  colors?: string[];
+};
 
 type ForwardRefProFormColorPicker = React.ForwardRefExoticComponent<
   ProFormColorPickerProps & React.RefAttributes<any>
@@ -20,17 +20,25 @@ type ForwardRefProFormColorPicker = React.ForwardRefExoticComponent<
  *
  * @param
  */
-const ProFormColorPicker: React.ForwardRefRenderFunction<
-  any,
-  ProFormColorPickerProps
-> = ({ fieldProps, popoverProps, proFieldProps, colors, ...rest }, ref) => {
+const ProFormColorPicker: React.ForwardRefRenderFunction<any, ProFormColorPickerProps> = (
+  { fieldProps, popoverProps, proFieldProps, colors, ...rest },
+  ref,
+) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
         color: {
-          render: (text, props) => <FieldColorPicker {...props} text={text} />,
+          render: (text, props) => (
+            <FieldColorPicker
+              {...props}
+              text={text}
+            />
+          ),
           formItemRender: (text, props) => (
-            <FieldColorPicker {...props} text={text} />
+            <FieldColorPicker
+              {...props}
+              text={text}
+            />
           ),
         },
       }}

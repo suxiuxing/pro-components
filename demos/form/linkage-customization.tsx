@@ -1,3 +1,6 @@
+import { Button, message } from 'antd';
+import { useState } from 'react';
+
 import {
   ProCard,
   ProForm,
@@ -10,8 +13,6 @@ import {
   ProFormTextArea,
   StepsForm,
 } from '@xxlabs/pro-components';
-import { Button, message } from 'antd';
-import { useState } from 'react';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -90,8 +91,14 @@ const Demo = () => {
             placeholder="Please enter a name"
             rules={[{ required: true }]}
           />
-          <ProFormDatePicker name="date" label="Date" />
-          <ProFormDateRangePicker name="dateTime" label="Time Range" />
+          <ProFormDatePicker
+            name="date"
+            label="Date"
+          />
+          <ProFormDateRangePicker
+            name="dateTime"
+            label="Time Range"
+          />
           <ProFormTextArea
             name="remark"
             label="Remarks"
@@ -99,7 +106,10 @@ const Demo = () => {
             placeholder="Please enter remarks"
           />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="checkbox" title="Set Parameters">
+        <StepsForm.StepForm
+          name="checkbox"
+          title="Set Parameters"
+        >
           <ProFormCheckbox.Group
             name="checkbox"
             label="Migration Type"
@@ -112,7 +122,10 @@ const Demo = () => {
             ]}
           />
           <ProForm.Group>
-            <ProFormText name="dbName" label="Business DB Username" />
+            <ProFormText
+              name="dbName"
+              label="Business DB Username"
+            />
             <ProFormDatePicker
               name="datetime"
               label="Record Retention Time"
@@ -135,7 +148,10 @@ const Demo = () => {
             }}
           </ProFormDependency>
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="time" title="Publish Experiment">
+        <StepsForm.StepForm
+          name="time"
+          title="Publish Experiment"
+        >
           <ProFormCheckbox.Group
             name="checkbox"
             label="Deployment Units"
@@ -144,11 +160,7 @@ const Demo = () => {
                 required: true,
               },
             ]}
-            options={[
-              'Deployment Unit 1',
-              'Deployment Unit 2',
-              'Deployment Unit 3',
-            ]}
+            options={['Deployment Unit 1', 'Deployment Unit 2', 'Deployment Unit 3']}
           />
           <ProFormSelect
             label="Deployment Group Strategy"

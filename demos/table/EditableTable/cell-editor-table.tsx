@@ -1,6 +1,7 @@
+import React, { useState } from 'react';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { CellEditorTable } from '@xxlabs/pro-components';
-import React, { useState } from 'react';
 
 type DataSourceType = {
   id: React.Key;
@@ -36,9 +37,7 @@ const defaultData: DataSourceType[] = taskNames.map((name, index) => ({
 }));
 
 const Demo = () => {
-  const [dataSource, setDataSource] = useState<readonly DataSourceType[]>(
-    () => defaultData,
-  );
+  const [dataSource, setDataSource] = useState<readonly DataSourceType[]>(() => defaultData);
 
   const columns: ProColumns<DataSourceType>[] = [
     {

@@ -1,8 +1,9 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import { ProProvider, ProTable } from '@xxlabs/pro-components';
 import type { InputRef } from 'antd';
 import { Input, Space, Tag } from 'antd';
 import React, { useContext, useRef, useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProProvider, ProTable } from '@xxlabs/pro-components';
 
 import { DEMO_VALUE_ENUM } from '../mockData';
 
@@ -15,23 +16,20 @@ export type TableListItem = {
   }[];
 };
 
-const tableListDataSource: TableListItem[] = Array.from(
-  { length: 5 },
-  (_, i) => ({
-    key: i,
-    name: `用户认证服务-${i}`,
-    status: [
-      {
-        value: (i * 3 + 1) % 10,
-        label: DEMO_VALUE_ENUM[(i % 4) as keyof typeof DEMO_VALUE_ENUM],
-      },
-      {
-        value: (i * 5 + 2) % 10,
-        label: DEMO_VALUE_ENUM[((i + 1) % 4) as keyof typeof DEMO_VALUE_ENUM],
-      },
-    ],
-  }),
-);
+const tableListDataSource: TableListItem[] = Array.from({ length: 5 }, (_, i) => ({
+  key: i,
+  name: `用户认证服务-${i}`,
+  status: [
+    {
+      value: (i * 3 + 1) % 10,
+      label: DEMO_VALUE_ENUM[(i % 4) as keyof typeof DEMO_VALUE_ENUM],
+    },
+    {
+      value: (i * 5 + 2) % 10,
+      label: DEMO_VALUE_ENUM[((i + 1) % 4) as keyof typeof DEMO_VALUE_ENUM],
+    },
+  ],
+}));
 
 const TagList: React.FC<{
   value?: {
@@ -60,14 +58,8 @@ const TagList: React.FC<{
 
   const handleInputConfirm = () => {
     let tempsTags = [...(value || [])];
-    if (
-      inputValue &&
-      tempsTags.filter((tag) => tag.label === inputValue).length === 0
-    ) {
-      tempsTags = [
-        ...tempsTags,
-        { key: `new-${tempsTags.length}`, label: inputValue },
-      ];
+    if (inputValue && tempsTags.filter((tag) => tag.label === inputValue).length === 0) {
+      tempsTags = [...tempsTags, { key: `new-${tempsTags.length}`, label: inputValue }];
     }
     onChange?.(tempsTags);
     setNewTags([]);
@@ -133,7 +125,10 @@ const Demo = () => {
             link: {
               render: (text) => <a>{text}</a>,
               formItemRender: (text, props) => (
-                <Input placeholder="请输入链接" {...props?.fieldProps} />
+                <Input
+                  placeholder="请输入链接"
+                  {...props?.fieldProps}
+                />
               ),
             },
             tags: {
@@ -147,7 +142,10 @@ const Demo = () => {
                 );
               },
               formItemRender: (text, props) => (
-                <TagList {...props} {...props?.fieldProps} />
+                <TagList
+                  {...props}
+                  {...props?.fieldProps}
+                />
               ),
             },
           },

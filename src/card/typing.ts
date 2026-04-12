@@ -1,5 +1,6 @@
 import type { CardProps as AntdCardProps, TabPaneProps, TabsProps } from 'antd';
 import type { ReactNode } from 'react';
+
 import type { LabelTooltipType } from '../utils';
 
 // 重新导出以保持向后兼容
@@ -83,11 +84,7 @@ type CardPropsBase = Pick<AntdCardProps, 'rootClassName' | 'cover'> & {
   /** 受控 collapsed 属性 */
   collapsed?: boolean;
   /** 折叠按钮自定义节点 */
-  collapsibleIconRender?: ({
-    collapsed,
-  }: {
-    collapsed: boolean;
-  }) => React.ReactNode;
+  collapsibleIconRender?: ({ collapsed }: { collapsed: boolean }) => React.ReactNode;
   /** 配置默认是否折叠 */
   defaultCollapsed?: boolean;
   /** 收起卡片的事件 */

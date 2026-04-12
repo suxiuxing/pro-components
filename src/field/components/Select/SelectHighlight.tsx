@@ -1,5 +1,6 @@
-﻿import { ConfigProvider } from 'antd';
+import { ConfigProvider } from 'antd';
 import React, { useContext } from 'react';
+
 import { useStyle } from '../../../utils';
 
 export const SelectHighlight: React.FC<{
@@ -25,9 +26,7 @@ export const SelectHighlight: React.FC<{
   });
 
   const matchKeywordsRE = new RegExp(
-    words
-      .map((word) => word.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&'))
-      .join('|'),
+    words.map((word) => word.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')).join('|'),
     'gi',
   );
 

@@ -1,9 +1,7 @@
-﻿import type { GenerateStyle } from '../../../../provider';
+import type { GenerateStyle } from '../../../../provider';
 import { resetComponent } from '../../../../utils';
 import type { AppsLogoComponentsToken } from './index';
-const genAppsLogoComponentsDefaultListStyle: GenerateStyle<
-  AppsLogoComponentsToken
-> = (token) => {
+const genAppsLogoComponentsDefaultListStyle: GenerateStyle<AppsLogoComponentsToken> = (token) => {
   return {
     '&-content': {
       maxHeight: 'calc(100vh - 48px)',

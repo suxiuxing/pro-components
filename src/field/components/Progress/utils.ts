@@ -1,6 +1,4 @@
-﻿export function getProgressStatus(
-  text: number,
-): 'success' | 'exception' | 'normal' | 'active' {
+export function getProgressStatus(text: number): 'success' | 'exception' | 'normal' | 'active' {
   if (text === 100) {
     return 'success';
   }

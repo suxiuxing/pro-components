@@ -1,3 +1,6 @@
+import { message } from 'antd';
+import { useRef } from 'react';
+
 import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProCard,
@@ -10,8 +13,6 @@ import {
   ProFormTextArea,
   StepsForm,
 } from '@xxlabs/pro-components';
-import { message } from 'antd';
-import { useRef } from 'react';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -61,8 +62,14 @@ const Demo = () => {
             placeholder="Please enter a name"
             rules={[{ required: true }]}
           />
-          <ProFormDatePicker name="date" label="Date" />
-          <ProFormDateRangePicker name="dateTime" label="Time Range" />
+          <ProFormDatePicker
+            name="date"
+            label="Date"
+          />
+          <ProFormDateRangePicker
+            name="dateTime"
+            label="Time Range"
+          />
           <ProFormTextArea
             name="remark"
             label="Remarks"
@@ -94,7 +101,10 @@ const Demo = () => {
             ]}
           />
           <ProForm.Group>
-            <ProFormText name="dbname" label="Business DB Username" />
+            <ProFormText
+              name="dbname"
+              label="Business DB Username"
+            />
             <ProFormDatePicker
               name="datetime"
               label="Record Retention Time"
@@ -122,11 +132,7 @@ const Demo = () => {
                 required: true,
               },
             ]}
-            options={[
-              'Deployment Unit 1',
-              'Deployment Unit 2',
-              'Deployment Unit 3',
-            ]}
+            options={['Deployment Unit 1', 'Deployment Unit 2', 'Deployment Unit 3']}
           />
           <ProFormSelect
             label="Deployment Group Strategy"

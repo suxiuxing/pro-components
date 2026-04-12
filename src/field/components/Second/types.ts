@@ -1,4 +1,4 @@
-﻿/** @deprecated use FieldSecondProps — kept for backward compatibility */
+/** @deprecated use FieldSecondProps — kept for backward compatibility */
 export type FieldDigitProps = {
   text: number;
   placeholder?: string;

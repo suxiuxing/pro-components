@@ -1,6 +1,7 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { StatisticCard } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { StatisticCard } from '@xxlabs/pro-components';
 
 const { Divider } = StatisticCard;
 
@@ -69,8 +70,7 @@ const Demo = () => {
             <strong>title</strong>: 分组标题
           </li>
           <li>
-            <strong>direction</strong>: 排列方向，'row' 表示水平排列，'column'
-            表示垂直排列
+            <strong>direction</strong>: 排列方向，'row' 表示水平排列，'column' 表示垂直排列
           </li>
           <li>
             <strong>children</strong>: StatisticCard 和 Divider 子组件
@@ -97,8 +97,8 @@ const Demo = () => {
         <h4>Divider Props：</h4>
         <ul>
           <li>
-            <strong>orientation</strong>: 分割线类型，'horizontal'
-            表示水平分割线，'vertical' 表示垂直分割线
+            <strong>orientation</strong>: 分割线类型，'horizontal' 表示水平分割线，'vertical'
+            表示垂直分割线
           </li>
         </ul>
         <h4>响应式布局特点：</h4>
@@ -116,8 +116,7 @@ const Demo = () => {
         <h4>数值格式化：</h4>
         <ul>
           <li>
-            <strong>precision</strong>: 控制数值的小数位数，如 precision={2}{' '}
-            显示两位小数
+            <strong>precision</strong>: 控制数值的小数位数，如 precision={2} 显示两位小数
           </li>
           <li>
             <strong>suffix</strong>: 添加数值后缀，如单位、百分比等

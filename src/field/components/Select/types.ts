@@ -1,7 +1,4 @@
-﻿import type {
-  ProFieldRequestData,
-  ProFieldValueEnumType,
-} from '../../../utils';
+import type { ProFieldRequestData, ProFieldValueEnumType } from '../../../utils';
 import type { ProFieldLightProps } from '../../types';
 
 export type FieldSelectProps<FieldProps = any> = {

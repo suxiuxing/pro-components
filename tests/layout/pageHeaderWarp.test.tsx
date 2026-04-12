@@ -1,6 +1,8 @@
 import { cleanup, render } from '@testing-library/react';
-import { PageContainer, ProLayout } from '@xxlabs/pro-components';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import { PageContainer, ProLayout } from '@xxlabs/pro-components';
+
 import defaultProps from './defaultProps';
 
 afterEach(() => {
@@ -34,9 +36,7 @@ describe('BasicLayout', () => {
       </ProLayout>,
     );
 
-    expect(
-      container.querySelectorAll('.ant-page-header-heading-title'),
-    ).toHaveLength(0);
+    expect(container.querySelectorAll('.ant-page-header-heading-title')).toHaveLength(0);
   });
 
   it('have default title', async () => {
@@ -46,9 +46,7 @@ describe('BasicLayout', () => {
       </ProLayout>,
     );
 
-    expect(
-      container.querySelector('.ant-page-header-heading-title')!.innerHTML,
-    ).toEqual('welcome');
+    expect(container.querySelector('.ant-page-header-heading-title')!.innerHTML).toEqual('welcome');
   });
 
   it('title overrides the default title', async () => {
@@ -58,9 +56,7 @@ describe('BasicLayout', () => {
       </ProLayout>,
     );
 
-    expect(
-      container.querySelector('.ant-page-header-heading-title')!.innerHTML,
-    ).toEqual('name');
+    expect(container.querySelector('.ant-page-header-heading-title')!.innerHTML).toEqual('name');
   });
 
   it('with default prefixCls props TopNavHeader', async () => {
@@ -95,21 +91,29 @@ describe('BasicLayout', () => {
   it('without custom prefixCls props TopNavHeader', async () => {
     const prefixCls = 'ant-oh-pro';
     const { container } = render(
-      <ProLayout {...defaultProps} layout="top" prefixCls={prefixCls}>
+      <ProLayout
+        {...defaultProps}
+        layout="top"
+        prefixCls={prefixCls}
+      >
         <PageContainer title="name" />
       </ProLayout>,
     );
 
-    const domHeader = container.querySelector(
-      `.${prefixCls}-top-nav-header-logo`,
-    )!;
+    const domHeader = container.querySelector(`.${prefixCls}-top-nav-header-logo`)!;
     expect(!!domHeader).toBe(true);
   });
 
   it('pageHeaderRender return false', async () => {
     const { container, unmount } = render(
-      <ProLayout {...defaultProps} layout="top">
-        <PageContainer title="name" pageHeaderRender={() => null} />
+      <ProLayout
+        {...defaultProps}
+        layout="top"
+      >
+        <PageContainer
+          title="name"
+          pageHeaderRender={() => null}
+        />
       </ProLayout>,
     );
 
@@ -121,8 +125,14 @@ describe('BasicLayout', () => {
 
   it('pageHeaderRender is false', async () => {
     const { container, unmount } = render(
-      <ProLayout {...defaultProps} layout="top">
-        <PageContainer title="name" pageHeaderRender={false} />
+      <ProLayout
+        {...defaultProps}
+        layout="top"
+      >
+        <PageContainer
+          title="name"
+          pageHeaderRender={false}
+        />
       </ProLayout>,
     );
 

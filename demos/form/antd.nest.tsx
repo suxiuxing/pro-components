@@ -4,10 +4,19 @@ import React from 'react';
 export function PriceInput() {
   return (
     <Space size={0}>
-      <Form.Item noStyle name={['price', 'number']}>
-        <Input type="text" style={{ width: 100 }} />
+      <Form.Item
+        noStyle
+        name={['price', 'number']}
+      >
+        <Input
+          type="text"
+          style={{ width: 100 }}
+        />
       </Form.Item>
-      <Form.Item noStyle name={['price', 'currency']}>
+      <Form.Item
+        noStyle
+        name={['price', 'currency']}
+      >
         <Select style={{ width: 80, margin: '0 8px' }}>
           <Select.Option value="rmb">RMB</Select.Option>
           <Select.Option value="dollar">Dollar</Select.Option>
@@ -41,11 +50,18 @@ const App: React.FC = () => {
         },
       }}
     >
-      <Form.Item name="price" label="Price" rules={[{ validator: checkPrice }]}>
+      <Form.Item
+        name="price"
+        label="Price"
+        rules={[{ validator: checkPrice }]}
+      >
         <PriceInput />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+        >
           Submit
         </Button>
       </Form.Item>

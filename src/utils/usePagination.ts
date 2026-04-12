@@ -1,4 +1,4 @@
-﻿import type { PaginationProps } from 'antd';
+import type { PaginationProps } from 'antd';
 import type { TablePaginationConfig } from 'antd/es/table/interface';
 import { useState } from 'react';
 
@@ -25,13 +25,10 @@ export function getPaginationParam(
     pageSize: mergedPagination.pageSize,
   };
 
-  const paginationObj =
-    pagination && typeof pagination === 'object' ? pagination : {};
+  const paginationObj = pagination && typeof pagination === 'object' ? pagination : {};
 
   Object.keys(paginationObj).forEach((pageProp) => {
-    const value = (mergedPagination as any)[
-      pageProp as keyof typeof paginationObj
-    ];
+    const value = (mergedPagination as any)[pageProp as keyof typeof paginationObj];
 
     if (typeof value !== 'function') {
       param[pageProp] = value;
@@ -45,23 +42,15 @@ function usePagination(
   total: number,
   onChange: (current: number, pageSize: number) => void,
   pagination?: TablePaginationConfig | false,
-): readonly [
-  TablePaginationConfig,
-  (current?: number, pageSize?: number) => void,
-] {
+): readonly [TablePaginationConfig, (current?: number, pageSize?: number) => void] {
   const { total: paginationTotal = 0, ...paginationObj } =
-    pagination && typeof pagination === 'object'
-      ? pagination
-      : ({} as TablePaginationConfig);
+    pagination && typeof pagination === 'object' ? pagination : ({} as TablePaginationConfig);
 
   const [innerPagination, setInnerPagination] = useState<{
     current?: number;
     pageSize?: number;
   }>(() => ({
-    current:
-      'defaultCurrent' in paginationObj
-        ? (paginationObj as any).defaultCurrent
-        : 1,
+    current: 'defaultCurrent' in paginationObj ? (paginationObj as any).defaultCurrent : 1,
     pageSize:
       'defaultPageSize' in paginationObj
         ? (paginationObj as any).defaultPageSize
@@ -92,10 +81,7 @@ function usePagination(
     });
   };
 
-  const onInternalChange: PaginationProps['onChange'] = (
-    current,
-    pageSizeArg,
-  ) => {
+  const onInternalChange: PaginationProps['onChange'] = (current, pageSizeArg) => {
     if (pagination && typeof pagination === 'object') {
       (pagination as TablePaginationConfig).onChange?.(current, pageSizeArg!);
     }

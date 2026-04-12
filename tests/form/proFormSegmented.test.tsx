@@ -1,6 +1,7 @@
 import { cleanup, render } from '@testing-library/react';
-import { ProForm, ProFormSegmented } from '@xxlabs/pro-components';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import { ProForm, ProFormSegmented } from '@xxlabs/pro-components';
 
 afterEach(() => {
   cleanup();
@@ -23,8 +24,6 @@ describe('ProFormSegmented', () => {
       </ProForm>,
     );
 
-    expect(container.querySelectorAll('.ant-segmented-item').length).toBe(
-      options.length,
-    );
+    expect(container.querySelectorAll('.ant-segmented-item').length).toBe(options.length);
   });
 });

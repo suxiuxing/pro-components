@@ -294,9 +294,6 @@ render: (text, record, _, action) => [
 
 ```typescript
 const editable = {
-  actionRender: (row, config, defaultDom) => [
-    defaultDom.save,
-    defaultDom.cancel,
-  ],
+  actionRender: (row, config, defaultDom) => [defaultDom.save, defaultDom.cancel],
 };
 ```

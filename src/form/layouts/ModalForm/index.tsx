@@ -12,16 +12,17 @@ import React, {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
+
 import { useRefFunction } from '../../../utils';
 import type { CommonFormProps, ProFormInstance } from '../../BaseForm';
 import { BaseForm } from '../../BaseForm';
 import { SubmitterProps } from '../../BaseForm/Submitter';
 const { noteOnce } = warning;
 
-export type ModalFormProps<
-  T = Record<string, any>,
-  U = Record<string, any>,
-> = Omit<FormProps<T>, 'onFinish' | 'title'> &
+export type ModalFormProps<T = Record<string, any>, U = Record<string, any>> = Omit<
+  FormProps<T>,
+  'onFinish' | 'title'
+> &
   CommonFormProps<T, U> & {
     /**
      * 接收任意值，返回 真值 会关掉这个抽屉
@@ -97,9 +98,7 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
     (updater: boolean | ((prev: boolean) => boolean)) => {
       setOpenInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         queueMicrotask(() => {
           onOpenChangeCallback(next);
         });
@@ -111,15 +110,12 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
 
   const footerRef = useRef<HTMLDivElement | null>(null);
 
-  const footerDomRef: React.RefCallback<HTMLDivElement> = useCallback(
-    (element) => {
-      if (footerRef.current === null && element) {
-        forceUpdate([]);
-      }
-      footerRef.current = element;
-    },
-    [],
-  );
+  const footerDomRef: React.RefCallback<HTMLDivElement> = useCallback((element) => {
+    if (footerRef.current === null && element) {
+      forceUpdate([]);
+    }
+    footerRef.current = element;
+  }, []);
 
   const formRef = useRef<ProFormInstance>();
 
@@ -127,11 +123,7 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
     const form = rest.form ?? rest.formRef?.current ?? formRef.current;
     // 重置表单
     // issue: 8858 form.resetFields is not a function
-    if (
-      form &&
-      modalProps?.destroyOnHidden &&
-      typeof form.resetFields === 'function'
-    ) {
+    if (form && modalProps?.destroyOnHidden && typeof form.resetFields === 'function') {
       form.resetFields();
     }
   }, [modalProps?.destroyOnHidden, rest.form, rest.formRef]);
@@ -173,12 +165,8 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
     return merge(
       {
         searchConfig: {
-          submitText:
-            modalProps?.okText ?? context.locale?.Modal?.okText ?? '确认',
-          resetText:
-            modalProps?.cancelText ??
-            context.locale?.Modal?.cancelText ??
-            '取消',
+          submitText: modalProps?.okText ?? context.locale?.Modal?.okText ?? '确认',
+          resetText: modalProps?.cancelText ?? context.locale?.Modal?.cancelText ?? '取消',
         },
         resetButtonProps: {
           preventDefault: true,
@@ -308,9 +296,7 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
           {...rest}
           onInit={(_, form) => {
             if (rest.formRef) {
-              (
-                rest.formRef as React.MutableRefObject<ProFormInstance<T>>
-              ).current = form;
+              (rest.formRef as React.MutableRefObject<ProFormInstance<T>>).current = form;
             }
             rest?.onInit?.(_, form);
             formRef.current = form;

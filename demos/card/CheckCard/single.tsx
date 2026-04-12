@@ -5,9 +5,20 @@ import { CheckCard } from '@xxlabs/pro-components';
 
 const Demo = () => (
   <>
-    <CheckCard.Group onChange={(value) => {}} defaultValue="A">
-      <CheckCard title="Card A" description="选项一" value="A" />
-      <CheckCard title="Card B" description="选项二" value="B" />
+    <CheckCard.Group
+      onChange={(value) => {}}
+      defaultValue="A"
+    >
+      <CheckCard
+        title="Card A"
+        description="选项一"
+        value="A"
+      />
+      <CheckCard
+        title="Card B"
+        description="选项二"
+        value="B"
+      />
       <CheckCard
         title="Card C"
         disabled

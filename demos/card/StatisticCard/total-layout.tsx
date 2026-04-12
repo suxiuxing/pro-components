@@ -1,6 +1,7 @@
 import RcResizeObserver from '@rc-component/resize-observer';
-import { ProCard, StatisticCard } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { ProCard, StatisticCard } from '@xxlabs/pro-components';
 
 const { Statistic } = StatisticCard;
 
@@ -23,7 +24,11 @@ const Demo = () => {
               value: 82.6,
               suffix: 'Billion',
               description: (
-                <Statistic title="Daily Comparison" value="6.47%" trend="up" />
+                <Statistic
+                  title="Daily Comparison"
+                  value="6.47%"
+                  trend="up"
+                />
               ),
             }}
             chart={
@@ -174,8 +179,7 @@ const Demo = () => {
             <strong>split</strong>: 分割方式，根据响应式状态自动调整
           </li>
           <li>
-            <strong>children</strong>: StatisticCard 和 StatisticCard.Group
-            子组件
+            <strong>children</strong>: StatisticCard 和 StatisticCard.Group 子组件
           </li>
         </ul>
         <h4>StatisticCard 配置：</h4>
@@ -211,8 +215,7 @@ const Demo = () => {
         <h4>嵌套 Statistic 组件：</h4>
         <ul>
           <li>
-            <strong>layout</strong>: 布局方式，'vertical'
-            表示垂直布局，'horizontal' 表示水平布局
+            <strong>layout</strong>: 布局方式，'vertical' 表示垂直布局，'horizontal' 表示水平布局
           </li>
           <li>
             <strong>title</strong>: 统计项标题
@@ -242,8 +245,7 @@ const Demo = () => {
             <strong>24 栅格</strong>: 使用 24 栅格系统，colSpan 表示占用的列数
           </li>
           <li>
-            <strong>响应式适配</strong>: 小屏幕时 colSpan 自动调整为
-            24（占满宽度）
+            <strong>响应式适配</strong>: 小屏幕时 colSpan 自动调整为 24（占满宽度）
           </li>
           <li>
             <strong>比例控制</strong>: 通过 colSpan 控制各部分的宽度比例

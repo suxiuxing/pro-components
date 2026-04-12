@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import React from 'react';
+
 import { defaultRenderLogo } from './index';
 import type { AppItemProps, AppListProps } from './types';
 
@@ -18,17 +19,9 @@ export const DefaultContent: React.FC<{
             return (
               <div
                 key={index}
-                className={clsx(
-                  `${baseClassName}-content-list-item-group`,
-                  hashId,
-                )}
+                className={clsx(`${baseClassName}-content-list-item-group`, hashId)}
               >
-                <div
-                  className={clsx(
-                    `${baseClassName}-content-list-item-group-title`,
-                    hashId,
-                  )}
-                >
+                <div className={clsx(`${baseClassName}-content-list-item-group-title`, hashId)}>
                   {app.title}
                 </div>
                 <DefaultContent

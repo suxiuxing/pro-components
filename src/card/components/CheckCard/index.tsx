@@ -3,6 +3,7 @@ import { Avatar, ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
 import type { MouseEventHandler } from 'react';
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+
 import ProCardActions from '../Actions';
 import type { CheckCardGroupProps } from './Group';
 import CheckCardGroup, { CardLoading, CheckCardGroupConnext } from './Group';
@@ -177,9 +178,7 @@ const CheckCard: React.FC<CheckCardProps> & {
     (updater: boolean | ((prev: boolean) => boolean)) => {
       setStateCheckedInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         props.onChange?.(next);
         return next;
       });
@@ -236,7 +235,10 @@ const CheckCard: React.FC<CheckCardProps> & {
     return (
       <div className={clsx(`${cls}-cover`, hashId)}>
         {typeof coverDom === 'string' ? (
-          <img src={coverDom} alt="checkcard" />
+          <img
+            src={coverDom}
+            alt="checkcard"
+          />
         ) : (
           coverDom
         )}
@@ -265,13 +267,7 @@ const CheckCard: React.FC<CheckCardProps> & {
     checkCardProps.size = props.size || checkCardGroup.size;
   }
 
-  const {
-    disabled = false,
-    size,
-    loading: cardLoading,
-    bordered = true,
-    checked,
-  } = checkCardProps;
+  const { disabled = false, size, loading: cardLoading, bordered = true, checked } = checkCardProps;
   const sizeCls = getSizeCls(size);
 
   const classString = clsx(prefixCls, className, hashId, {
@@ -286,7 +282,12 @@ const CheckCard: React.FC<CheckCardProps> & {
 
   const metaDom = useMemo(() => {
     if (cardLoading) {
-      return <CardLoading prefixCls={prefixCls || ''} hashId={hashId} />;
+      return (
+        <CardLoading
+          prefixCls={prefixCls || ''}
+          hashId={hashId}
+        />
+      );
     }
 
     if (cover) {
@@ -296,7 +297,11 @@ const CheckCard: React.FC<CheckCardProps> & {
     const avatarDom = avatar ? (
       <div className={clsx(`${prefixCls}-avatar`, hashId)}>
         {typeof avatar === 'string' ? (
-          <Avatar size={48} shape="square" src={avatar} />
+          <Avatar
+            size={48}
+            shape="square"
+            src={avatar}
+          />
         ) : (
           avatar
         )}
@@ -314,21 +319,15 @@ const CheckCard: React.FC<CheckCardProps> & {
             {title}
           </div>
           {props.subTitle ? (
-            <div className={clsx(`${prefixCls}-subTitle`, hashId)}>
-              {props.subTitle}
-            </div>
+            <div className={clsx(`${prefixCls}-subTitle`, hashId)}>{props.subTitle}</div>
           ) : null}
         </div>
-        {extra && (
-          <div className={clsx(`${prefixCls}-extra`, hashId)}>{extra}</div>
-        )}
+        {extra && <div className={clsx(`${prefixCls}-extra`, hashId)}>{extra}</div>}
       </div>
     );
 
     const descriptionDom = description ? (
-      <div className={clsx(`${prefixCls}-description`, hashId)}>
-        {description}
-      </div>
+      <div className={clsx(`${prefixCls}-description`, hashId)}>{description}</div>
     ) : null;
 
     const metaClass = clsx(`${prefixCls}-content`, hashId, {
@@ -346,17 +345,7 @@ const CheckCard: React.FC<CheckCardProps> & {
         ) : null}
       </div>
     );
-  }, [
-    avatar,
-    cardLoading,
-    cover,
-    description,
-    extra,
-    hashId,
-    prefixCls,
-    props.subTitle,
-    title,
-  ]);
+  }, [avatar, cardLoading, cover, description, extra, hashId, prefixCls, props.subTitle, title]);
 
   return wrapSSR(
     <div
@@ -379,7 +368,10 @@ const CheckCard: React.FC<CheckCardProps> & {
         </div>
       ) : null}
       {props.actions ? (
-        <ProCardActions actions={props.actions} prefixCls={prefixCls} />
+        <ProCardActions
+          actions={props.actions}
+          prefixCls={prefixCls}
+        />
       ) : null}
     </div>,
   );

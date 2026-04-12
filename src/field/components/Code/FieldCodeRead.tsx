@@ -1,4 +1,5 @@
-﻿import React from 'react';
+import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 
 type FieldCodeReadProps = Parameters<
@@ -11,10 +12,7 @@ type FieldCodeReadProps = Parameters<
   };
 };
 
-export function FieldCodeRead(
-  props: FieldCodeReadProps,
-  ref: React.Ref<unknown>,
-) {
+export function FieldCodeRead(props: FieldCodeReadProps, ref: React.Ref<unknown>) {
   const { code, mode, render, fieldProps, token } = props;
   const dom = (
     <pre

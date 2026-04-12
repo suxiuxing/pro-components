@@ -1,4 +1,4 @@
-﻿/* eslint-disable no-param-reassign */ import {
+/* eslint-disable no-param-reassign */ import {
   CopyOutlined,
   DeleteOutlined,
   HeartOutlined,
@@ -8,6 +8,8 @@
   SmileOutlined,
   SyncOutlined,
 } from '@ant-design/icons';
+import { useState } from 'react';
+
 import {
   ProCard,
   ProForm,
@@ -18,7 +20,6 @@ import {
   ProFormSwitch,
   ProFormText,
 } from '@xxlabs/pro-components';
-import { useState } from 'react';
 
 const IconMap = {
   PlusOutlined,
@@ -53,7 +54,11 @@ const Demo = () => {
   const [stateValue, setStateValue] = useState({});
   const [json, setJson] = useState(() => JSON.stringify(initialValue));
   return (
-    <ProCard variant="outlined" split="vertical" headerBordered>
+    <ProCard
+      variant="outlined"
+      split="vertical"
+      headerBordered
+    >
       <ProCard colSpan="calc(100% - 400px)">
         <ProForm name="group-customize-demo-1">
           <ProFormList
@@ -69,14 +74,26 @@ const Demo = () => {
             }}
             {...stateValue}
           >
-            <ProForm.Group key="group" size={8}>
-              <ProFormText name="name" label="姓名" />
-              <ProFormText name="nickName" label="姓名" />
+            <ProForm.Group
+              key="group"
+              size={8}
+            >
+              <ProFormText
+                name="name"
+                label="姓名"
+              />
+              <ProFormText
+                name="nickName"
+                label="姓名"
+              />
             </ProForm.Group>
           </ProFormList>
         </ProForm>
       </ProCard>
-      <ProCard colSpan="400px" title="配置菜单">
+      <ProCard
+        colSpan="400px"
+        title="配置菜单"
+      >
         <ProForm
           name="group-customize-demo-2"
           submitter={false}
@@ -100,8 +117,7 @@ const Demo = () => {
             setJson(JSON.stringify(values));
 
             if (values?.copyIconProps?.Icon) {
-              values.copyIconProps.Icon =
-                IconMap[values?.copyIconProps?.Icon as 'PlusOutlined'];
+              values.copyIconProps.Icon = IconMap[values?.copyIconProps?.Icon as 'PlusOutlined'];
             }
 
             if (values?.deleteIconProps?.Icon) {
@@ -109,8 +125,7 @@ const Demo = () => {
                 IconMap[values?.deleteIconProps?.Icon as 'PlusOutlined'];
             }
             if (values?.creatorButtonProps?.icon) {
-              const Icon =
-                IconMap[values?.creatorButtonProps?.icon as 'PlusOutlined'];
+              const Icon = IconMap[values?.creatorButtonProps?.icon as 'PlusOutlined'];
               values.creatorButtonProps.icon = <Icon />;
             }
             setStateValue(values);
@@ -172,19 +187,14 @@ const Demo = () => {
                       name={['creatorButtonProps', 'type']}
                       label="按钮类型"
                       request={async () => {
-                        return [
-                          'default',
-                          'primary',
-                          'ghost',
-                          'dashed',
-                          'link',
-                          'text',
-                        ].map((value) => {
-                          return {
-                            label: value,
-                            value,
-                          };
-                        });
+                        return ['default', 'primary', 'ghost', 'dashed', 'link', 'text'].map(
+                          (value) => {
+                            return {
+                              label: value,
+                              value,
+                            };
+                          },
+                        );
                       }}
                     />
                   </ProForm.Group>

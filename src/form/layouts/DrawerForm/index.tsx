@@ -12,6 +12,7 @@ import React, {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
+
 import { isBrowser, omitUndefined, useRefFunction } from '../../../utils';
 import type { CommonFormProps, ProFormInstance } from '../../BaseForm';
 import { BaseForm } from '../../BaseForm';
@@ -26,10 +27,10 @@ export type CustomizeResizeType = {
   minWidth?: DrawerProps['size'];
 };
 
-export type DrawerFormProps<
-  T = Record<string, any>,
-  U = Record<string, any>,
-> = Omit<FormProps, 'onFinish' | 'title'> &
+export type DrawerFormProps<T = Record<string, any>, U = Record<string, any>> = Omit<
+  FormProps,
+  'onFinish' | 'title'
+> &
   CommonFormProps<T, U> & {
     /**
      * 接收任意值，返回 真值 会关掉这个抽屉
@@ -122,10 +123,7 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
     width ? width : resize ? resizeInfo?.minWidth : 800,
   );
 
-  const [open, setOpenInner] = useControlledState<boolean>(
-    !!propsOpen,
-    propsOpen,
-  );
+  const [open, setOpenInner] = useControlledState<boolean>(!!propsOpen, propsOpen);
 
   /**
    * 使用 useRefFunction 包装回调，确保引用稳定
@@ -142,9 +140,7 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
     (updater: boolean | ((prev: boolean) => boolean)) => {
       setOpenInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         queueMicrotask(() => {
           onOpenChangeCallback(next);
         });
@@ -156,15 +152,12 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
 
   const footerRef = useRef<HTMLDivElement | null>(null);
 
-  const footerDomRef: React.RefCallback<HTMLDivElement> = useCallback(
-    (element) => {
-      if (footerRef.current === null && element) {
-        forceUpdate([]);
-      }
-      footerRef.current = element;
-    },
-    [],
-  );
+  const footerDomRef: React.RefCallback<HTMLDivElement> = useCallback((element) => {
+    if (footerRef.current === null && element) {
+      forceUpdate([]);
+    }
+    footerRef.current = element;
+  }, []);
 
   const formRef = useRef<ProFormInstance>();
 
@@ -172,11 +165,7 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
     const form = rest.formRef?.current ?? rest.form ?? formRef.current;
     // 重置表单
     // issue: 8858 form.resetFields is not a function
-    if (
-      form &&
-      drawerProps?.destroyOnHidden &&
-      typeof form.resetFields === 'function'
-    ) {
+    if (form && drawerProps?.destroyOnHidden && typeof form.resetFields === 'function') {
       form.resetFields();
     }
   }, [drawerProps?.destroyOnHidden, rest.form, rest.formRef]);
@@ -310,8 +299,7 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
 
   const cbHandleMouseMove = useCallback(
     (e: MouseEvent) => {
-      const offsetRight: number | string = ((document.body.offsetWidth ||
-        1000) -
+      const offsetRight: number | string = ((document.body.offsetWidth || 1000) -
         (e.clientX - document.body.offsetLeft)) as number | string;
       const minWidth = resizeInfo?.minWidth ?? (width || 800);
       const maxWidth = resizeInfo?.maxWidth ?? window.innerWidth * 0.8;
@@ -341,9 +329,7 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
         {...drawerProps}
         destroyOnHidden={drawerProps?.destroyOnHidden}
         title={title}
-        size={
-          typeof drawerWidth === 'number' ? drawerWidth : (drawerWidth as any)
-        }
+        size={typeof drawerWidth === 'number' ? drawerWidth : (drawerWidth as any)}
         open={open}
         afterOpenChange={(open) => {
           if (!open && drawerProps?.destroyOnHidden) {
@@ -373,10 +359,8 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
         {resize ? (
           <div
             className={clsx(getCls('sidebar-dragger'), hashId, {
-              [getCls('sidebar-dragger-min-disabled')]:
-                drawerWidth === resizeInfo?.minWidth,
-              [getCls('sidebar-dragger-max-disabled')]:
-                drawerWidth === resizeInfo?.maxWidth,
+              [getCls('sidebar-dragger-min-disabled')]: drawerWidth === resizeInfo?.minWidth,
+              [getCls('sidebar-dragger-max-disabled')]: drawerWidth === resizeInfo?.maxWidth,
             })}
             onMouseDown={(e) => {
               resizeInfo?.onResize?.();
@@ -396,9 +380,7 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
             formRef={formRef}
             onInit={(_, form) => {
               if (rest.formRef) {
-                (
-                  rest.formRef as React.MutableRefObject<ProFormInstance<T>>
-                ).current = form;
+                (rest.formRef as React.MutableRefObject<ProFormInstance<T>>).current = form;
               }
               rest?.onInit?.(_, form);
               formRef.current = form;

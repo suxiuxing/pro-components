@@ -2,6 +2,7 @@ import { omit, useControlledState } from '@rc-component/util';
 import { Form, Popover, PopoverProps, type InputProps } from 'antd';
 import type { InputRef, PasswordProps } from 'antd/lib/input';
 import React, { useCallback, useState } from 'react';
+
 import { FieldPassword } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
 import type { ProFormFieldItemProps } from '../../typing';
@@ -49,17 +50,12 @@ const PassWordStrength: React.FC<
     children: React.ReactNode;
   }
 > = (props) => {
-  const [open, setOpenInner] = useControlledState<boolean>(
-    props.open || false,
-    props.open,
-  );
+  const [open, setOpenInner] = useControlledState<boolean>(props.open || false, props.open);
   const setOpen = useCallback(
     (updater: boolean | ((prev: boolean) => boolean)) => {
       setOpenInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         props.onOpenChange?.(next);
         return next;
       });
@@ -67,7 +63,10 @@ const PassWordStrength: React.FC<
     [props.onOpenChange],
   );
   return (
-    <Form.Item shouldUpdate noStyle>
+    <Form.Item
+      shouldUpdate
+      noStyle
+    >
       {(form) => {
         const value = form.getFieldValue(props.name || []) as string;
         return (
@@ -128,9 +127,17 @@ const Password: React.FC<
       <ProConfigProvider
         valueTypeMap={{
           password: {
-            render: (text, props) => <FieldPassword {...props} text={text} />,
+            render: (text, props) => (
+              <FieldPassword
+                {...props}
+                text={text}
+              />
+            ),
             formItemRender: (text, props) => (
-              <FieldPassword {...props} text={text} />
+              <FieldPassword
+                {...props}
+                text={text}
+              />
             ),
           },
         }}
@@ -147,11 +154,7 @@ const Password: React.FC<
             <ProField
               valueType="password"
               fieldProps={{
-                ...omit(fieldProps, [
-                  'statusRender',
-                  'popoverProps',
-                  'strengthText',
-                ]),
+                ...omit(fieldProps, ['statusRender', 'popoverProps', 'strengthText']),
                 onBlur: (e: any) => {
                   fieldProps?.onBlur?.(e);
                   setOpen(false);
@@ -179,9 +182,17 @@ const Password: React.FC<
     <ProConfigProvider
       valueTypeMap={{
         password: {
-          render: (text, props) => <FieldPassword {...props} text={text} />,
+          render: (text, props) => (
+            <FieldPassword
+              {...props}
+              text={text}
+            />
+          ),
           formItemRender: (text, props) => (
-            <FieldPassword {...props} text={text} />
+            <FieldPassword
+              {...props}
+              text={text}
+            />
           ),
         },
       }}

@@ -1,5 +1,6 @@
-import { PageHeader } from '@xxlabs/pro-components';
 import React from 'react';
+
+import { PageHeader } from '@xxlabs/pro-components';
 
 const items = [
   {

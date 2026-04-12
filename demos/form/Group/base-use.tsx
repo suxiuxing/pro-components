@@ -1,10 +1,6 @@
-﻿import {
-  ProForm,
-  ProFormDependency,
-  ProFormList,
-  ProFormText,
-} from '@xxlabs/pro-components';
 import { Button } from 'antd';
+
+import { ProForm, ProFormDependency, ProFormList, ProFormText } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -30,8 +26,15 @@ const Demo = () => {
                 name="rowKey"
                 label={`第 ${index} 配置`}
               />
-              <ProFormText name="name" key="name" label="姓名" />
-              <ProFormDependency key="remark" name={['name']}>
+              <ProFormText
+                name="name"
+                key="name"
+                label="姓名"
+              />
+              <ProFormDependency
+                key="remark"
+                name={['name']}
+              >
                 {({ name }) => {
                   if (!name) {
                     return (
@@ -44,7 +47,12 @@ const Demo = () => {
                       </span>
                     );
                   }
-                  return <ProFormText name="remark" label="昵称详情" />;
+                  return (
+                    <ProFormText
+                      name="remark"
+                      label="昵称详情"
+                    />
+                  );
                 }}
               </ProFormDependency>
               <div

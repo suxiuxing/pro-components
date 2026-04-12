@@ -1,7 +1,8 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Segmented } from 'antd';
 import { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 import {
   createTableDataSource,

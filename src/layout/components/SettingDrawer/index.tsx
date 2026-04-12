@@ -5,24 +5,11 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import { omit, useControlledState } from '@rc-component/util';
-import {
-  Alert,
-  Button,
-  Divider,
-  Drawer,
-  DrawerProps,
-  List,
-  Switch,
-  message,
-} from 'antd';
+import { Alert, Button, Divider, Drawer, DrawerProps, List, Switch, message } from 'antd';
 import { clsx } from 'clsx';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  isBrowser,
-  merge,
-  useRefFunction,
-  useUrlSearchParams,
-} from '../../../utils';
+
+import { isBrowser, merge, useRefFunction, useUrlSearchParams } from '../../../utils';
 import type { ProSettings } from '../../defaultSettings';
 import { defaultSettings } from '../../defaultSettings';
 import { gLocaleObject, getLanguage } from '../../locales';
@@ -87,9 +74,7 @@ export type SettingDrawerState = {
 
 type StateKey = keyof ProSettings;
 
-const getDifferentSetting = (
-  state: Partial<ProSettings>,
-): Record<string, any> => {
+const getDifferentSetting = (state: Partial<ProSettings>): Record<string, any> => {
   const stateObj = {} as typeof state;
   (Object.keys(state) as StateKey[]).forEach((key) => {
     if (
@@ -102,23 +87,14 @@ const getDifferentSetting = (
       stateObj[key] = undefined;
     }
     if (key.includes('Render'))
-      stateObj[key as 'headerRender'] =
-        state[key] === false ? false : undefined;
+      stateObj[key as 'headerRender'] = state[key] === false ? false : undefined;
   });
   stateObj.menu = undefined;
   return stateObj;
 };
 
-export const getFormatMessage = (): ((data: {
-  id: string;
-  defaultMessage?: string;
-}) => string) => {
-  const formatMessage = ({
-    id,
-  }: {
-    id: string;
-    defaultMessage?: string;
-  }): string => {
+export const getFormatMessage = (): ((data: { id: string; defaultMessage?: string }) => string) => {
+  const formatMessage = ({ id }: { id: string; defaultMessage?: string }): string => {
     const locales = gLocaleObject();
     return locales[id];
   };
@@ -139,10 +115,7 @@ const initState = (
 
   const replaceSetting = {} as Record<string, any>;
   Object.keys(urlParams).forEach((key) => {
-    if (
-      defaultSettings[key as 'navTheme'] ||
-      defaultSettings[key as 'navTheme'] === undefined
-    ) {
+    if (defaultSettings[key as 'navTheme'] || defaultSettings[key as 'navTheme'] === undefined) {
       if (key === 'colorPrimary') {
         replaceSetting[key] = genStringToTheme(urlParams[key]);
         return;
@@ -150,11 +123,7 @@ const initState = (
       replaceSetting[key] = urlParams[key];
     }
   });
-  const newSettings: MergerSettingsType<ProSettings> = merge(
-    {},
-    settings,
-    replaceSetting,
-  );
+  const newSettings: MergerSettingsType<ProSettings> = merge({}, settings, replaceSetting);
   delete newSettings.menu;
   delete newSettings.title;
   delete newSettings.iconfontUrl;
@@ -171,7 +140,7 @@ const getParamsFromUrl = (
 
   return {
     ...defaultSettings,
-    ...(settings || {}),
+    ...settings,
     ...urlParams,
   };
 };
@@ -239,9 +208,7 @@ export const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
     (updater: boolean | ((prev: boolean) => boolean)) => {
       setOpenInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         queueMicrotask(() => {
           onCollapseChangeCallback(next);
         });
@@ -259,9 +226,7 @@ export const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
     },
   );
 
-  const [settingState, setSettingStateInner] = useControlledState<
-    Partial<ProSettings>
-  >(
+  const [settingState, setSettingStateInner] = useControlledState<Partial<ProSettings>>(
     () => getParamsFromUrl(urlParams, propsSettings || propsDefaultSettings),
     propsSettings,
   );
@@ -269,28 +234,20 @@ export const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
   /**
    * 使用 useRefFunction 包装回调，确保引用稳定
    */
-  const onSettingChangeCallback = useRefFunction(
-    (settings: Partial<ProSettings>) => {
-      onSettingChange?.(settings);
-    },
-  );
+  const onSettingChangeCallback = useRefFunction((settings: Partial<ProSettings>) => {
+    onSettingChange?.(settings);
+  });
 
   /**
    * 使用 queueMicrotask 延迟回调调用，避免在渲染阶段调用外部回调导致的 React 警告
    * "Cannot update a component while rendering a different component"
    */
   const setSettingState = useCallback(
-    (
-      updater:
-        | Partial<ProSettings>
-        | ((prev: Partial<ProSettings>) => Partial<ProSettings>),
-    ) => {
+    (updater: Partial<ProSettings> | ((prev: Partial<ProSettings>) => Partial<ProSettings>)) => {
       setSettingStateInner((prev) => {
         const next =
           typeof updater === 'function'
-            ? (updater as (p: Partial<ProSettings>) => Partial<ProSettings>)(
-                prev,
-              )
+            ? (updater as (p: Partial<ProSettings>) => Partial<ProSettings>)(prev)
             : updater;
         queueMicrotask(() => {
           onSettingChangeCallback(next);
@@ -301,8 +258,7 @@ export const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
     [onSettingChangeCallback],
   );
 
-  const { navTheme, colorPrimary, siderMenuType, layout, colorWeak } =
-    settingState || {};
+  const { navTheme, colorPrimary, siderMenuType, layout, colorWeak } = settingState || {};
 
   useEffect(() => {
     // 语言修改，这个是和 locale 是配置起来的
@@ -314,17 +270,12 @@ export const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
 
     /** 如果不是浏览器 都没有必要做了 */
     if (!isBrowser()) return () => null;
-    initState(
-      getParamsFromUrl(urlParams, propsSettings),
-      settingState,
-      setSettingState,
-    );
+    initState(getParamsFromUrl(urlParams, propsSettings), settingState, setSettingState);
     window.document.addEventListener('languagechange', onLanguageChange, {
       passive: true,
     });
 
-    return () =>
-      window.document.removeEventListener('languagechange', onLanguageChange);
+    return () => window.document.removeEventListener('languagechange', onLanguageChange);
   }, []);
 
   /**
@@ -462,8 +413,7 @@ export const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
                   }),
                 },
               ].filter((item) => {
-                if (item.key === 'dark' && settingState.layout === 'mix')
-                  return false;
+                if (item.key === 'dark' && settingState.layout === 'mix') return false;
                 if (item.key === 'realDark' && !enableDarkTheme) return false;
                 return true;
               })}
@@ -626,12 +576,8 @@ export const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
                   style={{ marginBlockEnd: 24 }}
                   onClick={async () => {
                     try {
-                      await navigator.clipboard.writeText(
-                        genCopySettingJson(settingState),
-                      );
-                      message.success(
-                        formatMessage({ id: 'app.setting.copyinfo' }),
-                      );
+                      await navigator.clipboard.writeText(genCopySettingJson(settingState));
+                      message.success(formatMessage({ id: 'app.setting.copyinfo' }));
                     } catch (error) {
                       // console.log(error);
                     }

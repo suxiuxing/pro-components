@@ -1,9 +1,7 @@
-﻿import React, { useEffect, useImperativeHandle, useRef } from 'react';
+import React, { useEffect, useImperativeHandle, useRef } from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldTextEdit } from './FieldTextEdit';
 import { FieldTextRead } from './FieldTextRead';
@@ -14,10 +12,7 @@ import { FieldTextRead } from './FieldTextRead';
 const FieldText: ProFieldFC<{
   text: string;
   emptyText?: React.ReactNode;
-}> = (
-  { text, mode, render, formItemRender, fieldProps, emptyText = '-' },
-  ref,
-) => {
+}> = ({ text, mode, render, formItemRender, fieldProps, emptyText = '-' }, ref) => {
   const { autoFocus } = fieldProps || {};
 
   const intl = useIntl();

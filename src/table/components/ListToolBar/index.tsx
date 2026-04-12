@@ -3,6 +3,7 @@ import { ConfigProvider, Input, TabPaneProps, Tabs, Tooltip } from 'antd';
 import type { SearchProps } from 'antd/lib/input';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo, useState } from 'react';
+
 import { proTheme, useIntl } from '../../../provider';
 import type { LabelTooltipType } from '../../../utils';
 import { LabelIconTip } from '../../../utils';
@@ -199,10 +200,7 @@ const ListToolBar: React.FC<ListToolBarProps> = ({
 
   /** 轻量筛选组件 */
   const filtersNode = useMemo(() => {
-    if (filter)
-      return (
-        <div className={clsx(`${prefixCls}-filter`, hashId)}>{filter}</div>
-      );
+    if (filter) return <div className={clsx(`${prefixCls}-filter`, hashId)}>{filter}</div>;
     return null;
   }, [filter, hashId, prefixCls]);
 
@@ -248,14 +246,7 @@ const ListToolBar: React.FC<ListToolBarProps> = ({
       actionDom ||
       settings?.length
     );
-  }, [
-    actionDom,
-    filtersNode,
-    hasTitle,
-    multipleLine,
-    searchNode,
-    settings?.length,
-  ]);
+  }, [actionDom, filtersNode, hasTitle, multipleLine, searchNode, settings?.length]);
 
   const hasLeft = useMemo(
     () => tooltip || title || subTitle || menu || (!hasTitle && searchNode),
@@ -273,7 +264,11 @@ const ListToolBar: React.FC<ListToolBarProps> = ({
       return (
         <div className={clsx(`${prefixCls}-left`, hashId)}>
           <div className={clsx(`${prefixCls}-title`, hashId)}>
-            <LabelIconTip tooltip={tooltip} label={title} subTitle={subTitle} />
+            <LabelIconTip
+              tooltip={tooltip}
+              label={title}
+              subTitle={subTitle}
+            />
           </div>
         </div>
       );
@@ -288,33 +283,28 @@ const ListToolBar: React.FC<ListToolBarProps> = ({
       >
         {hasTitle && !menu && (
           <div className={clsx(`${prefixCls}-title`, hashId)}>
-            <LabelIconTip tooltip={tooltip} label={title} subTitle={subTitle} />
+            <LabelIconTip
+              tooltip={tooltip}
+              label={title}
+              subTitle={subTitle}
+            />
           </div>
         )}
 
         {menu && (
           // 这里面实现了 tabs 的逻辑
-          <HeaderMenu {...menu} prefixCls={prefixCls} hashId={hashId} />
+          <HeaderMenu
+            {...menu}
+            prefixCls={prefixCls}
+            hashId={hashId}
+          />
         )}
         {!hasTitle && searchNode ? (
-          <div className={clsx(`${prefixCls}-search`, hashId)}>
-            {searchNode}
-          </div>
+          <div className={clsx(`${prefixCls}-search`, hashId)}>{searchNode}</div>
         ) : null}
       </div>
     );
-  }, [
-    hasLeft,
-    hasRight,
-    hasTitle,
-    hashId,
-    menu,
-    prefixCls,
-    searchNode,
-    subTitle,
-    title,
-    tooltip,
-  ]);
+  }, [hasLeft, hasRight, hasTitle, hashId, menu, prefixCls, searchNode, subTitle, title, tooltip]);
 
   const rightTitleDom = useMemo(() => {
     if (!hasRight) return null;
@@ -325,9 +315,7 @@ const ListToolBar: React.FC<ListToolBarProps> = ({
       >
         {!multipleLine ? filtersNode : null}
         {hasTitle && searchNode ? (
-          <div className={clsx(`${prefixCls}-search`, hashId)}>
-            {searchNode}
-          </div>
+          <div className={clsx(`${prefixCls}-search`, hashId)}>{searchNode}</div>
         ) : null}
         {actionDom}
         {settings?.length ? (
@@ -371,15 +359,7 @@ const ListToolBar: React.FC<ListToolBarProps> = ({
         {rightTitleDom}
       </div>
     );
-  }, [
-    hasLeft,
-    hasRight,
-    hashId,
-    isMobile,
-    leftTitleDom,
-    prefixCls,
-    rightTitleDom,
-  ]);
+  }, [hasLeft, hasRight, hashId, isMobile, leftTitleDom, prefixCls, rightTitleDom]);
 
   return wrapSSR(
     <ResizeObserver

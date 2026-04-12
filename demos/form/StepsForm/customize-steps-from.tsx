@@ -1,3 +1,5 @@
+import { Button, message } from 'antd';
+
 import {
   ProCard,
   ProForm,
@@ -9,7 +11,6 @@ import {
   ProFormTextArea,
   StepsForm,
 } from '@xxlabs/pro-components';
-import { Button, message } from 'antd';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -38,7 +39,10 @@ const Demo = () => {
           render: (props) => {
             if (props.step === 0) {
               return (
-                <Button type="primary" onClick={() => props.onSubmit?.()}>
+                <Button
+                  type="primary"
+                  onClick={() => props.onSubmit?.()}
+                >
                   去第二步 {'>'}
                 </Button>
               );
@@ -46,7 +50,10 @@ const Demo = () => {
 
             if (props.step === 1) {
               return [
-                <Button key="pre" onClick={() => props.onPre?.()}>
+                <Button
+                  key="pre"
+                  onClick={() => props.onPre?.()}
+                >
                   返回第一步
                 </Button>,
                 <Button
@@ -60,7 +67,10 @@ const Demo = () => {
             }
 
             return [
-              <Button key="gotoTwo" onClick={() => props.onPre?.()}>
+              <Button
+                key="gotoTwo"
+                onClick={() => props.onPre?.()}
+              >
                 {'<'} 返回第二步
               </Button>,
               <Button
@@ -92,8 +102,14 @@ const Demo = () => {
             placeholder="请输入名称"
             rules={[{ required: true }]}
           />
-          <ProFormDatePicker name="date" label="日期" />
-          <ProFormDateRangePicker name="dateTime" label="时间区间" />
+          <ProFormDatePicker
+            name="date"
+            label="日期"
+          />
+          <ProFormDateRangePicker
+            name="dateTime"
+            label="时间区间"
+          />
           <ProFormTextArea
             name="remark"
             label="备注"
@@ -114,7 +130,10 @@ const Demo = () => {
             options={['结构迁移', '全量迁移', '增量迁移', '全量校验']}
           />
           <ProForm.Group>
-            <ProFormText name="dbname" label="业务 DB 用户名" />
+            <ProFormText
+              name="dbname"
+              label="业务 DB 用户名"
+            />
             <ProFormDatePicker
               name="datetime"
               label="记录保存时间"
@@ -127,7 +146,10 @@ const Demo = () => {
             />
           </ProForm.Group>
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="customize-steps-from-time" title="发布实验">
+        <StepsForm.StepForm
+          name="customize-steps-from-time"
+          title="发布实验"
+        >
           <ProFormCheckbox.Group
             name="checkbox"
             label="部署单元"

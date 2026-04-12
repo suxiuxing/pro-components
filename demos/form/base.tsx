@@ -1,3 +1,7 @@
+import { TreeSelect, message } from 'antd';
+import moment from 'dayjs';
+import { useRef } from 'react';
+
 import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProForm,
@@ -12,9 +16,6 @@ import {
   ProFormTextArea,
   ProFormTreeSelect,
 } from '@xxlabs/pro-components';
-import { TreeSelect, message } from 'antd';
-import moment from 'dayjs';
-import { useRef } from 'react';
 
 import { DEMO_AREA_CASCADER, DEMO_DEPARTMENT_TREE } from '../mockData';
 
@@ -86,7 +87,11 @@ const Demo = () => {
         />
       </ProForm.Group>
       <ProForm.Group>
-        <ProFormDigit name="count" label="项目团队人数" width="lg" />
+        <ProFormDigit
+          name="count"
+          label="项目团队人数"
+          width="lg"
+        />
       </ProForm.Group>
       <ProForm.Group>
         <ProFormText
@@ -146,7 +151,11 @@ const Demo = () => {
           }}
         />
       </ProForm.Group>
-      <ProFormText width="sm" name="id" label="主合同编号" />
+      <ProFormText
+        width="sm"
+        name="id"
+        label="主合同编号"
+      />
       <ProFormText
         name="project"
         width="md"
@@ -197,7 +206,10 @@ const Demo = () => {
           };
         }}
       />
-      <ProFormList name="datas" label="补充条款">
+      <ProFormList
+        name="datas"
+        label="补充条款"
+      >
         {() => {
           return (
             <>
@@ -211,7 +223,10 @@ const Demo = () => {
                 }}
               />
 
-              <ProFormList name="innerDatas" label="子条款">
+              <ProFormList
+                name="innerDatas"
+                label="子条款"
+              >
                 {() => {
                   return (
                     <>

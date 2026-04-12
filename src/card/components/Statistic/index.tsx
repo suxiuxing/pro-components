@@ -1,13 +1,9 @@
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import type { StatisticProps as AntdStatisticProps, BadgeProps } from 'antd';
-import {
-  Statistic as AntdStatistic,
-  Badge,
-  ConfigProvider,
-  Tooltip,
-} from 'antd';
+import { Statistic as AntdStatistic, Badge, ConfigProvider, Tooltip } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext } from 'react';
+
 import { useStyle } from './style';
 
 export interface StatisticProps extends AntdStatisticProps {
@@ -83,14 +79,20 @@ const Statistic: React.FC<StatisticProps> = (props) => {
 
   const statusDom = status && (
     <div className={statusClass}>
-      <Badge status={status} text={null} />
+      <Badge
+        status={status}
+        text={null}
+      />
     </div>
   );
 
   const iconDom = icon && <div className={iconClass}>{icon}</div>;
 
   return wrapSSR(
-    <div className={classString} style={style}>
+    <div
+      className={classString}
+      style={style}
+    >
       {iconDom}
       <div className={wrapperClass}>
         {statusDom}

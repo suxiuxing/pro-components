@@ -1,16 +1,8 @@
-﻿import { ConfigProvider } from 'antd';
-import React, {
-  useContext,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { ConfigProvider } from 'antd';
+import React, { useContext, useImperativeHandle, useMemo, useRef, useState } from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOnlyMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOnlyMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { useFieldFetchData } from '../Select';
 import { FieldCascaderEdit } from './FieldCascaderEdit';
@@ -37,7 +29,7 @@ const FieldCascader: ProFieldFC<GroupProps> = (
   useImperativeHandle(
     ref,
     () => ({
-      ...(cascaderRef.current || {}),
+      ...cascaderRef.current,
       fetchData: (keyWord: string) => fetchData(keyWord),
     }),
     [fetchData],

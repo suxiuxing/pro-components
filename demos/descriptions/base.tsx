@@ -1,5 +1,6 @@
-﻿import { ProDescriptions } from '@xxlabs/pro-components';
 import { Button } from 'antd';
+
+import { ProDescriptions } from '@xxlabs/pro-components';
 
 import { FIXED_BASE_DATE } from '../mockData';
 
@@ -13,7 +14,10 @@ const Demo = () => {
         {
           valueType: 'option',
           render: () => [
-            <Button key="primary" type="primary">
+            <Button
+              key="primary"
+              type="primary"
+            >
               提交审核
             </Button>,
           ],
@@ -91,10 +95,7 @@ const Demo = () => {
         {
           label: '服务周期',
           valueType: 'dateTimeRange',
-          children: [
-            FIXED_BASE_DATE.valueOf(),
-            FIXED_BASE_DATE.add(365, 'd').valueOf(),
-          ],
+          children: [FIXED_BASE_DATE.valueOf(), FIXED_BASE_DATE.add(365, 'd').valueOf()],
         },
         {
           label: '创建时间',

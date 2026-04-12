@@ -1,5 +1,6 @@
 import type { ProSettings } from '@xxlabs/pro-components';
 import { ProConfigProvider, ProLayout } from '@xxlabs/pro-components';
+
 import defaultProps from './_defaultProps';
 
 const AppGroupList: any = [
@@ -86,7 +87,10 @@ const Demo = () => {
   };
 
   return (
-    <div id="test-pro-layout" style={{ height: '100vh' }}>
+    <div
+      id="test-pro-layout"
+      style={{ height: '100vh' }}
+    >
       <ProConfigProvider hashed={false}>
         <ProLayout
           {...defaultProps}

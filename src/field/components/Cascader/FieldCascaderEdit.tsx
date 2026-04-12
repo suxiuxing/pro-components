@@ -1,7 +1,8 @@
-﻿import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import { Cascader } from 'antd';
 import { clsx } from 'clsx';
 import React from 'react';
+
 import type { IntlType } from '../../../provider';
 import { FieldLabel } from '../../../utils';
 import type { ProFieldFC } from '../../types';
@@ -41,9 +42,7 @@ export function FieldCascaderEdit(props: Props) {
       ref={cascaderRef}
       open={open}
       suffixIcon={loading ? <LoadingOutlined /> : undefined}
-      placeholder={
-        placeholder || intl.getMessage('tableForm.selectPlaceholder', '请选择')
-      }
+      placeholder={placeholder || intl.getMessage('tableForm.selectPlaceholder', '请选择')}
       allowClear={fieldProps?.allowClear !== false}
       {...fieldProps}
       onOpenChange={(isOpen) => {
@@ -56,12 +55,7 @@ export function FieldCascaderEdit(props: Props) {
   );
 
   if (formItemRender) {
-    dom =
-      formItemRender(
-        rest.text,
-        { mode, ...fieldProps, options, loading },
-        dom,
-      ) ?? null;
+    dom = formItemRender(rest.text, { mode, ...fieldProps, options, loading }, dom) ?? null;
   }
 
   if (light) {

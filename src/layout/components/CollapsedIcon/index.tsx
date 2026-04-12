@@ -1,4 +1,5 @@
-﻿import { clsx } from 'clsx';
+import { clsx } from 'clsx';
+
 import { ArrowSvgIcon } from '../SiderMenu/Arrow';
 import { useStyle } from './style';
 

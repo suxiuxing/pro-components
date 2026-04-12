@@ -37,8 +37,7 @@ const Demo = () => (
           <strong>字符串</strong>: 直接传入图片 URL，会自动渲染为 img 标签
         </li>
         <li>
-          <strong>组件</strong>: 传入 img 标签或其他 React
-          节点，可以自定义样式和属性
+          <strong>组件</strong>: 传入 img 标签或其他 React 节点，可以自定义样式和属性
         </li>
       </ul>
       <h4>Img 标签 Props：</h4>

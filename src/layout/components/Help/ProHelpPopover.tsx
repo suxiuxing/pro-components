@@ -1,7 +1,8 @@
-﻿import type { PopoverProps } from 'antd';
+import type { PopoverProps } from 'antd';
 import { ConfigProvider, Popover } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext } from 'react';
+
 import { ProProvider } from '../../../provider';
 import { ProHelpContentPanel } from './ProHelpContentPanel';
 import { useStyle } from './style';
@@ -55,24 +56,14 @@ export const ProHelpPopover: React.FC<ProHelpPopoverProps> = (props) => {
       }}
       content={
         <div
-          className={clsx(
-            `${className}-popover-content`,
-            hashId,
-            props.popoverContextClassName,
-          )}
+          className={clsx(`${className}-popover-content`, hashId, props.popoverContextClassName)}
         >
           <ProHelpContentPanel selectedKey={props.selectedKey} />
         </div>
       }
       {...props.popoverProps}
     >
-      <span
-        className={clsx(
-          `${className}-popover-text`,
-          hashId,
-          props.textClassName,
-        )}
-      >
+      <span className={clsx(`${className}-popover-text`, hashId, props.textClassName)}>
         {props.children}
       </span>
     </Popover>,

@@ -1,9 +1,6 @@
-import {
-  LightFilter,
-  ProFormDateTimePicker,
-  ProFormSelect,
-} from '@xxlabs/pro-components';
 import { message } from 'antd';
+
+import { LightFilter, ProFormDateTimePicker, ProFormSelect } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -25,7 +22,10 @@ const Demo = () => {
           woman: '女',
         }}
       />
-      <ProFormDateTimePicker name="time" label="时间" />
+      <ProFormDateTimePicker
+        name="time"
+        label="时间"
+      />
     </LightFilter>
   );
 };

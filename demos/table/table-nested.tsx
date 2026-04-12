@@ -1,7 +1,8 @@
 import { DownOutlined } from '@ant-design/icons';
+import { Button, Tag } from 'antd';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
-import { Button, Tag } from 'antd';
 
 import {
   DEMO_APP_NAMES,
@@ -47,17 +48,14 @@ export type TableListItem = {
   createdAt: number;
 };
 
-const tableListDataSource: TableListItem[] = Array.from(
-  { length: 5 },
-  (_, i) => ({
-    key: i,
-    name: DEMO_APP_NAMES[i % DEMO_APP_NAMES.length],
-    containers: ((i * 3 + 2) % 12) + 1,
-    creator: DEMO_CREATORS[i % DEMO_CREATORS.length],
-    status: statusMap[String(i % 5)],
-    createdAt: FIXED_BASE_TIMESTAMP - i * 86400000,
-  }),
-);
+const tableListDataSource: TableListItem[] = Array.from({ length: 5 }, (_, i) => ({
+  key: i,
+  name: DEMO_APP_NAMES[i % DEMO_APP_NAMES.length],
+  containers: ((i * 3 + 2) % 12) + 1,
+  creator: DEMO_CREATORS[i % DEMO_CREATORS.length],
+  status: statusMap[String(i % 5)],
+  createdAt: FIXED_BASE_TIMESTAMP - i * 86400000,
+}));
 
 const columns: ProColumns<TableListItem>[] = [
   {
@@ -70,9 +68,7 @@ const columns: ProColumns<TableListItem>[] = [
     title: '状态',
     width: 120,
     dataIndex: 'status',
-    render: (_, record) => (
-      <Tag color={record.status.color}>{record.status.text}</Tag>
-    ),
+    render: (_, record) => <Tag color={record.status.color}>{record.status.text}</Tag>,
   },
   {
     title: '容器数量',
@@ -160,7 +156,10 @@ const Demo = () => {
           导出数据
           <DownOutlined />
         </Button>,
-        <Button key="primary" type="primary">
+        <Button
+          key="primary"
+          type="primary"
+        >
           部署应用
         </Button>,
       ]}

@@ -1,25 +1,9 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Form } from 'antd';
 import React, { useState } from 'react';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
-import type {
-  NewLineConfig,
-  RecordKey,
-} from '../../src/utils/useEditableArray';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+
+import type { NewLineConfig, RecordKey } from '../../src/utils/useEditableArray';
 import { useEditableMap } from '../../src/utils/useEditableMap';
 
 type TestRecordType = {
@@ -61,14 +45,8 @@ describe('useEditableMap', () => {
       record: TestRecordType & { index?: number },
       originRow: TestRecordType & { index?: number },
     ) => Promise<any | void>;
-    onValuesChange?: (
-      record: TestRecordType,
-      dataSource: TestRecordType[],
-    ) => void;
-    onChange?: (
-      editableKeys: React.Key[],
-      editableRows: TestRecordType | TestRecordType[],
-    ) => void;
+    onValuesChange?: (record: TestRecordType, dataSource: TestRecordType[]) => void;
+    onChange?: (editableKeys: React.Key[], editableRows: TestRecordType | TestRecordType[]) => void;
     editableKeys?: React.Key[];
     type?: 'single' | 'multiple';
     onlyOneLineEditorAlertMessage?: React.ReactNode;
@@ -109,9 +87,7 @@ describe('useEditableMap', () => {
 
     return (
       <Form>
-        <div data-testid="editable-keys">
-          {editableUtils.editableKeys?.join(',') || 'none'}
-        </div>
+        <div data-testid="editable-keys">{editableUtils.editableKeys?.join(',') || 'none'}</div>
         <div data-testid="data-source">{JSON.stringify(dataSource)}</div>
         <button
           data-testid="start-edit-name"
@@ -168,9 +144,7 @@ describe('useEditableMap', () => {
   it('📝 应该正确初始化', () => {
     const wrapper = render(<TestComponent />);
     expect(wrapper.getByTestId('editable-keys').textContent).toBe('none');
-    expect(wrapper.getByTestId('data-source').textContent).toContain(
-      'John Doe',
-    );
+    expect(wrapper.getByTestId('data-source').textContent).toContain('John Doe');
   });
 
   it('📝 应该能够开始编辑单个字段', async () => {
@@ -231,8 +205,7 @@ describe('useEditableMap', () => {
     });
 
     await waitFor(() => {
-      const keys =
-        wrapper.getByTestId('editable-keys').textContent?.split(',') || [];
+      const keys = wrapper.getByTestId('editable-keys').textContent?.split(',') || [];
       expect(keys).toContain('name');
       expect(keys).toContain('age');
     });
@@ -388,12 +361,10 @@ describe('useEditableMap', () => {
   });
 
   it('📝 应该正确处理 onChange 回调', async () => {
-    const onChange = vi.fn(
-      (keys: React.Key[], editableRows: TestRecordType | TestRecordType[]) => {
-        expect(Array.isArray(keys)).toBe(true);
-        expect(editableRows).toBeDefined();
-      },
-    );
+    const onChange = vi.fn((keys: React.Key[], editableRows: TestRecordType | TestRecordType[]) => {
+      expect(Array.isArray(keys)).toBe(true);
+      expect(editableRows).toBeDefined();
+    });
 
     const wrapper = render(<TestComponent onChange={onChange} />);
 
@@ -629,9 +600,7 @@ describe('useEditableMap', () => {
 
   it('📝 应该正确处理空数据源', () => {
     const EmptyComponent: React.FC = () => {
-      const [dataSource, setDataSource] = useState<TestRecordType>(
-        {} as TestRecordType,
-      );
+      const [dataSource, setDataSource] = useState<TestRecordType>({} as TestRecordType);
 
       const editableUtils = useEditableMap<TestRecordType>({
         dataSource,
@@ -640,9 +609,7 @@ describe('useEditableMap', () => {
 
       return (
         <Form>
-          <div data-testid="editable-keys">
-            {editableUtils.editableKeys?.join(',') || 'none'}
-          </div>
+          <div data-testid="editable-keys">{editableUtils.editableKeys?.join(',') || 'none'}</div>
           <button
             data-testid="start-edit-name"
             onClick={() => editableUtils.startEditable('name', 'Default Name')}

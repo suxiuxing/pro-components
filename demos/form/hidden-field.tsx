@@ -1,5 +1,6 @@
-import { ProForm, ProFormSwitch, ProFormText } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { ProForm, ProFormSwitch, ProFormText } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [hidden, setHidden] = useState(true);

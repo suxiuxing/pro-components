@@ -1,6 +1,7 @@
+import { useRef, useState } from 'react';
+
 import type { ProColumns, ProFormInstance } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
-import { useRef, useState } from 'react';
 
 export type TableListItem = {
   key: number;

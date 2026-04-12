@@ -1,4 +1,4 @@
-﻿export function languageFormat(text: string, language: string) {
+export function languageFormat(text: string, language: string) {
   if (typeof text !== 'string') {
     return text;
   }

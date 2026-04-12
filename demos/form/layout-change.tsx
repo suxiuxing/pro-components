@@ -6,6 +6,9 @@ import {
   UserOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
+import { Button, Space, message } from 'antd';
+import { useState } from 'react';
+
 import {
   DrawerForm,
   LightFilter,
@@ -19,8 +22,6 @@ import {
   QueryFilter,
   StepsForm,
 } from '@xxlabs/pro-components';
-import { Button, Space, message } from 'antd';
-import { useState } from 'react';
 
 const iconStyles = {
   marginInlineStart: '16px',
@@ -137,7 +138,11 @@ const Demo = () => {
             </ProForm.Group>
           </StepsForm.StepForm>
           <StepsForm.StepForm title="Step Three">
-            <ProFormText width="sm" name="id" label="Main Contract Number" />
+            <ProFormText
+              width="sm"
+              name="id"
+              label="Main Contract Number"
+            />
             <ProFormText
               name="project"
               width="md"
@@ -325,7 +330,11 @@ const Demo = () => {
               label="Contract Agreed Invalid Method"
             />
           </ProForm.Group>
-          <ProFormText width="sm" name="id" label="Main Contract Number" />
+          <ProFormText
+            width="sm"
+            name="id"
+            label="Main Contract Number"
+          />
           <ProFormText
             name="project"
             width="md"

@@ -1,4 +1,7 @@
 import { SmileOutlined } from '@ant-design/icons';
+import { Button, Input, message } from 'antd';
+import { useRef } from 'react';
+
 import {
   ProForm,
   ProFormCheckbox,
@@ -9,8 +12,6 @@ import {
   ProFormUploadButton,
   ProFormUploadDragger,
 } from '@xxlabs/pro-components';
-import { Button, Input, message } from 'antd';
-import { useRef } from 'react';
 
 const Demo = () => {
   const formRef = useRef();
@@ -39,7 +40,10 @@ const Demo = () => {
       />
       <ProFormRadio name="test" />
       <ProFormCheckbox name="test2" />
-      <ProFormSwitch width="lg" label="是否打开" />
+      <ProFormSwitch
+        width="lg"
+        label="是否打开"
+      />
       <ProFormUploadDragger
         title="拖动上传"
         icon={<SmileOutlined />}
@@ -50,7 +54,10 @@ const Demo = () => {
           showUploadList: true,
         }}
       />
-      <ProFormSlider name="range" label="范围" />
+      <ProFormSlider
+        name="range"
+        label="范围"
+      />
       <ProFormField>test</ProFormField>
       <ProFormField>
         <Input />

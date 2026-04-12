@@ -1,4 +1,5 @@
 import { Keyframes } from '@ant-design/cssinjs';
+
 import type { GenerateStyle, ProAliasToken } from '../../provider';
 import { useStyle as useAntdStyle } from '../../provider';
 
@@ -55,14 +56,13 @@ const genProListStyle: GenerateStyle<ProListToken> = (token) => {
           marginBlock: 0,
           marginInline: 0,
         },
-      [`${token.antCls}-table${token.antCls}-table-middle ${token.componentCls}`]:
-        {
-          marginBlock: 0,
-          marginInline: -8,
-          [`${token.proComponentsCls}-card`]: {
-            backgroundColor: 'initial',
-          },
+      [`${token.antCls}-table${token.antCls}-table-middle ${token.componentCls}`]: {
+        marginBlock: 0,
+        marginInline: -8,
+        [`${token.proComponentsCls}-card`]: {
+          backgroundColor: 'initial',
         },
+      },
 
       '& &-search': {
         marginBlockEnd: '16px',

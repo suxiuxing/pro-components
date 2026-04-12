@@ -1,7 +1,8 @@
 import { PlusOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
-import { Button } from 'antd';
 
 type ServiceItem = {
   key: number;
@@ -52,13 +53,19 @@ const Demo = () => (
       labelWidth: 'auto',
       optionRender: (searchConfig, formProps, dom) => [
         ...dom.reverse(),
-        <Button key="export" onClick={() => {}}>
+        <Button
+          key="export"
+          onClick={() => {}}
+        >
           导出
         </Button>,
       ],
     }}
     toolBarRender={() => [
-      <Button key="primary" type="primary">
+      <Button
+        key="primary"
+        type="primary"
+      >
         <PlusOutlined />
         新建
       </Button>,

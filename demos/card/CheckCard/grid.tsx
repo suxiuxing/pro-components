@@ -1,9 +1,13 @@
-import { CheckCard } from '@xxlabs/pro-components';
 import { Col, Row } from 'antd';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 const Demo = () => (
   <>
-    <CheckCard.Group style={{ width: '100%' }} size="small">
+    <CheckCard.Group
+      style={{ width: '100%' }}
+      size="small"
+    >
       <Row>
         <Col span={8}>
           <CheckCard

@@ -1,6 +1,7 @@
 import { UserOutlined } from '@ant-design/icons';
-import { CheckCard } from '@xxlabs/pro-components';
 import { Avatar } from 'antd';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 const Demo = () => (
   <>
@@ -50,8 +51,7 @@ const Demo = () => (
       <h4>Avatar 使用方式：</h4>
       <ul>
         <li>
-          <strong>字符串</strong>: 直接传入图片 URL，如
-          avatar="https://example.com/image.jpg"
+          <strong>字符串</strong>: 直接传入图片 URL，如 avatar="https://example.com/image.jpg"
         </li>
         <li>
           <strong>组件</strong>: 传入 Avatar 组件，可以自定义样式和图标

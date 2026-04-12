@@ -1,13 +1,8 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
-import { ProField as Field } from '@xxlabs/pro-components';
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import dayjs from 'dayjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ProField as Field } from '@xxlabs/pro-components';
 
 function closePicker(container: HTMLElement, index = 0) {
   const input = container.querySelectorAll('input')[index];
@@ -57,9 +52,7 @@ describe('DateField', () => {
       );
 
       await act(async () => {
-        await fireEvent.click(
-          container.querySelector('.ant-pro-core-field-label')!,
-        );
+        await fireEvent.click(container.querySelector('.ant-pro-core-field-label')!);
       });
 
       await waitFor(() => {
@@ -126,9 +119,7 @@ describe('DateField', () => {
       );
 
       await act(async () => {
-        await fireEvent.click(
-          container.querySelector('.ant-pro-core-field-label')!,
-        );
+        await fireEvent.click(container.querySelector('.ant-pro-core-field-label')!);
       });
 
       await waitFor(() => {
@@ -184,9 +175,7 @@ describe('DateField', () => {
       />,
     );
 
-    expect(html.baseElement.textContent).toBe(
-      '2016-11-22 15:22:442016-11-23 15:22:44',
-    );
+    expect(html.baseElement.textContent).toBe('2016-11-22 15:22:442016-11-23 15:22:44');
   });
 
   it(`📅  DatePicker support format is Array`, async () => {

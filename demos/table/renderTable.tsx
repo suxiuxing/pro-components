@@ -1,8 +1,9 @@
 import { MailOutlined } from '@ant-design/icons';
-import type { ProColumns } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Card, Descriptions, Menu } from 'antd';
 import { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 import { FIXED_BASE_TIMESTAMP } from '../mockData';
 
@@ -21,15 +22,12 @@ export type TableListItem = {
   progress: number;
 };
 
-const tableListDataSource: TableListItem[] = Array.from(
-  { length: 2 },
-  (_, i) => ({
-    key: i,
-    name: i === 0 ? '用户认证服务' : '支付网关',
-    createdAt: FIXED_BASE_TIMESTAMP - (i * 1000 + 200),
-    progress: ((i * 17 + 23) % 100) + 1,
-  }),
-);
+const tableListDataSource: TableListItem[] = Array.from({ length: 2 }, (_, i) => ({
+  key: i,
+  name: i === 0 ? '用户认证服务' : '支付网关',
+  createdAt: FIXED_BASE_TIMESTAMP - (i * 1000 + 200),
+  progress: ((i * 17 + 23) % 100) + 1,
+}));
 
 const columns: ProColumns<TableListItem>[] = [
   {
@@ -117,7 +115,10 @@ const Demo = () => {
       )}
       tableExtraRender={(_, data) => (
         <Card>
-          <Descriptions size="small" column={3}>
+          <Descriptions
+            size="small"
+            column={3}
+          >
             <Descriptions.Item label="实例数">{data.length}</Descriptions.Item>
             <Descriptions.Item label="负责人">书琰</Descriptions.Item>
             <Descriptions.Item label="关联项目">

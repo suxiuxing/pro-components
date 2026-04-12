@@ -1,4 +1,5 @@
-﻿import { get } from '@rc-component/util';
+import { get } from '@rc-component/util';
+
 import type { ProDescriptionsColumn } from './typing';
 
 /**

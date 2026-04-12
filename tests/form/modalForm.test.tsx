@@ -1,15 +1,11 @@
-﻿import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
-import { ModalForm, ProFormText } from '@xxlabs/pro-components';
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import type { FormInstance } from 'antd';
 import { Button } from 'antd';
 import { createRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { ModalForm, ProFormText } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 afterEach(() => {
@@ -69,7 +65,10 @@ describe('ModalForm', () => {
           name: 'test',
         }}
       >
-        <ProFormText label="名称" name="name" />
+        <ProFormText
+          label="名称"
+          name="name"
+        />
       </ModalForm>,
     );
 
@@ -348,7 +347,11 @@ describe('ModalForm', () => {
   it('📦 modal open=true simulate onOpenChange', async () => {
     const fn = vi.fn();
     render(
-      <ModalForm width={600} open onOpenChange={(open) => fn(open)}>
+      <ModalForm
+        width={600}
+        open
+        onOpenChange={(open) => fn(open)}
+      >
         <ProFormText name="name" />
       </ModalForm>,
     );
@@ -555,9 +558,7 @@ describe('ModalForm', () => {
 
     await waitFor(() => {
       // 提交按钮不应该被禁用
-      const submitButton = wrapper.container.querySelector(
-        'button[type="button"]',
-      );
+      const submitButton = wrapper.container.querySelector('button[type="button"]');
       expect(submitButton).not.toBeDisabled();
     });
   });
@@ -607,9 +608,7 @@ describe('ModalForm', () => {
         modalProps={{ destroyOnHidden: true }}
         request={async () => {
           // Simulate slow request
-          return new Promise((resolve) =>
-            setTimeout(() => resolve({ name: 'demo' }), 200),
-          );
+          return new Promise((resolve) => setTimeout(() => resolve({ name: 'demo' }), 200));
         }}
         trigger={<Button id="new">新建</Button>}
       >

@@ -1,4 +1,7 @@
-﻿import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, Modal, message } from 'antd';
+import { useState } from 'react';
+
 import {
   ProForm,
   ProFormCheckbox,
@@ -9,8 +12,6 @@ import {
   ProFormTextArea,
   StepsForm,
 } from '@xxlabs/pro-components';
-import { Button, Modal, message } from 'antd';
-import { useState } from 'react';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -24,7 +25,10 @@ const Demo = () => {
   const [visible, setVisible] = useState(false);
   return (
     <>
-      <Button type="primary" onClick={() => setVisible(true)}>
+      <Button
+        type="primary"
+        onClick={() => setVisible(true)}
+      >
         <PlusOutlined />
         分步表单新建
       </Button>
@@ -70,10 +74,19 @@ const Demo = () => {
             placeholder="请输入名称"
             rules={[{ required: true }]}
           />
-          <ProFormDatePicker name="date" label="日期" />
+          <ProFormDatePicker
+            name="date"
+            label="日期"
+          />
           <ProForm.Group title="时间选择">
-            <ProFormDateTimePicker name="dateTime" label="开始时间" />
-            <ProFormDatePicker name="date" label="结束时间" />
+            <ProFormDateTimePicker
+              name="dateTime"
+              label="开始时间"
+            />
+            <ProFormDatePicker
+              name="date"
+              label="结束时间"
+            />
           </ProForm.Group>
           <ProFormTextArea
             name="remark"
@@ -82,7 +95,10 @@ const Demo = () => {
             placeholder="请输入备注"
           />
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="modal-step-form-checkbox" title="设置参数">
+        <StepsForm.StepForm
+          name="modal-step-form-checkbox"
+          title="设置参数"
+        >
           <ProFormCheckbox.Group
             name="checkbox"
             label="迁移类型"
@@ -90,7 +106,11 @@ const Demo = () => {
             options={['结构迁移', '全量迁移', '增量迁移', '全量校验']}
           />
           <ProForm.Group>
-            <ProFormText width="md" name="dbname" label="业务 DB 用户名" />
+            <ProFormText
+              width="md"
+              name="dbname"
+              label="业务 DB 用户名"
+            />
             <ProFormDatePicker
               name="datetime"
               label="记录保存时间"
@@ -103,7 +123,10 @@ const Demo = () => {
             />
           </ProForm.Group>
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="modal-step-form-time" title="发布实验">
+        <StepsForm.StepForm
+          name="modal-step-form-time"
+          title="发布实验"
+        >
           <ProFormCheckbox.Group
             name="checkbox"
             label="部署单元"

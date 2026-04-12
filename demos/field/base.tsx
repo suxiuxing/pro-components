@@ -1,8 +1,9 @@
-import type { ProFieldFCMode } from '@xxlabs/pro-components';
-import { ProField } from '@xxlabs/pro-components';
 import { Descriptions, Segmented, Space } from 'antd';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
+
+import type { ProFieldFCMode } from '@xxlabs/pro-components';
+import { ProField } from '@xxlabs/pro-components';
 
 const DEMO_TIMESTAMP = dayjs('2024-01-15 10:30:00').valueOf();
 
@@ -22,16 +23,20 @@ const DemoField: React.FC<{
 }> = ({ initialValue, mode, ...rest }) => {
   const [val, setVal] = useState(initialValue);
   return (
-    <ProField text={val} value={val} onChange={setVal} mode={mode} {...rest} />
+    <ProField
+      text={val}
+      value={val}
+      onChange={setVal}
+      mode={mode}
+      {...rest}
+    />
   );
 };
 
 const Demo = () => {
   const [state, setState] = useState<ProFieldFCMode>('read');
   return (
-    <div
-      style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 24 }}
-    >
+    <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div style={{ marginBlockEnd: 16 }}>
         <span>模式：</span>
         <Segmented
@@ -44,9 +49,15 @@ const Demo = () => {
         />
       </div>
 
-      <Descriptions column={2} title="文本与展示类">
+      <Descriptions
+        column={2}
+        title="文本与展示类"
+      >
         <Descriptions.Item label="空字符串">
-          <ProField text="" mode="read" />
+          <ProField
+            text=""
+            mode="read"
+          />
         </Descriptions.Item>
         <Descriptions.Item label="文本 text">
           <DemoField
@@ -85,12 +96,23 @@ const Demo = () => {
         </Descriptions.Item>
       </Descriptions>
 
-      <Descriptions column={2} title="数值类">
+      <Descriptions
+        column={2}
+        title="数值类"
+      >
         <Descriptions.Item label="金额 money">
-          <DemoField initialValue={128000} valueType="money" mode={state} />
+          <DemoField
+            initialValue={128000}
+            valueType="money"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="数字 digit">
-          <DemoField initialValue={1234567} valueType="digit" mode={state} />
+          <DemoField
+            initialValue={1234567}
+            valueType="digit"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="数字范围 digitRange">
           <DemoField
@@ -100,10 +122,18 @@ const Demo = () => {
           />
         </Descriptions.Item>
         <Descriptions.Item label="秒格式化 second">
-          <DemoField initialValue={86400} valueType="second" mode={state} />
+          <DemoField
+            initialValue={86400}
+            valueType="second"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="百分比 percent">
-          <DemoField initialValue={99.5} valueType="percent" mode={state} />
+          <DemoField
+            initialValue={99.5}
+            valueType="percent"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="百分比（带颜色）">
           <Space>
@@ -125,19 +155,38 @@ const Demo = () => {
           </Space>
         </Descriptions.Item>
         <Descriptions.Item label="进度条 progress">
-          <DemoField initialValue={75} valueType="progress" mode={state} />
+          <DemoField
+            initialValue={75}
+            valueType="progress"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="评分 rate">
-          <DemoField initialValue={4} valueType="rate" mode={state} />
+          <DemoField
+            initialValue={4}
+            valueType="rate"
+            mode={state}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="滑动条 slider">
-          <DemoField initialValue={60} valueType="slider" mode={state} />
+          <DemoField
+            initialValue={60}
+            valueType="slider"
+            mode={state}
+          />
         </Descriptions.Item>
       </Descriptions>
 
-      <Descriptions column={2} title="枚举选择类">
+      <Descriptions
+        column={2}
+        title="枚举选择类"
+      >
         <Descriptions.Item label="选择框 select">
-          <DemoField initialValue="open" mode={state} valueEnum={statusEnum} />
+          <DemoField
+            initialValue="open"
+            mode={state}
+            valueEnum={statusEnum}
+          />
         </Descriptions.Item>
         <Descriptions.Item label="单选 radio">
           <DemoField
@@ -164,7 +213,11 @@ const Demo = () => {
           />
         </Descriptions.Item>
         <Descriptions.Item label="开关 switch">
-          <DemoField initialValue={true} mode={state} valueType="switch" />
+          <DemoField
+            initialValue={true}
+            mode={state}
+            valueType="switch"
+          />
         </Descriptions.Item>
         <Descriptions.Item label="分段选择 segmented">
           <DemoField
@@ -249,11 +302,18 @@ const Demo = () => {
           />
         </Descriptions.Item>
         <Descriptions.Item label="颜色选择 color">
-          <DemoField initialValue="#1677FF" mode={state} valueType="color" />
+          <DemoField
+            initialValue="#1677FF"
+            mode={state}
+            valueType="color"
+          />
         </Descriptions.Item>
       </Descriptions>
 
-      <Descriptions column={2} title="日期时间类">
+      <Descriptions
+        column={2}
+        title="日期时间类"
+      >
         <Descriptions.Item label="日期 date">
           <DemoField
             initialValue={DEMO_TIMESTAMP}
@@ -312,13 +372,13 @@ const Demo = () => {
         </Descriptions.Item>
       </Descriptions>
 
-      <Descriptions column={2} title="日期范围类">
+      <Descriptions
+        column={2}
+        title="日期范围类"
+      >
         <Descriptions.Item label="日期范围 dateRange">
           <DemoField
-            initialValue={[
-              dayjs('2024-01-01').valueOf(),
-              dayjs('2024-01-31').valueOf(),
-            ]}
+            initialValue={[dayjs('2024-01-01').valueOf(), dayjs('2024-01-31').valueOf()]}
             mode={state}
             valueType="dateRange"
           />
@@ -345,47 +405,38 @@ const Demo = () => {
         </Descriptions.Item>
         <Descriptions.Item label="周范围 dateWeekRange">
           <DemoField
-            initialValue={[
-              dayjs('2024-01-01').valueOf(),
-              dayjs('2024-01-14').valueOf(),
-            ]}
+            initialValue={[dayjs('2024-01-01').valueOf(), dayjs('2024-01-14').valueOf()]}
             mode={state}
             valueType="dateWeekRange"
           />
         </Descriptions.Item>
         <Descriptions.Item label="月范围 dateMonthRange">
           <DemoField
-            initialValue={[
-              dayjs('2024-01-01').valueOf(),
-              dayjs('2024-06-30').valueOf(),
-            ]}
+            initialValue={[dayjs('2024-01-01').valueOf(), dayjs('2024-06-30').valueOf()]}
             mode={state}
             valueType="dateMonthRange"
           />
         </Descriptions.Item>
         <Descriptions.Item label="季度范围 dateQuarterRange">
           <DemoField
-            initialValue={[
-              dayjs('2024-01-01').valueOf(),
-              dayjs('2024-09-30').valueOf(),
-            ]}
+            initialValue={[dayjs('2024-01-01').valueOf(), dayjs('2024-09-30').valueOf()]}
             mode={state}
             valueType="dateQuarterRange"
           />
         </Descriptions.Item>
         <Descriptions.Item label="年范围 dateYearRange">
           <DemoField
-            initialValue={[
-              dayjs('2023-01-01').valueOf(),
-              dayjs('2025-12-31').valueOf(),
-            ]}
+            initialValue={[dayjs('2023-01-01').valueOf(), dayjs('2025-12-31').valueOf()]}
             mode={state}
             valueType="dateYearRange"
           />
         </Descriptions.Item>
       </Descriptions>
 
-      <Descriptions column={2} title="代码类">
+      <Descriptions
+        column={2}
+        title="代码类"
+      >
         <Descriptions.Item label="代码块 code">
           <DemoField
             initialValue={`pnpm install

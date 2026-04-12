@@ -7,9 +7,7 @@ import { useEffect, useMemo, useState } from 'react';
  */
 function setQueryToCurrentUrl(params: Record<string, unknown>): URL {
   const href =
-    typeof window !== 'undefined' && window.location
-      ? window.location.href
-      : 'http://localhost/';
+    typeof window !== 'undefined' && window.location ? window.location.href : 'http://localhost/';
   const url = new URL(href);
   Object.keys(params).forEach((key) => {
     const value = params[key];
@@ -54,17 +52,11 @@ function parseValue(
   if (type === Number) {
     return Number(value);
   }
-  if (
-    type === Boolean ||
-    _value === 'true' ||
-    _value === 'false'
-  ) {
+  if (type === Boolean || _value === 'true' || _value === 'false') {
     return booleanValues[String(value)] as boolean;
   }
   if (Array.isArray(type)) {
-    return (
-      type.find((item) => item == value) ?? defaultParams[key]
-    ) as string | number;
+    return (type.find((item) => item == value) ?? defaultParams[key]) as string | number;
   }
   return value as string | number | boolean | string[];
 }
@@ -78,9 +70,7 @@ export function useUrlSearchParams(
 ] {
   const [, forceUpdate] = useState<Record<string, unknown>>();
   const locationSearch =
-    typeof window !== 'undefined' && window.location
-      ? window.location.search
-      : undefined;
+    typeof window !== 'undefined' && window.location ? window.location.search : undefined;
 
   /** disabled 时与上游包一致，使用空对象占位（勿改为 URLSearchParams，以免影响 toString 比较逻辑） */
   const urlSearchParams = useMemo(() => {

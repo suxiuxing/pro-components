@@ -1,5 +1,6 @@
-import { ProForm, ProFormSelect } from '@xxlabs/pro-components';
 import { useState } from 'react';
+
+import { ProForm, ProFormSelect } from '@xxlabs/pro-components';
 
 export function App() {
   const [searchValue, setSearchValue] = useState('');

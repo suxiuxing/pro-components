@@ -1,5 +1,6 @@
-﻿import { Rate } from 'antd';
+import { Rate } from 'antd';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 
 export function FieldRateRead(

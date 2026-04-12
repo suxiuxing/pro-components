@@ -1,7 +1,8 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import { ProList } from '@xxlabs/pro-components';
 import { Button, Progress, Tag } from 'antd';
 import React, { Key, useState } from 'react';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const types = ['top', 'inline', 'new'];
 const data = [
@@ -27,8 +28,7 @@ const data = [
     </div>
   ),
   type: types[index],
-  avatar:
-    'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
+  avatar: 'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
   content: (
     <div
       style={{
@@ -83,9 +83,9 @@ const Demo = () => {
             key="3"
             type="primary"
             onClick={() => {
-              setDataSource([...data.map((item) => ({ ...item }))]);
+              setDataSource(data.map((item) => ({ ...item })));
               setTimeout(() => {
-                const list = [...data.map((item) => ({ ...item }))];
+                const list = data.map((item) => ({ ...item }));
                 list[1].type = 'new';
                 setDataSource(list);
               }, 0);

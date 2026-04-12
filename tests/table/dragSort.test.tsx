@@ -1,16 +1,10 @@
 import { MenuOutlined } from '@ant-design/icons';
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import { DragSortTable } from '@xxlabs/pro-components';
 import { act } from 'react';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+
+import { DragSortTable } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 
 async function dragAndDrop(cell: Element) {
@@ -76,16 +70,8 @@ describe('dragSort', () => {
   });
 
   afterAll(() => {
-    Object.defineProperty(
-      HTMLElement.prototype,
-      offsetHeight,
-      originalOffsetHeight,
-    );
-    Object.defineProperty(
-      HTMLElement.prototype,
-      offsetWidth,
-      originalOffsetWidth,
-    );
+    Object.defineProperty(HTMLElement.prototype, offsetHeight, originalOffsetHeight);
+    Object.defineProperty(HTMLElement.prototype, offsetWidth, originalOffsetWidth);
   });
 
   it('🔥 [dragSort] render drag sort default handle by dragSortKey', async () => {
@@ -134,23 +120,17 @@ describe('dragSort', () => {
       />,
     );
 
-    const draggables = container.querySelectorAll(
-      '[aria-roledescription="sortable"]',
-    );
+    const draggables = container.querySelectorAll('[aria-roledescription="sortable"]');
 
     draggables.forEach((draggable, index) => {
       mockGetBoundingClientRect(draggable, index);
     });
 
-    container
-      .querySelectorAll('.ant-pro-table-drag-icon')
-      .forEach((dragHandle, index) => {
-        mockGetBoundingClientRect(dragHandle, index);
-      });
+    container.querySelectorAll('.ant-pro-table-drag-icon').forEach((dragHandle, index) => {
+      mockGetBoundingClientRect(dragHandle, index);
+    });
 
-    const dragHandle = container.querySelectorAll(
-      '.ant-pro-table-drag-icon',
-    )[1];
+    const dragHandle = container.querySelectorAll('.ant-pro-table-drag-icon')[1];
 
     await act(() => {
       return dragAndDrop(dragHandle);
@@ -247,9 +227,7 @@ describe('dragSort', () => {
             dataIndex: 'sort',
             render: (dom, rowData, index) => {
               callback(rowData.name, index);
-              return (
-                <span className="customRender">{`自定义排序[${rowData.name}-${index}]`}</span>
-              );
+              return <span className="customRender">{`自定义排序[${rowData.name}-${index}]`}</span>;
             },
           },
           {

@@ -1,4 +1,4 @@
-﻿import type { InputNumberProps } from 'antd';
+import type { InputNumberProps } from 'antd';
 
 export type FieldMoneyProps = {
   text: number;

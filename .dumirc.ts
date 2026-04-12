@@ -1,5 +1,6 @@
+import path from 'node:path';
+
 import { defineConfig } from 'dumi';
-import path from 'path';
 
 const githubPagesBase = '/pro-components/';
 const githubPagesHost = 'https://suxiuxing.github.io/pro-components';
@@ -56,9 +57,7 @@ export default defineConfig({
   analytics: {
     ga_v2: 'G-RMBLDHGL1N',
   },
-  favicons: [
-    'https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png',
-  ],
+  favicons: ['https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png'],
   resolve: {
     docDirs: ['site'],
   },
@@ -81,8 +80,7 @@ export default defineConfig({
   // ssr: {},
   themeConfig: {
     name: 'ProComponents',
-    footer:
-      'Powered by <a href="https://d.umijs.org" target="_blank" rel="noreferrer">dumi</a>',
+    footer: 'Powered by <a href="https://d.umijs.org" target="_blank" rel="noreferrer">dumi</a>',
     logo: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
     socialLinks: {
       github: 'https://github.com/ant-design/pro-components',
@@ -108,11 +106,9 @@ export default defineConfig({
           description: '在 Ant Design 上进行了自己的封装，更加易用',
         },
         {
-          image:
-            'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+          image: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
           title: 'Ant Design',
-          description:
-            '与 Ant Design 设计体系一脉相承，无缝对接 Ant Design 项目',
+          description: '与 Ant Design 设计体系一脉相承，无缝对接 Ant Design 项目',
         },
         {
           image:
@@ -124,8 +120,7 @@ export default defineConfig({
           image:
             'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/Y_NMQKxw7OgAAAAAAAAAAAAAFl94AQBr',
           title: '预设样式',
-          description:
-            '样式风格与 Ant Design 一脉相承，无需魔改，浑然天成。默认好用的主题系统',
+          description: '样式风格与 Ant Design 一脉相承，无需魔改，浑然天成。默认好用的主题系统',
         },
         {
           image:
@@ -134,11 +129,9 @@ export default defineConfig({
           description: '更少的代码，更少的 Bug，更多的功能',
         },
         {
-          image:
-            'https://gw.alipayobjects.com/zos/antfincdn/Eb8IHpb9jE/Typescript_logo_2020.svg',
+          image: 'https://gw.alipayobjects.com/zos/antfincdn/Eb8IHpb9jE/Typescript_logo_2020.svg',
           title: 'TypeScript',
-          description:
-            '使用 TypeScript 开发，提供完整的类型定义文件，无需频繁打开官网',
+          description: '使用 TypeScript 开发，提供完整的类型定义文件，无需频繁打开官网',
         },
       ],
       'en-US': [
@@ -146,15 +139,12 @@ export default defineConfig({
           image:
             'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/q48YQ5X4ytAAAAAAAAAAAAAAFl94AQBr',
           title: 'Easy to Use',
-          description:
-            'Built on top of Ant Design with extra encapsulations for better usability',
+          description: 'Built on top of Ant Design with extra encapsulations for better usability',
         },
         {
-          image:
-            'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+          image: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
           title: 'Ant Design',
-          description:
-            'Aligned with Ant Design design system for seamless integration',
+          description: 'Aligned with Ant Design design system for seamless integration',
         },
         {
           image:
@@ -177,11 +167,9 @@ export default defineConfig({
           description: 'Less code, fewer bugs, more built-in functionality',
         },
         {
-          image:
-            'https://gw.alipayobjects.com/zos/antfincdn/Eb8IHpb9jE/Typescript_logo_2020.svg',
+          image: 'https://gw.alipayobjects.com/zos/antfincdn/Eb8IHpb9jE/Typescript_logo_2020.svg',
           title: 'TypeScript',
-          description:
-            'Developed with TypeScript and ships full type definitions for a better DX',
+          description: 'Developed with TypeScript and ships full type definitions for a better DX',
         },
       ],
     },

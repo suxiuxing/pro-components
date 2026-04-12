@@ -185,12 +185,7 @@ Generate menuData and breadcrumb based on router information.
 ```js | pure
 import { getMenuData } from '@xxlabs/pro-components';
 
-const { breadcrumb, menuData } = getMenuData(
-  routes,
-  menu,
-  formatMessage,
-  menuDataRender,
-);
+const { breadcrumb, menuData } = getMenuData(routes, menu, formatMessage, menuDataRender);
 ```
 
 | parameters     | description                                                | type                                                      | default |

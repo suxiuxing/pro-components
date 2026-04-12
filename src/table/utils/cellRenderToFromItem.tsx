@@ -1,26 +1,13 @@
 import { get } from '@rc-component/util';
 import { Form } from 'antd';
 import type { AnyObject } from 'antd/lib/_util/type';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+
 import type { ProFieldEmptyText } from '../../field';
 import type { ProFormFieldProps } from '../../form';
 import { FieldContext, ProForm, ProFormField } from '../../form';
-import type {
-  ProFieldValueType,
-  ProSchemaComponentTypes,
-  UseEditableUtilType,
-} from '../../utils';
-import {
-  InlineErrorFormItem,
-  getFieldPropsOrFormItemProps,
-  runFunction,
-} from '../../utils';
+import type { ProFieldValueType, ProSchemaComponentTypes, UseEditableUtilType } from '../../utils';
+import { InlineErrorFormItem, getFieldPropsOrFormItemProps, runFunction } from '../../utils';
 import type { ProColumnType } from '../index';
 import type { ContainerType } from '../Store/Provide';
 
@@ -64,9 +51,7 @@ type CellRenderFromItemProps<T extends AnyObject> = {
   editableUtils: UseEditableUtilType;
 };
 
-const CellRenderFromItem = <T extends AnyObject>(
-  props: CellRenderFromItemProps<T>,
-) => {
+const CellRenderFromItem = <T extends AnyObject>(props: CellRenderFromItemProps<T>) => {
   const formContext = useContext(FieldContext);
 
   const {
@@ -141,8 +126,7 @@ const CellRenderFromItem = <T extends AnyObject>(
       <InlineErrorFormItem
         popoverProps={{
           getPopupContainer:
-            formContext.getPopupContainer ||
-            (() => counter.rootDomRef.current || document.body),
+            formContext.getPopupContainer || (() => counter.rootDomRef.current || document.body),
         }}
         key={key}
         errorType="popover"
@@ -166,9 +150,7 @@ const CellRenderFromItem = <T extends AnyObject>(
     };
 
     formItemProps.initialValue =
-      (prefixName ? null : text) ??
-      formItemProps?.initialValue ??
-      columnProps?.initialValue;
+      (prefixName ? null : text) ?? formItemProps?.initialValue ?? columnProps?.initialValue;
     let fieldDom: React.ReactNode = (
       <ProFormField
         cacheForSwr
@@ -176,10 +158,7 @@ const CellRenderFromItem = <T extends AnyObject>(
         name={formItemName}
         proFormFieldKey={key}
         ignoreFormItem
-        fieldProps={getFieldPropsOrFormItemProps(
-          columnProps?.fieldProps,
-          ...needProps,
-        )}
+        fieldProps={getFieldPropsOrFormItemProps(columnProps?.fieldProps, ...needProps)}
         {...proFieldProps}
       />
     );
@@ -212,7 +191,10 @@ const CellRenderFromItem = <T extends AnyObject>(
     }
 
     return (
-      <InlineItem key={formItemName.join('-')} {...formItemProps}>
+      <InlineItem
+        key={formItemName.join('-')}
+        {...formItemProps}
+      >
         {fieldDom}
       </InlineItem>
     );
@@ -246,10 +228,7 @@ const CellRenderFromItem = <T extends AnyObject>(
           if (pre === next) return false;
           const shouldName = [rowName].flat(1) as (string | number | symbol)[];
           try {
-            return (
-              JSON.stringify(get(pre, shouldName)) !==
-              JSON.stringify(get(next, shouldName))
-            );
+            return JSON.stringify(get(pre, shouldName)) !== JSON.stringify(get(next, shouldName));
           } catch (_error) {
             return true;
           }
@@ -281,9 +260,7 @@ function cellRenderToFromItem<T extends AnyObject>(
     config.mode === 'read'
   ) {
     // 如果是''、null、undefined 显示columnEmptyText
-    return SHOW_EMPTY_TEXT_LIST.includes(text as any)
-      ? config.columnEmptyText
-      : text;
+    return SHOW_EMPTY_TEXT_LIST.includes(text as any) ? config.columnEmptyText : text;
   }
 
   if (typeof valueType === 'function' && rowData) {
@@ -312,15 +289,10 @@ function cellRenderToFromItem<T extends AnyObject>(
     valueEnum: runFunction<[T | undefined]>(columnProps?.valueEnum, rowData),
     request: columnProps?.request,
     dependencies: columnProps?.dependencies ? [dependencies] : undefined,
-    originDependencies: columnProps?.dependencies
-      ? [columnProps?.dependencies]
-      : undefined,
+    originDependencies: columnProps?.dependencies ? [columnProps?.dependencies] : undefined,
     params: runFunction(columnProps?.params, rowData, columnProps),
     readonly: columnProps?.readonly,
-    text:
-      valueType === 'index' || valueType === 'indexBorder'
-        ? config.index
-        : text,
+    text: valueType === 'index' || valueType === 'indexBorder' ? config.index : text,
     mode: config.mode,
     formItemRender: undefined,
     valueType: valueType as ProFieldValueType,
@@ -338,11 +310,7 @@ function cellRenderToFromItem<T extends AnyObject>(
       <ProFormField
         mode="read"
         ignoreFormItem
-        fieldProps={getFieldPropsOrFormItemProps(
-          columnProps?.fieldProps,
-          null,
-          columnProps,
-        )}
+        fieldProps={getFieldPropsOrFormItemProps(columnProps?.fieldProps, null, columnProps)}
         {...proFieldProps}
       />
     );

@@ -1,14 +1,9 @@
-﻿import { useControlledState } from '@rc-component/util';
+import { useControlledState } from '@rc-component/util';
 import type { SelectProps } from 'antd';
 import { ConfigProvider } from 'antd';
-import React, {
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import useSWR from 'swr';
+
 import { useIntl } from '../../../provider';
 import {
   nanoid,
@@ -20,10 +15,7 @@ import {
   useDeepCompareMemo,
   useRefFunction,
 } from '../../../utils';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldSelectEdit } from './FieldSelectEdit';
 import { FieldSelectRead } from './FieldSelectRead';
@@ -58,11 +50,9 @@ function filerByItem(
     return true;
   }
   if (item.children || item.options) {
-    const findItem = [...(item.children || []), item.options || []].find(
-      (mapItem) => {
-        return filerByItem(mapItem, keyWords);
-      },
-    );
+    const findItem = [...(item.children || []), item.options || []].find((mapItem) => {
+      return filerByItem(mapItem, keyWords);
+    });
     if (findItem) return true;
   }
   return false;
@@ -121,9 +111,7 @@ export const useFieldFetchData = (
 ): [boolean, SelectOptionType, (keyWord?: string) => void, () => void] => {
   const { cacheForSwr, fieldProps } = props;
 
-  const [keyWords, setKeyWords] = useState<string | undefined>(
-    props.defaultKeyWords,
-  );
+  const [keyWords, setKeyWords] = useState<string | undefined>(props.defaultKeyWords);
   /** Key 是用来缓存请求的，如果不在是有问题 */
   const [cacheKey] = useState(() => {
     if (props.proFieldKey) {
@@ -137,38 +125,30 @@ export const useFieldFetchData = (
 
   const proFieldKeyRef = useRef(cacheKey);
 
-  const getOptionsFormValueEnum = useRefFunction(
-    (coverValueEnum: ProFieldValueEnumType) => {
-      return proFieldParsingValueEnumToArray(objectToMap(coverValueEnum)).map(
-        ({ value, text, ...rest }) => ({
-          label: text,
-          value,
-          key: value,
-          ...rest,
-        }),
-      );
-    },
-  );
+  const getOptionsFormValueEnum = useRefFunction((coverValueEnum: ProFieldValueEnumType) => {
+    return proFieldParsingValueEnumToArray(objectToMap(coverValueEnum)).map(
+      ({ value, text, ...rest }) => ({
+        label: text,
+        value,
+        key: value,
+        ...rest,
+      }),
+    );
+  });
 
   const defaultOptions = useDeepCompareMemo(() => {
     if (!fieldProps) return undefined;
     const data = fieldProps?.options || fieldProps?.treeData;
     if (!data) return undefined;
     const { children, label, value } = fieldProps.fieldNames || {};
-    const traverseFieldKey = (
-      _options: typeof options,
-      type: 'children' | 'label' | 'value',
-    ) => {
+    const traverseFieldKey = (_options: typeof options, type: 'children' | 'label' | 'value') => {
       if (!_options?.length) return;
       const length = _options.length;
       let i = 0;
       while (i < length) {
         const cur = _options[i++];
         if (cur[children] || cur[label] || cur[value]) {
-          cur[type] =
-            cur[
-              type === 'children' ? children : type === 'label' ? label : value
-            ];
+          cur[type] = cur[type === 'children' ? children : type === 'label' ? label : value];
           traverseFieldKey(cur[children], type);
         }
       }
@@ -187,12 +167,7 @@ export const useFieldFetchData = (
 
   useDeepCompareEffect(() => {
     // 优先使用 fieldProps?.options
-    if (
-      !props.valueEnum ||
-      props.fieldProps?.options ||
-      props.fieldProps?.treeData
-    )
-      return;
+    if (!props.valueEnum || props.fieldProps?.options || props.fieldProps?.treeData) return;
     setOptions(getOptionsFormValueEnum(props.valueEnum));
   }, [props.valueEnum]);
 
@@ -239,12 +214,11 @@ export const useFieldFetchData = (
         };
       }
       if (item.children || item.options) {
-        const childrenOptions = [
-          ...(item.children || []),
-          ...(item.options || []),
-        ].filter((mapItem) => {
-          return filerByItem(mapItem, keyWords);
-        });
+        const childrenOptions = [...(item.children || []), ...(item.options || [])].filter(
+          (mapItem) => {
+            return filerByItem(mapItem, keyWords);
+          },
+        );
         return {
           ...item,
           children: childrenOptions,
@@ -255,10 +229,7 @@ export const useFieldFetchData = (
     });
 
     // filterOption 为 true 时 filter数据, filterOption 默认为true
-    if (
-      props.fieldProps?.filterOption === true ||
-      props.fieldProps?.filterOption === undefined
-    ) {
+    if (props.fieldProps?.filterOption === true || props.fieldProps?.filterOption === undefined) {
       return opt?.filter((item) => {
         if (!item) return false;
         if (!keyWords) return true;
@@ -325,7 +296,7 @@ const FieldSelect: ProFieldFC<
   useImperativeHandle(
     ref,
     () => ({
-      ...(inputRef.current || {}),
+      ...inputRef.current,
       fetchData: (keyWord: string) => fetchData(keyWord),
     }),
     [fetchData],

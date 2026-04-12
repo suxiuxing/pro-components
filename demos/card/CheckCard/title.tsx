@@ -1,6 +1,7 @@
 import { AppstoreOutlined } from '@ant-design/icons';
-import { CheckCard } from '@xxlabs/pro-components';
 import { Tag } from 'antd';
+
+import { CheckCard } from '@xxlabs/pro-components';
 
 const Demo = () => (
   <>

@@ -1,7 +1,8 @@
-import type { ActionType } from '@xxlabs/pro-components';
-import { ProList } from '@xxlabs/pro-components';
 import { Badge, Button } from 'antd';
 import React, { useRef, useState } from 'react';
+
+import type { ActionType } from '@xxlabs/pro-components';
+import { ProList } from '@xxlabs/pro-components';
 
 const dataSource = [
   {
@@ -149,17 +150,11 @@ const Demo = () => {
           items: [
             {
               key: 'tab1',
-              label: (
-                <span>全部实验室{renderBadge(99, activeKey === 'tab1')}</span>
-              ),
+              label: <span>全部实验室{renderBadge(99, activeKey === 'tab1')}</span>,
             },
             {
               key: 'tab2',
-              label: (
-                <span>
-                  我创建的实验室{renderBadge(32, activeKey === 'tab2')}
-                </span>
-              ),
+              label: <span>我创建的实验室{renderBadge(32, activeKey === 'tab2')}</span>,
             },
           ],
           onChange(key) {
@@ -172,7 +167,10 @@ const Demo = () => {
           },
         },
         actions: [
-          <Button type="primary" key="primary">
+          <Button
+            type="primary"
+            key="primary"
+          >
             新建实验
           </Button>,
         ],

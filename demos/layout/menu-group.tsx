@@ -6,9 +6,11 @@ import {
   TabletOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
 import { Button, Result } from 'antd';
 import { useState } from 'react';
+
+import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
+
 import { demoOnMenuHeaderClick } from './_demoHandlers';
 
 const Demo = () => {

@@ -1,7 +1,8 @@
 import { EllipsisOutlined, SearchOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Input } from 'antd';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable, TableDropdown } from '@xxlabs/pro-components';
-import { Button, Dropdown, Input } from 'antd';
 
 import {
   createTableDataSource,
@@ -112,11 +113,17 @@ const Demo = () => {
         tooltip: '管理所有已部署的微服务应用',
       }}
       toolBarRender={() => [
-        <Button key="danger" danger>
+        <Button
+          key="danger"
+          danger
+        >
           批量下线
         </Button>,
         <Button key="log">查看日志</Button>,
-        <Button type="primary" key="primary">
+        <Button
+          type="primary"
+          key="primary"
+        >
           部署应用
         </Button>,
         <Dropdown

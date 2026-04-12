@@ -1,4 +1,5 @@
-﻿import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+
 import type { ProFieldLightProps } from '../types';
 
 /**
@@ -42,7 +43,10 @@ function ProFieldLightWrapper<T extends ProFieldLightProps>(
 
   if (props.isLight) {
     return (
-      <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+      <div
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+      >
         {React.cloneElement(props.children as React.JSX.Element, {
           labelTrigger,
           lightLabel,

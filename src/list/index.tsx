@@ -2,21 +2,11 @@ import { warning } from '@rc-component/util';
 import type { PaginationProps } from 'antd';
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, {
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-} from 'react';
+import React, { useContext, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+
 import type { CheckCardProps } from '../card';
 import { ProConfigProvider } from '../provider';
-import type {
-  ActionType,
-  ProColumns,
-  ProColumnType,
-  ProTableProps,
-} from '../table';
+import type { ActionType, ProColumns, ProColumnType, ProTableProps } from '../table';
 import ProTable from '../table';
 import type { LabelTooltipType, ProFieldValueType } from '../utils';
 import type { ItemProps } from './Item';
@@ -62,9 +52,7 @@ export type BaseProListMetas<T = any> = {
  * @deprecated 推荐使用 columns + listSlot 的方式，与 ProTable 共用同一套 API
  */
 export type ProListMetas<T = any> = BaseProListMetas<T> & {
-  [key in keyof T]?: IsAny<T> extends true
-    ? ProListMetaAction<T>
-    : ProListMeta<T>;
+  [key in keyof T]?: IsAny<T> extends true ? ProListMetaAction<T> : ProListMeta<T>;
 };
 
 export type GetComponentProps<RecordType> = (
@@ -72,11 +60,10 @@ export type GetComponentProps<RecordType> = (
   index: number,
 ) => React.HTMLAttributes<HTMLElement>;
 
-export type ProListProps<
-  RecordType = any,
-  Params = Record<string, any>,
-  ValueType = 'text',
-> = Omit<ProTableProps<RecordType, Params, ValueType>, 'size' | 'footer'> &
+export type ProListProps<RecordType = any, Params = Record<string, any>, ValueType = 'text'> = Omit<
+  ProTableProps<RecordType, Params, ValueType>,
+  'size' | 'footer'
+> &
   AntdListProps<RecordType> & {
     tooltip?: LabelTooltipType | string;
     /**
@@ -116,9 +103,7 @@ const DEFAULT_VALUE_TYPE_MAP: Record<string, ProFieldValueType> = {
 /**
  * 将 metas 对象转换为 columns 数组（向后兼容）
  */
-function metasToColumns<RecordType>(
-  metas: ProListMetas<RecordType>,
-): ProColumnType<RecordType>[] {
+function metasToColumns<RecordType>(metas: ProListMetas<RecordType>): ProColumnType<RecordType>[] {
   return Object.keys(metas).map((key) => {
     const meta = metas[key] || {};
     const valueType = meta.valueType || DEFAULT_VALUE_TYPE_MAP[key];
@@ -225,14 +210,7 @@ function InternalProList<
       className={clsx(className, listClassName)}
       columns={proTableColumns}
       rowKey={rowKey}
-      tableViewRender={({
-        columns,
-        size,
-        pagination,
-        rowSelection,
-        dataSource,
-        loading,
-      }) => {
+      tableViewRender={({ columns, size, pagination, rowSelection, dataSource, loading }) => {
         return (
           <ListView
             grid={grid}

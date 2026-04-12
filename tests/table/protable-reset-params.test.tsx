@@ -1,19 +1,10 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
-import type {
-  ActionType,
-  ProColumns,
-  ProFormInstance,
-} from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Button } from 'antd';
 import { useRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import type { ActionType, ProColumns, ProFormInstance } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 type DataItem = {
   id: number;
@@ -115,11 +106,8 @@ describe('ProTable actionRef.reset()', () => {
       fireEvent.click(getByText('reset'));
     });
 
-    await waitFor(() =>
-      expect(requestMock.mock.calls.length).toBeGreaterThan(1),
-    );
-    const lastParams =
-      requestMock.mock.calls[requestMock.mock.calls.length - 1][0];
+    await waitFor(() => expect(requestMock.mock.calls.length).toBeGreaterThan(1));
+    const lastParams = requestMock.mock.calls[requestMock.mock.calls.length - 1][0];
     expect(lastParams).toMatchObject({
       keyword: 'initial-value',
       status: 'open',

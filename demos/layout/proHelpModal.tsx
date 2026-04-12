@@ -1,12 +1,8 @@
-﻿import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
-import {
-  ProHelp,
-  ProHelpDrawer,
-  ProHelpModal,
-  ProHelpPopover,
-} from '@xxlabs/pro-components';
 import { App, Typography } from 'antd';
 import { useState } from 'react';
+
+import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
+import { ProHelp, ProHelpDrawer, ProHelpModal, ProHelpPopover } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -69,11 +65,7 @@ const Demo = () => {
             return (
               <div key={index}>
                 <Typography.Text>
-                  {child.href ? (
-                    <a href={child.href}>{child.title}</a>
-                  ) : (
-                    child.title
-                  )}
+                  {child.href ? <a href={child.href}>{child.title}</a> : child.title}
                 </Typography.Text>
               </div>
             );

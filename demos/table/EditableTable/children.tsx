@@ -1,11 +1,7 @@
-import type { ProColumns } from '@xxlabs/pro-components';
-import {
-  EditableProTable,
-  ProCard,
-  ProFormField,
-  useRefFunction,
-} from '@xxlabs/pro-components';
 import React, { useState } from 'react';
+
+import type { ProColumns } from '@xxlabs/pro-components';
+import { EditableProTable, ProCard, ProFormField, useRefFunction } from '@xxlabs/pro-components';
 
 import { createEditableRowId } from '../../mockData';
 
@@ -81,9 +77,7 @@ const loopDataSourceFilter = (
 
 const Demo = () => {
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
-  const [dataSource, setDataSource] = useState<readonly DataSourceType[]>(
-    () => defaultData,
-  );
+  const [dataSource, setDataSource] = useState<readonly DataSourceType[]>(() => defaultData);
 
   const removeRow = useRefFunction((record: DataSourceType) => {
     setDataSource(loopDataSourceFilter(dataSource, record.id));
@@ -94,8 +88,7 @@ const Demo = () => {
       dataIndex: 'title',
       formItemProps: (form, { rowIndex }) => {
         return {
-          rules:
-            rowIndex > 2 ? [{ required: true, message: '此项为必填项' }] : [],
+          rules: rowIndex > 2 ? [{ required: true, message: '此项为必填项' }] : [],
         };
       },
       width: '30%',
@@ -187,7 +180,12 @@ const Demo = () => {
           onChange: setEditableRowKeys,
         }}
       />
-      <ProCard title="表格数据" headerBordered collapsible defaultCollapsed>
+      <ProCard
+        title="表格数据"
+        headerBordered
+        collapsible
+        defaultCollapsed
+      >
         <ProFormField
           ignoreFormItem
           fieldProps={{

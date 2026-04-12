@@ -1,3 +1,5 @@
+import { Checkbox, Input, message, Select } from 'antd';
+
 import {
   FormControlFC,
   FormItemRender,
@@ -8,7 +10,6 @@ import {
   useControlModel,
   WithControlPropsType,
 } from '@xxlabs/pro-components';
-import { Checkbox, Input, message, Select } from 'antd';
 
 const SingletonA = (
   props: WithControlPropsType<{
@@ -19,7 +20,10 @@ const SingletonA = (
   return (
     <>
       <span>{props.title}</span>
-      <Input {...model} placeholder="直接使用useControlModel" />
+      <Input
+        {...model}
+        placeholder="直接使用useControlModel"
+      />
     </>
   );
 };
@@ -102,13 +106,19 @@ const Demo = () => {
         <ProForm.Item name={'SingletonB'}>
           <SingletonB title="单实例B" />
         </ProForm.Item>
-        <ProForm.Item name={'customInput'} label="多实例">
+        <ProForm.Item
+          name={'customInput'}
+          label="多实例"
+        >
           <CustomInput
             title="customInput-title"
             description="customInput-desc"
           />
         </ProForm.Item>
-        <ProForm.Item name={'FormControlFC'} label="使用FormControlFC类型定义">
+        <ProForm.Item
+          name={'FormControlFC'}
+          label="使用FormControlFC类型定义"
+        >
           <CustomInput2 title="FormControlFC title" />
         </ProForm.Item>
         <ProFormItemRender name={'inputA'}>

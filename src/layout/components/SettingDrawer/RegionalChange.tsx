@@ -1,6 +1,7 @@
 import { List, Switch } from 'antd';
 import { clsx } from 'clsx';
 import React from 'react';
+
 import type { ProSettings } from '../../defaultSettings';
 import { getFormatMessage } from './index';
 import { renderLayoutSettingItem } from './LayoutChange';
@@ -30,10 +31,7 @@ const RegionalSetting: React.FC<{
                 settings[`${key}Render` as 'headerRender'] === undefined
               }
               onChange={(checked) =>
-                changeSetting(
-                  `${key}Render`,
-                  checked === true ? undefined : false,
-                )
+                changeSetting(`${key}Render`, checked === true ? undefined : false)
               }
             />
           ),

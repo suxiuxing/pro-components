@@ -1,3 +1,6 @@
+import { FormInstance, Input, Tabs } from 'antd';
+import { useRef } from 'react';
+
 import {
   ProCard,
   ProForm,
@@ -5,8 +8,6 @@ import {
   ProFormField,
   ProTable,
 } from '@xxlabs/pro-components';
-import { FormInstance, Input, Tabs } from 'antd';
-import { useRef } from 'react';
 
 const defaultData = [
   {
@@ -174,9 +175,7 @@ const Demo = () => {
                           pagination={false}
                           search={false}
                           editable={{
-                            editableKeys: item?.columnsInfo?.map(
-                              (row: any) => row.name || '',
-                            ),
+                            editableKeys: item?.columnsInfo?.map((row: any) => row.name || ''),
                           }}
                           rowKey="name"
                           name={['table', index, 'columnsInfo']}
@@ -210,9 +209,7 @@ const Demo = () => {
                                       wordBreak: 'break-all',
                                     }}
                                   >
-                                    {record.description
-                                      ? record.description
-                                      : '-'}
+                                    {record.description ? record.description : '-'}
                                   </div>
                                 );
                               },
@@ -247,7 +244,12 @@ const Demo = () => {
         }}
       </ProFormDependency>
 
-      <ProCard title="表格数据" headerBordered collapsible defaultCollapsed>
+      <ProCard
+        title="表格数据"
+        headerBordered
+        collapsible
+        defaultCollapsed
+      >
         <ProFormDependency name={['table']}>
           {({ table }) => {
             return (

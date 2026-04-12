@@ -1,11 +1,12 @@
+import { Button, Space, Tag } from 'antd';
+import type { Key } from 'react';
+import { useState } from 'react';
+
 /**
  * 使用 columns + listSlot 的新 API，与 ProTable 兼容
  */
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProList } from '@xxlabs/pro-components';
-import { Button, Space, Tag } from 'antd';
-import type { Key } from 'react';
-import { useState } from 'react';
 
 type DataItem = {
   id: string;
@@ -73,7 +74,10 @@ const columns: ProColumns<DataItem>[] = [
     render: (_, row) => (
       <Space size={8}>
         {row.labels?.map((label) => (
-          <Tag color="blue" key={label}>
+          <Tag
+            color="blue"
+            key={label}
+          >
             {label}
           </Tag>
         ))}
@@ -102,7 +106,10 @@ const Demo = () => {
       rowKey="id"
       headerTitle="columns API（与 ProTable 兼容）"
       toolBarRender={() => [
-        <Button key="add" type="primary">
+        <Button
+          key="add"
+          type="primary"
+        >
           新建
         </Button>,
       ]}

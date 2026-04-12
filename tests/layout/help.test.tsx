@@ -1,18 +1,12 @@
-﻿import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
-import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
-import {
-  ProHelp,
-  ProHelpDrawer,
-  ProHelpPanel,
-  ProHelpSelect,
-} from '@xxlabs/pro-components';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Typography } from 'antd';
 import { act } from 'react';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
-export const DefaultProHelp: React.FC<{ children: React.ReactNode }> = (
-  props,
-) => {
+import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
+import { ProHelp, ProHelpDrawer, ProHelpPanel, ProHelpSelect } from '@xxlabs/pro-components';
+
+export const DefaultProHelp: React.FC<{ children: React.ReactNode }> = (props) => {
   const map = new Map<
     string,
     (
@@ -71,11 +65,7 @@ export const DefaultProHelp: React.FC<{ children: React.ReactNode }> = (
             return (
               <div key={subIndex}>
                 <Typography.Text>
-                  {child.href ? (
-                    <a href={child.href}>{child.title}</a>
-                  ) : (
-                    child.title
-                  )}
+                  {child.href ? <a href={child.href}>{child.title}</a> : child.title}
                 </Typography.Text>
               </div>
             );
@@ -377,9 +367,7 @@ describe('👍🏻 ProHelpPanel', () => {
       (await html.findByTitle('collapse panel'))?.click();
     });
 
-    expect(
-      !!html.baseElement.querySelector('ant-pro-help-left-panel'),
-    ).toBeFalsy();
+    expect(!!html.baseElement.querySelector('ant-pro-help-left-panel')).toBeFalsy();
   });
 
   it('🎏 infiniteScrollFull panel', async () => {
@@ -562,8 +550,7 @@ describe('👍🏻 ProHelpPanel', () => {
                   },
                   {
                     valueType: 'text',
-                    children:
-                      '根据用户的要求对模型参数进行设置和调整，以达到最佳的处理效果。',
+                    children: '根据用户的要求对模型参数进行设置和调整，以达到最佳的处理效果。',
                   },
                 ],
               },
@@ -577,8 +564,7 @@ describe('👍🏻 ProHelpPanel', () => {
                   },
                   {
                     valueType: 'text',
-                    children:
-                      '系统生成的模型文件，包含了所有的模型参数和处理算法。',
+                    children: '系统生成的模型文件，包含了所有的模型参数和处理算法。',
                   },
                 ],
               },
@@ -592,8 +578,7 @@ describe('👍🏻 ProHelpPanel', () => {
                   },
                   {
                     valueType: 'text',
-                    children:
-                      '用于预处理数据的文件，系统可根据用户的设置进行数据预处理。',
+                    children: '用于预处理数据的文件，系统可根据用户的设置进行数据预处理。',
                   },
                 ],
               },
@@ -603,8 +588,7 @@ describe('👍🏻 ProHelpPanel', () => {
                 children: [
                   {
                     valueType: 'text',
-                    children:
-                      '用于后处理数据的文件，系统将处理完成的数据输出到后处理文件中。',
+                    children: '用于后处理数据的文件，系统将处理完成的数据输出到后处理文件中。',
                   },
                 ],
               },
@@ -756,9 +740,7 @@ describe('👍🏻 ProHelpPanel', () => {
 
     await act(() => {
       fireEvent.scroll(
-        html.container.querySelector(
-          '.ant-pro-help-content-render-infinite-scroll',
-        )!,
+        html.container.querySelector('.ant-pro-help-content-render-infinite-scroll')!,
         { target: { scrollY: 1000 } },
       );
     });
@@ -794,9 +776,7 @@ describe('👍🏻 ProHelpPanel', () => {
     });
 
     await act(async () => {
-      (
-        await html.findByText('证据包内包含哪些内容，如何下载证据包？')
-      )?.click();
+      (await html.findByText('证据包内包含哪些内容，如何下载证据包？'))?.click();
     });
 
     await html.findAllByText(
@@ -856,9 +836,7 @@ describe('👍🏻 ProHelpPanel', () => {
     });
 
     await act(async () => {
-      html.baseElement
-        .querySelector<HTMLDivElement>('.ant-drawer-mask')
-        ?.click();
+      html.baseElement.querySelector<HTMLDivElement>('.ant-drawer-mask')?.click();
     });
 
     await waitFor(() => {
@@ -1025,9 +1003,7 @@ describe('👍🏻 ProHelpPanel', () => {
       const resultElement = html.baseElement.querySelector(
         '.ant-pro-help-search-list-item-content-light',
       );
-      expect(resultElement?.textContent).toBe(
-        '证据包内包含哪些内容，如何下载证据包',
-      );
+      expect(resultElement?.textContent).toBe('证据包内包含哪些内容，如何下载证据包');
     });
 
     // 点击搜索结果
@@ -1042,12 +1018,8 @@ describe('👍🏻 ProHelpPanel', () => {
 
     // 等待菜单项被选中
     await waitFor(() => {
-      const selectedItem = html.baseElement.querySelector(
-        '.ant-menu-item-selected',
-      );
-      expect(selectedItem?.textContent).toBe(
-        '证据包内包含哪些内容，如何下载证据包？',
-      );
+      const selectedItem = html.baseElement.querySelector('.ant-menu-item-selected');
+      expect(selectedItem?.textContent).toBe('证据包内包含哪些内容，如何下载证据包？');
     });
 
     await act(async () => {

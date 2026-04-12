@@ -1,6 +1,7 @@
-﻿import { DatePicker } from 'antd';
+import { DatePicker } from 'antd';
 import dayjs from 'dayjs';
 import React from 'react';
+
 import type { IntlType } from '../../../provider';
 import { parseValueToDay } from '../../../utils';
 import type { ProFieldFC } from '../../types';
@@ -16,8 +17,7 @@ type Props = Parameters<
 };
 
 export function FieldFromNowEdit(props: Props, ref: React.Ref<unknown>) {
-  const { text, mode, variant, formItemRender, format, fieldProps, intl } =
-    props;
+  const { text, mode, variant, formItemRender, format, fieldProps, intl } = props;
   const placeholder = intl.getMessage('tableForm.selectPlaceholder', '请选择');
   const momentValue = parseValueToDay(fieldProps.value) as dayjs.Dayjs;
   const dom = (

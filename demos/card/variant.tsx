@@ -1,4 +1,4 @@
-﻿import { ProCard } from '@xxlabs/pro-components';
+import { ProCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (

@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo } from 'react';
+
 import { useIntl } from '../../../provider';
 import type { SubmitterProps } from '../../BaseForm/Submitter';
 import type { ProFormProps } from '../ProForm';
@@ -87,10 +88,7 @@ function LoginForm<T = Record<string, any>>(props: Partial<LoginFormProps<T>>) {
           },
           render: (_, dom) => {
             const loginButton = dom.pop();
-            if (
-              typeof (proFormProps?.submitter as SubmitterProps)?.render ===
-              'function'
-            ) {
+            if (typeof (proFormProps?.submitter as SubmitterProps)?.render === 'function') {
               return (
                 proFormProps?.submitter as {
                   render: Exclude<SubmitterProps['render'], false>;
@@ -110,27 +108,29 @@ function LoginForm<T = Record<string, any>>(props: Partial<LoginFormProps<T>>) {
   const logoDom = useMemo(() => {
     if (!logo) return null;
     if (typeof logo === 'string') {
-      return <img src={logo} alt="" />;
+      return (
+        <img
+          src={logo}
+          alt=""
+        />
+      );
     }
     return logo;
   }, [logo]);
 
   return wrapSSR(
-    <div className={clsx(getCls('container'), hashId)} style={containerStyle}>
+    <div
+      className={clsx(getCls('container'), hashId)}
+      style={containerStyle}
+    >
       <div className={clsx(getCls('top'), hashId)}>
         {title || logoDom ? (
           <div className={clsx(getCls('header'), hashId)}>
-            {logoDom ? (
-              <span className={clsx(getCls('logo'), hashId)}>{logoDom}</span>
-            ) : null}
-            {title ? (
-              <span className={clsx(getCls('title'), hashId)}>{title}</span>
-            ) : null}
+            {logoDom ? <span className={clsx(getCls('logo'), hashId)}>{logoDom}</span> : null}
+            {title ? <span className={clsx(getCls('title'), hashId)}>{title}</span> : null}
           </div>
         ) : null}
-        {subTitle ? (
-          <div className={clsx(getCls('desc'), hashId)}>{subTitle}</div>
-        ) : null}
+        {subTitle ? <div className={clsx(getCls('desc'), hashId)}>{subTitle}</div> : null}
       </div>
       <div
         className={clsx(getCls('main'), hashId)}
@@ -139,12 +139,19 @@ function LoginForm<T = Record<string, any>>(props: Partial<LoginFormProps<T>>) {
           ...contentStyle,
         }}
       >
-        <ProForm isKeyPressSubmit {...proFormProps} submitter={submitter}>
+        <ProForm
+          isKeyPressSubmit
+          {...proFormProps}
+          submitter={submitter}
+        >
           {message}
           {children}
         </ProForm>
         {actions ? (
-          <div className={clsx(getCls('main-other'), hashId)} style={otherStyle}>
+          <div
+            className={clsx(getCls('main-other'), hashId)}
+            style={otherStyle}
+          >
             {actions}
           </div>
         ) : null}

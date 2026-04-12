@@ -1,10 +1,12 @@
 // import { afterEach, describe, expect, test, vi } from 'vitest'; import { LoadingOutlined, ReloadOutlined } from '@ant-design/icons';import { afterEach, describe, expect, test, vi } from 'vitest'; import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, render } from '@testing-library/react';
-import type { ProColumns, ProFormInstance } from '@xxlabs/pro-components';
-import { ProTable } from '@xxlabs/pro-components';
 import { Button } from 'antd';
 import { act, useRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import type { ProColumns, ProFormInstance } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
+
 import { waitForWaitTime } from '../util';
 export type TableListItem = {
   key: number;
@@ -141,7 +143,12 @@ describe('ProTable test', () => {
   });
 
   it('boolean loading and polling props', async () => {
-    const html = render(<ProTable loading={true} polling={2000} />);
+    const html = render(
+      <ProTable
+        loading={true}
+        polling={2000}
+      />,
+    );
     await waitForWaitTime(1200);
     act(() => {
       html.rerender(

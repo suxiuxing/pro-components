@@ -1,5 +1,6 @@
 import { omit } from '@rc-component/util';
 import React from 'react';
+
 import { omitUndefined } from '../../../../utils';
 import ProFormDependency from '../../Dependency';
 import type { ProFormFieldProps } from '../../Field';
@@ -12,14 +13,7 @@ export const field: ProSchemaRenderValueTypeFunction<any, any> = (
 ) => {
   /** 公用的 类型 props */
   const formFieldProps = {
-    ...omit(item, [
-      'dataIndex',
-      'width',
-      'render',
-      'formItemRender',
-      'renderText',
-      'title',
-    ]),
+    ...omit(item, ['dataIndex', 'width', 'render', 'formItemRender', 'renderText', 'title']),
     name: item.name || item.key || item.dataIndex,
     width: item.width as 'md',
     render: item?.render
@@ -36,7 +30,13 @@ export const field: ProSchemaRenderValueTypeFunction<any, any> = (
 
   const defaultRender = () => {
     const { key, ...rest } = formFieldProps;
-    return <ProFormField key={key} {...rest} ignoreFormItem={true} />;
+    return (
+      <ProFormField
+        key={key}
+        {...rest}
+        ignoreFormItem={true}
+      />
+    );
   };
 
   const formItemRender = item?.formItemRender

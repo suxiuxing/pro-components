@@ -1,11 +1,7 @@
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
 
-import {
-  createTableDataSource,
-  DEMO_CREATOR_VALUE_ENUM,
-  FIXED_BASE_DATE,
-} from '../mockData';
+import { createTableDataSource, DEMO_CREATOR_VALUE_ENUM, FIXED_BASE_DATE } from '../mockData';
 
 export type TableListItem = {
   key: number;

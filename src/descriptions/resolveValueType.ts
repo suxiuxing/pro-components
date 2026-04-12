@@ -1,4 +1,4 @@
-﻿import type { ProFieldValueTypeInput } from '../utils/typing';
+import type { ProFieldValueTypeInput } from '../utils/typing';
 import type { ProDescriptionsColumn } from './typing';
 
 /**
@@ -10,8 +10,6 @@ export function resolveDescriptionsValueType(
 ): ProFieldValueTypeInput {
   const { valueType } = item;
   return (
-    typeof valueType === 'function'
-      ? valueType(entity || {}, 'descriptions')
-      : valueType
+    typeof valueType === 'function' ? valueType(entity || {}, 'descriptions') : valueType
   ) as ProFieldValueTypeInput;
 }

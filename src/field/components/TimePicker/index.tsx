@@ -1,10 +1,8 @@
-﻿import dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
+
 import { useIntl } from '../../../provider';
-import {
-  isProFieldEditOrUpdateMode,
-  isProFieldReadMode,
-} from '../../internal/fieldMode';
+import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC, ProFieldLightProps } from '../../types';
 import { FieldTimePickerEdit } from './FieldTimePickerEdit';
 import { FieldTimePickerRead } from './FieldTimePickerRead';
@@ -109,21 +107,14 @@ const FieldTimeRangePickerComponents: ProFieldFC<
   const [open, setOpen] = useState<boolean>(false);
   const finalFormat = fieldProps?.format || format;
   const [startText, endText] = Array.isArray(text) ? text : [];
-  const startTextIsNumberOrMoment =
-    dayjs.isDayjs(startText) || typeof startText === 'number';
-  const endTextIsNumberOrMoment =
-    dayjs.isDayjs(endText) || typeof endText === 'number';
+  const startTextIsNumberOrMoment = dayjs.isDayjs(startText) || typeof startText === 'number';
+  const endTextIsNumberOrMoment = dayjs.isDayjs(endText) || typeof endText === 'number';
 
   const parsedStartText: string = startText
-    ? dayjs(
-        startText,
-        startTextIsNumberOrMoment ? undefined : finalFormat,
-      ).format(finalFormat)
+    ? dayjs(startText, startTextIsNumberOrMoment ? undefined : finalFormat).format(finalFormat)
     : '';
   const parsedEndText: string = endText
-    ? dayjs(endText, endTextIsNumberOrMoment ? undefined : finalFormat).format(
-        finalFormat,
-      )
+    ? dayjs(endText, endTextIsNumberOrMoment ? undefined : finalFormat).format(finalFormat)
     : '';
 
   if (isProFieldReadMode(mode)) {

@@ -1,11 +1,8 @@
 import { _el, _rs } from '@rc-component/resize-observer/es/utils/observerUtil';
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react';
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import { TreeSelect } from 'antd';
+import { afterEach, describe, expect, it } from 'vitest';
+
 import {
   LightFilter,
   ProFormCascader,
@@ -13,8 +10,7 @@ import {
   ProFormTreeSelect,
   QueryFilter,
 } from '@xxlabs/pro-components';
-import { TreeSelect } from 'antd';
-import { afterEach, describe, expect, it } from 'vitest';
+
 import { waitForWaitTime } from '../util';
 
 afterEach(() => {
@@ -83,7 +79,10 @@ describe('✔️ ProFormLightFilter', () => {
   it(' ✔️ QueryFilter resize', async () => {
     const html = render(
       <QueryFilter>
-        <ProFormText name="name1" label="名称" />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
       </QueryFilter>,
     );
 

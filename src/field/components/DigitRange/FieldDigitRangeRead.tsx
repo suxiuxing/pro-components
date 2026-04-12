@@ -1,4 +1,5 @@
-﻿import React from 'react';
+import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 import type { FieldDigitRangeProps, Value } from './types';
 
@@ -10,7 +11,7 @@ export function FieldDigitRangeRead(
   const getContent = (number: Value) => {
     const digit = new Intl.NumberFormat(undefined, {
       minimumSignificantDigits: 2,
-      ...(fieldProps?.intlProps || {}),
+      ...fieldProps?.intlProps,
     }).format(Number(number) as number);
 
     return fieldProps?.formatter?.(digit) || digit;

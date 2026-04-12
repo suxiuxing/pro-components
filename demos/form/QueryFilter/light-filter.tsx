@@ -1,3 +1,8 @@
+import { Radio, Space, TreeSelect } from 'antd';
+import type { SizeType } from 'antd/lib/config-provider/SizeContext';
+import dayjs from 'dayjs';
+import React from 'react';
+
 import {
   LightFilter,
   ProFormCascader,
@@ -15,10 +20,6 @@ import {
   ProFormTimePicker,
   ProFormTreeSelect,
 } from '@xxlabs/pro-components';
-import { Radio, Space, TreeSelect } from 'antd';
-import type { SizeType } from 'antd/lib/config-provider/SizeContext';
-import dayjs from 'dayjs';
-import React from 'react';
 
 /** 树形选择数据 */
 const treeData = [
@@ -135,8 +136,7 @@ const defaultDateTime = dayjs('2024-01-15 14:30:00');
 
 const Demo = () => {
   const [size, setSize] = React.useState<SizeType>('middle');
-  const [variant, setVariant] =
-    React.useState<LightFilterVariant>('borderless');
+  const [variant, setVariant] = React.useState<LightFilterVariant>('borderless');
 
   const initialValues: Partial<FilterFormValues> = {
     keyword: '关键词示例',
@@ -154,26 +154,21 @@ const Demo = () => {
     slider: 50,
     address: '北京市朝阳区',
     date: defaultDate.format('YYYY-MM-DD'),
-    dateRange: [
-      defaultDate.format('YYYY-MM-DD'),
-      defaultDate.add(7, 'd').format('YYYY-MM-DD'),
-    ],
+    dateRange: [defaultDate.format('YYYY-MM-DD'), defaultDate.add(7, 'd').format('YYYY-MM-DD')],
     datetime: defaultDateTime.format('YYYY-MM-DD HH:mm:ss'),
-    datetimeRange: [
-      defaultDateTime.add(-1, 'd').valueOf(),
-      defaultDateTime.valueOf(),
-    ],
+    datetimeRange: [defaultDateTime.add(-1, 'd').valueOf(), defaultDateTime.valueOf()],
     time: defaultDateTime.format('HH:mm:ss'),
-    timeRange: [
-      defaultDateTime.add(-1, 'h').valueOf(),
-      defaultDateTime.valueOf(),
-    ],
+    timeRange: [defaultDateTime.add(-1, 'h').valueOf(), defaultDateTime.valueOf()],
     nameSet: ['张', '三'],
   };
 
   return (
     <div>
-      <Space wrap size="middle" style={{ marginBottom: 16 }}>
+      <Space
+        wrap
+        size="middle"
+        style={{ marginBottom: 16 }}
+      >
         <Space>
           <span>尺寸：</span>
           <Radio.Group
@@ -259,25 +254,70 @@ const Demo = () => {
             placeholder: '请选择省/市/区',
           }}
         />
-        <ProFormSwitch name="open" label="开关" />
-        <ProFormSwitch name="status" label="状态" secondary />
-        <ProFormDigit name="count" label="数量" min={0} max={9999} />
-        <ProFormSlider name="range" label="范围" range />
-        <ProFormSlider name="slider" label="滑块" />
-        <ProFormText name="keyword" label="关键词" placeholder="请输入关键词" />
+        <ProFormSwitch
+          name="open"
+          label="开关"
+        />
+        <ProFormSwitch
+          name="status"
+          label="状态"
+          secondary
+        />
+        <ProFormDigit
+          name="count"
+          label="数量"
+          min={0}
+          max={9999}
+        />
+        <ProFormSlider
+          name="range"
+          label="范围"
+          range
+        />
+        <ProFormSlider
+          name="slider"
+          label="滑块"
+        />
+        <ProFormText
+          name="keyword"
+          label="关键词"
+          placeholder="请输入关键词"
+        />
         <ProFormText
           name="address"
           label="地址"
           secondary
           placeholder="请输入地址"
         />
-        <ProFormDatePicker name="date" label="日期" allowClear={false} />
-        <ProFormDateRangePicker name="dateRange" label="日期范围" />
-        <ProFormDateTimePicker name="datetime" label="日期时间" />
-        <ProFormDateTimeRangePicker name="datetimeRange" label="日期时间范围" />
-        <ProFormTimePicker name="time" label="时间" />
-        <ProFormTimePicker.RangePicker name="timeRange" label="时间范围" />
-        <ProFormFieldSet name="nameSet" label="姓名">
+        <ProFormDatePicker
+          name="date"
+          label="日期"
+          allowClear={false}
+        />
+        <ProFormDateRangePicker
+          name="dateRange"
+          label="日期范围"
+        />
+        <ProFormDateTimePicker
+          name="datetime"
+          label="日期时间"
+        />
+        <ProFormDateTimeRangePicker
+          name="datetimeRange"
+          label="日期时间范围"
+        />
+        <ProFormTimePicker
+          name="time"
+          label="时间"
+        />
+        <ProFormTimePicker.RangePicker
+          name="timeRange"
+          label="时间范围"
+        />
+        <ProFormFieldSet
+          name="nameSet"
+          label="姓名"
+        >
           <ProFormText placeholder="姓" />
           <ProFormText placeholder="名" />
         </ProFormFieldSet>

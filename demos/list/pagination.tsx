@@ -1,6 +1,7 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import { ProList } from '@xxlabs/pro-components';
 import { Progress, Tag } from 'antd';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const data = [
   '智慧零售平台',
@@ -20,8 +21,7 @@ const data = [
       <EllipsisOutlined />
     </a>,
   ],
-  avatar:
-    'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
+  avatar: 'https://gw.alipayobjects.com/zos/antfincdn/UCSiy1j6jx/xingzhuang.svg',
   content: (
     <div
       style={{

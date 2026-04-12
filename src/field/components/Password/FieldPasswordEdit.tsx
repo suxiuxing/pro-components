@@ -1,5 +1,6 @@
-﻿import { Input } from 'antd';
+import { Input } from 'antd';
 import React from 'react';
+
 import type { IntlType } from '../../../provider';
 import type { ProFieldFC } from '../../types';
 

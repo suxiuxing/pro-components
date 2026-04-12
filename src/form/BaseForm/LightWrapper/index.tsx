@@ -3,12 +3,8 @@ import type { SizeType as AntdSizeType } from 'antd/lib/config-provider/SizeCont
 import type { TooltipPlacement } from 'antd/lib/tooltip';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo, useState } from 'react';
-import {
-  dateArrayFormatter,
-  dateFormatterMap,
-  FieldLabel,
-  FilterDropdown,
-} from '../../../utils';
+
+import { dateArrayFormatter, dateFormatterMap, FieldLabel, FilterDropdown } from '../../../utils';
 import type { LightFilterFooterRender } from '../../typing';
 import { useStyle } from './style';
 
@@ -43,10 +39,10 @@ export type LightWrapperProps = {
   placement?: TooltipPlacement;
 };
 
-const LightWrapperRender: React.ForwardRefRenderFunction<
-  any,
-  LightWrapperProps
-> = (props, _ref) => {
+const LightWrapperRender: React.ForwardRefRenderFunction<any, LightWrapperProps> = (
+  props,
+  _ref,
+) => {
   const {
     label,
     size,
@@ -86,11 +82,7 @@ const LightWrapperRender: React.ForwardRefRenderFunction<
   const labelValueText = useMemo(() => {
     if (!labelValue) return labelValue;
     const lowerValueType = valueType?.toLowerCase?.();
-    if (
-      lowerValueType?.endsWith('range') &&
-      lowerValueType !== 'digitrange' &&
-      !labelFormatter
-    ) {
+    if (lowerValueType?.endsWith('range') && lowerValueType !== 'digitrange' && !labelFormatter) {
       return dateArrayFormatter(
         labelValue,
         (valueType && (dateFormatterMap as any)[valueType]) || 'YYYY-MM-DD',

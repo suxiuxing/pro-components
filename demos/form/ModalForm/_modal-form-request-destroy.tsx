@@ -1,8 +1,8 @@
-import { DrawerForm, ModalForm, ProFormText } from '@xxlabs/pro-components';
 import { Button, message } from 'antd';
 
-const wait = (time: number = 300) =>
-  new Promise((resolve) => setTimeout(resolve, time));
+import { DrawerForm, ModalForm, ProFormText } from '@xxlabs/pro-components';
+
+const wait = (time: number = 300) => new Promise((resolve) => setTimeout(resolve, time));
 
 const Demo = () => {
   return (

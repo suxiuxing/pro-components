@@ -1,13 +1,18 @@
-import type { ProFieldFCMode } from '@xxlabs/pro-components';
-import { ProField as Field } from '@xxlabs/pro-components';
 import { Descriptions } from 'antd';
 import dayjs from 'dayjs';
+
+import type { ProFieldFCMode } from '@xxlabs/pro-components';
+import { ProField as Field } from '@xxlabs/pro-components';
 
 export default ({ state }: { state: ProFieldFCMode }) => (
   <>
     <Descriptions column={2}>
       <Descriptions.Item label="文本">
-        <Field text="这是一段文本" valueType="text" mode={state} />
+        <Field
+          text="这是一段文本"
+          valueType="text"
+          mode={state}
+        />
       </Descriptions.Item>
       <Descriptions.Item label="头像">
         <Field
@@ -17,7 +22,10 @@ export default ({ state }: { state: ProFieldFCMode }) => (
         />
       </Descriptions.Item>
       <Descriptions.Item label="空字符串">
-        <Field text="" mode="read" />
+        <Field
+          text=""
+          mode="read"
+        />
       </Descriptions.Item>
       <Descriptions.Item label="日期区间">
         <Field
@@ -30,14 +38,30 @@ export default ({ state }: { state: ProFieldFCMode }) => (
         />
       </Descriptions.Item>
       <Descriptions.Item label="index">
-        <Field text={0} valueType="index" mode={state} />
-        <Field text={0} valueType="indexBorder" mode={state} />
+        <Field
+          text={0}
+          valueType="index"
+          mode={state}
+        />
+        <Field
+          text={0}
+          valueType="indexBorder"
+          mode={state}
+        />
       </Descriptions.Item>
       <Descriptions.Item label="金额">
-        <Field text="100" valueType="money" mode={state} />
+        <Field
+          text="100"
+          valueType="money"
+          mode={state}
+        />
       </Descriptions.Item>
       <Descriptions.Item label="百分比">
-        <Field text="100" valueType="percent" mode={state} />
+        <Field
+          text="100"
+          valueType="percent"
+          mode={state}
+        />
       </Descriptions.Item>
       <Descriptions.Item label="选择框">
         <Field
@@ -73,7 +97,11 @@ export default ({ state }: { state: ProFieldFCMode }) => (
         />
       </Descriptions.Item>
       <Descriptions.Item label="进度条">
-        <Field text="40" valueType="progress" mode={state} />
+        <Field
+          text="40"
+          valueType="progress"
+          mode={state}
+        />
       </Descriptions.Item>
       <Descriptions.Item label="日期时间">
         <Field
@@ -117,7 +145,11 @@ export default ({ state }: { state: ProFieldFCMode }) => (
         />
       </Descriptions.Item>
       <Descriptions.Item label="密码">
-        <Field text="password" valueType="password" mode={state} />
+        <Field
+          text="password"
+          valueType="password"
+          mode={state}
+        />
       </Descriptions.Item>
       <Descriptions.Item label="代码块">
         <Field

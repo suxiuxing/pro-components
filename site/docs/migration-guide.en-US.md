@@ -22,7 +22,7 @@ ProComponents 3.0 is a major version upgrade that includes some breaking changes
 
 | Package Name                 | 2.x Latest | 3.0 Start Version |
 | ---------------------------- | ---------- | ----------------- |
-| @xxlabs/pro-components   | 2.8.10     | 3.0.0-beta.1      |
+| @xxlabs/pro-components       | 2.8.10     | 3.0.0-beta.1      |
 | @ant-design/pro-card         | 2.10.0     | 3.0.0-beta.1      |
 | @ant-design/pro-descriptions | 2.6.10     | 3.0.0-beta.1      |
 | @ant-design/pro-field        | 3.1.0      | 3.0.0-beta.1      |
@@ -365,8 +365,18 @@ Recommended migration steps:
     ),
   }}
   actionsRender={({ isMobile }) => [
-    !isMobile && <Switch key="theme" checked={dark} onChange={toggleTheme} />,
-    <Button key="feedback" type="text" icon={<QuestionCircleOutlined />} />,
+    !isMobile && (
+      <Switch
+        key="theme"
+        checked={dark}
+        onChange={toggleTheme}
+      />
+    ),
+    <Button
+      key="feedback"
+      type="text"
+      icon={<QuestionCircleOutlined />}
+    />,
   ]}
 />
 ```

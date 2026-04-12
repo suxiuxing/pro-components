@@ -1,7 +1,8 @@
-﻿import type { ProDescriptionsActionType } from '@xxlabs/pro-components';
-import { ProDescriptions } from '@xxlabs/pro-components';
 import { Button } from 'antd';
 import { useRef } from 'react';
+
+import type { ProDescriptionsActionType } from '@xxlabs/pro-components';
+import { ProDescriptions } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const actionRef = useRef<ProDescriptionsActionType>();
@@ -69,8 +70,7 @@ const Demo = () => {
             <strong>异步函数</strong>: 返回 Promise 对象
           </li>
           <li>
-            <strong>数据格式</strong>: &#123; success: boolean, data: object
-            &#125;
+            <strong>数据格式</strong>: &#123; success: boolean, data: object &#125;
           </li>
           <li>
             <strong>自动加载</strong>: 组件挂载时自动请求数据
@@ -82,8 +82,7 @@ const Demo = () => {
         <h4>columns 与 request 配合：</h4>
         <ul>
           <li>
-            <strong>dataIndex</strong>: 数据字段名，自动绑定到 request
-            返回的数据
+            <strong>dataIndex</strong>: 数据字段名，自动绑定到 request 返回的数据
           </li>
           <li>
             <strong>label</strong>: 标签文本
@@ -92,8 +91,7 @@ const Demo = () => {
             <strong>valueType</strong>: 值类型，决定如何渲染数据
           </li>
           <li>
-            <strong>render</strong>: 自定义内容，如操作按钮（valueType 为 option
-            时放入 extra 区域）
+            <strong>render</strong>: 自定义内容，如操作按钮（valueType 为 option 时放入 extra 区域）
           </li>
         </ul>
         <h4>ActionRef 操作方法：</h4>

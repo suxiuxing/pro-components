@@ -1,4 +1,5 @@
 import { warning } from '@rc-component/util';
+
 import ProFormDependency from '../../Dependency';
 import type { ItemType, ProFormRenderValueTypeHelpers } from '../typing';
 const { noteOnce } = warning;
@@ -22,7 +23,11 @@ export const dependency = <DataType, ValueType>(
     if (!Array.isArray(item.name ?? fieldProps?.name)) return null;
 
     return (
-      <ProFormDependency name={item.name} {...fieldProps} key={item.key}>
+      <ProFormDependency
+        name={item.name}
+        {...fieldProps}
+        key={item.key}
+      >
         {(values: any) => {
           if (!item.columns || typeof item.columns !== 'function') return null;
           return helpers.genItems(item.columns(values));

@@ -1,5 +1,6 @@
-﻿import { Rate } from 'antd';
+import { Rate } from 'antd';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 
 export function FieldRateEdit(
@@ -7,7 +8,13 @@ export function FieldRateEdit(
   ref: React.Ref<unknown>,
 ) {
   const { text, mode, formItemRender, fieldProps } = props;
-  const dom = <Rate allowHalf ref={ref as React.Ref<any>} {...fieldProps} />;
+  const dom = (
+    <Rate
+      allowHalf
+      ref={ref as React.Ref<any>}
+      {...fieldProps}
+    />
+  );
   if (formItemRender) {
     return formItemRender(text, { mode, ...fieldProps }, dom);
   }

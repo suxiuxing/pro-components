@@ -2,6 +2,7 @@ import { get } from '@rc-component/util';
 import type { InternalNamePath, NamePath } from 'antd/lib/form/interface';
 import dayjs from 'dayjs';
 import quarterOfYear from 'dayjs/plugin/quarterOfYear';
+
 import { isNil } from '../isNil';
 import type { ProFieldValueType } from '../typing';
 
@@ -86,9 +87,7 @@ export const convertMoment = (
       return value.valueOf();
     }
     if (dateFormatter === 'string') {
-      return value.format(
-        dateFormatterMap[valueType as 'date'] || 'YYYY-MM-DD HH:mm:ss',
-      );
+      return value.format(dateFormatterMap[valueType as 'date'] || 'YYYY-MM-DD HH:mm:ss');
     }
     if (typeof dateFormatter === 'string' && dateFormatter !== 'string') {
       return value.format(dateFormatter);
@@ -127,12 +126,7 @@ export const conversionMomentValue = <T extends {} = any>(
   if (typeof window === 'undefined') return value;
   // 如果 value 是 string | null | Blob类型 其中之一，直接返回
   // 形如 {key: [File, File]} 的表单字段当进行第二次递归时会导致其直接越过 typeof value !== 'object' 这一判断 https://github.com/ant-design/pro-components/issues/2071
-  if (
-    typeof value !== 'object' ||
-    isNil(value) ||
-    value instanceof Blob ||
-    Array.isArray(value)
-  ) {
+  if (typeof value !== 'object' || isNil(value) || value instanceof Blob || Array.isArray(value)) {
     return value;
   }
   Object.keys(value as Record<string, any>).forEach((valueKey) => {
@@ -186,8 +180,7 @@ export const conversionMomentValue = <T extends {} = any>(
       finalDateFormatter = currentDateFormatter;
     } else if (currentDateFormatter === 'string') {
       finalDateFormatter =
-        dateFormat ||
-        dateFormatterMap[valueType as keyof typeof dateFormatterMap];
+        dateFormat || dateFormatterMap[valueType as keyof typeof dateFormatterMap];
     } else {
       // Custom format string
       finalDateFormatter = currentDateFormatter;
@@ -198,8 +191,7 @@ export const conversionMomentValue = <T extends {} = any>(
         if (dayjs.isDayjs(arrayValue) || isMoment(arrayValue)) {
           // For arrays, if no format is defined and dateFormatter is 'string', use 'string' with default format
           const arrayDateFormatter =
-            finalDateFormatter === undefined &&
-            currentDateFormatter === 'string'
+            finalDateFormatter === undefined && currentDateFormatter === 'string'
               ? 'string'
               : finalDateFormatter;
           return convertMoment(arrayValue, arrayDateFormatter, valueType);
@@ -214,11 +206,7 @@ export const conversionMomentValue = <T extends {} = any>(
       });
       return;
     }
-    (tmpValue as any)[valueKey] = convertMoment(
-      itemValue,
-      finalDateFormatter,
-      valueType,
-    );
+    (tmpValue as any)[valueKey] = convertMoment(itemValue, finalDateFormatter, valueType);
   });
 
   return tmpValue;

@@ -1,6 +1,7 @@
-﻿import { get } from '@rc-component/util';
+import { get } from '@rc-component/util';
 import { cloneDeep } from 'lodash-es';
 import React from 'react';
+
 import { isNil } from '../isNil';
 import type { SearchTransformKeyFn } from '../typing';
 
@@ -60,10 +61,7 @@ function parseDotPath(dotPath: string): (string | number)[] {
  * @returns 过滤后的转换配置
  */
 function filterNilTransforms(
-  dataFormatMapRaw: Record<
-    string,
-    SearchTransformKeyFn | undefined | DataFormatMapType
-  >,
+  dataFormatMapRaw: Record<string, SearchTransformKeyFn | undefined | DataFormatMapType>,
 ): Record<string, SearchTransformKeyFn> {
   const filtered: Record<string, SearchTransformKeyFn> = {};
 
@@ -84,10 +82,7 @@ function filterNilTransforms(
  * @returns 包含两种格式转换配置的对象
  */
 function separateTransformFormats(
-  dataFormatMapRaw: Record<
-    string,
-    SearchTransformKeyFn | undefined | DataFormatMapType
-  >,
+  dataFormatMapRaw: Record<string, SearchTransformKeyFn | undefined | DataFormatMapType>,
 ): {
   dotPathTransforms: Record<string, SearchTransformKeyFn>;
   objectTransforms: Record<string, any>;
@@ -134,15 +129,10 @@ function processDotPathTransforms(
     // 执行转换
     const transformed = transform(currentValue, pathArray.map(String), result);
 
-    if (
-      typeof transformed === 'object' &&
-      transformed !== null &&
-      !Array.isArray(transformed)
-    ) {
+    if (typeof transformed === 'object' && transformed !== null && !Array.isArray(transformed)) {
       // 如果返回对象，删除原键并将对象的键值对合并到父级
       const parentPath = pathArray.slice(0, -1);
-      const parentObj =
-        parentPath.length > 0 ? get(result, parentPath) : result;
+      const parentObj = parentPath.length > 0 ? get(result, parentPath) : result;
 
       if (parentObj && typeof parentObj === 'object') {
         const keyToDelete = pathArray[pathArray.length - 1];
@@ -184,10 +174,7 @@ function findNestedTransformFunction(
 
   for (const parentKey of parentsKey) {
     const parentKeyStr = String(parentKey);
-    if (
-      nestedTransforms &&
-      typeof nestedTransforms[parentKeyStr] === 'object'
-    ) {
+    if (nestedTransforms && typeof nestedTransforms[parentKeyStr] === 'object') {
       nestedTransforms = nestedTransforms[parentKeyStr];
     } else {
       nestedTransforms = null;
@@ -259,26 +246,14 @@ function processNestedObjectTransforms(
 
     // 如果没找到并且是嵌套路径，尝试在嵌套对象中查找
     if (!transformFunction && parentsKey) {
-      transformFunction = findNestedTransformFunction(
-        currentTransforms,
-        parentsKey,
-        entityKey,
-      );
+      transformFunction = findNestedTransformFunction(currentTransforms, parentsKey, entityKey);
     }
 
     if (transformFunction && typeof transformFunction === 'function') {
       const namePath = key.map((k) => String(k));
-      const transformed = transformFunction(
-        itemValue,
-        namePath,
-        rootAllValues,
-      );
+      const transformed = transformFunction(itemValue, namePath, rootAllValues);
 
-      if (
-        typeof transformed === 'object' &&
-        transformed !== null &&
-        !Array.isArray(transformed)
-      ) {
+      if (typeof transformed === 'object' && transformed !== null && !Array.isArray(transformed)) {
         // 检查当前项是否在数组中
         const isInArray = parentsKey ? isInArrayPath(parentsKey) : false;
 
@@ -345,10 +320,7 @@ function processNestedObjectTransforms(
  */
 export const transformKeySubmitValue = <T extends object = any>(
   values: T,
-  dataFormatMapRaw: Record<
-    string,
-    SearchTransformKeyFn | undefined | DataFormatMapType
-  >,
+  dataFormatMapRaw: Record<string, SearchTransformKeyFn | undefined | DataFormatMapType>,
 ): T => {
   // 过滤掉空值的转换配置
   const dataFormatMap = filterNilTransforms(dataFormatMapRaw);
@@ -374,8 +346,7 @@ export const transformKeySubmitValue = <T extends object = any>(
   let result = cloneDeep(values);
 
   // 分别处理不同格式的转换配置
-  const { dotPathTransforms, objectTransforms } =
-    separateTransformFormats(dataFormatMapRaw);
+  const { dotPathTransforms, objectTransforms } = separateTransformFormats(dataFormatMapRaw);
 
   // 处理点号路径格式的转换（如 'users.0.name'）
   processDotPathTransforms(result, dotPathTransforms);

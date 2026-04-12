@@ -306,9 +306,6 @@ render: (text, record, _, action) => [
 ```typescript
 const editable = {
   // defaultDom = {save,cancel,delete} 可以酌情添加和使用
-  actionRender: (row, config, defaultDom) => [
-    defaultDom.save,
-    defaultDom.cancel,
-  ],
+  actionRender: (row, config, defaultDom) => [defaultDom.save, defaultDom.cancel],
 };
 ```

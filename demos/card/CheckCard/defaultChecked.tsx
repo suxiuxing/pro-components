@@ -20,8 +20,7 @@ const Demo = () => (
       <h4>CheckCard DefaultChecked Props 说明：</h4>
       <ul>
         <li>
-          <strong>defaultChecked</strong>:
-          默认选中状态，布尔值，组件初始化时生效
+          <strong>defaultChecked</strong>: 默认选中状态，布尔值，组件初始化时生效
         </li>
         <li>
           <strong>onChange</strong>: 选中状态改变时的回调函数
@@ -36,12 +35,10 @@ const Demo = () => (
       <h4>DefaultChecked 特点：</h4>
       <ul>
         <li>
-          <strong>非受控组件</strong>: 使用 defaultChecked
-          时，组件内部管理选中状态
+          <strong>非受控组件</strong>: 使用 defaultChecked 时，组件内部管理选中状态
         </li>
         <li>
-          <strong>初始化生效</strong>:
-          只在组件首次渲染时生效，后续状态由组件内部管理
+          <strong>初始化生效</strong>: 只在组件首次渲染时生效，后续状态由组件内部管理
         </li>
         <li>
           <strong>用户可交互</strong>: 用户可以通过点击改变选中状态
@@ -71,8 +68,7 @@ const Demo = () => (
           <strong>checked</strong>: 受控，由外部状态管理
         </li>
         <li>
-          <strong>使用场景</strong>: defaultChecked 适合简单场景，checked
-          适合复杂状态管理
+          <strong>使用场景</strong>: defaultChecked 适合简单场景，checked 适合复杂状态管理
         </li>
       </ul>
       <h4>使用建议：</h4>

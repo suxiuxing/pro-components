@@ -1,4 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
+import { Button, Space, message } from 'antd';
+import { useState } from 'react';
+
 import {
   DrawerForm,
   ModalForm,
@@ -7,8 +10,6 @@ import {
   ProFormSelect,
   ProFormText,
 } from '@xxlabs/pro-components';
-import { Button, Space, message } from 'antd';
-import { useState } from 'react';
 
 const Demo = () => {
   const [modalVisit, setModalVisit] = useState(false);
@@ -97,7 +98,11 @@ const Demo = () => {
             label="Contract Agreed Invalid Method"
           />
         </ProForm.Group>
-        <ProFormText width="sm" name="id" label="Main Contract Number" />
+        <ProFormText
+          width="sm"
+          name="id"
+          label="Main Contract Number"
+        />
         <ProFormText
           name="project"
           disabled
@@ -173,7 +178,11 @@ const Demo = () => {
             label="Contract Agreed Invalid Method"
           />
         </ProForm.Group>
-        <ProFormText width="sm" name="id" label="Main Contract Number" />
+        <ProFormText
+          width="sm"
+          name="id"
+          label="Main Contract Number"
+        />
         <ProFormText
           name="project"
           disabled

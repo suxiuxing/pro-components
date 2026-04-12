@@ -1,5 +1,6 @@
 import type { DatePickerProps } from 'antd/lib/date-picker';
 import React, { useContext } from 'react';
+
 import { FieldTimePicker } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
 import FieldContext from '../../FieldContext';
@@ -24,9 +25,17 @@ const ProFormTimePicker: React.FC<ProFormFieldItemProps<DatePickerProps>> = ({
     <ProConfigProvider
       valueTypeMap={{
         [valueType]: {
-          render: (text, props) => <FieldTimePicker {...props} text={text} />,
+          render: (text, props) => (
+            <FieldTimePicker
+              {...props}
+              text={text}
+            />
+          ),
           formItemRender: (text, props) => (
-            <FieldTimePicker {...props} text={text} />
+            <FieldTimePicker
+              {...props}
+              text={text}
+            />
           ),
         },
       }}

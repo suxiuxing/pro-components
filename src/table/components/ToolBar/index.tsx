@@ -1,23 +1,14 @@
 import { ReloadOutlined } from '@ant-design/icons';
 import type { TableColumnType } from 'antd';
 import { Tooltip } from 'antd';
-import React, {
-  memo,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-} from 'react';
+import React, { memo, useCallback, useContext, useEffect, useMemo } from 'react';
+
 import type { IntlType } from '../../../provider';
 import { useIntl } from '../../../provider';
 import type { LabelTooltipType } from '../../../utils';
 import { isDeepEqualReact, omitUndefined } from '../../../utils';
 import { TableContext } from '../../Store/Provide';
-import type {
-  ActionType,
-  OptionSearchProps,
-  ProTableProps,
-} from '../../typing';
+import type { ActionType, OptionSearchProps, ProTableProps } from '../../typing';
 import ColumnSetting from '../ColumnSetting';
 import type { ListToolBarProps } from '../ListToolBar';
 import ListToolBar from '../ListToolBar';
@@ -140,17 +131,21 @@ function renderDefaultOption<T>(
       }
       if (key === 'fullScreen') {
         return (
-          <span key={key} onClick={onClick}>
+          <span
+            key={key}
+            onClick={onClick}
+          >
             <FullScreenIcon />
           </span>
         );
       }
-      const optionItem = getButtonText(defaultOptions, options)[
-        key as 'fullScreen'
-      ];
+      const optionItem = getButtonText(defaultOptions, options)[key as 'fullScreen'];
       if (optionItem) {
         return (
-          <span key={key} onClick={onClick}>
+          <span
+            key={key}
+            onClick={onClick}
+          >
             <Tooltip title={optionItem.text}>{optionItem.icon}</Tooltip>
           </span>
         );
@@ -253,8 +248,7 @@ function ToolBar<T>({
     /** 受控的value 和 onChange */
     const defaultSearchConfig = {
       value: counter.keyWords,
-      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        counter.setKeyWords(e.target.value),
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => counter.setKeyWords(e.target.value),
     };
 
     if (propsOptions.search === true) return defaultSearchConfig;
@@ -295,10 +289,7 @@ export type ToolbarRenderProps<T> = {
   headerTitle: React.ReactNode;
   toolbar: ProTableProps<T, any, any>['toolbar'];
   options: ProTableProps<T, any, any>['options'];
-  optionsRender?: (
-    props: ToolBarProps<T>,
-    defaultDom: React.ReactNode[],
-  ) => React.ReactNode[];
+  optionsRender?: (props: ToolBarProps<T>, defaultDom: React.ReactNode[]) => React.ReactNode[];
   toolBarRender?: ToolBarProps<T>['toolBarRender'];
   actionRef: React.MutableRefObject<ActionType | undefined>;
 };
@@ -326,13 +317,10 @@ const ToolbarRender = <T,>(props: ToolbarRenderProps<T>) => {
       if (!options || !options.search) {
         return;
       }
-      const { name = 'keyword' } =
-        options.search === true ? {} : options.search;
+      const { name = 'keyword' } = options.search === true ? {} : options.search;
 
       /** 如果传入的 onSearch 返回值为 false，应该直接拦截请求 */
-      const success = (options.search as OptionSearchProps)?.onSearch?.(
-        keyword,
-      );
+      const success = (options.search as OptionSearchProps)?.onSearch?.(keyword);
 
       if (success === false) return;
 
@@ -375,10 +363,7 @@ const ToolbarRender = <T,>(props: ToolbarRenderProps<T>) => {
   );
 };
 
-const isPropsEqual = <T,>(
-  prev: ToolbarRenderProps<T>,
-  next: ToolbarRenderProps<T>,
-): boolean => {
+const isPropsEqual = <T,>(prev: ToolbarRenderProps<T>, next: ToolbarRenderProps<T>): boolean => {
   if (next.searchNode) {
     return false;
   }

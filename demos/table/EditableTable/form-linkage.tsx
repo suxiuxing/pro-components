@@ -1,3 +1,5 @@
+import React, { useRef, useState } from 'react';
+
 import type {
   ActionType,
   EditableFormInstance,
@@ -11,7 +13,6 @@ import {
   ProFormDependency,
   ProFormDigit,
 } from '@xxlabs/pro-components';
-import React, { useRef, useState } from 'react';
 
 type DataSourceType = {
   id: React.Key;
@@ -140,9 +141,7 @@ const Demo = () => {
         <a
           key="delete"
           onClick={() => {
-            const tableDataSource = formRef.current?.getFieldValue(
-              'table',
-            ) as DataSourceType[];
+            const tableDataSource = formRef.current?.getFieldValue('table') as DataSourceType[];
             formRef.current?.setFieldsValue({
               table: tableDataSource.filter((item) => item.id !== row?.id),
             });
@@ -183,12 +182,8 @@ const Demo = () => {
               const info = (table as DataSourceType[]).reduce(
                 (pre, item) => {
                   return {
-                    totalScore:
-                      pre.totalScore +
-                      parseInt((item?.fraction || 0).toString(), 10),
-                    questions:
-                      pre.questions +
-                      parseInt((item?.questionsNum || 0).toString(), 10),
+                    totalScore: pre.totalScore + parseInt((item?.fraction || 0).toString(), 10),
+                    questions: pre.questions + parseInt((item?.questionsNum || 0).toString(), 10),
                   };
                 },
                 { totalScore: 0, questions: 0 },

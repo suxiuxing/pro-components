@@ -1,6 +1,7 @@
-import { ProList } from '@xxlabs/pro-components';
 import { Alert, Card, Col, Row, Segmented, Slider, Switch, Tag } from 'antd';
 import { useState } from 'react';
+
+import { ProList } from '@xxlabs/pro-components';
 
 const apps = [
   {
@@ -121,9 +122,7 @@ const statusMap: Record<string, { text: string; color: string }> = {
 const data = apps.map((app) => ({
   id: app.id,
   title: app.name,
-  subTitle: (
-    <Tag color={statusMap[app.status].color}>{statusMap[app.status].text}</Tag>
-  ),
+  subTitle: <Tag color={statusMap[app.status].color}>{statusMap[app.status].text}</Tag>,
   actions: [<a key="view">打开</a>, <a key="settings">设置</a>],
   avatar: app.icon,
   content: (
@@ -152,13 +151,17 @@ export default () => {
         style={{ marginBottom: 24 }}
       />
 
-      <Card title="配置面板" style={{ marginBottom: 24 }}>
+      <Card
+        title="配置面板"
+        style={{ marginBottom: 24 }}
+      >
         <Row gutter={[24, 24]}>
-          <Col xs={24} md={12}>
+          <Col
+            xs={24}
+            md={12}
+          >
             <div>
-              <div style={{ marginBottom: 8, fontWeight: 500 }}>
-                列数 (column): {column}
-              </div>
+              <div style={{ marginBottom: 8, fontWeight: 500 }}>列数 (column): {column}</div>
               <Slider
                 min={1}
                 max={6}
@@ -176,11 +179,12 @@ export default () => {
             </div>
           </Col>
 
-          <Col xs={24} md={12}>
+          <Col
+            xs={24}
+            md={12}
+          >
             <div>
-              <div style={{ marginBottom: 8, fontWeight: 500 }}>
-                间距 (gutter): {gutter}px
-              </div>
+              <div style={{ marginBottom: 8, fontWeight: 500 }}>间距 (gutter): {gutter}px</div>
               <Slider
                 min={0}
                 max={48}
@@ -199,21 +203,36 @@ export default () => {
             </div>
           </Col>
 
-          <Col xs={24} md={8}>
+          <Col
+            xs={24}
+            md={8}
+          >
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span style={{ fontWeight: 500 }}>显示边框:</span>
-              <Switch checked={bordered} onChange={setBordered} />
+              <Switch
+                checked={bordered}
+                onChange={setBordered}
+              />
             </div>
           </Col>
 
-          <Col xs={24} md={8}>
+          <Col
+            xs={24}
+            md={8}
+          >
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span style={{ fontWeight: 500 }}>幽灵模式:</span>
-              <Switch checked={ghost} onChange={setGhost} />
+              <Switch
+                checked={ghost}
+                onChange={setGhost}
+              />
             </div>
           </Col>
 
-          <Col xs={24} md={8}>
+          <Col
+            xs={24}
+            md={8}
+          >
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span style={{ fontWeight: 500 }}>边框:</span>
               <Segmented

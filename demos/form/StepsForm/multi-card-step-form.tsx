@@ -1,4 +1,6 @@
-﻿import {
+import { message } from 'antd';
+
+import {
   ProCard,
   ProForm,
   ProFormCheckbox,
@@ -9,7 +11,6 @@
   ProFormText,
   StepsForm,
 } from '@xxlabs/pro-components';
-import { message } from 'antd';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -60,7 +61,10 @@ const Demo = () => {
               placeholder="Please enter a name"
               rules={[{ required: true }]}
             />
-            <ProForm.Group title="Nodes" size={8}>
+            <ProForm.Group
+              title="Nodes"
+              size={8}
+            >
               <ProFormSelect
                 width="sm"
                 name="source"
@@ -98,7 +102,10 @@ const Demo = () => {
               placeholder="Please enter a name"
               width="sm"
             />
-            <ProFormDateRangePicker name="m" label="M Form" />
+            <ProFormDateRangePicker
+              name="m"
+              label="M Form"
+            />
             <ProFormSelect
               name="l"
               label="L Form"
@@ -107,12 +114,10 @@ const Demo = () => {
               }}
               width="lg"
               initialValue={['Wu Jiahao', 'Zhou Xingxing']}
-              options={['Wu Jiahao', 'Zhou Xingxing', 'Chen Lafeng'].map(
-                (item) => ({
-                  label: item,
-                  value: item,
-                }),
-              )}
+              options={['Wu Jiahao', 'Zhou Xingxing', 'Chen Lafeng'].map((item) => ({
+                label: item,
+                value: item,
+              }))}
             />
           </ProCard>
         </StepsForm.StepForm>
@@ -139,7 +144,10 @@ const Demo = () => {
               ]}
             />
             <ProForm.Group>
-              <ProFormText name="dbname" label="Business DB Username" />
+              <ProFormText
+                name="dbname"
+                label="Business DB Username"
+              />
               <ProFormDatePicker
                 name="datetime"
                 label="Record Retention Time"
@@ -153,7 +161,10 @@ const Demo = () => {
             />
           </ProCard>
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="multi-card-step-form-time" title="Third Step">
+        <StepsForm.StepForm
+          name="multi-card-step-form-time"
+          title="Third Step"
+        >
           <ProCard
             style={{
               marginBlockEnd: 16,
@@ -169,11 +180,7 @@ const Demo = () => {
                   required: true,
                 },
               ]}
-              options={[
-                'Deployment Unit 1',
-                'Deployment Unit 2',
-                'Deployment Unit 3',
-              ]}
+              options={['Deployment Unit 1', 'Deployment Unit 2', 'Deployment Unit 3']}
             />
             <ProFormSelect
               label="Deployment Group Strategy"

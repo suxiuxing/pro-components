@@ -1,3 +1,8 @@
+import { Radio, message } from 'antd';
+import type { SizeType } from 'antd/lib/config-provider/SizeContext';
+import dayjs from 'dayjs';
+import React from 'react';
+
 import {
   LightFilter,
   ProForm,
@@ -6,10 +11,6 @@ import {
   ProFormSlider,
   ProFormText,
 } from '@xxlabs/pro-components';
-import { Radio, message } from 'antd';
-import type { SizeType } from 'antd/lib/config-provider/SizeContext';
-import dayjs from 'dayjs';
-import React from 'react';
 
 const Demo = () => {
   const [size, setSize] = React.useState<SizeType>('middle');
@@ -84,11 +85,24 @@ const Demo = () => {
           }}
         />
         <ProForm.Group title="范围组">
-          <ProFormDigit name="count" label="数量" />
-          <ProFormSlider name="range" label="范围" range />
-          <ProFormSlider name="slider" label="范围" />
+          <ProFormDigit
+            name="count"
+            label="数量"
+          />
+          <ProFormSlider
+            name="range"
+            label="范围"
+            range
+          />
+          <ProFormSlider
+            name="slider"
+            label="范围"
+          />
         </ProForm.Group>
-        <ProFormText name="name1" label="名称" />
+        <ProFormText
+          name="name1"
+          label="名称"
+        />
       </LightFilter>
     </div>
   );

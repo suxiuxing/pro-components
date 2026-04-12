@@ -1,5 +1,6 @@
-﻿import { Slider } from 'antd';
+import { Slider } from 'antd';
 import React from 'react';
+
 import type { ProFieldFC } from '../../types';
 
 export function FieldSliderEdit(

@@ -1,4 +1,4 @@
-﻿import { ProColumns, ProTable } from '@xxlabs/pro-components';
+import { ProColumns, ProTable } from '@xxlabs/pro-components';
 
 type ContentWordsItem = {
   id: string;

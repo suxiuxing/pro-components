@@ -1,12 +1,7 @@
-﻿import type { FormProps } from 'antd';
+import type { FormProps } from 'antd';
 import { Form } from 'antd';
-import React, {
-  useCallback,
-  useContext,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useImperativeHandle, useRef, useState } from 'react';
+
 import ValueTypeToComponent from '../../../field/ValueTypeToComponent';
 import ProConfigContext, { ProConfigProvider } from '../../../provider';
 import {
@@ -55,9 +50,7 @@ const FormLayoutType = {
  * @see 此组件仍为 beta 版本，api 可能发生变化
  */
 
-function BetaSchemaForm<T, ValueType = 'text'>(
-  props: FormSchema<T, ValueType>,
-) {
+function BetaSchemaForm<T, ValueType = 'text'>(props: FormSchema<T, ValueType>) {
   const {
     columns,
     layoutType = 'Form',
@@ -68,8 +61,9 @@ function BetaSchemaForm<T, ValueType = 'text'>(
     ...restProps
   } = props;
 
-  const FormRenderComponents = (FormLayoutType[layoutType as 'Form'] ||
-    ProForm) as React.FC<ProFormProps<T>>;
+  const FormRenderComponents = (FormLayoutType[layoutType as 'Form'] || ProForm) as React.FC<
+    ProFormProps<T>
+  >;
 
   const [form] = Form.useForm();
   const formInstance = Form.useFormInstance();
@@ -77,9 +71,7 @@ function BetaSchemaForm<T, ValueType = 'text'>(
   const [, forceUpdate] = useState<[]>([]);
   const [formDomsDeps, updatedFormDoms] = useState<[]>(() => []);
 
-  const formRef = useReactiveRef<ProFormInstance | undefined>(
-    props.form || formInstance || form,
-  );
+  const formRef = useReactiveRef<ProFormInstance | undefined>(props.form || formInstance || form);
   const oldValuesRef = useRef<T>();
   const propsRef = useLatest(props);
 
@@ -88,8 +80,8 @@ function BetaSchemaForm<T, ValueType = 'text'>(
    *
    * @param items
    */
-  const genItems: ProFormRenderValueTypeHelpers<T, ValueType>['genItems'] =
-    useRefFunction((items: ProFormColumnsType<T, ValueType>[]) => {
+  const genItems: ProFormRenderValueTypeHelpers<T, ValueType>['genItems'] = useRefFunction(
+    (items: ProFormColumnsType<T, ValueType>[]) => {
       return items
         .filter((originItem) => {
           return !(originItem.hideInForm && type === 'form');
@@ -133,20 +125,10 @@ function BetaSchemaForm<T, ValueType = 'text'>(
             proFieldProps: originItem.proFieldProps,
             ignoreFormItem: originItem.ignoreFormItem,
             getFieldProps: originItem.fieldProps
-              ? () =>
-                  runFunction(
-                    originItem.fieldProps,
-                    formRef.current,
-                    originItem,
-                  )
+              ? () => runFunction(originItem.fieldProps, formRef.current, originItem)
               : undefined,
             getFormItemProps: originItem.formItemProps
-              ? () =>
-                  runFunction(
-                    originItem.formItemProps,
-                    formRef.current,
-                    originItem,
-                  )
+              ? () => runFunction(originItem.formItemProps, formRef.current, originItem)
               : undefined,
             render: originItem.render,
             formItemRender: originItem.formItemRender,
@@ -170,15 +152,15 @@ function BetaSchemaForm<T, ValueType = 'text'>(
         .filter((field) => {
           return Boolean(field);
         });
-    });
+    },
+  );
 
   const onValuesChange: FormProps<T>['onValuesChange'] = useCallback(
     (changedValues: any, values: T) => {
       const { onValuesChange: propsOnValuesChange } = propsRef.current;
       if (
         shouldUpdate === true ||
-        (typeof shouldUpdate === 'function' &&
-          shouldUpdate(values, oldValuesRef.current))
+        (typeof shouldUpdate === 'function' && shouldUpdate(values, oldValuesRef.current))
       ) {
         updatedFormDoms([]);
       }
@@ -215,17 +197,13 @@ function BetaSchemaForm<T, ValueType = 'text'>(
   const context = useContext(ProConfigContext);
 
   return (
-    <ProConfigProvider
-      valueTypeMap={{ ...context.valueTypeMap, ...ValueTypeToComponent }}
-    >
+    <ProConfigProvider valueTypeMap={{ ...context.valueTypeMap, ...ValueTypeToComponent }}>
       <FormRenderComponents
         {...specificProps}
         {...restProps}
         onInit={(_, initForm) => {
           if (propsFormRef) {
-            (
-              propsFormRef as React.MutableRefObject<ProFormInstance<T>>
-            ).current = initForm;
+            (propsFormRef as React.MutableRefObject<ProFormInstance<T>>).current = initForm;
           }
           restProps?.onInit?.(_, initForm);
           formRef.current = initForm;

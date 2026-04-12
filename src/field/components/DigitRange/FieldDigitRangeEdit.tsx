@@ -1,5 +1,6 @@
-﻿import { Input, InputNumber, Space } from 'antd';
+import { Input, InputNumber, Space } from 'antd';
 import React, { MutableRefObject } from 'react';
+
 import type { ProFieldFC } from '../../types';
 import type { FieldDigitRangeProps, Value, ValuePair } from './types';
 
@@ -7,10 +8,7 @@ type Props = Parameters<ProFieldFC<FieldDigitRangeProps>>[0] & {
   valuePair: ValuePair | undefined;
   valuePairRef: MutableRefObject<ValuePair | undefined>;
   setValuePair: (
-    updater:
-      | ValuePair
-      | undefined
-      | ((prev: ValuePair | undefined) => ValuePair | undefined),
+    updater: ValuePair | undefined | ((prev: ValuePair | undefined) => ValuePair | undefined),
   ) => void;
   token: { colorBgContainer?: string };
   placeholderValue: string | string[];
@@ -35,11 +33,7 @@ export function FieldDigitRangeEdit(props: Props, ref: React.Ref<unknown>) {
   const handleGroupBlur = () => {
     if (Array.isArray(valuePairRef.current)) {
       const [value0, value1] = valuePairRef.current;
-      if (
-        typeof value0 === 'number' &&
-        typeof value1 === 'number' &&
-        value0 > value1
-      ) {
+      if (typeof value0 === 'number' && typeof value1 === 'number' && value0 > value1) {
         setValuePair([value1, value0]);
         return;
       }
@@ -58,12 +52,13 @@ export function FieldDigitRangeEdit(props: Props, ref: React.Ref<unknown>) {
   };
 
   const getInputNumberPlaceholder = (index: number) =>
-    Array.isArray(placeholderValue)
-      ? placeholderValue[index]
-      : placeholderValue;
+    Array.isArray(placeholderValue) ? placeholderValue[index] : placeholderValue;
 
   const dom = (
-    <Space.Compact block onBlur={handleGroupBlur}>
+    <Space.Compact
+      block
+      onBlur={handleGroupBlur}
+    >
       <InputNumber<number>
         {...fieldProps}
         placeholder={getInputNumberPlaceholder(0)}

@@ -1,4 +1,4 @@
-﻿import { ProCard } from '@xxlabs/pro-components';
+import { ProCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -14,7 +14,10 @@ const Demo = () => {
           <ProCard title="卡片 3">内容 3</ProCard>
         </ProCard.Group>
       </ProCard>
-      <ProCard title="垂直方向子卡片" style={{ marginBlockStart: 24 }}>
+      <ProCard
+        title="垂直方向子卡片"
+        style={{ marginBlockStart: 24 }}
+      >
         <ProCard.Group
           title="垂直排列"
           tooltip="direction: column"

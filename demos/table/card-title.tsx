@@ -1,7 +1,8 @@
 import { EllipsisOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
-import { Button } from 'antd';
 
 import { createTableDataSource, DEMO_CREATOR_VALUE_ENUM } from '../mockData';
 

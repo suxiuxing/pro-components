@@ -1,5 +1,6 @@
 import { Card, Grid, Skeleton } from 'antd';
 import React, { useMemo } from 'react';
+
 import { Line, PageHeaderSkeleton } from '../List';
 
 const { useBreakpoint } = Grid;
@@ -118,11 +119,9 @@ const DescriptionsItemSkeleton: React.FC<{
   );
   const col = useBreakpoint() || defaultCol;
 
-  const colSize =
-    Object.keys(col).filter((key) => col[key as 'lg'] === true)[0] || 'md';
+  const colSize = Object.keys(col).filter((key) => col[key as 'lg'] === true)[0] || 'md';
 
-  const arraySize =
-    size === undefined ? MediaQueryKeyEnum[colSize as 'md'] || 3 : size;
+  const arraySize = size === undefined ? MediaQueryKeyEnum[colSize as 'md'] || 3 : size;
   return (
     <div
       style={{
@@ -131,7 +130,7 @@ const DescriptionsItemSkeleton: React.FC<{
         display: 'flex',
       }}
     >
-      {new Array(arraySize).fill(null).map((_, index) => (
+      {Array.from({ length: arraySize }, (_, index) => (
         <div
           key={index}
           style={{
@@ -192,8 +191,7 @@ export const TableItemSkeleton = ({
   );
   const col = useBreakpoint() || defaultCol;
 
-  const colSize =
-    Object.keys(col).filter((key) => col[key as 'md'] === true)[0] || 'md';
+  const colSize = Object.keys(col).filter((key) => col[key as 'md'] === true)[0] || 'md';
 
   const arraySize = MediaQueryKeyEnum[colSize as 'md'] || 3;
   return (
@@ -205,7 +203,7 @@ export const TableItemSkeleton = ({
           padding: '24px 8px',
         }}
       >
-        {new Array(arraySize).fill(null).map((_, index) => (
+        {Array.from({ length: arraySize }, (_, index) => (
           <div
             key={index}
             style={{
@@ -262,9 +260,15 @@ export const TableSkeleton: React.FC<{
       size="small"
       style={{ width: 100, marginBlockEnd: 16 }}
     />
-    <TableItemSkeleton header active={active} />
-    {new Array(size).fill(null).map((_, index) => (
-      <TableItemSkeleton key={index} active={active} />
+    <TableItemSkeleton
+      header
+      active={active}
+    />
+    {Array.from({ length: size }, (_, index) => (
+      <TableItemSkeleton
+        key={index}
+        active={active}
+      />
     ))}
     <div
       style={{
@@ -319,7 +323,12 @@ const DescriptionsPageSkeleton: React.FC<DescriptionsPageSkeletonProps> = ({
     {pageHeader !== false && <PageHeaderSkeleton active={active} />}
     <DescriptionsSkeleton active={active} />
     {list !== false && <Line />}
-    {list !== false && <TableSkeleton active={active} size={list} />}
+    {list !== false && (
+      <TableSkeleton
+        active={active}
+        size={list}
+      />
+    )}
   </div>
 );
 

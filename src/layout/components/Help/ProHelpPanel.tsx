@@ -3,8 +3,8 @@ import { useControlledState } from '@rc-component/util';
 import { Card, ConfigProvider, Menu } from 'antd';
 import { clsx } from 'clsx';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
-import { ProProvider, isNeedOpenHash } from '../../../provider';
 
+import { ProProvider, isNeedOpenHash } from '../../../provider';
 import type { ProHelpDataSource } from './HelpProvide';
 import { ProHelpProvide } from './HelpProvide';
 import { ProHelpContentPanel } from './ProHelpContentPanel';
@@ -104,16 +104,12 @@ export const ProHelpPanel: React.FC<ProHelpPanelProps> = ({
   const className = getPrefixCls('pro-help');
   const { wrapSSR, hashId } = useStyle(className);
   const { dataSource } = useContext(ProHelpProvide);
-  const [selectedKey, setSelectedKeyInner] = useControlledState<
-    string | undefined
-  >(props.defaultSelectedKey ?? undefined, props.selectedKey);
+  const [selectedKey, setSelectedKeyInner] = useControlledState<string | undefined>(
+    props.defaultSelectedKey ?? undefined,
+    props.selectedKey,
+  );
   const setSelectedKey = useCallback(
-    (
-      updater:
-        | string
-        | undefined
-        | ((prev: string | undefined) => string | undefined),
-    ) => {
+    (updater: string | undefined | ((prev: string | undefined) => string | undefined)) => {
       setSelectedKeyInner((prev) => {
         const next =
           typeof updater === 'function'
@@ -127,17 +123,12 @@ export const ProHelpPanel: React.FC<ProHelpPanelProps> = ({
   );
   const [openKey, setOpenKey] = useState('');
   const { token } = useContext(ProProvider);
-  const [showLeftPanel, setShowLeftPanelInner] = useControlledState(
-    true,
-    props.showLeftPanel,
-  );
+  const [showLeftPanel, setShowLeftPanelInner] = useControlledState(true, props.showLeftPanel);
   const setShowLeftPanel = useCallback(
     (updater: boolean | ((prev: boolean) => boolean)) => {
       setShowLeftPanelInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: boolean) => boolean)(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: boolean) => boolean)(prev) : updater;
         props.onShowLeftPanelChange?.(next);
         return next;
       });
@@ -266,20 +257,14 @@ export const ProHelpPanel: React.FC<ProHelpPanelProps> = ({
                     activeBarWidth: 0,
                     activeBarBorderWidth: 0,
                     itemSelectedBg:
-                      token.layout?.sider?.colorBgMenuItemSelected ||
-                      'rgba(0, 0, 0, 0.04)',
+                      token.layout?.sider?.colorBgMenuItemSelected || 'rgba(0, 0, 0, 0.04)',
                     itemActiveBg:
-                      token.layout?.sider?.colorBgMenuItemHover ||
-                      'rgba(0, 0, 0, 0.04)',
-                    itemColor:
-                      token.layout?.sider?.colorTextMenu ||
-                      'rgba(0, 0, 0, 0.65)',
+                      token.layout?.sider?.colorBgMenuItemHover || 'rgba(0, 0, 0, 0.04)',
+                    itemColor: token.layout?.sider?.colorTextMenu || 'rgba(0, 0, 0, 0.65)',
                     itemHoverColor:
-                      token.layout?.sider?.colorTextMenuActive ||
-                      'rgba(0, 0, 0, 0.85)',
+                      token.layout?.sider?.colorTextMenuActive || 'rgba(0, 0, 0, 0.85)',
                     itemSelectedColor:
-                      token.layout?.sider?.colorTextMenuSelected ||
-                      'rgba(0, 0, 0, 1)',
+                      token.layout?.sider?.colorTextMenuSelected || 'rgba(0, 0, 0, 1)',
                     itemBg: 'transparent',
                     subMenuItemBg: 'transparent',
                     popupBg: token?.colorBgElevated,
@@ -329,9 +314,7 @@ export const ProHelpPanel: React.FC<ProHelpPanelProps> = ({
               onScroll={(key) => setSelectedKey(key)}
             />
           ) : null}
-          {footer ? (
-            <div className={clsx(hashId, `${className}-footer`)}>{footer}</div>
-          ) : null}
+          {footer ? <div className={clsx(hashId, `${className}-footer`)}>{footer}</div> : null}
         </div>
       </Card>
     </SelectKeyProvide.Provider>,

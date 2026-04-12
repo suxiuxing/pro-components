@@ -1,9 +1,7 @@
-import {
-  FormControlRender,
-  pickControlPropsWithId,
-} from '@xxlabs/pro-components';
 import { Button, Checkbox, Form } from 'antd';
 import React, { useEffect } from 'react';
+
+import { FormControlRender, pickControlPropsWithId } from '@xxlabs/pro-components';
 
 const App: React.FC = () => {
   const [form] = Form.useForm();
@@ -14,7 +12,11 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Form name="form-control-render-demo" form={form} onFinish={console.log}>
+    <Form
+      name="form-control-render-demo"
+      form={form}
+      onFinish={console.log}
+    >
       <Form.Item
         name={'text1'}
         label="文本框（没错误边框）"
@@ -70,7 +72,10 @@ const App: React.FC = () => {
         </FormControlRender>
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button
+          type="primary"
+          htmlType="submit"
+        >
           Submit
         </Button>
       </Form.Item>

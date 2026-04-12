@@ -1,4 +1,5 @@
 import type { CSSInterpolation } from '@ant-design/cssinjs';
+
 import type { GenerateStyle, ProAliasToken } from '../../provider';
 import { useStyle as useAntdStyle } from '../../provider';
 export interface ProLayoutToken extends ProAliasToken {
@@ -24,13 +25,10 @@ const genProLayoutStyle: GenerateStyle<ProLayoutToken> = (token) => {
         display: 'flex',
         flexDirection: 'column',
         width: '100%',
-        backgroundColor:
-          token.layout?.pageContainer?.colorBgPageContainer || 'transparent',
+        backgroundColor: token.layout?.pageContainer?.colorBgPageContainer || 'transparent',
         position: 'relative',
-        paddingBlock:
-          token.layout?.pageContainer?.paddingBlockPageContainerContent,
-        paddingInline:
-          token.layout?.pageContainer?.paddingInlinePageContainerContent,
+        paddingBlock: token.layout?.pageContainer?.paddingBlockPageContainerContent,
+        paddingInline: token.layout?.pageContainer?.paddingInlinePageContainerContent,
         '&-has-page-container': {
           padding: 0,
         },
