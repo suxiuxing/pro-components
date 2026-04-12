@@ -1,14 +1,14 @@
 import type { SpinProps, TableProps } from 'antd';
-import type { SizeType } from 'antd/lib/config-provider/SizeContext';
-import type { NamePath } from 'antd/lib/form/interface';
-import type { SearchProps } from 'antd/lib/input';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
+import type { NamePath } from 'antd/es/form/interface';
+import type { SearchProps } from 'antd/es/input';
 import type {
   ColumnFilterItem,
   ColumnType,
   CompareFn,
   SorterResult,
   SortOrder,
-} from 'antd/lib/table/interface';
+} from 'antd/es/table/interface';
 import type dayjs from 'dayjs';
 import type React from 'react';
 import type { CSSProperties, Key } from 'react';

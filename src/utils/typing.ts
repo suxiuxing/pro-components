@@ -20,11 +20,11 @@ import type {
   TimeRangePickerProps,
   TreeSelectProps,
 } from 'antd';
-import type { RangePickerProps } from 'antd/lib/date-picker';
-import type { FormInstance, FormItemProps } from 'antd/lib/form';
-import type { NamePath } from 'antd/lib/form/interface';
-import type { PasswordProps, TextAreaProps } from 'antd/lib/input';
-import type { SliderRangeProps } from 'antd/lib/slider';
+import type { RangePickerProps } from 'antd/es/date-picker';
+import type { FormInstance, FormItemProps } from 'antd/es/form';
+import type { NamePath } from 'antd/es/form/interface';
+import type { PasswordProps, TextAreaProps } from 'antd/es/input';
+import type { SliderRangeProps } from 'antd/es/slider';
 import type { ReactNode } from 'react';
 
 import type { ProSchemaValueEnumType } from '../provider';

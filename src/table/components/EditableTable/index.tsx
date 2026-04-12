@@ -2,8 +2,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import { get, set, useControlledState } from '@rc-component/util';
 import type { ButtonProps, FormItemProps } from 'antd';
 import { Button, Form } from 'antd';
-import type { NamePath } from 'antd/lib/form/interface';
-import type { GetRowKey } from 'antd/lib/table/interface';
+import type { NamePath } from 'antd/es/form/interface';
+import type { GetRowKey } from 'antd/es/table/interface';
 import React, {
   useCallback,
   useContext,

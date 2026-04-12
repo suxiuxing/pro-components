@@ -1,5 +1,5 @@
 import { get } from '@rc-component/util';
-import type { AnyObject } from 'antd/lib/_util/type';
+import type { AnyObject } from 'antd/es/_util/type';
 import React from 'react';
 
 import { isMergeCell } from '.';

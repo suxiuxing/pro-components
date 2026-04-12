@@ -2,9 +2,9 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { get, warning as rcWarning, set, useControlledState } from '@rc-component/util';
 import type { FormInstance, FormProps } from 'antd';
 import { Form, Popconfirm, message } from 'antd';
-import type { AnyObject } from 'antd/lib/_util/type';
-import type { NamePath } from 'antd/lib/form/interface';
-import type { GetRowKey } from 'antd/lib/table/interface';
+import type { AnyObject } from 'antd/es/_util/type';
+import type { NamePath } from 'antd/es/form/interface';
+import type { GetRowKey } from 'antd/es/table/interface';
 import React, {
   createRef,
   forwardRef,

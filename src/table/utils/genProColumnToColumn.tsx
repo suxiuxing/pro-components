@@ -1,7 +1,7 @@
 import type { TableColumnType, TableProps } from 'antd';
 import { Table } from 'antd';
-import type { AnyObject } from 'antd/lib/_util/type';
-import type { SortOrder } from 'antd/lib/table/interface';
+import type { AnyObject } from 'antd/es/_util/type';
+import type { SortOrder } from 'antd/es/table/interface';
 
 import type { ProFieldEmptyText } from '../../field';
 import { proFieldParsingValueEnumToArray } from '../../field';

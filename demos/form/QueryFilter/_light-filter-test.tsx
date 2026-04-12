@@ -1,5 +1,5 @@
 import { Radio, message } from 'antd';
-import type { SizeType } from 'antd/lib/config-provider/SizeContext';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import dayjs from 'dayjs';
 import React from 'react';
 

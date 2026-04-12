@@ -1,5 +1,5 @@
 import { Checkbox, Radio } from 'antd';
-import type { GetRowKey, TableRowSelection } from 'antd/lib/table/interface';
+import type { GetRowKey, TableRowSelection } from 'antd/es/table/interface';
 import React from 'react';
 
 type UseSelectionConfig<RecordType> = {

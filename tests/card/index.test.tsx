@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { ProCard } from '@xxlabs/pro-components';
 
-vi.mock('antd/lib/grid/hooks/useBreakpoint');
+vi.mock('antd/es/grid/hooks/useBreakpoint');
 
 afterEach(() => {
   cleanup();

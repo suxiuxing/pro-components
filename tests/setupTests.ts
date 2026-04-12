@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 import crypto from 'crypto';
 
-import { defaultConfig } from 'antd/lib/theme/internal';
+import { defaultConfig } from 'antd/es/theme/internal';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';

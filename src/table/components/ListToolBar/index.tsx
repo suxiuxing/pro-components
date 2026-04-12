@@ -1,6 +1,6 @@
 import ResizeObserver from '@rc-component/resize-observer';
 import { ConfigProvider, Input, TabPaneProps, Tabs, Tooltip } from 'antd';
-import type { SearchProps } from 'antd/lib/input';
+import type { SearchProps } from 'antd/es/input';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo, useState } from 'react';
 

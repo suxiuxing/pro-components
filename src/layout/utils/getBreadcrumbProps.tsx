@@ -1,5 +1,5 @@
 import type { BreadcrumbProps } from 'antd';
-import type { BreadcrumbItemType, ItemType } from 'antd/lib/breadcrumb/Breadcrumb';
+import type { BreadcrumbItemType, ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import { match } from 'path-to-regexp';
 
 import type { ProSettings } from '../defaultSettings';

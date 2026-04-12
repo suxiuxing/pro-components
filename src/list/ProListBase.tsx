@@ -3,7 +3,7 @@
  * 保持与 antd List 相同的 DOM 结构及类名，以便复用 antd 的 list 样式
  */
 import { ConfigProvider, Empty, Grid, Pagination, Spin } from 'antd';
-import type { PaginationConfig } from 'antd/lib/pagination';
+import type { PaginationConfig } from 'antd/es/pagination';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo } from 'react';
 

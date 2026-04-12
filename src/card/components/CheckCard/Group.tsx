@@ -373,11 +373,11 @@ const CheckCardGroup: React.FC<CheckCardGroupProps> = (props) => {
     if (loading) {
       const loadingCount = options.length || React.Children.toArray(props.children).length || 1;
       return Array.from({ length: loadingCount }, (_, index) => (
-          <CheckCard
-            key={index}
-            loading
-          />
-        )) as React.ReactNode[];
+        <CheckCard
+          key={index}
+          loading
+        />
+      )) as React.ReactNode[];
     }
 
     if (options && options.length > 0) {

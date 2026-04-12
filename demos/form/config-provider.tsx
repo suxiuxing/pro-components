@@ -1,6 +1,6 @@
 import { SmileOutlined } from '@ant-design/icons';
 import { ConfigProvider, Input, message } from 'antd';
-import enUS from 'antd/lib/locale/en_US';
+import enUS from 'antd/es/locale/en_US';
 
 import {
   LightWrapper,

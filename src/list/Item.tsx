@@ -1,7 +1,7 @@
 import { RightOutlined } from '@ant-design/icons';
 import { useControlledState } from '@rc-component/util';
 import { ConfigProvider, Skeleton } from 'antd';
-import type { ExpandableConfig } from 'antd/lib/table/interface';
+import type { ExpandableConfig } from 'antd/es/table/interface';
 import { clsx } from 'clsx';
 import React, { useCallback, useContext, useMemo } from 'react';
 

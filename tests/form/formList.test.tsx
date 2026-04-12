@@ -1,7 +1,7 @@
 import { CloseOutlined, SnippetsOutlined } from '@ant-design/icons';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Button, Form } from 'antd';
-import type { NamePath } from 'antd/lib/form/interface';
+import type { NamePath } from 'antd/es/form/interface';
 import dayjs from 'dayjs';
 import { pick } from 'es-toolkit/compat';
 import React, { act } from 'react';

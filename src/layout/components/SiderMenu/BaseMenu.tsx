@@ -2,7 +2,7 @@ import { createFromIconfontCN } from '@ant-design/icons';
 import { useControlledState } from '@rc-component/util';
 import type { MenuProps } from 'antd';
 import { Menu, Skeleton, Tooltip } from 'antd';
-import type { ItemType } from 'antd/lib/menu/interface';
+import type { ItemType } from 'antd/es/menu/interface';
 import { clsx } from 'clsx';
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 

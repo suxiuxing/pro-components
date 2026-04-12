@@ -8,7 +8,7 @@ import {
 import { set, toArray } from '@rc-component/util';
 import type { ButtonProps, FormInstance } from 'antd';
 import { ConfigProvider, Tooltip } from 'antd';
-import type { FormListFieldData, FormListOperation, FormListProps } from 'antd/lib/form/FormList';
+import type { FormListFieldData, FormListOperation, FormListProps } from 'antd/es/form/FormList';
 import { clsx } from 'clsx';
 import type { CSSProperties, ReactNode } from 'react';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';

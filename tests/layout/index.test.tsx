@@ -1,7 +1,7 @@
 import { GithubFilled, InfoCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Button, ConfigProvider } from 'antd';
-import en_US from 'antd/lib/locale/en_US';
+import en_US from 'antd/es/locale/en_US';
 import React, { useState } from 'react';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 

@@ -39,7 +39,7 @@ const FieldTreeSelect: ProFieldFC<{} & FieldSelectProps> = (
 ) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const layoutClassName = getPrefixCls('pro-field-tree-select');
-  const treeSelectRef = useRef(null);
+  const treeSelectRef = useRef({});
   const [open, setOpen] = useState(false);
 
   const {

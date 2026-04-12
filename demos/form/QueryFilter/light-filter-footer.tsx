@@ -1,5 +1,5 @@
 import { Button, Radio, Space } from 'antd';
-import type { SizeType } from 'antd/lib/config-provider/SizeContext';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import React from 'react';
 
 import { LightFilter, ProFormText } from '@xxlabs/pro-components';

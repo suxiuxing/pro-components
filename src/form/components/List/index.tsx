@@ -7,8 +7,8 @@ import {
 import { warning } from '@rc-component/util';
 import type { ColProps } from 'antd';
 import { ConfigProvider, Form } from 'antd';
-import type { FormListFieldData, FormListOperation, FormListProps } from 'antd/lib/form/FormList';
-import type { NamePath } from 'antd/lib/form/interface';
+import type { FormListFieldData, FormListOperation, FormListProps } from 'antd/es/form/FormList';
+import type { NamePath } from 'antd/es/form/interface';
 import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 import React, { useContext, useEffect, useImperativeHandle, useMemo, useRef } from 'react';

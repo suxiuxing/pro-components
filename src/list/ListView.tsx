@@ -1,9 +1,9 @@
 import { get } from '@rc-component/util';
 import type { TableColumnType, TableProps } from 'antd';
 import { ConfigProvider } from 'antd';
-import type { AnyObject } from 'antd/lib/_util/type';
-import type { PaginationConfig } from 'antd/lib/pagination';
-import type { GetRowKey, TableRowSelection } from 'antd/lib/table/interface';
+import type { AnyObject } from 'antd/es/_util/type';
+import type { PaginationConfig } from 'antd/es/pagination';
+import type { GetRowKey, TableRowSelection } from 'antd/es/table/interface';
 import { clsx } from 'clsx';
 import React, { useContext } from 'react';
 

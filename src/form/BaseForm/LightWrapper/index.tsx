@@ -1,6 +1,6 @@
 import { ConfigProvider } from 'antd';
-import type { SizeType as AntdSizeType } from 'antd/lib/config-provider/SizeContext';
-import type { TooltipPlacement } from 'antd/lib/tooltip';
+import type { SizeType as AntdSizeType } from 'antd/es/config-provider/SizeContext';
+import type { TooltipPlacement } from 'antd/es/tooltip';
 import { clsx } from 'clsx';
 import React, { useContext, useMemo, useState } from 'react';
 

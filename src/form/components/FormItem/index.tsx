@@ -1,7 +1,7 @@
 import { omit } from '@rc-component/util';
 import type { FormItemProps } from 'antd';
 import { ConfigProvider, Form } from 'antd';
-import type { NamePath } from 'antd/lib/form/interface';
+import type { NamePath } from 'antd/es/form/interface';
 import React, { useContext, useEffect, useMemo } from 'react';
 
 import {
@@ -219,7 +219,6 @@ const WarpFormItem: React.FC<Omit<FormItemProps, 'help'> & WarpFormItemProps> = 
 
     return (
       <Form.Item
-        
         help={typeof help !== 'function' ? help : undefined}
         valuePropName={valuePropName}
         // @ts-ignore
