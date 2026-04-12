@@ -119,4 +119,4 @@ export type ProCardTabPaneProps = {
   cardProps?: CardProps;
 } & TabPaneProps;
 
-export type CardType = React.ForwardRefExoticComponent<CardProps>;
+export type CardType = React.FC<CardProps & React.RefAttributes<any>>;

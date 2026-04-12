@@ -18,23 +18,21 @@ const FieldRangePicker: ProFieldFC<
     showTime?: boolean;
     picker?: 'time' | 'date' | 'week' | 'month' | 'quarter' | 'year';
   } & ProFieldLightProps
-> = (
-  {
-    text,
-    mode,
-    light,
-    label,
-    format = 'YYYY-MM-DD',
-    render,
-    picker,
-    formItemRender,
-    showTime,
-    lightLabel,
-    variant: propsVariant,
-    fieldProps,
-  },
+> = ({
+  text,
+  mode,
+  light,
+  label,
+  format = 'YYYY-MM-DD',
+  render,
+  picker,
+  formItemRender,
+  showTime,
+  lightLabel,
+  variant: propsVariant,
+  fieldProps,
   ref,
-) => {
+}) => {
   const intl = useIntl();
 
   const [startText, endText] = Array.isArray(text) ? text : [];
@@ -100,4 +98,4 @@ const FieldRangePicker: ProFieldFC<
   return null;
 };
 
-export default React.forwardRef(FieldRangePicker);
+export default FieldRangePicker;

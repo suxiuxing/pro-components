@@ -6,10 +6,9 @@ import type { ProFieldRequestData, ProFieldTextType, ProFieldValueTypeInput } fr
 export type ProFieldEmptyText = string | false;
 
 /** 默认的 Field 需要实现的功能 */
-export type ProFieldFC<T = {}> = React.ForwardRefRenderFunction<
-  any,
-  BaseProFieldFC & ProRenderFieldPropsType & T
->;
+export type ProFieldFC<T = {}> = (
+  props: BaseProFieldFC & ProRenderFieldPropsType & T & { ref?: React.Ref<any> },
+) => React.ReactNode;
 
 /** 轻量筛选的 field 属性 */
 export type ProFieldLightProps = {

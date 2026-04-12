@@ -25,10 +25,14 @@ export type ProFormTreeSelectProps<T = any> = ProFormFieldItemProps<
  *
  * @param
  */
-const ProFormTreeSelect: React.ForwardRefRenderFunction<any, ProFormTreeSelectProps<any>> = (
-  { fieldProps, request, params, proFieldProps, ...rest },
+const ProFormTreeSelect = ({
+  fieldProps,
+  request,
+  params,
+  proFieldProps,
   ref,
-) => {
+  ...rest
+}: ProFormTreeSelectProps<any> & { ref?: React.Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -62,6 +66,6 @@ const ProFormTreeSelect: React.ForwardRefRenderFunction<any, ProFormTreeSelectPr
   );
 };
 
-const WarpProFormTreeSelect: React.FC<ProFormTreeSelectProps> = React.forwardRef(ProFormTreeSelect);
+const WarpProFormTreeSelect: React.FC<ProFormTreeSelectProps> = ProFormTreeSelect;
 
 export default WarpProFormTreeSelect;

@@ -10,10 +10,12 @@ import ProField from '../Field';
  *
  * @param
  */
-const ProFormRate: React.ForwardRefRenderFunction<any, ProFormFieldItemProps<RateProps>> = (
-  { fieldProps, proFieldProps, ...rest },
+const ProFormRate = ({
+  fieldProps,
+  proFieldProps,
   ref,
-) => {
+  ...rest
+}: ProFormFieldItemProps<RateProps> & { ref?: React.Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -47,4 +49,4 @@ const ProFormRate: React.ForwardRefRenderFunction<any, ProFormFieldItemProps<Rat
   );
 };
 
-export default React.forwardRef(ProFormRate);
+export default ProFormRate;

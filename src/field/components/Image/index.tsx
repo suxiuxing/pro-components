@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
@@ -12,10 +10,16 @@ export type { FieldImageProps };
 /**
  * 数字组件
  */
-const FieldImage: ProFieldFC<FieldImageProps> = (
-  { text, mode: type, render, formItemRender, fieldProps, placeholder, width },
+const FieldImage: ProFieldFC<FieldImageProps> = ({
+  text,
+  mode: type,
+  render,
+  formItemRender,
+  fieldProps,
+  placeholder,
+  width,
   ref,
-) => {
+}) => {
   const intl = useIntl();
   const placeholderValue =
     (Array.isArray(placeholder) ? placeholder[0] : placeholder) ||
@@ -53,8 +57,4 @@ const FieldImage: ProFieldFC<FieldImageProps> = (
   return null;
 };
 
-const ForwardRefFieldImage = React.forwardRef<any, Parameters<ProFieldFC<FieldImageProps>>[0]>(
-  FieldImage,
-);
-
-export default ForwardRefFieldImage;
+export default FieldImage;

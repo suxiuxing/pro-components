@@ -20,10 +20,14 @@ export type ProFormDigitProps = ProFormFieldItemProps<InputNumberProps<number>> 
  * @param rest
  * @param ref
  */
-const ProFormDigit: React.ForwardRefRenderFunction<any, ProFormDigitProps> = (
-  { fieldProps, min, proFieldProps, max, ...rest },
+const ProFormDigit = ({
+  fieldProps,
+  min,
+  proFieldProps,
+  max,
   ref,
-) => {
+  ...rest
+}: ProFormDigitProps & { ref?: React.Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -65,6 +69,4 @@ const ProFormDigit: React.ForwardRefRenderFunction<any, ProFormDigitProps> = (
   );
 };
 
-const ForwardRefProFormDigit = React.forwardRef(ProFormDigit);
-
-export default ForwardRefProFormDigit;
+export default ProFormDigit;

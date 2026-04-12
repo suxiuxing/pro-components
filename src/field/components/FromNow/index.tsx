@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import React from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -17,7 +16,7 @@ const FieldFromNow: ProFieldFC<{
   text: string;
   format?: string;
   variant?: 'outlined' | 'borderless' | 'filled' | 'underlined';
-}> = (props, ref) => {
+}> = (props) => {
   const intl = useIntl();
   const { mode } = props;
 
@@ -25,9 +24,9 @@ const FieldFromNow: ProFieldFC<{
     return FieldFromNowRead(props);
   }
   if (isProFieldEditOrUpdateMode(mode)) {
-    return FieldFromNowEdit({ ...props, intl }, ref);
+    return FieldFromNowEdit({ ...props, intl }, props.ref);
   }
   return null;
 };
 
-export default React.forwardRef(FieldFromNow);
+export default FieldFromNow;

@@ -15,7 +15,7 @@ type Props = Parameters<
   finalFormat: string;
 };
 
-export function FieldTimePickerRead(props: Props, ref: React.Ref<unknown>) {
+export function FieldTimePickerRead(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, render, fieldProps, finalFormat } = props;
   const isNumberOrMoment = dayjs.isDayjs(text) || typeof text === 'number';
   const dom = (

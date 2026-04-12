@@ -10,24 +10,24 @@ const valueType = 'dateYear' as const;
  *
  * @param
  */
-const ProFormDatePickerYear: React.FC<ProFormFieldItemProps<DatePickerProps>> = React.forwardRef(
-  ({ proFieldProps, fieldProps, ...rest }, ref: any) => {
-    return (
-      <BaseDatePicker
-        valueType={valueType}
-        ref={ref as any}
-        fieldProps={{
-          ...fieldProps,
-        }}
-        proFieldProps={proFieldProps}
-        fieldConfig={{
-          valueType,
-          customLightMode: true,
-        }}
-        {...rest}
-      />
-    );
-  },
-);
+const ProFormDatePickerYear: React.FC<
+  ProFormFieldItemProps<DatePickerProps> & { ref?: React.Ref<any> }
+> = ({ proFieldProps, fieldProps, ref, ...rest }) => {
+  return (
+    <BaseDatePicker
+      valueType={valueType}
+      ref={ref as any}
+      fieldProps={{
+        ...fieldProps,
+      }}
+      proFieldProps={proFieldProps}
+      fieldConfig={{
+        valueType,
+        customLightMode: true,
+      }}
+      {...rest}
+    />
+  );
+};
 
 export default ProFormDatePickerYear;

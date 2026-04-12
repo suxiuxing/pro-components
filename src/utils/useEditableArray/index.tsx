@@ -7,7 +7,6 @@ import type { NamePath } from 'antd/es/form/interface';
 import type { GetRowKey } from 'antd/es/table/interface';
 import React, {
   createRef,
-  forwardRef,
   useCallback,
   useContext,
   useEffect,
@@ -377,18 +376,18 @@ export function editableRowByKey<RecordType>(
  *
  * @param ActionRenderConfig
  */
-export function SaveEditableAction<T>(
-  {
-    recordKey,
-    onSave,
-    row,
-    children,
-    newLineConfig,
-    editorType,
-    tableName,
-  }: ActionRenderConfig<T> & { row: any; children: any },
-  ref: React.Ref<SaveEditableActionRef<T>>,
-) {
+export function SaveEditableAction<T>({
+  recordKey,
+  onSave,
+  row,
+  children,
+  newLineConfig,
+  editorType,
+  tableName,
+  ref,
+}: ActionRenderConfig<T> & { row: any; children: any } & {
+  ref?: React.Ref<SaveEditableActionRef<T>>;
+}) {
   const context = useContext(ProFormContext);
   const form = Form.useFormInstance();
   const [loading, setLoading] = useState(false);
@@ -627,7 +626,7 @@ const CancelEditableAction: React.FC<ActionRenderConfig<any> & { row: any }> = (
 
 export function defaultActionRender<T>(row: T, config: ActionRenderConfig<T, NewLineConfig<T>>) {
   const { recordKey, newLineConfig, saveText, deleteText } = config;
-  const SaveEditableActionRef = forwardRef(SaveEditableAction as typeof SaveEditableAction<T>);
+  const SaveEditableActionRef = SaveEditableAction as typeof SaveEditableAction<T>;
   const saveRef = createRef<SaveEditableActionRef<T>>();
 
   return {

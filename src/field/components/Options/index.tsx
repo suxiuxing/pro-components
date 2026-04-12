@@ -26,7 +26,7 @@ const addArrayKeys = (doms: React.ReactNode[]) =>
  *
  * @param
  */
-const FieldOptions: ProFieldFC = ({ text, mode: type, render, fieldProps }, ref) => {
+const FieldOptions: ProFieldFC = ({ text, mode: type, render, fieldProps, ref }) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const className = getPrefixCls('pro-field-option');
 
@@ -76,4 +76,4 @@ const FieldOptions: ProFieldFC = ({ text, mode: type, render, fieldProps }, ref)
   );
 };
 
-export default React.forwardRef(FieldOptions);
+export default FieldOptions;

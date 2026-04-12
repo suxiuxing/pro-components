@@ -11,19 +11,19 @@ export type ProFormColorPickerProps = ProFormFieldItemProps<ColorPickerProps> & 
   colors?: string[];
 };
 
-type ForwardRefProFormColorPicker = React.ForwardRefExoticComponent<
-  ProFormColorPickerProps & React.RefAttributes<any>
->;
-
 /**
  * 颜色选择组件
  *
  * @param
  */
-const ProFormColorPicker: React.ForwardRefRenderFunction<any, ProFormColorPickerProps> = (
-  { fieldProps, popoverProps, proFieldProps, colors, ...rest },
+const ProFormColorPicker = ({
+  fieldProps,
+  popoverProps,
+  proFieldProps,
+  colors,
   ref,
-) => {
+  ...rest
+}: ProFormColorPickerProps & { ref?: React.Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -63,7 +63,4 @@ const ProFormColorPicker: React.ForwardRefRenderFunction<any, ProFormColorPicker
   );
 };
 
-const ForwardRefProFormColorPicker: ForwardRefProFormColorPicker =
-  React.forwardRef(ProFormColorPicker);
-
-export default ForwardRefProFormColorPicker;
+export default ProFormColorPicker;

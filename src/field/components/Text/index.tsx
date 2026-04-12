@@ -12,7 +12,7 @@ import { FieldTextRead } from './FieldTextRead';
 const FieldText: ProFieldFC<{
   text: string;
   emptyText?: React.ReactNode;
-}> = ({ text, mode, render, formItemRender, fieldProps, emptyText = '-' }, ref) => {
+}> = ({ text, mode, render, formItemRender, fieldProps, emptyText = '-', ref }) => {
   const { autoFocus } = fieldProps || {};
 
   const intl = useIntl();
@@ -57,4 +57,4 @@ const FieldText: ProFieldFC<{
   return null;
 };
 
-export default React.forwardRef(FieldText);
+export default FieldText;

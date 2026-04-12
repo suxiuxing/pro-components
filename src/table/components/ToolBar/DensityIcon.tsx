@@ -7,7 +7,13 @@ import { TableContext } from '../../Store/Provide';
 
 export type DensitySize = 'middle' | 'small' | 'large' | undefined;
 
-const DensityIcon = React.forwardRef<HTMLSpanElement, { icon?: React.ReactNode }>((props, ref) => {
+const DensityIcon = ({
+  ref,
+  ...props
+}: {
+  icon?: React.ReactNode;
+  ref?: React.Ref<HTMLSpanElement>;
+}) => {
   const { icon = <ColumnHeightOutlined /> } = props;
   const counter = useContext(TableContext);
   const intl = useIntl();
@@ -44,6 +50,6 @@ const DensityIcon = React.forwardRef<HTMLSpanElement, { icon?: React.ReactNode }
       </Tooltip>
     </Dropdown>
   );
-});
+};
 
 export default React.memo(DensityIcon);

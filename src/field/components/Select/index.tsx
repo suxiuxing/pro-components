@@ -260,7 +260,7 @@ export const useFieldFetchData = (
  */
 const FieldSelect: ProFieldFC<
   FieldSelectProps & Pick<SelectProps, 'fieldNames' | 'style' | 'className'>
-> = (props, ref) => {
+> = (props) => {
   const {
     mode,
     valueEnum,
@@ -273,6 +273,7 @@ const FieldSelect: ProFieldFC<
     id,
     lightLabel,
     labelTrigger,
+    ref,
   } = props;
 
   const inputRef = useRef({});
@@ -366,4 +367,4 @@ const FieldSelect: ProFieldFC<
   return null;
 };
 
-export default React.forwardRef(FieldSelect);
+export default FieldSelect;

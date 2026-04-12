@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -18,21 +18,19 @@ const FieldTimePicker: ProFieldFC<
     format?: string;
     variant?: 'outlined' | 'borderless' | 'filled' | 'underlined';
   } & ProFieldLightProps
-> = (
-  {
-    text,
-    mode,
-    light,
-    label,
-    format = 'HH:mm:ss',
-    render,
-    formItemRender,
-    fieldProps,
-    lightLabel,
-    variant,
-  },
+> = ({
+  text,
+  mode,
+  light,
+  label,
+  format = 'HH:mm:ss',
+  render,
+  formItemRender,
+  fieldProps,
+  lightLabel,
+  variant,
   ref,
-) => {
+}) => {
   const [open, setOpen] = useState<boolean>(false);
   const intl = useIntl();
   const finalFormat = fieldProps?.format || format;
@@ -88,21 +86,19 @@ const FieldTimeRangePickerComponents: ProFieldFC<
     format?: string;
     variant?: 'outlined' | 'borderless' | 'filled' | 'underlined';
   } & ProFieldLightProps
-> = (
-  {
-    text,
-    light,
-    label,
-    mode,
-    lightLabel,
-    format = 'HH:mm:ss',
-    render,
-    formItemRender,
-    fieldProps,
-    variant,
-  },
+> = ({
+  text,
+  light,
+  label,
+  mode,
+  lightLabel,
+  format = 'HH:mm:ss',
+  render,
+  formItemRender,
+  fieldProps,
+  variant,
   ref,
-) => {
+}) => {
   const intl = useIntl();
   const [open, setOpen] = useState<boolean>(false);
   const finalFormat = fieldProps?.format || format;
@@ -160,8 +156,8 @@ const FieldTimeRangePickerComponents: ProFieldFC<
   return null;
 };
 
-const FieldTimeRangePicker = React.forwardRef(FieldTimeRangePickerComponents);
+const FieldTimeRangePicker = FieldTimeRangePickerComponents;
 
 export { FieldTimeRangePicker };
 
-export default React.forwardRef(FieldTimePicker);
+export default FieldTimePicker;

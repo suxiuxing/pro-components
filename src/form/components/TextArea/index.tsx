@@ -11,10 +11,12 @@ import ProField from '../Field';
  *
  * @param
  */
-const ProFormTextArea: React.ForwardRefRenderFunction<
-  any,
-  ProFormFieldItemProps<TextAreaProps, TextAreaRef>
-> = ({ fieldProps, proFieldProps, ...rest }, ref) => {
+const ProFormTextArea = ({
+  fieldProps,
+  proFieldProps,
+  ref,
+  ...rest
+}: ProFormFieldItemProps<TextAreaProps, TextAreaRef> & { ref?: React.Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -45,4 +47,4 @@ const ProFormTextArea: React.ForwardRefRenderFunction<
   );
 };
 
-export default React.forwardRef(ProFormTextArea);
+export default ProFormTextArea;

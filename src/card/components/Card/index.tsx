@@ -14,7 +14,7 @@ const { useBreakpoint } = Grid;
 
 type ProCardChildType = React.ReactElement<CardProps, any>;
 
-const Card = React.forwardRef((props: CardProps, ref: any) => {
+const Card = ({ ref, ...props }: CardProps & { ref?: React.Ref<any> }) => {
   const {
     className,
     rootClassName,
@@ -365,6 +365,6 @@ const Card = React.forwardRef((props: CardProps, ref: any) => {
       ) : null}
     </div>,
   );
-});
+};
 
 export default Card;

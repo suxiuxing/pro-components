@@ -9,7 +9,7 @@ type Props = Omit<Parameters<ProFieldFC<FieldMoneyProps>>[0], 'moneySymbol'> & {
   moneySymbol: string | undefined;
 };
 
-export function FieldMoneyRead(props: Props, ref: React.Ref<unknown>) {
+export function FieldMoneyRead(props: Props, ref?: React.Ref<unknown>) {
   const {
     text,
     mode: type,

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { proTheme } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
@@ -13,7 +11,7 @@ import { languageFormat } from './utils';
 const FieldCode: ProFieldFC<{
   text: string;
   language?: 'json' | 'text';
-}> = ({ text, mode, language = 'text', ...rest }, ref) => {
+}> = ({ text, mode, language = 'text', ref, ...rest }) => {
   const code = languageFormat(text, language) as string;
   const { token } = proTheme.useToken();
   if (isProFieldReadMode(mode)) {
@@ -25,4 +23,4 @@ const FieldCode: ProFieldFC<{
   return null;
 };
 
-export default React.forwardRef(FieldCode);
+export default FieldCode;

@@ -56,76 +56,69 @@ export type ProFormUploadDraggerProps = ProFormFieldItemProps<DraggerProps> & {
  *
  * @param
  */
-const BaseProFormUploadDragger: React.FC<ProFormUploadDraggerProps> = React.forwardRef<
-  UploadRef,
-  ProFormUploadDraggerProps
->(
-  (
-    {
-      fieldProps,
-      title = '单击或拖动文件到此区域进行上传',
-      icon = <InboxOutlined />,
-      description = '支持单次或批量上传',
-      action,
-      accept,
-      onChange,
-      value,
-      children,
-      max,
-      proFieldProps,
-    },
-    ref,
-  ) => {
-    const context = useContext(ConfigProvider.ConfigContext);
-    const modeContext = useContext(EditOrReadOnlyContext);
-    const mode = proFieldProps?.mode || modeContext.mode || 'edit';
+const BaseProFormUploadDragger: React.FC<ProFormUploadDraggerProps> = ({
+  fieldProps,
+  title = '单击或拖动文件到此区域进行上传',
+  icon = <InboxOutlined />,
+  description = '支持单次或批量上传',
+  action,
+  accept,
+  onChange,
+  value,
+  children,
+  max,
+  proFieldProps,
+  ref,
+}: ProFormUploadDraggerProps & { ref?: React.Ref<UploadRef> }) => {
+  const context = useContext(ConfigProvider.ConfigContext);
+  const modeContext = useContext(EditOrReadOnlyContext);
+  const mode = proFieldProps?.mode || modeContext.mode || 'edit';
 
-    const baseClassName = context.getPrefixCls('upload');
-    // 如果配置了 max ，并且 超过了文件列表的大小，就不展示按钮
-    const showUploadButton =
-      (max === undefined || !value || value?.length < max) &&
-      mode !== 'read' &&
-      proFieldProps?.readonly !== true;
-    // 参考 antd：不传 id 给 Upload，避免点击 label 触发 file input 打开文件选择器
-    const { id: _id, ...uploadFieldProps } = fieldProps || {};
-    return (
-      <Upload.Dragger
-        ref={ref}
-        name="files"
-        action={action}
-        accept={accept}
-        fileList={value}
-        {...uploadFieldProps}
-        onChange={(info) => {
-          onChange?.(info);
-          if (uploadFieldProps?.onChange) {
-            uploadFieldProps?.onChange(info);
-          }
-        }}
-        style={{
-          flexDirection: 'column',
-          alignItems: 'center',
-          ...uploadFieldProps?.style,
-          display: !showUploadButton ? 'none' : uploadFieldProps?.style?.display || 'flex',
-        }}
-      >
-        <p className={`${baseClassName}-drag-icon`}>{icon}</p>
-        <p className={`${baseClassName}-text`}>{title}</p>
-        <p className={`${baseClassName}-hint`}>{description}</p>
-        {children ? (
-          <div
-            className={`${baseClassName}-extra`}
-            style={{
-              padding: 16,
-            }}
-          >
-            {children}
-          </div>
-        ) : null}
-      </Upload.Dragger>
-    );
-  },
-);
+  const baseClassName = context.getPrefixCls('upload');
+  // 如果配置了 max ，并且 超过了文件列表的大小，就不展示按钮
+  const showUploadButton =
+    (max === undefined || !value || value?.length < max) &&
+    mode !== 'read' &&
+    proFieldProps?.readonly !== true;
+  // 参考 antd：不传 id 给 Upload，避免点击 label 触发 file input 打开文件选择器
+  const { id: _id, ...uploadFieldProps } = fieldProps || {};
+  return (
+    <Upload.Dragger
+      ref={ref}
+      name="files"
+      action={action}
+      accept={accept}
+      fileList={value}
+      {...uploadFieldProps}
+      onChange={(info) => {
+        onChange?.(info);
+        if (uploadFieldProps?.onChange) {
+          uploadFieldProps?.onChange(info);
+        }
+      }}
+      style={{
+        flexDirection: 'column',
+        alignItems: 'center',
+        ...uploadFieldProps?.style,
+        display: !showUploadButton ? 'none' : uploadFieldProps?.style?.display || 'flex',
+      }}
+    >
+      <p className={`${baseClassName}-drag-icon`}>{icon}</p>
+      <p className={`${baseClassName}-text`}>{title}</p>
+      <p className={`${baseClassName}-hint`}>{description}</p>
+      {children ? (
+        <div
+          className={`${baseClassName}-extra`}
+          style={{
+            padding: 16,
+          }}
+        >
+          {children}
+        </div>
+      ) : null}
+    </Upload.Dragger>
+  );
+};
 
 const ProFormUploadDragger = warpField<ProFormUploadDraggerProps>?.(BaseProFormUploadDragger, {
   getValueFromEvent: (value: { fileList: UploadProps['fileList'] }) => value.fileList,

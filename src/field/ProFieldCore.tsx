@@ -52,20 +52,18 @@ export function createProField(
   const renderRead = isProFieldDualRender(render) ? render.renderRead : render;
   const renderEdit = isProFieldDualRender(render) ? render.renderEdit : render;
 
-  const ProFieldComponent: React.ForwardRefRenderFunction<any, ProFieldPropsType> = (
-    {
-      text,
-      valueType = 'text',
-      mode = 'read',
-      onChange,
-      formItemRender,
-      value,
-      readonly,
-      fieldProps: restFieldProps,
-      ...rest
-    },
+  const ProFieldComponent = ({
+    text,
+    valueType = 'text',
+    mode = 'read',
+    onChange,
+    formItemRender,
+    value,
+    readonly,
+    fieldProps: restFieldProps,
     ref,
-  ) => {
+    ...rest
+  }: ProFieldPropsType & { ref?: React.Ref<any> }) => {
     const context = useContext(ProConfigContext);
 
     const onChangeCallBack = useRefFunction((...restParams: any[]) => {
@@ -133,5 +131,5 @@ export function createProField(
     return <React.Fragment>{renderedDom}</React.Fragment>;
   };
 
-  return React.forwardRef(ProFieldComponent);
+  return ProFieldComponent;
 }

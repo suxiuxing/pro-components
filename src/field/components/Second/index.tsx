@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
@@ -14,19 +12,19 @@ export type { FieldDigitProps, FieldSecondProps };
 /**
  * 格式化秒
  */
-const Second: ProFieldFC<FieldSecondProps> = (props, ref) => {
+const Second: ProFieldFC<FieldSecondProps> = (props) => {
   const intl = useIntl();
   const placeholderValue =
     props.placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
   const { mode: type } = props;
 
   if (isProFieldReadMode(type)) {
-    return FieldSecondRead(props, ref);
+    return FieldSecondRead(props, props.ref);
   }
   if (isProFieldEditOrUpdateMode(type)) {
-    return FieldSecondEdit({ ...props, placeholderValue }, ref);
+    return FieldSecondEdit({ ...props, placeholderValue }, props.ref);
   }
   return null;
 };
 
-export default React.forwardRef(Second);
+export default Second;

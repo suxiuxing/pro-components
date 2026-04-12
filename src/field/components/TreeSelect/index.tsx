@@ -1,14 +1,7 @@
 import { omit, useControlledState } from '@rc-component/util';
 import type { TreeSelectProps } from 'antd';
 import { ConfigProvider } from 'antd';
-import React, {
-  useCallback,
-  useContext,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useContext, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOnlyMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -33,10 +26,16 @@ export type { TreeSelectFieldProps };
  * @param rest
  * @param ref
  */
-const FieldTreeSelect: ProFieldFC<{} & FieldSelectProps> = (
-  { formItemRender, mode, light, label, render, variant: propsVariant, ...rest },
+const FieldTreeSelect: ProFieldFC<{} & FieldSelectProps> = ({
+  formItemRender,
+  mode,
+  light,
+  label,
+  render,
+  variant: propsVariant,
   ref,
-) => {
+  ...rest
+}) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const layoutClassName = getPrefixCls('pro-field-tree-select');
   const treeSelectRef = useRef({});
@@ -191,4 +190,4 @@ const FieldTreeSelect: ProFieldFC<{} & FieldSelectProps> = (
   return null;
 };
 
-export default React.forwardRef(FieldTreeSelect);
+export default FieldTreeSelect;

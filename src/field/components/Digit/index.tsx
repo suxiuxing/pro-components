@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isNil } from '../../../utils';
@@ -13,10 +13,15 @@ export type { FieldDigitProps };
 /**
  * 数字组件
  */
-const FieldDigit: ProFieldFC<FieldDigitProps> = (
-  { text, mode: type, render, placeholder, formItemRender, fieldProps },
+const FieldDigit: ProFieldFC<FieldDigitProps> = ({
+  text,
+  mode: type,
+  render,
+  placeholder,
+  formItemRender,
+  fieldProps,
   ref,
-) => {
+}) => {
   const intl = useIntl();
   const placeholderValue = placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
   const proxyChange = useCallback(
@@ -67,4 +72,4 @@ const FieldDigit: ProFieldFC<FieldDigitProps> = (
   return null;
 };
 
-export default React.forwardRef(FieldDigit);
+export default FieldDigit;

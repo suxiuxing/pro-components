@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
@@ -11,8 +9,8 @@ import { FieldTextAreaRead } from './FieldTextAreaRead';
  */
 const FieldTextArea: ProFieldFC<{
   text: string;
-}> = (props, ref) => {
-  const { mode } = props;
+}> = (props) => {
+  const { mode, ref } = props;
   const intl = useIntl();
 
   if (isProFieldReadMode(mode)) {
@@ -24,4 +22,4 @@ const FieldTextArea: ProFieldFC<{
   return null;
 };
 
-export default React.forwardRef(FieldTextArea);
+export default FieldTextArea;

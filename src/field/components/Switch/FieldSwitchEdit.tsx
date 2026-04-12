@@ -16,7 +16,7 @@ type Props = Parameters<
   variant: 'outlined' | 'borderless' | 'filled' | undefined;
 };
 
-export function FieldSwitchEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldSwitchEdit(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, light, label, formItemRender, fieldProps, variant } = props;
 
   const editDom = (

@@ -54,7 +54,7 @@ type FunctionFieldProps = {
  * @param config
  */
 export function warpField<P extends ProFormFieldItemProps = any>(
-  Field: React.ComponentType<P> | React.ForwardRefExoticComponent<P>,
+  Field: React.ComponentType<P>,
   config?: ProFormItemCreateConfig,
 ): ProFormComponent<P, ExtendsProps & FunctionFieldProps> {
   // 标记是否是 ProForm 的组件

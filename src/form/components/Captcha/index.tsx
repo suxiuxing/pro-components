@@ -40,7 +40,10 @@ export type CaptFieldRef = {
   endTiming: () => void;
 };
 
-const BaseProFormCaptcha: React.FC<ProFormCaptchaProps> = React.forwardRef((props, ref: any) => {
+const BaseProFormCaptcha: React.FC<ProFormCaptchaProps> = (
+  props: ProFormCaptchaProps & { ref?: React.Ref<any> },
+) => {
+  const { ref } = props;
   const form = Form.useFormInstance();
   const [count, setCount] = useState<number>(props.countDown || 60);
   const [timing, setTiming] = useState(false);
@@ -152,7 +155,7 @@ const BaseProFormCaptcha: React.FC<ProFormCaptchaProps> = React.forwardRef((prop
       </Button>
     </div>
   );
-});
+};
 
 const ProFormCaptcha = warpField(BaseProFormCaptcha) as typeof BaseProFormCaptcha;
 

@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -23,23 +23,21 @@ const FieldDatePicker: ProFieldFC<
     variant?: 'outlined' | 'borderless' | 'filled' | 'underlined';
     picker?: 'time' | 'date' | 'week' | 'month' | 'quarter' | 'year';
   } & ProFieldLightProps
-> = (
-  {
-    text,
-    mode,
-    format = 'YYYY-MM-DD',
-    label,
-    light,
-    render,
-    formItemRender,
-    showTime,
-    fieldProps,
-    picker,
-    lightLabel,
-    variant,
-  },
+> = ({
+  text,
+  mode,
+  format = 'YYYY-MM-DD',
+  label,
+  light,
+  render,
+  formItemRender,
+  showTime,
+  fieldProps,
+  picker,
+  lightLabel,
+  variant,
   ref,
-) => {
+}) => {
   const intl = useIntl();
 
   const [open, setOpen] = useState<boolean>(false);
@@ -86,4 +84,4 @@ const FieldDatePicker: ProFieldFC<
   }
   return null;
 };
-export default React.forwardRef(FieldDatePicker);
+export default FieldDatePicker;

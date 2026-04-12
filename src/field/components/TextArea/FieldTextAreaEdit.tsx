@@ -8,7 +8,7 @@ type Props = Parameters<ProFieldFC<{ text: string }>>[0] & {
   intl: IntlType;
 };
 
-export function FieldTextAreaEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldTextAreaEdit(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, formItemRender, fieldProps, intl } = props;
   const dom = (
     <Input.TextArea

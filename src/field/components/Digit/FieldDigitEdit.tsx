@@ -11,7 +11,7 @@ type Props = Parameters<ProFieldFC<FieldDigitProps>>[0] & {
   proxyChange: (value: number | string | null) => number | string | undefined;
 };
 
-export function FieldDigitEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldDigitEdit(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode: type, formItemRender, fieldProps, placeholderValue, proxyChange } = props;
   const dom = (
     <InputNumber<number | string>

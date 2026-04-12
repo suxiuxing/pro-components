@@ -8,7 +8,7 @@ type Props = Parameters<ProFieldFC<FieldImageProps>>[0] & {
   placeholderValue: string;
 };
 
-export function FieldImageEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldImageEdit(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode: type, formItemRender, fieldProps, placeholderValue } = props;
   const dom = (
     <Input

@@ -1,5 +1,5 @@
 import { ConfigProvider, Form, Spin } from 'antd';
-import React, { useContext, useImperativeHandle, useRef } from 'react';
+import { useContext, useImperativeHandle, useRef } from 'react';
 
 import { useStyle } from '../../../utils';
 import { isProFieldEditOnlyMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -14,10 +14,14 @@ export type { GroupProps };
 /**
  * 单选组件
  */
-const FieldRadio: ProFieldFC<GroupProps> = (
-  { radioType, formItemRender, mode, render, ...rest },
+const FieldRadio: ProFieldFC<GroupProps> = ({
+  radioType,
+  formItemRender,
+  mode,
+  render,
   ref,
-) => {
+  ...rest
+}) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const layoutClassName = getPrefixCls('pro-field-radio');
   const [loading, options, fetchData] = useFieldFetchData(rest);
@@ -99,4 +103,4 @@ const FieldRadio: ProFieldFC<GroupProps> = (
   return null;
 };
 
-export default React.forwardRef(FieldRadio);
+export default FieldRadio;

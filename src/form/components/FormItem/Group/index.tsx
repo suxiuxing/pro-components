@@ -10,7 +10,10 @@ import { useGridHelpers } from '../../../helpers/grid';
 import { ProFormGroupProps } from '../../../typing';
 import { useStyle } from './style';
 
-const Group: React.FC<ProFormGroupProps> = React.forwardRef((props, ref: any) => {
+const Group: React.FC<ProFormGroupProps> = (
+  props: ProFormGroupProps & { ref?: React.Ref<any> },
+) => {
+  const { ref } = props;
   const { groupProps } = React.useContext(FieldContext);
   const {
     children,
@@ -206,7 +209,7 @@ const Group: React.FC<ProFormGroupProps> = React.forwardRef((props, ref: any) =>
       </div>
     </ColWrapper>,
   );
-});
+};
 
 Group.displayName = 'ProForm-Group';
 

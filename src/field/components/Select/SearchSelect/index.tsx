@@ -102,7 +102,7 @@ export interface SearchSelectProps<T = Record<string, any>> extends Omit<
   preserveOriginalLabel?: boolean;
 }
 
-const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
+const SearchSelect = <T,>(props: SearchSelectProps<T[]> & { ref?: React.Ref<any> }) => {
   const {
     optionItemRender,
     mode,
@@ -127,6 +127,7 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
     fieldNames,
     defaultSearchValue,
     preserveOriginalLabel: _preserveOriginalLabel = false,
+    ref,
     ...restProps
   } = props;
 
@@ -403,4 +404,4 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
   );
 };
 
-export default React.forwardRef(SearchSelect);
+export default SearchSelect;

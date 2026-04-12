@@ -19,61 +19,66 @@ export type ProFormCheckboxGroupProps = ProFormFieldItemProps<
   options?: CheckboxGroupProps['options'];
 } & ProFormFieldRemoteProps;
 
-const CheckboxGroup: React.FC<ProFormCheckboxGroupProps> = React.forwardRef(
-  ({ options, fieldProps, proFieldProps, valueEnum, ...rest }, ref) => (
-    <ProConfigProvider
-      valueTypeMap={{
-        checkbox: {
-          render: (text, props) => (
-            <FieldCheckbox
-              {...props}
-              text={text}
-            />
-          ),
-          formItemRender: (text, props) => (
-            <FieldCheckbox
-              {...props}
-              text={text}
-            />
-          ),
-        },
+const CheckboxGroup: React.FC<ProFormCheckboxGroupProps> = ({
+  options,
+  fieldProps,
+  proFieldProps,
+  valueEnum,
+  ref,
+  ...rest
+}: ProFormCheckboxGroupProps & { ref?: React.Ref<any> }) => (
+  <ProConfigProvider
+    valueTypeMap={{
+      checkbox: {
+        render: (text, props) => (
+          <FieldCheckbox
+            {...props}
+            text={text}
+          />
+        ),
+        formItemRender: (text, props) => (
+          <FieldCheckbox
+            {...props}
+            text={text}
+          />
+        ),
+      },
+    }}
+  >
+    <ProFormField
+      ref={ref}
+      valueType="checkbox"
+      valueEnum={runFunction<[any]>(valueEnum, undefined)}
+      fieldProps={{
+        options,
+        ...fieldProps,
       }}
-    >
-      <ProFormField
-        ref={ref}
-        valueType="checkbox"
-        valueEnum={runFunction<[any]>(valueEnum, undefined)}
-        fieldProps={{
-          options,
-          ...fieldProps,
-        }}
-        lightProps={{
-          labelFormatter: () => {
-            return (
-              <ProFormField
-                ref={ref}
-                valueType="checkbox"
-                mode="read"
-                valueEnum={runFunction<[any]>(valueEnum, undefined)}
-                fieldConfig={{
-                  customLightMode: true,
-                }}
-                fieldProps={{
-                  options,
-                  ...fieldProps,
-                }}
-                proFieldProps={proFieldProps}
-                {...rest}
-              />
-            );
-          },
-          ...rest.lightProps,
-        }}
-        proFieldProps={proFieldProps}
-        {...rest}
-      />
-    </ProConfigProvider>
-  ),
+      lightProps={{
+        labelFormatter: () => {
+          return (
+            <ProFormField
+              ref={ref}
+              valueType="checkbox"
+              mode="read"
+              valueEnum={runFunction<[any]>(valueEnum, undefined)}
+              fieldConfig={{
+                customLightMode: true,
+              }}
+              fieldProps={{
+                options,
+                ...fieldProps,
+              }}
+              proFieldProps={proFieldProps}
+              {...rest}
+            />
+          );
+        },
+        ...rest.lightProps,
+      }}
+      proFieldProps={proFieldProps}
+      {...rest}
+    />
+  </ProConfigProvider>
 );
 
 export type ProFormCheckboxProps = ProFormFieldItemProps<CheckboxProps>;
@@ -83,10 +88,11 @@ export type ProFormCheckboxProps = ProFormFieldItemProps<CheckboxProps>;
  *
  * @param
  */
-const ProFormCheckboxComponents: React.FC<ProFormCheckboxProps> = React.forwardRef<
-  CheckboxRef,
-  ProFormCheckboxProps
->(({ fieldProps, children }, ref) => {
+const ProFormCheckboxComponents: React.FC<ProFormCheckboxProps> = ({
+  fieldProps,
+  children,
+  ref,
+}: ProFormCheckboxProps & { ref?: React.Ref<CheckboxRef> }) => {
   const { ...restFieldProps } = fieldProps || {};
   return (
     <Checkbox
@@ -96,7 +102,7 @@ const ProFormCheckboxComponents: React.FC<ProFormCheckboxProps> = React.forwardR
       {children}
     </Checkbox>
   );
-});
+};
 
 const ProFormCheckbox = warpField<ProFormCheckboxProps>?.(ProFormCheckboxComponents, {
   valuePropName: 'checked',

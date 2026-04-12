@@ -18,47 +18,52 @@ export type ProFormSwitchProps = Omit<
  * @zh-cn 单选 Switch
  * @en-us Single Choice Switch
  */
-const ProFormSwitch: React.FC<ProFormSwitchProps> = React.forwardRef(
-  ({ fieldProps, unCheckedChildren, checkedChildren, proFieldProps, ...rest }, ref: any) => {
-    return (
-      <ProConfigProvider
-        valueTypeMap={{
-          switch: {
-            render: (text, props) => (
-              <FieldSwitch
-                {...props}
-                text={text}
-              />
-            ),
-            formItemRender: (text, props) => (
-              <FieldSwitch
-                {...props}
-                text={text}
-              />
-            ),
-          },
+const ProFormSwitch: React.FC<ProFormSwitchProps> = ({
+  fieldProps,
+  unCheckedChildren,
+  checkedChildren,
+  proFieldProps,
+  ref,
+  ...rest
+}: ProFormSwitchProps & { ref?: React.Ref<any> }) => {
+  return (
+    <ProConfigProvider
+      valueTypeMap={{
+        switch: {
+          render: (text, props) => (
+            <FieldSwitch
+              {...props}
+              text={text}
+            />
+          ),
+          formItemRender: (text, props) => (
+            <FieldSwitch
+              {...props}
+              text={text}
+            />
+          ),
+        },
+      }}
+    >
+      <ProField
+        valueType="switch"
+        fieldProps={{
+          unCheckedChildren,
+          checkedChildren,
+          ...fieldProps,
         }}
-      >
-        <ProField
-          valueType="switch"
-          fieldProps={{
-            unCheckedChildren,
-            checkedChildren,
-            ...fieldProps,
-          }}
-          ref={ref}
-          valuePropName="checked"
-          proFieldProps={proFieldProps}
-          fieldConfig={{
-            valuePropName: 'checked',
-            ignoreWidth: true,
-            customLightMode: true,
-          }}
-          {...rest}
-        />
-      </ProConfigProvider>
-    );
-  },
-);
+        ref={ref}
+        valuePropName="checked"
+        proFieldProps={proFieldProps}
+        fieldConfig={{
+          valuePropName: 'checked',
+          ignoreWidth: true,
+          customLightMode: true,
+        }}
+        {...rest}
+      />
+    </ProConfigProvider>
+  );
+};
 
 export default ProFormSwitch;

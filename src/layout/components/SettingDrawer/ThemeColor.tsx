@@ -10,15 +10,20 @@ export type TagProps = {
   onClick?: () => void;
 };
 
-const Tag: React.FC<TagProps> = React.forwardRef(({ color, check, ...rest }, ref) => (
+const Tag: React.FC<TagProps> = ({
+  color,
+  check,
+  ref,
+  ...rest
+}: TagProps & { ref?: React.Ref<any> }) => (
   <div
     {...rest}
     style={{ backgroundColor: color }}
-    ref={ref as any}
+    ref={ref}
   >
     {check ? <CheckOutlined /> : ''}
   </div>
-));
+);
 
 export type ThemeColorProps = {
   colorList?: {
@@ -33,14 +38,14 @@ export type ThemeColorProps = {
   hashId: string;
 };
 
-const ThemeColorRender: React.ForwardRefRenderFunction<HTMLDivElement, ThemeColorProps> = ({
+const ThemeColorRender = ({
   value,
   colorList,
   onChange,
   prefixCls,
   formatMessage,
   hashId,
-}) => {
+}: ThemeColorProps) => {
   if (!colorList || colorList?.length < 1) {
     return null;
   }
@@ -72,6 +77,6 @@ const ThemeColorRender: React.ForwardRefRenderFunction<HTMLDivElement, ThemeColo
   );
 };
 
-const ThemeColor = React.forwardRef(ThemeColorRender);
+const ThemeColor = ThemeColorRender;
 
 export { ThemeColor };

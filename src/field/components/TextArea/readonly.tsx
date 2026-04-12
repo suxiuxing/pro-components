@@ -1,7 +1,7 @@
 import { omit } from '@rc-component/util';
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { useStyle } from '../../../utils';
 import type { ProFieldFC } from '../../types';
@@ -13,7 +13,7 @@ import type { ProFieldFC } from '../../types';
  */
 const FieldTextAreaReadonly: ProFieldFC<{
   text: string;
-}> = ({ text, fieldProps }, ref) => {
+}> = ({ text, fieldProps, ref }) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const readonlyClassName = getPrefixCls('pro-field-readonly');
   const compClassName = `${readonlyClassName}-textarea`;
@@ -40,4 +40,4 @@ const FieldTextAreaReadonly: ProFieldFC<{
   );
 };
 
-export default React.forwardRef(FieldTextAreaReadonly);
+export default FieldTextAreaReadonly;

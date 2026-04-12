@@ -11,22 +11,22 @@ const valueType = 'dateTime' as const;
  *
  * @param
  */
-const ProFormDateTimePicker: React.FC<ProFormFieldItemProps<DatePickerProps>> = React.forwardRef(
-  ({ fieldProps, proFieldProps, ...rest }, ref) => {
-    return (
-      <BaseDatePicker
-        ref={ref}
-        valueType={valueType}
-        proFieldProps={proFieldProps}
-        fieldConfig={{
-          valueType,
-          customLightMode: true,
-        }}
-        fieldProps={fieldProps}
-        {...rest}
-      />
-    );
-  },
-);
+const ProFormDateTimePicker: React.FC<
+  ProFormFieldItemProps<DatePickerProps> & { ref?: React.Ref<any> }
+> = ({ fieldProps, proFieldProps, ref, ...rest }) => {
+  return (
+    <BaseDatePicker
+      ref={ref}
+      valueType={valueType}
+      proFieldProps={proFieldProps}
+      fieldConfig={{
+        valueType,
+        customLightMode: true,
+      }}
+      fieldProps={fieldProps}
+      {...rest}
+    />
+  );
+};
 
 export default ProFormDateTimePicker;

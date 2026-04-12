@@ -9,10 +9,15 @@ import { useStyle } from '../../../utils';
  *
  * @param param0
  */
-const IndexColumn: React.ForwardRefRenderFunction<any, { border?: boolean; children: number }> = (
-  { border = false, children },
+const IndexColumn = ({
+  border = false,
+  children,
   ref,
-) => {
+}: {
+  border?: boolean;
+  children: number;
+  ref?: React.Ref<any>;
+}) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
 
   const className = getPrefixCls('pro-field-index-column');
@@ -52,4 +57,4 @@ const IndexColumn: React.ForwardRefRenderFunction<any, { border?: boolean; child
   );
 };
 
-export default React.forwardRef(IndexColumn);
+export default IndexColumn;

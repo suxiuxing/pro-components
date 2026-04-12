@@ -8,7 +8,7 @@ type Props = Parameters<ProFieldFC<PercentPropInt>>[0] & {
   placeholderValue: string;
 };
 
-export function FieldPercentEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldPercentEdit(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, formItemRender, fieldProps, prefix, placeholderValue } = props;
   const dom = (
     <InputNumber

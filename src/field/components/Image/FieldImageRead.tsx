@@ -6,7 +6,7 @@ import type { FieldImageProps } from './types';
 
 export function FieldImageRead(
   props: Parameters<ProFieldFC<FieldImageProps>>[0],
-  ref: React.Ref<unknown>,
+  ref?: React.Ref<unknown>,
 ) {
   const { text, mode: type, render, fieldProps, width } = props;
   const dom = (

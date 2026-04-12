@@ -15,7 +15,7 @@ type Props = Parameters<
   parsedEndText: string;
 };
 
-export function FieldTimeRangePickerRead(props: Props, ref: React.Ref<unknown>) {
+export function FieldTimeRangePickerRead(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, render, fieldProps, parsedStartText, parsedEndText } = props;
   const dom = (
     <div ref={ref as React.Ref<HTMLDivElement>}>

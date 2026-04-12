@@ -22,7 +22,7 @@ type Props = Parameters<
   intl: IntlType;
 };
 
-export function FieldTimeRangePickerEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldTimeRangePickerEdit(props: Props, ref?: React.Ref<unknown>) {
   const {
     text,
     mode,

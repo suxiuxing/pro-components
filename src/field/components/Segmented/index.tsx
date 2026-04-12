@@ -16,8 +16,8 @@ const FieldSegmented: ProFieldFC<
     text: string;
     emptyText?: React.ReactNode;
   } & FieldSelectProps
-> = (props, ref) => {
-  const { mode, emptyText = '-' } = props;
+> = (props) => {
+  const { mode, emptyText = '-', ref } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -64,4 +64,4 @@ const FieldSegmented: ProFieldFC<
   return null;
 };
 
-export default React.forwardRef(FieldSegmented);
+export default FieldSegmented;

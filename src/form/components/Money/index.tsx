@@ -20,10 +20,15 @@ export type ProFormMoneyProps = ProFormFieldItemProps<
  *
  * @param
  */
-const ProFormMoney: React.ForwardRefRenderFunction<any, ProFormMoneyProps> = (
-  { fieldProps, proFieldProps, locale, min, max, ...rest },
+const ProFormMoney = ({
+  fieldProps,
+  proFieldProps,
+  locale,
+  min,
+  max,
   ref,
-) => {
+  ...rest
+}: ProFormMoneyProps & { ref?: React.Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -68,4 +73,4 @@ const ProFormMoney: React.ForwardRefRenderFunction<any, ProFormMoneyProps> = (
   );
 };
 
-export default React.forwardRef(ProFormMoney);
+export default ProFormMoney;

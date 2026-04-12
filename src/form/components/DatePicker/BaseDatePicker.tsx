@@ -13,7 +13,7 @@ import ProFormField from '../Field';
  */
 export const BaseDatePicker: React.FC<
   ProFormFieldItemProps<any> & {
-    ref: any;
+    ref?: any;
     valueType:
       | 'date'
       | 'dateTime'
@@ -24,7 +24,7 @@ export const BaseDatePicker: React.FC<
       | 'dateQuarter'
       | 'dateYear';
   }
-> = React.forwardRef(({ proFieldProps, fieldProps, valueType, ...rest }, ref) => {
+> = ({ proFieldProps, fieldProps, valueType, ref, ...rest }) => {
   const context = useContext(FieldContext);
   const mergedFieldProps = useMemo(() => {
     const nextFieldProps = fieldProps ? { ...fieldProps } : {};
@@ -79,4 +79,4 @@ export const BaseDatePicker: React.FC<
       />
     </ProConfigProvider>
   );
-});
+};

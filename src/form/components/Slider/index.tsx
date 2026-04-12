@@ -23,49 +23,58 @@ export type ProFormSliderProps = ProFormFieldItemProps<
  *
  * @param
  */
-const ProFormSlider = React.forwardRef<any, ProFormSliderProps>(
-  ({ fieldProps, proFieldProps, min, max, step, marks, vertical, range, ...rest }, ref) => {
-    return (
-      <ProConfigProvider
-        valueTypeMap={{
-          slider: {
-            render: (text, props) => (
-              <FieldSlider
-                {...props}
-                text={text}
-              />
-            ),
-            formItemRender: (text, props) => (
-              <FieldSlider
-                {...props}
-                text={text}
-              />
-            ),
-          },
+const ProFormSlider = ({
+  fieldProps,
+  proFieldProps,
+  min,
+  max,
+  step,
+  marks,
+  vertical,
+  range,
+  ref,
+  ...rest
+}: ProFormSliderProps & { ref?: React.Ref<any> }) => {
+  return (
+    <ProConfigProvider
+      valueTypeMap={{
+        slider: {
+          render: (text, props) => (
+            <FieldSlider
+              {...props}
+              text={text}
+            />
+          ),
+          formItemRender: (text, props) => (
+            <FieldSlider
+              {...props}
+              text={text}
+            />
+          ),
+        },
+      }}
+    >
+      <ProField
+        valueType="slider"
+        fieldProps={{
+          ...fieldProps,
+          min,
+          max,
+          step,
+          marks,
+          vertical,
+          range,
+          style: fieldProps?.style,
         }}
-      >
-        <ProField
-          valueType="slider"
-          fieldProps={{
-            ...fieldProps,
-            min,
-            max,
-            step,
-            marks,
-            vertical,
-            range,
-            style: fieldProps?.style,
-          }}
-          ref={ref}
-          proFieldProps={proFieldProps}
-          fieldConfig={{
-            ignoreWidth: true,
-          }}
-          {...rest}
-        />
-      </ProConfigProvider>
-    );
-  },
-);
+        ref={ref}
+        proFieldProps={proFieldProps}
+        fieldConfig={{
+          ignoreWidth: true,
+        }}
+        {...rest}
+      />
+    </ProConfigProvider>
+  );
+};
 
 export default ProFormSlider;

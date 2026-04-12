@@ -16,7 +16,7 @@ type Props = Parameters<
   intl: IntlType;
 };
 
-export function FieldFromNowEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldFromNowEdit(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, variant, formItemRender, fieldProps, intl } = props;
   const placeholder = intl.getMessage('tableForm.selectPlaceholder', '请选择');
   const momentValue = parseValueToDay(fieldProps.value) as dayjs.Dayjs;

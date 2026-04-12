@@ -6,7 +6,7 @@ import FieldTextAreaReadonly from './readonly';
 
 type Props = Parameters<ProFieldFC<{ text: string }>>[0];
 
-export function FieldTextAreaRead(props: Props, ref: React.Ref<unknown>) {
+export function FieldTextAreaRead(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, render, fieldProps } = props;
   const dom = (
     <FieldTextAreaReadonly

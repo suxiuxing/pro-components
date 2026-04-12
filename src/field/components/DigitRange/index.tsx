@@ -1,5 +1,5 @@
 import { useControlledState } from '@rc-component/util';
-import React, { useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 import { proTheme, useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -13,19 +13,17 @@ export type { FieldDigitRangeProps, Value, ValuePair } from './types';
 /**
  * 数字范围组件
  */
-const FieldDigitRange: ProFieldFC<FieldDigitRangeProps> = (
-  {
-    text,
-    mode: type,
-    render,
-    placeholder,
-    formItemRender,
-    fieldProps,
-    separator = '~',
-    separatorWidth = 30,
-  },
+const FieldDigitRange: ProFieldFC<FieldDigitRangeProps> = ({
+  text,
+  mode: type,
+  render,
+  placeholder,
+  formItemRender,
+  fieldProps,
+  separator = '~',
+  separatorWidth = 30,
   ref,
-) => {
+}) => {
   const { value, defaultValue, onChange } = fieldProps;
   const intl = useIntl();
 
@@ -88,4 +86,4 @@ const FieldDigitRange: ProFieldFC<FieldDigitRangeProps> = (
   return null;
 };
 
-export default React.forwardRef(FieldDigitRange);
+export default FieldDigitRange;

@@ -60,21 +60,19 @@ export type ProFormSelectProps<
  * @param rest
  * @param ref
  */
-const ProFormSelectComponents = <T, OptionType extends BaseOptionType = any>(
-  {
-    fieldProps,
-    children,
-    params,
-    proFieldProps,
-    mode,
-    valueEnum,
-    request,
-    showSearch,
-    options,
-    ...rest
-  }: ProFormSelectProps<T, OptionType>,
-  ref: any,
-) => {
+const ProFormSelectComponents = <T, OptionType extends BaseOptionType = any>({
+  fieldProps,
+  children,
+  params,
+  proFieldProps,
+  mode,
+  valueEnum,
+  request,
+  showSearch,
+  options,
+  ref,
+  ...rest
+}: ProFormSelectProps<T, OptionType> & { ref?: React.Ref<any> }) => {
   const context = useContext(FieldContext);
   return (
     <ProConfigProvider
@@ -120,69 +118,72 @@ const ProFormSelectComponents = <T, OptionType extends BaseOptionType = any>(
   );
 };
 
-const SearchSelect = React.forwardRef<any, ProFormSelectProps<any>>(
-  (
-    { fieldProps, children, params, proFieldProps, mode, valueEnum, request, options, ...rest },
-    ref,
-  ) => {
-    const finalMode = fieldProps?.mode || mode || 'multiple';
-    const props: Omit<SelectProps<any>, 'options'> & {
-      options?: ProFormSelectProps['options'];
-    } = {
-      options,
-      labelInValue: true,
-      showSearch: true,
-      suffixIcon: null,
-      autoClearSearchValue: true,
-      optionLabelProp: 'label',
-      ...fieldProps,
-      mode: finalMode === 'single' ? undefined : (finalMode as 'multiple' | 'tags'), // 确保mode正确设置
-    };
-    const context = useContext(FieldContext);
-    return (
-      <ProConfigProvider
-        valueTypeMap={{
-          select: {
-            render: (text, valueTypeProps) => (
-              <FieldSelect
-                {...valueTypeProps}
-                text={text}
-              />
-            ),
-            formItemRender: (text, valueTypeProps) => (
-              <FieldSelect
-                {...valueTypeProps}
-                text={text}
-              />
-            ),
-          },
+const SearchSelect = ({
+  fieldProps,
+  children,
+  params,
+  proFieldProps,
+  mode,
+  valueEnum,
+  request,
+  options,
+  ref,
+  ...rest
+}: ProFormSelectProps<any> & { ref?: React.Ref<any> }) => {
+  const finalMode = fieldProps?.mode || mode || 'multiple';
+  const props: Omit<SelectProps<any>, 'options'> & {
+    options?: ProFormSelectProps['options'];
+  } = {
+    options,
+    labelInValue: true,
+    showSearch: true,
+    suffixIcon: null,
+    autoClearSearchValue: true,
+    optionLabelProp: 'label',
+    ...fieldProps,
+    mode: finalMode === 'single' ? undefined : (finalMode as 'multiple' | 'tags'), // 确保mode正确设置
+  };
+  const context = useContext(FieldContext);
+  return (
+    <ProConfigProvider
+      valueTypeMap={{
+        select: {
+          render: (text, valueTypeProps) => (
+            <FieldSelect
+              {...valueTypeProps}
+              text={text}
+            />
+          ),
+          formItemRender: (text, valueTypeProps) => (
+            <FieldSelect
+              {...valueTypeProps}
+              text={text}
+            />
+          ),
+        },
+      }}
+    >
+      <ProFormField<any>
+        valueEnum={runFunction(valueEnum)}
+        request={request}
+        params={params}
+        valueType="select"
+        fieldConfig={{ customLightMode: true }}
+        fieldProps={{
+          getPopupContainer: context.getPopupContainer,
+          ...props,
         }}
+        ref={ref}
+        proFieldProps={proFieldProps}
+        {...rest}
       >
-        <ProFormField<any>
-          valueEnum={runFunction(valueEnum)}
-          request={request}
-          params={params}
-          valueType="select"
-          fieldConfig={{ customLightMode: true }}
-          fieldProps={{
-            getPopupContainer: context.getPopupContainer,
-            ...props,
-          }}
-          ref={ref}
-          proFieldProps={proFieldProps}
-          {...rest}
-        >
-          {children}
-        </ProFormField>
-      </ProConfigProvider>
-    );
-  },
-);
+        {children}
+      </ProFormField>
+    </ProConfigProvider>
+  );
+};
 
-const ProFormSelect = React.forwardRef(ProFormSelectComponents) as <
-  T,
-  OptionType extends BaseOptionType = any,
->(
+const ProFormSelect = ProFormSelectComponents as <T, OptionType extends BaseOptionType = any>(
   props: ProFormSelectProps<T, OptionType>,
 ) => React.ReactElement;
 

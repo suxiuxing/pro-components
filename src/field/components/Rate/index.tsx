@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
 import { FieldRateEdit } from './FieldRateEdit';
@@ -10,15 +8,15 @@ import { FieldRateRead } from './FieldRateRead';
  */
 const FieldRate: ProFieldFC<{
   text: string;
-}> = (props, ref) => {
+}> = (props) => {
   const { mode } = props;
   if (isProFieldReadMode(mode)) {
-    return FieldRateRead(props, ref);
+    return FieldRateRead(props, props.ref);
   }
   if (isProFieldEditOrUpdateMode(mode)) {
-    return FieldRateEdit(props, ref);
+    return FieldRateEdit(props, props.ref);
   }
   return null;
 };
 
-export default React.forwardRef(FieldRate);
+export default FieldRate;

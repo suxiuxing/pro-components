@@ -5,7 +5,7 @@ import type { ProFieldFC } from '../../types';
 
 export function FieldRateRead(
   props: Parameters<ProFieldFC<{ text: string }>>[0],
-  ref: React.Ref<unknown>,
+  ref?: React.Ref<unknown>,
 ) {
   const { text, mode, render, fieldProps } = props;
   const dom = (

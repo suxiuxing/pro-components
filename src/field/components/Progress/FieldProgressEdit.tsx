@@ -12,7 +12,7 @@ type Props = Parameters<
   placeholderValue: string;
 };
 
-export function FieldProgressEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldProgressEdit(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, formItemRender, fieldProps, placeholderValue } = props;
   const dom = (
     <InputNumber

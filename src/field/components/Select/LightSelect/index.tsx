@@ -48,10 +48,9 @@ const getValueOrLabel = (
   return valueMap[v?.value] || v.label;
 };
 
-export const LightSelect: React.ForwardRefRenderFunction<
-  any,
-  SelectProps<any> & LightSelectProps
-> = (props, ref) => {
+export const LightSelect = (
+  props: SelectProps<any> & LightSelectProps & { ref?: React.Ref<any> },
+) => {
   const {
     label,
     prefixCls: customizePrefixCls,
@@ -78,6 +77,7 @@ export const LightSelect: React.ForwardRefRenderFunction<
     fetchDataOnSearch = false,
     fetchData,
     variant = 'outlined',
+    ref,
     ...restProps
   } = props;
   const { placeholder = label } = props;
@@ -271,4 +271,4 @@ export const LightSelect: React.ForwardRefRenderFunction<
   );
 };
 
-export default React.forwardRef(LightSelect);
+export default LightSelect;

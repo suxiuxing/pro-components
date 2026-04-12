@@ -9,7 +9,7 @@ type FieldCodeEditProps = Parameters<
   code: string;
 };
 
-export function FieldCodeEdit(props: FieldCodeEditProps, ref: React.Ref<unknown>) {
+export function FieldCodeEdit(props: FieldCodeEditProps, ref?: React.Ref<unknown>) {
   const { code, mode, formItemRender, fieldProps } = props;
   const fp = { ...fieldProps, value: code };
   const dom = (

@@ -23,7 +23,7 @@ type Props = Parameters<
   intl: IntlType;
 };
 
-export function FieldDatePickerEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldDatePickerEdit(props: Props, ref?: React.Ref<unknown>) {
   const {
     text,
     mode,

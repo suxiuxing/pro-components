@@ -11,10 +11,14 @@ import ProFormField from '../Field';
  *
  * @param
  */
-const ProFormSegmented: React.ForwardRefRenderFunction<
-  any,
-  ProFormFieldItemProps<SegmentedProps> & ProFormFieldRemoteProps
-> = ({ fieldProps, request, params, proFieldProps, ...rest }, ref) => {
+const ProFormSegmented = ({
+  fieldProps,
+  request,
+  params,
+  proFieldProps,
+  ref,
+  ...rest
+}: ProFormFieldItemProps<SegmentedProps> & ProFormFieldRemoteProps & { ref?: React.Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -50,6 +54,6 @@ const ProFormSegmented: React.ForwardRefRenderFunction<
 
 const WarpProFormSegmented: React.FC<
   ProFormFieldItemProps<SegmentedProps> & ProFormFieldRemoteProps
-> = React.forwardRef(ProFormSegmented);
+> = ProFormSegmented;
 
 export default WarpProFormSegmented;

@@ -5,7 +5,7 @@ import type { FieldDigitProps } from './types';
 
 export function FieldDigitRead(
   props: Parameters<ProFieldFC<FieldDigitProps>>[0],
-  ref: React.Ref<unknown>,
+  ref?: React.Ref<unknown>,
 ) {
   const { text, mode: type, render, fieldProps } = props;
   let fractionDigits = {} as Record<string, any> as any;

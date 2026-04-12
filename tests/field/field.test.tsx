@@ -395,6 +395,7 @@ describe('Field', () => {
             text="default"
             valueType={valueType as 'radio'}
             mode="edit"
+            // @ts-expect-error test invalid formItemRender return
             formItemRender={() => undefined}
             valueEnum={{
               0: { text: '关闭', status: 'Default' },
@@ -414,6 +415,7 @@ describe('Field', () => {
             text="default"
             valueType={valueType as 'radio'}
             mode="edit"
+            // @ts-expect-error test invalid formItemRender return
             formItemRender={() => 0}
             valueEnum={{
               0: { text: '关闭', status: 'Default' },
@@ -434,6 +436,7 @@ describe('Field', () => {
           <Field
             text="default"
             valueType={valueType as 'radio'}
+            // @ts-expect-error test invalid mode
             mode="test"
             valueEnum={{
               0: { text: '关闭', status: 'Default' },
@@ -637,6 +640,7 @@ describe('Field', () => {
     const html = render(
       <Field
         text={null}
+        // @ts-expect-error test null valueEnum
         valueEnum={null}
         valueType="select"
         mode="read"
@@ -1035,6 +1039,7 @@ describe('Field', () => {
       const html = render(
         <Field
           text="'2019-11-16 12:50:26'"
+          // @ts-expect-error test invalid mode
           mode="error"
           valueType={valueType as 'text'}
         />,
@@ -1416,6 +1421,7 @@ describe('Field', () => {
   it('🐴 options support empty dom', async () => {
     const html = render(
       <Field
+        // @ts-expect-error test invalid render return
         render={() => []}
         text={[]}
         valueType="option"
@@ -1501,6 +1507,7 @@ describe('Field', () => {
     const html = render(
       <Field
         text="qixian"
+        // @ts-expect-error test invalid valueType
         valueType={{}}
         mode="read"
       />,
@@ -1546,6 +1553,7 @@ describe('Field', () => {
       <Field
         text={dayjs('2019-11-16 12:50:26').valueOf()}
         mode="edit"
+        // @ts-expect-error test invalid formItemRender return
         formItemRender={() => 2}
       />,
     );

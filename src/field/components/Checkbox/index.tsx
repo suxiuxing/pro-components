@@ -1,5 +1,5 @@
 import { ConfigProvider, Form, Spin } from 'antd';
-import React, { useContext, useImperativeHandle, useRef } from 'react';
+import { useContext, useImperativeHandle, useRef } from 'react';
 
 import { useStyle } from '../../../utils';
 import { isProFieldEditOnlyMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -14,10 +14,14 @@ export type { GroupProps };
 /**
  * 多选组件
  */
-const FieldCheckbox: ProFieldFC<GroupProps> = (
-  { layout = 'horizontal', formItemRender, mode, render, ...rest },
+const FieldCheckbox: ProFieldFC<GroupProps> = ({
+  layout = 'horizontal',
+  formItemRender,
+  mode,
+  render,
   ref,
-) => {
+  ...rest
+}) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const layoutClassName = getPrefixCls('pro-field-checkbox');
   const status = Form.Item?.useStatus?.();
@@ -105,4 +109,4 @@ const FieldCheckbox: ProFieldFC<GroupProps> = (
   return null;
 };
 
-export default React.forwardRef(FieldCheckbox);
+export default FieldCheckbox;

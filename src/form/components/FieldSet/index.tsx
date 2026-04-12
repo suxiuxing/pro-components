@@ -126,22 +126,27 @@ const FieldSet: React.FC<ProFormFieldSetProps> = (props) => {
   return <RowWrapper Wrapper={Wrapper}>{list}</RowWrapper>;
 };
 
-const BaseProFormFieldSet: React.FC<Omit<ProFormItemProps, 'children'> & ProFormFieldSetProps> =
-  React.forwardRef(({ children, space, valuePropName, ...rest }, ref) => {
-    useImperativeHandle(ref, () => ({}));
-    return (
-      <FieldSet
-        space={space}
-        valuePropName={valuePropName}
-        {...rest.fieldProps}
-        // 把 fieldProps 里的重置掉
-        onChange={undefined}
-        {...rest}
-      >
-        {children}
-      </FieldSet>
-    );
-  });
+const BaseProFormFieldSet: React.FC<Omit<ProFormItemProps, 'children'> & ProFormFieldSetProps> = ({
+  children,
+  space,
+  valuePropName,
+  ref,
+  ...rest
+}: Omit<ProFormItemProps, 'children'> & ProFormFieldSetProps & { ref?: React.Ref<any> }) => {
+  useImperativeHandle(ref, () => ({}));
+  return (
+    <FieldSet
+      space={space}
+      valuePropName={valuePropName}
+      {...rest.fieldProps}
+      // 把 fieldProps 里的重置掉
+      onChange={undefined}
+      {...rest}
+    >
+      {children}
+    </FieldSet>
+  );
+};
 
 const ProFormFieldSet = warpField<Omit<ProFormItemProps, 'children'>>?.(BaseProFormFieldSet);
 

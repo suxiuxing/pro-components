@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -13,7 +13,7 @@ export type { PercentPropInt };
 /**
  * 百分比组件
  */
-const FieldPercent: ProFieldFC<PercentPropInt> = (props, ref) => {
+const FieldPercent: ProFieldFC<PercentPropInt> = (props) => {
   const { text, mode, placeholder, showSymbol: propsShowSymbol } = props;
   const intl = useIntl();
   const placeholderValue = placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
@@ -38,7 +38,7 @@ const FieldPercent: ProFieldFC<PercentPropInt> = (props, ref) => {
         realValue,
         showSymbol,
       },
-      ref,
+      props.ref,
     );
   }
   if (isProFieldEditOrUpdateMode(mode)) {
@@ -47,10 +47,10 @@ const FieldPercent: ProFieldFC<PercentPropInt> = (props, ref) => {
         ...props,
         placeholderValue,
       },
-      ref,
+      props.ref,
     );
   }
   return null;
 };
 
-export default React.forwardRef(FieldPercent);
+export default FieldPercent;

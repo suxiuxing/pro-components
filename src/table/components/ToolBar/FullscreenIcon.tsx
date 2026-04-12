@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useIntl } from '../../../provider';
 import { isBrowser } from '../../../utils';
 
-const FullScreenIcon = React.forwardRef<HTMLSpanElement>((_, ref) => {
+const FullScreenIcon = ({ ref }: { ref?: React.Ref<HTMLSpanElement> }) => {
   const intl = useIntl();
   const [fullscreen, setFullscreen] = useState<boolean>(false);
   useEffect(() => {
@@ -29,6 +29,6 @@ const FullScreenIcon = React.forwardRef<HTMLSpanElement>((_, ref) => {
       </span>
     </Tooltip>
   );
-});
+};
 
 export default React.memo(FullScreenIcon);

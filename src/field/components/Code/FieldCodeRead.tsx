@@ -12,7 +12,7 @@ type FieldCodeReadProps = Parameters<
   };
 };
 
-export function FieldCodeRead(props: FieldCodeReadProps, ref: React.Ref<unknown>) {
+export function FieldCodeRead(props: FieldCodeReadProps, ref?: React.Ref<unknown>) {
   const { code, mode, render, fieldProps, token } = props;
   const dom = (
     <pre

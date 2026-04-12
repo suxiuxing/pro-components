@@ -15,7 +15,7 @@ type Props = Parameters<
   setOpen: (updater: boolean | ((prev: boolean) => boolean)) => void;
 };
 
-export function FieldPasswordRead(props: Props, ref: React.Ref<unknown>) {
+export function FieldPasswordRead(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, render, fieldProps, open, setOpen } = props;
   let dom: React.ReactNode = <>-</>;
   if (text) {

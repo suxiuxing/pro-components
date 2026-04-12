@@ -13,7 +13,7 @@ type Props = Parameters<
   realValue: number | string;
 };
 
-export function FieldProgressRead(props: Props, ref: React.Ref<unknown>) {
+export function FieldProgressRead(props: Props, ref?: React.Ref<unknown>) {
   const { mode, render, fieldProps, realValue } = props;
   const dom = (
     <Progress

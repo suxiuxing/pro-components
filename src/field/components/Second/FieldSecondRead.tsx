@@ -6,7 +6,7 @@ import { formatSecond } from './utils';
 
 export function FieldSecondRead(
   props: Parameters<ProFieldFC<FieldSecondProps>>[0],
-  ref: React.Ref<unknown>,
+  ref?: React.Ref<unknown>,
 ) {
   const { text, mode: type, render, fieldProps } = props;
   const secondText = formatSecond(Number(text) as number);

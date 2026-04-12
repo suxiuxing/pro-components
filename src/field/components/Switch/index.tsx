@@ -1,5 +1,5 @@
 import type { SwitchProps } from 'antd';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -14,10 +14,17 @@ const FieldSwitch: ProFieldFC<{
   text: boolean;
   fieldProps?: SwitchProps;
   variant?: 'outlined' | 'borderless' | 'filled';
-}> = (
-  { text, mode, render, light, label, formItemRender, fieldProps, variant: propsVariant },
+}> = ({
+  text,
+  mode,
+  render,
+  light,
+  label,
+  formItemRender,
+  fieldProps,
+  variant: propsVariant,
   ref,
-) => {
+}) => {
   const intl = useIntl();
   const variant = propsVariant ?? fieldProps?.variant;
   const readLabel = useMemo(() => {
@@ -59,4 +66,4 @@ const FieldSwitch: ProFieldFC<{
   return null;
 };
 
-export default React.forwardRef(FieldSwitch);
+export default FieldSwitch;

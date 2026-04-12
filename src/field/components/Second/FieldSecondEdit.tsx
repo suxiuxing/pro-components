@@ -8,7 +8,7 @@ type Props = Parameters<ProFieldFC<FieldSecondProps>>[0] & {
   placeholderValue: string;
 };
 
-export function FieldSecondEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldSecondEdit(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode: type, formItemRender, fieldProps, placeholderValue } = props;
   const dom = (
     <InputNumber

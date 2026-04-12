@@ -11,10 +11,15 @@ import ProField from '../Field';
  *
  * @param
  */
-const ProFormCascader: React.ForwardRefRenderFunction<
-  any,
-  ProFormFieldItemProps<CascaderProps<any>> & ProFormFieldRemoteProps
-> = ({ fieldProps, request, params, proFieldProps, ...rest }, ref) => {
+const ProFormCascader = ({
+  fieldProps,
+  request,
+  params,
+  proFieldProps,
+  ref,
+  ...rest
+}: ProFormFieldItemProps<CascaderProps<any>> &
+  ProFormFieldRemoteProps & { ref?: React.Ref<any> }) => {
   const context = useContext(FieldContext);
   return (
     <ProConfigProvider
@@ -54,4 +59,4 @@ const ProFormCascader: React.ForwardRefRenderFunction<
   );
 };
 
-export default React.forwardRef(ProFormCascader);
+export default ProFormCascader;

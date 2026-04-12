@@ -15,7 +15,7 @@ type Props = Omit<Parameters<ProFieldFC<FieldMoneyProps>>[0], 'moneySymbol'> & {
   getFormateValue: (value?: string | number) => string;
 };
 
-export function FieldMoneyEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldMoneyEdit(props: Props, ref?: React.Ref<unknown>) {
   const {
     text,
     mode: type,

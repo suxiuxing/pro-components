@@ -1,5 +1,5 @@
 import { omit, useControlledState } from '@rc-component/util';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -14,7 +14,7 @@ const FieldPassword: ProFieldFC<{
   text: string;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-}> = (props, ref) => {
+}> = (props) => {
   const intl = useIntl();
   const { text, mode, render, formItemRender, fieldProps, ...rest } = omit(props, ['proFieldKey']);
   const [open, setOpenInner] = useControlledState<boolean>(() => rest.open || false, rest.open);
@@ -40,12 +40,12 @@ const FieldPassword: ProFieldFC<{
   };
 
   if (isProFieldReadMode(mode)) {
-    return FieldPasswordRead({ ...merged, open, setOpen }, ref);
+    return FieldPasswordRead({ ...merged, open, setOpen }, props.ref);
   }
   if (isProFieldEditOrUpdateMode(mode)) {
-    return FieldPasswordEdit({ ...merged, intl }, ref);
+    return FieldPasswordEdit({ ...merged, intl }, props.ref);
   }
   return null;
 };
 
-export default React.forwardRef(FieldPassword);
+export default FieldPassword;

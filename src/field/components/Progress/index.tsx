@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -16,7 +16,7 @@ export { getProgressStatus };
 const FieldProgress: ProFieldFC<{
   text: number | string;
   placeholder?: string;
-}> = (props, ref) => {
+}> = (props) => {
   const intl = useIntl();
   const { text, mode, placeholder } = props;
   const placeholderValue = placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
@@ -28,13 +28,13 @@ const FieldProgress: ProFieldFC<{
     [text],
   );
   if (isProFieldReadMode(mode)) {
-    return FieldProgressRead({ ...props, realValue }, ref);
+    return FieldProgressRead({ ...props, realValue }, props.ref);
   }
 
   if (isProFieldEditOrUpdateMode(mode)) {
-    return FieldProgressEdit({ ...props, placeholderValue }, ref);
+    return FieldProgressEdit({ ...props, placeholderValue }, props.ref);
   }
   return null;
 };
 
-export default React.forwardRef(FieldProgress);
+export default FieldProgress;

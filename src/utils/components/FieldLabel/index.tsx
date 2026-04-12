@@ -29,7 +29,8 @@ export type FieldLabelProps = {
   onLabelClick?: () => void;
 };
 
-const FieldLabelFunction: React.ForwardRefRenderFunction<any, FieldLabelProps> = (props, ref) => {
+const FieldLabelFunction = (props: FieldLabelProps & { ref?: React.Ref<any> }) => {
+  const { ref } = props;
   const {
     label,
     onClear,
@@ -204,4 +205,4 @@ const FieldLabelFunction: React.ForwardRefRenderFunction<any, FieldLabelProps> =
   );
 };
 
-export const FieldLabel = React.forwardRef(FieldLabelFunction);
+export const FieldLabel = FieldLabelFunction;

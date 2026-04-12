@@ -16,84 +16,93 @@ export type ProFormRadioGroupProps = ProFormFieldItemProps<RadioGroupProps, HTML
   options?: RadioGroupProps['options'];
 } & ProFormFieldRemoteProps;
 
-const RadioGroup: React.FC<ProFormRadioGroupProps> = React.forwardRef(
-  ({ fieldProps, options, radioType, layout, proFieldProps, valueEnum, ...rest }, ref: any) => {
-    return (
-      <ProConfigProvider
-        valueTypeMap={{
-          radio: {
-            render: (text, props) => (
-              <FieldRadio
-                {...props}
-                text={text}
-              />
-            ),
-            formItemRender: (text, props) => (
-              <FieldRadio
-                {...props}
-                text={text}
-              />
-            ),
-          },
-          radioButton: {
-            render: (text, props) => {
-              console.log(props);
-              return (
-                <FieldRadio
-                  radioType={'button'}
-                  {...props}
-                  text={text}
-                />
-              );
-            },
-            formItemRender: (text, props) => (
+const RadioGroup: React.FC<ProFormRadioGroupProps> = ({
+  fieldProps,
+  options,
+  radioType,
+  layout,
+  proFieldProps,
+  valueEnum,
+  ref,
+  ...rest
+}: ProFormRadioGroupProps & { ref?: React.Ref<any> }) => {
+  return (
+    <ProConfigProvider
+      valueTypeMap={{
+        radio: {
+          render: (text, props) => (
+            <FieldRadio
+              {...props}
+              text={text}
+            />
+          ),
+          formItemRender: (text, props) => (
+            <FieldRadio
+              {...props}
+              text={text}
+            />
+          ),
+        },
+        radioButton: {
+          render: (text, props) => {
+            console.log(props);
+            return (
               <FieldRadio
                 radioType={'button'}
                 {...props}
                 text={text}
               />
-            ),
+            );
           },
+          formItemRender: (text, props) => (
+            <FieldRadio
+              radioType={'button'}
+              {...props}
+              text={text}
+            />
+          ),
+        },
+      }}
+    >
+      <ProField
+        valueType={radioType === 'button' ? 'radioButton' : 'radio'}
+        ref={ref}
+        valueEnum={runFunction<[any]>(valueEnum, undefined)}
+        {...rest}
+        fieldProps={{
+          options,
+          layout,
+          ...fieldProps,
         }}
-      >
-        <ProField
-          valueType={radioType === 'button' ? 'radioButton' : 'radio'}
-          ref={ref}
-          valueEnum={runFunction<[any]>(valueEnum, undefined)}
-          {...rest}
-          fieldProps={{
-            options,
-            layout,
-            ...fieldProps,
-          }}
-          proFieldProps={proFieldProps}
-          fieldConfig={{
-            customLightMode: true,
-          }}
-        />
-      </ProConfigProvider>
-    );
-  },
-);
+        proFieldProps={proFieldProps}
+        fieldConfig={{
+          customLightMode: true,
+        }}
+      />
+    </ProConfigProvider>
+  );
+};
 
 /**
  * Radio
  *
  * @param
  */
-const ProFormRadioComponents: React.FC<ProFormFieldItemProps<RadioProps>> = React.forwardRef(
-  ({ fieldProps, children }, ref: any) => {
-    const { ...restFieldProps } = fieldProps || {};
-    return (
-      <Radio
-        {...omit(restFieldProps, ['allowClear'])}
-        ref={ref}
-      >
-        {children}
-      </Radio>
-    );
-  },
-);
+const ProFormRadioComponents: React.FC<ProFormFieldItemProps<RadioProps>> = ({
+  fieldProps,
+  children,
+  ref,
+}: ProFormFieldItemProps<RadioProps> & { ref?: React.Ref<any> }) => {
+  const { ...restFieldProps } = fieldProps || {};
+  return (
+    <Radio
+      {...omit(restFieldProps, ['allowClear'])}
+      ref={ref}
+    >
+      {children}
+    </Radio>
+  );
+};
 
 const ProFormRadio = warpField<ProFormFieldItemProps<RadioProps>>?.(ProFormRadioComponents, {
   valuePropName: 'checked',

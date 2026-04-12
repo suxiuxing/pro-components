@@ -9,7 +9,7 @@ type Props = Parameters<ProFieldFC<PercentPropInt>>[0] & {
   showSymbol: boolean | undefined;
 };
 
-export function FieldPercentRead(props: Props, ref: React.Ref<unknown>) {
+export function FieldPercentRead(props: Props, ref?: React.Ref<unknown>) {
   const {
     text,
     prefix,

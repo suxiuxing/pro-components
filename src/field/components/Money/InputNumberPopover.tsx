@@ -11,12 +11,15 @@ export type InputNumberPopoverProps = InputNumberProps & {
   numberPopoverRender?: any;
 };
 
-const InputNumberPopover: React.ForwardRefExoticComponent<
-  InputNumberPopoverProps & React.RefAttributes<any>
-> = React.forwardRef<any, InputNumberPopoverProps>(function InputNumberPopoverInner(
-  { contentRender: content, numberFormatOptions, numberPopoverRender, open, onOpenChange, ...rest },
+const InputNumberPopover = function InputNumberPopoverInner({
+  contentRender: content,
+  numberFormatOptions,
+  numberPopoverRender,
+  open,
+  onOpenChange,
   ref,
-) {
+  ...rest
+}: InputNumberPopoverProps & { ref?: React.Ref<any> }) {
   const [value, setValueInner] = useControlledState<any>(() => rest.defaultValue, rest.value);
 
   // 使用本地状态管理 Popover 显示，同时支持受控模式
@@ -108,5 +111,5 @@ const InputNumberPopover: React.ForwardRefExoticComponent<
       />
     </Popover>
   );
-});
+};
 export default InputNumberPopover;

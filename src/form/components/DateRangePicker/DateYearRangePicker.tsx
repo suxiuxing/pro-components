@@ -12,23 +12,24 @@ const valueType = 'dateYearRange' as const;
  *
  * @param
  */
-export const ProFormDateYearRangePicker: React.FC<ProFormFieldItemProps<RangePickerProps>> =
-  React.forwardRef(({ fieldProps, proFieldProps, ...rest }, ref) => {
-    return (
-      <BaseDateRanger
-        ref={ref}
-        fieldProps={{
-          ...fieldProps,
-        }}
-        valueType={valueType}
-        proFieldProps={proFieldProps}
-        fieldConfig={{
-          valueType,
-          customLightMode: true,
-          lightFilterLabelFormatter: (value) =>
-            dateArrayFormatter(value, fieldProps?.format || 'YYYY-MM-DD'),
-        }}
-        {...rest}
-      />
-    );
-  });
+export const ProFormDateYearRangePicker: React.FC<
+  ProFormFieldItemProps<RangePickerProps> & { ref?: React.Ref<any> }
+> = ({ fieldProps, proFieldProps, ref, ...rest }) => {
+  return (
+    <BaseDateRanger
+      ref={ref}
+      fieldProps={{
+        ...fieldProps,
+      }}
+      valueType={valueType}
+      proFieldProps={proFieldProps}
+      fieldConfig={{
+        valueType,
+        customLightMode: true,
+        lightFilterLabelFormatter: (value) =>
+          dateArrayFormatter(value, fieldProps?.format || 'YYYY-MM-DD'),
+      }}
+      {...rest}
+    />
+  );
+};

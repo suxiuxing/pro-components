@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { intlMap as allIntlMap, useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -13,24 +13,22 @@ export type { FieldMoneyProps };
 /**
  * 金额组件
  */
-const FieldMoney: ProFieldFC<FieldMoneyProps> = (
-  {
-    text,
-    mode: type,
-    render,
-    formItemRender,
-    fieldProps,
-    proFieldKey,
-    valueEnum,
-    placeholder,
-    locale,
-    customSymbol = fieldProps.customSymbol,
-    numberFormatOptions = fieldProps?.numberFormatOptions,
-    numberPopoverRender = fieldProps?.numberPopoverRender || false,
-    ...rest
-  },
+const FieldMoney: ProFieldFC<FieldMoneyProps> = ({
+  text,
+  mode: type,
+  render,
+  formItemRender,
+  fieldProps,
+  proFieldKey,
+  valueEnum,
+  placeholder,
+  locale,
+  customSymbol = fieldProps.customSymbol,
+  numberFormatOptions = fieldProps?.numberFormatOptions,
+  numberPopoverRender = fieldProps?.numberPopoverRender || false,
   ref,
-) => {
+  ...rest
+}) => {
   const precision = fieldProps?.precision ?? DefaultPrecisionCont;
   let intl = useIntl();
   if (locale && allIntlMap[locale as 'zh-CN']) {
@@ -123,4 +121,4 @@ const FieldMoney: ProFieldFC<FieldMoneyProps> = (
   return null;
 };
 
-export default React.forwardRef(FieldMoney);
+export default FieldMoney;

@@ -73,96 +73,88 @@ const getBase64 = (file: FileType): Promise<string> =>
  *
  * @param
  */
-const BaseProFormUploadButton: React.FC<ProFormUploadButtonProps> = React.forwardRef<
-  UploadRef,
-  ProFormUploadButtonProps
->(
-  (
-    {
-      fieldProps,
-      action,
-      accept,
-      listType,
-      title = '单击上传',
-      max,
-      icon = <UploadOutlined />,
-      buttonProps,
-      disabled,
-      proFieldProps,
-      imageProps,
-      ...restProps
-    },
-    ref,
-  ) => {
-    const [previewOpen, setPreviewOpen] = useState(false);
-    const [previewImage, setPreviewImage] = useState('');
-    const value = useMemo(() => {
-      return restProps.fileList ?? restProps.value;
-    }, [restProps.fileList, restProps.value]);
-    const handlePreview = async (file: UploadFile) => {
-      if (!file.url && !file.preview) {
-        file.preview = await getBase64(file.originFileObj as FileType);
-      }
+const BaseProFormUploadButton: React.FC<ProFormUploadButtonProps> = ({
+  fieldProps,
+  action,
+  accept,
+  listType,
+  title = '单击上传',
+  max,
+  icon = <UploadOutlined />,
+  buttonProps,
+  disabled,
+  proFieldProps,
+  imageProps,
+  ref,
+  ...restProps
+}: ProFormUploadButtonProps & { ref?: React.Ref<UploadRef> }) => {
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const value = useMemo(() => {
+    return restProps.fileList ?? restProps.value;
+  }, [restProps.fileList, restProps.value]);
+  const handlePreview = async (file: UploadFile) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj as FileType);
+    }
 
-      setPreviewImage(file.url || (file.preview as string));
-      setPreviewOpen(true);
-    };
-    const modeContext = useContext(EditOrReadOnlyContext);
-    const mode = proFieldProps?.mode || modeContext.mode || 'edit';
+    setPreviewImage(file.url || (file.preview as string));
+    setPreviewOpen(true);
+  };
+  const modeContext = useContext(EditOrReadOnlyContext);
+  const mode = proFieldProps?.mode || modeContext.mode || 'edit';
 
-    // 如果配置了 max ，并且 超过了文件列表的大小，就不展示按钮
-    const showUploadButton =
-      (max === undefined || !value || value?.length < max) && mode !== 'read';
-    const isPictureCard = (listType ?? fieldProps?.listType) === 'picture-card';
-    // 参考 antd：不传 id 给 Upload，避免点击 label 触发 file input 打开文件选择器
-    const { id: _id, ...uploadFieldProps } = fieldProps || {};
-    return (
-      <>
-        <Upload
-          action={action}
-          accept={accept}
-          ref={ref}
-          listType={listType || 'picture'}
-          fileList={value}
-          onPreview={handlePreview}
-          {...uploadFieldProps}
-          name={uploadFieldProps?.name ?? 'file'}
-          onChange={(info) => {
-            uploadFieldProps?.onChange?.(info);
+  // 如果配置了 max ，并且 超过了文件列表的大小，就不展示按钮
+  const showUploadButton = (max === undefined || !value || value?.length < max) && mode !== 'read';
+  const isPictureCard = (listType ?? fieldProps?.listType) === 'picture-card';
+  // 参考 antd：不传 id 给 Upload，避免点击 label 触发 file input 打开文件选择器
+  const { id: _id, ...uploadFieldProps } = fieldProps || {};
+  return (
+    <>
+      <Upload
+        action={action}
+        accept={accept}
+        ref={ref}
+        listType={listType || 'picture'}
+        fileList={value}
+        onPreview={handlePreview}
+        {...uploadFieldProps}
+        name={uploadFieldProps?.name ?? 'file'}
+        onChange={(info) => {
+          uploadFieldProps?.onChange?.(info);
+        }}
+      >
+        {showUploadButton &&
+          (isPictureCard ? (
+            <span>
+              {icon} {title}
+            </span>
+          ) : (
+            <Button
+              disabled={disabled || uploadFieldProps?.disabled}
+              {...buttonProps}
+            >
+              {icon}
+              {title}
+            </Button>
+          ))}
+      </Upload>
+      {previewImage && (
+        <Image
+          styles={{ root: { display: 'none' } }}
+          {...imageProps}
+          preview={{
+            open: previewOpen,
+            onOpenChange: (open: boolean) => setPreviewOpen(open),
+            afterOpenChange: (open: boolean) => !open && setPreviewImage(''),
+            ...(imageProps?.preview as any),
           }}
-        >
-          {showUploadButton &&
-            (isPictureCard ? (
-              <span>
-                {icon} {title}
-              </span>
-            ) : (
-              <Button
-                disabled={disabled || uploadFieldProps?.disabled}
-                {...buttonProps}
-              >
-                {icon}
-                {title}
-              </Button>
-            ))}
-        </Upload>
-        {previewImage && (
-          <Image
-            styles={{ root: { display: 'none' } }}
-            {...imageProps}
-            preview={{
-              open: previewOpen,
-              onOpenChange: (open: boolean) => setPreviewOpen(open),
-              afterOpenChange: (open: boolean) => !open && setPreviewImage(''),
-              ...(imageProps?.preview as any),
-            }}
-            src={previewImage}
-          />
-        )}
-      </>
-    );
-  },
-);
+          src={previewImage}
+        />
+      )}
+    </>
+  );
+};
 
 const ProFormUploadButton = warpField<ProFormUploadButtonProps>?.(BaseProFormUploadButton, {
   getValueFromEvent: (value: { fileList: UploadProps['fileList'] }) => value.fileList,

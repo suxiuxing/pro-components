@@ -10,7 +10,7 @@ import ProField from '../Field';
 
 export const BaseDateRanger: React.FC<
   ProFormFieldItemProps<RangePickerProps> & {
-    ref: any;
+    ref?: any;
     valueType:
       | 'dateQuarterRange'
       | 'dateMonthRange'
@@ -19,7 +19,7 @@ export const BaseDateRanger: React.FC<
       | 'dateWeekRange'
       | 'dateTimeRange';
   }
-> = React.forwardRef(({ fieldProps, proFieldProps, valueType, ...rest }, ref) => {
+> = ({ fieldProps, proFieldProps, valueType, ref, ...rest }) => {
   const context = useContext(FieldContext);
   const mergedFieldProps = useMemo(() => {
     const nextFieldProps = fieldProps ? { ...fieldProps } : {};
@@ -92,4 +92,4 @@ export const BaseDateRanger: React.FC<
       />
     </ProConfigProvider>
   );
-});
+};

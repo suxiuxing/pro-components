@@ -14,7 +14,7 @@ type Props = Parameters<
   intl: IntlType;
 };
 
-export function FieldPasswordEdit(props: Props, ref: React.Ref<unknown>) {
+export function FieldPasswordEdit(props: Props, ref?: React.Ref<unknown>) {
   const { text, mode, formItemRender, fieldProps, intl } = props;
   const dom = (
     <Input.Password

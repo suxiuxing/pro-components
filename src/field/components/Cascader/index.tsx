@@ -1,5 +1,5 @@
 import { ConfigProvider } from 'antd';
-import React, { useContext, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { useContext, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOnlyMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -14,10 +14,17 @@ export type { GroupProps };
 /**
  * 级联选择组件
  */
-const FieldCascader: ProFieldFC<GroupProps> = (
-  { placeholder, formItemRender, mode, render, label, light, variant, ...rest },
+const FieldCascader: ProFieldFC<GroupProps> = ({
+  placeholder,
+  formItemRender,
+  mode,
+  render,
+  label,
+  light,
+  variant,
   ref,
-) => {
+  ...rest
+}) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
 
   const layoutClassName = getPrefixCls('pro-field-cascader');
@@ -104,4 +111,4 @@ const FieldCascader: ProFieldFC<GroupProps> = (
   return null;
 };
 
-export default React.forwardRef(FieldCascader);
+export default FieldCascader;
