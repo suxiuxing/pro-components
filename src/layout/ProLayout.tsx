@@ -222,7 +222,7 @@ export type ProLayoutProps = GlobalTypes & {
    *
    * @example  重新获取菜单 actionRef.current.reload();
    * */
-  actionRef?: React.MutableRefObject<
+  actionRef?: React.RefObject<
     | {
         reload: () => void;
       }

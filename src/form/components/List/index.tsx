@@ -84,7 +84,7 @@ export type ProFormListProps<T> = Omit<FormListProps, 'children' | 'rules'> &
      * @example  actionRef?.current.get?.(1);
      * @example  actionRef?.current.getList?.();
      */
-    actionRef?: React.MutableRefObject<FormListActionType<T> | undefined>;
+    actionRef?: React.RefObject<FormListActionType<T> | undefined>;
     /** 放在div上面的属性 */
     style?: React.CSSProperties;
     /**

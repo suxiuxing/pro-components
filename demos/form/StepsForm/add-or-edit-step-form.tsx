@@ -50,7 +50,7 @@ const jobType = [
   },
 ];
 const EditExample = () => {
-  const formMapRef = useRef<React.MutableRefObject<ProFormInstance<any> | undefined>[]>([]);
+  const formMapRef = useRef<React.RefObject<ProFormInstance<any> | undefined>[]>([]);
   useEffect(() => {
     waitTime(1000).then(() => {
       // In the editing scenario, you need to use formMapRef to loop through and set formData

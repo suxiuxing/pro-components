@@ -18,7 +18,7 @@ export type TableToolbarProps<T extends Record<string, any>> = {
   searchNode: React.ReactNode;
   options: ProTableProps<T, any, any>['options'];
   optionsRender: ProTableProps<T, any, any>['optionsRender'];
-  actionRef: React.MutableRefObject<ActionType | undefined>;
+  actionRef: React.RefObject<ActionType | undefined>;
   setFormSearch: (value: Record<string, any> | undefined) => void;
   formSearch: Record<string, any> | undefined;
 };

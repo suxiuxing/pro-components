@@ -380,7 +380,7 @@ function DrawerForm<T = Record<string, any>, U = Record<string, any>>({
             formRef={formRef}
             onInit={(_, form) => {
               if (rest.formRef) {
-                (rest.formRef as React.MutableRefObject<ProFormInstance<T>>).current = form;
+                (rest.formRef as React.RefObject<ProFormInstance<T>>).current = form;
               }
               rest?.onInit?.(_, form);
               formRef.current = form;

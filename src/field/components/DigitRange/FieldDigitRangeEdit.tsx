@@ -1,12 +1,12 @@
 import { Input, InputNumber, Space } from 'antd';
-import type { MutableRefObject } from 'react';
+import type { RefObject } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import type { FieldDigitRangeProps, Value, ValuePair } from './types';
 
 type Props = Parameters<ProFieldFC<FieldDigitRangeProps>>[0] & {
   valuePair: ValuePair | undefined;
-  valuePairRef: MutableRefObject<ValuePair | undefined>;
+  valuePairRef: RefObject<ValuePair | undefined>;
   setValuePair: (
     updater: ValuePair | undefined | ((prev: ValuePair | undefined) => ValuePair | undefined),
   ) => void;

@@ -117,7 +117,7 @@ export type EditableProTableProps<T, U extends ParamsType, ValueType = 'text'> =
 };
 
 const EditableTableActionContext = React.createContext<
-  React.MutableRefObject<ActionType | undefined> | undefined
+  React.RefObject<ActionType | undefined> | undefined
 >(undefined);
 
 /** 可编辑表格的按钮 */

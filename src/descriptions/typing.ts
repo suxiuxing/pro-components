@@ -62,7 +62,7 @@ export type ProDescriptionsProps<
     params: Record<string, unknown> | undefined,
   ) => Promise<ProDescriptionsRequestResult<TRecord>>;
   columns?: ProDescriptionsColumn<TRecord, TValueType>[];
-  actionRef?: React.MutableRefObject<ProCoreActionType<any> | undefined>;
+  actionRef?: React.RefObject<ProCoreActionType<any> | undefined>;
   loading?: boolean;
   onLoadingChange?: (loading?: boolean) => void;
   tooltip?: LabelTooltipType | string;

@@ -110,9 +110,7 @@ export type CommonFormProps<T = Record<string, any>, U = Record<string, any>> = 
    *
    * - formRef.current.nativeElement => `2.29.1+`
    */
-  formRef?:
-    | React.MutableRefObject<ProFormRef<T> | undefined | null>
-    | React.RefObject<ProFormRef<T> | undefined | null>;
+  formRef?: React.RefObject<ProFormRef<T> | undefined | null>;
 
   /**
    * @name 同步结果到 url 中

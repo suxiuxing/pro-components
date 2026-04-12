@@ -53,7 +53,7 @@ export type ToolBarProps<T = unknown> = {
       selectedRows?: T[];
     },
   ) => React.ReactNode[];
-  action: React.MutableRefObject<ActionType | undefined>;
+  action: React.RefObject<ActionType | undefined>;
   options?: OptionConfig | false;
   optionsRender?: ToolbarRenderProps<T>['optionsRender'];
   selectedRowKeys?: (string | number)[];
@@ -98,7 +98,7 @@ function renderDefaultOption<T>(
   defaultOptions: OptionConfig & {
     intl: IntlType;
   },
-  actions: React.MutableRefObject<ActionType | undefined>,
+  actions: React.RefObject<ActionType | undefined>,
   columns: TableColumnType<T>[],
 ) {
   return Object.keys(options)
@@ -291,7 +291,7 @@ export type ToolbarRenderProps<T> = {
   options: ProTableProps<T, any, any>['options'];
   optionsRender?: (props: ToolBarProps<T>, defaultDom: React.ReactNode[]) => React.ReactNode[];
   toolBarRender?: ToolBarProps<T>['toolBarRender'];
-  actionRef: React.MutableRefObject<ActionType | undefined>;
+  actionRef: React.RefObject<ActionType | undefined>;
 };
 
 /** 这里负责与table交互，并且减少 render次数 */

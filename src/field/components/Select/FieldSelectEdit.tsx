@@ -1,6 +1,6 @@
 import type { SelectProps } from 'antd';
 import { Spin } from 'antd';
-import React, { MutableRefObject } from 'react';
+import React, { RefObject } from 'react';
 
 import type { IntlType } from '../../../provider';
 import type { ProFieldFC } from '../../types';
@@ -19,7 +19,7 @@ type Props = Parameters<ProFieldFC<FieldSelectFullProps>>[0] & {
   fetchData: (keyWord?: string) => void;
   resetData: () => void;
   inputRef: React.RefObject<any>;
-  keyWordsRef: MutableRefObject<string>;
+  keyWordsRef: RefObject<string>;
   componentSize: string;
 };
 

@@ -159,12 +159,12 @@ export type ActionTypeText<T> = {
 export type ActionRenderConfig<T, LineConfig = NewLineConfig<T>> = {
   editableKeys?: RowEditableConfig<T>['editableKeys'];
   recordKey: RecordKey;
-  preEditRowRef: React.MutableRefObject<T | null>;
+  preEditRowRef: React.RefObject<T | null>;
   /**
    * 多行编辑场景下，按 recordKey 缓存每一行进入编辑前的快照（允许为 null，用于标记“新建行”）
    * 用于避免 preEditRowRef（单引用）在多行编辑时被覆盖导致取消误删/误还原的问题
    */
-  preEditRowRefs?: React.MutableRefObject<Map<string, T | null>>;
+  preEditRowRefs?: React.RefObject<Map<string, T | null>>;
   index?: number;
   cancelEditable: (key: RecordKey) => void;
   onSave: RowEditableConfig<T>['onSave'];

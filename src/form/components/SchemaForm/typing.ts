@@ -129,7 +129,7 @@ export type FormSchema<T = Record<string, any>, ValueType = 'text'> = {
   description?: React.ReactNode;
   steps?: StepFormProps[];
   type?: any;
-  action?: React.MutableRefObject<ProCoreActionType | undefined>;
+  action?: React.RefObject<ProCoreActionType | undefined>;
   /**
    * @default true
    * Fine-grained control over when to update
@@ -150,7 +150,7 @@ export type ProFormRenderValueTypeItem<T, ValueType> = {
 export type ProFormRenderValueTypeHelpers<T, ValueType> = {
   originItem: ProFormColumnsType<T, ValueType>;
   type: ProSchemaComponentTypes;
-  formRef: React.MutableRefObject<FormInstance<any> | undefined>;
+  formRef: React.RefObject<FormInstance<any> | undefined>;
   genItems: (items: ProFormColumnsType<T, ValueType>[]) => React.ReactNode[];
 } & Pick<FormSchema<T, ValueType>, 'action'>;
 

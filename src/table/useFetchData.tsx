@@ -29,7 +29,7 @@ const useFetchData = <DataSource extends RequestData<any>>(
   const umountRef = useRef<boolean>(false);
   /**
    * 用于保存 AbortController 实例的引用，方便需要时进行请求的取消操作
-   * @type {React.MutableRefObject<AbortController | null>}
+   * @type {React.RefObject<AbortController | null>}
    */
   const abortRef = useRef<AbortController | null>(null);
   /**
