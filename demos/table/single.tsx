@@ -156,7 +156,7 @@ const columns: ProColumns<GithubIssueItem>[] = [
 ];
 
 const Demo = () => {
-  const actionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType | undefined>(undefined);
   return (
     <ProTable<GithubIssueItem>
       columns={columns}

@@ -161,7 +161,7 @@ function InternalProList<
     ...rest
   } = props;
 
-  const actionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType | undefined>(undefined);
 
   useImperativeHandle(rest.actionRef, () => actionRef.current);
 

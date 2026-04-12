@@ -72,7 +72,7 @@ function BetaSchemaForm<T, ValueType = 'text'>(props: FormSchema<T, ValueType>) 
   const [formDomsDeps, updatedFormDoms] = useState<[]>(() => []);
 
   const formRef = useReactiveRef<ProFormInstance | undefined>(props.form || formInstance || form);
-  const oldValuesRef = useRef<T>();
+  const oldValuesRef = useRef<T | undefined>(undefined);
   const propsRef = useLatest(props);
 
   /**

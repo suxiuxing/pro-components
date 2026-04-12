@@ -1,10 +1,11 @@
 import { Input, Tooltip } from 'antd';
 import { useRef } from 'react';
 
+import type { ProDescriptionsActionType } from '@xxlabs/pro-components';
 import { ProDescriptions } from '@xxlabs/pro-components';
 
 const Demo = () => {
-  const actionRef = useRef();
+  const actionRef = useRef<ProDescriptionsActionType | undefined>(undefined);
   return (
     <ProDescriptions
       actionRef={actionRef}

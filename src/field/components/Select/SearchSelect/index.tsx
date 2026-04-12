@@ -138,7 +138,7 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]>, ref: any) => {
 
   const [searchValue, setSearchValue] = useControlledState(defaultSearchValue, propsSearchValue);
 
-  const selectRef = useRef<any>();
+  const selectRef = useRef<any>(undefined);
 
   useImperativeHandle(ref, () => selectRef.current);
 

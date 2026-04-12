@@ -50,8 +50,8 @@ const Demo = () => {
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() => []);
   const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>('bottom');
   const [controlled, setControlled] = useState<boolean>(false);
-  const formRef = useRef<ProFormInstance<any>>();
-  const editorFormRef = useRef<EditableFormInstance<DataSourceType>>();
+  const formRef = useRef<ProFormInstance<any> | undefined>(undefined);
+  const editorFormRef = useRef<EditableFormInstance<DataSourceType> | undefined>(undefined);
   const columns: ProColumns<DataSourceType>[] = [
     {
       title: '任务名称',

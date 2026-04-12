@@ -163,7 +163,7 @@ const EditorProTableDemo = (
     position?: 'top';
   } & TableRowEditable<DataSourceType>,
 ) => {
-  const actionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType | undefined>(undefined);
   const [editableKeys, setEditorRowKeysInner] = useControlledState<React.Key[]>(
     () => props.defaultKeys || [],
     props.editorRowKeys,

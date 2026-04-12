@@ -10,6 +10,7 @@ import {
   ProFormSelect,
   ProFormText,
 } from '@xxlabs/pro-components';
+import type { ProFormInstance } from '@xxlabs/pro-components';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -20,7 +21,13 @@ const waitTime = (time: number = 100) => {
 };
 
 const Demo = () => {
-  const formRef = useRef();
+  const formRef = useRef<
+    | ProFormInstance<{
+        name: string;
+        company: string;
+      }>
+    | undefined
+  >(undefined);
   return (
     <div
       style={{

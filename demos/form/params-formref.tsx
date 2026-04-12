@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
+import type { ProFormInstance } from '@xxlabs/pro-components';
 import { BetaSchemaForm } from '@xxlabs/pro-components';
 
 const Demo = () => {
-  const targetRef = useRef();
+  const targetRef = useRef<ProFormInstance | undefined>(undefined);
 
   const [requestLibData, setRequestLibData] = useState(0);
   useEffect(() => {

@@ -29,7 +29,7 @@ const columns: ProColumns<TableListItem>[] = [
 
 // demo
 const ProTableSpinDemo = () => {
-  const ref = useRef<ProFormInstance>();
+  const ref = useRef<ProFormInstance | undefined>(undefined);
   const [collapsed, setCollapsed] = useState(false);
   const [loading, setLoading] = useState({ spinning: true, delay: 1000 });
   const [polling, setPolling] = useState<any>(undefined);

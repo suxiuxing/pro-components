@@ -13,8 +13,8 @@ const waitTime = (time: number = 100) => {
 };
 
 const Demo = () => {
-  const captchaRef = useRef<CaptFieldRef | null | undefined>();
-  const inputRef = useRef();
+  const captchaRef = useRef<CaptFieldRef | undefined>(undefined);
+  const inputRef = useRef<any>(undefined);
 
   return (
     <ProForm

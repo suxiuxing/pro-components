@@ -24,7 +24,7 @@ const columns: ProColumns<TableListItem>[] = [
 ];
 
 const Demo = () => {
-  const ref = useRef<ProFormInstance>();
+  const ref = useRef<ProFormInstance | undefined>(undefined);
   const [collapsed, setCollapsed] = useState(false);
 
   return (

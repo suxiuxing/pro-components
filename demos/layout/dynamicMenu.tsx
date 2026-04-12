@@ -16,9 +16,12 @@ const waitTime = (time: number = 100) => {
 let serviceData: any[] = customMenuDate;
 
 const Demo = () => {
-  const actionRef = useRef<{
-    reload: () => void;
-  }>();
+  const actionRef = useRef<
+    | {
+        reload: () => void;
+      }
+    | undefined
+  >(undefined);
   const [toggle, setToggle] = useState(false);
   return (
     <>

@@ -19,7 +19,7 @@ import React, {
 import type { ActionType } from '.';
 import ProCard from '../card';
 import ValueTypeToComponent from '../field/ValueTypeToComponent';
-import ProForm, { GridContext } from '../form';
+import ProForm, { GridContext, type ProFormInstance } from '../form';
 import type { ParamsType } from '../provider';
 import ProConfigContext, { ProConfigProvider, proTheme, useIntl } from '../provider';
 import {
@@ -318,11 +318,11 @@ const ProTable = <T extends Record<string, any>, U extends ParamsType, ValueType
   const className = clsx(defaultClassName, propsClassName, hashId);
 
   /** 通用的来操作子节点的工具类 */
-  const actionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType | undefined>(undefined);
   // antd Table 实例 ref（仅用于转发 scrollTo 能力）
   const antTableRef = useRef<any>(null);
 
-  const defaultFormRef = useRef();
+  const defaultFormRef = useRef<ProFormInstance | undefined>(undefined);
   const formRef = propRef || defaultFormRef;
 
   useImperativeHandle(propsActionRef, () => actionRef.current);

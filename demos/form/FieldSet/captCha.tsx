@@ -1,6 +1,7 @@
 import { Button, message } from 'antd';
 import { useRef } from 'react';
 
+import type { CaptFieldRef } from '@xxlabs/pro-components';
 import { ProForm, ProFormCaptcha } from '@xxlabs/pro-components';
 
 const waitTime = (time: number = 100) => {
@@ -12,8 +13,8 @@ const waitTime = (time: number = 100) => {
 };
 
 const Demo = () => {
-  const captchaRef = useRef();
-  const inputRef = useRef();
+  const captchaRef = useRef<CaptFieldRef | undefined>(undefined);
+  const inputRef = useRef<any>(undefined);
 
   return (
     <ProForm

@@ -3124,10 +3124,11 @@ describe('ProForm', () => {
     const fn2 = vi.fn();
     const App = () => {
       const formRef = useRef<
-        ProFormInstance<{
-          date: string;
-        }>
-      >();
+        | ProFormInstance<{
+            date: string;
+          }>
+        | undefined
+      >(undefined);
 
       useEffect(() => {
         formRef.current?.validateFieldsReturnFormatValue?.().then((val) => {

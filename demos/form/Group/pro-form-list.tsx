@@ -6,10 +6,11 @@ import { ProCard, ProForm, ProFormGroup, ProFormList, ProFormText } from '@xxlab
 
 const Demo = () => {
   const actionRef = useRef<
-    FormListActionType<{
-      name: string;
-    }>
-  >();
+    | FormListActionType<{
+        name: string;
+      }>
+    | undefined
+  >(undefined);
   return (
     <>
       <Space

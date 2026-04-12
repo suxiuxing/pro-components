@@ -5,7 +5,7 @@ import type { ProDescriptionsActionType } from '@xxlabs/pro-components';
 import { ProDescriptions } from '@xxlabs/pro-components';
 
 const Demo = () => {
-  const actionRef = useRef<ProDescriptionsActionType>();
+  const actionRef = useRef<ProDescriptionsActionType | undefined>(undefined);
   return (
     <ProDescriptions
       actionRef={actionRef}

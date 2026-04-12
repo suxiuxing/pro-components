@@ -12,9 +12,10 @@ import {
   ProFormUploadButton,
   ProFormUploadDragger,
 } from '@xxlabs/pro-components';
+import type { ProFormInstance } from '@xxlabs/pro-components';
 
 const Demo = () => {
-  const formRef = useRef();
+  const formRef = useRef<ProFormInstance | undefined>(undefined);
   return (
     <ProForm
       name="validate_other"

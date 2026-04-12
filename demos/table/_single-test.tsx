@@ -182,8 +182,8 @@ const columns: ProColumns<GithubIssueItem>[] = [
 ];
 
 const Demo = () => {
-  const actionRef = useRef<ActionType>();
-  const staticTableActionRef = useRef<ActionType>();
+  const actionRef = useRef<ActionType | undefined>(undefined);
+  const staticTableActionRef = useRef<ActionType | undefined>(undefined);
 
   return (
     <ConfigProvider prefixCls="canvas">

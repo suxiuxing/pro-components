@@ -165,7 +165,7 @@ const columns: ProFormColumnsType<DataItem>[][] = [
 ];
 
 const Demo = () => {
-  const formRef = useRef<ProFormInstance>();
+  const formRef = useRef<ProFormInstance | undefined>(undefined);
 
   return (
     <BetaSchemaForm<DataItem>

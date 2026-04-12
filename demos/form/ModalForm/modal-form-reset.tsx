@@ -13,8 +13,8 @@ const waitTime = (time: number = 100) => {
 };
 
 const Demo = () => {
-  const restFormRef = useRef<ProFormInstance>();
-  const formRef = useRef<ProFormInstance>();
+  const restFormRef = useRef<ProFormInstance | undefined>(undefined);
+  const formRef = useRef<ProFormInstance | undefined>(undefined);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   return (

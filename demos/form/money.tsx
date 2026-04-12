@@ -14,12 +14,13 @@ const waitTime = (time: number = 100) => {
 
 const Demo = () => {
   const formRef = useRef<
-    ProFormInstance<{
-      name: string;
-      company?: string;
-      useMode?: string;
-    }>
-  >();
+    | ProFormInstance<{
+        name: string;
+        company?: string;
+        useMode?: string;
+      }>
+    | undefined
+  >(undefined);
 
   const [readonly, setReadonly] = useState(false);
   return (

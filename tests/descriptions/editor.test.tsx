@@ -92,7 +92,7 @@ const DescriptionsDemo = (
   } & RowEditableConfig<DataSourceType>,
 ) => {
   const [form] = Form.useForm();
-  const actionRef = useRef<ProDescriptionsActionType>();
+  const actionRef = useRef<ProDescriptionsActionType | undefined>(undefined);
   const [editableKeys, setEditorRowKeysInner] = useControlledState<React.Key[]>(
     () => props.defaultKeys || [],
     props.editorRowKeys,

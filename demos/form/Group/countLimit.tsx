@@ -6,10 +6,11 @@ import { ProForm, ProFormList, ProFormText } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const actionRef = useRef<
-    FormListActionType<{
-      name: string;
-    }>
-  >();
+    | FormListActionType<{
+        name: string;
+      }>
+    | undefined
+  >(undefined);
   return (
     <>
       <ProForm name="group-countlimit-demo">
