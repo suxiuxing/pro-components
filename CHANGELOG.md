@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/suxiuxing/pro-components/compare/v1.0.2...v1.0.3) (2026-04-12)
+
+
+### Bug Fixes
+
+* update package description and dependencies for modernization ([356b132](https://github.com/suxiuxing/pro-components/commit/356b132b454dbcac99867421f9ab85d9bfd8d1a9))
+
 ## [1.0.2](https://github.com/suxiuxing/pro-components/compare/v1.0.1...v1.0.2) (2026-04-11)
 
 
