@@ -33,10 +33,14 @@ export type ThemeColorProps = {
   hashId: string;
 };
 
-const ThemeColorRender: React.ForwardRefRenderFunction<HTMLDivElement, ThemeColorProps> = (
-  { value, colorList, onChange, prefixCls, formatMessage, hashId },
-  _ref,
-) => {
+const ThemeColorRender: React.ForwardRefRenderFunction<HTMLDivElement, ThemeColorProps> = ({
+  value,
+  colorList,
+  onChange,
+  prefixCls,
+  formatMessage,
+  hashId,
+}) => {
   if (!colorList || colorList?.length < 1) {
     return null;
   }

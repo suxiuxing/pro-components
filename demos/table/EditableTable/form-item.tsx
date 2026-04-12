@@ -56,7 +56,7 @@ const Demo = () => {
     {
       title: '任务名称',
       dataIndex: 'title',
-      formItemProps: (_form, _config) => {
+      formItemProps: () => {
         return {
           rules: [
             // 自定义 validator 放前面，空值时显式通过，避免干扰 required

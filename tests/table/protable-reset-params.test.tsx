@@ -3,7 +3,12 @@ import { Button } from 'antd';
 import { useRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { ActionType, ProColumns, ProFormInstance } from '@xxlabs/pro-components';
+import type {
+  ActionType,
+  ProColumns,
+  ProFormInstance,
+  ProTableProps,
+} from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
 
 type DataItem = {
@@ -12,18 +17,19 @@ type DataItem = {
   status?: string;
 };
 
+type SearchParams = Pick<DataItem, 'keyword' | 'status'>;
+type TableRequest = NonNullable<ProTableProps<DataItem, SearchParams>['request']>;
+
 afterEach(() => {
   cleanup();
 });
 
 describe('ProTable actionRef.reset()', () => {
   it('should keep request params in sync with resetFields initialValue', async () => {
-    const requestMock = vi.fn(async (_params: any) => {
-      return Promise.resolve({
-        data: [],
-        success: true,
-        total: 0,
-      });
+    const requestMock = vi.fn<TableRequest>().mockResolvedValue({
+      data: [],
+      success: true,
+      total: 0,
     });
 
     const columns: ProColumns<DataItem>[] = [
@@ -55,7 +61,7 @@ describe('ProTable actionRef.reset()', () => {
           manualRequest
           actionRef={actionRef}
           formRef={formRef}
-          request={requestMock as any}
+          request={requestMock}
           toolBarRender={() => [
             <Button
               key="set"

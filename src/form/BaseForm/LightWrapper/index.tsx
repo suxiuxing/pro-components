@@ -39,10 +39,7 @@ export type LightWrapperProps = {
   placement?: TooltipPlacement;
 };
 
-const LightWrapperRender: React.ForwardRefRenderFunction<any, LightWrapperProps> = (
-  props,
-  _ref,
-) => {
+const LightWrapperRender: React.ForwardRefRenderFunction<any, LightWrapperProps> = (props) => {
   const {
     label,
     size,

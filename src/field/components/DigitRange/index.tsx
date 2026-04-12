@@ -69,24 +69,21 @@ const FieldDigitRange: ProFieldFC<FieldDigitRangeProps> = (
         intl.getMessage('tableForm.inputPlaceholder', '请输入'),
       ];
 
-    return FieldDigitRangeEdit(
-      {
-        text,
-        mode: type,
-        render,
-        placeholder,
-        formItemRender,
-        fieldProps,
-        separator,
-        separatorWidth,
-        valuePair,
-        valuePairRef,
-        setValuePair,
-        token,
-        placeholderValue,
-      },
-      ref,
-    );
+    return FieldDigitRangeEdit({
+      text,
+      mode: type,
+      render,
+      placeholder,
+      formItemRender,
+      fieldProps,
+      separator,
+      separatorWidth,
+      valuePair,
+      valuePairRef,
+      setValuePair,
+      token,
+      placeholderValue,
+    });
   }
   return null;
 };

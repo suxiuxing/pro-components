@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Button, Input, Popover } from 'antd';
 import React, { act, useRef, useState } from 'react';
@@ -1626,7 +1625,7 @@ describe('BasicTable', () => {
       schema: any;
       type?: string;
       dom: React.ReactNode;
-    }> = ({ schema, type: _type, dom: _dom }) => {
+    }> = ({ schema }) => {
       const [open, setOpen] = useState(false);
       return (
         <Popover

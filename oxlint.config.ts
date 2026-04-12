@@ -11,9 +11,7 @@ export default defineConfig({
       'error',
       {
         vars: 'all',
-        varsIgnorePattern: '^_',
         args: 'after-used',
-        argsIgnorePattern: '^_',
         caughtErrors: 'all',
         caughtErrorsIgnorePattern: '^_',
         ignoreRestSiblings: true,

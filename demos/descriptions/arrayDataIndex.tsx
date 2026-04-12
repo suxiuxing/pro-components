@@ -23,7 +23,7 @@ const Demo = () => {
         });
       }}
       editable={{
-        onSave: async (_keypath, _newInfo, _oriInfo) => {
+        onSave: async () => {
           return true;
         },
       }}

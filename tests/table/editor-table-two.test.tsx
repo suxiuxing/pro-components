@@ -225,7 +225,7 @@ const EditorProTableDemo = (
       ]}
       columns={columns.map((item) => {
         if (props.hideRules) {
-          // eslint-disable-next-line no-param-reassign
+          //
           delete item.formItemProps;
         }
         return item;
@@ -1127,7 +1127,7 @@ describe('EditorProTable 2', () => {
       schema: ProColumns<DataSourceType>;
       type?: string;
       dom: React.ReactNode;
-    }> = ({ schema, type: _type, dom: _dom }) => {
+    }> = ({ schema }) => {
       const [open, setOpen] = useState(false);
       return (
         <Popover

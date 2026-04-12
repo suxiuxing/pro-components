@@ -28,7 +28,7 @@ const iconStyles: CSSProperties = {
 };
 
 const Page = () => {
-  const [loginType, _setLoginType] = useState<LoginType>('phone');
+  const [loginType] = useState<LoginType>('phone');
   const { token } = theme.useToken();
   return (
     <div

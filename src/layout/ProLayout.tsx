@@ -417,7 +417,7 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
 
   const prefixCls = props.prefixCls ?? context.getPrefixCls('pro');
 
-  const [menuLoadingState, _setMenuLoadingInner] = useControlledState(false, menu?.loading);
+  const [menuLoadingState] = useControlledState(false, menu?.loading);
 
   /**
    * 使用 useRefFunction 包装回调，确保引用稳定

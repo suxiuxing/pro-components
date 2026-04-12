@@ -29,7 +29,7 @@ const ProCardDivider: React.FC<ProCardDividerProps> = (props) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const proCardPrefixCls = getPrefixCls('pro-card');
   const prefixCls = `${proCardPrefixCls}-divider`;
-  const { wrapSSR, hashId } = useStyle(proCardPrefixCls);
+  const { wrapSSR, hashId } = useStyle();
 
   const { className, style = {}, orientation = 'vertical' } = props;
 

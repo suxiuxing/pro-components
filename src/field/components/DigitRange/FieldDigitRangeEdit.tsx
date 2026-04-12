@@ -1,5 +1,5 @@
 import { Input, InputNumber, Space } from 'antd';
-import type { MutableRefObject, Ref } from 'react';
+import type { MutableRefObject } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import type { FieldDigitRangeProps, Value, ValuePair } from './types';
@@ -14,7 +14,7 @@ type Props = Parameters<ProFieldFC<FieldDigitRangeProps>>[0] & {
   placeholderValue: string | string[];
 };
 
-export function FieldDigitRangeEdit(props: Props, _ref: Ref<unknown>) {
+export function FieldDigitRangeEdit(props: Props) {
   const {
     text,
     mode: type,
