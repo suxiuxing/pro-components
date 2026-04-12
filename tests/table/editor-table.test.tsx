@@ -134,7 +134,7 @@ const columns: ProColumns<DataSourceType>[] = [
   {
     title: '操作',
     valueType: 'option',
-    render: (text, row, _, action) => [
+    render: (_text, row, _, action) => [
       <a
         key="editor"
         id="editor"
@@ -294,7 +294,7 @@ describe('EditorProTable', () => {
     await act(async () => {
       try {
         await actionRef.current?.saveEditable(624748504);
-      } catch (error) {
+      } catch (_error) {
         // 预期会抛出验证错误
       }
     });
@@ -1623,8 +1623,6 @@ describe('EditorProTable', () => {
       { timeout: 2000 },
     );
 
-    const initialRowCount = defaultData.length;
-
     // 查找删除按钮
     const allElements = wrapper.container.querySelectorAll('a, button');
     const deleteBtn = Array.from(allElements).find((btn) => btn.textContent?.includes('删除'));
@@ -1825,8 +1823,6 @@ describe('EditorProTable', () => {
     );
     await waitForWaitTime(100);
 
-    const originalTitle = defaultData[0]?.title;
-
     // 修改数据
     act(() => {
       fireEvent.change(
@@ -1927,7 +1923,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable support custom actionRender', async () => {
-    const customActionRender = vi.fn((row, config, defaultDom) => {
+    const customActionRender = vi.fn((_row, _config, defaultDom) => {
       return [
         defaultDom.save,
         defaultDom.cancel,
@@ -1965,7 +1961,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable support formItemProps as function', async () => {
-    const formItemPropsFn = vi.fn((row, config) => ({
+    const formItemPropsFn = vi.fn(() => ({
       rules: [
         {
           required: true,
@@ -2005,7 +2001,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable support fieldProps as function', async () => {
-    const fieldPropsFn = vi.fn((row, config) => ({
+    const fieldPropsFn = vi.fn(() => ({
       placeholder: '请输入标题',
     }));
 
@@ -2299,7 +2295,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable support columns dependencies in editable mode', async () => {
-    const requestFn = vi.fn(async (values) => {
+    const requestFn = vi.fn(async () => {
       return [
         { label: '选项1', value: 'option1' },
         { label: '选项2', value: 'option2' },

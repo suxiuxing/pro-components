@@ -25,14 +25,12 @@ const Demo = () => {
           max={4}
           actionRef={actionRef}
           actionGuard={{
-            beforeAddRow: async (defaultValue, insertIndex, count) => {
+            beforeAddRow: async () => {
               return new Promise((resolve) => {
                 setTimeout(() => resolve(true), 1000);
               });
             },
-            beforeRemoveRow: async (index, count) => {
-              const row = actionRef.current?.get(index as number);
-
+            beforeRemoveRow: async (index) => {
               return new Promise((resolve) => {
                 if (index === 0) {
                   resolve(false);

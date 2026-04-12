@@ -14,15 +14,7 @@ export type { PercentPropInt };
  * 百分比组件
  */
 const FieldPercent: ProFieldFC<PercentPropInt> = (props, ref) => {
-  const {
-    text,
-    mode,
-    render,
-    formItemRender,
-    fieldProps,
-    placeholder,
-    showSymbol: propsShowSymbol,
-  } = props;
+  const { text, mode, placeholder, showSymbol: propsShowSymbol } = props;
   const intl = useIntl();
   const placeholderValue = placeholder || intl.getMessage('tableForm.inputPlaceholder', '请输入');
   const realValue = useMemo(

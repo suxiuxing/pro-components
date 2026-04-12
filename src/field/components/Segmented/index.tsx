@@ -17,7 +17,7 @@ const FieldSegmented: ProFieldFC<
     emptyText?: React.ReactNode;
   } & FieldSelectProps
 > = (props, ref) => {
-  const { mode, render, formItemRender, fieldProps, emptyText = '-', ...rest } = props;
+  const { mode, emptyText = '-' } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
 

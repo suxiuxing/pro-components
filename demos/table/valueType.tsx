@@ -89,7 +89,7 @@ const columns: ProColumns<TableListItem>[] = [
     key: 'option',
     width: 120,
     valueType: 'option',
-    render: (_, row, index, action) => [
+    render: (_, row, _index, action) => [
       <a
         key="edit"
         onClick={() => {

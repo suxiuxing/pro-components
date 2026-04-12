@@ -6,7 +6,7 @@ import { CheckCard } from '@xxlabs/pro-components';
 const Demo = () => (
   <>
     <CheckCard.Group
-      onChange={(value) => {}}
+      onChange={() => {}}
       defaultValue="A"
     >
       <CheckCard

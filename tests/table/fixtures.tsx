@@ -148,7 +148,7 @@ export const columns: ProColumns[] = [
     valueType: 'option',
     key: 'option',
     dataIndex: 'id',
-    render: (text, row, index, action) => [
+    render: (_text, _row, _index, action) => [
       <a
         key="delete"
         onClick={() => {

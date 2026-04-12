@@ -44,7 +44,7 @@ const Demo = () => {
       title="新建表单"
       formRef={formRef}
       submitter={{
-        render: (props, doms) => {
+        render: (_props, doms) => {
           return [
             ...doms,
             <Button
@@ -83,7 +83,7 @@ const Demo = () => {
           ];
         },
       }}
-      onFinish={async (values) => {
+      onFinish={async () => {
         await waitTime(2000);
         message.success('提交成功');
         return true;

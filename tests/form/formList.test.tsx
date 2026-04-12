@@ -1616,10 +1616,10 @@ describe('ProForm List', () => {
               },
             ],
           ]}
-          onAfterAdd={(a, b, count) => {
+          onAfterAdd={(_a, _b, count) => {
             handleAdd(count);
           }}
-          onAfterRemove={(a, count) => {
+          onAfterRemove={(_a, count) => {
             handleRemove(count);
           }}
         >

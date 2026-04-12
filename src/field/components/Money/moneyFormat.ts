@@ -79,7 +79,7 @@ export const getTextByLocale = (
       Intl.NumberFormat.supportedLocalesOf([locale.replace('_', '-')], {
         localeMatcher: 'lookup',
       }).length > 0;
-  } catch (error) {}
+  } catch (_error) {}
 
   try {
     // Formatting the number, when readonly moneySymbol = false, unused currency.
@@ -117,7 +117,7 @@ export const getTextByLocale = (
       return `${moneySymbol || ''}${operatorSymbol}${pureMoneyText}`;
     }
     return `${moneySymbol || ''}${pureMoneyText}`;
-  } catch (error) {
+  } catch (_error) {
     return moneyText;
   }
 };

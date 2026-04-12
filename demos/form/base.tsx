@@ -55,7 +55,7 @@ const Demo = () => {
       formRef={formRef}
       params={{ id: '100' }}
       formKey="base-demo"
-      dateFormatter={(value, valueType) => {
+      dateFormatter={(value) => {
         return value.format('YYYY/MM/DD HH:mm:ss');
       }}
       request={async () => {

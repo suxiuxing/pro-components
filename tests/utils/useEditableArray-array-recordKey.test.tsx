@@ -330,8 +330,6 @@ describe('useEditableArray - Array recordKey Support', () => {
   });
 
   it('📝 保存时应该正确处理数组 recordKey 的 get 和 set 操作', async () => {
-    const wrapper = render(<TestComponent tableName="testTable" />);
-
     // 模拟 fields 对象
     const fields = {
       nested: {

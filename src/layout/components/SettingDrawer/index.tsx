@@ -581,7 +581,7 @@ export const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
                     try {
                       await navigator.clipboard.writeText(genCopySettingJson(settingState));
                       message.success(formatMessage({ id: 'app.setting.copyinfo' }));
-                    } catch (error) {
+                    } catch (_error) {
                       // console.log(error);
                     }
                   }}

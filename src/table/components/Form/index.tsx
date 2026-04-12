@@ -83,7 +83,7 @@ const FormSearch = <T, U>(props: BaseFormProps<T, U> & { ghost?: boolean }) => {
             onSubmit?.(value);
           }
         })
-        .catch((e) => {
+        .catch(() => {
           // 验证失败，不执行后续逻辑
           // console.error(e);
         });

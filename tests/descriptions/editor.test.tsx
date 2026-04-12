@@ -267,7 +267,7 @@ describe('Descriptions', () => {
         columns={[
           {
             dataIndex: 'title',
-            editable: (text, record, index) => {
+            editable: (_text, _record, index) => {
               return index === 1;
             },
           },
@@ -299,7 +299,7 @@ describe('Descriptions', () => {
         columns={[
           {
             dataIndex: 'title',
-            editable: (text, record, index) => {
+            editable: (_text, _record, index) => {
               return index === 1;
             },
           },
@@ -550,7 +550,7 @@ describe('Descriptions', () => {
 
   it('📝 support form rules', async () => {
     const fn = vi.fn();
-    const wrapper = render(<DescriptionsDemo onSave={(key, row) => fn(row.title)} />);
+    const wrapper = render(<DescriptionsDemo onSave={(_key, row) => fn(row.title)} />);
 
     await wrapper.findAllByText('重置');
 
@@ -619,7 +619,7 @@ describe('Descriptions', () => {
 
   it('📝 when dataIndex is array', async () => {
     const fn = vi.fn();
-    const wrapper = render(<DescriptionsDemo onSave={(key, row) => fn(row?.time?.created_at)} />);
+    const wrapper = render(<DescriptionsDemo onSave={(_key, row) => fn(row?.time?.created_at)} />);
     await wrapper.findAllByText('重置');
 
     act(() => {

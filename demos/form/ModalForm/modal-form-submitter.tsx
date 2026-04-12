@@ -31,7 +31,7 @@ const Demo = () => {
             ];
           },
         }}
-        onFinish={async (values) => {
+        onFinish={async () => {
           await waitTime(2000);
 
           message.success('Submission successful');
@@ -62,7 +62,7 @@ const Demo = () => {
             resetText: 'Cancel',
           },
         }}
-        onFinish={async (values) => {
+        onFinish={async () => {
           await waitTime(2000);
 
           message.success('Submission successful');
@@ -97,7 +97,7 @@ const Demo = () => {
             },
           },
         }}
-        onFinish={async (values) => {
+        onFinish={async () => {
           await waitTime(2000);
 
           message.success('Submission successful');

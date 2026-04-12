@@ -266,17 +266,13 @@ const FieldSelect: ProFieldFC<
     valueEnum,
     render,
     formItemRender,
-    request,
     fieldProps,
     light,
-    proFieldKey,
-    params,
     label,
     variant,
     id,
     lightLabel,
     labelTrigger,
-    ...rest
   } = props;
 
   const inputRef = useRef({});

@@ -297,7 +297,7 @@ describe('Field', () => {
             valueType={valueType as 'radio'}
             mode="read"
             ref={domRef}
-            render={(text: unknown, _: Record<string, any>, dom: React.ReactNode) => <>pre{dom}</>}
+            render={(_text: unknown, _: Record<string, any>, dom: React.ReactNode) => <>pre{dom}</>}
             valueEnum={{
               default: { text: '关闭', status: 'Default' },
               processing: { text: '运行中', status: 'Processing' },

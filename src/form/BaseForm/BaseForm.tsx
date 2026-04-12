@@ -820,7 +820,7 @@ export function BaseForm<T = Record<string, any>, U = Record<string, any>>(
         /** 在同步到 url 上时对参数进行转化 */
         setUrlSearch(genParams(syncToUrl, syncToUrlParams, 'set'));
       }
-    } catch (error) {
+    } catch (_error) {
       setLoading(false);
     }
   });

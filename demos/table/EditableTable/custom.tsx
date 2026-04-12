@@ -16,8 +16,6 @@ const waitTime = (time: number = 100) => {
   });
 };
 
-let demoRowIdSeq = 9_500_000;
-
 const TagList: React.FC<{
   value?: {
     key: string;
@@ -153,7 +151,7 @@ const columns: ProColumns<DataSourceType>[] = [
     title: '操作',
     valueType: 'option',
     width: 250,
-    render: (text, record, _, action) => [
+    render: (_text, record, _, action) => [
       <a
         key="editable"
         onClick={() => {
@@ -229,7 +227,7 @@ const Demo = () => {
             await waitTime(2000);
           },
           onChange: setEditableRowKeys,
-          actionRender: (row, config, dom) => [dom.save, dom.cancel],
+          actionRender: (_row, _config, dom) => [dom.save, dom.cancel],
         }}
       />
       <ProCard

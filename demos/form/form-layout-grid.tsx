@@ -41,7 +41,7 @@ const Demo = () => {
         gutter: [16, formLayoutType === 'inline' ? 16 : 0],
       }}
       submitter={{
-        render: (props, doms) => {
+        render: (_props, doms) => {
           return formLayoutType === LAYOUT_TYPE_HORIZONTAL ? (
             <Row>
               <Col
@@ -56,7 +56,7 @@ const Demo = () => {
           );
         },
       }}
-      onFinish={async (values) => {
+      onFinish={async () => {
         await waitTime(2000);
 
         message.success('Submission successful');

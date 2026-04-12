@@ -68,7 +68,7 @@ const Demo = () => {
       title: '操作',
       valueType: 'option',
       width: 150,
-      render: (text, record, _, action) => [
+      render: (_text, record, _, action) => [
         <a
           key="editable"
           onClick={() => action?.startEditable?.(record.id)}

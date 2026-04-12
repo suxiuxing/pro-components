@@ -18,7 +18,7 @@ afterEach(() => {
 
 describe('ProTable actionRef.reset()', () => {
   it('should keep request params in sync with resetFields initialValue', async () => {
-    const requestMock = vi.fn(async (params: any) => {
+    const requestMock = vi.fn(async (_params: any) => {
       return Promise.resolve({
         data: [],
         success: true,

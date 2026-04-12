@@ -68,7 +68,7 @@ const Demo = () => {
       key: 'direction',
       hideInTable: true,
       dataIndex: 'direction',
-      formItemRender: (item, { type, defaultRender: _defaultRender, ...rest }, form) => {
+      formItemRender: (_item, { type, defaultRender: _defaultRender, ...rest }, form) => {
         if (type === 'form') {
           return null;
         }
@@ -106,7 +106,7 @@ const Demo = () => {
   return (
     <ProTable<ServiceItem>
       columns={columns}
-      request={async (params) => {
+      request={async () => {
         return {
           data: [
             {
@@ -126,13 +126,11 @@ const Demo = () => {
       headerTitle="动态联动搜索栏"
       search={{
         defaultCollapsed: false,
-        optionRender: (searchConfig, formProps, dom) => [
+        optionRender: (_searchConfig, _formProps, dom) => [
           ...dom.reverse(),
           <Button
             key="export"
-            onClick={() => {
-              const values = searchConfig?.form?.getFieldsValue();
-            }}
+            onClick={() => {}}
           >
             导出
           </Button>,

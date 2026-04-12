@@ -133,7 +133,7 @@ const Demo = () => {
       <BetaSchemaForm<DataItem>
         shouldUpdate={false}
         layoutType="Form"
-        onFinish={async (values) => {}}
+        onFinish={async () => {}}
         columns={columns}
       />
     </>

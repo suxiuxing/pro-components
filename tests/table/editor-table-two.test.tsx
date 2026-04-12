@@ -137,7 +137,7 @@ const columns: ProColumns<DataSourceType>[] = [
   {
     title: '操作',
     valueType: 'option',
-    render: (text, row, _, action) => [
+    render: (_text, row, _, action) => [
       <a
         key="editor"
         id="editor"
@@ -624,7 +624,7 @@ describe('EditorProTable 2', () => {
           name="table"
           editableFormRef={formRef}
           editable={{
-            actionRender: (row, config) => {
+            actionRender: (_row, config) => {
               return [
                 <a
                   key="set"

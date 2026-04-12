@@ -10,7 +10,7 @@ const Demo = () => {
       }}
     >
       <ProLayout
-        menuItemRender={(item, dom) => (
+        menuItemRender={(_item, dom) => (
           <div
             style={{
               display: 'flex',

@@ -30,7 +30,7 @@ const Demo = () => {
         name: string;
         company: string;
       }>
-        onFinish={async (values) => {}}
+        onFinish={async () => {}}
         span={6}
         defaultCollapsed={false}
       >
@@ -54,7 +54,7 @@ const Demo = () => {
         name: string;
         company: string;
       }>
-        onFinish={async (values) => {}}
+        onFinish={async () => {}}
         span={6}
         defaultCollapsed={false}
       >
@@ -76,7 +76,7 @@ const Demo = () => {
         name: string;
         company: string;
       }>
-        onFinish={async (values) => {}}
+        onFinish={async () => {}}
         defaultCollapsed={false}
       >
         <ProFormText
@@ -109,7 +109,7 @@ const Demo = () => {
         name: string;
         company: string;
       }>
-        onFinish={async (values) => {}}
+        onFinish={async () => {}}
         span={12}
         defaultCollapsed={false}
       >
@@ -144,7 +144,7 @@ const Demo = () => {
         name: string;
         company: string;
       }>
-        onFinish={async (values) => {}}
+        onFinish={async () => {}}
         span={8}
         defaultCollapsed={false}
       >
@@ -179,7 +179,7 @@ const Demo = () => {
         name: string;
         company: string;
       }>
-        onFinish={async (values) => {}}
+        onFinish={async () => {}}
         span={4}
         submitterColSpanProps={{ span: 12 }}
         defaultColsNumber={1}

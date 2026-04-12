@@ -118,7 +118,7 @@ const Demo = () => {
           return false;
         }}
         layoutType="Form"
-        onFinish={async (values) => {}}
+        onFinish={async () => {}}
         columns={columns}
       />
     </>

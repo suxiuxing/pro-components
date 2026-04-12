@@ -301,7 +301,7 @@ describe('BasicTable filter', () => {
             },
           },
         ]}
-        request={async (_, sort, filter) => {
+        request={async (_, _sort, filter) => {
           fn();
 
           const data = [
@@ -397,7 +397,7 @@ describe('BasicTable filter', () => {
             defaultFilteredValue: [0],
           },
         ]}
-        request={async (_, sort, filter) => {
+        request={async (_, _sort, filter) => {
           if (filter.status) {
             fn();
           }
@@ -576,7 +576,7 @@ describe('BasicTable filter', () => {
                 defaultFilteredValue: ['1'],
               },
             ]}
-            request={async (_, sort, filter) => {
+            request={async (_, _sort, filter) => {
               const data = [
                 {
                   key: '1',

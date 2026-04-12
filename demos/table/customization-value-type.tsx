@@ -101,7 +101,7 @@ const columns: ProColumns<TableListItem, 'link' | 'tags'>[] = [
     title: '操作',
     key: 'option',
     valueType: 'option',
-    render: (_, row, index, action) => [
+    render: (_, row, _index, action) => [
       <a
         key="a"
         onClick={() => {
@@ -124,7 +124,7 @@ const Demo = () => {
           valueTypeMap: {
             link: {
               render: (text) => <a>{text}</a>,
-              formItemRender: (text, props) => (
+              formItemRender: (_text, props) => (
                 <Input
                   placeholder="请输入链接"
                   {...props?.fieldProps}
@@ -141,7 +141,7 @@ const Demo = () => {
                   </>
                 );
               },
-              formItemRender: (text, props) => (
+              formItemRender: (_text, props) => (
                 <TagList
                   {...props}
                   {...props?.fieldProps}

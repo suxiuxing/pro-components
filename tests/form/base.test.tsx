@@ -286,7 +286,7 @@ describe('ProForm', () => {
       <ProForm
         onFinish={async () => {
           fn();
-          return new Promise((resolve, reject) => {
+          return new Promise((_resolve, reject) => {
             setTimeout(() => {
               reject(new Error('期贤'));
             }, 4000);

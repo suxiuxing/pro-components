@@ -132,7 +132,7 @@ const Demo = () => {
         },
         {
           listSlot: 'actions',
-          render: (text, row) => [
+          render: (_text, row) => [
             <a
               key="edit"
               onClick={() => action.current?.startEditable(row.name)}

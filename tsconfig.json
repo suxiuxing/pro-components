@@ -18,8 +18,6 @@
 
     "exactOptionalPropertyTypes": false,
     "noImplicitOverride": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
     "noUncheckedIndexedAccess": false,
     "noPropertyAccessFromIndexSignature": false,
 

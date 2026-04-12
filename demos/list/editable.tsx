@@ -44,7 +44,7 @@ const Demo = () => {
       headerTitle="基础列表"
       dataSource={dataSource}
       editable={{
-        onSave: async (key, record, originRow) => {
+        onSave: async () => {
           return true;
         },
       }}
@@ -64,7 +64,7 @@ const Demo = () => {
         },
         {
           listSlot: 'actions',
-          render: (text, row, index, action) => [
+          render: (_text, row, _index, action) => [
             <a
               onClick={() => {
                 action?.startEditable(row.id);

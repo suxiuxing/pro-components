@@ -89,7 +89,7 @@ describe('ProForm.Item', () => {
         />
 
         <ProFormDependency name={['primaryOrganizationName', 'primaryOrganizationId']}>
-          {({ primaryOrganizationName, primaryOrganizationId }) => (
+          {({ primaryOrganizationName }) => (
             <ProFormText
               label="组织名称"
               readonly

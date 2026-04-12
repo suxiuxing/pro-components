@@ -166,10 +166,10 @@ const Demo = () => {
         editable={{
           type: 'multiple',
           editableKeys,
-          actionRender: (row, config, defaultDoms) => {
+          actionRender: (_row, _config, defaultDoms) => {
             return [defaultDoms.delete];
           },
-          onValuesChange: (record, recordList) => {
+          onValuesChange: (_record, recordList) => {
             setDataSource(recordList);
           },
           onChange: setEditableRowKeys,

@@ -7,7 +7,20 @@ export default defineConfig({
     correctness: 'error',
   },
   rules: {
-    'no-unused-vars': 'off',
+    'no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+        caughtErrors: 'all',
+        caughtErrorsIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+        ignoreUsingDeclarations: false,
+        reportUsedIgnorePattern: false,
+      },
+    ],
 
     'react/exhaustive-deps': 'off',
   },

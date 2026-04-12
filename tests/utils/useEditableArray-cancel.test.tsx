@@ -107,7 +107,7 @@ describe('useEditableArray - Cancel Operation', () => {
     const onCancel = vi.fn(
       async (
         key: RecordKey,
-        record: TestRecordType & { index?: number },
+        _record: TestRecordType & { index?: number },
         originRow: TestRecordType & { index?: number },
       ) => {
         expect(key).toBe(1);
@@ -358,11 +358,7 @@ describe('useEditableArray - Cancel Operation', () => {
 
     const wrapper = render(
       <TestComponentMultiple
-        onCancel={async (
-          key: RecordKey,
-          record: TestRecordType & { index?: number },
-          originRow: TestRecordType & { index?: number },
-        ) => {
+        onCancel={async (key: RecordKey) => {
           if (key === 1) {
             await onCancel1();
           } else if (key === 2) {
@@ -453,7 +449,7 @@ describe('useEditableArray - Cancel Operation', () => {
     const onCancel = vi.fn(
       async (
         key: RecordKey,
-        record: TestRecordType & { index?: number },
+        _record: TestRecordType & { index?: number },
         originRow: TestRecordType & { index?: number },
       ) => {
         expect(key).toBe(1);
@@ -522,9 +518,9 @@ describe('useEditableArray - Cancel Operation', () => {
   it('📝 取消新行编辑时应该正确处理 newLineConfig', async () => {
     const onCancel = vi.fn(
       async (
-        key: RecordKey,
-        record: TestRecordType & { index?: number },
-        originRow: TestRecordType & { index?: number },
+        _key: RecordKey,
+        _record: TestRecordType & { index?: number },
+        _originRow: TestRecordType & { index?: number },
         newLineConfig?: NewLineConfig<TestRecordType>,
       ) => {
         expect(newLineConfig).toBeDefined();
@@ -593,11 +589,6 @@ describe('useEditableArray - Cancel Operation', () => {
       });
 
       // 通过 actionRender 访问 preEditRowRef
-      const actionConfig = editableUtils.actionRender({
-        id: 1,
-        name: 'test1',
-        index: 0,
-      });
 
       return (
         <Form>

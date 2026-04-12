@@ -35,7 +35,7 @@ const Demo = () => {
               heightLayoutHeader: 108,
             },
           }}
-          headerRender={(props, defaultDom) => (
+          headerRender={(_props, defaultDom) => (
             <>
               <Alert
                 title={

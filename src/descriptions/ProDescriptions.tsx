@@ -1,6 +1,6 @@
 import { ConfigProvider, Descriptions, Space } from 'antd';
 import type { DescriptionsItemType } from 'antd/es/descriptions';
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
 import ValueTypeToComponent from '../field/ValueTypeToComponent';
 import ProForm from '../form';

@@ -16,7 +16,7 @@ const Demo = () => {
         valueTypeMap: {
           link: {
             render: (text) => <a>{text}</a>,
-            formItemRender: (text, props) => (
+            formItemRender: (_text, props) => (
               <Input
                 placeholder="请输入链接"
                 {...props?.fieldProps}

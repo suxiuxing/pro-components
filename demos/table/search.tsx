@@ -20,7 +20,7 @@ const SearchTable = () => (
         search: false,
       },
     ]}
-    request={async (params) => {
+    request={async () => {
       return {
         data: [
           {

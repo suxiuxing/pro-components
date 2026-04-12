@@ -13,8 +13,6 @@ const waitTime = (time: number = 100) => {
   });
 };
 
-let demoNewRecordId = 9_000_000;
-
 type DataSourceType = {
   id?: React.Key;
   title?: string;
@@ -86,7 +84,7 @@ const Demo = () => {
     {
       title: '任务名称',
       dataIndex: 'title',
-      formItemProps: (form, { rowIndex }) => {
+      formItemProps: (_form, { rowIndex }) => {
         return {
           rules: rowIndex > 2 ? [{ required: true, message: '此项为必填项' }] : [],
         };
@@ -136,7 +134,7 @@ const Demo = () => {
       title: '操作',
       valueType: 'option',
       width: 200,
-      render: (text, record) => [
+      render: (_text, record) => [
         <a
           key="delete"
           onClick={() => {
@@ -174,7 +172,7 @@ const Demo = () => {
         editable={{
           type: 'multiple',
           editableKeys,
-          onSave: async (rowKey, data, row) => {
+          onSave: async () => {
             await waitTime(2000);
           },
           onChange: setEditableRowKeys,

@@ -235,7 +235,7 @@ describe('useEditableMap', () => {
     const onCancel = vi.fn(
       async (
         key: RecordKey,
-        record: TestRecordType & { index?: number },
+        _record: TestRecordType & { index?: number },
         originRow: TestRecordType & { index?: number },
       ) => {
         expect(key).toBe('name');
@@ -256,7 +256,6 @@ describe('useEditableMap', () => {
 
     // 通过 actionRender 获取配置，然后手动调用 onCancel
     const editableUtils = (window as any).__editableUtils;
-    const actionRender = editableUtils.actionRender('name');
 
     // actionRender 返回的是 React 元素数组，我们需要通过内部配置来访问 onCancel
     // 由于 useEditableMap 不直接暴露 onCancel，我们通过 actionRender 的配置来测试
@@ -274,7 +273,7 @@ describe('useEditableMap', () => {
     const onSave = vi.fn(
       async (
         key: RecordKey,
-        record: TestRecordType & { index?: number },
+        _record: TestRecordType & { index?: number },
         originRow: TestRecordType & { index?: number },
       ) => {
         expect(key).toBe('name');

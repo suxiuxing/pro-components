@@ -171,7 +171,7 @@ const Demo = () => {
       />
       <ProTable<TableListItem>
         columns={columns}
-        request={(params, sorter, filter) => {
+        request={() => {
           // 表单搜索项会从 params 传入，传递给后端接口。
           return Promise.resolve({
             data: tableListDataSource,

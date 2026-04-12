@@ -48,7 +48,7 @@ export default () => {
           dateTimeRange: [FIXED_BASE_TIMESTAMP, FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24],
           dateRange: [FIXED_BASE_TIMESTAMP, FIXED_BASE_TIMESTAMP - 1000 * 60 * 60 * 24],
         }}
-        onFinish={async (values) => {}}
+        onFinish={async () => {}}
       >
         <ProForm.Group title="Date Related Group">
           <ProFormDatePicker

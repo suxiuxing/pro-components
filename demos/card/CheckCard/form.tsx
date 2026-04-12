@@ -4,7 +4,7 @@ import { CheckCard } from '@xxlabs/pro-components';
 
 const Demo = () => {
   const [form] = Form.useForm();
-  const handleSubmit = async (values: any) => {};
+  const handleSubmit = async () => {};
 
   return (
     <>

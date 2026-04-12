@@ -302,7 +302,7 @@ describe('List', () => {
             expandedRowClassName: () => {
               return 'test-custom-class-name';
             },
-            expandedRowRender: (record, index) => {
+            expandedRowRender: (_record, index) => {
               return <div>expand:{index}</div>;
             },
           }}

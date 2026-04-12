@@ -173,7 +173,7 @@ const Demo = () => {
       key: 'option',
       width: 80,
       valueType: 'option',
-      render: (_, row, index, action) => [
+      render: (_, row, _index, action) => [
         <a
           key="edit"
           onClick={() => {

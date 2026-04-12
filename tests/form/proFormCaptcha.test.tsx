@@ -55,7 +55,7 @@ describe('ProFormCaptcha', () => {
       >
         <ProFormCaptcha
           onGetCaptcha={() => {
-            return new Promise((resolve, reject) => {
+            return new Promise((_resolve, reject) => {
               fn(TimingText);
               reject(new Error('模拟报错'));
             });

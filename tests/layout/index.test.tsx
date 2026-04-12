@@ -848,7 +848,7 @@ describe('BasicLayout', () => {
   it('🥩 set page title render', async () => {
     const wrapper = render(
       <ProLayout
-        pageTitleRender={(props, pageName, info) => {
+        pageTitleRender={(_props, pageName, info) => {
           if (info) {
             return info.pageName;
           }

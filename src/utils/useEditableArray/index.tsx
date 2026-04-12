@@ -1086,7 +1086,7 @@ export function useEditableArray<RecordType extends AnyObject>(
 
   useEffect(() => {
     const editableKeysSet = new Set(editableKeys?.map((key) => key?.toString()) ?? []);
-    saveRefsMap.current.forEach((ref, key) => {
+    saveRefsMap.current.forEach((_ref, key) => {
       if (!editableKeysSet.has(key?.toString())) {
         saveRefsMap.current.delete(key);
       }

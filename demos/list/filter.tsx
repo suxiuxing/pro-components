@@ -70,7 +70,7 @@ const Demo = () => (
       {
         listSlot: 'actions',
         search: false,
-        render: (text, row) => [
+        render: (_text, row) => [
           <a
             href={row.url}
             target="_blank"

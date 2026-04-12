@@ -225,7 +225,7 @@ describe('dragSort', () => {
           {
             title: '排序',
             dataIndex: 'sort',
-            render: (dom, rowData, index) => {
+            render: (_dom, rowData, index) => {
               callback(rowData.name, index);
               return <span className="customRender">{`自定义排序[${rowData.name}-${index}]`}</span>;
             },

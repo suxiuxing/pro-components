@@ -5,14 +5,7 @@ import { ConfigProvider } from 'antd';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import type { TooltipPlacement } from 'antd/es/tooltip';
 import { clsx } from 'clsx';
-import React, {
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import { useIntl } from '../../../provider';
 import { FieldLabel, FilterDropdown } from '../../../utils';

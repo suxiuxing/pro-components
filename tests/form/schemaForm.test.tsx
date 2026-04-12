@@ -861,7 +861,7 @@ describe('SchemaForm', () => {
             ...values,
             valueTypeMap: {
               test: {
-                formItemRender: (text, props) => {
+                formItemRender: (_text, props) => {
                   return <ExpensiveCustomComp {...props?.fieldProps} />;
                 },
               },

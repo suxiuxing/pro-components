@@ -90,7 +90,7 @@ const columns: ProColumns<GithubIssueItem>[] = [
     title: '操作',
     valueType: 'option',
     dataIndex: 'id',
-    render: (text, row) => [
+    render: (_text, row) => [
       <a
         href={row.url}
         key="show"

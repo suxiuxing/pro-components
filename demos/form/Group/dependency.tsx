@@ -21,7 +21,7 @@ const Demo = () => {
           return <ProForm.Group>{doms}</ProForm.Group>;
         }}
       >
-        {(f, index, action) => {
+        {(_f, index) => {
           return (
             <>
               <ProFormText

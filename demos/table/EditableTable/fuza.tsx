@@ -123,7 +123,7 @@ const Demo = () => {
   return (
     <ProForm
       formRef={formRef}
-      onValuesChange={(_, e) => {}}
+      onValuesChange={(_) => {}}
       initialValues={{ columnsInfo: defaultData, table: defaultData }}
     >
       <ProFormDependency name={['columnsInfo']}>
@@ -195,7 +195,7 @@ const Demo = () => {
                               dataIndex: 'description',
                               editable: false,
                               width: 140,
-                              render: (text, record) => {
+                              render: (_text, record) => {
                                 return (
                                   <div
                                     style={{

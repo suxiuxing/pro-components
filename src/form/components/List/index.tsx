@@ -241,7 +241,7 @@ function ProFormList<T>(props: ProFormListProps<T>) {
             isValidateList
               ? [
                   {
-                    validator: (rule, value) => {
+                    validator: (_rule, value) => {
                       if (!value || value.length === 0) {
                         return Promise.reject(new Error(emptyListMessage));
                       }

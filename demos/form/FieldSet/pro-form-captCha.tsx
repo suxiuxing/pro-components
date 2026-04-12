@@ -21,7 +21,7 @@ const Demo = () => {
       name="captcha-form-demo"
       title="新建表单"
       submitter={{
-        render: (props, doms) => {
+        render: (_props, doms) => {
           return [
             ...doms,
             <Button
@@ -45,7 +45,7 @@ const Demo = () => {
           ];
         },
       }}
-      onFinish={async (values) => {
+      onFinish={async () => {
         await waitTime(2000);
 
         message.success('提交成功');
@@ -55,7 +55,7 @@ const Demo = () => {
       <ProFormCaptcha
         onGetCaptcha={() => {
           // dosomething()
-          return new Promise((resolve, reject) => {
+          return new Promise((_resolve, reject) => {
             reject();
           });
         }}

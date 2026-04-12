@@ -18,7 +18,7 @@ const Demo = () => {
         }}
         alwaysShowItemLabel
       >
-        {(f, index, action) => {
+        {(_f, index, action) => {
           return (
             <>
               <ProFormText

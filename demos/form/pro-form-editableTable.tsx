@@ -93,7 +93,7 @@ const Demo = () => {
       company: string;
     }>
       grid
-      onFinish={async (values) => {
+      onFinish={async () => {
         await waitTime(2000);
 
         message.success('提交成功');
@@ -146,7 +146,7 @@ const Demo = () => {
             type: 'multiple',
             editableKeys,
             onChange: setEditableRowKeys,
-            actionRender: (row, _, dom) => {
+            actionRender: (_row, _, dom) => {
               return [dom.delete];
             },
           }}

@@ -10,7 +10,7 @@ const Demo = () => {
     <ProDescriptions
       actionRef={actionRef}
       formProps={{
-        onValuesChange: (e, f) => console.log(f),
+        onValuesChange: (_e, f) => console.log(f),
       }}
       title="可编辑的订单详情"
       request={async () => {
@@ -112,7 +112,7 @@ const Demo = () => {
           key: 'money',
           dataIndex: 'money',
           valueType: 'money',
-          render: (dom, entity, index, action) => {
+          render: (dom, _entity, _index, action) => {
             return (
               <Tooltip title="点击进入编辑状态">
                 <div

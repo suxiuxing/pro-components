@@ -51,7 +51,7 @@ const Demo = () => (
     search={{
       defaultCollapsed: false,
       labelWidth: 'auto',
-      optionRender: (searchConfig, formProps, dom) => [
+      optionRender: (_searchConfig, _formProps, dom) => [
         ...dom.reverse(),
         <Button
           key="export"

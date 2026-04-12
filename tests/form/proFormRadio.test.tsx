@@ -333,7 +333,7 @@ describe('ProFormRadio', () => {
       { label: 'Option 2', value: 'b' },
     ];
 
-    const { container } = render(
+    render(
       <ProForm
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}

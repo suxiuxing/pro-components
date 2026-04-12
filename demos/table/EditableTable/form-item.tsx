@@ -108,7 +108,7 @@ const Demo = () => {
       title: '操作',
       valueType: 'option',
       width: 200,
-      render: (text, record, _, action) => [
+      render: (_text, record, _, action) => [
         <a
           key="editable"
           onClick={() => {
@@ -218,7 +218,7 @@ const Demo = () => {
           type: 'multiple',
           editableKeys,
           onChange: setEditableRowKeys,
-          actionRender: (row, config, defaultDom) => {
+          actionRender: (_row, config, defaultDom) => {
             return [
               defaultDom.save,
               defaultDom.delete,

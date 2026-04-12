@@ -80,7 +80,7 @@ describe('ProForm Dependency component', () => {
         />
         <ProFormDependency
           name={['name']}
-          shouldUpdate={(prevValues, nextValues) => {
+          shouldUpdate={(_prevValues, nextValues) => {
             if (nextValues.name === 'update') {
               return true;
             }

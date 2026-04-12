@@ -7,13 +7,6 @@ import { BetaSchemaForm, ProProvider } from '@xxlabs/pro-components';
 
 import { DEMO_VALUE_ENUM } from '../../mockData';
 
-const _valueEnum = {
-  0: 'close',
-  1: 'running',
-  2: 'online',
-  3: 'error',
-};
-
 export type TableListItem = {
   key: number;
   name: string;
@@ -125,7 +118,7 @@ const Demo = () => {
         valueTypeMap: {
           link: {
             render: (text) => <a>{text}</a>,
-            formItemRender: (text, props) => (
+            formItemRender: (_text, props) => (
               <Input
                 placeholder="请输入链接"
                 {...props?.fieldProps}
@@ -142,7 +135,7 @@ const Demo = () => {
                 </>
               );
             },
-            formItemRender: (text, props) => (
+            formItemRender: (_text, props) => (
               <TagList
                 {...props}
                 {...props?.fieldProps}
