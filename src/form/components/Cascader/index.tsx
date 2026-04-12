@@ -1,5 +1,6 @@
 import type { CascaderProps } from 'antd';
-import React, { useContext } from 'react';
+import type { Ref } from 'react';
+import { useContext } from 'react';
 
 import { FieldCascader } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -18,8 +19,7 @@ const ProFormCascader = ({
   proFieldProps,
   ref,
   ...rest
-}: ProFormFieldItemProps<CascaderProps<any>> &
-  ProFormFieldRemoteProps & { ref?: React.Ref<any> }) => {
+}: ProFormFieldItemProps<CascaderProps<any>> & ProFormFieldRemoteProps & { ref?: Ref<any> }) => {
   const context = useContext(FieldContext);
   return (
     <ProConfigProvider

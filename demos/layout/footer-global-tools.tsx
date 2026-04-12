@@ -6,7 +6,7 @@ import {
   SearchOutlined,
 } from '@ant-design/icons';
 import { Alert, Button, Input, Space } from 'antd';
-import React, { useState } from 'react';
+import { cloneElement, useState } from 'react';
 
 import type { ProSettings } from '@xxlabs/pro-components';
 import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
@@ -70,7 +70,7 @@ const Demo = () => {
                   </Button>
                 }
               />
-              {React.cloneElement(defaultDom as any, {
+              {cloneElement(defaultDom as any, {
                 style: {
                   height: '56px',
                   lineHeight: '56px',

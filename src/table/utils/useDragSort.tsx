@@ -16,12 +16,13 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import type { TableComponents } from '@rc-component/table/es/interface';
-import React, { createContext, useCallback, useContext, useMemo } from 'react';
+import type { FC, ReactNode } from 'react';
+import { Children, createContext, memo, useCallback, useContext, useMemo } from 'react';
 
 import { useRefFunction } from '../../utils';
 
 const SortableItemContextValue = createContext<{
-  handle: React.ReactNode;
+  handle: ReactNode;
 }>({ handle: null });
 
 /**
@@ -43,8 +44,8 @@ const SortableRow = (props: any) => {
   const { DragHandle, dragSortKey, ...rest } = props;
 
   if (dragSortKey) {
-    const doms: React.ReactNode[] = [];
-    React.Children.forEach(rest.children, (child: any, index) => {
+    const doms: ReactNode[] = [];
+    Children.forEach(rest.children, (child: any, index) => {
       if (child.key === dragSortKey) {
         doms.push(
           <SortableItemContextValue.Provider
@@ -92,7 +93,7 @@ const SortableRow = (props: any) => {
 /**
  * 拖拽排序表格的 cell，用与判断要不要展示 handle
  */
-const SortableItemCell = React.memo((props: any) => {
+const SortableItemCell = memo((props: any) => {
   const { dragSortKey: _dragSortKey, ...rest } = props;
   const { handle } = useContext(SortableItemContextValue);
   if (handle) {
@@ -123,7 +124,7 @@ export interface UseDragSortOptions<T> {
   dragSortKey?: string;
   components?: TableComponents<T>;
   rowKey: any;
-  DragHandle: React.FC<any>;
+  DragHandle: FC<any>;
 }
 
 const SortContainer = (p: any) => <tbody {...p} />;

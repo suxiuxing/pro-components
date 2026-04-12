@@ -2,14 +2,15 @@ import { useControlledState } from '@rc-component/util';
 import type { SelectProps } from 'antd';
 import { ConfigProvider, Select } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useEffect, useImperativeHandle, useRef } from 'react';
+import type { CSSProperties, ReactNode, Ref } from 'react';
+import { isValidElement, useContext, useEffect, useImperativeHandle, useRef } from 'react';
 
 import type { RequestOptionsType } from '../../../../utils';
 import { nanoid } from '../../../../utils';
 
 export type LabeledValue = {
   key?: string;
-  label: React.ReactNode;
+  label: ReactNode;
   value: string | number;
 };
 
@@ -33,7 +34,7 @@ export interface SearchSelectProps<T = Record<string, any>> extends Omit<
   /** 自定义搜索方法, 返回搜索结果的 Promise */
   request?: (params: { query: string }) => Promise<DataValueType<T>[]>;
   /** 自定义选项渲染 */
-  optionItemRender?: (item: DataValueType<T>) => React.ReactNode;
+  optionItemRender?: (item: DataValueType<T>) => ReactNode;
   /** 指定组件中的值 */
   value?: KeyLabel | KeyLabel[];
   /** 指定默认选中的条目 */
@@ -46,7 +47,7 @@ export interface SearchSelectProps<T = Record<string, any>> extends Omit<
    *
    * @ignore
    */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /**
    * ClassName 类名
    *
@@ -102,7 +103,7 @@ export interface SearchSelectProps<T = Record<string, any>> extends Omit<
   preserveOriginalLabel?: boolean;
 }
 
-const SearchSelect = <T,>(props: SearchSelectProps<T[]> & { ref?: React.Ref<any> }) => {
+const SearchSelect = <T,>(props: SearchSelectProps<T[]> & { ref?: Ref<any> }) => {
   const {
     optionItemRender,
     mode,
@@ -181,7 +182,7 @@ const SearchSelect = <T,>(props: SearchSelectProps<T[]> & { ref?: React.Ref<any>
       // 检查多种可能的 React 元素格式
       const labelValue = fallbackValue.label;
       if (
-        (React.isValidElement(labelValue) ||
+        (isValidElement(labelValue) ||
           (labelValue && typeof labelValue === 'object' && 'props' in labelValue)) &&
         labelValue.props &&
         labelValue.props.label

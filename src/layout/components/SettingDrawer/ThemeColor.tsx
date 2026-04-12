@@ -1,7 +1,7 @@
 import { CheckOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import { clsx } from 'clsx';
-import React from 'react';
+import type { FC, Ref } from 'react';
 
 export type TagProps = {
   color: string;
@@ -10,12 +10,7 @@ export type TagProps = {
   onClick?: () => void;
 };
 
-const Tag: React.FC<TagProps> = ({
-  color,
-  check,
-  ref,
-  ...rest
-}: TagProps & { ref?: React.Ref<any> }) => (
+const Tag: FC<TagProps> = ({ color, check, ref, ...rest }: TagProps & { ref?: Ref<any> }) => (
   <div
     {...rest}
     style={{ backgroundColor: color }}

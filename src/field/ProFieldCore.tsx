@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import type { JSX, ReactNode, Ref } from 'react';
+import { cloneElement, Fragment, isValidElement, useContext } from 'react';
 
 import type { ProFieldFCRenderProps, ProRenderFieldPropsType } from '../provider';
 import ProConfigContext from '../provider';
@@ -18,7 +19,7 @@ export type ProFieldRenderText = (
   valueType: ProFieldValueTypeInput,
   props: ProFieldRenderProps,
   valueTypeMap: Record<string, ProRenderFieldPropsType>,
-) => React.ReactNode;
+) => ReactNode;
 
 /** 只读 / 编辑使用各自渲染函数，避免在单函数内反复判断 mode */
 export type ProFieldDualRender = {
@@ -63,7 +64,7 @@ export function createProField(
     fieldProps: restFieldProps,
     ref,
     ...rest
-  }: ProFieldPropsType & { ref?: React.Ref<any> }) => {
+  }: ProFieldPropsType & { ref?: Ref<any> }) => {
     const context = useContext(ProConfigContext);
 
     const onChangeCallBack = useRefFunction((...restParams: any[]) => {
@@ -102,11 +103,11 @@ export function createProField(
         ...rest,
         mode: effectiveMode,
         formItemRender: formItemRender
-          ? (curText: any, props: ProFieldFCRenderProps, dom: React.JSX.Element) => {
+          ? (curText: any, props: ProFieldFCRenderProps, dom: JSX.Element) => {
               const { placeholder: _placeholder, ...restProps } = props;
               const newDom = formItemRender(curText, restProps, dom);
-              if (React.isValidElement(newDom)) {
-                return React.cloneElement(newDom, {
+              if (isValidElement(newDom)) {
+                return cloneElement(newDom, {
                   ...fieldProps,
                   ...(newDom.props as any),
                 });
@@ -128,7 +129,7 @@ export function createProField(
       context.valueTypeMap || {},
     );
 
-    return <React.Fragment>{renderedDom}</React.Fragment>;
+    return <Fragment>{renderedDom}</Fragment>;
   };
 
   return ProFieldComponent;

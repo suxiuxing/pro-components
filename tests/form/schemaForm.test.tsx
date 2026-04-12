@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { FormInstance } from 'antd';
 import { Input } from 'antd';
-import React, { act, createRef, useContext, useEffect } from 'react';
+import { act, createRef, memo, useContext, useEffect } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { ProFormColumnsType, ProFormLayoutType } from '@xxlabs/pro-components';
@@ -750,7 +750,7 @@ describe('SchemaForm', () => {
           },
         ],
       ];
-      const formRef = React.createRef<FormInstance>();
+      const formRef = createRef<FormInstance>();
       const wrapper = render(
         <BetaSchemaForm
           open={true}
@@ -809,7 +809,7 @@ describe('SchemaForm', () => {
   it('test custom component should not rerender when other field change', async () => {
     const fibonacci = vi.fn();
 
-    const ExpensiveCustomComp = React.memo<{
+    const ExpensiveCustomComp = memo<{
       value: any;
       onChange: (value: any) => void;
     }>((props) => {

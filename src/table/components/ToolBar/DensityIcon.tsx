@@ -1,19 +1,14 @@
 import { ColumnHeightOutlined } from '@ant-design/icons';
 import { Dropdown, Tooltip } from 'antd';
-import React, { useContext } from 'react';
+import type { ReactNode, Ref } from 'react';
+import { memo, useContext } from 'react';
 
 import { useIntl } from '../../../provider';
 import { TableContext } from '../../Store/Provide';
 
 export type DensitySize = 'middle' | 'small' | 'large' | undefined;
 
-const DensityIcon = ({
-  ref,
-  ...props
-}: {
-  icon?: React.ReactNode;
-  ref?: React.Ref<HTMLSpanElement>;
-}) => {
+const DensityIcon = ({ ref, ...props }: { icon?: ReactNode; ref?: Ref<HTMLSpanElement> }) => {
   const { icon = <ColumnHeightOutlined /> } = props;
   const counter = useContext(TableContext);
   const intl = useIntl();
@@ -52,4 +47,4 @@ const DensityIcon = ({
   );
 };
 
-export default React.memo(DensityIcon);
+export default memo(DensityIcon);

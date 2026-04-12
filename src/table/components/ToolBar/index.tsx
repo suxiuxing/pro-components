@@ -1,7 +1,8 @@
 import { ReloadOutlined } from '@ant-design/icons';
 import type { TableColumnType } from 'antd';
 import { Tooltip } from 'antd';
-import React, { memo, useCallback, useContext, useEffect, useMemo } from 'react';
+import type { ChangeEvent, Key, MouseEvent, ReactNode, RefObject } from 'react';
+import { memo, useCallback, useContext, useEffect, useMemo } from 'react';
 
 import type { IntlType } from '../../../provider';
 import { useIntl } from '../../../provider';
@@ -21,9 +22,9 @@ export type SettingOptionType = {
   showListItemOption?: boolean;
   checkedReset?: boolean;
   listsHeight?: number;
-  extra?: React.ReactNode;
-  children?: React.ReactNode;
-  settingIcon?: React.ReactNode;
+  extra?: ReactNode;
+  children?: ReactNode;
+  settingIcon?: ReactNode;
 };
 export type OptionConfig = {
   density?: boolean;
@@ -31,19 +32,16 @@ export type OptionConfig = {
   reload?: OptionsType;
   setting?: boolean | SettingOptionType;
   search?: (OptionSearchProps & { name?: string }) | boolean;
-  reloadIcon?: React.ReactNode;
-  densityIcon?: React.ReactNode;
+  reloadIcon?: ReactNode;
+  densityIcon?: ReactNode;
 };
 
-export type OptionsFunctionType = (
-  e: React.MouseEvent<HTMLSpanElement>,
-  action?: ActionType,
-) => void;
+export type OptionsFunctionType = (e: MouseEvent<HTMLSpanElement>, action?: ActionType) => void;
 
 export type OptionsType = OptionsFunctionType | boolean;
 
 export type ToolBarProps<T = unknown> = {
-  headerTitle?: React.ReactNode;
+  headerTitle?: ReactNode;
   tooltip?: string | LabelTooltipType;
   toolbar?: ListToolBarProps;
   toolBarRender?: (
@@ -52,8 +50,8 @@ export type ToolBarProps<T = unknown> = {
       selectedRowKeys?: (string | number)[];
       selectedRows?: T[];
     },
-  ) => React.ReactNode[];
-  action: React.RefObject<ActionType | undefined>;
+  ) => ReactNode[];
+  action: RefObject<ActionType | undefined>;
   options?: OptionConfig | false;
   optionsRender?: ToolbarRenderProps<T>['optionsRender'];
   selectedRowKeys?: (string | number)[];
@@ -98,7 +96,7 @@ function renderDefaultOption<T>(
   defaultOptions: OptionConfig & {
     intl: IntlType;
   },
-  actions: React.RefObject<ActionType | undefined>,
+  actions: RefObject<ActionType | undefined>,
   columns: TableColumnType<T>[],
 ) {
   return Object.keys(options)
@@ -248,7 +246,7 @@ function ToolBar<T>({
     /** 受控的value 和 onChange */
     const defaultSearchConfig = {
       value: counter.keyWords,
-      onChange: (e: React.ChangeEvent<HTMLInputElement>) => counter.setKeyWords(e.target.value),
+      onChange: (e: ChangeEvent<HTMLInputElement>) => counter.setKeyWords(e.target.value),
     };
 
     if (propsOptions.search === true) return defaultSearchConfig;
@@ -281,17 +279,17 @@ function ToolBar<T>({
 export type ToolbarRenderProps<T> = {
   hideToolbar: boolean;
   onFormSearchSubmit: (params: any) => void;
-  searchNode: React.ReactNode;
+  searchNode: ReactNode;
   tableColumn: any[];
   tooltip?: string | LabelTooltipType;
   selectedRows: T[];
-  selectedRowKeys: React.Key[] | (string | number)[];
-  headerTitle: React.ReactNode;
+  selectedRowKeys: Key[] | (string | number)[];
+  headerTitle: ReactNode;
   toolbar: ProTableProps<T, any, any>['toolbar'];
   options: ProTableProps<T, any, any>['options'];
-  optionsRender?: (props: ToolBarProps<T>, defaultDom: React.ReactNode[]) => React.ReactNode[];
+  optionsRender?: (props: ToolBarProps<T>, defaultDom: ReactNode[]) => ReactNode[];
   toolBarRender?: ToolBarProps<T>['toolBarRender'];
-  actionRef: React.RefObject<ActionType | undefined>;
+  actionRef: RefObject<ActionType | undefined>;
 };
 
 /** 这里负责与table交互，并且减少 render次数 */

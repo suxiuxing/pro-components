@@ -1,4 +1,4 @@
-import type { DependencyList } from 'react';
+import type { DependencyList, EffectCallback } from 'react';
 import { useEffect, useRef } from 'react';
 
 import { isDeepEqualReact } from '../../isDeepEqualReact';
@@ -19,7 +19,7 @@ export function useDeepCompareMemoize(value: any, ignoreKeys?: any) {
 }
 
 export function useDeepCompareEffect(
-  effect: React.EffectCallback,
+  effect: EffectCallback,
   dependencies: DependencyList,
   ignoreKeys?: string[],
 ) {
@@ -27,7 +27,7 @@ export function useDeepCompareEffect(
 }
 
 export function useDeepCompareEffectDebounce(
-  effect: React.EffectCallback,
+  effect: EffectCallback,
   dependencies: DependencyList,
   ignoreKeys?: string[],
   waitTime?: number,

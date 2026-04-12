@@ -1,7 +1,8 @@
 import { omit, useControlledState } from '@rc-component/util';
 import { Form, Popover, PopoverProps, type InputProps } from 'antd';
 import type { InputRef, PasswordProps } from 'antd/es/input';
-import React, { useCallback, useState } from 'react';
+import type { FC, ReactNode } from 'react';
+import { useCallback, useState } from 'react';
 
 import { FieldPassword } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -14,7 +15,7 @@ const valueType = 'text' as const;
  *
  * @param
  */
-const ProFormText: React.FC<ProFormFieldItemProps<InputProps, InputRef>> = ({
+const ProFormText: FC<ProFormFieldItemProps<InputProps, InputRef>> = ({
   fieldProps,
   proFieldProps,
   ...rest
@@ -37,17 +38,17 @@ const ProFormText: React.FC<ProFormFieldItemProps<InputProps, InputRef>> = ({
 export type PasswordStatus = 'ok' | 'pass' | 'poor' | undefined;
 
 export type PassWordStrengthProps = {
-  statusRender?: (value?: string) => React.ReactNode;
+  statusRender?: (value?: string) => ReactNode;
   popoverProps?: PopoverProps;
-  strengthText?: React.ReactNode;
+  strengthText?: ReactNode;
 };
 
-const PassWordStrength: React.FC<
+const PassWordStrength: FC<
   PassWordStrengthProps & {
     name?: string[];
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
-    children: React.ReactNode;
+    children: ReactNode;
   }
 > = (props) => {
   const [open, setOpenInner] = useControlledState<boolean>(props.open || false, props.open);
@@ -113,9 +114,7 @@ const PassWordStrength: React.FC<
   );
 };
 
-const Password: React.FC<
-  ProFormFieldItemProps<PasswordProps & PassWordStrengthProps, InputRef>
-> = ({
+const Password: FC<ProFormFieldItemProps<PasswordProps & PassWordStrengthProps, InputRef>> = ({
   fieldProps,
   proFieldProps,
   ...rest

@@ -1,5 +1,5 @@
 import { Form } from 'antd';
-import React from 'react';
+import type { ComponentProps, FC, PropsWithChildren, ReactElement, ReactNode } from 'react';
 
 import ProFormItem from '../index';
 
@@ -83,7 +83,7 @@ export function useControlModel<
   ) as unknown;
 }
 
-export type FormControlFC<P> = (props: WithControlPropsType<P>) => React.ReactNode;
+export type FormControlFC<P> = (props: WithControlPropsType<P>) => ReactNode;
 
 type FormControlInjectProps = ReturnType<typeof Form.Item.useStatus> & {
   id: string;
@@ -111,7 +111,7 @@ type FormControlInjectProps = ReturnType<typeof Form.Item.useStatus> & {
  */
 export function FormControlRender(
   props: WithControlPropsType<{
-    children: (props: FormControlInjectProps) => React.ReactElement;
+    children: (props: FormControlInjectProps) => ReactElement;
   }>,
 ) {
   const { children, ...restProps } = props;
@@ -173,14 +173,14 @@ export function pickControlPropsWithId(props: FormControlInjectProps) {
  * </FormItem>
  * ```
  */
-export function withFormItemRender<T extends React.FC<any>>(
+export function withFormItemRender<T extends FC<any>>(
   Comp: T,
-): React.FC<
-  Omit<React.ComponentProps<T>, 'children'> & {
-    children: (formItemProps: FormControlInjectProps) => React.ReactNode;
+): FC<
+  Omit<ComponentProps<T>, 'children'> & {
+    children: (formItemProps: FormControlInjectProps) => ReactNode;
   }
 > {
-  return function (props: React.PropsWithChildren<any>) {
+  return function (props: PropsWithChildren<any>) {
     const { children, ...restProps } = props;
 
     return (

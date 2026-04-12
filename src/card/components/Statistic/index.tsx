@@ -2,7 +2,8 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 import type { StatisticProps as AntdStatisticProps, BadgeProps } from 'antd';
 import { Statistic as AntdStatistic, Badge, ConfigProvider, Tooltip } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { useContext } from 'react';
 
 import { useStyle } from './style';
 
@@ -12,7 +13,7 @@ export interface StatisticProps extends AntdStatisticProps {
    *
    * @ignore
    */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /**
    * ClassName
    *
@@ -20,13 +21,13 @@ export interface StatisticProps extends AntdStatisticProps {
    */
   className?: string;
   /** 描述性标签 */
-  description?: React.ReactNode;
+  description?: ReactNode;
   /** 标题提示 */
-  tip?: React.ReactNode;
+  tip?: ReactNode;
   /** 当前项显示的状态 */
   status?: BadgeProps['status'];
   /** Icon 图标 */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /** Layout 布局 */
   layout?: 'horizontal' | 'vertical' | 'inline';
   /** 趋势 */
@@ -35,7 +36,7 @@ export interface StatisticProps extends AntdStatisticProps {
   children?: any;
 }
 
-const Statistic: React.FC<StatisticProps> = (props) => {
+const Statistic: FC<StatisticProps> = (props) => {
   const {
     className,
     layout = 'inline',
@@ -119,7 +120,7 @@ const Statistic: React.FC<StatisticProps> = (props) => {
           />
           {description && (
             <div className={clsx(`${prefixCls}-description`, hashId)}>
-              {description as React.ReactNode}
+              {description as ReactNode}
             </div>
           )}
         </div>

@@ -1,11 +1,11 @@
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import type { FieldDigitRangeProps, Value } from './types';
 
 export function FieldDigitRangeRead(
   props: Parameters<ProFieldFC<FieldDigitRangeProps>>[0],
-  ref?: React.Ref<unknown>,
+  ref?: Ref<unknown>,
 ) {
   const { text, mode: type, render, fieldProps, separator = '~' } = props;
   const getContent = (number: Value) => {
@@ -17,7 +17,7 @@ export function FieldDigitRangeRead(
     return fieldProps?.formatter?.(digit) || digit;
   };
   const dom = (
-    <span ref={ref as React.Ref<HTMLSpanElement>}>
+    <span ref={ref as Ref<HTMLSpanElement>}>
       {getContent(text[0])} {separator} {getContent(text[1])}
     </span>
   );

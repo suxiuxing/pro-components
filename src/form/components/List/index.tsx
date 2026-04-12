@@ -10,8 +10,8 @@ import { ConfigProvider, Form } from 'antd';
 import type { FormListFieldData, FormListOperation, FormListProps } from 'antd/es/form/FormList';
 import type { NamePath } from 'antd/es/form/interface';
 import { clsx } from 'clsx';
-import type { ReactNode } from 'react';
-import React, { useContext, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import type { CSSProperties, ReactNode, RefObject } from 'react';
+import { createContext, useContext, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 
 import { useIntl } from '../../../provider';
 import type { LabelTooltipType } from '../../../utils';
@@ -25,7 +25,7 @@ import { useStyle } from './style';
 
 const { noteOnce } = warning;
 
-const FormListContext = React.createContext<
+const FormListContext = createContext<
   | (FormListFieldData & {
       listName: NamePath;
     })
@@ -70,10 +70,10 @@ export type ProFormListProps<T> = Omit<FormListProps, 'children' | 'rules'> &
     fieldExtraRender?: (
       fieldAction: FormListOperation,
       meta: {
-        errors?: React.ReactNode[];
-        warnings?: React.ReactNode[];
+        errors?: ReactNode[];
+        warnings?: ReactNode[];
       },
-    ) => React.ReactNode;
+    ) => ReactNode;
     /**
      * @name 获取到 list 操作实例
      * @description 可用删除，新增，移动等操作
@@ -84,9 +84,9 @@ export type ProFormListProps<T> = Omit<FormListProps, 'children' | 'rules'> &
      * @example  actionRef?.current.get?.(1);
      * @example  actionRef?.current.getList?.();
      */
-    actionRef?: React.RefObject<FormListActionType<T> | undefined>;
+    actionRef?: RefObject<FormListActionType<T> | undefined>;
     /** 放在div上面的属性 */
-    style?: React.CSSProperties;
+    style?: CSSProperties;
     /**
      * 数据新增成功回调
      */
@@ -116,7 +116,7 @@ function ProFormList<T>(props: ProFormListProps<T>) {
   // Internationalization
   const intl = useIntl();
   /** 从 context 中拿到的值 */
-  const { setFieldValueType } = React.useContext(FieldContext);
+  const { setFieldValueType } = useContext(FieldContext);
 
   const {
     transform,

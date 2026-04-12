@@ -2,7 +2,8 @@ import ResizeObserver from '@rc-component/resize-observer';
 import { ConfigProvider, Input, TabPaneProps, Tabs, Tooltip } from 'antd';
 import type { SearchProps } from 'antd/es/input';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo, useState } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { cloneElement, Fragment, isValidElement, useContext, useMemo, useState } from 'react';
 
 import { proTheme, useIntl } from '../../../provider';
 import type { LabelTooltipType } from '../../../utils';
@@ -12,7 +13,7 @@ import HeaderMenu from './HeaderMenu';
 import { useStyle } from './style';
 
 export type ListToolBarSetting = {
-  icon: React.ReactNode;
+  icon: ReactNode;
   tooltip?: LabelTooltipType | string;
   key?: string;
   onClick?: (key?: string) => void;
@@ -36,18 +37,18 @@ type SearchPropType =
   | (SearchProps & {
       onSearch: (searchValue: string) => Promise<false | void> | false | void;
     })
-  | React.ReactNode
+  | ReactNode
   | boolean;
-type SettingPropType = React.ReactNode | ListToolBarSetting;
+type SettingPropType = ReactNode | ListToolBarSetting;
 
 export type ListToolBarProps = {
   prefixCls?: string;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /** 标题 */
-  title?: React.ReactNode;
+  title?: ReactNode;
   /** 副标题 */
-  subTitle?: React.ReactNode;
+  subTitle?: ReactNode;
   /** 标题提示 */
   tooltip?: string | LabelTooltipType;
   /** 搜索输入栏相关配置 */
@@ -55,13 +56,13 @@ export type ListToolBarProps = {
   /** 搜索回调 */
   onSearch?: (keyWords: string) => void;
   /** 工具栏右侧操作区 */
-  actions?: React.ReactNode[];
+  actions?: ReactNode[];
   /** 工作栏右侧设置区 */
   settings?: SettingPropType[];
   /** 是否多行展示 */
   multipleLine?: boolean;
   /** 过滤区，通常配合 LightFilter 使用 */
-  filter?: React.ReactNode;
+  filter?: ReactNode;
   /** 标签页配置，仅当 `multipleLine` 为 true 时有效 */
   tabs?: ListToolBarTabs;
   /** 菜单配置 */
@@ -74,7 +75,7 @@ export type ListToolBarProps = {
  * @param setting 配置项
  */
 function getSettingItem(setting: SettingPropType) {
-  if (React.isValidElement(setting)) {
+  if (isValidElement(setting)) {
     return setting;
   }
   if (setting) {
@@ -82,7 +83,7 @@ function getSettingItem(setting: SettingPropType) {
     const { icon, tooltip, onClick, key } = settingConfig;
     if (icon && tooltip) {
       return (
-        <Tooltip title={tooltip as React.ReactNode}>
+        <Tooltip title={tooltip as ReactNode}>
           <span
             key={key}
             onClick={() => {
@@ -112,10 +113,10 @@ function getSettingItem(setting: SettingPropType) {
   return null;
 }
 
-const ListToolBarTabBar: React.FC<{
+const ListToolBarTabBar: FC<{
   prefixCls: string;
   hashId?: string;
-  filtersNode: React.ReactNode;
+  filtersNode: ReactNode;
   multipleLine: boolean;
   tabs: ListToolBarProps['tabs'];
 }> = ({ prefixCls, hashId, tabs, multipleLine, filtersNode }) => {
@@ -143,7 +144,7 @@ const ListToolBarTabBar: React.FC<{
     </div>
   );
 };
-const ListToolBar: React.FC<ListToolBarProps> = ({
+const ListToolBar: FC<ListToolBarProps> = ({
   prefixCls: customizePrefixCls,
   title,
   subTitle,
@@ -180,7 +181,7 @@ const ListToolBar: React.FC<ListToolBarProps> = ({
     if (!search) {
       return null;
     }
-    if (React.isValidElement(search)) {
+    if (isValidElement(search)) {
       return search;
     }
     return (
@@ -227,10 +228,10 @@ const ListToolBar: React.FC<ListToolBarProps> = ({
         }}
       >
         {actions.map((action, index) => {
-          if (!React.isValidElement<Record<string, any>>(action)) {
-            return <React.Fragment key={index}>{action}</React.Fragment>;
+          if (!isValidElement<Record<string, any>>(action)) {
+            return <Fragment key={index}>{action}</Fragment>;
           }
-          return React.cloneElement(action, {
+          return cloneElement(action, {
             key: index,
             ...action.props,
           });

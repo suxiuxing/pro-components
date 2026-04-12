@@ -1,7 +1,7 @@
 import type { ImageProps } from 'antd';
 import { Image, Typography } from 'antd';
-import type { AnchorHTMLAttributes } from 'react';
-import React, { useContext, useEffect, useRef } from 'react';
+import type { AnchorHTMLAttributes, FC } from 'react';
+import { Fragment, useContext, useEffect, useRef } from 'react';
 
 import type { ProHelpDataSourceChildren } from './HelpProvide';
 import { ProHelpProvide } from './HelpProvide';
@@ -9,7 +9,7 @@ import { SelectKeyProvide } from './ProHelpPanel';
 
 // HTML渲染组件，接收一个字符串形式的html作为props
 // 可选接收className作为组件的样式类名
-const HTMLRender: React.FC<{
+const HTMLRender: FC<{
   children: string;
   className?: string;
 }> = (props) => {
@@ -28,7 +28,7 @@ const HTMLRender: React.FC<{
   );
 };
 
-const NavigationSwitch: React.FC<{
+const NavigationSwitch: FC<{
   children: string;
   selectKey: string;
 }> = (props) => {
@@ -47,7 +47,7 @@ const NavigationSwitch: React.FC<{
   );
 };
 
-export const RenderContentPanel: React.FC<{
+export const RenderContentPanel: FC<{
   dataSourceChildren: ProHelpDataSourceChildren<any>[];
   onInit?: (ref: HTMLDivElement) => void;
 }> = ({ dataSourceChildren, onInit }) => {
@@ -67,11 +67,7 @@ export const RenderContentPanel: React.FC<{
   const itemRender = (item: ProHelpDataSourceChildren, index: number) => {
     // 自定义的渲染，优先级最高
     if (valueTypeMap.has(item.valueType)) {
-      return (
-        <React.Fragment key={index}>
-          {valueTypeMap.get(item.valueType)?.(item, index)}
-        </React.Fragment>
-      );
+      return <Fragment key={index}>{valueTypeMap.get(item.valueType)?.(item, index)}</Fragment>;
     }
     if (item.valueType === 'html') {
       return (

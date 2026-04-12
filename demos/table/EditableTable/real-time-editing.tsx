@@ -1,11 +1,12 @@
 import { Button } from 'antd';
-import React, { useState } from 'react';
+import type { Key } from 'react';
+import { useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { EditableProTable, ProCard, ProFormField } from '@xxlabs/pro-components';
 
 type DataSourceType = {
-  id: React.Key;
+  id: Key;
   title?: string;
   description?: string;
   status?: string;
@@ -68,7 +69,7 @@ const defaultData: DataSourceType[] = taskNames.map((name, index) => ({
 }));
 
 const Demo = () => {
-  const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() =>
+  const [editableKeys, setEditableRowKeys] = useState<Key[]>(() =>
     defaultData.map((item) => item.id),
   );
   const [dataSource, setDataSource] = useState<readonly DataSourceType[]>(() => defaultData);

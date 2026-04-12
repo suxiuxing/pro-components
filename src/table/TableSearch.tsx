@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import type { ReactNode, RefObject } from 'react';
+import { useMemo } from 'react';
 
 import type { ParamsType } from '../provider';
 import FormRender from './components/Form';
@@ -9,7 +10,7 @@ export type TableSearchProps<T extends Record<string, any>, U, ValueType> = {
   type: ProTableProps<T, U, ValueType>['type'];
   pagination: ProTableProps<T, U, ValueType>['pagination'];
   beforeSearchSubmit: ProTableProps<T, U, ValueType>['beforeSearchSubmit'];
-  actionRef: React.RefObject<ActionType | undefined>;
+  actionRef: RefObject<ActionType | undefined>;
   columns: ProTableProps<T, U, ValueType>['columns'];
   onFormSearchSubmit: <Y extends ParamsType>(values: Y) => any;
   ghost: ProTableProps<T, U, ValueType>['ghost'];
@@ -18,7 +19,7 @@ export type TableSearchProps<T extends Record<string, any>, U, ValueType> = {
   loading: boolean;
   manualRequest: ProTableProps<T, U, ValueType>['manualRequest'];
   form: ProTableProps<T, U, ValueType>['form'];
-  formRef: React.RefObject<any>;
+  formRef: RefObject<any>;
   cardBordered: ProTableProps<T, U, ValueType>['cardBordered'];
   dateFormatter: ProTableProps<T, U, ValueType>['dateFormatter'];
   searchFormRender: ProTableProps<T, U, ValueType>['searchFormRender'];
@@ -27,7 +28,7 @@ export type TableSearchProps<T extends Record<string, any>, U, ValueType> = {
 
 export function TableSearch<T extends Record<string, any>, U, ValueType>(
   props: TableSearchProps<T, U, ValueType>,
-): React.ReactNode {
+): ReactNode {
   const {
     search,
     type,

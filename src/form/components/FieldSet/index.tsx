@@ -2,7 +2,8 @@ import { toArray } from '@rc-component/util';
 import type { SpaceProps } from 'antd';
 import { Space } from 'antd';
 import type { GroupProps } from 'antd/es/input';
-import React, { useCallback, useImperativeHandle } from 'react';
+import type { FC, ReactNode, Ref } from 'react';
+import { cloneElement, isValidElement, useCallback, useImperativeHandle } from 'react';
 
 import { runFunction, useRefFunction } from '../../../utils';
 import type { LightWrapperProps } from '../../BaseForm';
@@ -19,7 +20,7 @@ export type ProFormFieldSetProps<T = any> = {
   fieldProps?: any;
   convertValue?: ProFormItemProps['convertValue'];
   transform?: ProFormItemProps['transform'];
-  children?: ((value: T[], props: ProFormFieldSetProps) => React.ReactNode) | React.ReactNode;
+  children?: ((value: T[], props: ProFormFieldSetProps) => ReactNode) | ReactNode;
   lightProps?: LightWrapperProps;
 };
 
@@ -37,7 +38,7 @@ export function defaultGetValueFromEvent(valuePropName: string, ...args: any) {
   return event;
 }
 
-const FieldSet: React.FC<ProFormFieldSetProps> = (props) => {
+const FieldSet: FC<ProFormFieldSetProps> = (props) => {
   const {
     children,
     value = [],
@@ -67,7 +68,7 @@ const FieldSet: React.FC<ProFormFieldSetProps> = (props) => {
 
   let itemIndex = -1;
   const list = toArray(runFunction(children, value, props)).map((item: any) => {
-    if (React.isValidElement(item)) {
+    if (isValidElement(item)) {
       itemIndex += 1;
       const index = itemIndex;
       const isProFromItem =
@@ -97,16 +98,16 @@ const FieldSet: React.FC<ProFormFieldSetProps> = (props) => {
               (item as any).props.onChange?.(itemValue);
             },
           };
-      return React.cloneElement(item, forkProps);
+      return cloneElement(item, forkProps);
     }
     return item;
   });
-  const Components = FieldSetType[type] as React.FC<SpaceProps>;
+  const Components = FieldSetType[type] as FC<SpaceProps>;
 
   const { RowWrapper } = useGridHelpers(rest);
 
-  const Wrapper: React.FC = useCallback(
-    ({ children: dom }: { children?: React.ReactNode }) => {
+  const Wrapper: FC = useCallback(
+    ({ children: dom }: { children?: ReactNode }) => {
       // 从 space props 中提取 wrap，如果未定义则不传递
       const spacePropsWithWrap = {
         ...(space as SpaceProps),
@@ -126,13 +127,13 @@ const FieldSet: React.FC<ProFormFieldSetProps> = (props) => {
   return <RowWrapper Wrapper={Wrapper}>{list}</RowWrapper>;
 };
 
-const BaseProFormFieldSet: React.FC<Omit<ProFormItemProps, 'children'> & ProFormFieldSetProps> = ({
+const BaseProFormFieldSet: FC<Omit<ProFormItemProps, 'children'> & ProFormFieldSetProps> = ({
   children,
   space,
   valuePropName,
   ref,
   ...rest
-}: Omit<ProFormItemProps, 'children'> & ProFormFieldSetProps & { ref?: React.Ref<any> }) => {
+}: Omit<ProFormItemProps, 'children'> & ProFormFieldSetProps & { ref?: Ref<any> }) => {
   useImperativeHandle(ref, () => ({}));
   return (
     <FieldSet

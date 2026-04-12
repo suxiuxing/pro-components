@@ -1,5 +1,5 @@
 import { Radio } from 'antd';
-import React from 'react';
+import { useState } from 'react';
 
 import {
   LightFilter,
@@ -17,7 +17,7 @@ import {
 } from '@xxlabs/pro-components';
 
 const Demo = () => {
-  const [mode, setMode] = React.useState<any>('topLeft');
+  const [mode, setMode] = useState<any>('topLeft');
   return (
     <div>
       <Radio.Group

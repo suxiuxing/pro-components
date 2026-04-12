@@ -1,6 +1,7 @@
 import { get } from '@rc-component/util';
 import { cloneDeep } from 'es-toolkit/compat';
-import React from 'react';
+import type { Key } from 'react';
+import { isValidElement } from 'react';
 
 import { isNil } from '../isNil';
 import type { SearchTransformKeyFn } from '../typing';
@@ -28,7 +29,7 @@ export function isPlainObj(itemValue: any): boolean {
   }
 
   // 排除各种特殊对象类型
-  if (React.isValidElement(itemValue)) return false;
+  if (isValidElement(itemValue)) return false;
   if (itemValue.constructor === RegExp) return false;
   if (itemValue instanceof Map) return false;
   if (itemValue instanceof Set) return false;
@@ -167,7 +168,7 @@ function processDotPathTransforms(
  */
 function findNestedTransformFunction(
   currentTransforms: any,
-  parentsKey: React.Key[],
+  parentsKey: Key[],
   entityKey: string,
 ): SearchTransformKeyFn | undefined {
   let nestedTransforms: any = currentTransforms;
@@ -195,7 +196,7 @@ function findNestedTransformFunction(
  * @param parentsKey - 父级路径数组
  * @returns 如果包含数组索引返回 true
  */
-function isInArrayPath(parentsKey: React.Key[]): boolean {
+function isInArrayPath(parentsKey: Key[]): boolean {
   return parentsKey.some((key) => !isNaN(Number(key)));
 }
 
@@ -212,7 +213,7 @@ function isInArrayPath(parentsKey: React.Key[]): boolean {
  */
 function processNestedObjectTransforms(
   tempValues: any,
-  parentsKey: React.Key[] | undefined,
+  parentsKey: Key[] | undefined,
   currentTransforms: any,
   rootMergeObjects: any[],
   visited: Set<any>,

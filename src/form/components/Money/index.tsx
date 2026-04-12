@@ -1,5 +1,5 @@
 import type { InputNumberProps } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import { FieldMoney, FieldMoneyProps } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -28,7 +28,7 @@ const ProFormMoney = ({
   max,
   ref,
   ...rest
-}: ProFormMoneyProps & { ref?: React.Ref<any> }) => {
+}: ProFormMoneyProps & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{

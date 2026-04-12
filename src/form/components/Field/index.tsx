@@ -1,4 +1,5 @@
-import React, { useContext, useMemo } from 'react';
+import type { FC, ReactElement } from 'react';
+import { cloneElement, isValidElement, useContext, useMemo } from 'react';
 
 import { PureProField } from '../../../field';
 import type { ProSchema } from '../../../utils';
@@ -28,7 +29,7 @@ export type ProFormFieldProps<T = any, FiledProps = Record<string, any>> = ProSc
   any
 >;
 
-const BaseProFormField: React.FC<
+const BaseProFormField: FC<
   ProFormFieldProps & {
     onChange?: (...args: any) => any;
     autoFocus?: boolean;
@@ -88,8 +89,8 @@ const BaseProFormField: React.FC<
   const childrenRender = useMemo(() => {
     // 防止 formItem 的值被吃掉
     if (children) {
-      if (React.isValidElement(children)) {
-        return React.cloneElement(children, {
+      if (isValidElement(children)) {
+        return cloneElement(children, {
           ...restProps,
           onChange: (...restParams: any) => {
             if (fieldProps?.onChange) {
@@ -132,6 +133,6 @@ const ProFormField = warpField<ProFormFieldProps>?.(BaseProFormField) as <
   DataType = Record<string, any>,
 >(
   props: ProFormFieldProps<DataType, FiledProps>,
-) => React.ReactElement;
+) => ReactElement;
 
 export default ProFormField;

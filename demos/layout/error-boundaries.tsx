@@ -1,10 +1,10 @@
 import { Button, Result } from 'antd';
 import type { ErrorInfo } from 'react';
-import React, { useState } from 'react';
+import { Component, useState } from 'react';
 
 import { PageContainer, ProLayout } from '@xxlabs/pro-components';
 
-class CustomBoundary extends React.Component<
+class CustomBoundary extends Component<
   Record<string, any>,
   { hasError: boolean; errorInfo: string }
 > {

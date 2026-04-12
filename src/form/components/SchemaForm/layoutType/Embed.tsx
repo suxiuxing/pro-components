@@ -1,3 +1,4 @@
-const Embed: React.FC<{ children: any }> = ({ children }) => <>{children}</>;
+import type { FC } from 'react';
+const Embed: FC<{ children: any }> = ({ children }) => <>{children}</>;
 
 export default Embed;

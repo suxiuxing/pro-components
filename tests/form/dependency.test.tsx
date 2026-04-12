@@ -1,4 +1,5 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
+import type { FC } from 'react';
 import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
@@ -15,7 +16,7 @@ describe('ProForm Dependency component', () => {
     cleanup();
   });
   it('⛲ shouldUpdate of ProFormDependency is Boolean', async () => {
-    const Demo: React.FC<{
+    const Demo: FC<{
       shouldUpdate?: boolean;
     }> = ({ shouldUpdate = false }) => {
       return (
@@ -119,7 +120,7 @@ describe('ProForm Dependency component', () => {
 
   it('⛲ ProFormDependency support transform', async () => {
     const dependencyFn = vi.fn();
-    const Demo: React.FC<{
+    const Demo: FC<{
       shouldUpdate?: boolean;
     }> = () => {
       return (

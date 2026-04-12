@@ -1,5 +1,6 @@
 import type { RangePickerProps } from 'antd/es/date-picker';
-import React, { useContext } from 'react';
+import type { FC, Ref } from 'react';
+import { useContext } from 'react';
 
 import { FieldTimeRangePicker } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -11,8 +12,8 @@ import ProField from '../Field';
 const valueType = 'timeRange' as const;
 
 /** 时间区间选择器 */
-export const ProFormTimeRangePicker: React.FC<
-  ProFormFieldItemProps<RangePickerProps> & { ref?: React.Ref<any> }
+export const ProFormTimeRangePicker: FC<
+  ProFormFieldItemProps<RangePickerProps> & { ref?: Ref<any> }
 > = ({ fieldProps, proFieldProps, ref, ...rest }: any) => {
   const context = useContext(FieldContext);
   return (

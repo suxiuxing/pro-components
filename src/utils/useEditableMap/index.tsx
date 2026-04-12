@@ -1,6 +1,6 @@
 import { get, useControlledState } from '@rc-component/util';
 import { message } from 'antd';
-import type React from 'react';
+import type { Key, ReactNode } from 'react';
 import { useCallback, useMemo, useRef } from 'react';
 
 import { useRefFunction } from '..';
@@ -18,7 +18,7 @@ import { defaultActionRender, recordKeyToString } from '../useEditableArray';
  * 显示警告信息
  * @param messageStr
  */
-const warning = (messageStr: React.ReactNode) => {
+const warning = (messageStr: ReactNode) => {
   return message.warning(messageStr);
 };
 /**
@@ -33,7 +33,7 @@ function editableRowByKey<RecordType>({ data, row }: { data: RecordType; row: Re
 
 export type AddLineOptions = {
   position?: 'top' | 'bottom';
-  recordKey?: React.Key;
+  recordKey?: Key;
 };
 
 /**
@@ -59,17 +59,12 @@ export function useEditableMap<RecordType>(
   // Internationalization
   const intl = useIntl();
 
-  const [editableKeys, setEditableRowKeysInner] = useControlledState<React.Key[]>(
-    [],
-    props.editableKeys,
-  );
+  const [editableKeys, setEditableRowKeysInner] = useControlledState<Key[]>([], props.editableKeys);
   const setEditableRowKeys = useCallback(
-    (updater: React.Key[] | ((prev: React.Key[]) => React.Key[])) => {
+    (updater: Key[] | ((prev: Key[]) => Key[])) => {
       setEditableRowKeysInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: React.Key[]) => React.Key[])(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: Key[]) => Key[])(prev) : updater;
         props?.onChange?.(next, props.dataSource);
         return next;
       });

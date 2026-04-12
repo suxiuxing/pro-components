@@ -2,7 +2,8 @@ import { MenuOutlined } from '@ant-design/icons';
 import type { AvatarProps } from 'antd';
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { CSSProperties, FC, MouseEvent, ReactNode, RefObject } from 'react';
+import { useContext } from 'react';
 
 import type { PureSettings } from '../../defaultSettings';
 import type { MenuDataItem } from '../../index';
@@ -21,24 +22,24 @@ export type GlobalHeaderProps = {
   collapsed?: boolean;
   onCollapse?: (collapsed: boolean) => void;
   isMobile?: boolean;
-  logo?: React.ReactNode;
+  logo?: ReactNode;
   /**
    * @name 虽然叫menuRender，但是其实是整个 SiderMenu 面板的渲染函数
    *
    * @example 收起时完成不展示菜单 menuRender={(props,defaultDom)=> props.collapsed ? null : defaultDom}
    * @example 不展示菜单 menuRender={false}
    */
-  menuRender?: WithFalse<(props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode>;
+  menuRender?: WithFalse<(props: HeaderViewProps, defaultDom: ReactNode) => ReactNode>;
 
   className?: string;
   prefixCls?: string;
   /** 相关品牌的列表 */
   appList?: AppListProps;
   /** 相关品牌的列表项 点击事件，当事件存在时，appList 内配置的 url 不在自动跳转 */
-  itemClick?: (item: AppItemProps, popoverRef?: React.RefObject<HTMLSpanElement | null>) => void;
+  itemClick?: (item: AppItemProps, popoverRef?: RefObject<HTMLSpanElement | null>) => void;
   menuData?: MenuDataItem[];
-  onMenuHeaderClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  style?: React.CSSProperties;
+  onMenuHeaderClick?: (e: MouseEvent<HTMLDivElement>) => void;
+  style?: CSSProperties;
   menuHeaderRender?: SiderMenuProps['menuHeaderRender'];
 
   /**
@@ -46,33 +47,24 @@ export type GlobalHeaderProps = {
    *
    * @example headerContentRender={(props) => <div>管理控制台 </div>}
    */
-  headerContentRender?: WithFalse<
-    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
-  >;
+  headerContentRender?: WithFalse<(props: HeaderViewProps, defaultDom: ReactNode) => ReactNode>;
   collapsedButtonRender?: SiderMenuProps['collapsedButtonRender'];
 
   splitMenus?: boolean;
   /** Layout的操作功能列表，不同的 layout 会放到不同的位置 */
-  actionsRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode[] | React.ReactNode>;
+  actionsRender?: WithFalse<(props: HeaderViewProps) => ReactNode[] | ReactNode>;
 
   /** 头像的设置 */
   avatarProps?: WithFalse<
     AvatarProps & {
-      title?: React.ReactNode;
-      render?: (
-        props: AvatarProps,
-        defaultDom: React.ReactNode,
-        siderProps: SiderMenuProps,
-      ) => React.ReactNode;
+      title?: ReactNode;
+      render?: (props: AvatarProps, defaultDom: ReactNode, siderProps: SiderMenuProps) => ReactNode;
     }
   >;
-  children?: React.ReactNode;
+  children?: ReactNode;
 } & Partial<PureSettings>;
 
-const renderLogo = (
-  menuHeaderRender: SiderMenuProps['menuHeaderRender'],
-  logoDom: React.ReactNode,
-) => {
+const renderLogo = (menuHeaderRender: SiderMenuProps['menuHeaderRender'], logoDom: ReactNode) => {
   if (menuHeaderRender === false) {
     return null;
   }
@@ -82,7 +74,7 @@ const renderLogo = (
   return logoDom;
 };
 
-const GlobalHeader: React.FC<GlobalHeaderProps & PrivateSiderMenuProps> = (props) => {
+const GlobalHeader: FC<GlobalHeaderProps & PrivateSiderMenuProps> = (props) => {
   const {
     isMobile,
     logo,

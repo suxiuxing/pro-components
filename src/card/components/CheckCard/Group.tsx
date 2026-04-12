@@ -2,7 +2,8 @@ import { RightOutlined } from '@ant-design/icons';
 import { omit, useControlledState } from '@rc-component/util';
 import { ConfigProvider, Skeleton } from 'antd';
 import { clsx } from 'clsx';
-import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { Children, createContext, useCallback, useContext, useMemo, useRef, useState } from 'react';
 
 import { ProConfigProvider, proTheme } from '../../../provider';
 import CheckCard from './index';
@@ -25,7 +26,7 @@ export interface CheckCardOptionType {
    *
    * @title Title
    */
-  title?: React.ReactNode;
+  title?: ReactNode;
 
   /**
    * The value of the option.
@@ -39,7 +40,7 @@ export interface CheckCardOptionType {
    *
    * @title Description
    */
-  description?: React.ReactNode;
+  description?: ReactNode;
 
   /**
    * The size of the component. Supports three default sizes: 'large', 'default', 'small'.
@@ -55,14 +56,14 @@ export interface CheckCardOptionType {
    *
    * @title Left Avatar Area
    */
-  avatar?: React.ReactNode;
+  avatar?: ReactNode;
 
   /**
    * The cover image. In this mode, other display values are ignored.
    *
    * @title Cover Image
    */
-  cover?: React.ReactNode;
+  cover?: ReactNode;
 
   /**
    * Specifies if the option is disabled.
@@ -96,7 +97,7 @@ export interface AbstractCheckCardGroupProps {
   /** 整组失效 */
   disabled?: boolean;
   /** @ignore */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /**
    * 组件尺寸，支持大，中，小三种默认尺寸，用户可以自定义宽高
    *
@@ -108,10 +109,10 @@ export interface AbstractCheckCardGroupProps {
    * @acceptions CheckCard
    * @ignore
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
-export const CardLoading: React.FC<{
+export const CardLoading: FC<{
   prefixCls: string;
   hashId: string;
 }> = ({ prefixCls, hashId }) => {
@@ -234,9 +235,9 @@ export const CheckCardGroupConnext = createContext<CheckCardGroupConnextType | n
  * @param {string} prefix - The prefix for CSS class names.
  * @returns {React.ReactNode} The rendered SubCheckCardGroup component.
  */
-const SubCheckCardGroup: React.FC<{
-  title: React.ReactNode;
-  children: React.ReactNode;
+const SubCheckCardGroup: FC<{
+  title: ReactNode;
+  children: ReactNode;
   prefix: string;
 }> = (props) => {
   const [collapse, setCollapse] = useState(false);
@@ -269,7 +270,7 @@ const SubCheckCardGroup: React.FC<{
   );
 };
 
-const CheckCardGroup: React.FC<CheckCardGroupProps> = (props) => {
+const CheckCardGroup: FC<CheckCardGroupProps> = (props) => {
   const {
     prefixCls: customizePrefixCls,
     className,
@@ -369,15 +370,15 @@ const CheckCardGroup: React.FC<CheckCardGroupProps> = (props) => {
     }
   };
 
-  const children = useMemo((): React.ReactNode => {
+  const children = useMemo((): ReactNode => {
     if (loading) {
-      const loadingCount = options.length || React.Children.toArray(props.children).length || 1;
+      const loadingCount = options.length || Children.toArray(props.children).length || 1;
       return Array.from({ length: loadingCount }, (_, index) => (
         <CheckCard
           key={index}
           loading
         />
-      )) as React.ReactNode[];
+      )) as ReactNode[];
     }
 
     if (options && options.length > 0) {
@@ -414,11 +415,11 @@ const CheckCardGroup: React.FC<CheckCardGroupProps> = (props) => {
               cover={option.cover}
             />
           );
-        }) as React.ReactNode[];
+        }) as ReactNode[];
       };
-      return renderOptions(getOptions()) as React.ReactNode[];
+      return renderOptions(getOptions()) as ReactNode[];
     }
-    return props.children as React.ReactNode;
+    return props.children as ReactNode;
   }, [getOptions, loading, multiple, options, props.children, props.size, stateValue]);
 
   const classString = clsx(groupPrefixCls, className, hashId);

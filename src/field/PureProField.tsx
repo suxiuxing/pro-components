@@ -1,4 +1,4 @@
-import React from 'react';
+import type { JSX, ReactNode } from 'react';
 
 import type { ProRenderFieldPropsType } from '../provider';
 import { type ProFieldTextType, type ProFieldValueTypeInput } from '../utils';
@@ -22,7 +22,7 @@ export const pureRenderRead: ProFieldRenderText = (
   valueType: ProFieldValueTypeInput,
   props: ProFieldRenderProps,
   valueTypeMap: Record<string, ProRenderFieldPropsType>,
-): React.ReactNode => {
+): ReactNode => {
   const { mode = 'read', emptyText = '-' } = props;
 
   if (emptyText !== false && mode === 'read' && valueType !== 'option' && valueType !== 'switch') {
@@ -56,7 +56,7 @@ export const pureRenderRead: ProFieldRenderText = (
     const readDom = customValueTypeConfig.render?.(
       dataValue,
       {
-        text: dataValue as React.ReactNode,
+        text: dataValue as ReactNode,
         ...props,
         mode: mode || 'read',
       },
@@ -66,10 +66,10 @@ export const pureRenderRead: ProFieldRenderText = (
       return props.render?.(
         dataValue,
         {
-          text: dataValue as React.ReactNode,
+          text: dataValue as ReactNode,
           ...props,
         },
-        readDom as React.JSX.Element,
+        readDom as JSX.Element,
       );
     }
     return readDom;
@@ -88,7 +88,7 @@ export const pureRenderEdit: ProFieldRenderText = (
   valueType: ProFieldValueTypeInput,
   props: ProFieldRenderProps,
   valueTypeMap: Record<string, ProRenderFieldPropsType>,
-): React.ReactNode => {
+): ReactNode => {
   delete props.emptyText;
 
   if (typeof valueType === 'object') {
@@ -110,7 +110,7 @@ export const pureRenderEdit: ProFieldRenderText = (
     const dom = customValueTypeConfig.formItemRender?.(
       dataValue,
       {
-        text: dataValue as React.ReactNode,
+        text: dataValue as ReactNode,
         ...props,
       },
       <>{dataValue}</>,
@@ -119,10 +119,10 @@ export const pureRenderEdit: ProFieldRenderText = (
       return props.formItemRender?.(
         dataValue,
         {
-          text: dataValue as React.ReactNode,
+          text: dataValue as ReactNode,
           ...props,
         },
-        dom as React.JSX.Element,
+        dom as JSX.Element,
       );
     }
     return dom;

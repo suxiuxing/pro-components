@@ -3,7 +3,8 @@ import { toArray } from '@rc-component/util';
 import type { SelectProps } from 'antd';
 import { ConfigProvider, Input, Select } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo, useState } from 'react';
+import type { Ref } from 'react';
+import { useContext, useMemo, useState } from 'react';
 
 import { FieldLabel, useStyle } from '../../../../utils';
 import type { ProFieldLightProps } from '../../../types';
@@ -48,9 +49,7 @@ const getValueOrLabel = (
   return valueMap[v?.value] || v.label;
 };
 
-export const LightSelect = (
-  props: SelectProps<any> & LightSelectProps & { ref?: React.Ref<any> },
-) => {
+export const LightSelect = (props: SelectProps<any> & LightSelectProps & { ref?: Ref<any> }) => {
   const {
     label,
     prefixCls: customizePrefixCls,

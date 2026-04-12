@@ -2,25 +2,26 @@ import { CloseCircleFilled, DownOutlined } from '@ant-design/icons';
 import { ConfigProvider } from 'antd';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import { clsx } from 'clsx';
-import React, { useContext, useImperativeHandle, useRef } from 'react';
+import type { CSSProperties, JSX, ReactNode, Ref } from 'react';
+import { useContext, useImperativeHandle, useRef } from 'react';
 
 import { useIntl } from '../../../provider';
 import { useStyle } from './style';
 
 export type FieldLabelProps = {
-  label?: React.ReactNode;
+  label?: ReactNode;
   value?: any;
   disabled?: boolean;
   onClear?: () => void;
   size?: SizeType;
   ellipsis?: boolean;
-  placeholder?: React.ReactNode;
+  placeholder?: ReactNode;
   className?: string;
-  formatter?: (value: any) => React.ReactNode;
-  style?: React.CSSProperties;
+  formatter?: (value: any) => ReactNode;
+  style?: CSSProperties;
   variant?: 'outlined' | 'borderless' | 'filled' | 'underlined';
   allowClear?: boolean;
-  downIcon?: React.ReactNode | false;
+  downIcon?: ReactNode | false;
   onClick?: () => void;
   valueMaxLength?: number;
   /**
@@ -29,7 +30,7 @@ export type FieldLabelProps = {
   onLabelClick?: () => void;
 };
 
-const FieldLabelFunction = (props: FieldLabelProps & { ref?: React.Ref<any> }) => {
+const FieldLabelFunction = (props: FieldLabelProps & { ref?: Ref<any> }) => {
   const { ref } = props;
   const {
     label,
@@ -62,7 +63,7 @@ const FieldLabelFunction = (props: FieldLabelProps & { ref?: React.Ref<any> }) =
     clearRef,
   }));
 
-  const wrapElements = (array: (string | React.JSX.Element)[]): React.JSX.Element[] | string => {
+  const wrapElements = (array: (string | JSX.Element)[]): JSX.Element[] | string => {
     if (array.every((item) => typeof item === 'string')) return array.join(',');
 
     return array.map((item, index) => {
@@ -95,9 +96,9 @@ const FieldLabelFunction = (props: FieldLabelProps & { ref?: React.Ref<any> }) =
   };
 
   const getTextByValue = (
-    aLabel?: React.ReactNode | React.ReactNode[],
+    aLabel?: ReactNode | ReactNode[],
     aValue?: string | string[],
-  ): React.ReactNode => {
+  ): ReactNode => {
     if (
       aValue !== undefined &&
       aValue !== null &&

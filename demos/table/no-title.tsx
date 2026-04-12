@@ -1,6 +1,7 @@
 import { DownOutlined } from '@ant-design/icons';
 import { Avatar, Dropdown, Popconfirm, Space } from 'antd';
-import React from 'react';
+import type { FC } from 'react';
+import { Fragment } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
@@ -58,7 +59,7 @@ for (let i = 0; i < 5; i += 1) {
   });
 }
 
-const MemberList: React.FC = () => {
+const MemberList: FC = () => {
   const renderRemoveUser = (text: string) => (
     <Popconfirm
       key="popconfirm"
@@ -90,10 +91,10 @@ const MemberList: React.FC = () => {
       copyable: true,
       renderText: (_dom, row) => {
         return (
-          <React.Fragment>
+          <Fragment>
             <Avatar src={row.avatar} />
             {row.nickName}
-          </React.Fragment>
+          </Fragment>
         );
       },
     },

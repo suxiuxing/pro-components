@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import type { Key } from 'react';
+import { useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { CellEditorTable } from '@xxlabs/pro-components';
 
 type DataSourceType = {
-  id: React.Key;
+  id: Key;
   title?: string;
   description?: string;
   status?: string;

@@ -1,7 +1,7 @@
 import { omit } from '@rc-component/util';
 import type { SwitchProps } from 'antd';
 import { Switch } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import { FieldLabel } from '../../../utils';
 import type { ProFieldFC } from '../../types';
@@ -16,12 +16,12 @@ type Props = Parameters<
   variant: 'outlined' | 'borderless' | 'filled' | undefined;
 };
 
-export function FieldSwitchEdit(props: Props, ref?: React.Ref<unknown>) {
+export function FieldSwitchEdit(props: Props, ref?: Ref<unknown>) {
   const { text, mode, light, label, formItemRender, fieldProps, variant } = props;
 
   const editDom = (
     <Switch
-      ref={ref as React.Ref<any>}
+      ref={ref as Ref<any>}
       size={light ? 'small' : undefined}
       {...omit(fieldProps, ['value'])}
       checked={fieldProps?.checked ?? fieldProps?.value}

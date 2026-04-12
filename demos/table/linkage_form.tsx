@@ -1,6 +1,7 @@
 /* eslint-disable no-console */ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Input, Select } from 'antd';
-import React, { useEffect, useState } from 'react';
+import type { FC, ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
@@ -11,7 +12,7 @@ type ServiceItem = {
   createdAt: number;
 };
 
-const MySelect: React.FC<{
+const MySelect: FC<{
   state: {
     type: number;
   };
@@ -22,7 +23,7 @@ const MySelect: React.FC<{
 
   const [innerOptions, setOptions] = useState<
     {
-      label: React.ReactNode;
+      label: ReactNode;
       value: number;
     }[]
   >([]);

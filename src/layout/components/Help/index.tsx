@@ -1,4 +1,4 @@
-import React from 'react';
+import type { Key, ReactNode } from 'react';
 
 import type { ProHelpDataSource, ProHelpDataSourceChildren } from './HelpProvide';
 import { ProHelpProvide } from './HelpProvide';
@@ -30,18 +30,18 @@ export type ProHelpProps<ValueType> = {
    */
   valueTypeMap?: Map<
     string,
-    (item: ProHelpDataSourceChildren<ValueType>, index: number) => React.ReactNode
+    (item: ProHelpDataSourceChildren<ValueType>, index: number) => ReactNode
   >;
   /**
    * 帮助组件的子组件，用于渲染自定义的帮助内容。
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /**
    * 加载数据源的函数,如果把数据源设置为 async load就可以使用这个功能。
    */
   onLoadContext?: (
-    key: React.Key,
+    key: Key,
     context: ProHelpDataSource<ValueType>['children'][number],
   ) => Promise<ProHelpDataSourceChildren<ValueType>[]>;
 };
@@ -50,7 +50,7 @@ export type ProHelpContentPanelProps = {
   /**
    * 控制当前选中的帮助文档
    */
-  selectedKey: React.Key;
+  selectedKey: Key;
   className?: string;
   parentItem?: ProHelpDataSource<any>;
 

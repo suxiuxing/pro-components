@@ -1,7 +1,7 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import { Cascader } from 'antd';
 import { clsx } from 'clsx';
-import React from 'react';
+import type { Dispatch, ReactNode, RefObject, SetStateAction } from 'react';
 
 import type { IntlType } from '../../../provider';
 import { FieldLabel } from '../../../utils';
@@ -13,8 +13,8 @@ type Props = Omit<Parameters<ProFieldFC<GroupProps>>[0], 'options'> & {
   loading: boolean;
   layoutClassName: string;
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  cascaderRef: React.RefObject<any>;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  cascaderRef: RefObject<any>;
   intl: IntlType;
 };
 
@@ -37,7 +37,7 @@ export function FieldCascaderEdit(props: Props) {
   } = props;
 
   const fieldProps = rest.fieldProps || {};
-  let dom: React.ReactNode = (
+  let dom: ReactNode = (
     <Cascader
       ref={cascaderRef}
       open={open}

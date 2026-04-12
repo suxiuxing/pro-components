@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Button, Skeleton } from 'antd';
-import React, { act, useEffect, useMemo, useState } from 'react';
+import type { ReactNode } from 'react';
+import { act, useEffect, useMemo, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { FooterToolbar, PageContainer, ProLayout } from '@xxlabs/pro-components';
@@ -519,7 +520,7 @@ describe('PageContainer', () => {
         ),
         [],
       );
-      const [loading, setLoading] = useState<React.ReactNode | false>(loadingDom);
+      const [loading, setLoading] = useState<ReactNode | false>(loadingDom);
       useEffect(() => {
         setTimeout(() => {
           setLoading(false);

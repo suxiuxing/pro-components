@@ -1,6 +1,7 @@
 import { CheckOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import { clsx } from 'clsx';
+import type { FC, ReactNode } from 'react';
 import { useMemo } from 'react';
 
 export type BlockCheckboxProps = {
@@ -9,14 +10,14 @@ export type BlockCheckboxProps = {
   list?: {
     title: string;
     key: string;
-    icon?: React.ReactNode;
+    icon?: ReactNode;
   }[];
   configType: string;
   prefixCls: string;
   hashId: string;
 };
 
-const BlockCheckbox: React.FC<BlockCheckboxProps> = ({
+const BlockCheckbox: FC<BlockCheckboxProps> = ({
   value,
   configType,
   onChange,

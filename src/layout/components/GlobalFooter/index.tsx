@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import { useContext } from 'react';
 
 import type { WithFalse } from '../../typing';
 import { useStyle } from './style';
@@ -9,13 +10,13 @@ export type GlobalFooterProps = {
   links?: WithFalse<
     {
       key?: string;
-      title: React.ReactNode;
+      title: ReactNode;
       href: string;
       blankTarget?: boolean;
     }[]
   >;
-  copyright?: React.ReactNode;
-  style?: React.CSSProperties;
+  copyright?: ReactNode;
+  style?: CSSProperties;
   prefixCls?: string;
   className?: string;
 };

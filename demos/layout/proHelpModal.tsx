@@ -1,4 +1,5 @@
 import { App, Typography } from 'antd';
+import type { ReactNode, VideoHTMLAttributes } from 'react';
 import { useState } from 'react';
 
 import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
@@ -11,7 +12,7 @@ const Demo = () => {
     string,
     (
       item: ProHelpDataSourceChildren<{
-        video: React.VideoHTMLAttributes<HTMLVideoElement>;
+        video: VideoHTMLAttributes<HTMLVideoElement>;
         list: {
           title: string;
           children: {
@@ -21,7 +22,7 @@ const Demo = () => {
         };
       }>,
       index: number,
-    ) => React.ReactNode
+    ) => ReactNode
   >();
 
   map.set('video', (item) => {
@@ -32,7 +33,7 @@ const Demo = () => {
           width: '100%',
         }}
         controls
-        {...(item.children as React.VideoHTMLAttributes<HTMLVideoElement>)}
+        {...(item.children as VideoHTMLAttributes<HTMLVideoElement>)}
       />
     );
   });
@@ -87,7 +88,7 @@ const Demo = () => {
         }}
       >
         <ProHelp<{
-          video: React.VideoHTMLAttributes<HTMLVideoElement>;
+          video: VideoHTMLAttributes<HTMLVideoElement>;
           list: {
             title: string;
             children: {

@@ -1,7 +1,8 @@
 import { useControlledState } from '@rc-component/util';
 import type { ModalProps } from 'antd';
 import { Modal } from 'antd';
-import React, { useCallback } from 'react';
+import type { FC } from 'react';
+import { useCallback } from 'react';
 
 import type { ProHelpPanelProps } from './ProHelpPanel';
 import { ProHelpPanel } from './ProHelpPanel';
@@ -17,7 +18,7 @@ export type ProHelpModalProps = {
  * @param modalProps 要传递给 Modal 组件的属性。
  * @param props 要传递给 ProHelpPanel 组件的属性。
  */
-export const ProHelpModal: React.FC<ProHelpModalProps> = ({ modalProps, ...props }) => {
+export const ProHelpModal: FC<ProHelpModalProps> = ({ modalProps, ...props }) => {
   const [modalOpen, setModalOpenInner] = useControlledState<boolean>(false, modalProps?.open);
   const setModalOpen = useCallback(
     (updater: boolean | ((prev: boolean) => boolean)) => {

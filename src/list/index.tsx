@@ -2,7 +2,8 @@ import { warning } from '@rc-component/util';
 import type { PaginationProps } from 'antd';
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import type { HTMLAttributes, Key as ReactKey } from 'react';
+import { useContext, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 
 import type { CheckCardProps } from '../card';
 import { ProConfigProvider } from '../provider';
@@ -29,7 +30,7 @@ export type ProListMeta<T> = Pick<
   | 'formItemProps'
   | 'formItemRender'
 > & {
-  key?: React.Key;
+  key?: ReactKey;
 };
 
 type ProListMetaAction<T> = ProListMeta<T>;
@@ -58,7 +59,7 @@ export type ProListMetas<T = any> = BaseProListMetas<T> & {
 export type GetComponentProps<RecordType> = (
   record: RecordType,
   index: number,
-) => React.HTMLAttributes<HTMLElement>;
+) => HTMLAttributes<HTMLElement>;
 
 export type ProListProps<RecordType = any, Params = Record<string, any>, ValueType = 'text'> = Omit<
   ProTableProps<RecordType, Params, ValueType>,
@@ -89,7 +90,7 @@ export type ProListProps<RecordType = any, Params = Record<string, any>, ValueTy
     itemRender?: ProListItemRender<RecordType>;
   };
 
-export type Key = React.Key;
+export type Key = ReactKey;
 
 export type TriggerEventHandler<RecordType> = (record: RecordType) => void;
 

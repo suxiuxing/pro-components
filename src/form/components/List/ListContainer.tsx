@@ -2,7 +2,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { omit } from '@rc-component/util';
 import { Button } from 'antd';
 import { clsx } from 'clsx';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, FC } from 'react';
 import { useContext, useMemo, useRef, useState } from 'react';
 
 import { ProProvider, useIntl } from '../../../provider';
@@ -11,7 +11,7 @@ import { EditOrReadOnlyContext } from '../../BaseForm/EditOrReadOnlyContext';
 import type { ProFormListItemProps } from './ListItem';
 import { ProFormListItem } from './ListItem';
 
-const ProFormListContainer: React.FC<ProFormListItemProps> = (props) => {
+const ProFormListContainer: FC<ProFormListItemProps> = (props) => {
   const intl = useIntl();
   const {
     creatorButtonProps,

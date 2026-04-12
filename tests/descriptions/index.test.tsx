@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, waitFor, within } from '@testing-library/react';
 import { Badge, Button, Input } from 'antd';
-import React, { act } from 'react';
+import { act, createRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { ProCoreActionType } from '@xxlabs/pro-components';
@@ -118,7 +118,7 @@ describe('descriptions', () => {
   it('🥩 test reload', async () => {
     const fn = vi.fn();
 
-    const actionRef = React.createRef<ProCoreActionType>();
+    const actionRef = createRef<ProCoreActionType>();
     const Reload = () => {
       return (
         <ProDescriptions

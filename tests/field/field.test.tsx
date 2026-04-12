@@ -2,7 +2,8 @@ import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button, Input } from 'antd';
 import dayjs from 'dayjs';
-import React, { act, useState } from 'react';
+import type { ReactNode } from 'react';
+import { act, createRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -16,7 +17,7 @@ import {
 import { waitForWaitTime, waitTime } from '../util';
 import { TreeSelectDemo } from './fixtures/treeSelectDemo';
 
-const domRef = React.createRef();
+const domRef = createRef();
 
 afterEach(() => {
   cleanup();
@@ -297,7 +298,7 @@ describe('Field', () => {
             valueType={valueType as 'radio'}
             mode="read"
             ref={domRef}
-            render={(_text: unknown, _: Record<string, any>, dom: React.ReactNode) => <>pre{dom}</>}
+            render={(_text: unknown, _: Record<string, any>, dom: ReactNode) => <>pre{dom}</>}
             valueEnum={{
               default: { text: '关闭', status: 'Default' },
               processing: { text: '运行中', status: 'Processing' },
@@ -310,7 +311,7 @@ describe('Field', () => {
       });
 
       it(`🐴 ${valueType} read mode support request function`, async () => {
-        const ref = React.createRef<{
+        const ref = createRef<{
           fetchData: (keyWord?: string) => void;
         }>();
         const fn = vi.fn();
@@ -1878,7 +1879,7 @@ describe('Field', () => {
 
   it('🐴 select request debounceTime', async () => {
     const requestFn = vi.fn();
-    const ref = React.createRef<{
+    const ref = createRef<{
       fetchData: (keyWord?: string) => void;
     }>();
     render(

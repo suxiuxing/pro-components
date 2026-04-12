@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { Ref } from 'react';
+import { useContext } from 'react';
 
 import { useStyle } from '../../../utils';
 
@@ -16,7 +17,7 @@ const IndexColumn = ({
 }: {
   border?: boolean;
   children: number;
-  ref?: React.Ref<any>;
+  ref?: Ref<any>;
 }) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
 

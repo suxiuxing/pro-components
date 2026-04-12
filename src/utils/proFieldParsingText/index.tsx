@@ -1,6 +1,6 @@
 import { Badge, Space } from 'antd';
-import type { CSSProperties, ReactNode } from 'react';
-import React from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { Fragment } from 'react';
 
 import { ProFieldValueEnumType, ProSchemaValueEnumMap } from '../typing';
 
@@ -24,13 +24,10 @@ function getType(obj: any) {
 type StatusProps = {
   className?: string;
   style?: CSSProperties;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
-export const ProFieldBadgeColor: React.FC<StatusProps & { color: string }> = ({
-  color,
-  children,
-}) => (
+export const ProFieldBadgeColor: FC<StatusProps & { color: string }> = ({ color, children }) => (
   <Badge
     color={color}
     text={children}
@@ -45,16 +42,16 @@ export const objectToMap = (value: ProFieldValueEnumType | undefined): ProSchema
 };
 
 const TableStatus: {
-  Success: React.FC<StatusProps>;
-  Error: React.FC<StatusProps>;
-  Processing: React.FC<StatusProps>;
-  Default: React.FC<StatusProps>;
-  Warning: React.FC<StatusProps>;
-  success: React.FC<StatusProps>;
-  error: React.FC<StatusProps>;
-  processing: React.FC<StatusProps>;
-  default: React.FC<StatusProps>;
-  warning: React.FC<StatusProps>;
+  Success: FC<StatusProps>;
+  Error: FC<StatusProps>;
+  Processing: FC<StatusProps>;
+  Default: FC<StatusProps>;
+  Warning: FC<StatusProps>;
+  success: FC<StatusProps>;
+  error: FC<StatusProps>;
+  processing: FC<StatusProps>;
+  default: FC<StatusProps>;
+  warning: FC<StatusProps>;
 } = {
   Success: ({ children }) => (
     <Badge
@@ -141,7 +138,7 @@ export const proFieldParsingText = (
   text: string | number | (string | number)[],
   valueEnumParams: ProFieldValueEnumType,
   key?: number | string,
-): React.ReactNode => {
+): ReactNode => {
   if (Array.isArray(text)) {
     return (
       <Space
@@ -170,7 +167,7 @@ export const proFieldParsingText = (
 
   if (!domText) {
     // @ts-ignore
-    return <React.Fragment key={key}>{text?.label || text}</React.Fragment>;
+    return <Fragment key={key}>{text?.label || text}</Fragment>;
   }
 
   const { status, color } = domText;
@@ -194,7 +191,5 @@ export const proFieldParsingText = (
     );
   }
   // 什么都没有使用 text
-  return (
-    <React.Fragment key={key}>{domText.text || (domText as any as React.ReactNode)}</React.Fragment>
-  );
+  return <Fragment key={key}>{domText.text || (domText as any as ReactNode)}</Fragment>;
 };

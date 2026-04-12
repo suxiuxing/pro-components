@@ -1,4 +1,5 @@
-import React from 'react';
+import type { DependencyList } from 'react';
+import { useMemo } from 'react';
 
 import { useDeepCompareMemoize } from '../useDeepCompareEffect';
 
@@ -10,11 +11,8 @@ import { useDeepCompareMemoize } from '../useDeepCompareEffect';
  * objects. Otherwise you should just use React.useMemo.
  *
  */
-function useDeepCompareMemo<T>(factory: () => T, dependencies: React.DependencyList) {
-  return React.useMemo(
-    factory,
-    useDeepCompareMemoize(dependencies) as unknown as React.DependencyList,
-  );
+function useDeepCompareMemo<T>(factory: () => T, dependencies: DependencyList) {
+  return useMemo(factory, useDeepCompareMemoize(dependencies) as unknown as DependencyList);
 }
 
 export default useDeepCompareMemo;

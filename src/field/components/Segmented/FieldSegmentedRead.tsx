@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import { objectToMap, proFieldParsingText } from '../../../utils';
 import type { ProFieldFC } from '../../types';
@@ -8,12 +8,12 @@ type Props = Parameters<
   ProFieldFC<
     {
       text: string;
-      emptyText?: React.ReactNode;
+      emptyText?: ReactNode;
     } & FieldSelectProps
   >
 >[0] & {
   optionsValueEnum: Record<string, any> | undefined;
-  emptyText: React.ReactNode;
+  emptyText: ReactNode;
 };
 
 export function FieldSegmentedRead(props: Props) {

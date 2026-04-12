@@ -2,7 +2,8 @@ import { RightOutlined } from '@ant-design/icons';
 import { useControlledState } from '@rc-component/util';
 import { ConfigProvider, Space } from 'antd';
 import { clsx } from 'clsx';
-import React, { useCallback, useContext, useMemo } from 'react';
+import type { FC, ReactElement, ReactNode, Ref } from 'react';
+import { Children, isValidElement, useCallback, useContext, useMemo } from 'react';
 
 import { autoFocusToFirstChild, LabelIconTip, useRefFunction } from '../../../../utils';
 import FieldContext from '../../../FieldContext';
@@ -10,11 +11,9 @@ import { useGridHelpers } from '../../../helpers/grid';
 import { ProFormGroupProps } from '../../../typing';
 import { useStyle } from './style';
 
-const Group: React.FC<ProFormGroupProps> = (
-  props: ProFormGroupProps & { ref?: React.Ref<any> },
-) => {
+const Group: FC<ProFormGroupProps> = (props: ProFormGroupProps & { ref?: Ref<any> }) => {
   const { ref } = props;
-  const { groupProps } = React.useContext(FieldContext);
+  const { groupProps } = useContext(FieldContext);
   const {
     children,
     collapsible,
@@ -98,7 +97,7 @@ const Group: React.FC<ProFormGroupProps> = (
   );
 
   const Wrapper = useCallback(
-    ({ children: dom }: { children: React.ReactNode }) => (
+    ({ children: dom }: { children: ReactNode }) => (
       <Space
         {...spaceProps}
         className={clsx(`${className}-container ${hashId}`, spaceProps?.className)}
@@ -118,14 +117,14 @@ const Group: React.FC<ProFormGroupProps> = (
 
   const titleDom = titleRender ? titleRender(label, props) : label;
   const [childrenDoms, hiddenDoms] = useMemo(() => {
-    const hiddenChildren: React.ReactNode[] = [];
-    const childrenList = React.Children.toArray(children).map((element, index) => {
-      if (React.isValidElement<{ hidden?: boolean }>(element) && element.props.hidden) {
+    const hiddenChildren: ReactNode[] = [];
+    const childrenList = Children.toArray(children).map((element, index) => {
+      if (isValidElement<{ hidden?: boolean }>(element) && element.props.hidden) {
         hiddenChildren.push(element);
         return null;
       }
-      if (index === 0 && React.isValidElement(element) && autoFocus) {
-        return autoFocusToFirstChild(element, autoFocus) as React.ReactElement;
+      if (index === 0 && isValidElement(element) && autoFocus) {
+        return autoFocusToFirstChild(element, autoFocus) as ReactElement;
       }
       return element;
     });

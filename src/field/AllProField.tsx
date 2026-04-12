@@ -1,5 +1,5 @@
 import { Avatar } from 'antd';
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import {
   pickProProps,
@@ -90,7 +90,7 @@ const defaultRenderTextByObject = (
     );
   }
 
-  return text as React.ReactNode;
+  return text as ReactNode;
 };
 
 /** 内置 valueType 分支（读写共用，具体展示由子 Field 的 mode 决定） */
@@ -98,7 +98,7 @@ function renderDefaultValueTypeLeaf(
   dataValue: ProFieldTextType,
   valueType: ProFieldValueType,
   props: ProFieldRenderProps,
-): React.ReactNode {
+): ReactNode {
   /** 如果是金额的值 */
   if (valueType === 'money') {
     return (
@@ -472,7 +472,7 @@ function renderDefaultValueTypeLeaf(
   if (valueType === 'option') {
     return (
       <FieldOptions
-        text={dataValue as React.ReactNode}
+        text={dataValue as ReactNode}
         {...props}
       />
     );
@@ -570,7 +570,7 @@ export const defaultRenderRead: ProFieldRenderText = (
     return customValueTypeConfig.render?.(
       dataValue,
       {
-        text: dataValue as React.ReactNode,
+        text: dataValue as ReactNode,
         ...props,
         mode: mode || 'read',
       },
@@ -600,7 +600,7 @@ export const defaultRenderEdit: ProFieldRenderText = (
     return customValueTypeConfig.formItemRender?.(
       dataValue,
       {
-        text: dataValue as React.ReactNode,
+        text: dataValue as ReactNode,
         ...props,
       },
       <>{dataValue}</>,

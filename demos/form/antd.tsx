@@ -1,5 +1,6 @@
 import { Button, Form, Input, message, Select } from 'antd';
-import React, { useState } from 'react';
+import type { ChangeEvent, FC } from 'react';
+import { useState } from 'react';
 
 const { Option } = Select;
 
@@ -15,7 +16,7 @@ interface PriceInputProps {
   onChange?: (value: PriceValue) => void;
 }
 
-const PriceInput: React.FC<PriceInputProps> = ({ value = {}, onChange }) => {
+const PriceInput: FC<PriceInputProps> = ({ value = {}, onChange }) => {
   const [number, setNumber] = useState(0);
   const [currency, setCurrency] = useState<Currency>('rmb');
 
@@ -23,7 +24,7 @@ const PriceInput: React.FC<PriceInputProps> = ({ value = {}, onChange }) => {
     onChange?.({ number, currency, ...value, ...changedValue });
   };
 
-  const onNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newNumber = parseInt(e.target.value || '0', 10);
     if (Number.isNaN(number)) {
       return;
@@ -61,7 +62,7 @@ const PriceInput: React.FC<PriceInputProps> = ({ value = {}, onChange }) => {
   );
 };
 
-const App: React.FC = () => {
+const App: FC = () => {
   const onFinish = () => {
     message.success('表单已提交');
   };

@@ -1,6 +1,7 @@
 import { get } from '@rc-component/util';
 import type { AnyObject } from 'antd/es/_util/type';
-import React from 'react';
+import type { ReactNode } from 'react';
+import { isValidElement } from 'react';
 
 import { isMergeCell } from '.';
 import type { ProFieldEmptyText } from '../../field';
@@ -129,7 +130,7 @@ export function columnRender<T extends AnyObject>({
     editableUtils,
   });
 
-  const dom: React.ReactNode =
+  const dom: ReactNode =
     mode === 'edit' ? textDom : genCopyable(textDom, columnProps, renderTextStr, text);
 
   /** 如果是编辑模式，并且 formItemRender 存在直接走 formItemRender */
@@ -155,8 +156,7 @@ export function columnRender<T extends AnyObject>({
   }
 
   if (!columnProps.render) {
-    const isReactRenderNode =
-      React.isValidElement(dom) || ['string', 'number'].includes(typeof dom);
+    const isReactRenderNode = isValidElement(dom) || ['string', 'number'].includes(typeof dom);
     return !isNil(dom) && isReactRenderNode ? dom : null;
   }
 
@@ -194,5 +194,5 @@ export function columnRender<T extends AnyObject>({
       </div>
     );
   }
-  return renderDom as React.ReactNode;
+  return renderDom as ReactNode;
 }

@@ -2,7 +2,10 @@ import { useControlledState, warning } from '@rc-component/util';
 import type { FormProps, ModalProps } from 'antd';
 import { ConfigProvider, Modal } from 'antd';
 import { merge } from 'es-toolkit/compat';
-import React, {
+import type { JSX, RefCallback, RefObject } from 'react';
+import {
+  cloneElement,
+  Fragment,
   useCallback,
   useContext,
   useEffect,
@@ -41,7 +44,7 @@ export type ModalFormProps<T = Record<string, any>, U = Record<string, any>> = O
     submitTimeout?: number;
 
     /** @name 用于触发抽屉打开的 dom */
-    trigger?: React.JSX.Element;
+    trigger?: JSX.Element;
 
     /** @name 受控的打开关闭 */
     open?: ModalProps['open'];
@@ -110,7 +113,7 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
 
   const footerRef = useRef<HTMLDivElement | null>(null);
 
-  const footerDomRef: React.RefCallback<HTMLDivElement> = useCallback((element) => {
+  const footerDomRef: RefCallback<HTMLDivElement> = useCallback((element) => {
     if (footerRef.current === null && element) {
       forceUpdate([]);
     }
@@ -147,7 +150,7 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
       return null;
     }
 
-    return React.cloneElement(trigger, {
+    return cloneElement(trigger, {
       key: 'trigger',
       ...trigger.props,
       onClick: async (e: any) => {
@@ -194,9 +197,7 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
       <>
         {formDom}
         {footerRef.current && submitter ? (
-          <React.Fragment key="submitter">
-            {createPortal(submitter, footerRef.current)}
-          </React.Fragment>
+          <Fragment key="submitter">{createPortal(submitter, footerRef.current)}</Fragment>
         ) : (
           submitter
         )}
@@ -296,7 +297,7 @@ function ModalForm<T = Record<string, any>, U = Record<string, any>>({
           {...rest}
           onInit={(_, form) => {
             if (rest.formRef) {
-              (rest.formRef as React.RefObject<ProFormInstance<T>>).current = form;
+              (rest.formRef as RefObject<ProFormInstance<T>>).current = form;
             }
             rest?.onInit?.(_, form);
             formRef.current = form;

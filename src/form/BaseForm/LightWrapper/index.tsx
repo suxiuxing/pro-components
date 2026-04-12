@@ -2,7 +2,8 @@ import { ConfigProvider } from 'antd';
 import type { SizeType as AntdSizeType } from 'antd/es/config-provider/SizeContext';
 import type { TooltipPlacement } from 'antd/es/tooltip';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo, useState } from 'react';
+import type { CSSProperties, JSX, ReactNode } from 'react';
+import { cloneElement, useContext, useMemo, useState } from 'react';
 
 import { dateArrayFormatter, dateFormatterMap, FieldLabel, FilterDropdown } from '../../../utils';
 import type { LightFilterFooterRender } from '../../typing';
@@ -11,16 +12,16 @@ import { useStyle } from './style';
 export type SizeType = AntdSizeType;
 
 export type LightWrapperProps = {
-  label?: React.ReactNode;
+  label?: ReactNode;
   disabled?: boolean;
-  placeholder?: React.ReactNode;
+  placeholder?: ReactNode;
   size?: SizeType;
   value?: any;
   onChange?: (value?: any) => void;
   onBlur?: (value?: any) => void;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   className?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   valuePropName?: string;
   customLightMode?: boolean;
   light?: boolean;
@@ -30,7 +31,7 @@ export type LightWrapperProps = {
    * @example <caption>自定义数组的转化</caption>
    * labelFormatter={(value) =>value.join('-')} }
    */
-  labelFormatter?: (value: any) => React.ReactNode;
+  labelFormatter?: (value: any) => ReactNode;
   variant?: 'outlined' | 'filled' | 'borderless';
   otherFieldProps?: any;
   valueType?: string;
@@ -134,17 +135,17 @@ const LightWrapperRender = (props: LightWrapperProps) => {
         className={clsx(`${prefixCls}-container`, hashId, className)}
         style={style}
       >
-        {React.cloneElement(children as React.JSX.Element, {
+        {cloneElement(children as JSX.Element, {
           ...rest,
           [valuePropName!]: tempValue,
           onChange: (e: any) => {
             setTempValue(e?.target ? e.target.value : e);
           },
-          ...(children as React.JSX.Element).props,
+          ...(children as JSX.Element).props,
           // light 模式下由外层 FilterDropdown 统一描边，内层 Select/TreeSelect/DatePicker 等统一使用 borderless，各 Field 组件无需再根据 light 判断
           variant: 'borderless' as const,
           fieldProps: {
-            ...(children as React.JSX.Element).props?.fieldProps,
+            ...(children as JSX.Element).props?.fieldProps,
             variant: 'borderless' as const,
           },
         })}

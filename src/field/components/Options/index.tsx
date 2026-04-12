@@ -1,18 +1,19 @@
 import { ConfigProvider } from 'antd';
-import React, { useContext, useImperativeHandle } from 'react';
+import type { CSSProperties, JSX, ReactNode } from 'react';
+import { cloneElement, Fragment, isValidElement, useContext, useImperativeHandle } from 'react';
 
 import { proTheme } from '../../../provider';
 import type { ProFieldFC } from '../../types';
 
-const addArrayKeys = (doms: React.ReactNode[]) =>
+const addArrayKeys = (doms: ReactNode[]) =>
   doms.map((dom, index) => {
-    if (!React.isValidElement<Record<string, any>>(dom)) {
-      return <React.Fragment key={index}>{dom}</React.Fragment>;
+    if (!isValidElement<Record<string, any>>(dom)) {
+      return <Fragment key={index}>{dom}</Fragment>;
     }
     const domProps = dom.props as Record<string, any> & {
-      style?: React.CSSProperties;
+      style?: CSSProperties;
     };
-    return React.cloneElement(dom, {
+    return cloneElement(dom, {
       key: index,
       ...domProps,
       style: {
@@ -35,7 +36,7 @@ const FieldOptions: ProFieldFC = ({ text, mode: type, render, fieldProps, ref })
   useImperativeHandle(ref, () => ({}));
 
   if (render) {
-    const doms = render(text, { mode: type, ...fieldProps }, <></>) as unknown as React.ReactNode[];
+    const doms = render(text, { mode: type, ...fieldProps }, <></>) as unknown as ReactNode[];
 
     if (!doms || doms?.length < 1 || !Array.isArray(doms)) {
       return null;
@@ -56,10 +57,10 @@ const FieldOptions: ProFieldFC = ({ text, mode: type, render, fieldProps, ref })
   }
 
   if (!text || !Array.isArray(text)) {
-    if (!React.isValidElement(text)) {
+    if (!isValidElement(text)) {
       return null;
     }
-    return text as React.JSX.Element;
+    return text as JSX.Element;
   }
 
   return (

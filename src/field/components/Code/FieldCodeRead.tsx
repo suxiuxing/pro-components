@@ -1,4 +1,4 @@
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { ProFieldFC } from '../../types';
 
@@ -12,11 +12,11 @@ type FieldCodeReadProps = Parameters<
   };
 };
 
-export function FieldCodeRead(props: FieldCodeReadProps, ref?: React.Ref<unknown>) {
+export function FieldCodeRead(props: FieldCodeReadProps, ref?: Ref<unknown>) {
   const { code, mode, render, fieldProps, token } = props;
   const dom = (
     <pre
-      ref={ref as React.Ref<HTMLPreElement>}
+      ref={ref as Ref<HTMLPreElement>}
       {...fieldProps}
       style={{
         padding: 16,

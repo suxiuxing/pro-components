@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import { useContext, useMemo } from 'react';
 
 import { useIntl } from '../../../provider';
 import type { SubmitterProps } from '../../BaseForm/Submitter';
@@ -14,15 +15,15 @@ export type LoginFormProps<T> = {
    * @example <caption>提示登录异常</caption>
    * message={<Alert message="登录异常，请重试！"/>}
    */
-  message: React.ReactNode | false;
+  message: ReactNode | false;
   /**
    * @name 标题，可以配置为空
    */
-  title: React.ReactNode | false;
+  title: ReactNode | false;
   /**
    * @name 二级标题，可以配置为空
    */
-  subTitle: React.ReactNode | false;
+  subTitle: ReactNode | false;
   /**
    * @name 自定义额外的登录功能
    *
@@ -32,7 +33,7 @@ export type LoginFormProps<T> = {
    * @example <caption>使用图标</caption>
    * actions={<a><Icon type="alipay" />跳转支付宝登录</a>}
    */
-  actions: React.ReactNode;
+  actions: ReactNode;
   /**
    * @name logo 的配置，支持 ReactNode 和 url
    *
@@ -41,18 +42,18 @@ export type LoginFormProps<T> = {
    * @example 配置为一个路径
    * logo="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
    */
-  logo?: React.ReactNode;
-  children?: React.ReactNode | React.ReactNode[];
+  logo?: ReactNode;
+  children?: ReactNode | ReactNode[];
 
   /**
    * @name 登录框主表格的样式
    */
-  contentStyle?: React.CSSProperties;
+  contentStyle?: CSSProperties;
   /**
    * @name 登录框容器的样式
    */
-  containerStyle?: React.CSSProperties;
-  otherStyle?: React.CSSProperties;
+  containerStyle?: CSSProperties;
+  otherStyle?: CSSProperties;
 } & Omit<ProFormProps<T>, 'title'>;
 
 function LoginForm<T = Record<string, any>>(props: Partial<LoginFormProps<T>>) {

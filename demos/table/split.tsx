@@ -1,6 +1,7 @@
 import type { BadgeProps } from 'antd';
 import { Badge, Button } from 'antd';
-import React, { useEffect, useState } from 'react';
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProCard, ProTable } from '@xxlabs/pro-components';
@@ -17,7 +18,7 @@ type ServerDetailProps = {
   ip: string;
 };
 
-const ServerDetail: React.FC<ServerDetailProps> = (props) => {
+const ServerDetail: FC<ServerDetailProps> = (props) => {
   const { ip } = props;
   const [logDataSource, setLogDataSource] = useState<LogItem[]>([]);
 
@@ -104,7 +105,7 @@ type ServerListProps = {
   onChange: (id: string) => void;
 };
 
-const ServerList: React.FC<ServerListProps> = (props) => {
+const ServerList: FC<ServerListProps> = (props) => {
   const { onChange } = props;
 
   const columns: ProColumns<ServerItem>[] = [
@@ -192,7 +193,7 @@ const ServerList: React.FC<ServerListProps> = (props) => {
   );
 };
 
-const Demo: React.FC = () => {
+const Demo: FC = () => {
   const [ip, setIp] = useState('10.0.1.100');
   return (
     <ProCard split="vertical">

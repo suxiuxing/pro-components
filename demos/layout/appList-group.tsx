@@ -1,4 +1,5 @@
 import { Modal } from 'antd';
+import type { RefObject } from 'react';
 
 import type { AppItemProps, ProSettings } from '@xxlabs/pro-components';
 import { ProConfigProvider, ProLayout } from '@xxlabs/pro-components';
@@ -90,7 +91,7 @@ const Demo = () => {
     layout: 'mix',
     splitMenus: true,
   };
-  const itemClick = (item: AppItemProps, popoverRef?: React.RefObject<HTMLSpanElement | null>) => {
+  const itemClick = (item: AppItemProps, popoverRef?: RefObject<HTMLSpanElement | null>) => {
     // 点击后关闭 Popover
     popoverRef?.current?.click?.();
 

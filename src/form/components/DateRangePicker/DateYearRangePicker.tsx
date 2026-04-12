@@ -1,5 +1,5 @@
 import type { RangePickerProps } from 'antd/es/date-picker';
-import React from 'react';
+import type { FC, Ref } from 'react';
 
 import { dateArrayFormatter } from '../../../utils';
 import type { ProFormFieldItemProps } from '../../typing';
@@ -12,8 +12,8 @@ const valueType = 'dateYearRange' as const;
  *
  * @param
  */
-export const ProFormDateYearRangePicker: React.FC<
-  ProFormFieldItemProps<RangePickerProps> & { ref?: React.Ref<any> }
+export const ProFormDateYearRangePicker: FC<
+  ProFormFieldItemProps<RangePickerProps> & { ref?: Ref<any> }
 > = ({ fieldProps, proFieldProps, ref, ...rest }) => {
   return (
     <BaseDateRanger

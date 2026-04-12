@@ -1,5 +1,6 @@
 import type { Dayjs } from 'dayjs';
-import React, { useEffect, useRef } from 'react';
+import type { RefObject } from 'react';
+import { useEffect, useRef } from 'react';
 
 // Mainly handles the scenarios of creating and editing
 import type { ProFormInstance } from '@xxlabs/pro-components';
@@ -50,7 +51,7 @@ const jobType = [
   },
 ];
 const EditExample = () => {
-  const formMapRef = useRef<React.RefObject<ProFormInstance<any> | undefined>[]>([]);
+  const formMapRef = useRef<RefObject<ProFormInstance<any> | undefined>[]>([]);
   useEffect(() => {
     waitTime(1000).then(() => {
       // In the editing scenario, you need to use formMapRef to loop through and set formData

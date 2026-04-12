@@ -1,7 +1,8 @@
 import { useControlledState } from '@rc-component/util';
 import type { DrawerProps } from 'antd';
 import { Drawer } from 'antd';
-import React, { useCallback } from 'react';
+import type { FC } from 'react';
+import { useCallback } from 'react';
 
 import type { ProHelpPanelProps } from './ProHelpPanel';
 import { ProHelpPanel } from './ProHelpPanel';
@@ -18,7 +19,7 @@ export type ProHelpDrawerProps = {
  * @param drawerProps 要传递给 Drawer 组件的属性。
  * @param props 要传递给 ProHelpPanel 组件的属性。
  */
-export const ProHelpDrawer: React.FC<ProHelpDrawerProps> = ({ drawerProps, ...props }) => {
+export const ProHelpDrawer: FC<ProHelpDrawerProps> = ({ drawerProps, ...props }) => {
   const [drawerOpen, setDrawerOpenInner] = useControlledState<boolean>(false, drawerProps.open);
   const setDrawerOpen = useCallback(
     (updater: boolean | ((prev: boolean) => boolean)) => {

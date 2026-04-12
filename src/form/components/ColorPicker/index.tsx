@@ -1,5 +1,5 @@
 import type { PopoverProps, ColorPickerProps } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import { FieldColorPicker } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -23,7 +23,7 @@ const ProFormColorPicker = ({
   colors,
   ref,
   ...rest
-}: ProFormColorPickerProps & { ref?: React.Ref<any> }) => {
+}: ProFormColorPickerProps & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{

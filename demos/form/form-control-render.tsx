@@ -1,9 +1,10 @@
 import { Button, Checkbox, Form } from 'antd';
-import React, { useEffect } from 'react';
+import type { FC } from 'react';
+import { useEffect } from 'react';
 
 import { FormControlRender, pickControlPropsWithId } from '@xxlabs/pro-components';
 
-const App: React.FC = () => {
+const App: FC = () => {
   const [form] = Form.useForm();
 
   useEffect(() => {

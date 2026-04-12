@@ -1,6 +1,6 @@
 import type { TextAreaProps } from 'antd/es/input';
 import type { TextAreaRef } from 'antd/es/input/TextArea';
-import React from 'react';
+import type { Ref } from 'react';
 
 import { FieldTextArea } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -16,7 +16,7 @@ const ProFormTextArea = ({
   proFieldProps,
   ref,
   ...rest
-}: ProFormFieldItemProps<TextAreaProps, TextAreaRef> & { ref?: React.Ref<any> }) => {
+}: ProFormFieldItemProps<TextAreaProps, TextAreaRef> & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{

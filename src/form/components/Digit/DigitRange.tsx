@@ -1,5 +1,5 @@
 import type { InputNumberProps } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import { FieldDigitRange } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -36,7 +36,7 @@ const ProFormDigit = ({
   proFieldProps,
   ref,
   ...rest
-}: ProFormDigitRangeProps & { ref?: React.Ref<any> }) => {
+}: ProFormDigitRangeProps & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{

@@ -1,7 +1,8 @@
 import { useControlledState } from '@rc-component/util';
 import type { SelectProps } from 'antd';
 import { ConfigProvider } from 'antd';
-import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import type { Key } from 'react';
+import { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import useSWR from 'swr';
 
 import { useIntl } from '../../../provider';
@@ -104,7 +105,7 @@ export const proFieldParsingValueEnumToArray = (
 
 export const useFieldFetchData = (
   props: FieldSelectProps & {
-    proFieldKey?: React.Key;
+    proFieldKey?: Key;
     defaultKeyWords?: string;
     cacheForSwr?: boolean;
   },

@@ -1,6 +1,6 @@
 import { DatePicker } from 'antd';
 import dayjs from 'dayjs';
-import React from 'react';
+import type { Dispatch, ReactNode, Ref, SetStateAction } from 'react';
 
 import type { IntlType } from '../../../provider';
 import { FieldLabel, parseValueToDay } from '../../../utils';
@@ -19,11 +19,11 @@ type Props = Parameters<
 >[0] & {
   format: string;
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: Dispatch<SetStateAction<boolean>>;
   intl: IntlType;
 };
 
-export function FieldRangePickerEdit(props: Props, ref?: React.Ref<unknown>) {
+export function FieldRangePickerEdit(props: Props, ref?: Ref<unknown>) {
   const {
     text,
     mode,
@@ -50,7 +50,7 @@ export function FieldRangePickerEdit(props: Props, ref?: React.Ref<unknown>) {
     }
   };
 
-  let dom: React.ReactNode;
+  let dom: ReactNode;
   if (light) {
     dom = (
       <FieldLabel
@@ -98,7 +98,7 @@ export function FieldRangePickerEdit(props: Props, ref?: React.Ref<unknown>) {
   } else {
     dom = (
       <DatePicker.RangePicker
-        ref={ref as React.Ref<any>}
+        ref={ref as Ref<any>}
         format={format}
         showTime={showTime}
         placeholder={[

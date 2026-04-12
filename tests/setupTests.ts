@@ -6,8 +6,9 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import MockDate from 'mockdate';
-import React from 'react';
 import { vi } from 'vitest';
+
+const React = await import('react');
 
 // Extend dayjs with necessary plugins
 dayjs.extend(isoWeek);

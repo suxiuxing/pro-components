@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type { Key } from 'react';
+import { useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { EditableProTable, ProCard, ProFormField, useRefFunction } from '@xxlabs/pro-components';
@@ -14,7 +15,7 @@ const waitTime = (time: number = 100) => {
 };
 
 type DataSourceType = {
-  id?: React.Key;
+  id?: Key;
   title?: string;
   decs?: string;
   state?: string;
@@ -54,7 +55,7 @@ const defaultData: DataSourceType[] = [
 
 const loopDataSourceFilter = (
   data: readonly DataSourceType[],
-  id: React.Key | undefined,
+  id: Key | undefined,
 ): DataSourceType[] => {
   return data
     .map((item) => {
@@ -74,7 +75,7 @@ const loopDataSourceFilter = (
 };
 
 const Demo = () => {
-  const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
+  const [editableKeys, setEditableRowKeys] = useState<Key[]>([]);
   const [dataSource, setDataSource] = useState<readonly DataSourceType[]>(() => defaultData);
 
   const removeRow = useRefFunction((record: DataSourceType) => {

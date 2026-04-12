@@ -2,7 +2,8 @@ import { SearchOutlined } from '@ant-design/icons';
 import type { SelectProps } from 'antd';
 import { ConfigProvider, Select } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useState } from 'react';
+import type { FC, ReactNode } from 'react';
+import { createElement, useContext, useState } from 'react';
 
 import { ProProvider, useStyle } from '../../../provider';
 import { useDebounceFn } from '../../../utils';
@@ -13,7 +14,7 @@ import { ProHelpProvide } from './HelpProvide';
  * 在组件中使用了正则表达式来匹配关键词。
  * 在渲染文本时，使用了React.createElement来创建元素。
  */
-export const Highlight: React.FC<{
+export const Highlight: FC<{
   /**
    * 要高亮的文本
    */
@@ -44,7 +45,7 @@ export const Highlight: React.FC<{
 
   if (!words.length || !words[0]) {
     return wrapSSR(
-      React.createElement(
+      createElement(
         'div',
         {
           title: label,
@@ -63,7 +64,7 @@ export const Highlight: React.FC<{
 
   let matchText = label;
 
-  const elements: React.ReactNode[] = [];
+  const elements: ReactNode[] = [];
 
   // 遍历匹配的文本，将匹配项和非匹配项分别处理并放入elements数组中
   while (matchText.length) {
@@ -78,7 +79,7 @@ export const Highlight: React.FC<{
 
     elements.push(
       matchText.slice(0, start),
-      React.createElement(
+      createElement(
         'span',
         {
           className: lightCls,
@@ -89,7 +90,7 @@ export const Highlight: React.FC<{
     matchText = matchText.slice(matchLength);
   }
   return wrapSSR(
-    React.createElement(
+    createElement(
       'div',
       {
         title: label,
@@ -100,7 +101,7 @@ export const Highlight: React.FC<{
   );
 };
 
-export const ProHelpSelect: React.FC<
+export const ProHelpSelect: FC<
   Omit<SelectProps, 'onSearch' | 'optionFilterProp' | 'options' | 'filterOption'> & {
     iconClassName?: string;
   }
@@ -126,7 +127,7 @@ export const ProHelpSelect: React.FC<
       ) : null}
       {open ? (
         <Select<{
-          label: React.ReactNode;
+          label: ReactNode;
           title: string;
           value: string;
           dataItemKey: string;

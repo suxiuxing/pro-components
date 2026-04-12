@@ -3,7 +3,8 @@ import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Form, Input } from 'antd';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
-import React, { act, useEffect, useState } from 'react';
+import type { FC } from 'react';
+import { act, createElement, useEffect, useState } from 'react';
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -909,7 +910,7 @@ describe('utils', () => {
         e: new Set(),
         f: document.createElement('div'),
         c: new RegExp('/'),
-        g: React.createElement('a', {}),
+        g: createElement('a', {}),
         a: {
           b: {
             name: 'test',
@@ -1095,7 +1096,7 @@ describe('utils', () => {
   });
 
   it('🪓 isDeepEqualReact', async () => {
-    const CustomComponent: React.FC<any> = () => {
+    const CustomComponent: FC<any> = () => {
       return <div />;
     };
 

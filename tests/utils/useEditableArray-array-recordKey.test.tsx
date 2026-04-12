@@ -1,6 +1,7 @@
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Form } from 'antd';
-import React, { useState } from 'react';
+import type { FC, Key } from 'react';
+import { useState } from 'react';
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -39,7 +40,7 @@ describe('useEditableArray - Array recordKey Support', () => {
   /**
    * 测试组件：用于测试数组 recordKey 功能
    */
-  const TestComponent: React.FC<{
+  const TestComponent: FC<{
     onSave?: (
       key: RecordKey,
       record: TestRecordType & { index?: number },
@@ -226,7 +227,7 @@ describe('useEditableArray - Array recordKey Support', () => {
     const onSave = vi.fn(async (key: RecordKey) => {
       // 长度为 1 的数组应该被当作普通 key 处理
       expect(Array.isArray(key)).toBe(true);
-      expect((key as React.Key[]).length).toBe(1);
+      expect((key as Key[]).length).toBe(1);
       return Promise.resolve();
     });
 

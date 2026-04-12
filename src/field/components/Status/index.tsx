@@ -1,25 +1,24 @@
 import { Badge } from 'antd';
-import type { CSSProperties } from 'react';
-import React from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
 
 type StatusProps = {
   className?: string;
   style?: CSSProperties;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 /** 快捷操作，用于快速的展示一个状态 */
 export const StatusComponents: {
-  Success: React.FC<StatusProps>;
-  Error: React.FC<StatusProps>;
-  Processing: React.FC<StatusProps>;
-  Default: React.FC<StatusProps>;
-  Warning: React.FC<StatusProps>;
-  success: React.FC<StatusProps>;
-  error: React.FC<StatusProps>;
-  processing: React.FC<StatusProps>;
-  default: React.FC<StatusProps>;
-  warning: React.FC<StatusProps>;
+  Success: FC<StatusProps>;
+  Error: FC<StatusProps>;
+  Processing: FC<StatusProps>;
+  Default: FC<StatusProps>;
+  Warning: FC<StatusProps>;
+  success: FC<StatusProps>;
+  error: FC<StatusProps>;
+  processing: FC<StatusProps>;
+  default: FC<StatusProps>;
+  warning: FC<StatusProps>;
 } = {
   Success: ({ children }) => (
     <Badge
@@ -85,10 +84,7 @@ export const StatusComponents: {
 
 export type ProFieldStatusType = keyof typeof StatusComponents;
 
-export const ProFieldBadgeColor: React.FC<StatusProps & { color: string }> = ({
-  color,
-  children,
-}) => (
+export const ProFieldBadgeColor: FC<StatusProps & { color: string }> = ({ color, children }) => (
   <Badge
     color={color}
     text={children}

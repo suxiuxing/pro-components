@@ -1,7 +1,8 @@
 import { FieldContext as RcFieldContext } from '@rc-component/form';
 import type { FormItemProps } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo, useState } from 'react';
+import type { ComponentType, FC } from 'react';
+import { useContext, useMemo, useState } from 'react';
 
 import {
   omitUndefined,
@@ -36,7 +37,7 @@ const WIDTH_SIZE_ENUM = {
 
 const ignoreWidthValueType = ['switch', 'radioButton', 'radio', 'rate'];
 
-type ProFormComponent<P, Extends> = React.ComponentType<P & Extends>;
+type ProFormComponent<P, Extends> = ComponentType<P & Extends>;
 
 /**
  * 处理fieldProps和formItemProps为function时传进来的方法
@@ -54,13 +55,13 @@ type FunctionFieldProps = {
  * @param config
  */
 export function warpField<P extends ProFormFieldItemProps = any>(
-  Field: React.ComponentType<P>,
+  Field: ComponentType<P>,
   config?: ProFormItemCreateConfig,
 ): ProFormComponent<P, ExtendsProps & FunctionFieldProps> {
   // 标记是否是 ProForm 的组件
   Field.displayName = 'ProFormComponent';
 
-  const FieldWithContext: React.FC<P & ExtendsProps & FunctionFieldProps> = (props) => {
+  const FieldWithContext: FC<P & ExtendsProps & FunctionFieldProps> = (props) => {
     const {
       valueType: tmpValueType,
       customLightMode,
@@ -106,7 +107,7 @@ export function warpField<P extends ProFormFieldItemProps = any>(
     /**
      * 从 context 中拿到的值
      */
-    const contextValue = React.useContext(FieldContext);
+    const contextValue = useContext(FieldContext);
 
     /**
      * dependenciesValues change to trigger re-execute of getFieldProps and getFormItemProps
@@ -325,7 +326,7 @@ export function warpField<P extends ProFormFieldItemProps = any>(
     );
   };
 
-  const DependencyWrapper: React.FC<
+  const DependencyWrapper: FC<
     P &
       ExtendsProps &
       FunctionFieldProps & {

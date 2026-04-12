@@ -1,5 +1,6 @@
 import { cleanup, render, waitFor } from '@testing-library/react';
-import React, { act, useState } from 'react';
+import type { Key } from 'react';
+import { act, useState } from 'react';
 import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
 
 import { ProTable } from '@xxlabs/pro-components';
@@ -112,7 +113,7 @@ describe('BasicTable Search', () => {
           id: '002',
         },
       ];
-      const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>(['001', '002']);
+      const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>(['001', '002']);
       return (
         <ProTable
           columns={columns}

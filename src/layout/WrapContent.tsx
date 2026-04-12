@@ -1,12 +1,12 @@
 import { Layout } from 'antd';
 import { clsx } from 'clsx';
-import type { CSSProperties } from 'react';
-import React, { useContext } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { useContext } from 'react';
 
 import { ProProvider } from '../provider';
 import { ErrorBoundary } from '../utils';
 
-const WrapContent: React.FC<{
+const WrapContent: FC<{
   hasPageContainer?: number;
   isChildrenLayout?: boolean;
   prefixCls?: string;
@@ -14,7 +14,7 @@ const WrapContent: React.FC<{
   location?: any;
   contentHeight?: number | string;
   ErrorBoundary?: any;
-  children?: React.ReactNode;
+  children?: ReactNode;
   hasHeader: boolean;
 }> = (props) => {
   const { hashId } = useContext(ProProvider);

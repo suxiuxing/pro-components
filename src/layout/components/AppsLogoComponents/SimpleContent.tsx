@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import React from 'react';
+import type { FC, ReactNode } from 'react';
 
 import { isUrl } from '../../../utils';
 import type { AppItemProps, AppListProps } from './types';
@@ -11,10 +11,7 @@ import type { AppItemProps, AppListProps } from './types';
  * @param title
  * @returns
  */
-export const renderLogo = (
-  logo: React.ReactNode | (() => React.ReactNode),
-  title?: React.ReactNode,
-): React.ReactNode => {
+export const renderLogo = (logo: ReactNode | (() => ReactNode), title?: ReactNode): ReactNode => {
   if (logo && typeof logo === 'string' && isUrl(logo)) {
     return (
       <img
@@ -39,7 +36,7 @@ export const renderLogo = (
   return logo;
 };
 
-export const SimpleContent: React.FC<{
+export const SimpleContent: FC<{
   appList?: AppListProps;
   itemClick?: (item: AppItemProps) => void;
   baseClassName: string;

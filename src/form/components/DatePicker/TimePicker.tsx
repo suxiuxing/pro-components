@@ -1,5 +1,6 @@
 import type { DatePickerProps } from 'antd/es/date-picker';
-import React, { useContext } from 'react';
+import type { FC } from 'react';
+import { useContext } from 'react';
 
 import { FieldTimePicker } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -15,7 +16,7 @@ const valueType = 'time' as const;
  *
  * @param
  */
-const ProFormTimePicker: React.FC<ProFormFieldItemProps<DatePickerProps>> = ({
+const ProFormTimePicker: FC<ProFormFieldItemProps<DatePickerProps>> = ({
   fieldProps,
   proFieldProps,
   ...rest

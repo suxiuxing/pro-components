@@ -1,6 +1,7 @@
 import { Button, message } from 'antd';
 import { isEmpty } from 'es-toolkit/compat';
-import React, { useRef, useState } from 'react';
+import type { Key } from 'react';
+import { useRef, useState } from 'react';
 
 import type { EditableFormInstance, ProColumns, ProFormInstance } from '@xxlabs/pro-components';
 import {
@@ -16,7 +17,7 @@ import {
 import { createEditableRowId } from '../../mockData';
 
 type DataSourceType = {
-  id: React.Key;
+  id: Key;
   title?: string;
   decs?: string;
   state?: string;
@@ -47,7 +48,7 @@ const defaultData: DataSourceType[] = [
 let i = 0;
 
 const Demo = () => {
-  const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() => []);
+  const [editableKeys, setEditableRowKeys] = useState<Key[]>(() => []);
   const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>('bottom');
   const [controlled, setControlled] = useState<boolean>(false);
   const formRef = useRef<ProFormInstance<any> | undefined>(undefined);

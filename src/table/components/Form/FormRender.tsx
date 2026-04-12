@@ -2,7 +2,8 @@ import { omit } from '@rc-component/util';
 import type { FormItemProps } from 'antd';
 import { ConfigProvider, Table } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo } from 'react';
+import type { RefObject } from 'react';
+import { useContext, useMemo } from 'react';
 
 import type { BaseQueryFilterProps, ProFormInstance, ProFormProps } from '../../../form';
 import { BetaSchemaForm } from '../../../form';
@@ -100,11 +101,11 @@ export type TableFormItem<T, U = any> = {
   dateFormatter?: ProTableProps<T, U, any>['dateFormatter'];
   search?: false | SearchConfig;
   columns: ProColumns<U, any>[];
-  formRef: React.RefObject<ProFormInstance | undefined>;
+  formRef: RefObject<ProFormInstance | undefined>;
   submitButtonLoading?: boolean;
   manualRequest?: boolean;
   bordered?: boolean;
-  action: React.RefObject<ActionType | undefined>;
+  action: RefObject<ActionType | undefined>;
   ghost?: boolean;
 } & Omit<FormItemProps, 'children' | 'onReset'>;
 

@@ -1,11 +1,11 @@
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import type { FieldDigitProps } from './types';
 
 export function FieldDigitRead(
   props: Parameters<ProFieldFC<FieldDigitProps>>[0],
-  ref?: React.Ref<unknown>,
+  ref?: Ref<unknown>,
 ) {
   const { text, mode: type, render, fieldProps } = props;
   let fractionDigits = {} as Record<string, any> as any;
@@ -21,7 +21,7 @@ export function FieldDigitRead(
   }).format(Number(text) as number);
 
   const dom = !fieldProps?.stringMode ? (
-    <span ref={ref as React.Ref<HTMLSpanElement>}>{fieldProps?.formatter?.(digit) || digit}</span>
+    <span ref={ref as Ref<HTMLSpanElement>}>{fieldProps?.formatter?.(digit) || digit}</span>
   ) : (
     <span>{text}</span>
   );

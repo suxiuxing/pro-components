@@ -18,7 +18,8 @@ import {
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import type { DataNode } from 'antd/es/tree';
 import { clsx } from 'clsx';
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import type { FC, Key, ReactNode } from 'react';
+import { useContext, useEffect, useMemo, useRef } from 'react';
 
 import { ProProvider, useIntl } from '../../../provider';
 import { runFunction, useRefFunction } from '../../../utils';
@@ -33,12 +34,12 @@ type ColumnSettingProps<T = any> = SettingOptionType & {
   columns: TableColumnType<T>[];
 };
 
-const ToolTipIcon: React.FC<{
+const ToolTipIcon: FC<{
   title: string;
   columnKey: string | number;
   show: boolean;
   fixed: 'left' | 'right' | undefined;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }> = ({ title, show, children, columnKey, fixed }) => {
   const { columnsMap, setColumnsMap } = useContext(TableContext);
   if (!show) {
@@ -64,10 +65,10 @@ const ToolTipIcon: React.FC<{
   );
 };
 
-const CheckboxListItem: React.FC<{
+const CheckboxListItem: FC<{
   columnKey: string | number;
   className?: string;
-  title?: React.ReactNode;
+  title?: ReactNode;
   fixed?: boolean | 'left' | 'right';
   showListItemOption?: boolean;
   isLeaf?: boolean;
@@ -114,7 +115,7 @@ const CheckboxListItem: React.FC<{
   );
 };
 
-const CheckboxList: React.FC<{
+const CheckboxList: FC<{
   list: (ProColumns<any> & { index?: number })[];
   className?: string;
   title: string;
@@ -189,7 +190,7 @@ const CheckboxList: React.FC<{
   }, [columnsMap, list, show]);
 
   /** 移动到指定的位置 */
-  const move = useRefFunction((id: React.Key, targetId: React.Key, dropPosition: number) => {
+  const move = useRefFunction((id: Key, targetId: Key, dropPosition: number) => {
     const newMap = { ...columnsMap };
     const newColumns = [...sortKeyColumns];
     const findIndex = newColumns.findIndex((columnKey) => columnKey === id);
@@ -297,7 +298,7 @@ const CheckboxList: React.FC<{
   );
 };
 
-const GroupCheckboxList: React.FC<{
+const GroupCheckboxList: FC<{
   localColumns: (ProColumns<any> & { index?: number })[];
   className?: string;
   draggable: boolean;

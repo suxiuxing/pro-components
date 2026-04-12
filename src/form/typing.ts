@@ -1,5 +1,5 @@
 import type { ColProps, FormItemProps, RowProps } from 'antd';
-import type React from 'react';
+import type { CSSProperties, JSX, MouseEvent, ReactNode, Ref } from 'react';
 
 import type { ProFieldProps, ProFormBaseGroupProps, ProSchema, SearchConvertKeyFn } from '../utils';
 import type { ProFieldValueType } from '../utils/typing';
@@ -80,15 +80,15 @@ export type ExtendsProps = {
   fieldConfig?: ProFormItemCreateConfig;
 
   // 给proForm添加fieldRef,用来获取暴露的方法
-  fieldRef?: React.Ref<CaptFieldRef | null | undefined>;
+  fieldRef?: Ref<CaptFieldRef | null | undefined>;
 };
 
 export type ProFormGroupProps = ProFormBaseGroupProps & ProFormGridConfig;
 
 export type FieldProps<K> = {
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   width?: string;
-  ref?: React.Ref<K>;
+  ref?: Ref<K>;
 };
 
 export type LightFilterFooterRender =
@@ -96,12 +96,12 @@ export type LightFilterFooterRender =
       /**
        * @name 确认选择的值
        */
-      onConfirm?: (e?: React.MouseEvent) => void,
+      onConfirm?: (e?: MouseEvent) => void,
       /**
        * @name 清除选择
        */
-      onClear?: (e?: React.MouseEvent) => void,
-    ) => React.JSX.Element | false)
+      onClear?: (e?: MouseEvent) => void,
+    ) => JSX.Element | false)
   | false;
 
 export type ProFormFieldItemProps<T = Record<string, any>, K = any> = {
@@ -125,7 +125,7 @@ export type ProFormFieldItemProps<T = Record<string, any>, K = any> = {
   /**
    * @name 只读模式渲染文本,没有值的时候展示
    */
-  emptyText?: React.ReactNode;
+  emptyText?: ReactNode;
   /**
    * @name 是否使用 swr 来缓存 缓存可能导致数据更新不及时，请谨慎使用，尤其是页面中多个组件 name 相同
    *

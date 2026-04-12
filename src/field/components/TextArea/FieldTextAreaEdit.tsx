@@ -1,5 +1,5 @@
 import { Input } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { IntlType } from '../../../provider';
 import type { ProFieldFC } from '../../types';
@@ -8,11 +8,11 @@ type Props = Parameters<ProFieldFC<{ text: string }>>[0] & {
   intl: IntlType;
 };
 
-export function FieldTextAreaEdit(props: Props, ref?: React.Ref<unknown>) {
+export function FieldTextAreaEdit(props: Props, ref?: Ref<unknown>) {
   const { text, mode, formItemRender, fieldProps, intl } = props;
   const dom = (
     <Input.TextArea
-      ref={ref as React.Ref<any>}
+      ref={ref as Ref<any>}
       rows={3}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {

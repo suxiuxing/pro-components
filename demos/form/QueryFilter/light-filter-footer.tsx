@@ -1,11 +1,11 @@
 import { Button, Radio, Space } from 'antd';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
-import React from 'react';
+import { useState } from 'react';
 
 import { LightFilter, ProFormText } from '@xxlabs/pro-components';
 
 const Demo = () => {
-  const [size, setSize] = React.useState<SizeType>('middle');
+  const [size, setSize] = useState<SizeType>('middle');
   return (
     <div>
       <Radio.Group

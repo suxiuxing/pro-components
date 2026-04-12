@@ -1,6 +1,7 @@
 import { act, cleanup, fireEvent, render, waitFor, within } from '@testing-library/react';
 import { Form } from 'antd';
-import React, { useState } from 'react';
+import type { FC } from 'react';
+import { useState } from 'react';
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import {
@@ -32,7 +33,7 @@ describe('useEditableArray - Cancel Operation', () => {
   /**
    * 测试组件：用于测试取消操作
    */
-  const TestComponent: React.FC<{
+  const TestComponent: FC<{
     onCancel?: (
       key: RecordKey,
       record: TestRecordType & { index?: number },
@@ -302,7 +303,7 @@ describe('useEditableArray - Cancel Operation', () => {
     const onCancel1 = vi.fn(async () => Promise.resolve());
     const onCancel2 = vi.fn(async () => Promise.resolve());
 
-    const TestComponentMultiple: React.FC<{
+    const TestComponentMultiple: FC<{
       onCancel?: (
         key: RecordKey,
         record: TestRecordType & { index?: number },
@@ -574,7 +575,7 @@ describe('useEditableArray - Cancel Operation', () => {
   it('📝 取消编辑时 preEditRowRef 应该被正确清理', async () => {
     const onCancel = vi.fn(async () => Promise.resolve());
 
-    const TestComponentWithRef: React.FC = () => {
+    const TestComponentWithRef: FC = () => {
       const [dataSource, setDataSource] = useState<TestRecordType[]>([
         { id: 1, name: 'test1', value: 'value1' },
       ]);
@@ -635,7 +636,7 @@ describe('useEditableArray - Cancel Operation', () => {
     const onDelete = vi.fn(async () => Promise.resolve());
     const onCancel = vi.fn(async () => Promise.resolve());
 
-    const MultiEditActionComponent: React.FC = () => {
+    const MultiEditActionComponent: FC = () => {
       const [dataSource, setDataSource] = useState<TestRecordType[]>([
         { id: 1, name: 'test1', value: 'value1' },
         { id: 2, name: 'test2', value: 'value2' },

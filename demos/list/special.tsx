@@ -1,6 +1,7 @@
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Button, Progress, Tag } from 'antd';
-import React, { Key, useState } from 'react';
+import type { JSX } from 'react';
+import { Key, useState } from 'react';
 
 import { ProList } from '@xxlabs/pro-components';
 
@@ -62,12 +63,12 @@ const Demo = () => {
     <>
       <ProList<{
         title: string;
-        subTitle: React.JSX.Element;
-        actions: React.JSX.Element[];
-        description: React.JSX.Element;
+        subTitle: JSX.Element;
+        actions: JSX.Element[];
+        description: JSX.Element;
         type?: 'top' | 'inline' | 'new';
         avatar: string;
-        children: React.JSX.Element;
+        children: JSX.Element;
       }>
         columns={[
           { dataIndex: 'title', listSlot: 'title' },

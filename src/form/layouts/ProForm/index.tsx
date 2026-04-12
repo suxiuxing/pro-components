@@ -1,6 +1,6 @@
 import type { FormProps } from 'antd';
 import { Form } from 'antd';
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import type { CommonFormProps } from '../../BaseForm';
 import { BaseForm } from '../../BaseForm';
@@ -15,7 +15,7 @@ export type ProFormProps<T = Record<string, any>, U = Record<string, any>> = Omi
 
 function ProForm<T = Record<string, any>>(
   props: ProFormProps<T> & {
-    children?: React.ReactNode | React.ReactNode[];
+    children?: ReactNode | ReactNode[];
   },
 ) {
   return (

@@ -1,7 +1,7 @@
 import { omit } from '@rc-component/util';
 import type { RadioGroupProps, RadioProps } from 'antd';
 import { Radio } from 'antd';
-import React from 'react';
+import type { FC, Ref } from 'react';
 
 import FieldRadio from '../../../field/components/Radio';
 import { ProConfigProvider } from '../../../provider';
@@ -16,7 +16,7 @@ export type ProFormRadioGroupProps = ProFormFieldItemProps<RadioGroupProps, HTML
   options?: RadioGroupProps['options'];
 } & ProFormFieldRemoteProps;
 
-const RadioGroup: React.FC<ProFormRadioGroupProps> = ({
+const RadioGroup: FC<ProFormRadioGroupProps> = ({
   fieldProps,
   options,
   radioType,
@@ -25,7 +25,7 @@ const RadioGroup: React.FC<ProFormRadioGroupProps> = ({
   valueEnum,
   ref,
   ...rest
-}: ProFormRadioGroupProps & { ref?: React.Ref<any> }) => {
+}: ProFormRadioGroupProps & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -88,11 +88,11 @@ const RadioGroup: React.FC<ProFormRadioGroupProps> = ({
  *
  * @param
  */
-const ProFormRadioComponents: React.FC<ProFormFieldItemProps<RadioProps>> = ({
+const ProFormRadioComponents: FC<ProFormFieldItemProps<RadioProps>> = ({
   fieldProps,
   children,
   ref,
-}: ProFormFieldItemProps<RadioProps> & { ref?: React.Ref<any> }) => {
+}: ProFormFieldItemProps<RadioProps> & { ref?: Ref<any> }) => {
   const { ...restFieldProps } = fieldProps || {};
   return (
     <Radio

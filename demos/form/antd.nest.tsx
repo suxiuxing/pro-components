@@ -1,5 +1,5 @@
 import { Button, Form, Input, message, Select, Space } from 'antd';
-import React from 'react';
+import type { FC } from 'react';
 
 export function PriceInput() {
   return (
@@ -26,7 +26,7 @@ export function PriceInput() {
   );
 }
 
-const App: React.FC = () => {
+const App: FC = () => {
   const onFinish = () => {
     message.success('表单已提交');
   };

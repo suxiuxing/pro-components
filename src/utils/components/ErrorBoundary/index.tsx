@@ -1,9 +1,9 @@
 import { Result } from 'antd';
-import type { ErrorInfo } from 'react';
-import React from 'react';
+import type { ErrorInfo, ReactNode } from 'react';
+import { Component } from 'react';
 
-class ErrorBoundary extends React.Component<
-  { children?: React.ReactNode },
+class ErrorBoundary extends Component<
+  { children?: ReactNode },
   { hasError: boolean; errorInfo: string }
 > {
   override state = { hasError: false, errorInfo: '' };

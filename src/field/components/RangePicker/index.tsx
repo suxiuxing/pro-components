@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import React, { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -36,7 +36,7 @@ const FieldRangePicker: ProFieldFC<
   const intl = useIntl();
 
   const [startText, endText] = Array.isArray(text) ? text : [];
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   const genFormatText = useCallback(
     (formatValue: dayjs.Dayjs) => {
       if (typeof fieldProps?.format === 'function') {

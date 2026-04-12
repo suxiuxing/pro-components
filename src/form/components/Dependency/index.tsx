@@ -3,7 +3,8 @@ import type { FormItemProps } from 'antd';
 import { Form } from 'antd';
 import type { NamePath } from 'antd/es/form/interface';
 import { merge } from 'es-toolkit/compat';
-import React, { useContext, useMemo } from 'react';
+import type { ReactNode } from 'react';
+import { useContext, useMemo } from 'react';
 
 import { isDeepEqualReact, ProFormContext } from '../../../utils';
 import type { ProFormInstance } from '../../BaseForm';
@@ -12,7 +13,7 @@ import { FormListContext } from '../List';
 declare type RenderChildren<Values = any> = (
   values: Record<string, any>,
   form: ProFormInstance<Values>,
-) => React.ReactNode;
+) => ReactNode;
 
 export type ProFormDependencyProps<T = Record<string, any>> = Omit<
   FormItemProps<any>,

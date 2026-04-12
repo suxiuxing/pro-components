@@ -2,7 +2,7 @@ import { GithubFilled, InfoCircleFilled, QuestionCircleFilled } from '@ant-desig
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Button, ConfigProvider } from 'antd';
 import en_US from 'antd/es/locale/en_US';
-import React, { useState } from 'react';
+import { createRef, useState } from 'react';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import { LoginForm, ProFormText, ProLayout } from '@xxlabs/pro-components';
@@ -423,7 +423,7 @@ describe('BasicLayout', () => {
   });
 
   it('🥩 header support fixed-header-scroll', async () => {
-    const ref = React.createRef<HTMLDivElement>();
+    const ref = createRef<HTMLDivElement>();
     const wrapper = render(
       <ConfigProvider
         getTargetContainer={() => {
@@ -1347,7 +1347,7 @@ describe('BasicLayout', () => {
 
   it('🥩 ProLayout support menu.request', async () => {
     const fn = vi.fn();
-    const actionRef = React.createRef<
+    const actionRef = createRef<
       | {
           reload: () => void;
         }
@@ -1835,7 +1835,7 @@ describe('BasicLayout', () => {
         name: '例子',
       },
     ];
-    const actionRef = React.createRef<{
+    const actionRef = createRef<{
       reload: () => void;
     }>();
     const html = render(

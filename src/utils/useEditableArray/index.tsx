@@ -5,7 +5,8 @@ import { Form, Popconfirm, message } from 'antd';
 import type { AnyObject } from 'antd/es/_util/type';
 import type { NamePath } from 'antd/es/form/interface';
 import type { GetRowKey } from 'antd/es/table/interface';
-import React, {
+import type { FC, Key, ReactNode, Ref, RefObject } from 'react';
+import {
   createRef,
   useCallback,
   useContext,
@@ -29,15 +30,15 @@ const { noteOnce } = rcWarning;
  * 显示警告信息
  * @param messageStr
  */
-const warning = (messageStr: React.ReactNode) => {
+const warning = (messageStr: ReactNode) => {
   return message.warning(messageStr);
 };
 
 export type RowEditableType = 'single' | 'multiple';
 
-export type RecordKey = React.Key | React.Key[];
+export type RecordKey = Key | Key[];
 
-export const recordKeyToString = (rowKey: RecordKey): React.Key => {
+export const recordKeyToString = (rowKey: RecordKey): Key => {
   if (Array.isArray(rowKey)) return rowKey.join(',');
   return rowKey;
 };
@@ -73,17 +74,17 @@ export type ActionRenderFunction<T> = (
   row: T,
   config: ActionRenderConfig<T, NewLineConfig<T>>,
   defaultDoms: {
-    save: React.ReactNode;
-    delete: React.ReactNode;
-    cancel: React.ReactNode;
+    save: ReactNode;
+    delete: ReactNode;
+    cancel: ReactNode;
   },
-) => React.ReactNode[];
+) => ReactNode[];
 
 export type RowEditableConfig<DataType> = {
   /** @name 控制可编辑表格的 From的设置 */
   formProps?: Omit<
     FormProps<DataType> & {
-      formRef?: React.Ref<FormInstance | undefined>;
+      formRef?: Ref<FormInstance | undefined>;
       onInit?: (values: DataType, form: FormInstance) => void;
     },
     'onFinish'
@@ -96,9 +97,9 @@ export type RowEditableConfig<DataType> = {
    */
   type?: RowEditableType;
   /** @name 正在编辑的列 */
-  editableKeys?: React.Key[];
+  editableKeys?: Key[];
   /** 正在编辑的列修改的时候 */
-  onChange?: (editableKeys: React.Key[], editableRows: DataType[] | DataType) => void;
+  onChange?: (editableKeys: Key[], editableRows: DataType[] | DataType) => void;
   /** 正在编辑的列修改的时候 */
   onValuesChange?: (record: DataType, dataSource: DataType[]) => void;
   /** @name 自定义编辑的操作 */
@@ -129,19 +130,19 @@ export type RowEditableConfig<DataType> = {
   /** 行删除的时候 */
   onDelete?: (key: RecordKey, row: DataType & { index?: number }) => Promise<any | void>;
   /** 删除行时的确认消息 */
-  deletePopconfirmMessage?: React.ReactNode;
+  deletePopconfirmMessage?: ReactNode;
   /** 只能编辑一行的的提示 */
-  onlyOneLineEditorAlertMessage?: React.ReactNode;
+  onlyOneLineEditorAlertMessage?: ReactNode;
   /** 同时只能新增一行的提示 */
-  onlyAddOneLineAlertMessage?: React.ReactNode;
+  onlyAddOneLineAlertMessage?: ReactNode;
   /** Table 上设置的name，用于拼接name来获取数据 */
   tableName?: NamePath;
   /** 保存一行的文字 */
-  saveText?: React.ReactNode;
+  saveText?: ReactNode;
   /** 取消编辑一行的文字 */
-  cancelText?: React.ReactNode;
+  cancelText?: ReactNode;
   /** 删除一行的文字 */
-  deleteText?: React.ReactNode;
+  deleteText?: ReactNode;
   /**
    * 解决分页带来的 FormItem namePath 使用错误的 index 作为路径
    * @link https://github.com/ant-design/pro-components/issues/7790
@@ -149,9 +150,9 @@ export type RowEditableConfig<DataType> = {
   getRealIndex?: (record: DataType) => number;
 };
 export type ActionTypeText<T> = {
-  deleteText?: React.ReactNode;
-  cancelText?: React.ReactNode;
-  saveText?: React.ReactNode;
+  deleteText?: ReactNode;
+  cancelText?: ReactNode;
+  saveText?: ReactNode;
   editorType?: 'Array' | 'Map';
   addEditRecord?: (row: T, options?: AddLineOptions) => boolean;
 };
@@ -159,23 +160,23 @@ export type ActionTypeText<T> = {
 export type ActionRenderConfig<T, LineConfig = NewLineConfig<T>> = {
   editableKeys?: RowEditableConfig<T>['editableKeys'];
   recordKey: RecordKey;
-  preEditRowRef: React.RefObject<T | null>;
+  preEditRowRef: RefObject<T | null>;
   /**
    * 多行编辑场景下，按 recordKey 缓存每一行进入编辑前的快照（允许为 null，用于标记“新建行”）
    * 用于避免 preEditRowRef（单引用）在多行编辑时被覆盖导致取消误删/误还原的问题
    */
-  preEditRowRefs?: React.RefObject<Map<string, T | null>>;
+  preEditRowRefs?: RefObject<Map<string, T | null>>;
   index?: number;
   cancelEditable: (key: RecordKey) => void;
   onSave: RowEditableConfig<T>['onSave'];
   onCancel: RowEditableConfig<T>['onCancel'];
   onDelete?: RowEditableConfig<T>['onDelete'];
   deletePopconfirmMessage: RowEditableConfig<T>['deletePopconfirmMessage'];
-  setEditableRowKeys: (value: React.Key[]) => void;
+  setEditableRowKeys: (value: Key[]) => void;
   newLineConfig?: LineConfig;
   tableName?: NamePath;
 
-  children?: React.ReactNode;
+  children?: ReactNode;
 } & ActionTypeText<T>;
 
 /**
@@ -185,13 +186,10 @@ function flattenRecordsToMap<RecordType>(
   records: RecordType[],
   getRowKey: GetRowKey<RecordType>,
   childrenColumnName: string,
-  parentKey?: React.Key,
+  parentKey?: Key,
   parentIndex?: number,
-): Map<string, RecordType & { map_row_key?: string; map_row_parentKey?: React.Key }> {
-  const kvMap = new Map<
-    string,
-    RecordType & { map_row_key?: string; map_row_parentKey?: React.Key }
-  >();
+): Map<string, RecordType & { map_row_key?: string; map_row_parentKey?: Key }> {
+  const kvMap = new Map<string, RecordType & { map_row_key?: string; map_row_parentKey?: Key }>();
 
   records.forEach((record, index) => {
     const eachIndex = (parentIndex || 0) * 10 + index;
@@ -230,7 +228,7 @@ function flattenRecordsToMap<RecordType>(
  * 重建树结构
  */
 function rebuildTreeStructure<RecordType>(
-  map: Map<string, RecordType & { map_row_parentKey?: React.Key; map_row_key?: string }>,
+  map: Map<string, RecordType & { map_row_parentKey?: Key; map_row_key?: string }>,
   childrenColumnName: string,
   action: 'update' | 'top' | 'delete',
 ): RecordType[] {
@@ -386,7 +384,7 @@ export function SaveEditableAction<T>({
   tableName,
   ref,
 }: ActionRenderConfig<T> & { row: any; children: any } & {
-  ref?: React.Ref<SaveEditableActionRef<T>>;
+  ref?: Ref<SaveEditableActionRef<T>>;
 }) {
   const context = useContext(ProFormContext);
   const form = Form.useFormInstance();
@@ -497,7 +495,7 @@ export type SaveEditableActionRef<T = any> = {
  *
  * @param ActionRenderConfig
  */
-export const DeleteEditableAction: React.FC<ActionRenderConfig<any> & { row: any }> = ({
+export const DeleteEditableAction: FC<ActionRenderConfig<any> & { row: any }> = ({
   recordKey,
   onDelete,
   preEditRowRef,
@@ -551,7 +549,7 @@ export const DeleteEditableAction: React.FC<ActionRenderConfig<any> & { row: any
   ) : null;
 };
 
-const CancelEditableAction: React.FC<ActionRenderConfig<any> & { row: any }> = (props) => {
+const CancelEditableAction: FC<ActionRenderConfig<any> & { row: any }> = (props) => {
   const {
     recordKey,
     tableName,
@@ -692,7 +690,7 @@ export function useEditableArray<RecordType extends AnyObject>(
    * 构建数据源 key 索引映射表
    */
   const buildDataSourceKeyIndexMap = useRefFunction(() => {
-    const map = new Map<React.Key, React.Key>();
+    const map = new Map<Key, Key>();
 
     const traverseRecords = (records: RecordType[], parentKey?: string) => {
       records?.forEach((record, index) => {
@@ -719,7 +717,7 @@ export function useEditableArray<RecordType extends AnyObject>(
   });
   const initDataSourceKeyIndexMap = useMemo(() => buildDataSourceKeyIndexMap(), []);
 
-  const dataSourceKeyIndexMapRef = useRef<Map<React.Key, React.Key>>(initDataSourceKeyIndexMap);
+  const dataSourceKeyIndexMapRef = useRef<Map<Key, Key>>(initDataSourceKeyIndexMap);
   const newLineRecordRef = useRef<NewLineConfig<RecordType> | undefined>(undefined);
 
   useDeepCompareEffectDebounce(() => {
@@ -732,21 +730,16 @@ export function useEditableArray<RecordType extends AnyObject>(
   const editableType = props.type || 'single';
   const [getRecordByKey] = useLazyKVMap(props.dataSource, 'children', props.getRowKey);
 
-  const [editableKeys, setEditableRowKeysInner] = useControlledState<React.Key[] | undefined>(
+  const [editableKeys, setEditableRowKeysInner] = useControlledState<Key[] | undefined>(
     [],
     props.editableKeys,
   );
   const setEditableRowKeys = useCallback(
-    (
-      updater:
-        | React.Key[]
-        | undefined
-        | ((prev: React.Key[] | undefined) => React.Key[] | undefined),
-    ) => {
+    (updater: Key[] | undefined | ((prev: Key[] | undefined) => Key[] | undefined)) => {
       setEditableRowKeysInner((prev) => {
         const next =
           typeof updater === 'function'
-            ? (updater as (p: React.Key[] | undefined) => React.Key[] | undefined)(prev)
+            ? (updater as (p: Key[] | undefined) => Key[] | undefined)(prev)
             : updater;
         props?.onChange?.(
           next?.filter((key) => key !== undefined) ?? [],
@@ -811,7 +804,7 @@ export function useEditableArray<RecordType extends AnyObject>(
   /**
    * 查找记录
    */
-  const findRecordByKey = useRefFunction((recordKey: React.Key): RecordType | null => {
+  const findRecordByKey = useRefFunction((recordKey: Key): RecordType | null => {
     return (
       props.dataSource?.find((recordData, index) => {
         return props.getRowKey(recordData, index) === recordKey;
@@ -822,7 +815,7 @@ export function useEditableArray<RecordType extends AnyObject>(
   /**
    * 进入编辑状态
    */
-  const startEditable = useRefFunction((recordKey: React.Key, record?: RecordType) => {
+  const startEditable = useRefFunction((recordKey: Key, record?: RecordType) => {
     if (!validateCanStartEdit()) {
       return false;
     }
@@ -1079,8 +1072,8 @@ export function useEditableArray<RecordType extends AnyObject>(
     propsOnValuesChange.run(editRow, updatedDataSource);
   });
 
-  const saveRefsMap = useRef<Map<React.Key, React.RefObject<SaveEditableActionRef | null>>>(
-    new Map<React.Key, React.RefObject<SaveEditableActionRef | null>>(),
+  const saveRefsMap = useRef<Map<Key, RefObject<SaveEditableActionRef | null>>>(
+    new Map<Key, RefObject<SaveEditableActionRef | null>>(),
   );
 
   useEffect(() => {
@@ -1158,7 +1151,7 @@ export function useEditableArray<RecordType extends AnyObject>(
   /**
    * 验证记录 key 是否有效
    */
-  const validateRecordKey = useRefFunction((recordKey: React.Key): void => {
+  const validateRecordKey = useRefFunction((recordKey: Key): void => {
     if (recordKey == null && recordKey !== 0 && recordKey !== '') {
       noteOnce(
         false,

@@ -1,5 +1,5 @@
 import { InputNumber } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { ProFieldFC } from '../../types';
 
@@ -12,11 +12,11 @@ type Props = Parameters<
   placeholderValue: string;
 };
 
-export function FieldProgressEdit(props: Props, ref?: React.Ref<unknown>) {
+export function FieldProgressEdit(props: Props, ref?: Ref<unknown>) {
   const { text, mode, formItemRender, fieldProps, placeholderValue } = props;
   const dom = (
     <InputNumber
-      ref={ref as React.Ref<any>}
+      ref={ref as Ref<any>}
       placeholder={placeholderValue}
       {...fieldProps}
     />

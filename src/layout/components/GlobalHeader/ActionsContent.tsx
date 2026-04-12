@@ -1,7 +1,8 @@
 import ResizeObserver from '@rc-component/resize-observer';
 import { Avatar, ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo, useState } from 'react';
+import type { FC } from 'react';
+import { isValidElement, useContext, useMemo, useState } from 'react';
 
 import type { GlobalHeaderProps } from '.';
 import { useDebounceFn } from '../../../utils';
@@ -12,7 +13,7 @@ import { useStyle } from './rightContentStyle';
  *
  * @param param0
  */
-export const ActionsContent: React.FC<GlobalHeaderProps> = ({
+export const ActionsContent: FC<GlobalHeaderProps> = ({
   avatarProps,
   actionsRender,
   headerContentRender,
@@ -75,7 +76,7 @@ export const ActionsContent: React.FC<GlobalHeaderProps> = ({
               {doms.filter(Boolean).map((dom, index) => {
                 let hideHover = false;
                 // 如果配置了 hideHover 就不展示 hover 效果了
-                if (React.isValidElement<Record<string, any>>(dom)) {
+                if (isValidElement<Record<string, any>>(dom)) {
                   hideHover = !!dom.props['aria-hidden'];
                 }
                 return (

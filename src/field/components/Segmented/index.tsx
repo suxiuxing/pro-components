@@ -1,5 +1,6 @@
 import { Spin } from 'antd';
-import React, { useImperativeHandle, useRef } from 'react';
+import type { ReactNode } from 'react';
+import { useImperativeHandle, useRef } from 'react';
 
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
 import type { ProFieldFC } from '../../types';
@@ -14,7 +15,7 @@ import { FieldSegmentedRead } from './FieldSegmentedRead';
 const FieldSegmented: ProFieldFC<
   {
     text: string;
-    emptyText?: React.ReactNode;
+    emptyText?: ReactNode;
   } & FieldSelectProps
 > = (props) => {
   const { mode, emptyText = '-', ref } = props;

@@ -1,7 +1,8 @@
 import type { TooltipProps } from 'antd';
 import { Typography } from 'antd';
 import { isObject } from 'es-toolkit/compat';
-import React from 'react';
+import type { ReactElement, ReactNode } from 'react';
+import { isValidElement } from 'react';
 
 export type ProEllipsisTooltip = {
   showTitle?: boolean;
@@ -33,9 +34,9 @@ const normalizeCopyText = (text: unknown) => {
   return text === null || text === undefined ? '' : String(text).trimEnd();
 };
 
-const isReactElement = (value: unknown): value is React.ReactElement => React.isValidElement(value);
+const isReactElement = (value: unknown): value is ReactElement => isValidElement(value);
 
-const genEllipsis = (dom: React.ReactNode, item: any, text: string, rawText: unknown) => {
+const genEllipsis = (dom: ReactNode, item: any, text: string, rawText: unknown) => {
   const ellipsis = getEllipsis(item);
   if (!ellipsis) {
     return false;
@@ -89,9 +90,9 @@ const genEllipsis = (dom: React.ReactNode, item: any, text: string, rawText: unk
  * @param copyText 用于复制的原始文本，当 renderText 返回 JSX 时避免复制 [object Object]
  */
 export const genCopyable = (
-  dom: React.ReactNode,
+  dom: ReactNode,
   item: any,
-  text: string | React.ReactNode,
+  text: string | ReactNode,
   copyText?: unknown,
 ) => {
   if (!item.copyable && !item.ellipsis) return dom;

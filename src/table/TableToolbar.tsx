@@ -1,5 +1,5 @@
-import type { Key } from 'react';
-import React, { useMemo } from 'react';
+import type { Key, ReactNode, RefObject } from 'react';
+import { useMemo } from 'react';
 
 import type { ActionType } from '.';
 import Toolbar from './components/ToolBar';
@@ -15,17 +15,17 @@ export type TableToolbarProps<T extends Record<string, any>> = {
   tooltip: ProTableProps<T, any, any>['tooltip'];
   toolbar: ProTableProps<T, any, any>['toolbar'];
   isLightFilter: boolean;
-  searchNode: React.ReactNode;
+  searchNode: ReactNode;
   options: ProTableProps<T, any, any>['options'];
   optionsRender: ProTableProps<T, any, any>['optionsRender'];
-  actionRef: React.RefObject<ActionType | undefined>;
+  actionRef: RefObject<ActionType | undefined>;
   setFormSearch: (value: Record<string, any> | undefined) => void;
   formSearch: Record<string, any> | undefined;
 };
 
 export function TableToolbar<T extends Record<string, any>>(
   props: TableToolbarProps<T>,
-): React.ReactNode {
+): ReactNode {
   const {
     toolBarRender,
     headerTitle,

@@ -4,7 +4,8 @@ import { ConfigProvider as AntdConfigProvider, theme as antdTheme } from 'antd';
 import zh_CN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
-import React, { useContext, useEffect, useMemo } from 'react';
+import type { FC, JSX, Key, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useMemo } from 'react';
 import { SWRConfig, useSWRConfig } from 'swr';
 
 import type { IntlType } from './intl';
@@ -58,7 +59,7 @@ export const isNeedOpenHash = () => {
  */
 export type ProSchemaValueEnumType = {
   /** @name 演示的文案 */
-  text: React.ReactNode;
+  text: ReactNode;
 
   /** @name 预定的颜色 */
   status?: string;
@@ -73,22 +74,19 @@ export type ProSchemaValueEnumType = {
  *
  * @name ValueEnum 的类型
  */
-type ProSchemaValueEnumMap = Map<
-  string | number | boolean,
-  ProSchemaValueEnumType | React.ReactNode
->;
+type ProSchemaValueEnumMap = Map<string | number | boolean, ProSchemaValueEnumType | ReactNode>;
 
 /**
  * 支持 Map 和 Object
  */
-type ProSchemaValueEnumObj = Record<string, ProSchemaValueEnumType | React.ReactNode>;
+type ProSchemaValueEnumObj = Record<string, ProSchemaValueEnumType | ReactNode>;
 
 /**
  * BaseProFieldFC 的类型设置
  */
 export type BaseProFieldFC = {
   /** 值的类型 */
-  text: React.ReactNode;
+  text: ReactNode;
   /** 放置到组件上 props */
   fieldProps?: any;
   /**
@@ -100,11 +98,11 @@ export type BaseProFieldFC = {
   /** 轻量模式 */
   light?: boolean;
   /** Label */
-  label?: React.ReactNode;
+  label?: ReactNode;
   /** 映射值的类型 */
   valueEnum?: ProSchemaValueEnumObj | ProSchemaValueEnumMap;
   /** 唯一的key，用于网络请求 */
-  proFieldKey?: React.Key;
+  proFieldKey?: Key;
 };
 
 export type ProFieldFCMode = 'read' | 'edit' | 'update';
@@ -129,8 +127,8 @@ export type ProRenderFieldPropsType = {
     | ((
         text: any,
         props: Omit<ProFieldFCRenderProps, 'value' | 'onChange'>,
-        dom: React.JSX.Element,
-      ) => React.JSX.Element)
+        dom: JSX.Element,
+      ) => JSX.Element)
     | undefined;
   /**
    * 一个自定义的编辑渲染器。
@@ -140,7 +138,7 @@ export type ProRenderFieldPropsType = {
    * @return 返回一个用于编辑的dom
    */
   formItemRender?:
-    | ((text: any, props: ProFieldFCRenderProps, dom: React.JSX.Element) => React.JSX.Element)
+    | ((text: any, props: ProFieldFCRenderProps, dom: JSX.Element) => JSX.Element)
     | undefined;
 };
 
@@ -161,7 +159,7 @@ export type ConfigContextPropsType = {
 };
 
 /* Creating a context object with the default values. */
-const ProConfigContext = React.createContext<ConfigContextPropsType>({
+const ProConfigContext = createContext<ConfigContextPropsType>({
   intl: {
     ...zhCNIntl,
     locale: 'default',
@@ -203,8 +201,8 @@ const CacheClean = () => {
  * @param props
  * @returns
  */
-const ConfigProviderContainer: React.FC<{
-  children: React.ReactNode;
+const ConfigProviderContainer: FC<{
+  children: ReactNode;
   autoClearCache?: boolean;
   valueTypeMap?: Record<string, ProRenderFieldPropsType>;
   token?: DeepPartial<ProAliasToken>;
@@ -367,8 +365,8 @@ const ConfigProviderContainer: React.FC<{
  * @param props
  * @returns
  */
-export const ProConfigProvider: React.FC<{
-  children: React.ReactNode;
+export const ProConfigProvider: FC<{
+  children: ReactNode;
   autoClearCache?: boolean;
   token?: DeepPartial<ProAliasToken>;
   needDeps?: boolean;

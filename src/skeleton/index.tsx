@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 
 import type { DescriptionsPageSkeletonProps } from './components/Descriptions';
 import DescriptionsPageSkeleton, {
@@ -15,7 +15,7 @@ import ListPageSkeleton, {
 } from './components/List';
 import ResultPageSkeleton from './components/Result';
 
-const ProSkeleton: React.FC<
+const ProSkeleton: FC<
   ListPageSkeletonProps &
     DescriptionsPageSkeletonProps & {
       type?: 'list' | 'result' | 'descriptions';

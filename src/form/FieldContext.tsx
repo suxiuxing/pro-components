@@ -1,6 +1,6 @@
 import type { FormItemProps } from 'antd';
 import type { NamePath } from 'antd/es/form/interface';
-import React from 'react';
+import { createContext } from 'react';
 
 import type { ProFieldProps, SearchTransformKeyFn } from '../utils';
 import type { ProFieldValueType } from '../utils/typing';
@@ -30,7 +30,7 @@ export type FiledContextProps = {
   getPopupContainer?: (e: HTMLElement) => ParentNode;
 } & Pick<CommonFormProps, 'formRef' | 'grid'>;
 
-const FieldContext = React.createContext<FiledContextProps>({});
+const FieldContext = createContext<FiledContextProps>({});
 
 export { FieldContext };
 

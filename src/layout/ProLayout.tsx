@@ -5,8 +5,8 @@ import { ConfigProvider, Layout } from 'antd';
 import type { AnyObject } from 'antd/es/_util/type';
 import type { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import { clsx } from 'clsx';
-import type { CSSProperties } from 'react';
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import type { ComponentClass, CSSProperties, FC, JSX, ReactNode, RefObject } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 
 import type { GenerateStyle, ProTokenType } from '../provider';
@@ -47,7 +47,7 @@ export type LayoutBreadcrumbProps<T extends AnyObject = AnyObject> = {
     params: T,
     routes: LayoutItemType[],
     paths: string[],
-  ) => React.ReactNode;
+  ) => ReactNode;
 };
 
 type GlobalTypes = Omit<
@@ -88,7 +88,7 @@ export type ProLayoutProps = GlobalTypes & {
    * @example 设置 logo 为 false 不显示 logo  logo={false}
    * @example 设置 logo 为 方法  logo={()=> <img src="https://avatars1.githubusercontent.com/u/8186664?s=460&v=4" alt="" /> }
    * */
-  logo?: React.ReactNode | React.JSX.Element | WithFalse<() => React.ReactNode | React.JSX.Element>;
+  logo?: ReactNode | JSX.Element | WithFalse<() => ReactNode | JSX.Element>;
 
   /**
    * @name 页面切换的时候触发
@@ -139,8 +139,8 @@ export type ProLayoutProps = GlobalTypes & {
       props: ProLayoutProps & {
         hasSiderMenu?: boolean;
       },
-      defaultDom: React.ReactNode,
-    ) => React.ReactNode
+      defaultDom: ReactNode,
+    ) => ReactNode
   >;
 
   /**
@@ -222,7 +222,7 @@ export type ProLayoutProps = GlobalTypes & {
    *
    * @example  重新获取菜单 actionRef.current.reload();
    * */
-  actionRef?: React.RefObject<
+  actionRef?: RefObject<
     | {
         reload: () => void;
       }
@@ -234,7 +234,7 @@ export type ProLayoutProps = GlobalTypes & {
    *
    * @example ErrorBoundary={MyErrorBoundary}
    */
-  ErrorBoundary?: React.ComponentClass<any, any> | boolean;
+  ErrorBoundary?: ComponentClass<any, any> | boolean;
 
   /**
    * @name  侧边菜单的类型, menu.type 的快捷方式
@@ -251,7 +251,7 @@ const headerRender = (
     hasSiderMenu: boolean;
   },
   matchMenuKeys: string[],
-): React.ReactNode => {
+): ReactNode => {
   if (props.headerRender === false || props.pure) {
     return null;
   }
@@ -264,7 +264,7 @@ const headerRender = (
   );
 };
 
-const footerRender = (props: ProLayoutProps): React.ReactNode => {
+const footerRender = (props: ProLayoutProps): ReactNode => {
   if (props.footerRender === false || props.pure) {
     return null;
   }
@@ -274,7 +274,7 @@ const footerRender = (props: ProLayoutProps): React.ReactNode => {
   return null;
 };
 
-const renderSiderMenu = (props: ProLayoutProps, matchMenuKeys: string[]): React.ReactNode => {
+const renderSiderMenu = (props: ProLayoutProps, matchMenuKeys: string[]): ReactNode => {
   const {
     layout,
     isMobile,
@@ -387,7 +387,7 @@ const getPaddingInlineStart = (
  *
  * @param props
  */
-const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
+const BaseProLayout: FC<ProLayoutProps> = (props) => {
   const {
     children,
     onCollapse: propsOnCollapse,
@@ -822,7 +822,7 @@ const BaseProLayout: React.FC<ProLayoutProps> = (props) => {
   );
 };
 
-const ProLayout: React.FC<ProLayoutProps> = (props) => {
+const ProLayout: FC<ProLayoutProps> = (props) => {
   const { colorPrimary } = props;
 
   const darkProps =

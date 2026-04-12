@@ -1,6 +1,7 @@
 import type { ColProps, RowProps } from 'antd';
 import { Col, Row } from 'antd';
-import React, { createContext, useContext, useMemo } from 'react';
+import type { FC, ReactElement } from 'react';
+import { Children, cloneElement, createContext, isValidElement, useContext, useMemo } from 'react';
 
 import type { ProFormGridConfig } from '../typing';
 
@@ -11,7 +12,7 @@ export const GridContext = createContext<ProFormGridConfig>({
 });
 
 interface CommonProps {
-  Wrapper?: React.FC<any>;
+  Wrapper?: FC<any>;
 }
 
 interface ColWrapperProps extends ColProps, CommonProps {
@@ -20,8 +21,8 @@ interface ColWrapperProps extends ColProps, CommonProps {
 }
 
 export interface GridHelpers {
-  RowWrapper: React.FC<RowProps & CommonProps>;
-  ColWrapper: React.FC<ColWrapperProps>;
+  RowWrapper: FC<RowProps & CommonProps>;
+  ColWrapper: FC<ColWrapperProps>;
   grid: boolean;
 }
 
@@ -66,13 +67,13 @@ export const gridHelpers: (config: ProFormGridConfig & CommonProps) => GridHelpe
     // LightFilter clone 传入的 variant/fieldProps 需透传给 ProFormItem，否则 lightProps 无 variant
     const childrenWithProps =
       (variant !== undefined || fieldProps !== undefined) &&
-      React.Children.count(children) === 1 &&
-      React.isValidElement(children)
-        ? React.cloneElement(children as React.ReactElement<any>, {
+      Children.count(children) === 1 &&
+      isValidElement(children)
+        ? cloneElement(children as ReactElement<any>, {
             ...(variant !== undefined && { variant }),
             ...(fieldProps && {
               fieldProps: {
-                ...(children as React.ReactElement<any>)?.props?.fieldProps,
+                ...(children as ReactElement<any>)?.props?.fieldProps,
                 ...fieldProps,
               },
             }),

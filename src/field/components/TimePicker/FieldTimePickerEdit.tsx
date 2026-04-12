@@ -1,6 +1,6 @@
 import { DatePicker, TimePicker } from 'antd';
 import dayjs from 'dayjs';
-import React from 'react';
+import type { Dispatch, ReactNode, Ref, SetStateAction } from 'react';
 
 import type { IntlType } from '../../../provider';
 import { FieldLabel, parseValueToDay } from '../../../utils';
@@ -18,11 +18,11 @@ type Props = Parameters<
   finalFormat: string;
   format: string;
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: Dispatch<SetStateAction<boolean>>;
   intl: IntlType;
 };
 
-export function FieldTimePickerEdit(props: Props, ref?: React.Ref<unknown>) {
+export function FieldTimePickerEdit(props: Props, ref?: Ref<unknown>) {
   const {
     text,
     mode,
@@ -41,7 +41,7 @@ export function FieldTimePickerEdit(props: Props, ref?: React.Ref<unknown>) {
   const { disabled, value } = fieldProps;
   const dayValue = parseValueToDay(value, finalFormat) as dayjs.Dayjs;
 
-  let dom: React.ReactNode;
+  let dom: ReactNode;
   if (light) {
     dom = (
       <FieldLabel
@@ -64,7 +64,7 @@ export function FieldTimePickerEdit(props: Props, ref?: React.Ref<unknown>) {
             <TimePicker
               variant={variant ?? fieldProps?.variant}
               format={format}
-              ref={ref as React.Ref<any>}
+              ref={ref as Ref<any>}
               {...fieldProps}
               placeholder={
                 fieldProps.placeholder ?? intl.getMessage('tableForm.selectPlaceholder', '请选择')
@@ -86,7 +86,7 @@ export function FieldTimePickerEdit(props: Props, ref?: React.Ref<unknown>) {
   } else {
     dom = (
       <DatePicker.TimePicker
-        ref={ref as React.Ref<any>}
+        ref={ref as Ref<any>}
         format={format}
         {...fieldProps}
         value={dayValue}

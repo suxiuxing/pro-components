@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { CSSProperties, FC } from 'react';
+import { useContext } from 'react';
 
 import { useStyle } from './style';
 
@@ -10,7 +11,7 @@ export interface ProCardOperationProps {
    *
    * @ignore
    */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /**
    * ClassName
    *
@@ -21,7 +22,7 @@ export interface ProCardOperationProps {
   children?: any;
 }
 
-const ProCardOperation: React.FC<ProCardOperationProps> = (props) => {
+const ProCardOperation: FC<ProCardOperationProps> = (props) => {
   const { className, style = {}, children } = props;
 
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);

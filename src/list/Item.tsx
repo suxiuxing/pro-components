@@ -3,7 +3,8 @@ import { useControlledState } from '@rc-component/util';
 import { ConfigProvider, Skeleton } from 'antd';
 import type { ExpandableConfig } from 'antd/es/table/interface';
 import { clsx } from 'clsx';
-import React, { useCallback, useContext, useMemo } from 'react';
+import type { CSSProperties, JSX, MouseEvent, MouseEventHandler, ReactNode } from 'react';
+import { Children, useCallback, useContext, useMemo } from 'react';
 
 import type { CheckCardProps } from '../card';
 import { CheckCard } from '../card';
@@ -16,13 +17,13 @@ export type RenderExpandIconProps<RecordType> = {
   prefixCls: string;
   expanded: boolean;
   expandIcon:
-    | React.ReactNode
-    | React.JSX.Element
+    | ReactNode
+    | JSX.Element
     | ((props: {
         onExpand: (expanded: boolean) => void;
         expanded: boolean;
         record: RecordType;
-      }) => React.ReactNode);
+      }) => ReactNode);
   onExpand: (expanded: boolean) => void;
   record: RecordType;
   hashId: string;
@@ -36,10 +37,10 @@ export function renderExpandIcon<RecordType>({
   record,
   hashId,
 }: RenderExpandIconProps<RecordType>) {
-  let icon = expandIcon as React.ReactNode;
+  let icon = expandIcon as ReactNode;
   const expandClassName = `${prefixCls}-row-expand-icon`;
 
-  const onClick: React.MouseEventHandler<HTMLElement> = (event) => {
+  const onClick: MouseEventHandler<HTMLElement> = (event) => {
     onExpand(!expanded);
     event.stopPropagation();
   };
@@ -62,25 +63,25 @@ export function renderExpandIcon<RecordType>({
 }
 
 export type ItemProps<RecordType> = {
-  title?: React.ReactNode;
-  subTitle?: React.ReactNode;
-  checkbox?: React.ReactNode;
+  title?: ReactNode;
+  subTitle?: ReactNode;
+  checkbox?: ReactNode;
   className?: string;
   prefixCls?: string;
   item?: any;
   subheader?: {
-    title: React.ReactNode;
-    actions: React.ReactNode[];
+    title: ReactNode;
+    actions: ReactNode[];
   };
   index: number;
   selected?: boolean;
-  avatar?: React.ReactNode;
-  content?: React.ReactNode;
-  actions?: React.ReactNode[];
-  extra?: React.ReactNode;
-  description?: React.ReactNode;
+  avatar?: ReactNode;
+  content?: ReactNode;
+  actions?: ReactNode[];
+  extra?: ReactNode;
+  description?: ReactNode;
   loading?: boolean;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   grid?: ListGridType;
   expand?: boolean;
   rowSupportExpand?: boolean;
@@ -94,10 +95,10 @@ export type ItemProps<RecordType> = {
   onRow?: GetComponentProps<RecordType>;
   onItem?: GetComponentProps<RecordType>;
   itemHeaderRender?:
-    | ((item: RecordType, index: number, defaultDom: React.JSX.Element | null) => React.ReactNode)
+    | ((item: RecordType, index: number, defaultDom: JSX.Element | null) => ReactNode)
     | false;
   itemTitleRender?:
-    | ((item: RecordType, index: number, defaultDom: React.JSX.Element | null) => React.ReactNode)
+    | ((item: RecordType, index: number, defaultDom: JSX.Element | null) => ReactNode)
     | false;
 };
 
@@ -175,10 +176,7 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
   const expandedRowDom =
     expandedRowRender && expandedRowRender(record, index, indentSize, expanded);
 
-  const actionsArray = useMemo(
-    () => (actions ? React.Children.toArray(actions) : undefined),
-    [actions],
-  );
+  const actionsArray = useMemo(() => (actions ? Children.toArray(actions) : undefined), [actions]);
 
   const titleDom =
     title || subTitle ? (
@@ -295,7 +293,7 @@ function ProListItem<RecordType>(props: ItemProps<RecordType>) {
       extra={extra}
       {...onRow?.(record, index)}
       {...itemProps}
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+      onClick={(e: MouseEvent<HTMLDivElement>) => {
         onRow?.(record, index)?.onClick?.(e);
         onItem?.(record, index)?.onClick?.(e);
         if (expandRowByClick) {

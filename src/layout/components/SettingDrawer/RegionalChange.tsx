@@ -1,12 +1,12 @@
 import { List, Switch } from 'antd';
 import { clsx } from 'clsx';
-import React from 'react';
+import type { FC } from 'react';
 
 import type { ProSettings } from '../../defaultSettings';
 import { getFormatMessage } from './index';
 import { renderLayoutSettingItem } from './LayoutChange';
 
-const RegionalSetting: React.FC<{
+const RegionalSetting: FC<{
   settings: Partial<ProSettings>;
   changeSetting: (key: string, value: any, hideLoading?: boolean) => void;
   hashId: string;

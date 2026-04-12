@@ -1,4 +1,5 @@
-import React, { useCallback, useRef, useState } from 'react';
+import type { JSX, MouseEvent as ReactMouseEvent, ReactElement, ReactNode, RefObject } from 'react';
+import { cloneElement, useCallback, useRef, useState } from 'react';
 
 import type { ProFieldLightProps } from '../types';
 
@@ -8,19 +9,19 @@ import type { ProFieldLightProps } from '../types';
  */
 function ProFieldLightWrapper<T extends ProFieldLightProps>(
   props: T & {
-    children: React.ReactNode;
+    children: ReactNode;
     isLight?: boolean;
   },
 ) {
   const [labelTrigger, setLabelTrigger] = useState(false);
 
   const lightLabel = useRef<{
-    labelRef: React.RefObject<HTMLElement>;
-    clearRef: React.RefObject<HTMLElement>;
+    labelRef: RefObject<HTMLElement>;
+    clearRef: RefObject<HTMLElement>;
   }>(null);
 
   const isTriggeredByLabel = useCallback(
-    (e: React.MouseEvent) => {
+    (e: ReactMouseEvent) => {
       const isLabelMouseDown = lightLabel.current?.labelRef?.current?.contains(
         e.target as HTMLElement,
       );
@@ -32,7 +33,7 @@ function ProFieldLightWrapper<T extends ProFieldLightProps>(
     [lightLabel],
   );
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleMouseDown = (e: ReactMouseEvent<HTMLDivElement, MouseEvent>) => {
     if (isTriggeredByLabel(e)) {
       setLabelTrigger(true);
     }
@@ -47,7 +48,7 @@ function ProFieldLightWrapper<T extends ProFieldLightProps>(
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       >
-        {React.cloneElement(props.children as React.JSX.Element, {
+        {cloneElement(props.children as JSX.Element, {
           labelTrigger,
           lightLabel,
         })}
@@ -55,17 +56,14 @@ function ProFieldLightWrapper<T extends ProFieldLightProps>(
     );
   }
 
-  return <>{props.children as React.ReactNode}</>;
+  return <>{props.children as ReactNode}</>;
 }
 
 /**
  * 非 light 时直接返回子元素；light 时包一层 {@link ProFieldLightWrapper}。
  * 用于在需要处包一层 light 行为，避免重复的 JSX 包装。
  */
-export function wrapProFieldLight(
-  isLight: boolean | undefined,
-  child: React.ReactElement,
-): React.ReactNode {
+export function wrapProFieldLight(isLight: boolean | undefined, child: ReactElement): ReactNode {
   if (!isLight) {
     return child;
   }

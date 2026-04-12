@@ -1,5 +1,6 @@
 import type { GetRowKey } from 'antd/es/table/interface';
-import React from 'react';
+import type { Key } from 'react';
+import { useMemo, useState } from 'react';
 
 import { ParamsType } from '../../../provider';
 import { ProColumns } from '../../typing';
@@ -10,13 +11,13 @@ export function CellEditorTable<
   Params extends ParamsType = ParamsType,
   ValueType = 'text',
 >(props: EditableProTableProps<DataType, Params, ValueType>) {
-  const [editableKeys, setEditableRowKeys] = React.useState<React.Key[]>([]);
-  const [dataIndex, setDataIndex] = React.useState<any[]>([]);
+  const [editableKeys, setEditableRowKeys] = useState<Key[]>([]);
+  const [dataIndex, setDataIndex] = useState<any[]>([]);
 
   const rowKey = props.rowKey || 'id';
 
   // ============================ RowKey ============================
-  const getRowKey = React.useMemo<GetRowKey<any>>(() => {
+  const getRowKey = useMemo<GetRowKey<any>>(() => {
     if (typeof rowKey === 'function') {
       return rowKey;
     }

@@ -7,7 +7,8 @@ import {
 import { omit, useControlledState } from '@rc-component/util';
 import { Alert, Button, Divider, Drawer, DrawerProps, List, Switch, message } from 'antd';
 import { clsx } from 'clsx';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import type { FC, ReactElement, ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { isBrowser, useRefFunction, useUrlSearchParams } from '../../../utils';
 import type { ProSettings } from '../../defaultSettings';
@@ -25,7 +26,7 @@ import { ThemeColor } from './ThemeColor';
 type BodyProps = {
   title: string;
   prefixCls: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   hashId: string;
 };
 
@@ -34,7 +35,7 @@ type MergerSettingsType<T> = Partial<T> & {
   colorWeak?: boolean;
 };
 
-const Body: React.FC<BodyProps> = ({ children, hashId, prefixCls, title }) => (
+const Body: FC<BodyProps> = ({ children, hashId, prefixCls, title }) => (
   <div style={{ marginBlockEnd: 12 }}>
     <h3 className={clsx(`${prefixCls}-body-title`, hashId)}>{title}</h3>
     {children}
@@ -42,10 +43,10 @@ const Body: React.FC<BodyProps> = ({ children, hashId, prefixCls, title }) => (
 );
 
 export type SettingItemProps = {
-  title: React.ReactNode;
-  action: React.ReactElement;
+  title: ReactNode;
+  action: ReactElement;
   disabled?: boolean;
-  disabledReason?: React.ReactNode;
+  disabledReason?: ReactNode;
 };
 
 export type SettingDrawerProps = {
@@ -166,7 +167,7 @@ const genCopySettingJson = (settingState: MergerSettingsType<ProSettings>) =>
  *
  * @param props
  */
-export const SettingDrawer: React.FC<SettingDrawerProps> = (props) => {
+export const SettingDrawer: FC<SettingDrawerProps> = (props) => {
   const {
     defaultSettings: propsDefaultSettings = undefined,
     settings: propsSettings = undefined,

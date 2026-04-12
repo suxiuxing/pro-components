@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import { Button, message } from 'antd';
-import React, { act } from 'react';
+import { act, createRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { ProForm, ProFormCaptcha } from '@xxlabs/pro-components';
@@ -11,7 +11,7 @@ afterEach(() => {
 
 describe('ProFormCaptcha', () => {
   it('😊 ProFormCaptcha Manual open', async () => {
-    const captchaRef = React.createRef<any>();
+    const captchaRef = createRef<any>();
     const fn = vi.fn();
 
     const TimingText = '获取验证码';

@@ -1,10 +1,11 @@
 import { Checkbox, Radio } from 'antd';
 import type { GetRowKey, TableRowSelection } from 'antd/es/table/interface';
-import React from 'react';
+import type { Key, ReactElement } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 type UseSelectionConfig<RecordType> = {
   getRowKey: GetRowKey<RecordType>;
-  getRecordByKey: (key: React.Key) => RecordType | undefined;
+  getRecordByKey: (key: Key) => RecordType | undefined;
   prefixCls?: string;
   data: RecordType[];
   pageData: RecordType[];
@@ -18,26 +19,26 @@ function useSelection<RecordType>(
   rowSelection?: TableRowSelection<RecordType>,
 ): readonly [
   (columns?: any[]) => Array<{
-    render: (text: any, record: RecordType, index: number) => React.ReactElement;
+    render: (text: any, record: RecordType, index: number) => ReactElement;
   }>,
-  Set<React.Key>,
+  Set<Key>,
 ] {
   const { getRowKey, data } = config;
 
-  const controlledKeys = rowSelection?.selectedRowKeys as React.Key[] | undefined;
-  const [innerKeys, setInnerKeys] = React.useState<React.Key[]>(controlledKeys || []);
+  const controlledKeys = rowSelection?.selectedRowKeys as Key[] | undefined;
+  const [innerKeys, setInnerKeys] = useState<Key[]>(controlledKeys || []);
 
   // Keep in sync with controlled keys
-  React.useEffect(() => {
+  useEffect(() => {
     if (controlledKeys) {
       setInnerKeys(controlledKeys);
     }
   }, [controlledKeys && controlledKeys.join(';')]);
 
-  const selectedKeySet = React.useMemo(() => new Set(innerKeys), [innerKeys]);
+  const selectedKeySet = useMemo(() => new Set(innerKeys), [innerKeys]);
 
-  const toggleKey = React.useCallback(
-    (key: React.Key, record: RecordType, checked: boolean) => {
+  const toggleKey = useCallback(
+    (key: Key, record: RecordType, checked: boolean) => {
       setInnerKeys((prevKeys) => {
         if (rowSelection?.type === 'radio') {
           const nextKeys = [key];
@@ -86,7 +87,7 @@ function useSelection<RecordType>(
     [data, getRowKey, rowSelection, controlledKeys],
   );
 
-  const selectItemRender = React.useCallback(
+  const selectItemRender = useCallback(
     (columns?: any[]) => {
       void columns;
       if (!rowSelection) {

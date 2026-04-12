@@ -11,7 +11,10 @@ import { ConfigProvider, Form, Spin } from 'antd';
 import type { NamePath } from 'antd/es/form/interface';
 import { clsx } from 'clsx';
 import type dayjs from 'dayjs';
-import React, {
+import type { ReactElement, ReactNode, RefObject } from 'react';
+import {
+  Children,
+  isValidElement,
   useCallback,
   useContext,
   useEffect,
@@ -110,7 +113,7 @@ export type CommonFormProps<T = Record<string, any>, U = Record<string, any>> = 
    *
    * - formRef.current.nativeElement => `2.29.1+`
    */
-  formRef?: React.RefObject<ProFormRef<T> | undefined | null>;
+  formRef?: RefObject<ProFormRef<T> | undefined | null>;
 
   /**
    * @name 同步结果到 url 中
@@ -198,10 +201,10 @@ export type CommonFormProps<T = Record<string, any>, U = Record<string, any>> = 
 
 export type BaseFormProps<T = Record<string, any>, U = Record<string, any>> = {
   contentRender?: (
-    items: React.ReactNode[],
-    submitter: React.ReactElement<SubmitterProps> | undefined,
+    items: ReactNode[],
+    submitter: ReactElement<SubmitterProps> | undefined,
     form: FormInstance<any>,
-  ) => React.ReactNode;
+  ) => ReactNode;
   fieldProps?: FieldProps<unknown>;
   proFieldProps?: ProFieldProps;
   /** 表单初始化完成，form已经存在，可以进行赋值的操作了 */
@@ -397,9 +400,9 @@ function BaseFormComponents<T = Record<string, any>, U = Record<string, any>>(
   );
 
   const items = useMemo(() => {
-    return React.Children.toArray(children as any).map((item, index) => {
-      if (index === 0 && React.isValidElement(item) && autoFocusFirstInput) {
-        return autoFocusToFirstChild(item, autoFocusFirstInput) as React.ReactElement;
+    return Children.toArray(children as any).map((item, index) => {
+      if (index === 0 && isValidElement(item) && autoFocusFirstInput) {
+        return autoFocusToFirstChild(item, autoFocusFirstInput) as ReactElement;
       }
       return item;
     });

@@ -2,7 +2,8 @@ import { HolderOutlined } from '@ant-design/icons';
 import { useControlledState } from '@rc-component/util';
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useCallback, useContext, useMemo } from 'react';
+import type { ReactNode } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 
 import type { ParamsType } from '../../../provider';
 import ProTable from '../../Table';
@@ -14,7 +15,7 @@ export type DragTableProps<T, U> = {
   /** @name 拖动排序列key值 如配置此参数，则会在该 key 对应的行显示拖拽排序把手，允许拖拽排序 */
   dragSortKey?: string;
   /** @name 渲染自定义拖动排序把手的函数 如配置了 dragSortKey 但未配置此参数，则使用默认把手图标 */
-  dragSortHandlerRender?: (rowData: T, idx: number) => React.ReactNode;
+  dragSortHandlerRender?: (rowData: T, idx: number) => ReactNode;
   /** @name 拖动排序完成回调 */
   onDragSortEnd?: (
     beforeIndex: number,

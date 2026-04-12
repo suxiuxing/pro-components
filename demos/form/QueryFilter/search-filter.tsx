@@ -1,6 +1,7 @@
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { Input, Tabs } from 'antd';
-import React, { useState } from 'react';
+import type { FC } from 'react';
+import { useState } from 'react';
 
 import { ProForm, ProFormDatePicker, ProFormText, QueryFilter } from '@xxlabs/pro-components';
 
@@ -11,7 +12,7 @@ type AdvancedSearchProps = {
   defaultType?: string;
 };
 
-const AdvancedSearch: React.FC<AdvancedSearchProps> = (props) => {
+const AdvancedSearch: FC<AdvancedSearchProps> = (props) => {
   const { onSearch, onTypeChange, defaultType = 'articles', onFilterChange } = props;
   const [searchText, setSearchText] = useState<string>();
   const [showFilter, setShowFilter] = useState<boolean>(true);

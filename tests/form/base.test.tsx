@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button, ConfigProvider, Input } from 'antd';
 import dayjs from 'dayjs';
-import React, { act, useEffect, useRef } from 'react';
+import { act, createRef, useEffect, useRef, useState } from 'react';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { ProFormInstance } from '@xxlabs/pro-components';
@@ -398,7 +398,7 @@ describe('ProForm', () => {
   });
 
   it('📦 support formRef', async () => {
-    const formRef = React.createRef<ProFormInstance<any>>();
+    const formRef = createRef<ProFormInstance<any>>();
     const wrapper = render(
       <ProForm
         formRef={formRef}
@@ -432,7 +432,7 @@ describe('ProForm', () => {
 
   // https://github.com/ant-design/pro-components/issues/8471
   it('📦 support formRef nativeElement', async () => {
-    const formRef = React.createRef<any>();
+    const formRef = createRef<any>();
     const wrapper = render(
       <ProForm formRef={formRef}>
         <ProFormText name="test" />
@@ -1084,7 +1084,7 @@ describe('ProForm', () => {
 
   it('📦 ProForm hidden field should update grid layout when toggled', async () => {
     const App = () => {
-      const [hidden, setHidden] = React.useState(false);
+      const [hidden, setHidden] = useState(false);
 
       return (
         <>
@@ -3599,7 +3599,7 @@ describe('ProForm', () => {
   });
 
   it('📦 getFieldsFormatValue should work correctly', async () => {
-    const formRef = React.createRef<ProFormInstance<any>>();
+    const formRef = createRef<ProFormInstance<any>>();
     const wrapper = render(
       <ProForm
         formRef={formRef}
@@ -3710,7 +3710,7 @@ describe('ProForm', () => {
   });
 
   it('📦 getFieldsFormatValue should handle omitNil correctly', async () => {
-    const formRef = React.createRef<ProFormInstance<any>>();
+    const formRef = createRef<ProFormInstance<any>>();
     const wrapper = render(
       <ProForm
         formRef={formRef}
@@ -3827,7 +3827,7 @@ describe('ProForm', () => {
   });
 
   it('📦 getFieldsFormatValue should handle date formatting', async () => {
-    const formRef = React.createRef<ProFormInstance<any>>();
+    const formRef = createRef<ProFormInstance<any>>();
     const wrapper = render(
       <ProForm
         formRef={formRef}
@@ -3854,7 +3854,7 @@ describe('ProForm', () => {
   });
 
   it('📦 getFieldsFormatValue should handle complex transforms', async () => {
-    const formRef = React.createRef<ProFormInstance<any>>();
+    const formRef = createRef<ProFormInstance<any>>();
     const wrapper = render(
       <ProForm
         formRef={formRef}
@@ -3918,7 +3918,7 @@ describe('ProForm', () => {
   });
 
   it('📦 validateFieldsReturnFormatValue should work correctly', async () => {
-    const formRef = React.createRef<ProFormInstance<any>>();
+    const formRef = createRef<ProFormInstance<any>>();
     const wrapper = render(
       <ProForm
         formRef={formRef}
@@ -3960,7 +3960,7 @@ describe('ProForm', () => {
   });
 
   it('📦 getFieldsFormatValue should handle complex transforms', async () => {
-    const formRef = React.createRef<ProFormInstance<any>>();
+    const formRef = createRef<ProFormInstance<any>>();
     const wrapper = render(
       <ProForm
         formRef={formRef}
@@ -4014,7 +4014,7 @@ describe('ProForm', () => {
   });
 
   it('📦 debug transform registration', async () => {
-    const formRef = React.createRef<ProFormInstance<any>>();
+    const formRef = createRef<ProFormInstance<any>>();
     const wrapper = render(
       <ProForm
         formRef={formRef}
@@ -4157,7 +4157,7 @@ describe('ProForm 修复增强用例', () => {
   });
 
   it('dateTime 支持自定义格式字符串', async () => {
-    const formRef = React.createRef<ProFormInstance<any>>();
+    const formRef = createRef<ProFormInstance<any>>();
     const wrapper = render(
       <ProForm
         formRef={formRef}

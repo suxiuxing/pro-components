@@ -1,8 +1,8 @@
 import type { AvatarProps, SiderProps } from 'antd';
 import { Avatar, Layout, Menu, Space } from 'antd';
 import { clsx } from 'clsx';
-import type { CSSProperties, FC, ReactNode } from 'react';
-import React, { useContext, useMemo } from 'react';
+import type { CSSProperties, FC, MouseEvent, ReactNode, RefObject } from 'react';
+import { memo, useContext, useMemo } from 'react';
 
 import type { GenerateStyle } from '../../../provider';
 import { ProProvider } from '../../../provider';
@@ -16,7 +16,7 @@ import { BaseMenu } from './BaseMenu';
 import type { SiderMenuToken } from './style/stylish';
 import { useStylish } from './style/stylish';
 
-const _SafetyWarningProvider: FC<{ children: ReactNode }> = React.memo((props) => {
+const _SafetyWarningProvider: FC<{ children: ReactNode }> = memo((props) => {
   return <>{props.children}</>;
 });
 
@@ -35,7 +35,7 @@ export type HeaderRenderKey = 'menuHeaderRender' | 'headerTitleRender';
 export const renderLogoAndTitle = (
   props: SiderMenuProps,
   renderKey: HeaderRenderKey = 'menuHeaderRender',
-): React.ReactNode => {
+): ReactNode => {
   const { logo, title, layout } = props;
   const renderFunction = props[renderKey as 'menuHeaderRender'];
   if (renderFunction === false) {
@@ -69,28 +69,28 @@ export const renderLogoAndTitle = (
 
 export type SiderMenuProps = {
   /** 品牌logo的标识 */
-  logo?: React.ReactNode;
+  logo?: ReactNode;
   /** 相关品牌的列表 */
   appList?: AppListProps;
-  appListRender?: (props: AppListProps, defaultDom: React.ReactNode) => React.ReactNode;
+  appListRender?: (props: AppListProps, defaultDom: ReactNode) => ReactNode;
   /** 相关品牌的列表项 点击事件，当事件存在时，appList 内配置的 url 不在自动跳转 */
-  itemClick?: (item: AppItemProps, popoverRef?: React.RefObject<HTMLSpanElement | null>) => void;
+  itemClick?: (item: AppItemProps, popoverRef?: RefObject<HTMLSpanElement | null>) => void;
   /** 菜单的宽度 */
   siderWidth?: number;
   /** 头像的设置 */
   avatarProps?: WithFalse<
     AvatarProps & {
-      title?: React.ReactNode;
+      title?: ReactNode;
       render?: (
         avatarProps: AvatarProps,
-        defaultDom: React.ReactNode,
+        defaultDom: ReactNode,
         props: SiderMenuProps,
-      ) => React.ReactNode;
+      ) => ReactNode;
     }
   >;
 
   /** Layout的操作功能列表，不同的 layout 会放到不同的位置 */
-  actionsRender?: WithFalse<(props: HeaderViewProps) => React.ReactNode[] | React.ReactNode>;
+  actionsRender?: WithFalse<(props: HeaderViewProps) => ReactNode[] | ReactNode>;
   /**
    * @name  菜单 logo 和 title 区域的渲染
    *
@@ -100,7 +100,7 @@ export type SiderMenuProps = {
    * @example 不要这个区域了 : menuHeaderRender={false}
    */
   menuHeaderRender?: WithFalse<
-    (logo: React.ReactNode, title: React.ReactNode, props?: SiderMenuProps) => React.ReactNode
+    (logo: ReactNode, title: ReactNode, props?: SiderMenuProps) => ReactNode
   >;
   /**
    * @name 侧边菜单底部的配置，可以增加一些底部操作
@@ -108,7 +108,7 @@ export type SiderMenuProps = {
    * @example 底部增加超链接 menuFooterRender={()=><a href="https://pro.ant.design">pro.ant.design</a>}
    * @example 根据收起展开配置不同的 dom  menuFooterRender={()=>collapsed? null :<a href="https://pro.ant.design">pro.ant.design</a>}
    */
-  menuFooterRender?: WithFalse<(props?: SiderMenuProps) => React.ReactNode>;
+  menuFooterRender?: WithFalse<(props?: SiderMenuProps) => ReactNode>;
 
   /**
    * @name  侧边菜单，菜单区域的处理,可以单独处理菜单的dom
@@ -116,16 +116,14 @@ export type SiderMenuProps = {
    * @example 增加菜单区域的背景颜色 menuContentRender={(props,defaultDom)=><div style={{backgroundColor:"red"}}>{defaultDom}</div>}
    * @example 某些情况下不显示菜单 menuContentRender={(props)=> return <div>不显示菜单</div>}
    */
-  menuContentRender?: WithFalse<
-    (props: SiderMenuProps, defaultDom: React.ReactNode) => React.ReactNode
-  >;
+  menuContentRender?: WithFalse<(props: SiderMenuProps, defaultDom: ReactNode) => ReactNode>;
   /**
    * @name 侧边菜单 title 和 logo 下面区域的渲染，一般会增加个搜索框
    *
    * @example  增加一个搜索框 menuExtraRender={()=>(<Search placeholder="请输入" />)}
    * @example  根据收起展开配置不同的 dom： menuExtraRender={()=>collapsed? null : <Search placeholder="请输入" />}
    */
-  menuExtraRender?: WithFalse<(props: SiderMenuProps) => React.ReactNode>;
+  menuExtraRender?: WithFalse<(props: SiderMenuProps) => ReactNode>;
   /**
    * @name 自定义展开收起按钮的渲染
    *
@@ -133,9 +131,7 @@ export type SiderMenuProps = {
    * @example 使用icon渲染 collapsedButtonRender={(collapsed)=>collapsed?<MenuUnfoldOutlined />:<MenuFoldOutlined />}
    * @example 不渲染按钮 collapsedButtonRender={false}
    */
-  collapsedButtonRender?: WithFalse<
-    (collapsed?: boolean, defaultDom?: React.ReactNode) => React.ReactNode
-  >;
+  collapsedButtonRender?: WithFalse<(collapsed?: boolean, defaultDom?: ReactNode) => ReactNode>;
   /**
    * @name 菜单是否收起的断点，设置成false 可以禁用
    *
@@ -149,14 +145,14 @@ export type SiderMenuProps = {
    *
    * @example 点击跳转到首页 onMenuHeaderClick={()=>{ history.push('/') }}
    */
-  onMenuHeaderClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onMenuHeaderClick?: (e: MouseEvent<HTMLDivElement>) => void;
 
   /**
    * @name 侧边菜单底部的一些快捷链接
    *
    * @example links={[<a href="ant.design"> 访问官网 </a>,<a href="help.ant.design"> 帮助 </a>]}
    */
-  links?: React.ReactNode[];
+  links?: ReactNode[];
   onOpenChange?: (openKeys: WithFalse<string[]>) => void;
   getContainer?: false;
 
@@ -178,7 +174,7 @@ export type PrivateSiderMenuProps = {
   stylish?: GenerateStyle<SiderMenuToken>;
 };
 
-const SiderMenu: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (props) => {
+const SiderMenu: FC<SiderMenuProps & PrivateSiderMenuProps> = (props) => {
   const {
     collapsed,
     originCollapsed,

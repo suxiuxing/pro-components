@@ -1,5 +1,6 @@
 import { Badge, Button } from 'antd';
-import React, { useState } from 'react';
+import type { Key } from 'react';
+import { useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { LightFilter, ProFormDatePicker, ProTable } from '@xxlabs/pro-components';
@@ -91,7 +92,7 @@ const renderBadge = (count: number, active = false) => {
 };
 
 const Demo = () => {
-  const [activeKey, setActiveKey] = useState<React.Key>('tab1');
+  const [activeKey, setActiveKey] = useState<Key>('tab1');
 
   return (
     <ProTable<TableListItem>

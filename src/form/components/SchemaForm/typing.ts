@@ -1,5 +1,6 @@
 import type { FormInstance, FormProps } from 'antd';
 import type { NamePath } from 'antd/es/form/interface';
+import type { Key, ReactNode, RefObject } from 'react';
 
 import type {
   ProCoreActionType,
@@ -21,8 +22,8 @@ import type {
 import type { ProFormGridConfig } from '../../typing';
 
 export type ExtraProColumnType = {
-  tooltip?: React.ReactNode;
-  key?: React.Key;
+  tooltip?: ReactNode;
+  key?: Key;
   className?: string;
   /**
    * @type auto 使用组件默认的宽度
@@ -120,16 +121,12 @@ export type ProFormColumnsType<T = any, ValueType = 'text'> = ProSchema<
 
 export type FormSchema<T = Record<string, any>, ValueType = 'text'> = {
   title?:
-    | React.ReactNode
-    | ((
-        schema: ProFormColumnsType<T, ValueType>,
-        type: 'form',
-        dom: React.ReactNode,
-      ) => React.ReactNode);
-  description?: React.ReactNode;
+    | ReactNode
+    | ((schema: ProFormColumnsType<T, ValueType>, type: 'form', dom: ReactNode) => ReactNode);
+  description?: ReactNode;
   steps?: StepFormProps[];
   type?: any;
-  action?: React.RefObject<ProCoreActionType | undefined>;
+  action?: RefObject<ProCoreActionType | undefined>;
   /**
    * @default true
    * Fine-grained control over when to update
@@ -150,15 +147,15 @@ export type ProFormRenderValueTypeItem<T, ValueType> = {
 export type ProFormRenderValueTypeHelpers<T, ValueType> = {
   originItem: ProFormColumnsType<T, ValueType>;
   type: ProSchemaComponentTypes;
-  formRef: React.RefObject<FormInstance<any> | undefined>;
-  genItems: (items: ProFormColumnsType<T, ValueType>[]) => React.ReactNode[];
+  formRef: RefObject<FormInstance<any> | undefined>;
+  genItems: (items: ProFormColumnsType<T, ValueType>[]) => ReactNode[];
 } & Pick<FormSchema<T, ValueType>, 'action'>;
 
 export type ItemType<T, ValueType> = Omit<ProFormRenderValueTypeItem<T, ValueType>, 'key'> & {
-  key?: React.Key | React.Key[];
+  key?: Key | Key[];
 };
 
 export type ProSchemaRenderValueTypeFunction<T = any, ValueType = any> = (
   item: ItemType<T, ValueType>,
   helpers: ProFormRenderValueTypeHelpers<T, ValueType>,
-) => React.ReactNode;
+) => ReactNode;

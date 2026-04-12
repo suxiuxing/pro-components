@@ -1,5 +1,13 @@
 import type { CardProps as AntdCardProps, TabPaneProps, TabsProps } from 'antd';
-import type { ReactNode } from 'react';
+import type {
+  CSSProperties,
+  FC,
+  HTMLAttributes,
+  MouseEvent as ReactMouseEvent,
+  ReactNode,
+  Ref,
+  RefAttributes,
+} from 'react';
 
 import type { LabelTooltipType } from '../utils';
 
@@ -13,13 +21,13 @@ type CollapsibleType = 'icon' | 'header' | boolean;
 
 /** 与 antd Card 一致的 styles 结构 */
 export interface ProCardStyles {
-  root?: React.CSSProperties;
-  header?: React.CSSProperties;
-  body?: React.CSSProperties;
-  extra?: React.CSSProperties;
-  title?: React.CSSProperties;
-  actions?: React.CSSProperties;
-  cover?: React.CSSProperties;
+  root?: CSSProperties;
+  header?: CSSProperties;
+  body?: CSSProperties;
+  extra?: CSSProperties;
+  title?: CSSProperties;
+  actions?: CSSProperties;
+  cover?: CSSProperties;
 }
 
 /** 与 antd Card 一致的 classNames 结构 */
@@ -41,13 +49,13 @@ type CardPropsBase = Pick<AntdCardProps, 'rootClassName' | 'cover'> & {
   /** 页头是否有分割线 */
   headerBordered?: boolean;
   /** 卡片标题 */
-  title?: React.ReactNode;
+  title?: ReactNode;
   /** 副标题 */
-  subTitle?: React.ReactNode;
+  subTitle?: ReactNode;
   /** 标题说明 */
   tooltip?: string | LabelTooltipType;
   /** 右上角自定义区域 */
-  extra?: React.ReactNode;
+  extra?: ReactNode;
   /** 布局，center 代表垂直居中 */
   layout?: 'default' | 'center';
   /** 卡片类型 */
@@ -62,11 +70,11 @@ type CardPropsBase = Pick<AntdCardProps, 'rootClassName' | 'cover'> & {
   loading?: boolean | ReactNode;
   /** 栅格布局宽度，24 栅格，支持指定宽度或百分，需要支持响应式 colSpan={{ xs: 12, sm: 6 }} */
   colSpan?: ColSpanType | Partial<Record<Breakpoint, ColSpanType>>;
-  colStyle?: React.CSSProperties;
+  colStyle?: CSSProperties;
   /** 栅格间距 */
   gutter?: Gutter | Gutter[];
   /** 操作按钮 */
-  actions?: React.ReactNode[] | React.ReactNode;
+  actions?: ReactNode[] | ReactNode;
   /** 拆分卡片方式 */
   split?: 'vertical' | 'horizontal';
   /** 卡片变体，与 antd Card variant 一致 */
@@ -84,7 +92,7 @@ type CardPropsBase = Pick<AntdCardProps, 'rootClassName' | 'cover'> & {
   /** 受控 collapsed 属性 */
   collapsed?: boolean;
   /** 折叠按钮自定义节点 */
-  collapsibleIconRender?: ({ collapsed }: { collapsed: boolean }) => React.ReactNode;
+  collapsibleIconRender?: ({ collapsed }: { collapsed: boolean }) => ReactNode;
   /** 配置默认是否折叠 */
   defaultCollapsed?: boolean;
   /** 收起卡片的事件 */
@@ -92,11 +100,11 @@ type CardPropsBase = Pick<AntdCardProps, 'rootClassName' | 'cover'> & {
   /** 前缀 */
   prefixCls?: string;
   /** ProCard 的 ref */
-  ref?: React.Ref<HTMLDivElement | undefined>;
+  ref?: Ref<HTMLDivElement | undefined>;
   /** 是否展示选中样式 */
   checked?: boolean;
   /** 选中改变 */
-  onChecked?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onChecked?: (e: ReactMouseEvent<HTMLDivElement, MouseEvent>) => void;
   /** card的阴影 */
   boxShadow?: boolean;
 };
@@ -110,7 +118,7 @@ export type CardProps = {
   /** 标签栏配置 */
   tabs?: ProCardTabsProps;
 } & CardPropsBase &
-  Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>;
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'>;
 
 export type ProCardTabPaneProps = {
   /** Key */
@@ -119,4 +127,4 @@ export type ProCardTabPaneProps = {
   cardProps?: CardProps;
 } & TabPaneProps;
 
-export type CardType = React.FC<CardProps & React.RefAttributes<any>>;
+export type CardType = FC<CardProps & RefAttributes<any>>;

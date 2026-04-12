@@ -1,17 +1,17 @@
 import { Image } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import type { FieldImageProps } from './types';
 
 export function FieldImageRead(
   props: Parameters<ProFieldFC<FieldImageProps>>[0],
-  ref?: React.Ref<unknown>,
+  ref?: Ref<unknown>,
 ) {
   const { text, mode: type, render, fieldProps, width } = props;
   const dom = (
     <Image
-      ref={ref as React.Ref<any>}
+      ref={ref as Ref<any>}
       width={width || 32}
       src={text}
       {...fieldProps}

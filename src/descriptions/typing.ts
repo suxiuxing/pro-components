@@ -1,6 +1,6 @@
 import type { DescriptionsProps, FormProps } from 'antd';
 import type { DescriptionsItemProps as AntdDescriptionsCellProps } from 'antd/es/descriptions/Item';
-import type React from 'react';
+import type { ReactNode, RefObject } from 'react';
 
 import type { ProFieldFCMode } from '../provider';
 import type {
@@ -17,8 +17,8 @@ import type { ProDescriptionsRequestResult } from './useFetchData';
 export type DescriptionsItemProps = AntdDescriptionsCellProps;
 
 type ProDescriptionsCellLayout = Omit<AntdDescriptionsCellProps, 'children' | 'label'> & {
-  label?: React.ReactNode;
-  children?: React.ReactNode;
+  label?: ReactNode;
+  children?: ReactNode;
 };
 
 /**
@@ -62,7 +62,7 @@ export type ProDescriptionsProps<
     params: Record<string, unknown> | undefined,
   ) => Promise<ProDescriptionsRequestResult<TRecord>>;
   columns?: ProDescriptionsColumn<TRecord, TValueType>[];
-  actionRef?: React.RefObject<ProCoreActionType<any> | undefined>;
+  actionRef?: RefObject<ProCoreActionType<any> | undefined>;
   loading?: boolean;
   onLoadingChange?: (loading?: boolean) => void;
   tooltip?: LabelTooltipType | string;
@@ -70,7 +70,7 @@ export type ProDescriptionsProps<
   editable?: RowEditableConfig<TRecord>;
   dataSource?: TRecord;
   onDataSourceChange?: (value: TRecord | undefined) => void;
-  emptyText?: React.ReactNode;
+  emptyText?: ReactNode;
 };
 
 /**

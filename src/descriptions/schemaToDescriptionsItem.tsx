@@ -1,7 +1,8 @@
 import { EditOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
 import type { DescriptionsItemType } from 'antd/es/descriptions';
-import React from 'react';
+import type { JSX, Key, ReactNode } from 'react';
+import { Fragment } from 'react';
 
 import type { ProCoreActionType, UseEditableMapUtilType } from '../utils';
 import { LabelIconTip, genCopyable } from '../utils';
@@ -15,9 +16,9 @@ export function schemaToDescriptionsItem(
   entity: Record<string, unknown> | undefined,
   action: ProCoreActionType<any>,
   editableUtils?: UseEditableMapUtilType,
-  emptyText?: React.ReactNode,
+  emptyText?: ReactNode,
 ) {
-  const options: React.JSX.Element[] = [];
+  const options: JSX.Element[] = [];
   const children = items
     ?.map?.((item, index) => {
       const row = entity ?? {};
@@ -45,7 +46,7 @@ export function schemaToDescriptionsItem(
 
       const valueType = resolveDescriptionsValueType(item, row);
 
-      const isEditable = editableUtils?.isEditable((dataIndex as React.Key) || index);
+      const isEditable = editableUtils?.isEditable((dataIndex as Key) || index);
 
       const fieldMode = mode || isEditable ? 'edit' : 'read';
 
@@ -55,9 +56,9 @@ export function schemaToDescriptionsItem(
         editable !== false &&
         editable?.(text, row, index) !== false;
 
-      const Component = showEditIcon ? Space : React.Fragment;
+      const Component = showEditIcon ? Space : Fragment;
 
-      const contentDom: React.ReactNode =
+      const contentDom: ReactNode =
         fieldMode === 'edit' ? text : genCopyable(text, item, text, defaultData);
 
       const key = restItem.key || restItem.label?.toString() || index;
@@ -68,7 +69,7 @@ export function schemaToDescriptionsItem(
           ellipsis={item.ellipsis}
         />
       );
-      const field: DescriptionsItemType | React.JSX.Element =
+      const field: DescriptionsItemType | JSX.Element =
         valueType !== 'option'
           ? ({
               ...restItem,
@@ -92,7 +93,7 @@ export function schemaToDescriptionsItem(
                   {showEditIcon && (
                     <EditOutlined
                       onClick={() => {
-                        editableUtils?.startEditable((dataIndex as React.Key) || index);
+                        editableUtils?.startEditable((dataIndex as Key) || index);
                       }}
                     />
                   )}
@@ -100,7 +101,7 @@ export function schemaToDescriptionsItem(
               ),
             } as DescriptionsItemType)
           : ((
-              <React.Fragment key={key}>
+              <Fragment key={key}>
                 <Component>
                   <FieldRender
                     {...item}
@@ -116,15 +117,15 @@ export function schemaToDescriptionsItem(
                   {showEditIcon && valueType !== 'option' && (
                     <EditOutlined
                       onClick={() => {
-                        editableUtils?.startEditable((dataIndex as React.Key) || index);
+                        editableUtils?.startEditable((dataIndex as Key) || index);
                       }}
                     />
                   )}
                 </Component>
-              </React.Fragment>
-            ) as React.JSX.Element);
+              </Fragment>
+            ) as JSX.Element);
       if (valueType === 'option') {
-        options.push(field as React.JSX.Element);
+        options.push(field as JSX.Element);
         return null;
       }
       return field;

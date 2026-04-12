@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button } from 'antd';
-import React, { act } from 'react';
+import { act, createRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { StepsFormRef } from '@xxlabs/pro-components';
@@ -582,7 +582,7 @@ describe('StepsForm', () => {
 
   it('🐲 properly unregister form', async () => {
     const Forms = () => {
-      const [show, setShow] = React.useState(true);
+      const [show, setShow] = useState(true);
       return (
         <StepsForm>
           <StepsForm.StepForm
@@ -624,7 +624,7 @@ describe('StepsForm', () => {
   });
 
   it('🐲 stepsFormRef merges values from all steps', async () => {
-    const stepsFormRef = React.createRef<StepsFormRef | null>();
+    const stepsFormRef = createRef<StepsFormRef | null>();
     const html = render(
       <StepsForm
         stepsFormRef={stepsFormRef}

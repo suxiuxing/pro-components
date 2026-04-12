@@ -10,8 +10,7 @@ import type {
   SortOrder,
 } from 'antd/es/table/interface';
 import type dayjs from 'dayjs';
-import type React from 'react';
-import type { CSSProperties, Key } from 'react';
+import type { ComponentClass, CSSProperties, JSX, Key, ReactNode, Ref } from 'react';
 
 import type { ProCardProps } from '../card';
 import type { ProFieldEmptyText } from '../field';
@@ -254,22 +253,22 @@ export type ProTableProps<DataSource, U, ValueType = 'text'> = {
    */
   tableRender?: (
     props: ProTableProps<DataSource, U, ValueType>,
-    defaultDom: React.ReactNode,
+    defaultDom: ReactNode,
     /** 各个区域的 dom */
     domList: {
-      toolbar: React.ReactNode;
-      alert: React.ReactNode;
-      table: React.ReactNode;
+      toolbar: ReactNode;
+      alert: ReactNode;
+      table: ReactNode;
     },
-  ) => React.ReactNode;
+  ) => ReactNode;
 
   /**
    * @name 渲染 table 视图，用于定制 ProList，不推荐直接使用
    */
   tableViewRender?: (
     props: TableProps<DataSource>,
-    defaultDom: React.JSX.Element,
-  ) => React.JSX.Element | undefined;
+    defaultDom: JSX.Element,
+  ) => JSX.Element | undefined;
 
   /**
    * @name table 和搜索表单之间的 dom 渲染
@@ -281,15 +280,15 @@ export type ProTableProps<DataSource, U, ValueType = 'text'> = {
   tableExtraRender?: (
     props: ProTableProps<DataSource, U, ValueType>,
     dataSource: DataSource[],
-  ) => React.ReactNode;
+  ) => ReactNode;
 
   /**
    * @name 渲染搜索表单
    */
   searchFormRender?: (
     props: ProTableProps<DataSource, U, ValueType>,
-    defaultDom: React.JSX.Element,
-  ) => React.ReactNode;
+    defaultDom: JSX.Element,
+  ) => ReactNode;
 
   /** @name 一个获得 dataSource 的方法 */
   request?: (
@@ -316,7 +315,7 @@ export type ProTableProps<DataSource, U, ValueType = 'text'> = {
    * @example 重置表格
    * actionRef.current?.reset();
    */
-  actionRef?: React.Ref<ActionType | undefined>;
+  actionRef?: Ref<ActionType | undefined>;
 
   /**
    * @name 操作自带的 form
@@ -358,7 +357,7 @@ export type ProTableProps<DataSource, U, ValueType = 'text'> = {
   tableStyle?: CSSProperties;
 
   /** @name 左上角的 title */
-  headerTitle?: React.ReactNode;
+  headerTitle?: ReactNode;
 
   /** @name 标题旁边的 tooltip */
   tooltip?: string | LabelTooltipType;
@@ -411,7 +410,7 @@ export type ProTableProps<DataSource, U, ValueType = 'text'> = {
       })
     | false;
 
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 
   /** 支持 ProTable 的类型 */
   type?: ProSchemaComponentTypes;
@@ -462,7 +461,7 @@ export type ProTableProps<DataSource, U, ValueType = 'text'> = {
   /**
    * 错误边界自定义
    */
-  ErrorBoundary?: React.ComponentClass<any, any> | false;
+  ErrorBoundary?: ComponentClass<any, any> | false;
 } & Omit<TableProps<DataSource>, 'columns' | 'rowSelection'>;
 
 export type ActionType = ProCoreActionType & {

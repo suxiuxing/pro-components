@@ -1,7 +1,8 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { ConfigProvider, Tooltip } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { FC, ReactNode } from 'react';
+import { isValidElement, memo, useContext } from 'react';
 
 import type { ProEllipsis } from '../../genCopyable';
 import type { LabelTooltipType, WrapperTooltipProps } from '../../typing';
@@ -12,12 +13,12 @@ import { useStyle } from './style';
  *
  * @param props
  */
-export const LabelIconTip: React.FC<{
-  label: React.ReactNode;
-  subTitle?: React.ReactNode;
+export const LabelIconTip: FC<{
+  label: ReactNode;
+  subTitle?: ReactNode;
   tooltip?: string | LabelTooltipType;
   ellipsis?: ProEllipsis;
-}> = React.memo((props) => {
+}> = memo((props) => {
   const { label, tooltip, ellipsis, subTitle } = props;
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const className = getPrefixCls('pro-core-label-tip');
@@ -27,7 +28,7 @@ export const LabelIconTip: React.FC<{
     return <>{label}</>;
   }
   const tooltipProps =
-    typeof tooltip === 'string' || React.isValidElement(tooltip)
+    typeof tooltip === 'string' || isValidElement(tooltip)
       ? { title: tooltip }
       : (tooltip as WrapperTooltipProps);
 

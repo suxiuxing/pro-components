@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 
 import { PageHeader } from '@xxlabs/pro-components';
 
@@ -17,7 +17,7 @@ const items = [
   },
 ];
 
-const App: React.FC = () => (
+const App: FC = () => (
   <PageHeader
     className="site-page-header"
     title="Title"

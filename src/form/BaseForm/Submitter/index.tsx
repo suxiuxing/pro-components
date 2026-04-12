@@ -1,16 +1,16 @@
 import { omit } from '@rc-component/util';
 import type { ButtonProps } from 'antd';
 import { Button, Form } from 'antd';
-import React from 'react';
+import type { FC, JSX, MouseEvent as ReactMouseEvent, ReactNode } from 'react';
 
 import { proTheme, useIntl } from '../../../provider';
 
 /** @name 用于配置操作栏 */
 export type SearchConfig = {
   /** @name 重置按钮的文本 */
-  resetText?: React.ReactNode;
+  resetText?: ReactNode;
   /** @name 提交按钮的文本 */
-  submitText?: React.ReactNode;
+  submitText?: ReactNode;
 };
 
 export type SubmitterProps<T = Record<string, any>> = {
@@ -32,8 +32,8 @@ export type SubmitterProps<T = Record<string, any>> = {
             submit: () => void;
             reset: () => void;
           },
-        dom: React.JSX.Element[],
-      ) => React.ReactNode[] | React.ReactNode | false)
+        dom: JSX.Element[],
+      ) => ReactNode[] | ReactNode | false)
     | false;
 };
 
@@ -43,7 +43,7 @@ export type SubmitterProps<T = Record<string, any>> = {
  * @param props
  */
 
-const Submitter: React.FC<SubmitterProps> = (props) => {
+const Submitter: FC<SubmitterProps> = (props) => {
   const intl = useIntl();
   const form = Form.useFormInstance();
   if (props.render === false) {
@@ -85,7 +85,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
         key="rest"
         onClick={(e) => {
           if (!resetButtonProps?.preventDefault) reset();
-          resetButtonProps?.onClick?.(e as React.MouseEvent<HTMLButtonElement, MouseEvent>);
+          resetButtonProps?.onClick?.(e as ReactMouseEvent<HTMLButtonElement, MouseEvent>);
         }}
       >
         {resetText}
@@ -101,7 +101,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
         key="submit"
         onClick={(e) => {
           if (!submitButtonProps?.preventDefault) submit();
-          submitButtonProps?.onClick?.(e as React.MouseEvent<HTMLButtonElement, MouseEvent>);
+          submitButtonProps?.onClick?.(e as ReactMouseEvent<HTMLButtonElement, MouseEvent>);
         }}
       >
         {submitText}
@@ -119,7 +119,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
       return null;
     }
     if (renderDom?.length === 1) {
-      return renderDom[0] as React.JSX.Element;
+      return renderDom[0] as JSX.Element;
     }
     return (
       <div
@@ -133,7 +133,7 @@ const Submitter: React.FC<SubmitterProps> = (props) => {
       </div>
     );
   }
-  return renderDom as React.JSX.Element;
+  return renderDom as JSX.Element;
 };
 
 export default Submitter;

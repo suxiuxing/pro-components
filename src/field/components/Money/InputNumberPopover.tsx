@@ -1,12 +1,13 @@
 import { useControlledState } from '@rc-component/util';
 import type { InputNumberProps } from 'antd';
 import { InputNumber, Popover } from 'antd';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import type { ReactNode, Ref } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export type InputNumberPopoverProps = InputNumberProps & {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-  contentRender?: (props: InputNumberProps) => React.ReactNode;
+  contentRender?: (props: InputNumberProps) => ReactNode;
   numberFormatOptions?: any;
   numberPopoverRender?: any;
 };
@@ -19,7 +20,7 @@ const InputNumberPopover = function InputNumberPopoverInner({
   onOpenChange,
   ref,
   ...rest
-}: InputNumberPopoverProps & { ref?: React.Ref<any> }) {
+}: InputNumberPopoverProps & { ref?: Ref<any> }) {
   const [value, setValueInner] = useControlledState<any>(() => rest.defaultValue, rest.value);
 
   // 使用本地状态管理 Popover 显示，同时支持受控模式

@@ -1,6 +1,6 @@
 import type { ImageProps } from 'antd';
-import type { AnchorHTMLAttributes } from 'react';
-import React from 'react';
+import type { AnchorHTMLAttributes, Key, ReactNode } from 'react';
+import { createContext } from 'react';
 
 /**
  * ProHelp 数据源子项内容类型。
@@ -155,7 +155,7 @@ export type ProHelpDataSource<ValueType = 'text'> = {
  * 该上下文对象通常用于在 React 组件树中共享数据，即可以通过在组件中使用 ProHelpProvide.Provider 包裹一组组件，
  * 将 dataSource 和 valueTypeMap 数据源传递给这些组件，这些组件即可从上下文中获取 dataSource 数据源，实现数据的共享和传递。
  */
-export const ProHelpProvide = React.createContext<{
+export const ProHelpProvide = createContext<{
   /**
    * 帮助文档的数据源，包含一组帮助文档数据，每个数据包含标题和内容等信息。
    */
@@ -170,15 +170,12 @@ export const ProHelpProvide = React.createContext<{
    * 这个 Map 的作用是将 ProHelp 数据源子项子项的 valueType 属性与对应的渲染函数进行映射，从而实现在渲染 ProHelp 数据源时动态地选择渲染方法。
    * 在实际使用时，我们可以通过判断子项的 valueType 属性，从 valueTypeMap 中取出对应的渲染函数，再将该子项和渲染函数作为参数传入 renderDataSourceItem 函数中即可。
    */
-  valueTypeMap: Map<
-    string,
-    (item: ProHelpDataSourceChildren<any>, index: number) => React.ReactNode
-  >;
+  valueTypeMap: Map<string, (item: ProHelpDataSourceChildren<any>, index: number) => ReactNode>;
   /**
    * 加载数据源的函数,如果把数据源设置为 async load就可以使用这个功能。
    */
   onLoadContext?: (
-    key: React.Key,
+    key: Key,
     context: ProHelpDataSource<any>['children'][number],
   ) => Promise<ProHelpDataSourceChildren<any>[]>;
 }>({ dataSource: [], valueTypeMap: new Map() });

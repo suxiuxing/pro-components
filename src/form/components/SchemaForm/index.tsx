@@ -1,6 +1,7 @@
 import type { FormProps } from 'antd';
 import { Form } from 'antd';
-import React, { useCallback, useContext, useImperativeHandle, useRef, useState } from 'react';
+import type { FC, RefObject } from 'react';
+import { useCallback, useContext, useImperativeHandle, useRef, useState } from 'react';
 
 import ValueTypeToComponent from '../../../field/ValueTypeToComponent';
 import ProConfigContext, { ProConfigProvider } from '../../../provider';
@@ -61,7 +62,7 @@ function BetaSchemaForm<T, ValueType = 'text'>(props: FormSchema<T, ValueType>) 
     ...restProps
   } = props;
 
-  const FormRenderComponents = (FormLayoutType[layoutType as 'Form'] || ProForm) as React.FC<
+  const FormRenderComponents = (FormLayoutType[layoutType as 'Form'] || ProForm) as FC<
     ProFormProps<T>
   >;
 
@@ -203,7 +204,7 @@ function BetaSchemaForm<T, ValueType = 'text'>(props: FormSchema<T, ValueType>) 
         {...restProps}
         onInit={(_, initForm) => {
           if (propsFormRef) {
-            (propsFormRef as React.RefObject<ProFormInstance<T>>).current = initForm;
+            (propsFormRef as RefObject<ProFormInstance<T>>).current = initForm;
           }
           restProps?.onInit?.(_, initForm);
           formRef.current = initForm;

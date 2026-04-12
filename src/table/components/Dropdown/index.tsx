@@ -2,20 +2,21 @@ import { DownOutlined, EllipsisOutlined } from '@ant-design/icons';
 import type { MenuItemProps } from 'antd';
 import { Button, ConfigProvider, Dropdown } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { useContext } from 'react';
 
 interface MenuItems extends MenuItemProps {
-  name: React.ReactNode;
+  name: ReactNode;
   key: string;
   title?: string;
 }
 
 export type DropdownProps = {
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   menus?: MenuItems[];
   onSelect?: (key: string) => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 /**
@@ -23,13 +24,7 @@ export type DropdownProps = {
  *
  * @param param0
  */
-const DropdownButton: React.FC<DropdownProps> = ({
-  children,
-  menus,
-  onSelect,
-  className,
-  style,
-}) => {
+const DropdownButton: FC<DropdownProps> = ({ children, menus, onSelect, className, style }) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
 
   const tempClassName = getPrefixCls('pro-table-dropdown');
@@ -52,7 +47,7 @@ const DropdownButton: React.FC<DropdownProps> = ({
   );
 };
 
-const TableDropdown: React.FC<DropdownProps> & {
+const TableDropdown: FC<DropdownProps> & {
   Button: typeof DropdownButton;
 } = ({ className: propsClassName, style, onSelect, menus = [], children }) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);

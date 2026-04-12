@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Button, Input, Popover } from 'antd';
-import React, { act, useRef, useState } from 'react';
+import type { FC, ReactNode } from 'react';
+import { act, createRef, useRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { ActionType } from '@xxlabs/pro-components';
@@ -778,7 +779,7 @@ describe('BasicTable', () => {
   it('🎏 actionRef support clearSelected', async () => {
     const fn = vi.fn();
     const onChangeFn = vi.fn();
-    const actionRef = React.createRef<ActionType>();
+    const actionRef = createRef<ActionType>();
     const html = render(
       <ProTable
         size="small"
@@ -870,7 +871,7 @@ describe('BasicTable', () => {
   it('🎏 receives two parameters when options.(reload | fullScreen) is passed the function', async () => {
     const reloadFn = vi.fn();
     const fullScreenFn = vi.fn();
-    const actionRef = React.createRef<any>();
+    const actionRef = createRef<any>();
     const html = render(
       <ProTable
         size="small"
@@ -1012,7 +1013,7 @@ describe('BasicTable', () => {
 
   it('🎏 request load array', async () => {
     const fn = vi.fn();
-    const actionRef = React.createRef<ActionType>();
+    const actionRef = createRef<ActionType>();
 
     const html = render(
       <ProTable
@@ -1535,7 +1536,7 @@ describe('BasicTable', () => {
   });
 
   it('🎏 debounce time', async () => {
-    const ref = React.createRef<ActionType>();
+    const ref = createRef<ActionType>();
     const fn = vi.fn();
 
     const html = render(
@@ -1591,7 +1592,7 @@ describe('BasicTable', () => {
   });
 
   it('🎏 support showHiddenNum', async () => {
-    const ref = React.createRef<ActionType>();
+    const ref = createRef<ActionType>();
     const fn = vi.fn();
     const html = render(
       <ProTable
@@ -1621,10 +1622,10 @@ describe('BasicTable', () => {
   });
 
   it('🐛 title function should not show duplicate popover layers in ProTable', async () => {
-    const TitleWithPopover: React.FC<{
+    const TitleWithPopover: FC<{
       schema: any;
       type?: string;
-      dom: React.ReactNode;
+      dom: ReactNode;
     }> = ({ schema }) => {
       const [open, setOpen] = useState(false);
       return (
@@ -1651,7 +1652,7 @@ describe('BasicTable', () => {
 
     const columnsWithTitleFunction = [
       {
-        title: (schema: any, type?: string, dom?: React.ReactNode) => (
+        title: (schema: any, type?: string, dom?: ReactNode) => (
           <TitleWithPopover
             schema={schema}
             type={type ?? 'text'}

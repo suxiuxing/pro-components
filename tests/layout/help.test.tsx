@@ -1,17 +1,18 @@
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Typography } from 'antd';
+import type { FC, ReactNode, VideoHTMLAttributes } from 'react';
 import { act } from 'react';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
 import { ProHelp, ProHelpDrawer, ProHelpPanel, ProHelpSelect } from '@xxlabs/pro-components';
 
-export const DefaultProHelp: React.FC<{ children: React.ReactNode }> = (props) => {
+export const DefaultProHelp: FC<{ children: ReactNode }> = (props) => {
   const map = new Map<
     string,
     (
       item: ProHelpDataSourceChildren<{
-        video: React.VideoHTMLAttributes<HTMLVideoElement>;
+        video: VideoHTMLAttributes<HTMLVideoElement>;
         list: {
           title: string;
           children: {
@@ -21,7 +22,7 @@ export const DefaultProHelp: React.FC<{ children: React.ReactNode }> = (props) =
         };
       }>,
       index: number,
-    ) => React.ReactNode
+    ) => ReactNode
   >();
 
   map.set('video', (item, index) => {
@@ -32,7 +33,7 @@ export const DefaultProHelp: React.FC<{ children: React.ReactNode }> = (props) =
           width: '100%',
         }}
         controls
-        {...(item.children as React.VideoHTMLAttributes<HTMLVideoElement>)}
+        {...(item.children as VideoHTMLAttributes<HTMLVideoElement>)}
       />
     );
   });
@@ -76,7 +77,7 @@ export const DefaultProHelp: React.FC<{ children: React.ReactNode }> = (props) =
   });
   return (
     <ProHelp<{
-      video: React.VideoHTMLAttributes<HTMLVideoElement>;
+      video: VideoHTMLAttributes<HTMLVideoElement>;
       list: {
         title: string;
         children: {
@@ -787,7 +788,7 @@ describe('👍🏻 ProHelpPanel', () => {
   it('🎏 ProHelp is empty', async () => {
     const html = render(
       <ProHelp<{
-        video: React.VideoHTMLAttributes<HTMLVideoElement>;
+        video: VideoHTMLAttributes<HTMLVideoElement>;
         list: {
           title: string;
           children: {

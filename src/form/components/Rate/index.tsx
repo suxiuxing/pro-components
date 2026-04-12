@@ -1,5 +1,5 @@
 import type { RateProps } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import { FieldRate } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -15,7 +15,7 @@ const ProFormRate = ({
   proFieldProps,
   ref,
   ...rest
-}: ProFormFieldItemProps<RateProps> & { ref?: React.Ref<any> }) => {
+}: ProFormFieldItemProps<RateProps> & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{

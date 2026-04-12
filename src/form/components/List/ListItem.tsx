@@ -10,8 +10,16 @@ import type { ButtonProps, FormInstance } from 'antd';
 import { ConfigProvider, Tooltip } from 'antd';
 import type { FormListFieldData, FormListOperation, FormListProps } from 'antd/es/form/FormList';
 import { clsx } from 'clsx';
-import type { CSSProperties, ReactNode } from 'react';
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import {
+  cloneElement,
+  isValidElement,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { FormListContext } from '.';
 import { ProProvider } from '../../../provider';
@@ -55,14 +63,14 @@ export type ChildrenItemFunction = (
    * 透传总行数
    */
   count: number,
-) => React.ReactNode;
+) => ReactNode;
 
 export type IconConfig = {
   /**
    * 新的icon的组件，我们会将其实例化
    * Icon: ()=> <div/>
    */
-  Icon?: React.FC<any>;
+  Icon?: FC<any>;
   /**
    * tooltip 的提示文案
    */
@@ -88,7 +96,7 @@ export type FormListListListMete = {
   operation: FormListOperation;
   record: Record<string, any>;
   meta: {
-    errors: React.ReactNode[];
+    errors: ReactNode[];
   };
 };
 
@@ -272,10 +280,10 @@ export type ProFormListItemProps = ProFromListCommonProps & {
   fieldExtraRender?: (
     fieldAction: FormListOperation,
     meta: {
-      errors?: React.ReactNode[];
-      warnings?: React.ReactNode[];
+      errors?: ReactNode[];
+      warnings?: ReactNode[];
     },
-  ) => React.ReactNode;
+  ) => ReactNode;
   /** 列表当前条目数量 */
   count: number;
 
@@ -293,7 +301,7 @@ export type ProFormListItemProps = ProFromListCommonProps & {
   readonly: boolean;
 };
 
-const ProFormListItem: React.FC<
+const ProFormListItem: FC<
   ProFormListItemProps & {
     field: FormListFieldData;
     index: number;
@@ -368,7 +376,7 @@ const ProFormListItem: React.FC<
     },
   };
 
-  const childrenArray = listToArray(children as React.ReactNode)
+  const childrenArray = listToArray(children as ReactNode)
     .map((childrenItem) => {
       if (typeof childrenItem === 'function') {
         return (childrenItem as ChildrenItemFunction)?.(
@@ -384,8 +392,8 @@ const ProFormListItem: React.FC<
       return childrenItem;
     })
     .map((childrenItem, itemIndex) => {
-      if (React.isValidElement<Record<string, any>>(childrenItem)) {
-        return React.cloneElement(childrenItem, {
+      if (isValidElement<Record<string, any>>(childrenItem)) {
+        return cloneElement(childrenItem, {
           key: childrenItem.key || childrenItem.props.name || itemIndex,
           ...childrenItem.props,
         });
@@ -513,7 +521,7 @@ const ProFormListItem: React.FC<
     );
   }, [upIconProps, prefixCls, hashId, action, arrowSort]);
 
-  const defaultActionDom: React.ReactNode[] = useMemo(
+  const defaultActionDom: ReactNode[] = useMemo(
     () =>
       [copyIcon, deleteIcon, upIcon, downIcon].filter(
         (item) => item !== null && item !== undefined,

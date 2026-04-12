@@ -1,5 +1,6 @@
 import { Badge, Button } from 'antd';
-import React, { useRef, useState } from 'react';
+import type { Key } from 'react';
+import { useRef, useState } from 'react';
 
 import type { ActionType } from '@xxlabs/pro-components';
 import { ProList } from '@xxlabs/pro-components';
@@ -79,7 +80,7 @@ const renderBadge = (count: number, active = false) => {
 };
 
 const Demo = () => {
-  const [activeKey, setActiveKey] = useState<React.Key | undefined>('tab1');
+  const [activeKey, setActiveKey] = useState<Key | undefined>('tab1');
   const action = useRef<ActionType | undefined>(undefined);
   return (
     <ProList<any>

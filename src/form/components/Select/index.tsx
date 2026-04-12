@@ -1,7 +1,8 @@
 import type { SelectProps } from 'antd';
 import type { BaseOptionType } from 'antd/es/cascader';
 import type { DefaultOptionType, RefSelectProps } from 'antd/es/select';
-import React, { useContext } from 'react';
+import type { ReactElement, ReactNode, Ref } from 'react';
+import { useContext } from 'react';
 
 import { FieldSelect } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -34,7 +35,7 @@ export type ProFormSelectProps<
      */
     fetchDataOnSearch?: boolean;
     /** 自定义选项渲染 */
-    optionItemRender?: (item: ValueType) => React.ReactNode;
+    optionItemRender?: (item: ValueType) => ReactNode;
   },
   RefSelectProps
 > & {
@@ -72,7 +73,7 @@ const ProFormSelectComponents = <T, OptionType extends BaseOptionType = any>({
   options,
   ref,
   ...rest
-}: ProFormSelectProps<T, OptionType> & { ref?: React.Ref<any> }) => {
+}: ProFormSelectProps<T, OptionType> & { ref?: Ref<any> }) => {
   const context = useContext(FieldContext);
   return (
     <ProConfigProvider
@@ -129,7 +130,7 @@ const SearchSelect = ({
   options,
   ref,
   ...rest
-}: ProFormSelectProps<any> & { ref?: React.Ref<any> }) => {
+}: ProFormSelectProps<any> & { ref?: Ref<any> }) => {
   const finalMode = fieldProps?.mode || mode || 'multiple';
   const props: Omit<SelectProps<any>, 'options'> & {
     options?: ProFormSelectProps['options'];
@@ -185,15 +186,15 @@ const SearchSelect = ({
 
 const ProFormSelect = ProFormSelectComponents as <T, OptionType extends BaseOptionType = any>(
   props: ProFormSelectProps<T, OptionType>,
-) => React.ReactElement;
+) => ReactElement;
 
 const ProFormSearchSelect = SearchSelect as <T, OptionType extends BaseOptionType = any>(
   props: ProFormSelectProps<T, OptionType>,
-) => React.ReactElement;
+) => ReactElement;
 
 const WrappedProFormSelect = ProFormSelect as (<T, OptionType extends BaseOptionType = any>(
   props: ProFormSelectProps<T, OptionType>,
-) => React.ReactElement) & {
+) => ReactElement) & {
   SearchSelect: typeof ProFormSearchSelect;
 };
 

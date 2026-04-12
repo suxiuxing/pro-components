@@ -2,7 +2,8 @@ import { RightOutlined } from '@ant-design/icons';
 import { omit, useControlledState } from '@rc-component/util';
 import { ConfigProvider, Grid, Tabs } from 'antd';
 import { clsx } from 'clsx';
-import React, { useCallback, useContext } from 'react';
+import type { CSSProperties, ReactElement, Ref } from 'react';
+import { Children, cloneElement, isValidElement, useCallback, useContext } from 'react';
 
 import { LabelIconTip, useRefFunction } from '../../../utils';
 import type { Breakpoint, CardProps, Gutter } from '../../typing';
@@ -12,9 +13,9 @@ import useStyle from './style';
 
 const { useBreakpoint } = Grid;
 
-type ProCardChildType = React.ReactElement<CardProps, any>;
+type ProCardChildType = ReactElement<CardProps, any>;
 
-const Card = ({ ref, ...props }: CardProps & { ref?: React.Ref<any> }) => {
+const Card = ({ ref, ...props }: CardProps & { ref?: Ref<any> }) => {
   const {
     className,
     rootClassName,
@@ -140,7 +141,7 @@ const Card = ({ ref, ...props }: CardProps & { ref?: React.Ref<any> }) => {
    * @param withStyle 是否符合条件
    * @param appendStyle 如果符合条件要返回的 style 属性
    */
-  const getStyle = (withStyle: boolean, appendStyle: React.CSSProperties) => {
+  const getStyle = (withStyle: boolean, appendStyle: CSSProperties) => {
     return withStyle ? appendStyle : {};
   };
 
@@ -174,7 +175,7 @@ const Card = ({ ref, ...props }: CardProps & { ref?: React.Ref<any> }) => {
 
   // 判断是否套了卡片，如果套了的话将自身卡片内部内容的 padding 设置为0
   let containProCard = false;
-  const childrenArray = React.Children.toArray(children) as ProCardChildType[];
+  const childrenArray = Children.toArray(children) as ProCardChildType[];
 
   const childrenModified = childrenArray.map((element, index) => {
     if (element?.type?.isProCard) {
@@ -207,10 +208,10 @@ const Card = ({ ref, ...props }: CardProps & { ref?: React.Ref<any> }) => {
           }}
           className={columnClassName}
         >
-          {React.cloneElement(element)}
+          {cloneElement(element)}
         </div>,
       );
-      return React.cloneElement(wrappedElement, {
+      return cloneElement(wrappedElement, {
         key: `pro-card-col-${element?.key || index}`,
       });
     }
@@ -239,7 +240,7 @@ const Card = ({ ref, ...props }: CardProps & { ref?: React.Ref<any> }) => {
 
   const bodyStylePadding = mergedStyles.body?.padding;
 
-  const loadingDOM = React.isValidElement(loading) ? (
+  const loadingDOM = isValidElement(loading) ? (
     loading
   ) : (
     <Loading

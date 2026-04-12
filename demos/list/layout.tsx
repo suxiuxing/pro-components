@@ -1,12 +1,12 @@
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Button, Space, Tag } from 'antd';
-import React from 'react';
+import { createElement } from 'react';
 
 import { ProList } from '@xxlabs/pro-components';
 
 const IconText = ({ icon, text }: { icon: any; text: string }) => (
   <span>
-    {React.createElement(icon, { style: { marginInlineEnd: 8 } })}
+    {createElement(icon, { style: { marginInlineEnd: 8 } })}
     {text}
   </span>
 );

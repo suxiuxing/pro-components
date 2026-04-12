@@ -1,4 +1,4 @@
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import { getTextByLocale } from './moneyFormat';
@@ -9,7 +9,7 @@ type Props = Omit<Parameters<ProFieldFC<FieldMoneyProps>>[0], 'moneySymbol'> & {
   moneySymbol: string | undefined;
 };
 
-export function FieldMoneyRead(props: Props, ref?: React.Ref<unknown>) {
+export function FieldMoneyRead(props: Props, ref?: Ref<unknown>) {
   const {
     text,
     mode: type,
@@ -21,7 +21,7 @@ export function FieldMoneyRead(props: Props, ref?: React.Ref<unknown>) {
     moneySymbol,
   } = props;
   const dom = (
-    <span ref={ref as React.Ref<HTMLSpanElement>}>
+    <span ref={ref as Ref<HTMLSpanElement>}>
       {getTextByLocale(
         locale || false,
         text,

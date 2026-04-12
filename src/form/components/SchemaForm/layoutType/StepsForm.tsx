@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { useLatest } from '../../../../utils';
 import { StepsForm as ProStepsForm } from '../../../layouts/StepsForm';
@@ -9,7 +10,7 @@ import type { FormSchema, ProFormPropsType } from '../typing';
 type StepsFormProps<T, ValueType> = ProFormPropsType<T, ValueType> &
   Pick<FormSchema, 'steps'> & {
     layoutType: 'StepsForm';
-    forceUpdate: React.Dispatch<React.SetStateAction<[]>>;
+    forceUpdate: Dispatch<SetStateAction<[]>>;
   } & Pick<ProFormGridConfig, 'grid'>;
 
 const StepsForm = <T, ValueType>({

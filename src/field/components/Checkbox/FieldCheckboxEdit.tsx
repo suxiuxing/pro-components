@@ -1,6 +1,6 @@
 import { Checkbox } from 'antd';
 import { clsx } from 'clsx';
-import React from 'react';
+import type { ReactElement } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import type { GroupProps } from './types';
@@ -10,7 +10,7 @@ type Props = Omit<Parameters<ProFieldFC<GroupProps>>[0], 'options'> & {
   options: any[];
   loading: boolean;
   layoutClassName: string;
-  wrapSSR: (node: React.ReactElement) => React.ReactElement;
+  wrapSSR: (node: ReactElement) => ReactElement;
   hashId: string;
   status: { status?: string } | undefined;
 };

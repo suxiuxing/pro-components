@@ -1,9 +1,10 @@
 import { ConfigProvider } from 'antd';
-import React, { useContext } from 'react';
+import type { FC, ReactNode } from 'react';
+import { createElement, useContext } from 'react';
 
 import { useStyle } from '../../../utils';
 
-export const SelectHighlight: React.FC<{
+export const SelectHighlight: FC<{
   label: string;
   words: string[];
 }> = ({ label, words }) => {
@@ -32,7 +33,7 @@ export const SelectHighlight: React.FC<{
 
   let matchText = label;
 
-  const elements: React.ReactNode[] = [];
+  const elements: ReactNode[] = [];
 
   while (matchText.length) {
     const match = matchKeywordsRE.exec(matchText);
@@ -46,7 +47,7 @@ export const SelectHighlight: React.FC<{
 
     elements.push(
       matchText.slice(0, start),
-      React.createElement(
+      createElement(
         'span',
         {
           className: lightCls,
@@ -58,7 +59,7 @@ export const SelectHighlight: React.FC<{
   }
 
   return wrapSSR(
-    React.createElement(
+    createElement(
       'div',
       {
         title: label,

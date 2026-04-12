@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import React from 'react';
+import type { FC, ReactNode } from 'react';
 
 import useStyle from './style';
 
@@ -11,10 +11,10 @@ export type ProCardActionsProps = {
    */
   prefixCls?: string;
   /** 操作按钮 */
-  actions?: React.ReactNode[] | React.ReactNode;
+  actions?: ReactNode[] | ReactNode;
 };
 
-const ProCardActions: React.FC<ProCardActionsProps> = (props) => {
+const ProCardActions: FC<ProCardActionsProps> = (props) => {
   const { actions, prefixCls } = props;
   const { wrapSSR, hashId } = useStyle(prefixCls);
   if (Array.isArray(actions) && actions?.length) {

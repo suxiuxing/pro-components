@@ -1,5 +1,5 @@
 import { Card, Skeleton, Space } from 'antd';
-import React from 'react';
+import type { FC } from 'react';
 
 import { PageHeaderSkeleton } from '../List';
 
@@ -8,7 +8,7 @@ type ResultPageSkeletonProps = {
   pageHeader?: false;
 };
 
-const ResultPageSkeleton: React.FC<ResultPageSkeletonProps> = ({ active = true, pageHeader }) => (
+const ResultPageSkeleton: FC<ResultPageSkeletonProps> = ({ active = true, pageHeader }) => (
   <div
     style={{
       width: '100%',

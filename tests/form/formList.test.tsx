@@ -4,7 +4,7 @@ import { Button, Form } from 'antd';
 import type { NamePath } from 'antd/es/form/interface';
 import dayjs from 'dayjs';
 import { pick } from 'es-toolkit/compat';
-import React, { act } from 'react';
+import { act, createRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { FormListActionType } from '@xxlabs/pro-components';
@@ -1413,7 +1413,7 @@ describe('ProForm List', () => {
   });
 
   it('⛲ ProForm.List support actionRef', async () => {
-    const actionRef = React.createRef<
+    const actionRef = createRef<
       FormListActionType<{
         name: string;
       }>
@@ -1476,7 +1476,7 @@ describe('ProForm List', () => {
   });
 
   it('⛲ ProForm.List getCurrentRowData support subList', async () => {
-    const ref = React.createRef<{
+    const ref = createRef<{
       getCurrentRowData: () => any;
     }>();
 
@@ -1537,7 +1537,7 @@ describe('ProForm List', () => {
   });
 
   it('⛲ ProForm.List getCurrentRowData and setCurrentRowData support two-dimensional array', async () => {
-    const ref = React.createRef<{
+    const ref = createRef<{
       getCurrentRowData: () => any;
       setCurrentRowData: (data: any) => void;
     }>();

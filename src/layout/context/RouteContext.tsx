@@ -1,4 +1,5 @@
 import type { BreadcrumbProps, WatermarkProps } from 'antd';
+import type { Context, Dispatch, SetStateAction } from 'react';
 import { createContext } from 'react';
 
 import type { PureSettings } from '../defaultSettings';
@@ -18,8 +19,8 @@ export type RouteContextType = {
   hasFooterToolbar?: boolean;
   hasFooter?: boolean;
   hasPageContainer?: number;
-  setHasFooterToolbar?: React.Dispatch<React.SetStateAction<boolean>>;
-  setHasPageContainer?: React.Dispatch<React.SetStateAction<number>>;
+  setHasFooterToolbar?: Dispatch<SetStateAction<boolean>>;
+  setHasPageContainer?: Dispatch<SetStateAction<number>>;
   pageTitleInfo?: {
     title: string;
     id: string;
@@ -33,4 +34,4 @@ export type RouteContextType = {
   waterMarkProps?: WatermarkProps;
 } & Partial<PureSettings>;
 
-export const RouteContext: React.Context<RouteContextType> = createContext({});
+export const RouteContext: Context<RouteContextType> = createContext({});

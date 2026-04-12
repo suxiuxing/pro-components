@@ -1,5 +1,5 @@
 import type { SwitchProps } from 'antd';
-import React from 'react';
+import type { FC, Ref } from 'react';
 
 import { FieldSwitch } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -18,14 +18,14 @@ export type ProFormSwitchProps = Omit<
  * @zh-cn 单选 Switch
  * @en-us Single Choice Switch
  */
-const ProFormSwitch: React.FC<ProFormSwitchProps> = ({
+const ProFormSwitch: FC<ProFormSwitchProps> = ({
   fieldProps,
   unCheckedChildren,
   checkedChildren,
   proFieldProps,
   ref,
   ...rest
-}: ProFormSwitchProps & { ref?: React.Ref<any> }) => {
+}: ProFormSwitchProps & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{

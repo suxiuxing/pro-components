@@ -1,8 +1,8 @@
 import { useControlledState } from '@rc-component/util';
 import { Avatar, ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import type { MouseEventHandler } from 'react';
-import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import type { CSSProperties, FC, MouseEventHandler, ReactNode } from 'react';
+import { useCallback, useContext, useEffect, useMemo } from 'react';
 
 import ProCardActions from '../Actions';
 import type { CheckCardGroupProps } from './Group';
@@ -69,7 +69,7 @@ interface CheckCardProps {
    *
    * @ignore
    */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /**
    * Custom class name for the card.
    *
@@ -81,25 +81,25 @@ interface CheckCardProps {
    *
    * @title Avatar
    */
-  avatar?: React.ReactNode;
+  avatar?: ReactNode;
   /**
    * The title to display.
    *
    * @title Title
    */
-  title?: React.ReactNode;
+  title?: ReactNode;
   /**
    * The subtitle to display.
    *
    * @title Subtitle
    */
-  subTitle?: React.ReactNode;
+  subTitle?: ReactNode;
   /**
    * The description to display.
    *
    * @title Description
    */
-  description?: React.ReactNode;
+  description?: ReactNode;
   /**
    * The value of the card.
    *
@@ -118,7 +118,7 @@ interface CheckCardProps {
    *
    * @title Card Background Image
    */
-  cover?: React.ReactNode;
+  cover?: ReactNode;
   /**
    * The size of the component. Supports 'large', 'default', and 'small' sizes. Users can also customize the width and height.
    *
@@ -138,25 +138,25 @@ interface CheckCardProps {
    *
    * @title Actions
    */
-  extra?: React.ReactNode;
+  extra?: ReactNode;
   /**
    * The content of the card.
    */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /**
    * Custom style for the content area.
    */
-  bodyStyle?: React.CSSProperties;
+  bodyStyle?: CSSProperties;
   /**
    * Styles configuration.
    */
   styles?: {
-    body?: React.CSSProperties;
+    body?: CSSProperties;
   };
   /**
    * The action area in the bottom right corner.
    */
-  actions?: React.ReactNode[];
+  actions?: ReactNode[];
   /**
    * Whether the card is in ghost mode.
    */
@@ -167,7 +167,7 @@ export interface CheckCardState {
   checked: boolean;
 }
 
-const CheckCard: React.FC<CheckCardProps> & {
+const CheckCard: FC<CheckCardProps> & {
   Group: typeof CheckCardGroup;
 } = (props) => {
   const [stateChecked, setStateCheckedInner] = useControlledState<boolean>(
@@ -231,7 +231,7 @@ const CheckCard: React.FC<CheckCardProps> & {
    * @param coverDom
    * @returns
    */
-  const renderCover = (cls: string, coverDom: string | React.ReactNode) => {
+  const renderCover = (cls: string, coverDom: string | ReactNode) => {
     return (
       <div className={clsx(`${cls}-cover`, hashId)}>
         {typeof coverDom === 'string' ? (

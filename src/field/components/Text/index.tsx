@@ -1,4 +1,5 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react';
+import type { ReactNode } from 'react';
+import { useEffect, useImperativeHandle, useRef } from 'react';
 
 import { useIntl } from '../../../provider';
 import { isProFieldEditOrUpdateMode, isProFieldReadMode } from '../../internal/fieldMode';
@@ -11,7 +12,7 @@ import { FieldTextRead } from './FieldTextRead';
  */
 const FieldText: ProFieldFC<{
   text: string;
-  emptyText?: React.ReactNode;
+  emptyText?: ReactNode;
 }> = ({ text, mode, render, formItemRender, fieldProps, emptyText = '-', ref }) => {
   const { autoFocus } = fieldProps || {};
 

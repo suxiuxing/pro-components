@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import type { Ref } from 'react';
+import { Fragment } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import type { PercentPropInt } from './types';
@@ -9,7 +10,7 @@ type Props = Parameters<ProFieldFC<PercentPropInt>>[0] & {
   showSymbol: boolean | undefined;
 };
 
-export function FieldPercentRead(props: Props, ref?: React.Ref<unknown>) {
+export function FieldPercentRead(props: Props, ref?: Ref<unknown>) {
   const {
     text,
     prefix,
@@ -28,7 +29,7 @@ export function FieldPercentRead(props: Props, ref?: React.Ref<unknown>) {
   const dom = (
     <span
       style={style}
-      ref={ref as React.Ref<HTMLSpanElement>}
+      ref={ref as Ref<HTMLSpanElement>}
     >
       {prefix && <span>{prefix}</span>}
       {showSymbol && <Fragment>{getSymbolByRealValue(realValue)} </Fragment>}

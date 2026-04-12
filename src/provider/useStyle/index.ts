@@ -3,7 +3,7 @@ import { useStyleRegister } from '@ant-design/cssinjs';
 import { TinyColor } from '@ctrl/tinycolor';
 import { ConfigProvider as AntdConfigProvider, theme as antdTheme } from 'antd';
 import type { GlobalToken } from 'antd/es/theme/interface';
-import type React from 'react';
+import type { ReactElement } from 'react';
 import { useContext, useMemo, useRef } from 'react';
 
 import { ProProvider } from '../index';
@@ -40,7 +40,7 @@ export type GenerateStyle<
 export const proTheme = antdTheme as any;
 
 export type UseStyleResult = {
-  wrapSSR: (node: React.ReactElement) => React.ReactElement;
+  wrapSSR: (node: ReactElement) => ReactElement;
   hashId: string;
 };
 
@@ -169,7 +169,7 @@ export function useStyle(
   );
 
   return {
-    wrapSSR: (node: React.ReactElement) => node,
+    wrapSSR: (node: ReactElement) => node,
     hashId: hashed ? hashId : '',
   };
 }

@@ -1,6 +1,7 @@
 import { List, Select, Switch, Tooltip } from 'antd';
 import { clsx } from 'clsx';
-import React from 'react';
+import type { FC, ReactElement } from 'react';
+import { cloneElement } from 'react';
 
 import type { ProSettings } from '../../defaultSettings';
 import { defaultSettings } from '../../defaultSettings';
@@ -8,7 +9,7 @@ import type { SettingItemProps } from './index';
 import { getFormatMessage } from './index';
 
 export const renderLayoutSettingItem = (item: SettingItemProps) => {
-  const action = React.cloneElement(item.action as React.ReactElement<Record<string, any>>, {
+  const action = cloneElement(item.action as ReactElement<Record<string, any>>, {
     disabled: item.disabled,
   });
   return (
@@ -22,7 +23,7 @@ export const renderLayoutSettingItem = (item: SettingItemProps) => {
     </Tooltip>
   );
 };
-const LayoutSetting: React.FC<{
+const LayoutSetting: FC<{
   settings: Partial<ProSettings>;
   changeSetting: (key: string, value: any, hideLoading?: boolean) => void;
   hashId: string;

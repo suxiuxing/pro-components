@@ -2,7 +2,8 @@ import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import type { FormInstance } from 'antd';
 import { Input } from 'antd';
 import dayjs from 'dayjs';
-import React, { act, createRef } from 'react';
+import type { FC } from 'react';
+import { act, createRef } from 'react';
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import type { ProFormInstance } from '@xxlabs/pro-components';
@@ -222,7 +223,7 @@ describe('BasicTable Search', () => {
   it('🎏 manualRequest test', async () => {
     const requestFn = vi.fn();
 
-    const actionRef = React.createRef<any>();
+    const actionRef = createRef<any>();
     const html = render(
       <ProTable
         size="small"
@@ -582,7 +583,7 @@ describe('BasicTable Search', () => {
   });
 
   it('🎏 request load more time', async () => {
-    const TableDemo: React.FC<{ v: boolean }> = ({ v }) => {
+    const TableDemo: FC<{ v: boolean }> = ({ v }) => {
       return v ? (
         <ProTable
           size="small"
@@ -672,7 +673,7 @@ describe('BasicTable Search', () => {
 
   it('🎏 ProTable support formRef', async () => {
     const onSubmitFn = vi.fn();
-    const formRef = React.createRef<ProFormInstance | undefined>();
+    const formRef = createRef<ProFormInstance | undefined>();
     const html = render(
       <ProTable
         formRef={formRef as any}

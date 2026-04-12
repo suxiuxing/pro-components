@@ -1,6 +1,7 @@
 import { ConfigProvider, Layout } from 'antd';
 import { clsx } from 'clsx';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import type { FC, ReactNode } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 
 import { isNeedOpenHash, ProProvider } from '../../../provider';
 import type { WithFalse } from '../../typing';
@@ -16,21 +17,17 @@ const { Header } = Layout;
 
 export type HeaderViewProps = GlobalHeaderProps & {
   isMobile?: boolean;
-  logo?: React.ReactNode;
-  headerRender?: WithFalse<
-    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
-  >;
+  logo?: ReactNode;
+  headerRender?: WithFalse<(props: HeaderViewProps, defaultDom: ReactNode) => ReactNode>;
   headerTitleRender?: WithFalse<
-    (logo: React.ReactNode, title: React.ReactNode, props: HeaderViewProps) => React.ReactNode
+    (logo: ReactNode, title: ReactNode, props: HeaderViewProps) => ReactNode
   >;
-  headerContentRender?: WithFalse<
-    (props: HeaderViewProps, defaultDom: React.ReactNode) => React.ReactNode
-  >;
+  headerContentRender?: WithFalse<(props: HeaderViewProps, defaultDom: ReactNode) => ReactNode>;
   siderWidth?: number;
   hasSiderMenu?: boolean;
 };
 
-const DefaultHeader: React.FC<HeaderViewProps & PrivateSiderMenuProps> = (props) => {
+const DefaultHeader: FC<HeaderViewProps & PrivateSiderMenuProps> = (props) => {
   const {
     isMobile,
     fixedHeader,

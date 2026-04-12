@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import React from 'react';
+import type { CSSProperties, FC } from 'react';
 
 import { useStyle } from './style';
 
@@ -7,12 +7,12 @@ type LoadingProps = {
   /** 类名 */
   className?: string;
   /** 样式属性 */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /** Prefix */
   prefix?: string;
 };
 
-const Loading: React.FC<LoadingProps> = (props) => {
+const Loading: FC<LoadingProps> = (props) => {
   const { style, prefix } = props;
   const { wrapSSR } = useStyle(prefix || 'ant-pro-card');
 

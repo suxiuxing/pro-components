@@ -1,6 +1,6 @@
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import type { FormInstance } from 'antd';
-import React from 'react';
+import { createRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { ProTable } from '@xxlabs/pro-components';
@@ -149,7 +149,7 @@ describe('BasicTable Search', () => {
 
   it('🎏 table type=form and formRef', async () => {
     const fn = vi.fn();
-    const ref = React.createRef<FormInstance | undefined>();
+    const ref = createRef<FormInstance | undefined>();
     const { container } = render(
       <ProTable
         // @ts-ignore
@@ -196,7 +196,7 @@ describe('BasicTable Search', () => {
   });
 
   it('🎏 fieldProps and formItemProps support function', async () => {
-    const ref = React.createRef<FormInstance | undefined>();
+    const ref = createRef<FormInstance | undefined>();
     const { container } = render(
       <ProTable
         type="form"
@@ -258,7 +258,7 @@ describe('BasicTable Search', () => {
   });
 
   it('🎏 make sure formItemProps have the highest priority', async () => {
-    const ref = React.createRef<FormInstance | undefined>();
+    const ref = createRef<FormInstance | undefined>();
     render(
       <ProTable
         type="form"

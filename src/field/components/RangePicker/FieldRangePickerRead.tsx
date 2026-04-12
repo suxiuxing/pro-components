@@ -1,4 +1,4 @@
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { ProFieldFC, ProFieldLightProps } from '../../types';
 
@@ -17,11 +17,11 @@ type Props = Parameters<
   parsedEndText: string;
 };
 
-export function FieldRangePickerRead(props: Props, ref?: React.Ref<unknown>) {
+export function FieldRangePickerRead(props: Props, ref?: Ref<unknown>) {
   const { text, mode, render, fieldProps, parsedStartText, parsedEndText } = props;
   const dom = (
     <div
-      ref={ref as React.Ref<HTMLDivElement>}
+      ref={ref as Ref<HTMLDivElement>}
       style={{
         display: 'flex',
         flexWrap: 'wrap',

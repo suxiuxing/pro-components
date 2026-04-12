@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import type { Key } from 'react';
+import { useRef, useState } from 'react';
 
 import type {
   ActionType,
@@ -15,7 +16,7 @@ import {
 } from '@xxlabs/pro-components';
 
 type DataSourceType = {
-  id: React.Key;
+  id: Key;
   associate?: string;
   questionsNum?: number;
   type?: string;
@@ -59,7 +60,7 @@ const defaultData: DataSourceType[] = [
 ];
 
 const Demo = () => {
-  const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() => []);
+  const [editableKeys, setEditableRowKeys] = useState<Key[]>(() => []);
   const formRef = useRef<ProFormInstance<any> | undefined>(undefined);
   const actionRef = useRef<ActionType | undefined>(undefined);
   const editableFormRef = useRef<EditableFormInstance | undefined>(undefined);

@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { FC, ReactNode } from 'react';
+import { useContext } from 'react';
 
 import type { CardProps } from '../../typing';
 import Card from '../Card';
@@ -12,16 +13,16 @@ import { useStyle } from './style';
 
 export type StatisticCardProps = {
   /** 图表配置 */
-  chart?: React.ReactNode;
+  chart?: ReactNode;
   /** 数值统计配置 */
   statistic?: StatisticProps;
   /** Chart 相对于 statistic 的位置 */
   chartPlacement?: 'right' | 'bottom' | 'left';
   /** 底部额外展示区域 */
-  footer?: React.ReactNode;
+  footer?: ReactNode;
 } & CardProps;
 
-const StatisticCard: React.FC<StatisticCardProps> & {
+const StatisticCard: FC<StatisticCardProps> & {
   Statistic: typeof Statistic;
   Divider: typeof Divider;
   Operation: typeof Operation;
@@ -82,7 +83,7 @@ const StatisticCard: React.FC<StatisticCardProps> & {
   );
 };
 
-const Group: React.FC<StatisticCardProps> = (props) => (
+const Group: FC<StatisticCardProps> = (props) => (
   <StatisticCard
     styles={{ body: { padding: 0 } }}
     {...props}

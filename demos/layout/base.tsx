@@ -10,7 +10,8 @@ import {
 } from '@ant-design/icons';
 import { css } from '@emotion/css';
 import { Button, ConfigProvider, Divider, Dropdown, Input, Popover, theme } from 'antd';
-import React, { useState } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { useState } from 'react';
 
 import type { ProSettings } from '@xxlabs/pro-components';
 import {
@@ -49,7 +50,7 @@ const HOT_PRODUCTS = [
   { name: '微服务治理框架', desc: '基于 K8s 的服务注册与发现' },
 ];
 
-const SolutionItem: React.FC<{ children: React.ReactNode }> = (props) => {
+const SolutionItem: FC<{ children: ReactNode }> = (props) => {
   const { token } = theme.useToken();
   return (
     <div
@@ -77,10 +78,10 @@ const SolutionItem: React.FC<{ children: React.ReactNode }> = (props) => {
   );
 };
 
-const SolutionCategory: React.FC<{
+const SolutionCategory: FC<{
   title: string;
   items: string[];
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }> = (props) => {
   const { token } = theme.useToken();
 

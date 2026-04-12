@@ -1,5 +1,6 @@
 import type { RangePickerProps } from 'antd/es/date-picker';
-import React, { useCallback, useContext, useMemo } from 'react';
+import type { FC } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 
 import { FieldRangePicker } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -8,7 +9,7 @@ import FieldContext from '../../FieldContext';
 import type { ProFormFieldItemProps } from '../../typing';
 import ProField from '../Field';
 
-export const BaseDateRanger: React.FC<
+export const BaseDateRanger: FC<
   ProFormFieldItemProps<RangePickerProps> & {
     ref?: any;
     valueType:

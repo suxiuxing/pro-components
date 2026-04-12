@@ -1,5 +1,5 @@
 import { omit } from '@rc-component/util';
-import React from 'react';
+import type { ReactNode, Ref } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import InputNumberPopover from './InputNumberPopover';
@@ -15,7 +15,7 @@ type Props = Omit<Parameters<ProFieldFC<FieldMoneyProps>>[0], 'moneySymbol'> & {
   getFormateValue: (value?: string | number) => string;
 };
 
-export function FieldMoneyEdit(props: Props, ref?: React.Ref<unknown>) {
+export function FieldMoneyEdit(props: Props, ref?: Ref<unknown>) {
   const {
     text,
     mode: type,
@@ -47,11 +47,11 @@ export function FieldMoneyEdit(props: Props, ref?: React.Ref<unknown>) {
         );
 
         if (typeof numberPopoverRender === 'function') {
-          return numberPopoverRender?.(p, String(localeText)) as React.ReactNode;
+          return numberPopoverRender?.(p, String(localeText)) as ReactNode;
         }
         return localeText;
       }}
-      ref={ref as React.Ref<any>}
+      ref={ref as Ref<any>}
       precision={precision}
       formatter={(value) => {
         if (value && moneySymbol) {

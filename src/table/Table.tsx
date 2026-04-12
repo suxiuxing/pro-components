@@ -6,7 +6,9 @@ import type { FilterValue as AntFilterValue, SorterResult } from 'antd/es/table/
 import type { GetRowKey, SortOrder, TableCurrentDataSource } from 'antd/es/table/interface';
 import { clsx } from 'clsx';
 import { isEmpty, isEqual } from 'es-toolkit/compat';
-import React, {
+import type { CSSProperties, ReactNode, SetStateAction } from 'react';
+import {
+  Fragment,
   Key,
   useContext,
   useEffect,
@@ -73,8 +75,8 @@ function getEditableDataSource<T>({
     newLineRecord?: {
       options?: {
         position?: 'top' | 'bottom' | string;
-        parentKey?: React.Key | React.Key[];
-        recordKey?: React.Key | React.Key[];
+        parentKey?: Key | Key[];
+        recordKey?: Key | Key[];
       };
       defaultValue?: T;
     };
@@ -141,8 +143,8 @@ function getTableCardBodyStyle({
   notNeedCardDom: boolean;
   name: ProTableProps<any, any, any>['name'];
   hideToolbar: boolean;
-  toolbarDom: React.ReactNode;
-}): React.CSSProperties {
+  toolbarDom: ReactNode;
+}): CSSProperties {
   // cardProps === false 或存在 name 的场景不需要额外 padding 处理
   if (propsCardProps === false || notNeedCardDom || !!name) {
     return {};
@@ -241,7 +243,7 @@ function useAlertDom<T extends Record<string, any>>({
   onCleanSelected: () => void;
   tableAlertOptionRender: ProTableProps<T, any, any>['tableAlertOptionRender'];
   tableAlertRender: ProTableProps<T, any, any>['tableAlertRender'];
-}): React.ReactNode {
+}): ReactNode {
   return useMemo(() => {
     if (propsRowSelection === false) {
       return null;
@@ -351,7 +353,7 @@ const ProTable = <T extends Record<string, any>, U extends ParamsType, ValueType
    */
   const formSearchRef = useRef<Record<string, any> | undefined>(formSearch);
   const setFormSearchWithRef = useRefFunction(
-    (next: React.SetStateAction<Record<string, any> | undefined>) => {
+    (next: SetStateAction<Record<string, any> | undefined>) => {
       const nextValue = typeof next === 'function' ? next(formSearchRef.current) : next;
       formSearchRef.current = nextValue;
       setFormSearch(nextValue);
@@ -449,7 +451,7 @@ const ProTable = <T extends Record<string, any>, U extends ParamsType, ValueType
   }, []);
 
   /** SelectedRowKeys受控处理selectRows */
-  const preserveRecordsRef = React.useRef(new Map<any, T>());
+  const preserveRecordsRef = useRef(new Map<any, T>());
 
   // ============================ RowKey ============================
   const getRowKey = useRowKey<T>({ rowKey, name: props.name });
@@ -988,7 +990,7 @@ const ProviderTableContainer = <
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
 
   const ErrorComponent =
-    props.ErrorBoundary === false ? React.Fragment : props.ErrorBoundary || ErrorBoundary;
+    props.ErrorBoundary === false ? Fragment : props.ErrorBoundary || ErrorBoundary;
 
   const context = useContext(ProConfigContext);
   return (

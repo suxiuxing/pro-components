@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo, useRef } from 'react';
+import type { FC } from 'react';
+import { useContext, useMemo, useRef } from 'react';
 
 import { isNeedOpenHash, ProProvider } from '../../../provider';
 import { AppsLogoComponents } from '../AppsLogoComponents';
@@ -17,7 +18,7 @@ import { useStyle } from './style';
 
 export type TopNavHeaderProps = SiderMenuProps & GlobalHeaderProps & PrivateSiderMenuProps;
 
-const TopNavHeader: React.FC<TopNavHeaderProps> = (props: TopNavHeaderProps) => {
+const TopNavHeader: FC<TopNavHeaderProps> = (props: TopNavHeaderProps) => {
   const ref = useRef(null);
   const {
     onMenuHeaderClick,

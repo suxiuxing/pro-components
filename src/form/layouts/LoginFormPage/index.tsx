@@ -1,6 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
+import { useContext, useMemo } from 'react';
 
 import { useIntl } from '../../../provider';
 import type { ProFormProps } from '../ProForm';
@@ -13,15 +14,15 @@ export type LoginFormPageProps<T> = {
    * @example <caption>提示登录异常</caption>
    * message={<Alert message="登录异常，请重试！"/>}
    */
-  message: React.ReactNode | false;
+  message: ReactNode | false;
   /**
    * @name 标题，可以配置为空
    */
-  title: React.ReactNode | false;
+  title: ReactNode | false;
   /**
    * @name 二级标题，可以配置为空
    */
-  subTitle: React.ReactNode | false;
+  subTitle: ReactNode | false;
   /**
    * @name 自定义额外的登录功能
    *
@@ -31,26 +32,26 @@ export type LoginFormPageProps<T> = {
    * @example <caption>使用图标</caption>
    * actions={<a><Icon type="alipay" />跳转支付宝登录</a>}
    */
-  actions: React.ReactNode;
+  actions: ReactNode;
   /**
    * @name logo 的配置，支持node 和 string
    */
-  logo?: React.ReactNode | string;
+  logo?: ReactNode | string;
   /**
    * @name 整个登录页面的样式配置
    * @type  React.CSSProperties
    */
-  style: React.CSSProperties;
+  style: CSSProperties;
   /**
    * @name 活动信息的配置，一个页面应该只有一个。
    * @example <caption>配置一个简单的活动。</caption>
    * activityConfig={{title:"这里有个大活动",description:"这里有个大活动的描述",action:<a>点我去看看</a>}}
    */
   activityConfig?: {
-    title?: React.ReactNode;
-    subTitle?: React.ReactNode;
-    action?: React.ReactNode;
-    style?: React.CSSProperties;
+    title?: ReactNode;
+    subTitle?: ReactNode;
+    action?: ReactNode;
+    style?: CSSProperties;
   };
   /**
    * @name 登录页面的背景图片，可以用它来设置一个背景
@@ -64,11 +65,11 @@ export type LoginFormPageProps<T> = {
    * @example  backgroundImageUrl="xxx.svg"
    */
   backgroundVideoUrl?: string;
-  children?: React.ReactNode | React.ReactNode[];
+  children?: ReactNode | ReactNode[];
 
-  containerStyle?: React.CSSProperties;
-  mainStyle?: React.CSSProperties;
-  otherStyle?: React.CSSProperties;
+  containerStyle?: CSSProperties;
+  mainStyle?: CSSProperties;
+  otherStyle?: CSSProperties;
 } & Omit<ProFormProps<T>, 'title'>;
 
 export function LoginFormPage<T = Record<string, any>>(props: Partial<LoginFormPageProps<T>>) {

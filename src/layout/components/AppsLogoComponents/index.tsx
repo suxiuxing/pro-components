@@ -1,6 +1,7 @@
 import { Popover } from 'antd';
 import { clsx } from 'clsx';
-import React, { useMemo, useState } from 'react';
+import type { FC, ReactNode, RefObject } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import { AppsLogo } from './AppsLogo';
 import { DefaultContent } from './DefaultContent';
@@ -14,9 +15,7 @@ import type { AppItemProps, AppListProps } from './types';
  * @param logo
  * @returns
  */
-export const defaultRenderLogo = (
-  logo: React.ReactNode | (() => React.ReactNode),
-): React.ReactNode => {
+export const defaultRenderLogo = (logo: ReactNode | (() => ReactNode)): ReactNode => {
   if (typeof logo === 'string') {
     return (
       <img
@@ -39,15 +38,15 @@ export const defaultRenderLogo = (
  * @param props
  * @returns
  */
-export const AppsLogoComponents: React.FC<{
+export const AppsLogoComponents: FC<{
   appList?: AppListProps;
-  appListRender?: (props: AppListProps, defaultDom: React.ReactNode) => React.ReactNode;
-  onItemClick?: (item: AppItemProps, popoverRef?: React.RefObject<HTMLSpanElement | null>) => void;
+  appListRender?: (props: AppListProps, defaultDom: ReactNode) => ReactNode;
+  onItemClick?: (item: AppItemProps, popoverRef?: RefObject<HTMLSpanElement | null>) => void;
   prefixCls?: string;
 }> = (props) => {
   const { appList, appListRender, prefixCls, onItemClick: itemClick } = props;
-  const ref = React.useRef<HTMLDivElement>(null);
-  const popoverRef = React.useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const popoverRef = useRef<HTMLSpanElement>(null);
   const baseClassName = `${prefixCls}-layout-apps`;
   const { wrapSSR, hashId } = useStyle(baseClassName);
 

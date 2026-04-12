@@ -2,7 +2,7 @@ import { omit } from '@rc-component/util';
 import type { CheckboxProps, CheckboxRef } from 'antd';
 import { Checkbox } from 'antd';
 import type { CheckboxGroupProps } from 'antd/es/checkbox';
-import React from 'react';
+import type { FC, Ref } from 'react';
 
 import { FieldCheckbox } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -19,14 +19,14 @@ export type ProFormCheckboxGroupProps = ProFormFieldItemProps<
   options?: CheckboxGroupProps['options'];
 } & ProFormFieldRemoteProps;
 
-const CheckboxGroup: React.FC<ProFormCheckboxGroupProps> = ({
+const CheckboxGroup: FC<ProFormCheckboxGroupProps> = ({
   options,
   fieldProps,
   proFieldProps,
   valueEnum,
   ref,
   ...rest
-}: ProFormCheckboxGroupProps & { ref?: React.Ref<any> }) => (
+}: ProFormCheckboxGroupProps & { ref?: Ref<any> }) => (
   <ProConfigProvider
     valueTypeMap={{
       checkbox: {
@@ -88,11 +88,11 @@ export type ProFormCheckboxProps = ProFormFieldItemProps<CheckboxProps>;
  *
  * @param
  */
-const ProFormCheckboxComponents: React.FC<ProFormCheckboxProps> = ({
+const ProFormCheckboxComponents: FC<ProFormCheckboxProps> = ({
   fieldProps,
   children,
   ref,
-}: ProFormCheckboxProps & { ref?: React.Ref<CheckboxRef> }) => {
+}: ProFormCheckboxProps & { ref?: Ref<CheckboxRef> }) => {
   const { ...restFieldProps } = fieldProps || {};
   return (
     <Checkbox

@@ -1,13 +1,11 @@
 import { Input } from 'antd';
-import React from 'react';
+import type { ReactNode, RefObject } from 'react';
 
 import type { IntlType } from '../../../provider';
 import type { ProFieldFC } from '../../types';
 
-type FieldTextEditProps = Parameters<
-  ProFieldFC<{ text: string; emptyText?: React.ReactNode }>
->[0] & {
-  inputRef: React.RefObject<HTMLInputElement | null>;
+type FieldTextEditProps = Parameters<ProFieldFC<{ text: string; emptyText?: ReactNode }>>[0] & {
+  inputRef: RefObject<HTMLInputElement | null>;
   intl: IntlType;
 };
 

@@ -1,4 +1,5 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import type { FC } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 
 import { FieldDatePicker } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -11,7 +12,7 @@ import ProFormField from '../Field';
  *
  * @param
  */
-export const BaseDatePicker: React.FC<
+export const BaseDatePicker: FC<
   ProFormFieldItemProps<any> & {
     ref?: any;
     valueType:

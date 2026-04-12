@@ -1,7 +1,8 @@
 import { PlusOutlined } from '@ant-design/icons';
 import type { InputRef } from 'antd';
 import { Button, Form, Input, Space, Tag } from 'antd';
-import React, { useRef, useState } from 'react';
+import type { ChangeEvent, FC, Key } from 'react';
+import { useRef, useState } from 'react';
 
 import type { ActionType, ProColumns } from '@xxlabs/pro-components';
 import { EditableProTable, ProCard, ProFormField } from '@xxlabs/pro-components';
@@ -16,7 +17,7 @@ const waitTime = (time: number = 100) => {
   });
 };
 
-const TagList: React.FC<{
+const TagList: FC<{
   value?: {
     key: string;
     label: string;
@@ -37,7 +38,7 @@ const TagList: React.FC<{
   >([]);
   const [inputValue, setInputValue] = useState<string>('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -71,7 +72,7 @@ const TagList: React.FC<{
 };
 
 type DataSourceType = {
-  id: React.Key;
+  id: Key;
   title?: string;
   labels?: {
     key: string;
@@ -175,7 +176,7 @@ const columns: ProColumns<DataSourceType>[] = [
 
 const Demo = () => {
   const actionRef = useRef<ActionType | undefined>(undefined);
-  const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
+  const [editableKeys, setEditableRowKeys] = useState<Key[]>([]);
   const [dataSource, setDataSource] = useState<readonly DataSourceType[]>([]);
   const [form] = Form.useForm();
   return (

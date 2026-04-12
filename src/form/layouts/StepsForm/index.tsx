@@ -3,7 +3,11 @@ import type { FormInstance, StepsProps } from 'antd';
 import { Button, Col, ConfigProvider, Form, Row, Space, Steps } from 'antd';
 import type { FormProviderProps } from 'antd/es/form/context';
 import { clsx } from 'clsx';
-import React, {
+import type { CSSProperties, ReactElement, ReactNode, RefObject } from 'react';
+import {
+  cloneElement,
+  createContext,
+  isValidElement,
   useCallback,
   useContext,
   useImperativeHandle,
@@ -58,19 +62,19 @@ type StepsFormProps<T = Record<string, any>> = {
   stepsRender?: (
     steps: {
       key: string;
-      title?: React.ReactNode;
+      title?: ReactNode;
     }[],
-    defaultDom: React.ReactNode,
-  ) => React.ReactNode;
+    defaultDom: ReactNode,
+  ) => ReactNode;
   /** @name 当前展示表单的 formRef */
-  formRef?: React.RefObject<ProFormInstance<any> | undefined | null>;
+  formRef?: RefObject<ProFormInstance<any> | undefined | null>;
   /**
    * 分步容器 ref：合并取值、指定步表单实例、无校验跳转等
    * @name 分步容器 ref
    */
-  stepsFormRef?: React.RefObject<StepsFormRef | null | undefined>;
+  stepsFormRef?: RefObject<StepsFormRef | null | undefined>;
   /** @name 所有表单的 formMapRef */
-  formMapRef?: React.RefObject<React.RefObject<FormInstance<any> | undefined>[]>;
+  formMapRef?: RefObject<RefObject<FormInstance<any> | undefined>[]>;
   /**
    * 是否允许点击步骤条切换步骤（不触发表单校验；若多步存在同名字段，合并规则与提交一致）
    * @default false
@@ -81,7 +85,7 @@ type StepsFormProps<T = Record<string, any>> = {
    *
    * @param form From 的 dom，可以放置到别的位置
    */
-  stepFormRender?: (from: React.ReactNode) => React.ReactNode;
+  stepFormRender?: (from: ReactNode) => ReactNode;
 
   /**
    * 自定义整个表单区域
@@ -89,7 +93,7 @@ type StepsFormProps<T = Record<string, any>> = {
    * @param form From 的 dom，可以放置到别的位置
    * @param submitter 操作按钮
    */
-  stepsFormRender?: (from: React.ReactNode, submitter: React.ReactNode) => React.ReactNode;
+  stepsFormRender?: (from: ReactNode, submitter: ReactNode) => ReactNode;
   /** 按钮的统一配置，优先级低于分步表单的配置 */
   submitter?:
     | SubmitterProps<{
@@ -99,29 +103,26 @@ type StepsFormProps<T = Record<string, any>> = {
       }>
     | false;
 
-  containerStyle?: React.CSSProperties;
+  containerStyle?: CSSProperties;
   /**
    * 自定義整個佈局。
    *
    * @param layoutDom stepsDom 和 formDom 元素可以放置在任何地方。
    */
-  layoutRender?: (layoutDom: {
-    stepsDom: React.ReactElement;
-    formDom: React.ReactElement;
-  }) => React.ReactNode;
+  layoutRender?: (layoutDom: { stepsDom: ReactElement; formDom: ReactElement }) => ReactNode;
 } & Omit<FormProviderProps, 'children'>;
 
-export const StepsFormProvide = React.createContext<
+export const StepsFormProvide = createContext<
   | {
       regForm: (name: string, props: StepFormProps<any>) => void;
       unRegForm: (name: string) => void;
       onFormFinish: (name: string, formData: any) => void;
       keyArray: string[];
-      formArrayRef: React.RefObject<React.RefObject<FormInstance<any> | undefined>[]>;
+      formArrayRef: RefObject<RefObject<FormInstance<any> | undefined>[]>;
       loading: boolean;
       setLoading: (loading: boolean) => void;
       lastStep: boolean;
-      formMapRef: React.RefObject<Map<string, StepFormProps>>;
+      formMapRef: RefObject<Map<string, StepFormProps>>;
       next: () => void;
       /** 当前步骤下标，从 0 开始 */
       current: number;
@@ -145,11 +146,11 @@ export function useStepsFormContext() {
 }
 
 interface LayoutRenderDom {
-  stepsDom: React.ReactElement;
-  formDom: React.ReactElement;
+  stepsDom: ReactElement;
+  formDom: ReactElement;
 }
 
-const StepsLayoutStrategy: Record<string, (dom: LayoutRenderDom) => React.ReactNode> = {
+const StepsLayoutStrategy: Record<string, (dom: LayoutRenderDom) => ReactNode> = {
   horizontal({ stepsDom, formDom }) {
     return (
       <>
@@ -177,7 +178,7 @@ const StepsLayoutStrategy: Record<string, (dom: LayoutRenderDom) => React.ReactN
           sm={10}
           xs={12}
         >
-          {React.cloneElement(stepsDom as React.ReactElement<Record<string, any>>, {
+          {cloneElement(stepsDom as ReactElement<Record<string, any>>, {
             style: {
               height: '100%',
             },
@@ -203,11 +204,11 @@ const StepsLayoutStrategy: Record<string, (dom: LayoutRenderDom) => React.ReactN
 /**
  * 给  StepForm 传递信息
  */
-export const StepFormProvide = React.createContext<StepFormProps<any> | null>(null);
+export const StepFormProvide = createContext<StepFormProps<any> | null>(null);
 
 function StepsForm<T = Record<string, any>>(
   props: StepsFormProps<T> & {
-    children: React.ReactNode;
+    children: ReactNode;
   },
 ) {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
@@ -236,7 +237,7 @@ function StepsForm<T = Record<string, any>>(
 
   const formDataRef = useRef(new Map<string, Record<string, any>>());
   const formMapRef = useRef(new Map<string, StepFormProps>());
-  const formArrayRef = useRef<React.RefObject<FormInstance<any> | undefined>[]>([]);
+  const formArrayRef = useRef<RefObject<FormInstance<any> | undefined>[]>([]);
   const [formArray, setFormArray] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const intl = useIntl();
@@ -494,7 +495,7 @@ function StepsForm<T = Record<string, any>>(
   });
 
   const submitterDom = useMemo(() => {
-    let buttons: (React.ReactElement | false)[] = [];
+    let buttons: (ReactElement | false)[] = [];
     const index = step || 0;
     if (index < 1) {
       // 如果有且只有一个 StepForm 第一步就应该是提交按钮
@@ -509,7 +510,7 @@ function StepsForm<T = Record<string, any>>(
       buttons.push(pre, next);
     }
 
-    buttons = buttons.filter(React.isValidElement);
+    buttons = buttons.filter(isValidElement);
 
     if (submitter && submitter.render) {
       const submitterProps: any = {
@@ -519,12 +520,12 @@ function StepsForm<T = Record<string, any>>(
         onPre: prePage,
       };
 
-      return submitter.render(submitterProps, buttons as React.ReactElement[]) as React.ReactNode;
+      return submitter.render(submitterProps, buttons as ReactElement[]) as ReactNode;
     }
     if (submitter && submitter?.render === false) {
       return null;
     }
-    return buttons as React.ReactElement[];
+    return buttons as ReactElement[];
   }, [formArray.length, next, onSubmit, pre, prePage, step, submit, submitter]);
 
   const formDom = useMemo(() => {
@@ -571,7 +572,7 @@ function StepsForm<T = Record<string, any>>(
           title: formMapRef.current.get(item)?.title,
         })),
         stepsDom,
-      ) as React.ReactElement;
+      ) as ReactElement;
     }
     return stepsDom;
   }, [formArray, stepsDom, stepsRender]);

@@ -1,14 +1,15 @@
 import { omit } from '@rc-component/util';
 import { ConfigProvider, Drawer } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useEffect } from 'react';
+import type { FC } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { ProProvider } from '../../../provider';
 import type { PrivateSiderMenuProps, SiderMenuProps } from './SiderMenu';
 import { SiderMenu } from './SiderMenu';
 import { useStyle } from './style/index';
 
-const SiderMenuWrapper: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (props) => {
+const SiderMenuWrapper: FC<SiderMenuProps & PrivateSiderMenuProps> = (props) => {
   const {
     isMobile,
     siderWidth,
@@ -31,7 +32,7 @@ const SiderMenuWrapper: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (prop
 
   const omitProps = omit(props, ['className', 'style']);
 
-  const { direction } = React.useContext(ConfigProvider.ConfigContext);
+  const { direction } = useContext(ConfigProvider.ConfigContext);
 
   // 从 menu 配置中读取 collapsedWidth，默认为 64
   const collapsedWidth = props.menu?.collapsedWidth ?? 64;

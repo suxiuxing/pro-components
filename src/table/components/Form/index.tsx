@@ -1,6 +1,7 @@
 import { omit } from '@rc-component/util';
 import type { TablePaginationConfig } from 'antd';
-import React, { memo, useMemo } from 'react';
+import type { RefObject } from 'react';
+import { memo, useMemo } from 'react';
 
 import { isDeepEqualReact, omitUndefined, useRefFunction } from '../../../utils';
 import type { ActionType, ProTableProps } from '../../typing';
@@ -10,7 +11,7 @@ import FormRender from './FormRender';
 type BaseFormProps<T, U> = {
   pagination?: TablePaginationConfig | false;
   beforeSearchSubmit?: (params: Partial<U>) => any;
-  action: React.RefObject<ActionType | undefined>;
+  action: RefObject<ActionType | undefined>;
   onSubmit?: (params: U) => void;
   onReset?: () => void;
   loading: boolean;

@@ -1,7 +1,7 @@
 import { Radio, message } from 'antd';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import dayjs from 'dayjs';
-import React from 'react';
+import { useState } from 'react';
 
 import {
   LightFilter,
@@ -13,7 +13,7 @@ import {
 } from '@xxlabs/pro-components';
 
 const Demo = () => {
-  const [size, setSize] = React.useState<SizeType>('middle');
+  const [size, setSize] = useState<SizeType>('middle');
   return (
     <div>
       <Radio.Group

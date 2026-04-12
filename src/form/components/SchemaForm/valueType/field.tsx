@@ -1,5 +1,5 @@
 import { omit } from '@rc-component/util';
-import React from 'react';
+import type { Key } from 'react';
 
 import { omitUndefined } from '../../../../utils';
 import ProFormDependency from '../../Dependency';
@@ -80,7 +80,7 @@ export const field: ProSchemaRenderValueTypeFunction<any, any> = (
     return (
       <ProFormDependency
         name={item.dependencies || []}
-        key={item.key as React.Key}
+        key={item.key as Key}
       >
         {getField}
       </ProFormDependency>

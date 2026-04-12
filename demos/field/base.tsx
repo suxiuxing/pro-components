@@ -1,6 +1,7 @@
 import { Descriptions, Segmented, Space } from 'antd';
 import dayjs from 'dayjs';
-import React, { useState } from 'react';
+import type { FC } from 'react';
+import { useState } from 'react';
 
 import type { ProFieldFCMode } from '@xxlabs/pro-components';
 import { ProField } from '@xxlabs/pro-components';
@@ -15,7 +16,7 @@ const statusEnum = {
 };
 
 /** 受控 ProField，同时传 text + value 确保 read/edit 模式都有值 */
-const DemoField: React.FC<{
+const DemoField: FC<{
   initialValue: any;
   mode: ProFieldFCMode;
   valueType?: any;

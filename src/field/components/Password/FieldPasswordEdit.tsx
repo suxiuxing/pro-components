@@ -1,5 +1,5 @@
 import { Input } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { IntlType } from '../../../provider';
 import type { ProFieldFC } from '../../types';
@@ -14,12 +14,12 @@ type Props = Parameters<
   intl: IntlType;
 };
 
-export function FieldPasswordEdit(props: Props, ref?: React.Ref<unknown>) {
+export function FieldPasswordEdit(props: Props, ref?: Ref<unknown>) {
   const { text, mode, formItemRender, fieldProps, intl } = props;
   const dom = (
     <Input.Password
       placeholder={intl.getMessage('tableForm.inputPlaceholder', '请输入')}
-      ref={ref as React.Ref<any>}
+      ref={ref as Ref<any>}
       {...fieldProps}
     />
   );

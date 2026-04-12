@@ -1,6 +1,7 @@
 import { useControlledState } from '@rc-component/util';
 import type { TableColumnType } from 'antd';
 import { merge } from 'es-toolkit/compat';
+import type { FC, Key, ReactNode } from 'react';
 import { createContext, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { DensitySize } from '../components/ToolBar/DensityIcon';
@@ -66,7 +67,7 @@ function useContainer(props: UseContainerProps = {} as Record<string, any>) {
     if (props?.columnsState?.defaultValue) return props.columnsState.defaultValue;
     const columnKeyMap = {} as Record<string, any>;
     props.columns?.forEach(({ key, dataIndex, fixed, disable }, index) => {
-      const columnKey = genColumnKey(key ?? (dataIndex as React.Key), index);
+      const columnKey = genColumnKey(key ?? (dataIndex as Key), index);
       if (columnKey) {
         columnKeyMap[columnKey] = {
           show: true,
@@ -222,9 +223,9 @@ const TableContext = createContext<ContainerReturnType>({} as any);
 
 export type ContainerType = typeof useContainer;
 
-const Container: React.FC<{
+const Container: FC<{
   initValue: UseContainerProps<any>;
-  children: React.ReactNode;
+  children: ReactNode;
 }> = (props) => {
   const value = useContainer(props.initValue);
   return <TableContext.Provider value={value}>{props.children}</TableContext.Provider>;

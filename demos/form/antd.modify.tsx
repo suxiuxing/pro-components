@@ -1,5 +1,5 @@
 import { Button, Form, Input, message, Select } from 'antd';
-import React from 'react';
+import type { FC } from 'react';
 
 import { useControlModel, WithControlPropsType } from '@xxlabs/pro-components';
 
@@ -28,7 +28,7 @@ export function PriceInput(
   );
 }
 
-const App: React.FC = () => {
+const App: FC = () => {
   const onFinish = () => {
     message.success('表单已提交');
   };

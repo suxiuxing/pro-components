@@ -1,7 +1,8 @@
 import { get } from '@rc-component/util';
 import { Form } from 'antd';
 import type { AnyObject } from 'antd/es/_util/type';
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import type { FC, Key, ReactNode } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 import type { ProFieldEmptyText } from '../../field';
 import type { ProFormFieldProps } from '../../form';
@@ -16,7 +17,7 @@ const SHOW_EMPTY_TEXT_LIST = ['', null, undefined];
 /**
  * 拼接用于编辑的 key
  */
-export const spellNamePath = (...rest: any[]): React.Key[] => {
+export const spellNamePath = (...rest: any[]): Key[] => {
   return rest
     .filter((index) => index !== undefined)
     .map((item) => {
@@ -39,7 +40,7 @@ type CellRenderFromItemProps<T extends AnyObject> = {
   };
   type?: ProSchemaComponentTypes;
   // 行的唯一 key
-  recordKey?: React.Key;
+  recordKey?: Key;
   mode: 'edit' | 'read';
   /**
    * If there is, use EditableTable in the Form
@@ -74,7 +75,7 @@ const CellRenderFromItem = <T extends AnyObject>(props: CellRenderFromItemProps<
     () => editableUtils?.getRealIndex?.(rowData!) ?? index,
     [editableUtils, index, rowData],
   );
-  const [formItemName, setName] = useState<React.Key[]>(() =>
+  const [formItemName, setName] = useState<Key[]>(() =>
     spellNamePath(
       prefixName,
       prefixName ? subName : [],
@@ -121,7 +122,7 @@ const CellRenderFromItem = <T extends AnyObject>(props: CellRenderFromItemProps<
     [columnProps, editableForm, index, rowName],
   );
 
-  const InlineItem = useCallback<React.FC<any>>(
+  const InlineItem = useCallback<FC<any>>(
     ({ children, ...restProps }) => (
       <InlineErrorFormItem
         popoverProps={{
@@ -151,7 +152,7 @@ const CellRenderFromItem = <T extends AnyObject>(props: CellRenderFromItemProps<
 
     formItemProps.initialValue =
       (prefixName ? null : text) ?? formItemProps?.initialValue ?? columnProps?.initialValue;
-    let fieldDom: React.ReactNode = (
+    let fieldDom: ReactNode = (
       <ProFormField
         cacheForSwr
         key={formItemName.join('-')}
@@ -247,9 +248,7 @@ const CellRenderFromItem = <T extends AnyObject>(props: CellRenderFromItemProps<
  * @param text
  * @param valueType
  */
-function cellRenderToFromItem<T extends AnyObject>(
-  config: CellRenderFromItemProps<T>,
-): React.ReactNode {
+function cellRenderToFromItem<T extends AnyObject>(config: CellRenderFromItemProps<T>): ReactNode {
   const { text, valueType, rowData, columnProps, index } = config;
 
   // 如果 valueType === text ，没必要多走一次 render

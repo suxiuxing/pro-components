@@ -1,5 +1,5 @@
 import type { SegmentedProps } from 'antd';
-import React from 'react';
+import type { FC, Ref } from 'react';
 
 import { FieldSegmented } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -18,7 +18,7 @@ const ProFormSegmented = ({
   proFieldProps,
   ref,
   ...rest
-}: ProFormFieldItemProps<SegmentedProps> & ProFormFieldRemoteProps & { ref?: React.Ref<any> }) => {
+}: ProFormFieldItemProps<SegmentedProps> & ProFormFieldRemoteProps & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -52,8 +52,7 @@ const ProFormSegmented = ({
   );
 };
 
-const WarpProFormSegmented: React.FC<
-  ProFormFieldItemProps<SegmentedProps> & ProFormFieldRemoteProps
-> = ProFormSegmented;
+const WarpProFormSegmented: FC<ProFormFieldItemProps<SegmentedProps> & ProFormFieldRemoteProps> =
+  ProFormSegmented;
 
 export default WarpProFormSegmented;

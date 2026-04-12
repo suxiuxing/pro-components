@@ -1,6 +1,6 @@
 import { fireEvent, getByText, render, waitFor } from '@testing-library/react';
 import { Button, Form } from 'antd';
-import React, { act } from 'react';
+import { act, createRef } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { DrawerForm, ModalForm, ProFormText } from '@xxlabs/pro-components';
@@ -548,7 +548,7 @@ describe('DrawerForm', () => {
   });
 
   it('📦 drawerForm get formRef when destroyOnHidden', async () => {
-    const ref = React.createRef<any>();
+    const ref = createRef<any>();
 
     const html = render(
       <DrawerForm
@@ -602,7 +602,7 @@ describe('DrawerForm', () => {
   });
 
   it('📦 drawerForm support onResize', async () => {
-    const ref = React.createRef<any>();
+    const ref = createRef<any>();
 
     const html = render(
       <DrawerForm

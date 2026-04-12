@@ -4,7 +4,8 @@ import type { ColProps, FormItemProps, RowProps } from 'antd';
 import { Col, ConfigProvider, Form, Row, theme } from 'antd';
 import type { FormInstance, FormProps } from 'antd/es/form/Form';
 import { clsx } from 'clsx';
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import type { CSSProperties, FC, JSX, Key, ReactNode } from 'react';
+import { cloneElement, isValidElement, useCallback, useContext, useMemo, useState } from 'react';
 
 import { ProProvider, useIntl } from '../../../provider';
 import { isBrowser, useRefFunction } from '../../../utils';
@@ -207,8 +208,8 @@ export type BaseQueryFilterProps = Omit<ActionsProps, 'submitter' | 'setCollapse
     | ((
         searchConfig: Omit<BaseQueryFilterProps, 'submitter' | 'isForm'>,
         props: Omit<BaseQueryFilterProps, 'searchConfig'>,
-        dom: React.ReactNode[],
-      ) => React.ReactNode[])
+        dom: ReactNode[],
+      ) => ReactNode[])
     | false;
   /**
    * @name 忽略 Form.Item rule规则配置
@@ -225,17 +226,17 @@ export type BaseQueryFilterProps = Omit<ActionsProps, 'submitter' | 'setCollapse
   submitterColSpanProps?: Omit<ColProps, 'span'> & {
     span: number;
   };
-  containerStyle?: React.CSSProperties;
+  containerStyle?: CSSProperties;
 };
 
-const flatMapItems = (items: React.ReactNode[], ignoreRules?: boolean): React.ReactNode[] => {
+const flatMapItems = (items: ReactNode[], ignoreRules?: boolean): ReactNode[] => {
   return items?.flatMap((item: any) => {
     if (item?.type?.displayName === 'ProForm-Group' && !item.props?.title) {
       return item.props.children;
     }
 
-    if (ignoreRules && React.isValidElement(item)) {
-      return React.cloneElement(item, {
+    if (ignoreRules && isValidElement(item)) {
+      return cloneElement(item, {
         ...(item.props as any),
         formItemProps: {
           ...(item.props as any)?.formItemProps,
@@ -256,7 +257,7 @@ export type QueryFilterProps<T = Record<string, any>, U = Record<string, any>> =
     onReset?: (values: T) => void;
   };
 
-const QueryFilterContent: React.FC<{
+const QueryFilterContent: FC<{
   defaultCollapsed: boolean;
   onCollapse?: (collapsed: boolean) => void;
   collapsed?: boolean;
@@ -265,8 +266,8 @@ const QueryFilterContent: React.FC<{
   searchGutter?: RowProps['gutter'];
   split?: boolean;
   form: FormInstance<any>;
-  items: React.ReactNode[];
-  submitter?: React.JSX.Element | false;
+  items: ReactNode[];
+  submitter?: JSX.Element | false;
   showLength: number;
   collapseRender: QueryFilterProps<any>['collapseRender'];
   spanSize: {
@@ -335,13 +336,13 @@ const QueryFilterContent: React.FC<{
     if (!props.submitter || optionRender === false) {
       return null;
     }
-    return React.cloneElement(props.submitter, {
+    return cloneElement(props.submitter, {
       searchConfig: {
         resetText,
         submitText: searchText,
       },
       render: optionRender
-        ? (_: any, dom: React.ReactNode[]) =>
+        ? (_: any, dom: ReactNode[]) =>
             optionRender(
               {
                 ...props,
@@ -369,11 +370,11 @@ const QueryFilterContent: React.FC<{
 
   // 处理过，包含是否需要隐藏的 数组
   const processedList = flatMapItems(items, props.ignoreRules).map(
-    (item, index): { itemDom: React.ReactNode; hidden: boolean; colSpan: number } => {
-      const itemElement = React.isValidElement<{
+    (item, index): { itemDom: ReactNode; hidden: boolean; colSpan: number } => {
+      const itemElement = isValidElement<{
         colSize?: number;
         hidden?: boolean;
-        name?: React.Key;
+        name?: Key;
       }>(item)
         ? item
         : undefined;
@@ -411,7 +412,7 @@ const QueryFilterContent: React.FC<{
           };
         }
         return {
-          itemDom: React.cloneElement(itemElement, {
+          itemDom: cloneElement(itemElement, {
             hidden: true,
             key: itemKey || index,
           } as Record<string, any>),
@@ -430,9 +431,9 @@ const QueryFilterContent: React.FC<{
 
   const doms = processedList.map((itemProps, index: number) => {
     const { itemDom, colSpan } = itemProps;
-    const itemDomElement = React.isValidElement<{
+    const itemDomElement = isValidElement<{
       hidden?: boolean;
-      name?: React.Key;
+      name?: Key;
     }>(itemDom)
       ? itemDom
       : undefined;

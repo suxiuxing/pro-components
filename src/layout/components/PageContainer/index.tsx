@@ -9,8 +9,8 @@ import {
   WatermarkProps,
 } from 'antd';
 import { clsx } from 'clsx';
-import type { ReactNode } from 'react';
-import React, { useContext, useEffect, useMemo } from 'react';
+import type { FC, Key, ReactNode } from 'react';
+import { isValidElement, useContext, useEffect, useMemo } from 'react';
 
 import type { GenerateStyle } from '../../../provider';
 import { ProConfigProvider, ProProvider } from '../../../provider';
@@ -28,7 +28,7 @@ import { useStylish } from './style/stylish';
 
 export type PageHeaderTabConfig = {
   /** @name tabs 的列表 */
-  tabList?: (TabPaneProps & { key?: React.Key })[];
+  tabList?: (TabPaneProps & { key?: Key })[];
 
   /** @name tabActiveKey 当前选中 tab 的 key */
   tabActiveKey?: TabsProps['activeKey'];
@@ -47,9 +47,9 @@ export type PageHeaderTabConfig = {
 };
 
 export type PageContainerProps = {
-  title?: React.ReactNode | false;
-  content?: React.ReactNode;
-  extraContent?: React.ReactNode;
+  title?: ReactNode | false;
+  content?: ReactNode;
+  extraContent?: ReactNode;
   prefixCls?: string;
   footer?: ReactNode[];
 
@@ -64,11 +64,11 @@ export type PageContainerProps = {
    * @name PageHeader 的配置
    */
   header?: Partial<PageHeaderProps> & {
-    children?: React.ReactNode;
+    children?: ReactNode;
   };
 
   /** @name pageHeaderRender 自定义 pageHeader */
-  pageHeaderRender?: WithFalse<(props: PageContainerProps) => React.ReactNode>;
+  pageHeaderRender?: WithFalse<(props: PageContainerProps) => ReactNode>;
 
   /**
    * 与 antd 完全相同
@@ -82,7 +82,7 @@ export type PageContainerProps = {
    *
    * @name loading 是否加载
    */
-  loading?: boolean | SpinProps | React.ReactNode;
+  loading?: boolean | SpinProps | ReactNode;
 
   /**
    * 自定义 breadcrumb,
@@ -96,7 +96,7 @@ export type PageContainerProps = {
   /** @name BreadcrumbProps 配置面包屑 */
   breadcrumb?: BreadcrumbProps;
 
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   stylish?: GenerateStyle<PageContainerToken>;
   footerStylish?: GenerateStyle<PageContainerToken>;
@@ -115,7 +115,7 @@ function genLoading(spinProps: boolean | SpinProps) {
  * Render Footer tabList In order to be compatible with the old version of the PageHeader basically
  * all the functions are implemented.
  */
-const renderFooter: React.FC<
+const renderFooter: FC<
   Omit<
     PageContainerProps & {
       prefixedClassName: string;
@@ -156,11 +156,11 @@ const renderFooter: React.FC<
 };
 
 const renderPageHeader = (
-  content: React.ReactNode,
-  extraContent: React.ReactNode,
+  content: ReactNode,
+  extraContent: ReactNode,
   prefixedClassName: string,
   hashId: string,
-): React.ReactNode => {
+): ReactNode => {
   if (!content && !extraContent) {
     return null;
   }
@@ -184,7 +184,7 @@ const renderPageHeader = (
  * @param props
  * @returns
  */
-const ProBreadcrumb: React.FC<BreadcrumbProps> = (props) => {
+const ProBreadcrumb: FC<BreadcrumbProps> = (props) => {
   const value = useContext(RouteContext);
   return (
     <div
@@ -291,7 +291,7 @@ const memoRenderPageHeader = (
   );
 };
 
-const PageContainerBase: React.FC<PageContainerProps> = (props) => {
+const PageContainerBase: FC<PageContainerProps> = (props) => {
   const {
     children,
     loading = false,
@@ -346,7 +346,7 @@ const PageContainerBase: React.FC<PageContainerProps> = (props) => {
 
   const loadingDom = useMemo(() => {
     // 当loading时一个合法的ReactNode时，说明用户使用了自定义loading,直接返回改自定义loading
-    if (React.isValidElement(loading)) {
+    if (isValidElement(loading)) {
       return loading;
     }
     // 当传递过来的是布尔值，并且为false时，说明不需要显示loading,返回null
@@ -431,7 +431,7 @@ const PageContainerBase: React.FC<PageContainerProps> = (props) => {
   );
 };
 
-const PageContainer: React.FC<PageContainerProps> = (props) => {
+const PageContainer: FC<PageContainerProps> = (props) => {
   return (
     <ProConfigProvider needDeps>
       <PageContainerBase {...props} />

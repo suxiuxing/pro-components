@@ -1,7 +1,8 @@
 import { InboxOutlined } from '@ant-design/icons';
 import type { DraggerProps, GetRef, UploadProps } from 'antd';
 import { ConfigProvider, Upload } from 'antd';
-import React, { useContext } from 'react';
+import type { FC, ReactNode, Ref } from 'react';
+import { useContext } from 'react';
 
 import { EditOrReadOnlyContext } from '../../BaseForm/EditOrReadOnlyContext';
 import type { ProFormFieldItemProps } from '../../typing';
@@ -16,7 +17,7 @@ export type ProFormUploadDraggerProps = ProFormFieldItemProps<DraggerProps> & {
    *
    * @example 改成笑脸图标  icon={<SmileOutlined/>}
    */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /**
    * @name 上传文件块的标题
    * @default 单击或拖动文件到此区域进行上传
@@ -24,7 +25,7 @@ export type ProFormUploadDraggerProps = ProFormFieldItemProps<DraggerProps> & {
    * @example  title="上传"
    * @example  title={<div>上传</div>}
    */
-  title?: React.ReactNode;
+  title?: ReactNode;
   /**
    * @name 上传文件块的说明，比标题小一点，但是字数可以更多
    * @default 支持单次或批量上传
@@ -32,7 +33,7 @@ export type ProFormUploadDraggerProps = ProFormFieldItemProps<DraggerProps> & {
    * @example  description="支持xxx文件"
    * @example  description={<div>支持xxx文件</div>}
    */
-  description?: React.ReactNode;
+  description?: ReactNode;
   /**
    * @name 最大的文件数量，到达数量之后上传按钮会失效
    *
@@ -56,7 +57,7 @@ export type ProFormUploadDraggerProps = ProFormFieldItemProps<DraggerProps> & {
  *
  * @param
  */
-const BaseProFormUploadDragger: React.FC<ProFormUploadDraggerProps> = ({
+const BaseProFormUploadDragger: FC<ProFormUploadDraggerProps> = ({
   fieldProps,
   title = '单击或拖动文件到此区域进行上传',
   icon = <InboxOutlined />,
@@ -69,7 +70,7 @@ const BaseProFormUploadDragger: React.FC<ProFormUploadDraggerProps> = ({
   max,
   proFieldProps,
   ref,
-}: ProFormUploadDraggerProps & { ref?: React.Ref<UploadRef> }) => {
+}: ProFormUploadDraggerProps & { ref?: Ref<UploadRef> }) => {
   const context = useContext(ConfigProvider.ConfigContext);
   const modeContext = useContext(EditOrReadOnlyContext);
   const mode = proFieldProps?.mode || modeContext.mode || 'edit';

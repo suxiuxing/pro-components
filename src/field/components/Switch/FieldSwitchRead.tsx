@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import type { ProFieldFC } from '../../types';
 
@@ -8,7 +8,7 @@ type Props = Parameters<
     variant?: 'outlined' | 'borderless' | 'filled';
   }>
 >[0] & {
-  readLabel: React.ReactNode;
+  readLabel: ReactNode;
 };
 
 export function FieldSwitchRead(props: Props) {

@@ -1,5 +1,5 @@
 import { Progress } from 'antd';
-import React from 'react';
+import type { Ref } from 'react';
 
 import type { ProFieldFC } from '../../types';
 import { getProgressStatus } from './utils';
@@ -13,11 +13,11 @@ type Props = Parameters<
   realValue: number | string;
 };
 
-export function FieldProgressRead(props: Props, ref?: React.Ref<unknown>) {
+export function FieldProgressRead(props: Props, ref?: Ref<unknown>) {
   const { mode, render, fieldProps, realValue } = props;
   const dom = (
     <Progress
-      ref={ref as React.Ref<any>}
+      ref={ref as Ref<any>}
       size="small"
       style={{ minWidth: 100, maxWidth: 320 }}
       percent={realValue as number}

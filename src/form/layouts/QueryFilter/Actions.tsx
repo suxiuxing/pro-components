@@ -1,14 +1,15 @@
 import { DownOutlined } from '@ant-design/icons';
 import { ConfigProvider, Space } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { useContext } from 'react';
 
 import type { IntlType } from '../../../provider';
 import { ProProvider, useIntl } from '../../../provider';
 import { omitBoolean } from '../../../utils';
 
 export type ActionsProps = {
-  submitter: React.ReactNode;
+  submitter: ReactNode;
   /** 是否收起 */
   collapsed?: boolean;
   /** 收起按钮的事件 */
@@ -16,7 +17,7 @@ export type ActionsProps = {
 
   setCollapsed: (collapse: boolean) => void;
   isForm?: boolean;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /** 收起按钮的 render */
   collapseRender?:
     | ((
@@ -25,7 +26,7 @@ export type ActionsProps = {
         props: ActionsProps,
         intl: IntlType,
         hiddenNum?: false | number,
-      ) => React.ReactNode)
+      ) => ReactNode)
     | false;
   /** 隐藏个数 */
   hiddenNum?: false | number;
@@ -66,7 +67,7 @@ const defaultCollapseRender: ActionsProps['collapseRender'] = (collapsed, _, int
  *
  * @param props
  */
-const Actions: React.FC<ActionsProps> = (props) => {
+const Actions: FC<ActionsProps> = (props) => {
   const { setCollapsed, collapsed = false, submitter, style, hiddenNum } = props;
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const intl = useIntl();

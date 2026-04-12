@@ -5,6 +5,7 @@
  * 场景：微服务应用管理平台（DevOps 运维场景）
  */
 import dayjs from 'dayjs';
+import type { Key } from 'react';
 
 /** 固定基准时间戳，用于确定性日期展示 */
 export const FIXED_BASE_TIMESTAMP = dayjs('2024-01-15 10:00:00').valueOf();
@@ -204,7 +205,7 @@ export function createEditableRowId(): string {
 
 /** 可编辑表格 - 需求管理场景 */
 export interface EditableTaskItem {
-  id: React.Key;
+  id: Key;
   title?: string;
   assignee?: string;
   priority?: string;

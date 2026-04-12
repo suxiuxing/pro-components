@@ -1,4 +1,5 @@
 import type { InputNumberProps } from 'antd';
+import type { ReactNode } from 'react';
 
 export type FieldMoneyProps = {
   text: number;
@@ -15,9 +16,7 @@ export type FieldMoneyProps = {
   /**
    * 自定义 Popover 的值，false 可以关闭他
    */
-  numberPopoverRender?:
-    | ((props: InputNumberProps, defaultText: string) => React.ReactNode)
-    | boolean;
+  numberPopoverRender?: ((props: InputNumberProps, defaultText: string) => ReactNode) | boolean;
   /**
    * NumberFormat 的配置，文档可以查看 mdn
    *

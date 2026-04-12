@@ -2,7 +2,8 @@ import type { PopoverProps } from 'antd';
 import { ConfigProvider, Popover } from 'antd';
 import type { TooltipPlacement } from 'antd/es/tooltip';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo, useRef } from 'react';
+import type { FC, JSX, MouseEvent, ReactNode } from 'react';
+import { useContext, useMemo, useRef } from 'react';
 
 import type { DropdownFooterProps } from '../DropdownFooter';
 import { DropdownFooter } from '../DropdownFooter';
@@ -10,13 +11,13 @@ import { useStyle } from './style';
 
 export type FooterRender =
   | ((
-      onConfirm?: (e?: React.MouseEvent) => void,
-      onClear?: (e?: React.MouseEvent) => void,
-    ) => React.JSX.Element | false)
+      onConfirm?: (e?: MouseEvent) => void,
+      onClear?: (e?: MouseEvent) => void,
+    ) => JSX.Element | false)
   | false;
 
 export type DropdownProps = {
-  label?: React.ReactNode;
+  label?: ReactNode;
   footer?: DropdownFooterProps;
   footerRender?: FooterRender;
   padding?: number;
@@ -37,9 +38,9 @@ export type DropdownProps = {
     PopoverProps,
     'children' | 'content' | 'trigger' | 'open' | 'onOpenChange' | 'placement'
   >;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
-const FilterDropdown: React.FC<DropdownProps> = (props) => {
+const FilterDropdown: FC<DropdownProps> = (props) => {
   const {
     children,
     label,

@@ -4,37 +4,38 @@ import type { AvatarProps, BreadcrumbProps, TagType } from 'antd';
 import { Avatar, Breadcrumb, ConfigProvider, Space } from 'antd';
 import type { DirectionType } from 'antd/es/config-provider';
 import { clsx } from 'clsx';
-import React from 'react';
+import type { CSSProperties, FC, MouseEvent, ReactElement, ReactNode } from 'react';
+import { useContext, useState } from 'react';
 
 import type { ContentWidth } from '../../defaultSettings';
 import useStyle from './style';
 
 export interface PageHeaderProps {
-  backIcon?: React.ReactNode;
+  backIcon?: ReactNode;
   prefixCls?: string;
-  title?: React.ReactNode;
-  subTitle?: React.ReactNode;
-  style?: React.CSSProperties;
-  childrenContentStyle?: React.CSSProperties;
-  breadcrumb?: Partial<BreadcrumbProps> | React.ReactElement<typeof Breadcrumb>;
-  breadcrumbRender?: (props: PageHeaderProps, defaultDom: React.ReactNode) => React.ReactNode;
-  tags?: React.ReactElement<TagType> | React.ReactElement<TagType>[];
-  footer?: React.ReactNode;
-  extra?: React.ReactNode;
+  title?: ReactNode;
+  subTitle?: ReactNode;
+  style?: CSSProperties;
+  childrenContentStyle?: CSSProperties;
+  breadcrumb?: Partial<BreadcrumbProps> | ReactElement<typeof Breadcrumb>;
+  breadcrumbRender?: (props: PageHeaderProps, defaultDom: ReactNode) => ReactNode;
+  tags?: ReactElement<TagType> | ReactElement<TagType>[];
+  footer?: ReactNode;
+  extra?: ReactNode;
   avatar?: AvatarProps;
-  onBack?: (e?: React.MouseEvent<HTMLElement>) => void;
+  onBack?: (e?: MouseEvent<HTMLElement>) => void;
   className?: string;
   contentWidth?: ContentWidth;
   layout?: string;
   ghost?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const renderBack = (
   prefixCls: string,
   hashId: string,
-  backIcon?: React.ReactNode,
-  onBack?: (e?: React.MouseEvent<HTMLElement>) => void,
+  backIcon?: ReactNode,
+  onBack?: (e?: MouseEvent<HTMLElement>) => void,
 ) => {
   if (!backIcon || !onBack) {
     return null;
@@ -127,23 +128,23 @@ const renderTitle = (
   );
 };
 
-const renderFooter = (prefixCls: string, footer: React.ReactNode, hashId: string) => {
+const renderFooter = (prefixCls: string, footer: ReactNode, hashId: string) => {
   if (footer) {
     return <div className={clsx(`${prefixCls}-footer`, hashId)}>{footer}</div>;
   }
   return null;
 };
 
-const renderChildren = (prefixCls: string, children: React.ReactNode, hashId: string) => (
+const renderChildren = (prefixCls: string, children: ReactNode, hashId: string) => (
   <div className={clsx(`${prefixCls}-content`, hashId)}>{children}</div>
 );
 
-const PageHeader: React.FC<PageHeaderProps> = (props) => {
-  const [compact, updateCompact] = React.useState<boolean>(false);
+const PageHeader: FC<PageHeaderProps> = (props) => {
+  const [compact, updateCompact] = useState<boolean>(false);
 
   const onResize = ({ width }: { width: number }) => updateCompact(width < 768);
 
-  const { getPrefixCls, direction } = React.useContext(ConfigProvider.ConfigContext);
+  const { getPrefixCls, direction } = useContext(ConfigProvider.ConfigContext);
 
   const {
     prefixCls: customizePrefixCls,

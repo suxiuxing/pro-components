@@ -1,8 +1,8 @@
 import { omit } from '@rc-component/util';
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import type { ReactNode } from 'react';
-import React, { useContext, useEffect, useMemo } from 'react';
+import type { CSSProperties, FC, JSX, ReactNode } from 'react';
+import { Fragment, useContext, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 
 import type { GenerateStyle } from '../../../provider';
@@ -14,20 +14,20 @@ import { useStyle } from './style';
 import { useStylish } from './style/stylish';
 
 export type FooterToolbarProps = {
-  extra?: React.ReactNode;
-  style?: React.CSSProperties;
+  extra?: ReactNode;
+  style?: CSSProperties;
   className?: string;
   renderContent?: (
     props: FooterToolbarProps & RouteContextType & { leftWidth?: string },
-    dom: React.JSX.Element,
+    dom: JSX.Element,
   ) => ReactNode;
   prefixCls?: string;
   stylish?: GenerateStyle<FooterToolBarToken>;
-  children?: React.ReactNode;
+  children?: ReactNode;
   portalDom?: boolean;
 };
 
-const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
+const FooterToolbar: FC<FooterToolbarProps> = (props) => {
   const {
     children,
     className,
@@ -108,7 +108,7 @@ const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {
       ? renderDom
       : createPortal(renderDom, containerDom as Element, baseClassName);
 
-  return stylish.wrapSSR(wrapSSR(<React.Fragment key={baseClassName}>{ssrDom}</React.Fragment>));
+  return stylish.wrapSSR(wrapSSR(<Fragment key={baseClassName}>{ssrDom}</Fragment>));
 };
 
 export { FooterToolbar };

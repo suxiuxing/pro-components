@@ -1,6 +1,7 @@
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Form } from 'antd';
-import React, { useState } from 'react';
+import type { FC, Key, ReactNode } from 'react';
+import { useState } from 'react';
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import type { NewLineConfig, RecordKey } from '../../src/utils/useEditableArray';
@@ -33,7 +34,7 @@ describe('useEditableMap', () => {
   /**
    * 测试组件：用于测试 useEditableMap
    */
-  const TestComponent: React.FC<{
+  const TestComponent: FC<{
     onCancel?: (
       key: RecordKey,
       record: TestRecordType & { index?: number },
@@ -46,10 +47,10 @@ describe('useEditableMap', () => {
       originRow: TestRecordType & { index?: number },
     ) => Promise<any | void>;
     onValuesChange?: (record: TestRecordType, dataSource: TestRecordType[]) => void;
-    onChange?: (editableKeys: React.Key[], editableRows: TestRecordType | TestRecordType[]) => void;
-    editableKeys?: React.Key[];
+    onChange?: (editableKeys: Key[], editableRows: TestRecordType | TestRecordType[]) => void;
+    editableKeys?: Key[];
     type?: 'single' | 'multiple';
-    onlyOneLineEditorAlertMessage?: React.ReactNode;
+    onlyOneLineEditorAlertMessage?: ReactNode;
   }> = ({
     onCancel,
     onSave,
@@ -360,7 +361,7 @@ describe('useEditableMap', () => {
   });
 
   it('📝 应该正确处理 onChange 回调', async () => {
-    const onChange = vi.fn((keys: React.Key[], editableRows: TestRecordType | TestRecordType[]) => {
+    const onChange = vi.fn((keys: Key[], editableRows: TestRecordType | TestRecordType[]) => {
       expect(Array.isArray(keys)).toBe(true);
       expect(editableRows).toBeDefined();
     });
@@ -377,8 +378,8 @@ describe('useEditableMap', () => {
   });
 
   it('📝 应该正确处理受控的 editableKeys', async () => {
-    const ControlledComponent: React.FC = () => {
-      const [editableKeys, setEditableKeys] = useState<React.Key[]>([]);
+    const ControlledComponent: FC = () => {
+      const [editableKeys, setEditableKeys] = useState<Key[]>([]);
 
       return (
         <TestComponent
@@ -462,7 +463,7 @@ describe('useEditableMap', () => {
 
     // actionRender 返回的是 React 元素数组：[save, delete, cancel]
     // 我们需要在 Form 上下文中渲染这些元素并点击保存按钮
-    const ActionButtons: React.FC = () => {
+    const ActionButtons: FC = () => {
       return (
         <Form>
           <>{actionRender}</>
@@ -515,7 +516,7 @@ describe('useEditableMap', () => {
 
     // actionRender 返回的是 React 元素数组：[save, delete, cancel]
     // 我们需要在 Form 上下文中渲染这些元素并点击取消按钮
-    const ActionButtons: React.FC = () => {
+    const ActionButtons: FC = () => {
       return (
         <Form>
           <>{actionRender}</>
@@ -598,7 +599,7 @@ describe('useEditableMap', () => {
   });
 
   it('📝 应该正确处理空数据源', () => {
-    const EmptyComponent: React.FC = () => {
+    const EmptyComponent: FC = () => {
       const [dataSource, setDataSource] = useState<TestRecordType>({} as TestRecordType);
 
       const editableUtils = useEditableMap<TestRecordType>({

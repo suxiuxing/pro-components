@@ -1,12 +1,12 @@
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Button, Result, Switch } from 'antd';
 import type { ErrorInfo } from 'react';
-import React, { useState } from 'react';
+import { Component, useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProTable } from '@xxlabs/pro-components';
 
-class CustomBoundary extends React.Component<
+class CustomBoundary extends Component<
   Record<string, any>,
   { hasError: boolean; errorInfo: string }
 > {

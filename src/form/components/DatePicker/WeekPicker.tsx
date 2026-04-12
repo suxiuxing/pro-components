@@ -1,5 +1,5 @@
 import type { WeekPickerProps } from 'antd/es/date-picker';
-import React from 'react';
+import type { FC, Ref } from 'react';
 
 import type { ProFormFieldItemProps } from '../../typing';
 import { BaseDatePicker } from './BaseDatePicker';
@@ -10,9 +10,12 @@ const valueType = 'dateWeek' as const;
  *
  * @param
  */
-const ProFormDatePickerWeek: React.FC<
-  ProFormFieldItemProps<WeekPickerProps> & { ref?: React.Ref<any> }
-> = ({ proFieldProps, fieldProps, ref, ...rest }) => {
+const ProFormDatePickerWeek: FC<ProFormFieldItemProps<WeekPickerProps> & { ref?: Ref<any> }> = ({
+  proFieldProps,
+  fieldProps,
+  ref,
+  ...rest
+}) => {
   return (
     <BaseDatePicker
       valueType={valueType}

@@ -1,7 +1,7 @@
 import { ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import type { CSSProperties } from 'react';
-import React, { useContext } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { useContext } from 'react';
 
 import { RouteContext } from '../../context/RouteContext';
 import type { PureSettings } from '../../defaultSettings';
@@ -9,7 +9,7 @@ import { useStyle } from './style';
 
 type GridContentProps = {
   contentWidth?: PureSettings['contentWidth'];
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   style?: CSSProperties;
   prefixCls?: string;
@@ -21,7 +21,7 @@ type GridContentProps = {
  *
  * @param props
  */
-const GridContent: React.FC<GridContentProps> = (props) => {
+const GridContent: FC<GridContentProps> = (props) => {
   const value = useContext(RouteContext);
   const { children, contentWidth: propsContentWidth, className: propsClassName, style } = props;
 

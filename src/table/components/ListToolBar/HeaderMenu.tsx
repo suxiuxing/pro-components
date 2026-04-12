@@ -2,27 +2,28 @@ import { DownOutlined } from '@ant-design/icons';
 import { useControlledState } from '@rc-component/util';
 import { Dropdown, Space, Tabs } from 'antd';
 import { clsx } from 'clsx';
-import React, { useCallback, useContext } from 'react';
+import type { FC, Key, ReactNode } from 'react';
+import { useCallback, useContext } from 'react';
 
 import { ProProvider } from '../../../provider';
 
 export type ListToolBarMenuItem = {
-  key: React.Key;
-  label: React.ReactNode;
+  key: Key;
+  label: ReactNode;
   disabled?: boolean;
 };
 
 export type ListToolBarHeaderMenuProps = {
   type?: 'inline' | 'dropdown' | 'tab';
-  activeKey?: React.Key;
-  defaultActiveKey?: React.Key;
+  activeKey?: Key;
+  defaultActiveKey?: Key;
   items?: ListToolBarMenuItem[];
-  onChange?: (activeKey?: React.Key) => void;
+  onChange?: (activeKey?: Key) => void;
   prefixCls?: string;
   hashId?: string;
 };
 
-const HeaderMenu: React.FC<ListToolBarHeaderMenuProps> = (props) => {
+const HeaderMenu: FC<ListToolBarHeaderMenuProps> = (props) => {
   const { hashId: contextHashId } = useContext(ProProvider);
   const hashId = props.hashId ?? contextHashId;
   const {
@@ -33,16 +34,15 @@ const HeaderMenu: React.FC<ListToolBarHeaderMenuProps> = (props) => {
     defaultActiveKey,
   } = props;
 
-  const [activeKey, setActiveKeyInner] = useControlledState<React.Key>(
-    propActiveKey || (defaultActiveKey as React.Key),
+  const [activeKey, setActiveKeyInner] = useControlledState<Key>(
+    propActiveKey || (defaultActiveKey as Key),
     propActiveKey,
   );
   const setActiveKey = useCallback(
-    (updater: React.Key | ((prev: React.Key) => React.Key)) => {
+    (updater: Key | ((prev: Key) => Key)) => {
       setActiveKeyInner((prev) => {
-        const next =
-          typeof updater === 'function' ? (updater as (p: React.Key) => React.Key)(prev) : updater;
-        (props.onChange as ((key?: React.Key, prev?: React.Key) => void) | undefined)?.(next, prev);
+        const next = typeof updater === 'function' ? (updater as (p: Key) => Key)(prev) : updater;
+        (props.onChange as ((key?: Key, prev?: Key) => void) | undefined)?.(next, prev);
         return next;
       });
     },

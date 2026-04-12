@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { InputNumber } from 'antd';
-import React from 'react';
+import { createRef } from 'react';
 import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import type { ActionType, EditableFormInstance, ProColumns } from '@xxlabs/pro-components';
@@ -209,7 +209,7 @@ describe('EditorProTable', () => {
 
   it('📝 EditableProTable addEditRecord is null will throw Error', async () => {
     const spy = vi.spyOn(global.console, 'warn');
-    const actionRef = React.createRef<ActionType>();
+    const actionRef = createRef<ActionType>();
     const wrapper = render(
       <EditableProTable<DataSourceType>
         rowKey="id"
@@ -238,7 +238,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable saveEditable should save and quit editing', async () => {
-    const actionRef = React.createRef<ActionType>();
+    const actionRef = createRef<ActionType>();
     let changedDataSource: DataSourceType[] = [];
 
     const onChange = vi.fn((value) => {
@@ -642,7 +642,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable support editableFormRef', async () => {
-    const editorRef = React.createRef<EditableFormInstance<DataSourceType>>();
+    const editorRef = createRef<EditableFormInstance<DataSourceType>>();
     const wrapper = render(
       <EditableProTable<DataSourceType>
         editableFormRef={editorRef}
@@ -676,7 +676,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable editableFormRef need rowIndex', async () => {
-    const editorRef = React.createRef<EditableFormInstance<DataSourceType>>();
+    const editorRef = createRef<EditableFormInstance<DataSourceType>>();
     const wrapper = render(
       <EditableProTable<DataSourceType>
         editableFormRef={editorRef}
@@ -710,7 +710,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable use name support editableFormRef', async () => {
-    const editorRef = React.createRef<EditableFormInstance<DataSourceType>>();
+    const editorRef = createRef<EditableFormInstance<DataSourceType>>();
     const wrapper = render(
       <ProForm
         initialValues={{
@@ -1702,7 +1702,7 @@ describe('EditorProTable', () => {
   it('📝 EditableProTable onSave can prevent save by returning false', async () => {
     const onSave = vi.fn(async () => false);
     const onChange = vi.fn();
-    const actionRef = React.createRef<ActionType>();
+    const actionRef = createRef<ActionType>();
     const wrapper = render(
       <ProForm
         initialValues={{
@@ -2222,7 +2222,7 @@ describe('EditorProTable', () => {
 
   it('📝 EditableProTable support batch save with multiple rows', async () => {
     const onSave = vi.fn();
-    const actionRef = React.createRef<ActionType>();
+    const actionRef = createRef<ActionType>();
     const wrapper = render(
       <ProForm
         initialValues={{
@@ -2353,7 +2353,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable support startEditable via actionRef', async () => {
-    const actionRef = React.createRef<ActionType>();
+    const actionRef = createRef<ActionType>();
     const wrapper = render(
       <EditableProTable<DataSourceType>
         rowKey="id"
@@ -2397,7 +2397,7 @@ describe('EditorProTable', () => {
   });
 
   it('📝 EditableProTable support getRowsData via editableFormRef', async () => {
-    const editorRef = React.createRef<EditableFormInstance<DataSourceType>>();
+    const editorRef = createRef<EditableFormInstance<DataSourceType>>();
     const wrapper = render(
       <EditableProTable<DataSourceType>
         editableFormRef={editorRef}

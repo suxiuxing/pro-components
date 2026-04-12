@@ -2,7 +2,8 @@ import { UploadOutlined } from '@ant-design/icons';
 import type { ButtonProps, GetProp, ImageProps, UploadFile, UploadProps } from 'antd';
 import { Button, Image, Upload } from 'antd';
 import type { UploadRef } from 'antd/es/upload/Upload';
-import React, { useContext, useMemo, useState } from 'react';
+import type { FC, ReactNode, Ref } from 'react';
+import { useContext, useMemo, useState } from 'react';
 
 import { EditOrReadOnlyContext } from '../../BaseForm/EditOrReadOnlyContext';
 import type { ProFormFieldItemProps } from '../../typing';
@@ -20,7 +21,7 @@ export type ProFormUploadButtonProps = ProFormFieldItemProps<UploadProps, Upload
    *
    * @example 改成笑脸图标  icon={<SmileOutlined/>}
    */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /**
    * @name 按钮文字
    * @default 单击上传
@@ -28,7 +29,7 @@ export type ProFormUploadButtonProps = ProFormFieldItemProps<UploadProps, Upload
    * @example  title="上传"
    * @example  title={<div>上传</div>}
    */
-  title?: React.ReactNode;
+  title?: ReactNode;
   /**
    * @name 最大的文件数量，到达数量之后上传按钮会失效
    *
@@ -73,7 +74,7 @@ const getBase64 = (file: FileType): Promise<string> =>
  *
  * @param
  */
-const BaseProFormUploadButton: React.FC<ProFormUploadButtonProps> = ({
+const BaseProFormUploadButton: FC<ProFormUploadButtonProps> = ({
   fieldProps,
   action,
   accept,
@@ -87,7 +88,7 @@ const BaseProFormUploadButton: React.FC<ProFormUploadButtonProps> = ({
   imageProps,
   ref,
   ...restProps
-}: ProFormUploadButtonProps & { ref?: React.Ref<UploadRef> }) => {
+}: ProFormUploadButtonProps & { ref?: Ref<UploadRef> }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const value = useMemo(() => {

@@ -1,7 +1,7 @@
 import type { TreeSelectProps } from 'antd';
 import { Spin, TreeSelect } from 'antd';
 import { clsx } from 'clsx';
-import React from 'react';
+import type { ComponentProps, Dispatch, JSX, ReactNode, RefObject, SetStateAction } from 'react';
 
 import type { IntlType, ProFieldFCRenderProps } from '../../../provider';
 import { FieldLabel } from '../../../utils';
@@ -12,18 +12,14 @@ type TreeSelectShowSearchObject = Exclude<TreeSelectProps['showSearch'], boolean
 export interface FieldTreeSelectEditProps {
   text: string;
   mode: 'edit';
-  formItemRender?: (
-    text: any,
-    props: ProFieldFCRenderProps,
-    dom: React.JSX.Element,
-  ) => React.JSX.Element;
+  formItemRender?: (text: any, props: ProFieldFCRenderProps, dom: JSX.Element) => JSX.Element;
   light?: boolean;
-  label?: React.ReactNode;
-  variant?: React.ComponentProps<typeof FieldLabel>['variant'];
+  label?: ReactNode;
+  variant?: ComponentProps<typeof FieldLabel>['variant'];
   fieldProps: TreeSelectFieldProps;
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  treeSelectRef: React.RefObject<any>;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  treeSelectRef: RefObject<any>;
   intl: IntlType;
   loading: boolean;
   options: any[];
@@ -75,7 +71,7 @@ export function FieldTreeSelectEdit({
 }: FieldTreeSelectEditProps) {
   const valuesLength = Array.isArray(fieldProps?.value) ? fieldProps?.value?.length : 0;
 
-  let dom: React.ReactNode = (
+  let dom: ReactNode = (
     <Spin spinning={loading}>
       <TreeSelect<string | undefined>
         open={open}
@@ -145,7 +141,7 @@ export function FieldTreeSelectEdit({
     dom = formItemRender(
       text,
       { mode, ...(fieldProps as any), options, loading } as ProFieldFCRenderProps,
-      dom as React.JSX.Element,
+      dom as JSX.Element,
     );
   }
 

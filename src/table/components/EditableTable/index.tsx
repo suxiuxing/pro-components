@@ -4,7 +4,10 @@ import type { ButtonProps, FormItemProps } from 'antd';
 import { Button, Form } from 'antd';
 import type { NamePath } from 'antd/es/form/interface';
 import type { GetRowKey } from 'antd/es/table/interface';
-import React, {
+import type { JSX, Key, ReactNode, Ref, RefObject } from 'react';
+import {
+  cloneElement,
+  createContext,
   useCallback,
   useContext,
   useEffect,
@@ -66,7 +69,7 @@ export type EditableFormInstance<T = any> = ProFormInstance<T> & {
 };
 
 type CreatorButtonResult = {
-  creatorButtonDom: React.ReactNode | false;
+  creatorButtonDom: ReactNode | false;
   buttonRenderProps: Record<string, any>;
 };
 
@@ -81,7 +84,7 @@ export type RecordCreatorProps<DataSourceType> = {
    */
   newRecordType?: 'dataSource' | 'cache';
   /** 要增加到哪个节点下，一般用于多重嵌套表格 */
-  parentKey?: React.Key | ((index: number, dataSource: DataSourceType[]) => React.Key);
+  parentKey?: Key | ((index: number, dataSource: DataSourceType[]) => Key);
 };
 
 export type EditableProTableProps<T, U extends ParamsType, ValueType = 'text'> = Omit<
@@ -97,13 +100,13 @@ export type EditableProTableProps<T, U extends ParamsType, ValueType = 'text'> =
   /**
    *@name 可编辑表格，列配置的form，可以操作表格里面的数据
    */
-  editableFormRef?: React.Ref<EditableFormInstance<T> | undefined>;
+  editableFormRef?: Ref<EditableFormInstance<T> | undefined>;
 
   /** @name 新建按钮的设置 */
   recordCreatorProps?:
     | (RecordCreatorProps<T> &
         ButtonProps & {
-          creatorButtonText?: React.ReactNode;
+          creatorButtonText?: ReactNode;
         })
     | false;
   /** 最大行数 */
@@ -116,18 +119,18 @@ export type EditableProTableProps<T, U extends ParamsType, ValueType = 'text'> =
   formItemProps?: Omit<FormItemProps, 'children' | 'name'>;
 };
 
-const EditableTableActionContext = React.createContext<
-  React.RefObject<ActionType | undefined> | undefined
->(undefined);
+const EditableTableActionContext = createContext<RefObject<ActionType | undefined> | undefined>(
+  undefined,
+);
 
 /** 可编辑表格的按钮 */
 function RecordCreator<T = Record<string, any>>(
-  props: RecordCreatorProps<T> & { children: React.JSX.Element },
+  props: RecordCreatorProps<T> & { children: JSX.Element },
 ) {
   const { children, record, position, newRecordType, parentKey } = props;
   const actionRef = useContext(EditableTableActionContext);
 
-  return React.cloneElement(children, {
+  return cloneElement(children, {
     ...children.props,
     onClick: async (e: any) => {
       // 如果返回了false，接触掉默认行为
@@ -138,7 +141,7 @@ function RecordCreator<T = Record<string, any>>(
         actionRef.current.addEditRecord(record as any, {
           position,
           newRecordType,
-          parentKey: parentKey as React.Key,
+          parentKey: parentKey as Key,
         });
       }
     },
@@ -169,7 +172,7 @@ function createButtonDom<DataType>(
   >,
   value: readonly DataType[] | undefined,
   intl: ReturnType<typeof useIntl>,
-): React.ReactNode {
+): ReactNode {
   const {
     record,
     position,
@@ -207,14 +210,11 @@ function createButtonDom<DataType>(
 /**
  * 创建顶部按钮的渲染属性
  */
-function createTopButtonProps(
-  creatorButtonDom: React.ReactNode,
-  columnsLength: number | undefined,
-) {
+function createTopButtonProps(creatorButtonDom: ReactNode, columnsLength: number | undefined) {
   return {
     components: {
       header: {
-        wrapper: ({ className, children }: { className: string; children: React.ReactNode }) => (
+        wrapper: ({ className, children }: { className: string; children: ReactNode }) => (
           <thead className={className}>
             {children}
             <tr style={{ position: 'relative' }}>
@@ -242,7 +242,7 @@ function createTopButtonProps(
  * 创建底部按钮的渲染属性
  */
 function createBottomButtonProps(
-  creatorButtonDom: React.ReactNode,
+  creatorButtonDom: ReactNode,
   tableViewRender: ProTableProps<any, any>['tableViewRender'],
 ) {
   return {
@@ -370,7 +370,7 @@ function EditableTable<
     [onChangeFn],
   );
 
-  const getRowKey = React.useMemo<GetRowKey<DataType>>((): GetRowKey<DataType> => {
+  const getRowKey = useMemo<GetRowKey<DataType>>((): GetRowKey<DataType> => {
     if (typeof rowKey === 'function') {
       return rowKey;
     }
@@ -380,11 +380,9 @@ function EditableTable<
   /**
    * 创建编辑 keys 的 Set，用于快速查找
    */
-  const createEditingKeysSet = useRefFunction(
-    (editingKeys: React.Key[] | undefined): Set<string> => {
-      return new Set((editingKeys || []).map((key) => String(key)));
-    },
-  );
+  const createEditingKeysSet = useRefFunction((editingKeys: Key[] | undefined): Set<string> => {
+    return new Set((editingKeys || []).map((key) => String(key)));
+  });
 
   /**
    * 同步表单值，排除正在编辑的行

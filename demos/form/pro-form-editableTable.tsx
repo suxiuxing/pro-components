@@ -1,5 +1,6 @@
 import { Input, message, Space } from 'antd';
-import React, { useState } from 'react';
+import type { Key } from 'react';
+import { useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { EditableProTable, ProForm, ProFormText } from '@xxlabs/pro-components';
@@ -15,7 +16,7 @@ const waitTime = (time: number = 100) => {
 };
 
 type DataSourceType = {
-  id: React.Key;
+  id: Key;
   title?: string;
   decs?: string;
   state?: string;
@@ -84,7 +85,7 @@ const columns: ProColumns<DataSourceType>[] = [
 ];
 
 const Demo = () => {
-  const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() =>
+  const [editableKeys, setEditableRowKeys] = useState<Key[]>(() =>
     defaultData.map((item) => item.id),
   );
   return (

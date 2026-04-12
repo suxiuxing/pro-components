@@ -5,7 +5,17 @@
 import { ConfigProvider, Empty, Grid, Pagination, Spin } from 'antd';
 import type { PaginationConfig } from 'antd/es/pagination';
 import { clsx } from 'clsx';
-import React, { useContext, useMemo } from 'react';
+import type {
+  CSSProperties,
+  FC,
+  HTMLAttributes,
+  JSX,
+  Key,
+  ReactElement,
+  ReactNode,
+  Ref,
+} from 'react';
+import { createContext, Fragment, useContext, useMemo, useState } from 'react';
 
 export type ColumnCount = number;
 export type ColumnType = 'gutter' | 'column' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
@@ -22,49 +32,49 @@ export interface ListGridType {
 export type ListSize = 'small' | 'default' | 'large';
 export type ListItemLayout = 'horizontal' | 'vertical';
 export interface ListLocale {
-  emptyText?: React.ReactNode;
+  emptyText?: ReactNode;
 }
 export interface ListProps<T = any> {
   variant?: 'outlined' | 'borderless' | 'filled';
   className?: string;
   rootClassName?: string;
-  style?: React.CSSProperties;
-  children?: React.ReactNode;
+  style?: CSSProperties;
+  children?: ReactNode;
   dataSource?: T[];
-  extra?: React.ReactNode;
+  extra?: ReactNode;
   grid?: ListGridType;
   id?: string;
   itemLayout?: ListItemLayout;
   loading?: boolean | { spinning?: boolean };
-  loadMore?: React.ReactNode;
+  loadMore?: ReactNode;
   pagination?: PaginationConfig | false;
   prefixCls?: string;
-  rowKey?: ((item: T) => React.Key) | keyof T;
-  renderItem?: (item: T, index: number, defaultDom: React.JSX.Element | null) => React.ReactNode;
+  rowKey?: ((item: T) => Key) | keyof T;
+  renderItem?: (item: T, index: number, defaultDom: JSX.Element | null) => ReactNode;
   size?: ListSize;
   split?: boolean;
-  header?: React.ReactNode;
-  footer?: React.ReactNode;
+  header?: ReactNode;
+  footer?: ReactNode;
   locale?: ListLocale;
   hashId?: string;
 }
 
-export const ProListContext = React.createContext<{
+export const ProListContext = createContext<{
   grid?: ListGridType;
   itemLayout?: ListItemLayout;
 }>({});
 
 export interface ListItemMetaProps {
-  avatar?: React.ReactNode;
+  avatar?: ReactNode;
   className?: string;
-  children?: React.ReactNode;
-  description?: React.ReactNode;
+  children?: ReactNode;
+  description?: ReactNode;
   prefixCls?: string;
-  style?: React.CSSProperties;
-  title?: React.ReactNode;
+  style?: CSSProperties;
+  title?: ReactNode;
 }
 
-export const ProListItemMeta: React.FC<ListItemMetaProps> = ({
+export const ProListItemMeta: FC<ListItemMetaProps> = ({
   prefixCls: customizePrefixCls,
   className,
   avatar,
@@ -93,19 +103,16 @@ export const ProListItemMeta: React.FC<ListItemMetaProps> = ({
   );
 };
 
-export interface ListItemProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ListItemProps extends HTMLAttributes<HTMLDivElement> {
   className?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   prefixCls?: string;
-  style?: React.CSSProperties;
-  extra?: React.ReactNode;
-  actions?: React.ReactNode[];
+  style?: CSSProperties;
+  extra?: ReactNode;
+  actions?: ReactNode[];
 }
 
-const InternalProListItem = ({
-  ref,
-  ...props
-}: ListItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
+const InternalProListItem = ({ ref, ...props }: ListItemProps & { ref?: Ref<HTMLDivElement> }) => {
   const { prefixCls: customizePrefixCls, children, actions, extra, className, ...rest } = props;
   const { grid, itemLayout } = useContext(ProListContext);
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
@@ -155,7 +162,7 @@ const InternalProListItem = ({
   const itemChildren = (
     <div
       ref={ref}
-      {...(rest as React.HTMLAttributes<HTMLElement>)}
+      {...(rest as HTMLAttributes<HTMLElement>)}
       className={clsx(`${prefixCls}-item`, className)}
     >
       {mainContent}
@@ -168,7 +175,7 @@ const InternalProListItem = ({
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>{itemChildren}</div>
     );
   }
-  return itemChildren as React.ReactElement;
+  return itemChildren as ReactElement;
 };
 InternalProListItem.displayName = 'ProListItem';
 
@@ -177,15 +184,15 @@ export const ProListItem = InternalProListItem as typeof InternalProListItem & {
 };
 ProListItem.Meta = ProListItemMeta;
 
-function getRowKey<T>(item: T, index: number, rowKey?: ListProps<T>['rowKey']): React.Key {
+function getRowKey<T>(item: T, index: number, rowKey?: ListProps<T>['rowKey']): Key {
   if (typeof rowKey === 'function') {
     return rowKey(item);
   }
   if (rowKey && typeof item === 'object' && item !== null && rowKey in item) {
-    return (item as Record<string, unknown>)[rowKey as string] as React.Key;
+    return (item as Record<string, unknown>)[rowKey as string] as Key;
   }
   if (typeof item === 'object' && item !== null && 'key' in item) {
-    return (item as { key?: React.Key }).key as React.Key;
+    return (item as { key?: Key }).key as Key;
   }
   return `list-item-${index}`;
 }
@@ -206,7 +213,7 @@ const DEFAULT_SCREENS = {
 } as const;
 
 const ProListContainerInner = function ProListContainerInner(
-  props: ListProps & { ref?: React.Ref<HTMLDivElement> },
+  props: ListProps & { ref?: Ref<HTMLDivElement> },
 ) {
   const { ref } = props;
   const {
@@ -237,10 +244,8 @@ const ProListContainerInner = function ProListContainerInner(
   const prefixCls = getPrefixCls('pro-list', customizePrefixCls);
 
   const paginationObj = pagination && typeof pagination === 'object' ? pagination : {};
-  const [paginationCurrent, setPaginationCurrent] = React.useState(
-    paginationObj.defaultCurrent ?? 1,
-  );
-  const [paginationSize, setPaginationSize] = React.useState(paginationObj.defaultPageSize ?? 10);
+  const [paginationCurrent, setPaginationCurrent] = useState(paginationObj.defaultCurrent ?? 1);
+  const [paginationSize, setPaginationSize] = useState(paginationObj.defaultPageSize ?? 10);
 
   const sizeCls = customizeSize === 'large' ? 'lg' : customizeSize === 'small' ? 'sm' : '';
   const isSomethingAfterLastItem = !!(loadMore || pagination || footer);
@@ -275,7 +280,7 @@ const ProListContainerInner = function ProListContainerInner(
   const renderInternalItem = (item: any, index: number) => {
     if (!renderItem) return null;
     const key = getRowKey(item, index, rowKey);
-    return <React.Fragment key={key}>{renderItem(item, index, null)}</React.Fragment>;
+    return <Fragment key={key}>{renderItem(item, index, null)}</Fragment>;
   };
 
   const rawScreens = Grid.useBreakpoint();
@@ -322,7 +327,7 @@ const ProListContainerInner = function ProListContainerInner(
   const gridContainerStyle = useMemo(() => {
     if (!grid) return undefined;
 
-    const style: React.CSSProperties = {
+    const style: CSSProperties = {
       display: 'flex',
       flexWrap: 'wrap',
     };
@@ -350,7 +355,7 @@ const ProListContainerInner = function ProListContainerInner(
     const { gutter } = grid;
     const column = getResponsiveColumn;
 
-    const style: React.CSSProperties = {
+    const style: CSSProperties = {
       display: 'flex',
     };
 
@@ -375,7 +380,7 @@ const ProListContainerInner = function ProListContainerInner(
   }, [grid?.gutter, getResponsiveColumn]);
 
   const { renderEmpty } = useContext(ConfigProvider.ConfigContext);
-  let childrenContent: React.ReactNode;
+  let childrenContent: ReactNode;
   const isLoading = typeof loading === 'boolean' ? loading : !!loading?.spinning;
 
   if (splitDataSource.length > 0) {
@@ -471,9 +476,8 @@ const ProListContainerInner = function ProListContainerInner(
       </div>
     </ProListContext.Provider>
   );
-} as <T>(props: ListProps<T> & { ref?: React.Ref<HTMLDivElement> }) => React.ReactElement;
+} as <T>(props: ListProps<T> & { ref?: Ref<HTMLDivElement> }) => ReactElement;
 
-(ProListContainerInner as React.FC<unknown> & { displayName?: string }).displayName =
-  'ProListContainer';
+(ProListContainerInner as FC<unknown> & { displayName?: string }).displayName = 'ProListContainer';
 
 export const ProListContainer = ProListContainerInner;

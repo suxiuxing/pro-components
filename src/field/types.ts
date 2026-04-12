@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode, Ref, RefObject } from 'react';
 
 import type { BaseProFieldFC, ProFieldFCRenderProps, ProRenderFieldPropsType } from '../provider';
 import type { ProFieldRequestData, ProFieldTextType, ProFieldValueTypeInput } from '../utils';
@@ -7,14 +7,14 @@ export type ProFieldEmptyText = string | false;
 
 /** 默认的 Field 需要实现的功能 */
 export type ProFieldFC<T = {}> = (
-  props: BaseProFieldFC & ProRenderFieldPropsType & T & { ref?: React.Ref<any> },
-) => React.ReactNode;
+  props: BaseProFieldFC & ProRenderFieldPropsType & T & { ref?: Ref<any> },
+) => ReactNode;
 
 /** 轻量筛选的 field 属性 */
 export type ProFieldLightProps = {
-  lightLabel?: React.RefObject<{
-    labelRef: React.RefObject<HTMLElement>;
-    clearRef: React.RefObject<HTMLElement>;
+  lightLabel?: RefObject<{
+    labelRef: RefObject<HTMLElement>;
+    clearRef: RefObject<HTMLElement>;
   }>;
   labelTrigger?: boolean;
 };
@@ -27,7 +27,7 @@ export type ProFieldRenderProps = Omit<ProFieldFCRenderProps, 'text' | 'placehol
   ProRenderFieldPropsType & {
     /** 从服务器读取选项 */
     request?: ProFieldRequestData;
-    emptyText?: React.ReactNode;
+    emptyText?: ReactNode;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     [key: string]: any;

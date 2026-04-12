@@ -4,7 +4,8 @@ import type { MenuProps } from 'antd';
 import { Menu, Skeleton, Tooltip } from 'antd';
 import type { ItemType } from 'antd/es/menu/interface';
 import { clsx } from 'clsx';
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import type { CSSProperties, FC, JSX, ReactNode } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { ProTokenType } from '../../../provider';
 import { ProProvider } from '../../../provider';
@@ -20,8 +21,8 @@ export type MenuMode = 'vertical' | 'vertical-left' | 'vertical-right' | 'horizo
 
 const MenuItemTooltip = (props: {
   collapsed?: boolean;
-  children: React.ReactNode;
-  title?: React.ReactNode;
+  children: ReactNode;
+  title?: ReactNode;
   disable?: boolean;
 }) => {
   const [collapsed, setCollapsed] = useState(props.collapsed);
@@ -34,7 +35,7 @@ const MenuItemTooltip = (props: {
   }, [props.collapsed]);
 
   if (props.disable) {
-    return props.children as React.JSX.Element;
+    return props.children as JSX.Element;
   }
 
   return (
@@ -64,7 +65,7 @@ export type BaseMenuProps = {
   iconPrefixes?: string;
   /** 要给菜单的props, 参考antd-menu的属性。https://ant.design/components/menu-cn/ */
   menuProps?: MenuProps;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   formatMessage?: (message: MessageDescriptor) => string;
 
   /**
@@ -79,9 +80,9 @@ export type BaseMenuProps = {
       item: MenuDataItem & {
         isUrl: boolean;
       },
-      defaultDom: React.ReactNode,
+      defaultDom: ReactNode,
       menuProps: BaseMenuProps,
-    ) => React.ReactNode
+    ) => ReactNode
   >;
 
   /**
@@ -97,16 +98,16 @@ export type BaseMenuProps = {
         isUrl: boolean;
         onClick: () => void;
       },
-      defaultDom: React.ReactNode,
+      defaultDom: ReactNode,
       menuProps: BaseMenuProps & Partial<PrivateSiderMenuProps>,
-    ) => React.ReactNode
+    ) => ReactNode
   >;
 
   /**
    * 修改 name，如果想做个简单的国际化，可以使用这个方法
    */
   menuTextRender?: WithFalse<
-    (item: MenuDataItem, defaultText: React.ReactNode, menuProps: BaseMenuProps) => React.ReactNode
+    (item: MenuDataItem, defaultText: ReactNode, menuProps: BaseMenuProps) => ReactNode
   >;
 
   /**
@@ -130,10 +131,10 @@ let IconFont = createFromIconfontCN({
 //   icon: '/favicon.png',
 //   icon: <Icon type="setting" />,
 const getIcon = (
-  icon: string | React.ReactNode,
+  icon: string | ReactNode,
   iconPrefixes: string = 'icon-',
   className: string,
-): React.ReactNode => {
+): ReactNode => {
   if (typeof icon === 'string' && icon !== '') {
     if (isUrl(icon) || isImg(icon)) {
       return (
@@ -153,7 +154,7 @@ const getIcon = (
   return icon;
 };
 
-const getMenuTitleSymbol = (title: React.ReactNode) => {
+const getMenuTitleSymbol = (title: ReactNode) => {
   if (title && typeof title === 'string') {
     const symbol = title.substring(0, 1).toUpperCase();
     return symbol;
@@ -474,7 +475,7 @@ const getOpenKeysProps = (
   return openKeysProps;
 };
 
-const BaseMenu: React.FC<BaseMenuProps & PrivateSiderMenuProps> = (props) => {
+const BaseMenu: FC<BaseMenuProps & PrivateSiderMenuProps> = (props) => {
   const {
     mode,
     className,

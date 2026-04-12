@@ -1,6 +1,6 @@
 import type { SliderSingleProps } from 'antd';
 import type { SliderBaseProps, SliderRangeProps } from 'antd/es/slider';
-import React from 'react';
+import type { Ref } from 'react';
 
 import { FieldSlider } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -34,7 +34,7 @@ const ProFormSlider = ({
   range,
   ref,
   ...rest
-}: ProFormSliderProps & { ref?: React.Ref<any> }) => {
+}: ProFormSliderProps & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{

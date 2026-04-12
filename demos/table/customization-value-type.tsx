@@ -1,6 +1,7 @@
 import type { InputRef } from 'antd';
 import { Input, Space, Tag } from 'antd';
-import React, { useContext, useRef, useState } from 'react';
+import type { ChangeEvent, FC } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { ProProvider, ProTable } from '@xxlabs/pro-components';
@@ -31,7 +32,7 @@ const tableListDataSource: TableListItem[] = Array.from({ length: 5 }, (_, i) =>
   ],
 }));
 
-const TagList: React.FC<{
+const TagList: FC<{
   value?: {
     key: string;
     label: string;
@@ -52,7 +53,7 @@ const TagList: React.FC<{
   >([]);
   const [inputValue, setInputValue] = useState<string>('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 

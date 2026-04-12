@@ -2,7 +2,8 @@ import { CloseOutlined, ProfileOutlined } from '@ant-design/icons';
 import { useControlledState } from '@rc-component/util';
 import { Card, ConfigProvider, Menu } from 'antd';
 import { clsx } from 'clsx';
-import React, { useCallback, useContext, useMemo, useState } from 'react';
+import type { FC, Key, ReactNode } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 import { ProProvider, isNeedOpenHash } from '../../../provider';
 import type { ProHelpDataSource } from './HelpProvide';
@@ -11,7 +12,7 @@ import { ProHelpContentPanel } from './ProHelpContentPanel';
 import { ProHelpSelect } from './Search';
 import { useStyle } from './style';
 
-export const SelectKeyProvide = React.createContext<{
+export const SelectKeyProvide = createContext<{
   selectedKey: string | undefined;
   setSelectedKey: (key: string | undefined) => void;
 }>({
@@ -62,7 +63,7 @@ export type ProHelpPanelProps = {
   /**
    * 帮助面板的页脚
    */
-  footer?: React.ReactNode;
+  footer?: ReactNode;
 
   /**
    * 在一页内加载所有的 children 内容
@@ -79,10 +80,10 @@ export type ProHelpPanelProps = {
    *
    */
   extraRender?: (
-    collapsePannelAction: React.ReactNode,
-    helpSelectAction: React.ReactNode,
-    closeAction: React.ReactNode,
-  ) => React.ReactNode;
+    collapsePannelAction: ReactNode,
+    helpSelectAction: ReactNode,
+    closeAction: ReactNode,
+  ) => ReactNode;
 };
 /**
  * ProHelpPanel 组件是一个帮助中心面板组件，具有可折叠的左侧菜单和右侧帮助内容区域。
@@ -91,7 +92,7 @@ export type ProHelpPanelProps = {
  * @param param0
  * @returns
  */
-export const ProHelpPanel: React.FC<ProHelpPanelProps> = ({
+export const ProHelpPanel: FC<ProHelpPanelProps> = ({
   title = '帮助中心',
   variant = 'outlined',
   onClose,
@@ -138,9 +139,9 @@ export const ProHelpPanel: React.FC<ProHelpPanelProps> = ({
 
   const dataSourceKeyMap = useMemo(() => {
     const map = new Map<
-      React.Key,
+      Key,
       ProHelpDataSource<any> & {
-        parentKey?: React.Key;
+        parentKey?: Key;
       }
     >();
     dataSource.forEach((page) => {

@@ -1,5 +1,6 @@
 import { Card, Divider, Grid, Skeleton, Space } from 'antd';
-import React, { useMemo } from 'react';
+import type { FC } from 'react';
+import { useMemo } from 'react';
 
 const { useBreakpoint } = Grid;
 
@@ -23,7 +24,7 @@ export const MediaQueryKeyEnum = {
   xxl: 6,
 };
 
-const StatisticSkeleton: React.FC<{
+const StatisticSkeleton: FC<{
   size?: number;
   active?: boolean;
 }> = ({ size, active }) => {
@@ -100,7 +101,7 @@ const StatisticSkeleton: React.FC<{
 };
 
 /** 列表子项目骨架屏 */
-export const ListSkeletonItem: React.FC<{ active: boolean }> = ({ active }) => (
+export const ListSkeletonItem: FC<{ active: boolean }> = ({ active }) => (
   <>
     <Card
       variant="borderless"
@@ -155,7 +156,7 @@ export const ListSkeletonItem: React.FC<{ active: boolean }> = ({ active }) => (
 );
 
 /** 列表骨架屏 */
-export const ListSkeleton: React.FC<{
+export const ListSkeleton: FC<{
   size: number;
   active?: boolean;
   actionButton?: boolean;
@@ -280,7 +281,7 @@ export const ListToolbarSkeleton = ({ active }: { active: boolean }) => (
   </Card>
 );
 
-const ListPageSkeleton: React.FC<ListPageSkeletonProps> = ({
+const ListPageSkeleton: FC<ListPageSkeletonProps> = ({
   active = true,
   statistic,
   actionButton,

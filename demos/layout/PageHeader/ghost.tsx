@@ -1,9 +1,9 @@
 import { Button, Descriptions } from 'antd';
-import React from 'react';
+import type { FC } from 'react';
 
 import { PageHeader } from '@xxlabs/pro-components';
 
-const App: React.FC = () => (
+const App: FC = () => (
   <div className="site-page-header-ghost-wrapper">
     <PageHeader
       ghost={false}

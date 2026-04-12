@@ -25,7 +25,7 @@ import type { FormInstance, FormItemProps } from 'antd/es/form';
 import type { NamePath } from 'antd/es/form/interface';
 import type { PasswordProps, TextAreaProps } from 'antd/es/input';
 import type { SliderRangeProps } from 'antd/es/slider';
-import type { ReactNode } from 'react';
+import type { CSSProperties, JSX, Key, ReactNode } from 'react';
 
 import type { ProSchemaValueEnumType } from '../provider';
 import type { UseEditableUtilType } from './useEditableArray';
@@ -38,11 +38,11 @@ export type ProFormBaseGroupProps = {
   /**
    * @name 分组的标题
    */
-  title?: React.ReactNode;
+  title?: ReactNode;
   /**
    * @name 分组的标题，与 title 等价，兼容旧写法
    */
-  label?: React.ReactNode;
+  label?: ReactNode;
   /**
    * @name 标题旁边的？号提示展示的信息
    *
@@ -58,7 +58,7 @@ export type ProFormBaseGroupProps = {
    * @example 额外的内容配置
    * <ProForm.Group title="标题" extra={<ProFormSwitch name="open"/>} />
    */
-  extra?: React.ReactNode;
+  extra?: ReactNode;
   /**
    * @name 组件之前的间隔
    */
@@ -66,19 +66,19 @@ export type ProFormBaseGroupProps = {
   /**
    * @name 自定义样式
    */
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   /**
    * @name 自定义 title 样式
    * @example 增加背景颜色
    * <ProForm.Group titleStyle={{ backgroundColor: '#f0f0f0' }} />
    */
-  titleStyle?: React.CSSProperties;
+  titleStyle?: CSSProperties;
   /**
    * @name 自定义title
    * @example 自定义标题
    * <ProForm.Group title={(_,props)=><span>自定义标题</span>}>
    */
-  titleRender?: (title: React.ReactNode, props: ProFormBaseGroupProps) => React.ReactNode;
+  titleRender?: (title: ReactNode, props: ProFormBaseGroupProps) => ReactNode;
   /** 子项的对齐方式 */
   align?: SpaceProps['align'];
   spaceProps?: SpaceProps;
@@ -112,7 +112,7 @@ export type ProFormBaseGroupProps = {
    */
   autoFocus?: boolean;
 
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 /**
  * ProFieldValueTypeWithFieldProps
@@ -345,7 +345,7 @@ export type RequestOptionsType = {
   /**
    * 选项的文本内容，可以是一个 React 组件。
    */
-  label?: React.ReactNode;
+  label?: ReactNode;
   /**
    * 选项的值，可以是一个字符串或数字类型。
    */
@@ -433,8 +433,8 @@ export type ProSchemaValueEnumMap = Map<
 export type ProSchemaValueEnumObj = Record<string, ProSchemaValueEnumType | ReactNode>;
 
 export type ProFieldTextType =
-  | React.ReactNode
-  | React.ReactNode[]
+  | ReactNode
+  | ReactNode[]
   | Record<string, any>
   | Record<string, any>[];
 
@@ -486,7 +486,7 @@ export type ProSchema<
   ExtraFormItemProps = unknown,
 > = {
   /** @name 确定这个列的唯一值,一般用于 dataIndex 重复的情况 */
-  key?: React.Key;
+  key?: Key;
   /**
    * 支持一个数字，[a,b] 会转化为 obj.a.b
    *
@@ -503,9 +503,9 @@ export type ProSchema<
     | ((
         schema: ProSchema<Entity, ExtraProps, ComponentsType, ValueType, ExtraFormItemProps>,
         type: ComponentsType,
-        dom: React.ReactNode,
-      ) => React.ReactNode)
-    | React.ReactNode;
+        dom: ReactNode,
+      ) => ReactNode)
+    | ReactNode;
 
   /** @name 展示一个 icon，hover 是展示一些提示信息 */
   tooltip?: LabelTooltipType | string;
@@ -548,7 +548,7 @@ export type ProSchema<
    * @name 自定义只读模式的dom
    */
   render?: (
-    dom: React.ReactNode,
+    dom: ReactNode,
     entity: Entity,
     index: number,
     action: ProCoreActionType | undefined,
@@ -557,9 +557,9 @@ export type ProSchema<
       type: ComponentsType;
     },
   ) =>
-    | React.ReactNode
+    | ReactNode
     | {
-        children: React.ReactNode;
+        children: ReactNode;
         props: any;
       };
 
@@ -580,19 +580,19 @@ export type ProSchema<
       onChange?: <T = any>(value: T) => void;
       value?: any;
       type: ComponentsType;
-      recordKey?: React.Key | React.Key[];
+      recordKey?: Key | Key[];
       record?: Entity;
       isEditable?: boolean;
       defaultRender: (
         newItem: ProSchema<Entity, ExtraProps, ComponentsType, ValueType>,
-      ) => React.JSX.Element | null;
+      ) => JSX.Element | null;
     },
     form: FormInstance,
     action?: Omit<
       UseEditableUtilType,
       'newLineRecord' | 'editableKeys' | 'actionRender' | 'setEditableRowKeys'
     >,
-  ) => React.ReactNode;
+  ) => ReactNode;
 
   /**
    *  @name 可编辑表格是否可编辑
@@ -645,7 +645,7 @@ export interface ProFieldProps {
   /**
    * 标签名称
    */
-  label?: React.ReactNode;
+  label?: ReactNode;
   /**
    * 渲染模式
    */

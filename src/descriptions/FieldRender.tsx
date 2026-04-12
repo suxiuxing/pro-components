@@ -1,6 +1,6 @@
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import type { FormInstance } from 'antd';
-import React from 'react';
+import type { FC, Key, ReactNode } from 'react';
 
 import ProForm, { ProFormField } from '../form';
 import { proTheme } from '../provider';
@@ -12,7 +12,7 @@ import type { ProDescriptionsColumn } from './typing';
 /**
  * Descriptions 单列：只读 / 可编辑下的 ProFormField 渲染
  */
-export const FieldRender: React.FC<
+export const FieldRender: FC<
   Omit<ProDescriptionsColumn<any>, 'valueType'> & {
     text: any;
     valueType: ProFieldValueTypeInput;
@@ -20,7 +20,7 @@ export const FieldRender: React.FC<
     action: ProCoreActionType<any>;
     index: number;
     editableUtils?: UseEditableMapUtilType;
-    emptyText?: React.ReactNode;
+    emptyText?: ReactNode;
   }
 > = (props) => {
   const {
@@ -121,7 +121,7 @@ export const FieldRender: React.FC<
                       },
                       {
                         isEditable: true,
-                        recordKey: dataIndex as React.Key,
+                        recordKey: dataIndex as Key,
                         record: form.getFieldValue([dataIndex].flat(1) as (string | number)[]),
                         defaultRender: () => (
                           <ProFormField
@@ -146,14 +146,14 @@ export const FieldRender: React.FC<
             gap: token.marginXS,
           }}
         >
-          {editableUtils?.actionRender?.((dataIndex as React.Key) || index, {
+          {editableUtils?.actionRender?.((dataIndex as Key) || index, {
             cancelText: <CloseOutlined />,
             saveText: <CheckOutlined />,
             deleteText: false,
           })}
         </div>
       </div>
-    ) as React.ReactNode;
+    ) as ReactNode;
   };
 
   return (

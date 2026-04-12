@@ -1,7 +1,8 @@
 import type { ButtonProps, InputProps } from 'antd';
 import { Button, Form, Input } from 'antd';
 import type { NamePath } from 'antd/es/form/interface';
-import React, { useEffect, useImperativeHandle, useState } from 'react';
+import type { FC, ReactNode, Ref } from 'react';
+import { useEffect, useImperativeHandle, useRef, useState } from 'react';
 
 import type { ProFormFieldItemProps } from '../../typing';
 import { warpField } from '../FormItem/warpField';
@@ -20,7 +21,7 @@ export type ProFormCaptchaProps = ProFormFieldItemProps<InputProps> & {
   onTiming?: (count: number) => void;
 
   /** @name 渲染按钮的文字 */
-  captchaTextRender?: (timing: boolean, count: number) => React.ReactNode;
+  captchaTextRender?: (timing: boolean, count: number) => ReactNode;
 
   /** @name 获取按钮验证码的props */
   captchaProps?: ButtonProps;
@@ -40,16 +41,16 @@ export type CaptFieldRef = {
   endTiming: () => void;
 };
 
-const BaseProFormCaptcha: React.FC<ProFormCaptchaProps> = (
-  props: ProFormCaptchaProps & { ref?: React.Ref<any> },
+const BaseProFormCaptcha: FC<ProFormCaptchaProps> = (
+  props: ProFormCaptchaProps & { ref?: Ref<any> },
 ) => {
   const { ref } = props;
   const form = Form.useFormInstance();
   const [count, setCount] = useState<number>(props.countDown || 60);
   const [timing, setTiming] = useState(false);
   const [loading, setLoading] = useState<boolean>();
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const inputRef = React.useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<any>(null);
   // 这么写是为了防止restProps中 带入 onChange, defaultValue, rules props tabUtil
   const {
     rules,

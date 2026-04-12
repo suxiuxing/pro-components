@@ -1,10 +1,10 @@
 import { clsx } from 'clsx';
-import React from 'react';
+import type { FC } from 'react';
 
 import { defaultRenderLogo } from './index';
 import type { AppItemProps, AppListProps } from './types';
 
-export const DefaultContent: React.FC<{
+export const DefaultContent: FC<{
   appList?: AppListProps;
   itemClick?: (item: AppItemProps) => void;
   baseClassName: string;

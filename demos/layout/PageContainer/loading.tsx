@@ -1,5 +1,6 @@
 import { Card } from 'antd';
-import React, { useEffect, useMemo, useState } from 'react';
+import type { ReactNode } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { PageContainer } from '@xxlabs/pro-components';
 
@@ -10,7 +11,7 @@ export default () => {
     ),
     [],
   );
-  const [customLoading, setCustomLoading] = useState<React.ReactNode | boolean>(customLoadingDom);
+  const [customLoading, setCustomLoading] = useState<ReactNode | boolean>(customLoadingDom);
 
   useEffect(() => {
     if (process.env.NODE_ENV?.toLocaleLowerCase() === 'test') {

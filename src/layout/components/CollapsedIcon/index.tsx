@@ -1,9 +1,10 @@
 import { clsx } from 'clsx';
+import type { FC } from 'react';
 
 import { ArrowSvgIcon } from '../SiderMenu/Arrow';
 import { useStyle } from './style';
 
-export const CollapsedIcon: React.FC<any> = (props) => {
+export const CollapsedIcon: FC<any> = (props) => {
   const { isMobile, collapsed, ...rest } = props;
   const { wrapSSR, hashId } = useStyle(props.className);
   if (isMobile && collapsed) return null;

@@ -1,6 +1,7 @@
 import { ConfigProvider, Space } from 'antd';
 import { clsx } from 'clsx';
-import React, { Key, useContext } from 'react';
+import type { ReactNode } from 'react';
+import { Key, useContext } from 'react';
 
 import type { IntlType } from '../../../provider';
 import { useIntl } from '../../../provider';
@@ -12,7 +13,7 @@ export type AlertRenderType<T> =
       selectedRowKeys: (number | string | Key)[];
       selectedRows: T[];
       onCleanSelected: () => void;
-    }) => React.ReactNode)
+    }) => ReactNode)
   | false;
 
 export type TableAlertProps<T> = {

@@ -1,8 +1,8 @@
 import type { SpinProps } from 'antd';
 import { Spin } from 'antd';
-import React from 'react';
+import type { FC } from 'react';
 
-const PageLoading: React.FC<SpinProps & any> = ({
+const PageLoading: FC<SpinProps & any> = ({
   isLoading,
   pastDelay,
   timedOut,

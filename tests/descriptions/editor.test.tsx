@@ -1,7 +1,8 @@
 import { useControlledState } from '@rc-component/util';
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Form, InputNumber } from 'antd';
-import React, { act, useCallback, useRef } from 'react';
+import type { Key } from 'react';
+import { act, useCallback, useRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type {
@@ -84,26 +85,24 @@ const columns: ProDescriptionsItemProps<DataSourceType>[] = [
 const DescriptionsDemo = (
   props: {
     type?: 'multiple';
-    defaultKeys?: React.Key[];
-    editorRowKeys?: React.Key[];
-    onEditorChange?: (editorRowKeys: React.Key[]) => void;
+    defaultKeys?: Key[];
+    editorRowKeys?: Key[];
+    onEditorChange?: (editorRowKeys: Key[]) => void;
     dataSource?: DataSourceType;
     onDataSourceChange?: (dataSource: DataSourceType) => void;
   } & RowEditableConfig<DataSourceType>,
 ) => {
   const [form] = Form.useForm();
   const actionRef = useRef<ProDescriptionsActionType | undefined>(undefined);
-  const [editableKeys, setEditorRowKeysInner] = useControlledState<React.Key[]>(
+  const [editableKeys, setEditorRowKeysInner] = useControlledState<Key[]>(
     () => props.defaultKeys || [],
     props.editorRowKeys,
   );
   const setEditorRowKeys = useCallback(
-    (updater: React.Key[] | ((prev: React.Key[]) => React.Key[])) => {
+    (updater: Key[] | ((prev: Key[]) => Key[])) => {
       setEditorRowKeysInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: React.Key[]) => React.Key[])(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: Key[]) => Key[])(prev) : updater;
         props.onEditorChange?.(next);
         return next;
       });

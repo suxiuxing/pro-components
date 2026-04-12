@@ -1,11 +1,9 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import type { ProFieldFC } from '../../types';
 
-type FieldTextReadProps = Parameters<
-  ProFieldFC<{ text: string; emptyText?: React.ReactNode }>
->[0] & {
-  emptyText: React.ReactNode;
+type FieldTextReadProps = Parameters<ProFieldFC<{ text: string; emptyText?: ReactNode }>>[0] & {
+  emptyText: ReactNode;
 };
 
 export function FieldTextRead(props: FieldTextReadProps) {

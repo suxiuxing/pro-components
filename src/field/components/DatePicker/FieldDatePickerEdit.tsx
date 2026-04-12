@@ -1,6 +1,6 @@
 import { DatePicker } from 'antd';
 import dayjs from 'dayjs';
-import React from 'react';
+import type { Dispatch, ReactNode, Ref, SetStateAction } from 'react';
 
 import type { IntlType } from '../../../provider';
 import { FieldLabel, parseValueToDay } from '../../../utils';
@@ -19,11 +19,11 @@ type Props = Parameters<
 >[0] & {
   format: string;
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: Dispatch<SetStateAction<boolean>>;
   intl: IntlType;
 };
 
-export function FieldDatePickerEdit(props: Props, ref?: React.Ref<unknown>) {
+export function FieldDatePickerEdit(props: Props, ref?: Ref<unknown>) {
   const {
     text,
     mode,
@@ -41,7 +41,7 @@ export function FieldDatePickerEdit(props: Props, ref?: React.Ref<unknown>) {
     intl,
   } = props;
 
-  let dom: React.ReactNode;
+  let dom: ReactNode;
   const {
     disabled,
     value,
@@ -72,7 +72,7 @@ export function FieldDatePickerEdit(props: Props, ref?: React.Ref<unknown>) {
               picker={picker}
               showTime={showTime}
               format={format}
-              ref={ref as React.Ref<any>}
+              ref={ref as Ref<any>}
               {...fieldProps}
               value={dayValue}
               onOpenChange={(isOpen) => {
@@ -97,7 +97,7 @@ export function FieldDatePickerEdit(props: Props, ref?: React.Ref<unknown>) {
         format={format}
         placeholder={placeholder}
         variant={variant}
-        ref={ref as React.Ref<any>}
+        ref={ref as Ref<any>}
         {...fieldProps}
         value={dayValue}
       />

@@ -1,7 +1,8 @@
 import type { PopoverProps } from 'antd';
 import { ConfigProvider, Popover } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { CSSProperties, FC } from 'react';
+import { useContext } from 'react';
 
 import { ProProvider } from '../../../provider';
 import { ProHelpContentPanel } from './ProHelpContentPanel';
@@ -21,7 +22,7 @@ export type ProHelpPopoverProps = Omit<PopoverProps, 'content'> & {
   /**
    * 悬浮提示文字的 CSS 样式对象
    */
-  textStyle?: React.CSSProperties;
+  textStyle?: CSSProperties;
 
   /**
    * 当前选中的帮助文档的 key 值
@@ -41,7 +42,7 @@ export type ProHelpPopoverProps = Omit<PopoverProps, 'content'> & {
  * @param popoverProps 要传递给 Drawer 组件的属性。
  * @param props 要传递给 ProHelpPanel 组件的属性。
  */
-export const ProHelpPopover: React.FC<ProHelpPopoverProps> = (props) => {
+export const ProHelpPopover: FC<ProHelpPopoverProps> = (props) => {
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const className = getPrefixCls('pro-help');
   const { hashId } = useContext(ProProvider);

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import type { Key } from 'react';
+import { useState } from 'react';
 
 import type { ProColumns } from '@xxlabs/pro-components';
 import { EditableProTable, ProCard, ProFormField, ProFormRadio } from '@xxlabs/pro-components';
@@ -14,7 +15,7 @@ const waitTime = (time: number = 100) => {
 };
 
 type DataSourceType = {
-  id: React.Key;
+  id: Key;
   title?: string;
   readonly?: string;
   description?: string;
@@ -46,7 +47,7 @@ const defaultData: DataSourceType[] = [
 ];
 
 const Demo = () => {
-  const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
+  const [editableKeys, setEditableRowKeys] = useState<Key[]>([]);
   const [dataSource, setDataSource] = useState<readonly DataSourceType[]>([]);
   const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>('bottom');
 

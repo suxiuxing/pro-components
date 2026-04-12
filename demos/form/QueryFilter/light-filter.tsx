@@ -1,7 +1,7 @@
 import { Radio, Space, TreeSelect } from 'antd';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import dayjs from 'dayjs';
-import React from 'react';
+import { useState } from 'react';
 
 import {
   LightFilter,
@@ -135,8 +135,8 @@ const defaultDate = dayjs('2024-01-15');
 const defaultDateTime = dayjs('2024-01-15 14:30:00');
 
 const Demo = () => {
-  const [size, setSize] = React.useState<SizeType>('middle');
-  const [variant, setVariant] = React.useState<LightFilterVariant>('borderless');
+  const [size, setSize] = useState<SizeType>('middle');
+  const [variant, setVariant] = useState<LightFilterVariant>('borderless');
 
   const initialValues: Partial<FilterFormValues> = {
     keyword: '关键词示例',

@@ -4,7 +4,7 @@ import type {
   SorterResult,
   SortOrder,
 } from 'antd/es/table/interface';
-import type React from 'react';
+import type { RefObject } from 'react';
 import { Key } from 'react';
 
 import type { IntlType } from '../../provider';
@@ -76,7 +76,7 @@ export function mergePagination<T>(
  * @param onCleanSelected
  */
 export function useActionType<T>(
-  ref: React.RefObject<ActionType | undefined>,
+  ref: RefObject<ActionType | undefined>,
   action: UseFetchDataAction<T>,
   props: {
     nativeElement?: HTMLDivElement;

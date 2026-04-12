@@ -1,6 +1,6 @@
 import type { TreeSelectProps } from 'antd';
 import type { RefSelectProps } from 'antd/es/select';
-import React from 'react';
+import type { FC, Ref } from 'react';
 
 import { FieldTreeSelect } from '../../../field';
 import { ProConfigProvider } from '../../../provider';
@@ -32,7 +32,7 @@ const ProFormTreeSelect = ({
   proFieldProps,
   ref,
   ...rest
-}: ProFormTreeSelectProps<any> & { ref?: React.Ref<any> }) => {
+}: ProFormTreeSelectProps<any> & { ref?: Ref<any> }) => {
   return (
     <ProConfigProvider
       valueTypeMap={{
@@ -66,6 +66,6 @@ const ProFormTreeSelect = ({
   );
 };
 
-const WarpProFormTreeSelect: React.FC<ProFormTreeSelectProps> = ProFormTreeSelect;
+const WarpProFormTreeSelect: FC<ProFormTreeSelectProps> = ProFormTreeSelect;
 
 export default WarpProFormTreeSelect;

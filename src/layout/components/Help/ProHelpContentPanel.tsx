@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
-import React, { useContext, useEffect, useMemo, useRef } from 'react';
+import type { FC, Key } from 'react';
+import { Fragment, useContext, useEffect, useMemo, useRef } from 'react';
 
 import { ProProvider } from '../../../provider';
 import { useDebounceFn } from '../../../utils';
@@ -12,7 +13,7 @@ export type ProHelpContentPanelProps = {
   /**
    * 控制当前选中的帮助文档
    */
-  selectedKey: React.Key;
+  selectedKey: Key;
   className?: string;
   parentItem?: ProHelpDataSource<any>;
 
@@ -25,7 +26,7 @@ export type ProHelpContentPanelProps = {
  * @param ProHelpContentPanelProps
  * @returns
  */
-export const ProHelpContentPanel: React.FC<ProHelpContentPanelProps> = ({
+export const ProHelpContentPanel: FC<ProHelpContentPanelProps> = ({
   className,
   parentItem,
   selectedKey,
@@ -34,7 +35,7 @@ export const ProHelpContentPanel: React.FC<ProHelpContentPanelProps> = ({
   const { dataSource } = useContext(ProHelpProvide);
   const { hashId } = useContext(ProProvider);
   // 记录每个面板的滚动高度
-  const scrollHeightMap = useRef<Map<React.Key, HTMLDivElement>>(new Map());
+  const scrollHeightMap = useRef<Map<Key, HTMLDivElement>>(new Map());
 
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -95,9 +96,9 @@ export const ProHelpContentPanel: React.FC<ProHelpContentPanelProps> = ({
    */
   const dataSourceMap = useMemo(() => {
     const map = new Map<
-      React.Key,
+      Key,
       ProHelpDataSource<any>['children'][number] & {
-        parentKey?: React.Key;
+        parentKey?: Key;
       }
     >();
     dataSource.forEach((page) => {
@@ -153,7 +154,7 @@ export const ProHelpContentPanel: React.FC<ProHelpContentPanelProps> = ({
         }}
       >
         {parentItem.children?.map((item) => {
-          return <React.Fragment key={item.key}>{renderItem(item)}</React.Fragment>;
+          return <Fragment key={item.key}>{renderItem(item)}</Fragment>;
         })}
       </div>
     );

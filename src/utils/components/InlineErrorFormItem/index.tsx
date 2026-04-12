@@ -4,7 +4,8 @@ import { get } from '@rc-component/util';
 import type { FormItemProps, PopoverProps } from 'antd';
 import { ConfigProvider, Form, Popover, theme } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useEffect, useState } from 'react';
+import type { FC, JSX, ReactNode } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { useStyle } from './style';
 
@@ -27,20 +28,20 @@ const FIX_INLINE_STYLE = {
   marginInlineEnd: 0,
 };
 
-const InlineErrorFormItemPopover: React.FC<{
+const InlineErrorFormItemPopover: FC<{
   inputProps: FormItemProps & {
-    errors?: React.ReactNode[];
-    warnings?: React.ReactNode[];
+    errors?: ReactNode[];
+    warnings?: ReactNode[];
   };
-  input: React.JSX.Element;
-  errorList: React.JSX.Element;
-  extra: React.JSX.Element;
+  input: JSX.Element;
+  errorList: JSX.Element;
+  extra: JSX.Element;
   popoverProps?: PopoverProps;
 }> = ({ inputProps, input, extra, errorList, popoverProps }) => {
   const [open, setOpen] = useState<boolean | undefined>(false);
   const [messages, setMessages] = useState<{
-    errors: React.ReactNode[];
-    warnings: React.ReactNode[];
+    errors: ReactNode[];
+    warnings: ReactNode[];
   }>({ errors: [], warnings: [] });
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);
   const prefixCls = getPrefixCls();
@@ -116,7 +117,7 @@ const InlineErrorFormItemPopover: React.FC<{
   );
 };
 
-const InternalFormItemFunction: React.FC<InternalProps & FormItemProps> = ({
+const InternalFormItemFunction: FC<InternalProps & FormItemProps> = ({
   rules,
   name,
   children,
@@ -148,9 +149,9 @@ const InternalFormItemFunction: React.FC<InternalProps & FormItemProps> = ({
             errors: any[];
           },
           doms: {
-            input: React.JSX.Element;
-            errorList: React.JSX.Element;
-            extra: React.JSX.Element;
+            input: JSX.Element;
+            errorList: JSX.Element;
+            extra: JSX.Element;
           },
         ) => (
           <InlineErrorFormItemPopover

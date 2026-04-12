@@ -1,3 +1,4 @@
+import type { Key } from 'react';
 import { useRef, useState } from 'react';
 import useSWR from 'swr';
 
@@ -6,7 +7,7 @@ let testId = 0;
 export type ProRequestData<T, U = Record<string, any>> = (params: U, props: any) => Promise<T>;
 
 export function useFetchData<T, U = Record<string, any>>(props: {
-  proFieldKey?: React.Key;
+  proFieldKey?: Key;
   params?: U;
   request?: ProRequestData<T, U>;
 }): [T | undefined, boolean] {

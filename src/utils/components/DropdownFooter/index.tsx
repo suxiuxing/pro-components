@@ -1,28 +1,29 @@
 import { Button, ConfigProvider } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext } from 'react';
+import type { FC, JSX, MouseEvent, ReactNode } from 'react';
+import { useContext } from 'react';
 
 import { useIntl } from '../../../provider';
 import { useStyle } from './style';
 
 type LightFilterFooterRender =
   | ((
-      onConfirm?: (e?: React.MouseEvent) => void,
-      onClear?: (e?: React.MouseEvent) => void,
-    ) => React.JSX.Element | false)
+      onConfirm?: (e?: MouseEvent) => void,
+      onClear?: (e?: MouseEvent) => void,
+    ) => JSX.Element | false)
   | false;
 
-type OnClick = (e?: React.MouseEvent) => void;
+type OnClick = (e?: MouseEvent) => void;
 
 export type DropdownFooterProps = {
   onClear?: OnClick;
   onConfirm?: OnClick;
   disabled?: boolean;
   footerRender?: LightFilterFooterRender;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
-const DropdownFooter: React.FC<DropdownFooterProps> = (props) => {
+const DropdownFooter: FC<DropdownFooterProps> = (props) => {
   const intl = useIntl();
   const { onClear, onConfirm, disabled, footerRender } = props;
   const { getPrefixCls } = useContext(ConfigProvider.ConfigContext);

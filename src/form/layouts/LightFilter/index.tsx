@@ -5,7 +5,8 @@ import { ConfigProvider } from 'antd';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import type { TooltipPlacement } from 'antd/es/tooltip';
 import { clsx } from 'clsx';
-import React, { useContext, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import type { FC, ReactNode } from 'react';
+import { cloneElement, useContext, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 import { useIntl } from '../../../provider';
 import { FieldLabel, FilterDropdown } from '../../../utils';
@@ -21,7 +22,7 @@ export type LightFilterProps<T, U = Record<string, any>> = {
    *
    * @example collapseLabel={"收起"}
    */
-  collapseLabel?: React.ReactNode;
+  collapseLabel?: ReactNode;
   /**
    * @name 组件样式变体
    */
@@ -66,14 +67,14 @@ export type LightFilterProps<T, U = Record<string, any>> = {
  *
  * @param props
  */
-const LightFilterContainer: React.FC<{
-  items: React.ReactNode[];
+const LightFilterContainer: FC<{
+  items: ReactNode[];
   prefixCls: string;
   size?: SizeType;
   values: Record<string, any>;
   onValuesChange: (values: Record<string, any>) => void;
   collapse?: boolean;
-  collapseLabel?: React.ReactNode;
+  collapseLabel?: ReactNode;
   variant?: 'outlined' | 'filled' | 'borderless';
   footerRender?: LightFilterFooterRender;
   placement?: TooltipPlacement;
@@ -119,8 +120,8 @@ const LightFilterContainer: React.FC<{
   }, [collapseLabel, collapse, lightFilterClassName, hashId, variant, size, intl]);
 
   const { collapseItems, outsideItems } = useMemo(() => {
-    const collapseItemsArr: React.ReactNode[] = [];
-    const outsideItemsArr: React.ReactNode[] = [];
+    const collapseItemsArr: ReactNode[] = [];
+    const outsideItemsArr: ReactNode[] = [];
     items.forEach((item: any) => {
       const { secondary } = item.props || {};
       if (secondary || collapse) {
@@ -157,7 +158,7 @@ const LightFilterContainer: React.FC<{
               className={clsx(`${lightFilterClassName}-item`, hashId)}
               key={key || index}
             >
-              {React.cloneElement(child, {
+              {cloneElement(child, {
                 fieldProps: {
                   ...child.props.fieldProps,
                   placement: newPlacement,
@@ -229,7 +230,7 @@ const LightFilterContainer: React.FC<{
                     className={clsx(`${lightFilterClassName}-line`, hashId)}
                     key={key}
                   >
-                    {React.cloneElement(child, {
+                    {cloneElement(child, {
                       fieldProps: {
                         ...newFieldProps,
                         placement: newPlacement,

@@ -1,7 +1,7 @@
 import { CopyrightOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
-import type { CSSProperties } from 'react';
-import React, { Fragment } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
+import { Fragment } from 'react';
 
 import type { WithFalse } from '../typing';
 import { GlobalFooter } from './GlobalFooter';
@@ -12,7 +12,7 @@ export type FooterProps = {
   links?: WithFalse<
     {
       key?: string;
-      title: React.ReactNode;
+      title: ReactNode;
       href: string;
       blankTarget?: boolean;
     }[]
@@ -23,7 +23,7 @@ export type FooterProps = {
   prefixCls?: string;
 };
 
-const DefaultFooter: React.FC<FooterProps> = ({
+const DefaultFooter: FC<FooterProps> = ({
   links,
   copyright,
   style,

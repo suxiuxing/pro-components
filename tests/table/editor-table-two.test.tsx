@@ -1,7 +1,8 @@
 import { useControlledState } from '@rc-component/util';
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { Button, Input, InputNumber, Popover } from 'antd';
-import React, { useCallback, useRef, useState } from 'react';
+import type { FC, Key, ReactNode } from 'react';
+import { createRef, useCallback, useRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type {
@@ -155,26 +156,24 @@ const EditorProTableDemo = (
   props: {
     type?: 'multiple';
     hideRules?: boolean;
-    defaultKeys?: React.Key[];
-    editorRowKeys?: React.Key[];
-    onEditorChange?: (editorRowKeys: React.Key[]) => void;
+    defaultKeys?: Key[];
+    editorRowKeys?: Key[];
+    onEditorChange?: (editorRowKeys: Key[]) => void;
     dataSource?: DataSourceType[];
     onDataSourceChange?: (dataSource: readonly DataSourceType[]) => void;
     position?: 'top';
   } & TableRowEditable<DataSourceType>,
 ) => {
   const actionRef = useRef<ActionType | undefined>(undefined);
-  const [editableKeys, setEditorRowKeysInner] = useControlledState<React.Key[]>(
+  const [editableKeys, setEditorRowKeysInner] = useControlledState<Key[]>(
     () => props.defaultKeys || [],
     props.editorRowKeys,
   );
   const setEditorRowKeys = useCallback(
-    (updater: React.Key[] | ((prev: React.Key[]) => React.Key[])) => {
+    (updater: Key[] | ((prev: Key[]) => Key[])) => {
       setEditorRowKeysInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (updater as (p: React.Key[]) => React.Key[])(prev)
-            : updater;
+          typeof updater === 'function' ? (updater as (p: Key[]) => Key[])(prev) : updater;
         props.onEditorChange?.(next);
         return next;
       });
@@ -600,7 +599,7 @@ describe('EditorProTable 2', () => {
   it('📝 EditableProTable support name and setRowData', async () => {
     const onChange = vi.fn();
     let i = 0;
-    const formRef = React.createRef<EditableFormInstance<any>>();
+    const formRef = createRef<EditableFormInstance<any>>();
     const wrapper = render(
       <ProForm
         initialValues={{
@@ -1123,10 +1122,10 @@ describe('EditorProTable 2', () => {
   });
 
   it('🐛 title function should not show duplicate popover layers', async () => {
-    const TitleWithPopover: React.FC<{
+    const TitleWithPopover: FC<{
       schema: ProColumns<DataSourceType>;
       type?: string;
-      dom: React.ReactNode;
+      dom: ReactNode;
     }> = ({ schema }) => {
       const [open, setOpen] = useState(false);
       return (

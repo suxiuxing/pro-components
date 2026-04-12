@@ -1,5 +1,6 @@
 import { Card, Grid, Skeleton } from 'antd';
-import React, { useMemo } from 'react';
+import type { FC } from 'react';
+import { useMemo } from 'react';
 
 import { Line, PageHeaderSkeleton } from '../List';
 
@@ -20,7 +21,7 @@ const MediaQueryKeyEnum = {
   xxl: 4,
 };
 
-const DescriptionsLargeItemSkeleton: React.FC<{
+const DescriptionsLargeItemSkeleton: FC<{
   active?: boolean;
 }> = ({ active }) => (
   <div
@@ -102,7 +103,7 @@ const DescriptionsLargeItemSkeleton: React.FC<{
   </div>
 );
 
-const DescriptionsItemSkeleton: React.FC<{
+const DescriptionsItemSkeleton: FC<{
   size?: number;
   active?: boolean;
 }> = ({ size, active }) => {
@@ -250,7 +251,7 @@ export const TableItemSkeleton = ({
  *
  * @param param0
  */
-export const TableSkeleton: React.FC<{
+export const TableSkeleton: FC<{
   active: boolean;
   size?: number;
 }> = ({ active, size = 4 }) => (
@@ -310,7 +311,7 @@ export const DescriptionsSkeleton = ({ active }: { active: boolean }) => (
   </Card>
 );
 
-const DescriptionsPageSkeleton: React.FC<DescriptionsPageSkeletonProps> = ({
+const DescriptionsPageSkeleton: FC<DescriptionsPageSkeletonProps> = ({
   active = true,
   pageHeader,
   list,
