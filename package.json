@@ -1,7 +1,7 @@
 {
   "name": "@xxlabs/pro-components",
   "version": "1.0.2",
-  "description": "Modernized fork of @ant-design/pro-components for current frontend stacks",
+  "description": "Fork of @ant-design/pro-components focused on cleanup and evolution",
   "keywords": [
     "admin",
     "ant-design",
