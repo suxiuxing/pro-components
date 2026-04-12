@@ -1,5 +1,5 @@
 import { get } from '@rc-component/util';
-import { cloneDeep } from 'lodash-es';
+import { cloneDeep } from 'es-toolkit/compat';
 import React from 'react';
 
 import { isNil } from '../isNil';

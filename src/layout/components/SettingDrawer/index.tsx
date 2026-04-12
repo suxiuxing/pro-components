@@ -9,7 +9,7 @@ import { Alert, Button, Divider, Drawer, DrawerProps, List, Switch, message } fr
 import { clsx } from 'clsx';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { isBrowser, merge, useRefFunction, useUrlSearchParams } from '../../../utils';
+import { isBrowser, useRefFunction, useUrlSearchParams } from '../../../utils';
 import type { ProSettings } from '../../defaultSettings';
 import { defaultSettings } from '../../defaultSettings';
 import { gLocaleObject, getLanguage } from '../../locales';
@@ -123,7 +123,10 @@ const initState = (
       replaceSetting[key] = urlParams[key];
     }
   });
-  const newSettings: MergerSettingsType<ProSettings> = merge({}, settings, replaceSetting);
+  const newSettings: MergerSettingsType<ProSettings> = {
+    ...settings,
+    ...replaceSetting,
+  };
   delete newSettings.menu;
   delete newSettings.title;
   delete newSettings.iconfontUrl;

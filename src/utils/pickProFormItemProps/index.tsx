@@ -1,3 +1,5 @@
+import { omitBy } from 'es-toolkit/object';
+
 const antdFormItemPropsList = [
   // https://ant.design/components/form-cn/#Form.Item
   'colon',
@@ -33,12 +35,11 @@ const antdFormItemPropsList = [
   'addonWarpStyle',
 ];
 
+const antdFormItemPropsSet = new Set(antdFormItemPropsList);
+
 export function pickProFormItemProps(props: {}) {
-  const attrs = {} as Record<string, any>;
-  antdFormItemPropsList.forEach((key) => {
-    if ((props as any)[key] !== undefined) {
-      attrs[key] = (props as any)[key];
-    }
-  });
-  return attrs;
+  return omitBy(
+    (props ?? {}) as Record<string, any>,
+    (value, key) => value === undefined || !antdFormItemPropsSet.has(String(key)),
+  );
 }

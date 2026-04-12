@@ -1,17 +1,14 @@
+import { omitBy } from 'es-toolkit/object';
+
 const proFieldProps = `valueType request formItemRender render text formItemProps valueEnum`;
 
 const proFormProps = `fieldProps isDefaultDom groupProps contentRender submitterProps submitter`;
 
-export function pickProProps(props: Record<string, any>, customValueType = false) {
-  const propList = `${proFieldProps} ${proFormProps}`.split(/[\s\n]+/);
+const proPropsSet = new Set(`${proFieldProps} ${proFormProps}`.split(/[\s\n]+/));
 
-  const attrs = {} as Record<string, any>;
-  Object.keys(props || {}).forEach((key) => {
-    //如果是自定义的 valueType，则不需要过滤掉，全部传给使用者
-    if (propList.includes(key) && !customValueType) {
-      return;
-    }
-    attrs[key] = props[key];
-  });
-  return attrs;
+export function pickProProps(props: Record<string, any>, customValueType = false) {
+  return omitBy(
+    props ?? {},
+    (_, key) => !customValueType && proPropsSet.has(String(key)),
+  ) as Record<string, any>;
 }

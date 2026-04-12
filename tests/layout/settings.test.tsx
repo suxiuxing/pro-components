@@ -1,12 +1,28 @@
-import { cleanup, render } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { cleanup, render, waitFor } from '@testing-library/react';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ProLayout } from '@xxlabs/pro-components';
+import { ProLayout, SettingDrawer } from '@xxlabs/pro-components';
 
+import { TEST_INITIAL_URL } from '../testConstants';
 import { waitForWaitTime } from '../util';
+
+const originalNodeEnv = process.env.NODE_ENV;
+
+beforeAll(() => {
+  process.env.NODE_ENV = 'TEST';
+});
+
+afterAll(() => {
+  process.env.NODE_ENV = originalNodeEnv;
+});
+
+beforeEach(() => {
+  window.history.replaceState({}, '', TEST_INITIAL_URL);
+});
 
 afterEach(() => {
   cleanup();
+  window.history.replaceState({}, '', TEST_INITIAL_URL);
 });
 
 describe('settings.test', () => {
@@ -19,6 +35,34 @@ describe('settings.test', () => {
     expect(wrapper.getAllByText('test-title-2')).toBeTruthy();
 
     wrapper.unmount();
+  });
+
+  it('SettingDrawer initializes settings from url params on mount', async () => {
+    const onSettingChange = vi.fn();
+
+    render(
+      <SettingDrawer
+        defaultSettings={{ siderMenuType: 'group' }}
+        disableUrlParams={false}
+        enableDarkTheme
+        getContainer={false}
+        onSettingChange={onSettingChange}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(onSettingChange).toHaveBeenCalled();
+    });
+
+    expect((onSettingChange.mock as any).lastCall[0]).toMatchObject({
+      navTheme: 'realDark',
+      layout: 'mix',
+      colorPrimary: '#1677FF',
+      fixedHeader: true,
+      fixSiderbar: true,
+      splitMenus: false,
+      siderMenuType: 'group',
+    });
   });
 
   // it('RightContent resize', async () => {

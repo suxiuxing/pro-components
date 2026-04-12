@@ -1,6 +1,6 @@
 import { useControlledState } from '@rc-component/util';
 import type { TableColumnType } from 'antd';
-import merge from 'lodash-es/merge';
+import { merge } from 'es-toolkit/compat';
 import { createContext, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { DensitySize } from '../components/ToolBar/DensityIcon';

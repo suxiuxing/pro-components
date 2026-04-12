@@ -1,7 +1,7 @@
 import { useControlledState, warning } from '@rc-component/util';
 import type { FormProps, ModalProps } from 'antd';
 import { ConfigProvider, Modal } from 'antd';
-import { merge } from 'lodash-es';
+import { merge } from 'es-toolkit/compat';
 import React, {
   useCallback,
   useContext,

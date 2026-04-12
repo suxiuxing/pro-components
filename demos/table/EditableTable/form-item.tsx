@@ -1,5 +1,5 @@
 import { Button, message } from 'antd';
-import isEmpty from 'lodash-es/isEmpty';
+import { isEmpty } from 'es-toolkit/compat';
 import React, { useRef, useState } from 'react';
 
 import type { EditableFormInstance, ProColumns, ProFormInstance } from '@xxlabs/pro-components';

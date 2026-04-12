@@ -19,7 +19,10 @@ import {
   lighten,
   merge,
   nanoid,
+  omitUndefined,
+  omitUndefinedAndEmptyArr,
   parseValueToDay,
+  pickProFormItemProps,
   pickProProps,
   setAlpha,
   stringify,
@@ -253,6 +256,162 @@ describe('utils', () => {
       status: null;
     }>({}, { status: null });
     expect(html.status).toEqual(null);
+  });
+
+  it('📅 merge keeps shallow plain-object semantics', () => {
+    expect(
+      merge(
+        {},
+        {
+          user: {
+            name: 'kiner',
+          },
+        },
+        {
+          user: {
+            age: 28,
+          },
+        },
+      ),
+    ).toEqual({
+      user: {
+        name: 'kiner',
+        age: 28,
+      },
+    });
+
+    expect(
+      merge(
+        {},
+        {
+          user: {
+            profile: {
+              first: 'a',
+              last: 'b',
+            },
+          },
+        },
+        {
+          user: {
+            profile: {
+              first: 'c',
+            },
+          },
+        },
+      ),
+    ).toEqual({
+      user: {
+        profile: {
+          first: 'c',
+        },
+      },
+    });
+  });
+
+  it('📅 merge replaces arrays and allows undefined overwrite', () => {
+    expect(
+      merge(
+        {},
+        {
+          items: [1, 2],
+        },
+        {
+          items: [3],
+        },
+      ),
+    ).toEqual({
+      items: [3],
+    });
+
+    expect(
+      merge(
+        {},
+        {
+          status: 1,
+        },
+        {
+          status: undefined,
+        },
+      ),
+    ).toEqual({
+      status: undefined,
+    });
+  });
+
+  it('📅 omitUndefined preserves existing semantics', () => {
+    expect(
+      omitUndefined({
+        keep: 1,
+        drop: undefined,
+        keepNull: null,
+      }),
+    ).toEqual({
+      keep: 1,
+      keepNull: null,
+    });
+
+    expect(
+      omitUndefined({
+        onlyUndefined: undefined,
+      }),
+    ).toBeUndefined();
+  });
+
+  it('📅 omitUndefinedAndEmptyArr removes empty arrays and undefined only', () => {
+    expect(
+      omitUndefinedAndEmptyArr({
+        empty: [],
+        filled: [1],
+        drop: undefined,
+        keepNull: null,
+      }),
+    ).toEqual({
+      filled: [1],
+      keepNull: null,
+    });
+  });
+
+  it('📅 pickProProps keeps custom valueType props untouched', () => {
+    expect(
+      pickProProps({
+        fieldProps: { a: 1 },
+        valueType: 'text',
+        custom: true,
+      }),
+    ).toEqual({
+      custom: true,
+    });
+
+    expect(
+      pickProProps(
+        {
+          fieldProps: { a: 1 },
+          valueType: 'text',
+          custom: true,
+        },
+        true,
+      ),
+    ).toEqual({
+      fieldProps: { a: 1 },
+      valueType: 'text',
+      custom: true,
+    });
+  });
+
+  it('📅 pickProFormItemProps keeps only declared form item props', () => {
+    expect(
+      pickProFormItemProps({
+        label: 'Name',
+        rules: [{ required: true }],
+        hidden: false,
+        extraProp: 'ignored',
+        help: undefined,
+      }),
+    ).toEqual({
+      label: 'Name',
+      rules: [{ required: true }],
+      hidden: false,
+    });
   });
 
   it('📅 conversionSubmitValue string', async () => {

@@ -5,8 +5,7 @@ import { ConfigProvider, Table } from 'antd';
 import type { FilterValue as AntFilterValue, SorterResult } from 'antd/es/table/interface';
 import type { GetRowKey, SortOrder, TableCurrentDataSource } from 'antd/lib/table/interface';
 import { clsx } from 'clsx';
-import isEmpty from 'lodash-es/isEmpty';
-import isEqual from 'lodash-es/isEqual';
+import { isEmpty, isEqual } from 'es-toolkit/compat';
 import React, {
   Key,
   useContext,

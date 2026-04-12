@@ -1,5 +1,6 @@
 /**
  * 用于合并 n 个对象
+ * 这里保持历史语义：只浅合并 plain object，数组和 undefined 直接覆盖旧值。
  * @param  {any[]} ...rest
  * @returns T
  */

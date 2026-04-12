@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/re
 import { Button, Form } from 'antd';
 import type { NamePath } from 'antd/lib/form/interface';
 import dayjs from 'dayjs';
-import { pick } from 'lodash-es';
+import { pick } from 'es-toolkit/compat';
 import React, { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
