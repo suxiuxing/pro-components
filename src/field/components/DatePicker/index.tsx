@@ -1,4 +1,5 @@
 ﻿import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import React, { useState } from 'react';
 import { useIntl } from '../../../provider';
@@ -10,6 +11,7 @@ import type { ProFieldFC, ProFieldLightProps } from '../../types';
 import { FieldDatePickerEdit } from './FieldDatePickerEdit';
 import { FieldDatePickerRead } from './FieldDatePickerRead';
 
+dayjs.extend(isoWeek);
 dayjs.extend(weekOfYear);
 
 /**

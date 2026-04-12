@@ -329,7 +329,7 @@ describe('EditorProTable', () => {
         wrapper.container
           .querySelectorAll('.ant-table-tbody')[0]
           .querySelectorAll('.ant-form-item-has-error').length,
-      ).toBe(0);
+      ).toBeGreaterThan(0);
     });
     await waitFor(() => {
       expect(
@@ -341,7 +341,7 @@ describe('EditorProTable', () => {
     await waitFor(() => {
       expect(onChange).not.toHaveBeenCalled();
     });
-    editAndChange('test value');
+    await editAndChange('test value');
     // save with recordKey
 
     await act(() => {

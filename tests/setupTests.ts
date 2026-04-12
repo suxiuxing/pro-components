@@ -1,9 +1,16 @@
 ﻿import '@testing-library/jest-dom/vitest';
 import { defaultConfig } from 'antd/lib/theme/internal';
 import crypto from 'crypto';
+import dayjs from 'dayjs';
+import isoWeek from 'dayjs/plugin/isoWeek';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
 import MockDate from 'mockdate';
 import React from 'react';
 import { vi } from 'vitest';
+
+// Extend dayjs with necessary plugins
+dayjs.extend(isoWeek);
+dayjs.extend(weekOfYear);
 
 defaultConfig.hashed = false;
 globalThis.React = React;
