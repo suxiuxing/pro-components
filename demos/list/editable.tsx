@@ -1,4 +1,4 @@
-import { ProList } from '@ant-design/pro-components';
+import { ProList } from '@xxlabs/pro-components';
 import { Space, Tag } from 'antd';
 import { useState } from 'react';
 
@@ -44,7 +44,6 @@ const Demo = () => {
       dataSource={dataSource}
       editable={{
         onSave: async (key, record, originRow) => {
-
           return true;
         },
       }}

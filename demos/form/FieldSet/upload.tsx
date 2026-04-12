@@ -2,7 +2,7 @@
   ProForm,
   ProFormUploadButton,
   ProFormUploadDragger,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (

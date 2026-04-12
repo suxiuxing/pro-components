@@ -1,11 +1,11 @@
 // Mainly handles the scenarios of creating and editing
-import type { ProFormInstance } from '@ant-design/pro-components';
+import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProFormDateRangePicker,
   ProFormSelect,
   ProFormText,
   StepsForm,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import type { Dayjs } from 'dayjs';
 import React, { useEffect, useRef } from 'react';
 
@@ -65,11 +65,13 @@ const EditExample = () => {
     <StepsForm
       formMapRef={formMapRef}
       onFinish={(values) => {
-
         return Promise.resolve(true);
       }}
     >
-      <StepsForm.StepForm name="add-or-edit-step-form-step1" title="Job Information">
+      <StepsForm.StepForm
+        name="add-or-edit-step-form-step1"
+        title="Job Information"
+      >
         <ProFormText label="Name" name={['jobInfo', 'name']} />
         <ProFormSelect
           label="Job Type"
@@ -77,7 +79,10 @@ const EditExample = () => {
           options={jobType}
         />
       </StepsForm.StepForm>
-      <StepsForm.StepForm name="add-or-edit-step-form-step2" title={'Sync Table Information'}>
+      <StepsForm.StepForm
+        name="add-or-edit-step-form-step2"
+        title={'Sync Table Information'}
+      >
         <ProFormDateRangePicker
           label="Time Range"
           name={['syncTableInfo', 'timeRange']}

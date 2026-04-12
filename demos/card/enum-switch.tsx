@@ -1,4 +1,4 @@
-import { ProCard } from '@ant-design/pro-components';
+import { ProCard } from '@xxlabs/pro-components';
 import { Segmented, Space, theme } from 'antd';
 import { useState } from 'react';
 

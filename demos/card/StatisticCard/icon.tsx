@@ -1,5 +1,5 @@
-import { StatisticCard } from '@ant-design/pro-components';
 import RcResizeObserver from '@rc-component/resize-observer';
+import { StatisticCard } from '@xxlabs/pro-components';
 import { useState } from 'react';
 
 const imgStyle = {

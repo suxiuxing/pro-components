@@ -117,7 +117,7 @@ type StepsFormProps<T = Record<string, any>> = {
 
 export const StepsFormProvide = React.createContext<
   | {
-      regForm: (name: string, props: StepsFormProps<any>) => void;
+      regForm: (name: string, props: StepFormProps<any>) => void;
       unRegForm: (name: string) => void;
       onFormFinish: (name: string, formData: any) => void;
       keyArray: string[];
@@ -146,7 +146,7 @@ export function useStepsFormContext() {
   const ctx = useContext(StepsFormProvide);
   if (!ctx) {
     throw new Error(
-      '[@ant-design/pro-components] useStepsFormContext must be used within StepsForm',
+      '[@xxlabs/pro-components] useStepsFormContext must be used within StepsForm',
     );
   }
   return ctx;
@@ -177,11 +177,14 @@ const StepsLayoutStrategy: Record<
     return (
       <Row align="stretch" wrap={true} gutter={{ xs: 8, sm: 16, md: 24 }}>
         <Col xxl={4} xl={6} lg={7} md={8} sm={10} xs={12}>
-          {React.cloneElement(stepsDom, {
-            style: {
-              height: '100%',
+          {React.cloneElement(
+            stepsDom as React.ReactElement<Record<string, any>>,
+            {
+              style: {
+                height: '100%',
+              },
             },
-          })}
+          )}
         </Col>
         <Col>
           <div
@@ -349,7 +352,9 @@ function StepsForm<T = Record<string, any>>(
         setCurrentStepSafe(index);
       },
       getStepFormInstance: (index: number) => {
-        return formArrayRef.current[index]?.current as ProFormInstance | undefined;
+        return formArrayRef.current[index]?.current as
+          | ProFormInstance
+          | undefined;
       },
       resetSteps: () => {
         formDataRef.current.clear();

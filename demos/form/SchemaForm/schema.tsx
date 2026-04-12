@@ -1,8 +1,8 @@
 import type {
   ProFormColumnsType,
   ProFormLayoutType,
-} from '@ant-design/pro-components';
-import { BetaSchemaForm, ProFormSelect } from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
+import { BetaSchemaForm, ProFormSelect } from '@xxlabs/pro-components';
 import { Alert, DatePicker, Space } from 'antd';
 import { useState } from 'react';
 
@@ -303,9 +303,7 @@ const Demo = () => {
           span: 12,
         }}
         grid={layoutType !== 'LightFilter' && layoutType !== 'QueryFilter'}
-        onFinish={async (values) => {
-
-        }}
+        onFinish={async (values) => {}}
         columns={(layoutType === 'StepsForm' ? [columns] : columns) as any}
       />
     </>

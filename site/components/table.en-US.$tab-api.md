@@ -159,7 +159,7 @@ const enLocale = {
   },
 };
 
-import { ProProvider } from '@ant-design/pro-components';
+import { ProProvider } from '@xxlabs/pro-components';
 const enUSIntl = createIntl('en_US', enUS);
 const values = useContext(ProProvider)
 

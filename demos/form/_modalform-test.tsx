@@ -5,7 +5,7 @@ import {
   ProForm,
   ProFormList,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button } from 'antd';
 
 // 弹窗表单
@@ -23,7 +23,6 @@ const FormModal = () => {
         </Button>
       }
       onFinish={async (values) => {
-
         alert(JSON.stringify(values));
         return true;
       }}

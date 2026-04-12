@@ -1,4 +1,4 @@
-import type { ProFormInstance } from '@ant-design/pro-components';
+import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProForm,
   ProFormCascader,
@@ -11,7 +11,7 @@ import {
   ProFormText,
   ProFormTextArea,
   ProFormTreeSelect,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { TreeSelect, message } from 'antd';
 import moment from 'dayjs';
 import { useRef } from 'react';

@@ -5,7 +5,7 @@ import {
   ProFormDateRangePicker,
   ProFormSelect,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button, Form, message } from 'antd';
 
 const waitTime = (time: number = 100) => {

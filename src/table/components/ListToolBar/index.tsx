@@ -229,12 +229,12 @@ const ListToolBar: React.FC<ListToolBarProps> = ({
         }}
       >
         {actions.map((action, index) => {
-          if (!React.isValidElement(action)) {
+          if (!React.isValidElement<Record<string, any>>(action)) {
             return <React.Fragment key={index}>{action}</React.Fragment>;
           }
           return React.cloneElement(action, {
             key: index,
-            ...action?.props,
+            ...action.props,
           });
         })}
       </div>

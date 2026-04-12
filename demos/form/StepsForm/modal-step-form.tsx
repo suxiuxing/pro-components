@@ -8,7 +8,7 @@ import {
   ProFormText,
   ProFormTextArea,
   StepsForm,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button, Modal, message } from 'antd';
 import { useState } from 'react';
 
@@ -30,7 +30,6 @@ const Demo = () => {
       </Button>
       <StepsForm
         onFinish={async (values) => {
-
           await waitTime(1000);
           setVisible(false);
           message.success('提交成功');

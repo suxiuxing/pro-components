@@ -18,7 +18,7 @@ import {
   ProFormTimePicker,
   ProFormUploadButton,
   ProFormUploadDragger,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { message } from 'antd';
 
 import { FIXED_BASE_TIMESTAMP } from '../../mockData';

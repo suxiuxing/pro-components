@@ -2,7 +2,7 @@ import {
   PageContainer,
   ProBreadcrumb,
   ProLayout,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 
 const Demo = () => (
   <div

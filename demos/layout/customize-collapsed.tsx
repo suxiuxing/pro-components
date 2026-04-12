@@ -1,10 +1,6 @@
 ﻿import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import type { ProLayoutProps } from '@ant-design/pro-components';
-import {
-  PageContainer,
-  ProFormRadio,
-  ProLayout,
-} from '@ant-design/pro-components';
+import type { ProLayoutProps } from '@xxlabs/pro-components';
+import { PageContainer, ProFormRadio, ProLayout } from '@xxlabs/pro-components';
 import { useState } from 'react';
 import defaultProps from './_defaultProps';
 

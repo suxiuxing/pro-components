@@ -17,7 +17,7 @@ import {
   ProFormSelect,
   ProFormSwitch,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { useState } from 'react';
 
 const IconMap = {

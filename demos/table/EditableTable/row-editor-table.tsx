@@ -1,5 +1,5 @@
-import type { ProColumns } from '@ant-design/pro-components';
-import { RowEditorTable } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
+import { RowEditorTable } from '@xxlabs/pro-components';
 import React, { useState } from 'react';
 
 type DataSourceType = {

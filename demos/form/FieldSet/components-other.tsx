@@ -16,7 +16,7 @@ import {
   ProFormTreeSelect,
   ProFormUploadButton,
   ProFormUploadDragger,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { message, Switch } from 'antd';
 import Mock from 'mockjs';
 import { useState } from 'react';

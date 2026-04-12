@@ -1,5 +1,5 @@
 import { AppstoreOutlined } from '@ant-design/icons';
-import { CheckCard } from '@ant-design/pro-components';
+import { CheckCard } from '@xxlabs/pro-components';
 import { Tag } from 'antd';
 
 const Demo = () => (

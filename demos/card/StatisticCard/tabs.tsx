@@ -1,5 +1,5 @@
-import type { StatisticProps } from '@ant-design/pro-components';
-import { ProCard, StatisticCard } from '@ant-design/pro-components';
+import type { StatisticProps } from '@xxlabs/pro-components';
+import { ProCard, StatisticCard } from '@xxlabs/pro-components';
 
 const { Statistic } = StatisticCard;
 
@@ -16,9 +16,7 @@ const Demo = () => {
     <>
       <ProCard
         tabs={{
-          onChange: (key) => {
-
-          },
+          onChange: (key) => {},
           items: items.map((item) => ({
             key: item.key,
             label: (

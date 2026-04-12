@@ -1,5 +1,3 @@
-import type { StepsFormRef } from '@ant-design/pro-components';
-import { ProFormText, StepsForm } from '@ant-design/pro-components';
 import {
   cleanup,
   fireEvent,
@@ -8,6 +6,8 @@ import {
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import type { StepsFormRef } from '@xxlabs/pro-components';
+import { ProFormText, StepsForm } from '@xxlabs/pro-components';
 import { Button } from 'antd';
 import React, { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -528,11 +528,17 @@ describe('StepsForm', () => {
     );
     await act(async () => {});
     // 各 StepForm 均挂载，仅非当前步隐藏，故一开始即可合并到两步字段
-    expect(stepsFormRef.current?.getAllFieldsValue()).toEqual({ x: '1', y: '2' });
+    expect(stepsFormRef.current?.getAllFieldsValue()).toEqual({
+      x: '1',
+      y: '2',
+    });
     await act(async () => {
       (await html.findByText('下一步')).click();
     });
-    expect(stepsFormRef.current?.getAllFieldsValue()).toEqual({ x: '1', y: '2' });
+    expect(stepsFormRef.current?.getAllFieldsValue()).toEqual({
+      x: '1',
+      y: '2',
+    });
     expect(stepsFormRef.current?.getCurrentStep()).toBe(1);
     await act(async () => {
       stepsFormRef.current?.setCurrentStep(0);

@@ -1,5 +1,5 @@
-﻿import { PageHeader } from '@ant-design/pro-components';
-import { cleanup, fireEvent, render } from '@testing-library/react';
+﻿import { cleanup, fireEvent, render } from '@testing-library/react';
+import { PageHeader } from '@xxlabs/pro-components';
 import { Breadcrumb, ConfigProvider } from 'antd';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 

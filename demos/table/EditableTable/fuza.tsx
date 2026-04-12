@@ -4,7 +4,7 @@ import {
   ProFormDependency,
   ProFormField,
   ProTable,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { FormInstance, Input, Tabs } from 'antd';
 import { useRef } from 'react';
 
@@ -122,9 +122,7 @@ const Demo = () => {
   return (
     <ProForm
       formRef={formRef}
-      onValuesChange={(_, e) => {
-
-      }}
+      onValuesChange={(_, e) => {}}
       initialValues={{ columnsInfo: defaultData, table: defaultData }}
     >
       <ProFormDependency name={['columnsInfo']}>

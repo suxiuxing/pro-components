@@ -1,10 +1,10 @@
-﻿import type { ProHelpDataSourceChildren } from '@ant-design/pro-components';
+﻿import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
 import {
   ProHelp,
   ProHelpDrawer,
   ProHelpModal,
   ProHelpPopover,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { App, Typography } from 'antd';
 import { useState } from 'react';
 

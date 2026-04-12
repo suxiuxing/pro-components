@@ -1,5 +1,5 @@
-﻿import { getPageTitle } from '@ant-design/pro-components';
-import { cleanup } from '@testing-library/react';
+﻿import { cleanup } from '@testing-library/react';
+import { getPageTitle } from '@xxlabs/pro-components';
 import { afterEach, describe, expect, it } from 'vitest';
 
 const pageProps = {

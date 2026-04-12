@@ -3,7 +3,7 @@
   ProFormCheckbox,
   ProFormRadio,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button } from 'antd';
 
 const layout = {

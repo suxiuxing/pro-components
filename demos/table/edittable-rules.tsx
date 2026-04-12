@@ -3,8 +3,8 @@
   EditableFormInstance,
   ProColumns,
   ProFormInstance,
-} from '@ant-design/pro-components';
-import { EditableProTable, ProCard, ProForm } from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
+import { EditableProTable, ProCard, ProForm } from '@xxlabs/pro-components';
 import React, { useRef, useState } from 'react';
 
 type DataSourceType = {

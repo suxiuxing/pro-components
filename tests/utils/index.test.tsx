@@ -1,4 +1,5 @@
 import { CodeFilled } from '@ant-design/icons';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import {
   conversionSubmitValue,
   dateArrayFormatter,
@@ -19,8 +20,7 @@ import {
   transformKeySubmitValue,
   useDebounceFn,
   useDebounceValue,
-} from '@ant-design/pro-components';
-import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+} from '@xxlabs/pro-components';
 import { Form, Input } from 'antd';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';

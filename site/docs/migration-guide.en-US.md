@@ -22,7 +22,7 @@ ProComponents 3.0 is a major version upgrade that includes some breaking changes
 
 | Package Name                 | 2.x Latest | 3.0 Start Version |
 | ---------------------------- | ---------- | ----------------- |
-| @ant-design/pro-components   | 2.8.10     | 3.0.0-beta.1      |
+| @xxlabs/pro-components   | 2.8.10     | 3.0.0-beta.1      |
 | @ant-design/pro-card         | 2.10.0     | 3.0.0-beta.1      |
 | @ant-design/pro-descriptions | 2.6.10     | 3.0.0-beta.1      |
 | @ant-design/pro-field        | 3.1.0      | 3.0.0-beta.1      |
@@ -48,7 +48,7 @@ Taking `pnpm` as an example (please replace with corresponding commands if using
 
 ```bash
 pnpm up antd@^6.0.0
-pnpm up @ant-design/pro-components@^3.0.0-beta.1
+pnpm up @xxlabs/pro-components@^3.0.0-beta.1
 pnpm install
 ```
 
@@ -309,10 +309,10 @@ If you customized the `ProCard.TabPane` component wrapper externally, you need t
 
 ```tsx | pure
 // ❌ Old version
-import { StatisticsCardProps } from '@ant-design/pro-components';
+import { StatisticsCardProps } from '@xxlabs/pro-components';
 
 // ✅ New version
-import { StatisticCardProps } from '@ant-design/pro-components';
+import { StatisticCardProps } from '@xxlabs/pro-components';
 ```
 
 This change only affects TypeScript types, and the compiler will prompt that `StatisticsCardProps` does not exist. Please replace it in the project's type declarations and custom wrapper components, especially for usages like `React.FC<StatisticsCardProps>`.
@@ -581,7 +581,7 @@ Prioritize using the project's current package manager to maintain consistency. 
 ```bash
 # Upgrade core dependencies
 pnpm up antd@^6.0.0
-pnpm up @ant-design/pro-components@^3.0.0-beta.1
+pnpm up @xxlabs/pro-components@^3.0.0-beta.1
 
 # Synchronize installation lock version
 pnpm install
@@ -693,7 +693,7 @@ If you encounter problems during the upgrade process, you can rollback to versio
 
 ```bash
 # Rollback to version 2.0
-pnpm up @ant-design/pro-components@^2.8.10
+pnpm up @xxlabs/pro-components@^2.8.10
 pnpm up antd@^4.24.0
 ```
 

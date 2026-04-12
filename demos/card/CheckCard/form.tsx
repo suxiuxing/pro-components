@@ -1,11 +1,9 @@
-import { CheckCard } from '@ant-design/pro-components';
+import { CheckCard } from '@xxlabs/pro-components';
 import { Avatar, Button, Form } from 'antd';
 
 const Demo = () => {
   const [form] = Form.useForm();
-  const handleSubmit = async (values: any) => {
-
-  };
+  const handleSubmit = async (values: any) => {};
 
   return (
     <>

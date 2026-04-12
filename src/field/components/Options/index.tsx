@@ -5,14 +5,17 @@ import type { ProFieldFC } from '../../types';
 
 const addArrayKeys = (doms: React.ReactNode[]) =>
   doms.map((dom, index) => {
-    if (!React.isValidElement(dom)) {
+    if (!React.isValidElement<Record<string, any>>(dom)) {
       return <React.Fragment key={index}>{dom}</React.Fragment>;
     }
+    const domProps = dom.props as Record<string, any> & {
+      style?: React.CSSProperties;
+    };
     return React.cloneElement(dom, {
       key: index,
-      ...dom?.props,
+      ...domProps,
       style: {
-        ...dom?.props?.style,
+        ...domProps.style,
       },
     });
   });

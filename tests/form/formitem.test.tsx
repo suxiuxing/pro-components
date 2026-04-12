@@ -1,9 +1,9 @@
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import {
   ProForm,
   ProFormDependency,
   ProFormText,
-} from '@ant-design/pro-components';
-import { cleanup, fireEvent, render } from '@testing-library/react';
+} from '@xxlabs/pro-components';
 import { Input, Space, Tag } from 'antd';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
@@ -79,7 +79,9 @@ describe('ProForm.Item', () => {
         <ProFormText name="primaryOrganizationName" hidden />
         <ProFormText name="affiliatedOrganizationIds" hidden />
 
-        <ProFormDependency name={['primaryOrganizationName', 'primaryOrganizationId']}>
+        <ProFormDependency
+          name={['primaryOrganizationName', 'primaryOrganizationId']}
+        >
           {({ primaryOrganizationName, primaryOrganizationId }) => (
             <ProFormText
               label="组织名称"

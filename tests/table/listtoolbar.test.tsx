@@ -1,6 +1,6 @@
 import { FullscreenOutlined, SettingOutlined } from '@ant-design/icons';
-import { ListToolBar, ProTable } from '@ant-design/pro-components';
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import { ListToolBar, ProTable } from '@xxlabs/pro-components';
 import { Button, Input } from 'antd';
 import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';

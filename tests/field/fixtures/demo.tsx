@@ -1,5 +1,5 @@
-import type { ProFieldFCMode } from '@ant-design/pro-components';
-import { ProField as Field } from '@ant-design/pro-components';
+import type { ProFieldFCMode } from '@xxlabs/pro-components';
+import { ProField as Field } from '@xxlabs/pro-components';
 import { Descriptions } from 'antd';
 import dayjs from 'dayjs';
 

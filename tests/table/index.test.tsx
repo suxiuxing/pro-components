@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import type { ActionType } from '@ant-design/pro-components';
-import { ProTable, TableDropdown } from '@ant-design/pro-components';
 import {
   cleanup,
   fireEvent,
@@ -8,6 +6,8 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
+import type { ActionType } from '@xxlabs/pro-components';
+import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 import { Button, Input, Popover } from 'antd';
 import React, { act, useRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';

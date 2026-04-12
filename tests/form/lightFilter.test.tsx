@@ -1,3 +1,4 @@
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import {
   LightFilter,
   ProFormDatePicker,
@@ -12,8 +13,7 @@ import {
   ProFormSlider,
   ProFormText,
   ProFormTimePicker,
-} from '@ant-design/pro-components';
-import { fireEvent, render, waitFor } from '@testing-library/react';
+} from '@xxlabs/pro-components';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import weekOfYear from 'dayjs/plugin/weekOfYear';

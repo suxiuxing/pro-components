@@ -1,5 +1,5 @@
-import type { ProFieldValueType } from '@ant-design/pro-components';
-import { BetaSchemaForm, ProFormSelect } from '@ant-design/pro-components';
+import type { ProFieldValueType } from '@xxlabs/pro-components';
+import { BetaSchemaForm, ProFormSelect } from '@xxlabs/pro-components';
 
 import { useState } from 'react';
 import { FIXED_BASE_TIMESTAMP } from '../../mockData';
@@ -115,9 +115,7 @@ const Demo = () => {
       <BetaSchemaForm<DataItem>
         name="schema-form-value-type-demo"
         layoutType="Form"
-        onFinish={async (values) => {
-
-        }}
+        onFinish={async (values) => {}}
         initialValues={options.reduce((pre, item) => {
           return {
             ...pre,

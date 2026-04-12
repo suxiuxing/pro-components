@@ -1,9 +1,3 @@
-import type {
-  ActionType,
-  ProColumns,
-  ProFormInstance,
-} from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
 import {
   act,
   cleanup,
@@ -11,6 +5,12 @@ import {
   render,
   waitFor,
 } from '@testing-library/react';
+import type {
+  ActionType,
+  ProColumns,
+  ProFormInstance,
+} from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 import { Button } from 'antd';
 import { useRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';

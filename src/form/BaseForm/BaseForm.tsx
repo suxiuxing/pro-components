@@ -27,7 +27,6 @@ import type {
   ProRequestData,
   SearchTransformKeyFn,
 } from '../../utils';
-import type { ProFieldValueType } from '../../utils/typing';
 import {
   autoFocusToFirstChild,
   conversionMomentValue,
@@ -42,6 +41,7 @@ import {
   useStyle,
   useUrlSearchParams,
 } from '../../utils';
+import type { ProFieldValueType } from '../../utils/typing';
 import { FormListContext } from '../components/List';
 import FieldContext from '../FieldContext';
 import { GridContext, useGridHelpers } from '../helpers';
@@ -117,8 +117,8 @@ export type CommonFormProps<
    * - formRef.current.nativeElement => `2.29.1+`
    */
   formRef?:
-    | React.MutableRefObject<ProFormRef<T> | undefined>
-    | React.RefObject<ProFormRef<T> | undefined>;
+    | React.MutableRefObject<ProFormRef<T> | undefined | null>
+    | React.RefObject<ProFormRef<T> | undefined | null>;
 
   /**
    * @name 同步结果到 url 中

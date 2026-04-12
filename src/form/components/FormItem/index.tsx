@@ -47,39 +47,40 @@ const WithValueFomFiledProps: React.FC<
     filedChildren?.type?.displayName !== 'ProFormComponent';
 
   const isValidElementForFiledChildren = !React.isValidElement(filedChildren);
+  const filedChildrenProps = React.isValidElement<Record<string, any>>(
+    filedChildren,
+  )
+    ? filedChildren.props
+    : undefined;
 
   const onChangeMemo = useRefFunction(function (...restParams: any[]): void {
     onChange?.(...restParams);
     if (isProFormComponent) return;
     if (isValidElementForFiledChildren) return undefined;
-    filedChildren?.props?.onChange?.(...restParams);
+    filedChildrenProps?.onChange?.(...restParams);
 
-    (filedChildren?.props as Record<string, any>)?.fieldProps?.onChange?.(
-      ...restParams,
-    );
+    filedChildrenProps?.fieldProps?.onChange?.(...restParams);
   });
 
   const onBlurMemo = useRefFunction(function (...restParams: any[]): void {
     if (isProFormComponent) return;
     if (isValidElementForFiledChildren) return;
     onBlur?.(...restParams);
-    filedChildren?.props?.onBlur?.(...restParams);
-    (filedChildren?.props as Record<string, any>)?.fieldProps?.onBlur?.(
-      ...restParams,
-    );
+    filedChildrenProps?.onBlur?.(...restParams);
+    filedChildrenProps?.fieldProps?.onBlur?.(...restParams);
   });
 
   const omitOnBlurAndOnChangeProps = useDeepCompareMemo(
     () =>
       omit(
         // @ts-ignore
-        filedChildren?.props?.fieldProps || {},
+        filedChildrenProps?.fieldProps || {},
         ['onBlur', 'onChange'],
       ),
     [
       omit(
         // @ts-ignore
-        filedChildren?.props?.fieldProps || {},
+        filedChildrenProps?.fieldProps || {},
         ['onBlur', 'onChange'],
       ),
     ],
@@ -114,9 +115,9 @@ const WithValueFomFiledProps: React.FC<
     if (!React.isValidElement(filedChildren)) return undefined;
     return (...restParams: any[]) => {
       onChange?.(...restParams);
-      filedChildren?.props?.onChange?.(...restParams);
+      filedChildrenProps?.onChange?.(...restParams);
     };
-  }, [fieldProps, filedChildren, onChange]);
+  }, [fieldProps, filedChildren, filedChildrenProps, onChange]);
 
   if (!React.isValidElement(filedChildren)) return <>{filedChildren}</>;
 
@@ -129,13 +130,13 @@ const WithValueFomFiledProps: React.FC<
     omitUndefined({
       ...restProps,
       [valuePropName]: formFieldProps[valuePropName],
-      ...filedChildren.props,
+      ...filedChildrenProps,
       onChange: finalChange,
       // 只有当子组件是 ProFormComponent 时才传递 fieldProps，避免传递给原生 DOM 元素
       ...(!isProFormComponent && fieldProps
         ? {
             fieldProps: {
-              ...(filedChildren.props as Record<string, any>)?.fieldProps,
+              ...filedChildrenProps?.fieldProps,
               ...fieldPropsFromRest,
               ...fieldProps,
             },
@@ -143,7 +144,9 @@ const WithValueFomFiledProps: React.FC<
         : {}),
       ...(variantFromRest !== undefined && { variant: variantFromRest }),
       onBlur:
-        isProFormComponent && !isValidElementForFiledChildren && typeof onBlur === 'function'
+        isProFormComponent &&
+        !isValidElementForFiledChildren &&
+        typeof onBlur === 'function'
           ? onBlur
           : undefined,
     }),
@@ -358,9 +361,14 @@ const ProFormItem: React.FC<ProFormItemProps> = (props) => {
     });
   }, [name, dataFormat, props.name, setFieldValueType, transform, valueType]);
 
+  const childrenValueType = React.isValidElement<{
+    valueType?: ProFieldValueType;
+  }>(props.children)
+    ? props.children.props.valueType
+    : undefined;
+  const mergedValueType = valueType || childrenValueType;
   const isDropdown =
-    React.isValidElement(props.children) &&
-    isDropdownValueType(valueType || props.children.props.valueType);
+    typeof mergedValueType === 'string' && isDropdownValueType(mergedValueType);
 
   const noLightFormItem = useMemo(() => {
     if (!lightProps?.light || lightProps?.customLightMode || isDropdown) {

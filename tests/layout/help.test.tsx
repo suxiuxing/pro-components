@@ -1,11 +1,11 @@
-﻿import type { ProHelpDataSourceChildren } from '@ant-design/pro-components';
+﻿import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
 import {
   ProHelp,
   ProHelpDrawer,
   ProHelpPanel,
   ProHelpSelect,
-} from '@ant-design/pro-components';
-import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+} from '@xxlabs/pro-components';
 import { Typography } from 'antd';
 import { act } from 'react';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';

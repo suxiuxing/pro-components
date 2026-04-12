@@ -1,4 +1,3 @@
-import { ProField as Field } from '@ant-design/pro-components';
 import {
   act,
   cleanup,
@@ -6,6 +5,7 @@ import {
   render,
   waitFor,
 } from '@testing-library/react';
+import { ProField as Field } from '@xxlabs/pro-components';
 import dayjs from 'dayjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 

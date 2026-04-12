@@ -1,4 +1,4 @@
-import { PageHeader } from '@ant-design/pro-components';
+import { PageHeader } from '@xxlabs/pro-components';
 import { Button, Descriptions } from 'antd';
 import React from 'react';
 

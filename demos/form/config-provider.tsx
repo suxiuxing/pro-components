@@ -11,7 +11,7 @@ import {
   ProFormUploadButton,
   ProFormUploadDragger,
   StepsForm,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { ConfigProvider, Input, message } from 'antd';
 import enUS from 'antd/lib/locale/en_US';
 

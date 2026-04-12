@@ -14,7 +14,7 @@ import {
   ProFormText,
   ProFormTimePicker,
   ProFormTreeSelect,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Radio, Space, TreeSelect } from 'antd';
 import type { SizeType } from 'antd/lib/config-provider/SizeContext';
 import dayjs from 'dayjs';

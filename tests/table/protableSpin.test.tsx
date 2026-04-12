@@ -1,7 +1,7 @@
 // import { afterEach, describe, expect, test, vi } from 'vitest'; import { LoadingOutlined, ReloadOutlined } from '@ant-design/icons';import { afterEach, describe, expect, test, vi } from 'vitest'; import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { ProColumns, ProFormInstance } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
 import { cleanup, render } from '@testing-library/react';
+import type { ProColumns, ProFormInstance } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 import { Button } from 'antd';
 import { act, useRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';

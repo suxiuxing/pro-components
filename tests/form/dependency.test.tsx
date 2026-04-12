@@ -1,9 +1,9 @@
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import {
   ProForm,
   ProFormDependency,
   ProFormText,
-} from '@ant-design/pro-components';
-import { cleanup, fireEvent, render } from '@testing-library/react';
+} from '@xxlabs/pro-components';
 import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { waitForWaitTime } from '../util';

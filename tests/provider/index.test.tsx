@@ -1,11 +1,11 @@
+import { cleanup, render } from '@testing-library/react';
 import {
   ProConfigProvider,
   ProForm,
   ProFormMoney,
   createIntl,
   useStyle,
-} from '@ant-design/pro-components';
-import { cleanup, render } from '@testing-library/react';
+} from '@xxlabs/pro-components';
 import { ConfigProvider } from 'antd';
 import { afterEach, describe, expect, it } from 'vitest';
 

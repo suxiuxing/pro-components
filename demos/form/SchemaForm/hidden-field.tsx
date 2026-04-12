@@ -1,5 +1,5 @@
-import type { ProFormColumnsType } from '@ant-design/pro-components';
-import { BetaSchemaForm } from '@ant-design/pro-components';
+import type { ProFormColumnsType } from '@xxlabs/pro-components';
+import { BetaSchemaForm } from '@xxlabs/pro-components';
 import { useState } from 'react';
 
 type DataItem = {

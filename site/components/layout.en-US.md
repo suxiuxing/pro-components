@@ -183,7 +183,7 @@ A simple loading page
 Generate menuData and breadcrumb based on router information.
 
 ```js | pure
-import { getMenuData } from '@ant-design/pro-components';
+import { getMenuData } from '@xxlabs/pro-components';
 
 const { breadcrumb, menuData } = getMenuData(
   routes,
@@ -205,7 +205,7 @@ const { breadcrumb, menuData } = getMenuData(
 getPageTitle encapsulates the logic of the title generated on the menuData.
 
 ```js | pure
-import { getPageTitle } from '@ant-design/pro-components';
+import { getPageTitle } from '@xxlabs/pro-components';
 
 const title = getPageTitle({
   pathname,
@@ -254,7 +254,7 @@ export interface Settings {
 ### MenuDataItem
 
 ```ts | pure
-// You can get this type by importing { MenuDataItem } from '@ant-design/pro-components'
+// You can get this type by importing { MenuDataItem } from '@xxlabs/pro-components'
 // to get this type
 export interface MenuDataItem {
   authority?: string[] | string;
@@ -294,7 +294,7 @@ The default ProLayout does not provide a footer, but does provide a DefaultFoote
 
 ```tsx | pure
 import { GithubOutlined } from '@ant-design/icons';
-import { DefaultFooter } from '@ant-design/pro-components';
+import { DefaultFooter } from '@xxlabs/pro-components';
 
 <DefaultFooter
   copyright="@2019 by Ant Financial Experience Technology Department"
@@ -344,7 +344,7 @@ RouteContext can provide built-in data for Layout. For example, isMobile and col
 RouteContext also allows you to perform operations based on layout data, and PageContainer and FooterToolbar rely on RouteContext data to function.
 
 ```tsx | pure
-import { RouteContext, RouteContextType } from '@ant-design/pro-components';
+import { RouteContext, RouteContextType } from '@xxlabs/pro-components';
 
 const Page = () => (
   <RouteContext.Consumer>
@@ -500,7 +500,7 @@ ProLayout will automatically generate the menu and auto-select it according to p
 In order to provide more functionality, we extended the routers configuration by adding several configurations for customization, with the following data structure definition:
 
 ```ts | pure
-// You can get this type by importing { MenuDataItem } from '@ant-design/pro-components'
+// You can get this type by importing { MenuDataItem } from '@xxlabs/pro-components'
 // to get this type
 export interface MenuDataItem {
   children?: MenuDataItem[];

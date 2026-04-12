@@ -8,7 +8,12 @@ export function autoFocusToFirstChild(
   node: React.ReactNode,
   autoFocus: boolean,
 ): React.ReactNode {
-  if (!autoFocus || !React.isValidElement(node)) return node;
+  if (
+    !autoFocus ||
+    !React.isValidElement<{ children?: React.ReactNode }>(node)
+  ) {
+    return node;
+  }
   if (node.type === React.Fragment) {
     const children = React.Children.toArray(node.props.children);
     const newChildren = children.map((child, index) =>

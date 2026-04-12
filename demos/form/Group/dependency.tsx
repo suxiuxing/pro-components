@@ -4,7 +4,7 @@
   ProFormList,
   ProFormSelect,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (
@@ -22,7 +22,6 @@ const Demo = () => {
         }}
       >
         {(f, index, action) => {
-
           return (
             <>
               <ProFormText

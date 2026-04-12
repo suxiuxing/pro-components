@@ -1,4 +1,4 @@
-import { ProForm, ProFormSelect } from '@ant-design/pro-components';
+import { ProForm, ProFormSelect } from '@xxlabs/pro-components';
 import { useState } from 'react';
 
 export function App() {

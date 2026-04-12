@@ -1,11 +1,11 @@
-﻿import type { FormListActionType } from '@ant-design/pro-components';
+﻿import type { FormListActionType } from '@xxlabs/pro-components';
 import {
   ProCard,
   ProForm,
   ProFormGroup,
   ProFormList,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button, Space, message } from 'antd';
 import { useRef } from 'react';
 
@@ -82,7 +82,6 @@ const Demo = () => {
           actionGuard={{
             beforeAddRow: async (defaultValue, insertIndex) => {
               return new Promise((resolve) => {
-
                 setTimeout(() => resolve(true), 1000);
               });
             },

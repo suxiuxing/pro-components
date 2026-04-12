@@ -66,7 +66,7 @@ ProComponents 是一个专为企业级应用打造的 React UI 组件库。我�
 
 | 组件           | 下载量                                                                                                                              | 版本                                                                                                                                                                        |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| pro-components | [![layout](https://img.shields.io/npm/dw/@ant-design/pro-components.svg)](https://www.npmjs.com/package/@ant-design/pro-components) | [![npm package](https://img.shields.io/npm/v/@ant-design/pro-components.svg?style=flat-square?style=flat-square)](https://www.npmjs.com/package/@ant-design/pro-components) |
+| pro-components | [![layout](https://img.shields.io/npm/dw/@xxlabs/pro-components.svg)](https://www.npmjs.com/package/@xxlabs/pro-components) | [![npm package](https://img.shields.io/npm/v/@xxlabs/pro-components.svg?style=flat-square?style=flat-square)](https://www.npmjs.com/package/@xxlabs/pro-components) |
 
 ## 🖥 浏览器兼容性
 

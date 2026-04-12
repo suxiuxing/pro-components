@@ -28,7 +28,7 @@ Describe the usage scenarios and applicable situations for the component.
 ### Basic Usage
 
 ```tsx
-import { ComponentName } from '@ant-design/pro-components';
+import { ComponentName } from '@xxlabs/pro-components';
 
 export default () => {
   return <ComponentName />;
@@ -69,7 +69,7 @@ All documentation should provide both Chinese and English versions, keeping cont
 
 ```tsx
 import React from 'react';
-import { ComponentName } from '@ant-design/pro-components';
+import { ComponentName } from '@xxlabs/pro-components';
 
 export default () => {
   return (

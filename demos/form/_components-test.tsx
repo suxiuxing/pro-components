@@ -8,7 +8,7 @@ import {
   ProFormSwitch,
   ProFormUploadButton,
   ProFormUploadDragger,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button, Input, message } from 'antd';
 import { useRef } from 'react';
 

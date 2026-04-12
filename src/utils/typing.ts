@@ -648,7 +648,7 @@ export type ProSchema<
       isEditable?: boolean;
       defaultRender: (
         newItem: ProSchema<Entity, ExtraProps, ComponentsType, ValueType>,
-      ) => JSX.Element | null;
+      ) => React.JSX.Element | null;
     },
     form: FormInstance,
     action?: Omit<

@@ -28,7 +28,7 @@ nav:
 ### 基础用法
 
 ```tsx
-import { ComponentName } from '@ant-design/pro-components';
+import { ComponentName } from '@xxlabs/pro-components';
 
 export default () => {
   return <ComponentName />;
@@ -69,7 +69,7 @@ export default () => {
 
 ```tsx
 import React from 'react';
-import { ComponentName } from '@ant-design/pro-components';
+import { ComponentName } from '@xxlabs/pro-components';
 
 export default () => {
   return (

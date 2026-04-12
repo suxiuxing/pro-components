@@ -236,7 +236,7 @@ ref.current?.clearSelected();
 #### 使用示例
 
 ```tsx | pure
-import type { ProColumns } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
 
 // 同一份 columns 可同时用于 ProTable 和 ProList
 const columns: ProColumns<DataItem>[] = [

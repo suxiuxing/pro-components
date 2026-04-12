@@ -1,9 +1,9 @@
-﻿import {
+﻿import { cleanup, fireEvent, render } from '@testing-library/react';
+import {
   ProForm,
   ProFormUploadButton,
   ProFormUploadDragger,
-} from '@ant-design/pro-components';
-import { cleanup, fireEvent, render } from '@testing-library/react';
+} from '@xxlabs/pro-components';
 import { Form } from 'antd';
 import type { UploadFile } from 'antd/lib/upload/interface';
 import { act } from 'react';

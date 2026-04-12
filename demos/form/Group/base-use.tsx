@@ -3,7 +3,7 @@
   ProFormDependency,
   ProFormList,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button } from 'antd';
 
 const Demo = () => {
@@ -23,7 +23,6 @@ const Demo = () => {
         alwaysShowItemLabel
       >
         {(f, index, action) => {
-
           return (
             <>
               <ProFormText

@@ -3,14 +3,14 @@ import type {
   EditableFormInstance,
   ProColumns,
   ProFormInstance,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import {
   EditableProTable,
   ProCard,
   ProForm,
   ProFormDependency,
   ProFormDigit,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import React, { useRef, useState } from 'react';
 
 type DataSourceType = {

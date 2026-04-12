@@ -3,7 +3,6 @@ import {
   InfoCircleFilled,
   QuestionCircleFilled,
 } from '@ant-design/icons';
-import { LoginForm, ProFormText, ProLayout } from '@ant-design/pro-components';
 import {
   act,
   cleanup,
@@ -11,6 +10,7 @@ import {
   render,
   waitFor,
 } from '@testing-library/react';
+import { LoginForm, ProFormText, ProLayout } from '@xxlabs/pro-components';
 import { Button, ConfigProvider } from 'antd';
 import en_US from 'antd/lib/locale/en_US';
 import React, { useState } from 'react';

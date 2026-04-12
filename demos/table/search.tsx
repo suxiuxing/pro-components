@@ -1,4 +1,4 @@
-import { ProTable } from '@ant-design/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 type ServiceItem = {
   key: number;
@@ -21,7 +21,6 @@ const SearchTable = () => (
       },
     ]}
     request={async (params) => {
-
       return {
         data: [
           {

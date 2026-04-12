@@ -1,5 +1,5 @@
-import type { ProColumns } from '@ant-design/pro-components';
-import { ProList } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProList } from '@xxlabs/pro-components';
 import { Avatar, Space, Tag } from 'antd';
 
 type ProjectItem = {

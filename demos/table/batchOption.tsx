@@ -1,5 +1,5 @@
-import type { ProColumns } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 import { Button, DatePicker, Space, Table } from 'antd';
 
 import { createTableDataSource, DEMO_CREATOR_VALUE_ENUM } from '../mockData';
@@ -109,7 +109,6 @@ const Demo = () => {
         selectedRows,
         onCleanSelected,
       }) => {
-
         return (
           <Space size={24}>
             <span>

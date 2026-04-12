@@ -75,8 +75,8 @@ export const ActionsContent: React.FC<GlobalHeaderProps> = ({
               {doms.filter(Boolean).map((dom, index) => {
                 let hideHover = false;
                 // 如果配置了 hideHover 就不展示 hover 效果了
-                if (React.isValidElement(dom)) {
-                  hideHover = !!dom?.props?.['aria-hidden'];
+                if (React.isValidElement<Record<string, any>>(dom)) {
+                  hideHover = !!dom.props['aria-hidden'];
                 }
                 return (
                   <div
@@ -95,10 +95,7 @@ export const ActionsContent: React.FC<GlobalHeaderProps> = ({
               })}
               {avatarDom && (
                 <span
-                  className={clsx(
-                    `${prefixCls}-header-actions-avatar`,
-                    hashId,
-                  )}
+                  className={clsx(`${prefixCls}-header-actions-avatar`, hashId)}
                 >
                   {avatarDom}
                 </span>

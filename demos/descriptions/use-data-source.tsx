@@ -1,4 +1,4 @@
-﻿import { ProDescriptions } from '@ant-design/pro-components';
+﻿import { ProDescriptions } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (

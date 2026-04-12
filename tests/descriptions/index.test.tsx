@@ -1,12 +1,12 @@
-﻿import type { ProCoreActionType } from '@ant-design/pro-components';
-import { ProDescriptions } from '@ant-design/pro-components';
-import {
+﻿import {
   cleanup,
   fireEvent,
   render,
   waitFor,
   within,
 } from '@testing-library/react';
+import type { ProCoreActionType } from '@xxlabs/pro-components';
+import { ProDescriptions } from '@xxlabs/pro-components';
 import { Badge, Button, Input } from 'antd';
 import React, { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';

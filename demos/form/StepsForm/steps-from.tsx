@@ -1,4 +1,4 @@
-import type { ProFormInstance } from '@ant-design/pro-components';
+import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProCard,
   ProForm,
@@ -9,7 +9,7 @@ import {
   ProFormText,
   ProFormTextArea,
   StepsForm,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { message } from 'antd';
 import { useRef } from 'react';
 
@@ -49,7 +49,6 @@ const Demo = () => {
             content: 'All basic information is filled in here',
           }}
           onFinish={async () => {
-
             await waitTime(2000);
             return true;
           }}
@@ -80,7 +79,6 @@ const Demo = () => {
             content: 'Fill in the operation parameters here',
           }}
           onFinish={async () => {
-
             return true;
           }}
         >

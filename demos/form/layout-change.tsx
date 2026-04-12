@@ -18,7 +18,7 @@ import {
   ProFormText,
   QueryFilter,
   StepsForm,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button, Space, message } from 'antd';
 import { useState } from 'react';
 

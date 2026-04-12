@@ -1,5 +1,3 @@
-import type { ProColumns } from '@ant-design/pro-components';
-import { BaseProList, ProList } from '@ant-design/pro-components';
 import {
   cleanup,
   fireEvent,
@@ -7,6 +5,8 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
+import type { ProColumns } from '@xxlabs/pro-components';
+import { BaseProList, ProList } from '@xxlabs/pro-components';
 import { Tag } from 'antd';
 import type { Key } from 'react';
 import { act, useState } from 'react';

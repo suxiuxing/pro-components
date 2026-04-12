@@ -1,10 +1,10 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import type { ProColumns } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
 import {
   LightFilter,
   ProFormDatePicker,
   ProTable,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { useState } from 'react';
 
 import { createTableDataSource, DEMO_CREATOR_VALUE_ENUM } from '../../mockData';

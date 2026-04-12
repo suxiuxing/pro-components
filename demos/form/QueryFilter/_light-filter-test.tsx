@@ -5,7 +5,7 @@ import {
   ProFormSelect,
   ProFormSlider,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Radio, message } from 'antd';
 import type { SizeType } from 'antd/lib/config-provider/SizeContext';
 import dayjs from 'dayjs';

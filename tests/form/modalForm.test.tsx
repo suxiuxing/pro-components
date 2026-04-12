@@ -1,11 +1,11 @@
-﻿import { ModalForm, ProFormText } from '@ant-design/pro-components';
-import {
+﻿import {
   act,
   cleanup,
   fireEvent,
   render,
   waitFor,
 } from '@testing-library/react';
+import { ModalForm, ProFormText } from '@xxlabs/pro-components';
 import type { FormInstance } from 'antd';
 import { Button } from 'antd';
 import { createRef } from 'react';

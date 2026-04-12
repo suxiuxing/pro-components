@@ -11,7 +11,7 @@ export default defineConfig({
   title: 'ProComponents',
   exportStatic: {},
   alias: {
-    '@ant-design/pro-components': path.resolve(__dirname, 'src'),
+    '@xxlabs/pro-components': path.resolve(__dirname, 'src'),
   },
 
   metas: [

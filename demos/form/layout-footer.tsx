@@ -11,7 +11,7 @@ import {
   ProFormTextArea,
   ProFormUploadButton,
   ProLayout,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Card, message } from 'antd';
 
 const Demo = () => {

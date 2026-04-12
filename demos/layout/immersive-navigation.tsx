@@ -4,7 +4,7 @@ import {
   SmileOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { ProLayout } from '@ant-design/pro-components';
+import { ProLayout } from '@xxlabs/pro-components';
 import { Button, Result, Space, Tag } from 'antd';
 import { useState } from 'react';
 import { demoOnMenuHeaderClick } from './_demoHandlers';

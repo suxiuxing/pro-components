@@ -7,9 +7,9 @@ import {
   QuestionCircleFilled,
   SearchOutlined,
 } from '@ant-design/icons';
-import type { ProSettings } from '@ant-design/pro-components';
-import { PageContainer, ProCard, ProLayout } from '@ant-design/pro-components';
 import { css } from '@emotion/css';
+import type { ProSettings } from '@xxlabs/pro-components';
+import { PageContainer, ProCard, ProLayout } from '@xxlabs/pro-components';
 import { Divider, Input, Popover, theme } from 'antd';
 import { useState } from 'react';
 import defaultProps from './_defaultProps';
@@ -176,7 +176,10 @@ const MenuCard = () => {
                     }
                   `}
                 >
-                  <img src="https://gw.alipayobjects.com/zos/antfincdn/6FTGmLLmN/bianzu%25252013.svg" alt="" />
+                  <img
+                    src="https://gw.alipayobjects.com/zos/antfincdn/6FTGmLLmN/bianzu%25252013.svg"
+                    alt=""
+                  />
                   <div
                     style={{
                       marginInlineStart: 14,

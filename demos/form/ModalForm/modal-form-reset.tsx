@@ -1,5 +1,5 @@
-import type { ProFormInstance } from '@ant-design/pro-components';
-import { ModalForm, ProFormText } from '@ant-design/pro-components';
+import type { ProFormInstance } from '@xxlabs/pro-components';
+import { ModalForm, ProFormText } from '@xxlabs/pro-components';
 import { Button, Space, message } from 'antd';
 import { useRef, useState } from 'react';
 

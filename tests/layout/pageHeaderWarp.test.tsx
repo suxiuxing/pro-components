@@ -1,5 +1,5 @@
-import { PageContainer, ProLayout } from '@ant-design/pro-components';
 import { cleanup, render } from '@testing-library/react';
+import { PageContainer, ProLayout } from '@xxlabs/pro-components';
 import { afterEach, describe, expect, it } from 'vitest';
 import defaultProps from './defaultProps';
 

@@ -1,10 +1,10 @@
-import type { ProColumns } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
 import {
   EditableProTable,
   ProCard,
   ProFormField,
   ProFormRadio,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import React, { useState } from 'react';
 
 import { createEditableRowId, DEMO_TASK_STATUS_ENUM } from '../../mockData';
@@ -202,7 +202,6 @@ const Demo = () => {
           type: 'multiple',
           editableKeys,
           onSave: async (rowKey, data, row) => {
-
             await waitTime(2000);
           },
           onChange: setEditableRowKeys,

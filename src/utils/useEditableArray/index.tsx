@@ -1193,8 +1193,8 @@ export function useEditableArray<RecordType extends AnyObject>(
   );
 
   const saveRefsMap = useRef<
-    Map<React.Key, React.RefObject<SaveEditableActionRef>>
-  >(new Map<React.Key, React.RefObject<SaveEditableActionRef>>());
+    Map<React.Key, React.RefObject<SaveEditableActionRef | null>>
+  >(new Map<React.Key, React.RefObject<SaveEditableActionRef | null>>());
 
   useEffect(() => {
     const editableKeysSet = new Set(

@@ -1,4 +1,4 @@
-import { ProList } from '@ant-design/pro-components';
+import { ProList } from '@xxlabs/pro-components';
 import { Button, Progress, Segmented, Space, Tag } from 'antd';
 import { useState } from 'react';
 

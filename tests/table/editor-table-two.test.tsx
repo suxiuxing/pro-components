@@ -1,14 +1,3 @@
-import type {
-  ActionType,
-  EditableFormInstance,
-  ProColumns,
-  TableRowEditable,
-} from '@ant-design/pro-components';
-import {
-  EditableProTable,
-  ProForm,
-  ProFormText,
-} from '@ant-design/pro-components';
 import { useControlledState } from '@rc-component/util';
 import {
   act,
@@ -17,6 +6,13 @@ import {
   render,
   waitFor,
 } from '@testing-library/react';
+import type {
+  ActionType,
+  EditableFormInstance,
+  ProColumns,
+  TableRowEditable,
+} from '@xxlabs/pro-components';
+import { EditableProTable, ProForm, ProFormText } from '@xxlabs/pro-components';
 import { Button, Input, InputNumber, Popover } from 'antd';
 import React, { useCallback, useRef, useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';

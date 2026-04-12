@@ -418,12 +418,12 @@ This property is a high-level wrapper made by ProForm based on the original Antd
 <code src="../../demos/form/formRef.tsx" id="formRef-api" title="Usage of formRef"></code>
 
 ```tsx | pure
-import type { ProFormInstance } from '@ant-design/pro-components';
+import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProForm,
   ProFormDatePicker,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button, message, Space } from 'antd';
 import moment from 'dayjs';
 import { useRef } from 'react';

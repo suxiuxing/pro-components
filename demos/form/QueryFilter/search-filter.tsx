@@ -4,7 +4,7 @@ import {
   ProFormDatePicker,
   ProFormText,
   QueryFilter,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Input, Tabs } from 'antd';
 import React, { useState } from 'react';
 

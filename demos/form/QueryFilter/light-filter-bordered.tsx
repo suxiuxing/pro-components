@@ -7,7 +7,7 @@ import {
   ProFormRadio,
   ProFormSelect,
   ProFormTreeSelect,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { TreeSelect, message } from 'antd';
 
 const treeData = [

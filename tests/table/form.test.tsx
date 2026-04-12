@@ -1,4 +1,3 @@
-import { ProTable } from '@ant-design/pro-components';
 import {
   act,
   cleanup,
@@ -6,6 +5,7 @@ import {
   render,
   waitFor,
 } from '@testing-library/react';
+import { ProTable } from '@xxlabs/pro-components';
 import type { FormInstance } from 'antd';
 import React from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';

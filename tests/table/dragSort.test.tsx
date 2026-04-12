@@ -1,6 +1,6 @@
 import { MenuOutlined } from '@ant-design/icons';
-import { DragSortTable } from '@ant-design/pro-components';
 import { cleanup, fireEvent, render } from '@testing-library/react';
+import { DragSortTable } from '@xxlabs/pro-components';
 import { act } from 'react';
 import {
   afterAll,

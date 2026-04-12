@@ -1,8 +1,8 @@
 import {
   FormControlRender,
   pickControlPropsWithId,
-} from '@ant-design/pro-components';
-import { Button, Checkbox, Form, message } from 'antd';
+} from '@xxlabs/pro-components';
+import { Button, Checkbox, Form } from 'antd';
 import React, { useEffect } from 'react';
 
 const App: React.FC = () => {

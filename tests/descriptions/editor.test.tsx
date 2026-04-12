@@ -1,11 +1,11 @@
+import { useControlledState } from '@rc-component/util';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import type {
   ProDescriptionsActionType,
   ProDescriptionsItemProps,
   RowEditableConfig,
-} from '@ant-design/pro-components';
-import { ProDescriptions } from '@ant-design/pro-components';
-import { useControlledState } from '@rc-component/util';
-import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+} from '@xxlabs/pro-components';
+import { ProDescriptions } from '@xxlabs/pro-components';
 import { Form, InputNumber } from 'antd';
 import React, { act, useCallback, useRef } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';

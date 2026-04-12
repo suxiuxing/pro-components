@@ -1,5 +1,5 @@
-import { CheckCard } from '@ant-design/pro-components';
 import { cleanup, render, waitFor } from '@testing-library/react';
+import { CheckCard } from '@xxlabs/pro-components';
 import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 

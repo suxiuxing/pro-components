@@ -230,7 +230,7 @@ All other column properties are identical to ProTable's `ProColumns` (`dataIndex
 #### Usage Example
 
 ```tsx | pure
-import type { ProColumns } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
 
 // Same columns for both ProTable and ProList
 const columns: ProColumns<DataItem>[] = [

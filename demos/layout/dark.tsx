@@ -10,7 +10,7 @@ import {
   ProCard,
   ProConfigProvider,
   ProLayout,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button, Input } from 'antd';
 import { useState } from 'react';
 import defaultProps from './_defaultProps';

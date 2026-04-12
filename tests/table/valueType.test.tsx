@@ -1,5 +1,5 @@
-import { ProProvider, ProTable } from '@ant-design/pro-components';
 import { cleanup, fireEvent, render } from '@testing-library/react';
+import { ProProvider, ProTable } from '@xxlabs/pro-components';
 import { Input } from 'antd';
 import { act } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';

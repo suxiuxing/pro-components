@@ -1,10 +1,3 @@
-import {
-  LightFilter,
-  ProFormCascader,
-  ProFormText,
-  ProFormTreeSelect,
-  QueryFilter,
-} from '@ant-design/pro-components';
 import { _el, _rs } from '@rc-component/resize-observer/es/utils/observerUtil';
 import {
   act,
@@ -13,6 +6,13 @@ import {
   render,
   waitFor,
 } from '@testing-library/react';
+import {
+  LightFilter,
+  ProFormCascader,
+  ProFormText,
+  ProFormTreeSelect,
+  QueryFilter,
+} from '@xxlabs/pro-components';
 import { TreeSelect } from 'antd';
 import { afterEach, describe, expect, it } from 'vitest';
 import { waitForWaitTime } from '../util';

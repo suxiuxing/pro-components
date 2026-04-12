@@ -4,7 +4,6 @@ import type { ColProps, FormItemProps, RowProps } from 'antd';
 import { Col, ConfigProvider, Form, Row, theme } from 'antd';
 import type { FormInstance, FormProps } from 'antd/lib/form/Form';
 import { clsx } from 'clsx';
-import type { ReactElement } from 'react';
 import React, { useCallback, useContext, useMemo, useState } from 'react';
 import { ProProvider, useIntl } from '../../../provider';
 import { isBrowser, useRefFunction } from '../../../utils';
@@ -383,10 +382,15 @@ const QueryFilterContent: React.FC<{
       item,
       index,
     ): { itemDom: React.ReactNode; hidden: boolean; colSpan: number } => {
+      const itemElement = React.isValidElement<{
+        colSize?: number;
+        hidden?: boolean;
+        name?: React.Key;
+      }>(item)
+        ? item
+        : undefined;
       // 如果 formItem 自己配置了 hidden，默认使用它自己的
-      const colSize = React.isValidElement<any>(item)
-        ? (item?.props?.colSize ?? 1)
-        : 1;
+      const colSize = itemElement?.props.colSize ?? 1;
       const colSpan = Math.min(spanSize.span * (colSize || 1), 24);
       // 计算总的 totalSpan 长度
       totalSpan += colSpan;
@@ -394,13 +398,11 @@ const QueryFilterContent: React.FC<{
       totalSize += colSize;
 
       if (index === 0) {
-        firstRowFull =
-          colSpan === 24 &&
-          !(item as ReactElement<{ hidden: boolean }>)?.props?.hidden;
+        firstRowFull = colSpan === 24 && !itemElement?.props.hidden;
       }
 
       const hidden: boolean =
-        (item as ReactElement<{ hidden: boolean }>)?.props?.hidden ||
+        itemElement?.props.hidden ||
         // 如果收起了
         (collapsed &&
           (firstRowFull ||
@@ -411,11 +413,10 @@ const QueryFilterContent: React.FC<{
       itemLength += 1;
 
       const itemKey =
-        (React.isValidElement(item) &&
-          (item.key || `${(item.props as Record<string, any>)?.name}`)) ||
+        (itemElement && (itemElement.key || `${itemElement.props.name}`)) ||
         index;
 
-      if (React.isValidElement(item) && hidden) {
+      if (itemElement && hidden) {
         if (!props.preserve) {
           return {
             itemDom: null,
@@ -424,7 +425,7 @@ const QueryFilterContent: React.FC<{
           };
         }
         return {
-          itemDom: React.cloneElement(item, {
+          itemDom: React.cloneElement(itemElement, {
             hidden: true,
             key: itemKey || index,
           } as Record<string, any>),
@@ -443,15 +444,20 @@ const QueryFilterContent: React.FC<{
 
   const doms = processedList.map((itemProps, index: number) => {
     const { itemDom, colSpan } = itemProps;
-    const hidden: boolean = (itemDom as ReactElement<{ hidden: boolean }>)
-      ?.props?.hidden;
+    const itemDomElement = React.isValidElement<{
+      hidden?: boolean;
+      name?: React.Key;
+    }>(itemDom)
+      ? itemDom
+      : undefined;
+    const hidden = !!itemDomElement?.props.hidden;
 
     if (hidden) return itemDom;
 
     // 每一列的key, 一般是存在的
     const itemKey =
-      (React.isValidElement(itemDom) &&
-        (itemDom.key || `${itemDom.props?.name}`)) ||
+      (itemDomElement &&
+        (itemDomElement.key || `${itemDomElement.props.name}`)) ||
       index;
 
     if (24 - (currentSpan % 24) < colSpan) {
@@ -468,10 +474,10 @@ const QueryFilterContent: React.FC<{
           key={itemKey}
           span={colSpan}
           className={clsx(
-              `${props.baseClassName}-row-split-line`,
-              `${props.baseClassName}-row-split`,
-              hashId,
-            )}
+            `${props.baseClassName}-row-split-line`,
+            `${props.baseClassName}-row-split`,
+            hashId,
+          )}
         >
           {itemDom}
         </Col>

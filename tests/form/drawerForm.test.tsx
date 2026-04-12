@@ -1,5 +1,5 @@
-﻿import { DrawerForm, ModalForm, ProFormText } from '@ant-design/pro-components';
-import { fireEvent, getByText, render, waitFor } from '@testing-library/react';
+﻿import { fireEvent, getByText, render, waitFor } from '@testing-library/react';
+import { DrawerForm, ModalForm, ProFormText } from '@xxlabs/pro-components';
 import { Button, Form } from 'antd';
 import React, { act } from 'react';
 import { describe, expect, it, vi } from 'vitest';

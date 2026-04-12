@@ -1,8 +1,8 @@
 /**
  * 同一份 columns 同时用于 ProTable 和 ProList，一键切换视图
  */
-import type { ProColumns } from '@ant-design/pro-components';
-import { ProList, ProTable } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProList, ProTable } from '@xxlabs/pro-components';
 import { Radio, Space, Tag } from 'antd';
 import { useState } from 'react';
 

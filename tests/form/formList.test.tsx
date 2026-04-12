@@ -1,5 +1,12 @@
 ﻿import { CloseOutlined, SnippetsOutlined } from '@ant-design/icons';
-import type { FormListActionType } from '@ant-design/pro-components';
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
+import type { FormListActionType } from '@xxlabs/pro-components';
 import {
   ModalForm,
   ProCard,
@@ -10,14 +17,7 @@ import {
   ProFormList,
   ProFormText,
   StepsForm,
-} from '@ant-design/pro-components';
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+} from '@xxlabs/pro-components';
 import { Button, Form } from 'antd';
 import type { NamePath } from 'antd/lib/form/interface';
 import dayjs from 'dayjs';

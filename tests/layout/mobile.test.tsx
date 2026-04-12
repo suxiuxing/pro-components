@@ -1,5 +1,5 @@
-﻿import { ProLayout } from '@ant-design/pro-components';
-import { cleanup, render, waitFor } from '@testing-library/react';
+﻿import { cleanup, render, waitFor } from '@testing-library/react';
+import { ProLayout } from '@xxlabs/pro-components';
 import { act } from 'react';
 import {
   afterAll,
@@ -10,8 +10,8 @@ import {
   it,
   vi,
 } from 'vitest';
-import defaultProps from './defaultProps';
 import { waitForWaitTime } from '../util';
+import defaultProps from './defaultProps';
 
 afterEach(() => {
   cleanup();

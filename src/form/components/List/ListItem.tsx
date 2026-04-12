@@ -394,10 +394,10 @@ const ProFormListItem: React.FC<
       return childrenItem;
     })
     .map((childrenItem, itemIndex) => {
-      if (React.isValidElement(childrenItem)) {
+      if (React.isValidElement<Record<string, any>>(childrenItem)) {
         return React.cloneElement(childrenItem, {
-          key: childrenItem.key || childrenItem?.props?.name || itemIndex,
-          ...(childrenItem?.props || {}),
+          key: childrenItem.key || childrenItem.props.name || itemIndex,
+          ...childrenItem.props,
         });
       }
       return childrenItem;

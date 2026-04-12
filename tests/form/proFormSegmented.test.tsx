@@ -1,5 +1,5 @@
-import { ProForm, ProFormSegmented } from '@ant-design/pro-components';
 import { cleanup, render } from '@testing-library/react';
+import { ProForm, ProFormSegmented } from '@xxlabs/pro-components';
 import { afterEach, describe, expect, it } from 'vitest';
 
 afterEach(() => {

@@ -1,8 +1,8 @@
 ﻿import type {
   ProFormColumnsType,
   ProFormInstance,
-} from '@ant-design/pro-components';
-import { BetaSchemaForm } from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
+import { BetaSchemaForm } from '@xxlabs/pro-components';
 import { message } from 'antd';
 import { useRef } from 'react';
 
@@ -184,13 +184,10 @@ const Demo = () => {
           title: '第三步',
         },
       ]}
-      onCurrentChange={(current) => {
-
-      }}
+      onCurrentChange={(current) => {}}
       formRef={formRef}
       onFinish={async (values) => {
         return new Promise((resolve) => {
-
           message.success('提交成功');
           setTimeout(() => {
             resolve(true);

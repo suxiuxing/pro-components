@@ -1,5 +1,5 @@
-import type { ProFieldFCMode } from '@ant-design/pro-components';
-import { ProField } from '@ant-design/pro-components';
+import type { ProFieldFCMode } from '@xxlabs/pro-components';
+import { ProField } from '@xxlabs/pro-components';
 import { Descriptions, Radio, Space } from 'antd';
 import dayjs from 'dayjs';
 import { useState } from 'react';

@@ -3,7 +3,7 @@ import {
   ProForm,
   ProFormList,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (

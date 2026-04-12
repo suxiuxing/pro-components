@@ -1,15 +1,11 @@
 ﻿import {
-  ProForm,
-  ProFormFieldSet,
-  ProFormText,
-} from '@ant-design/pro-components';
-import {
   cleanup,
   fireEvent,
   render,
   screen,
   waitFor,
 } from '@testing-library/react';
+import { ProForm, ProFormFieldSet, ProFormText } from '@xxlabs/pro-components';
 import { Input } from 'antd';
 import { afterEach, describe, expect, it } from 'vitest';
 

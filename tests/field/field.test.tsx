@@ -1,12 +1,12 @@
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {
   ProField as Field,
   FieldSelect,
   FieldStatus,
   FieldTimePicker,
   ProFieldBadgeColor,
-} from '@ant-design/pro-components';
-import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+} from '@xxlabs/pro-components';
 import { Button, Input } from 'antd';
 import dayjs from 'dayjs';
 import React, { act, useState } from 'react';
@@ -303,7 +303,11 @@ describe('Field', () => {
           valueType={valueType as 'radio'}
           mode="read"
           ref={domRef}
-          render={(text, _, dom) => <>pre{dom}</>}
+          render={(
+            text: unknown,
+            _: Record<string, any>,
+            dom: React.ReactNode,
+          ) => <>pre{dom}</>}
           valueEnum={{
             default: { text: '关闭', status: 'Default' },
             processing: { text: '运行中', status: 'Processing' },
@@ -401,7 +405,6 @@ describe('Field', () => {
           text="default"
           valueType={valueType as 'radio'}
           mode="edit"
-          // @ts-expect-error
           formItemRender={() => undefined}
           valueEnum={{
             0: { text: '关闭', status: 'Default' },
@@ -421,7 +424,6 @@ describe('Field', () => {
           text="default"
           valueType={valueType as 'radio'}
           mode="edit"
-          // @ts-expect-error
           formItemRender={() => 0}
           valueEnum={{
             0: { text: '关闭', status: 'Default' },
@@ -442,7 +444,6 @@ describe('Field', () => {
         <Field
           text="default"
           valueType={valueType as 'radio'}
-          // @ts-expect-error
           mode="test"
           valueEnum={{
             0: { text: '关闭', status: 'Default' },
@@ -645,13 +646,7 @@ describe('Field', () => {
 
   it('🐴 select text=null & valueEnum=null ', async () => {
     const html = render(
-      <Field
-        text={null}
-        // @ts-expect-error
-        valueEnum={null}
-        valueType="select"
-        mode="read"
-      />,
+      <Field text={null} valueEnum={null} valueType="select" mode="read" />,
     );
     expect(html.baseElement.textContent).toBe('-');
     html.unmount();
@@ -1075,7 +1070,6 @@ describe('Field', () => {
       const html = render(
         <Field
           text="'2019-11-16 12:50:26'"
-          // @ts-expect-error
           mode="error"
           valueType={valueType as 'text'}
         />,
@@ -1455,7 +1449,7 @@ describe('Field', () => {
     const html = render(
       <Field
         text={123456}
-        onOpenChange={(open) => fn(open)}
+        onOpenChange={(open: boolean) => fn(open)}
         open
         valueType="password"
         mode="read"
@@ -1479,13 +1473,7 @@ describe('Field', () => {
 
   it('🐴 options support empty dom', async () => {
     const html = render(
-      <Field
-        // @ts-expect-error
-        render={() => []}
-        text={[]}
-        valueType="option"
-        mode="read"
-      />,
+      <Field render={() => []} text={[]} valueType="option" mode="read" />,
     );
     expect(html.asFragment()).toMatchSnapshot();
     html.unmount();
@@ -1550,14 +1538,7 @@ describe('Field', () => {
   });
 
   it('🐴 valueType={}', () => {
-    const html = render(
-      <Field
-        text="qixian"
-        // @ts-expect-error
-        valueType={{}}
-        mode="read"
-      />,
-    );
+    const html = render(<Field text="qixian" valueType={{}} mode="read" />);
     expect(html.baseElement.textContent).toBe('qixian');
     html.unmount();
   });
@@ -1589,7 +1570,6 @@ describe('Field', () => {
       <Field
         text={dayjs('2019-11-16 12:50:26').valueOf()}
         mode="edit"
-        // @ts-expect-error
         formItemRender={() => 2}
       />,
     );
@@ -1634,7 +1614,7 @@ describe('Field', () => {
         text={1000.3}
         mode="edit"
         valueType="digit"
-        onChange={(value) => change(value)}
+        onChange={(value: unknown) => change(value)}
         fieldProps={{
           precision: 20,
           stringMode: true,
@@ -1931,7 +1911,7 @@ describe('Field', () => {
         debounceTime={200}
         valueType="select"
         mode="edit"
-        request={async (params) => {
+        request={async (params: Record<string, any> | undefined) => {
           requestFn(params?.test);
           return [
             { label: '全部', value: 'all' },

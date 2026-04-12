@@ -1,4 +1,4 @@
-import { LightFilter, ProFormText } from '@ant-design/pro-components';
+import { LightFilter, ProFormText } from '@xxlabs/pro-components';
 import { Button, Radio, Space } from 'antd';
 import type { SizeType } from 'antd/lib/config-provider/SizeContext';
 import React from 'react';

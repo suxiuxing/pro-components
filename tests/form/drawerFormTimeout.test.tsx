@@ -1,5 +1,5 @@
-﻿import { DrawerForm, ProFormText } from '@ant-design/pro-components';
-import { cleanup, render, waitFor } from '@testing-library/react';
+﻿import { cleanup, render, waitFor } from '@testing-library/react';
+import { DrawerForm, ProFormText } from '@xxlabs/pro-components';
 import { act } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 

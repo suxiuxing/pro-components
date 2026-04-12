@@ -1,5 +1,5 @@
-﻿import { ProForm, ProFormText } from '@ant-design/pro-components';
-import { act, render } from '@testing-library/react';
+﻿import { act, render } from '@testing-library/react';
+import { ProForm, ProFormText } from '@xxlabs/pro-components';
 import { describe, expect, it, vi } from 'vitest';
 import { waitForWaitTime } from '../util';
 

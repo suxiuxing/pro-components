@@ -4,7 +4,7 @@ import {
   ProFormRadio,
   ProFormText,
   QueryFilter,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (

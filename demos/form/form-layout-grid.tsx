@@ -8,7 +8,7 @@ import {
   ProFormSwitch,
   ProFormText,
   ProFormTextArea,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Col, Row, Space, message } from 'antd';
 import type { FormLayout } from 'antd/lib/form/Form';
 import { useState } from 'react';

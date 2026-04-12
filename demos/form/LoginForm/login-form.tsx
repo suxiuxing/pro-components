@@ -13,7 +13,7 @@ import {
   ProFormCheckbox,
   ProFormText,
   setAlpha,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Space, Tabs, message, theme } from 'antd';
 import type { CSSProperties } from 'react';
 import { useState } from 'react';

@@ -107,7 +107,7 @@ export type LightFilterFooterRender =
        * @name 清除选择
        */
       onClear?: (e?: React.MouseEvent) => void,
-    ) => JSX.Element | false)
+    ) => React.JSX.Element | false)
   | false;
 
 export type ProFormFieldItemProps<T = Record<string, any>, K = any> = {
@@ -177,6 +177,7 @@ export type ProFormFieldRemoteProps = Pick<
   'debounceTime' | 'request' | 'valueEnum' | 'params'
 >;
 
+export { PRO_FIELD_SCHEMA_LAYOUT_VALUE_TYPES } from '../utils/typing';
 export type {
   ProFieldBuiltinValueType,
   ProFieldSchemaLayoutValueType,
@@ -184,4 +185,3 @@ export type {
   ProFieldValueType,
   ProFieldValueTypeInput,
 } from '../utils/typing';
-export { PRO_FIELD_SCHEMA_LAYOUT_VALUE_TYPES } from '../utils/typing';

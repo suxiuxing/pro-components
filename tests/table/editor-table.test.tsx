@@ -1,13 +1,3 @@
-import type {
-  ActionType,
-  EditableFormInstance,
-  ProColumns,
-} from '@ant-design/pro-components';
-import {
-  EditableProTable,
-  ProForm,
-  ProFormText,
-} from '@ant-design/pro-components';
 import {
   act,
   cleanup,
@@ -15,6 +5,12 @@ import {
   render,
   waitFor,
 } from '@testing-library/react';
+import type {
+  ActionType,
+  EditableFormInstance,
+  ProColumns,
+} from '@xxlabs/pro-components';
+import { EditableProTable, ProForm, ProFormText } from '@xxlabs/pro-components';
 import { InputNumber } from 'antd';
 import crypto from 'crypto';
 import React from 'react';

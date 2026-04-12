@@ -1,9 +1,5 @@
-﻿import type { ProHelpDataSourceChildren } from '@ant-design/pro-components';
-import {
-  ProHelp,
-  ProHelpPanel,
-  ProHelpSelect,
-} from '@ant-design/pro-components';
+﻿import type { ProHelpDataSourceChildren } from '@xxlabs/pro-components';
+import { ProHelp, ProHelpPanel, ProHelpSelect } from '@xxlabs/pro-components';
 import { App, Typography } from 'antd';
 import Draggable from 'react-draggable';
 

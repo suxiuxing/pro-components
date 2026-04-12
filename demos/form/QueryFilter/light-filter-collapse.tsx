@@ -2,7 +2,7 @@ import {
   LightFilter,
   ProFormDateTimePicker,
   ProFormSelect,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { message } from 'antd';
 
 const Demo = () => {

@@ -4,12 +4,8 @@ import {
   UserAddOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
-import {
-  LoginForm,
-  LoginFormPage,
-  ProFormText,
-} from '@ant-design/pro-components';
 import { cleanup, render, waitFor } from '@testing-library/react';
+import { LoginForm, LoginFormPage, ProFormText } from '@xxlabs/pro-components';
 import { Alert, Space } from 'antd';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { waitForWaitTime } from '../util';

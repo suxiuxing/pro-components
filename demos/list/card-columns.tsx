@@ -2,8 +2,8 @@
  * 卡片模式使用 columns + listSlot，推荐使用新的 columns API
  * actions 在卡片模式下默认渲染到 extra 位置
  */
-import type { ProColumns } from '@ant-design/pro-components';
-import { ProList } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
+import { ProList } from '@xxlabs/pro-components';
 import { Alert, Tag } from 'antd';
 
 type DataItem = {

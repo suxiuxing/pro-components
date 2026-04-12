@@ -1,6 +1,6 @@
 import { EllipsisOutlined, PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { ProTable, TableDropdown } from '@ant-design/pro-components';
+import type { ActionType, ProColumns } from '@xxlabs/pro-components';
+import { ProTable, TableDropdown } from '@xxlabs/pro-components';
 import { Button, Dropdown, message, Space, Tag } from 'antd';
 import { useRef } from 'react';
 import request from 'umi-request';
@@ -197,7 +197,9 @@ const Demo = () => {
       pagination={{
         pageSize: 5,
         onChange: (page, pageSize) => {
-          message.info(`第 ${page} 页${pageSize ? `，每页 ${pageSize} 条` : ''}`);
+          message.info(
+            `第 ${page} 页${pageSize ? `，每页 ${pageSize} 条` : ''}`,
+          );
         },
       }}
       dateFormatter="string"

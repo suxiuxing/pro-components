@@ -1,8 +1,4 @@
-import {
-  ProCard,
-  ProFormGroup,
-  ProFormSwitch,
-} from '@ant-design/pro-components';
+import { ProCard, ProFormGroup, ProFormSwitch } from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (

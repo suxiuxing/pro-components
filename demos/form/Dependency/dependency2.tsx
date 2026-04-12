@@ -4,7 +4,7 @@
   ProFormGroup,
   ProFormList,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Form } from 'antd';
 import type { NamePath } from 'antd/lib/form/interface';
 

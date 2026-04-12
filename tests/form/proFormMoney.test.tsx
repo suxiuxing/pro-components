@@ -1,4 +1,3 @@
-import { ProForm, ProFormMoney } from '@ant-design/pro-components';
 import {
   act,
   cleanup,
@@ -6,6 +5,7 @@ import {
   render,
   waitFor,
 } from '@testing-library/react';
+import { ProForm, ProFormMoney } from '@xxlabs/pro-components';
 import { ConfigProvider } from 'antd';
 import enGBIntl from 'antd/lib/locale/en_GB';
 import { afterEach, describe, expect, it, vi } from 'vitest';

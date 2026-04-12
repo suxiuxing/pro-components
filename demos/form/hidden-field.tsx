@@ -1,8 +1,4 @@
-import {
-  ProForm,
-  ProFormSwitch,
-  ProFormText,
-} from '@ant-design/pro-components';
+import { ProForm, ProFormSwitch, ProFormText } from '@xxlabs/pro-components';
 import { useState } from 'react';
 
 const Demo = () => {

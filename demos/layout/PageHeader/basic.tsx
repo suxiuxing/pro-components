@@ -1,4 +1,4 @@
-import { PageHeader } from '@ant-design/pro-components';
+import { PageHeader } from '@xxlabs/pro-components';
 import React from 'react';
 
 const App: React.FC = () => (

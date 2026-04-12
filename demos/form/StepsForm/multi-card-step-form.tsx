@@ -8,7 +8,7 @@
   ProFormSelect,
   ProFormText,
   StepsForm,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { message } from 'antd';
 
 const waitTime = (time: number = 100) => {
@@ -24,7 +24,6 @@ const Demo = () => {
     <>
       <StepsForm
         onFinish={async (values) => {
-
           await waitTime(1000);
           message.success('Submission successful');
         }}
@@ -117,7 +116,10 @@ const Demo = () => {
             />
           </ProCard>
         </StepsForm.StepForm>
-        <StepsForm.StepForm name="multi-card-step-form-checkbox" title="Second Step">
+        <StepsForm.StepForm
+          name="multi-card-step-form-checkbox"
+          title="Second Step"
+        >
           <ProCard
             style={{
               minWidth: 800,

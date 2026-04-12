@@ -1,5 +1,5 @@
-import type { ProColumns } from '@ant-design/pro-components';
-import { DragSortTable } from '@ant-design/pro-components';
+import type { ProColumns } from '@xxlabs/pro-components';
+import { DragSortTable } from '@xxlabs/pro-components';
 import { message } from 'antd';
 import { useState } from 'react';
 
@@ -54,7 +54,6 @@ const Demo = () => {
     afterIndex: number,
     newDataSource: any,
   ) => {
-
     setDataSource(newDataSource);
     message.success('修改列表排序成功');
   };

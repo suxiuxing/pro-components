@@ -138,7 +138,7 @@ const colorList = [
 根据 router 信息来生成 menuData 和 breadcrumb。
 
 ```js | pure
-import { getMenuData } from '@ant-design/pro-components';
+import { getMenuData } from '@xxlabs/pro-components';
 
 const { breadcrumb, menuData } = getMenuData(
   routes,
@@ -160,7 +160,7 @@ const { breadcrumb, menuData } = getMenuData(
 getPageTitle 封装了根据 menuData 上生成的 title 的逻辑。
 
 ```js | pure
-import { getPageTitle } from '@ant-design/pro-components';
+import { getPageTitle } from '@xxlabs/pro-components';
 
 const title = getPageTitle({
   pathname,
@@ -209,7 +209,7 @@ export interface Settings {
 ### MenuDataItem
 
 ```ts | pure
-// 可以通过 import { MenuDataItem } from '@ant-design/pro-components'
+// 可以通过 import { MenuDataItem } from '@xxlabs/pro-components'
 // 来获取这个类型
 export interface MenuDataItem {
   authority?: string[] | string;
@@ -249,7 +249,7 @@ export interface Route {
 
 ```tsx | pure
 import { GithubOutlined } from '@ant-design/icons';
-import { DefaultFooter } from '@ant-design/pro-components';
+import { DefaultFooter } from '@xxlabs/pro-components';
 
 <DefaultFooter
   copyright="@2019 蚂蚁金服体验技术部出品"
@@ -299,7 +299,7 @@ RouteContext 可以提供 Layout 的内置的数据。例如 isMobile 和 collap
 另外 RouteContext 也可以根据 layout 的数据来进行一些操作，PageContainer 和 FooterToolbar 都是依赖 RouteContext 的数据来实现功能。
 
 ```tsx | pure
-import { RouteContext, RouteContextType } from '@ant-design/pro-components';
+import { RouteContext, RouteContextType } from '@xxlabs/pro-components';
 
 const Page = () => (
   <RouteContext.Consumer>
@@ -455,7 +455,7 @@ ProLayout 会自动生成菜单，同时根据 pathname 进行自动选中。配
 为了提供更多的功能，我们扩展了 routers 配置，增加了几个配置方便自定义，数据结构定义如下:
 
 ```ts | pure
-// 可以通过 import { MenuDataItem } from '@ant-design/pro-components'
+// 可以通过 import { MenuDataItem } from '@xxlabs/pro-components'
 // 来获取这个类型
 export interface MenuDataItem {
   children?: MenuDataItem[];

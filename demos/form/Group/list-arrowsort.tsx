@@ -3,8 +3,7 @@
   ProFormGroup,
   ProFormList,
   ProFormText,
-} from '@ant-design/pro-components';
-import { message } from 'antd';
+} from '@xxlabs/pro-components';
 
 const Demo = () => {
   return (

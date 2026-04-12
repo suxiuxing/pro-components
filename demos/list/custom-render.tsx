@@ -1,4 +1,4 @@
-import { ProList } from '@ant-design/pro-components';
+import { ProList } from '@xxlabs/pro-components';
 import { Avatar, theme } from 'antd';
 
 const APPLICATIONS = [

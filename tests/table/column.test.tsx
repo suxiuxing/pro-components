@@ -1,5 +1,5 @@
-import { ProTable } from '@ant-design/pro-components';
 import { cleanup, render, waitFor } from '@testing-library/react';
+import { ProTable } from '@xxlabs/pro-components';
 import { Badge, ConfigProvider, Table } from 'antd';
 import dayjs from 'dayjs';
 import { afterEach, describe, expect, it, vi } from 'vitest';

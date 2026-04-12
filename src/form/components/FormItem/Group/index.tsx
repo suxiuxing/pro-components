@@ -3,7 +3,11 @@ import { useControlledState } from '@rc-component/util';
 import { ConfigProvider, Space } from 'antd';
 import { clsx } from 'clsx';
 import React, { useCallback, useContext, useMemo } from 'react';
-import { autoFocusToFirstChild, LabelIconTip, useRefFunction } from '../../../../utils';
+import {
+  autoFocusToFirstChild,
+  LabelIconTip,
+  useRefFunction,
+} from '../../../../utils';
 import FieldContext from '../../../FieldContext';
 import { useGridHelpers } from '../../../helpers/grid';
 import { ProFormGroupProps } from '../../../typing';
@@ -123,7 +127,10 @@ const Group: React.FC<ProFormGroupProps> = React.forwardRef(
       const hiddenChildren: React.ReactNode[] = [];
       const childrenList = React.Children.toArray(children).map(
         (element, index) => {
-          if (React.isValidElement(element) && element?.props?.hidden) {
+          if (
+            React.isValidElement<{ hidden?: boolean }>(element) &&
+            element.props.hidden
+          ) {
             hiddenChildren.push(element);
             return null;
           }

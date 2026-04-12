@@ -1,4 +1,4 @@
-import { ProList } from '@ant-design/pro-components';
+import { ProList } from '@xxlabs/pro-components';
 import { ConfigProvider, Progress } from 'antd';
 import type { Key } from 'react';
 import { useState } from 'react';

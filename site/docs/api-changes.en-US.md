@@ -72,13 +72,13 @@ grep -r "plain" src/
 
 # Update dependencies
 npm install antd@^6.0.0
-npm install @ant-design/pro-components@^3.0.0-beta.1
+npm install @xxlabs/pro-components@^3.0.0-beta.1
 ```
 
 ## Rollback Plan
 
 ```bash
-npm install @ant-design/pro-components@^2.8.10
+npm install @xxlabs/pro-components@^2.8.10
 npm install antd@^4.24.0
 ```
 

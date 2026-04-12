@@ -1,4 +1,4 @@
-import { ProForm, ProFormRadio, ProFormText } from '@ant-design/pro-components';
+import { ProForm, ProFormRadio, ProFormText } from '@xxlabs/pro-components';
 import { Col, Row, Space, message } from 'antd';
 import { useState } from 'react';
 

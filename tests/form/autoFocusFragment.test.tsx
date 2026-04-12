@@ -1,10 +1,10 @@
+import { cleanup, render, waitFor } from '@testing-library/react';
 import {
   ProForm,
   ProFormGroup,
   ProFormText,
   QueryFilter,
-} from '@ant-design/pro-components';
-import { cleanup, render, waitFor } from '@testing-library/react';
+} from '@xxlabs/pro-components';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 afterEach(() => {

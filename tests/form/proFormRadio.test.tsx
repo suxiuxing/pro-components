@@ -1,4 +1,3 @@
-import { ProForm, ProFormRadio } from '@ant-design/pro-components';
 import {
   cleanup,
   fireEvent,
@@ -7,6 +6,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { ProForm, ProFormRadio } from '@xxlabs/pro-components';
 import { Form } from 'antd';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 

@@ -1,5 +1,5 @@
 import { RightOutlined } from '@ant-design/icons';
-import { ProCard } from '@ant-design/pro-components';
+import { ProCard } from '@xxlabs/pro-components';
 import { Button, message } from 'antd';
 import { useState } from 'react';
 

@@ -1,5 +1,5 @@
-﻿import type { ProFormColumnsType } from '@ant-design/pro-components';
-import { BetaSchemaForm } from '@ant-design/pro-components';
+﻿import type { ProFormColumnsType } from '@xxlabs/pro-components';
+import { BetaSchemaForm } from '@xxlabs/pro-components';
 import { Input } from 'antd';
 
 const valueEnum = {
@@ -115,9 +115,7 @@ const Demo = () => {
       <BetaSchemaForm<DataItem>
         shouldUpdate={false}
         layoutType="Form"
-        onFinish={async (values) => {
-
-        }}
+        onFinish={async (values) => {}}
         columns={columns}
       />
     </>

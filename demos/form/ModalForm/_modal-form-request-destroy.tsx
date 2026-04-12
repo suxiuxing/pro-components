@@ -1,4 +1,4 @@
-import { DrawerForm, ModalForm, ProFormText } from '@ant-design/pro-components';
+import { DrawerForm, ModalForm, ProFormText } from '@xxlabs/pro-components';
 import { Button, message } from 'antd';
 
 const wait = (time: number = 300) =>

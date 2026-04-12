@@ -1,5 +1,5 @@
-import type { AppItemProps, ProSettings } from '@ant-design/pro-components';
-import { ProConfigProvider, ProLayout } from '@ant-design/pro-components';
+import type { AppItemProps, ProSettings } from '@xxlabs/pro-components';
+import { ProConfigProvider, ProLayout } from '@xxlabs/pro-components';
 import { Modal } from 'antd';
 import defaultProps from './_defaultProps';
 
@@ -90,7 +90,7 @@ const Demo = () => {
   };
   const itemClick = (
     item: AppItemProps,
-    popoverRef?: React.RefObject<HTMLSpanElement>,
+    popoverRef?: React.RefObject<HTMLSpanElement | null>,
   ) => {
     // 点击后关闭 Popover
     popoverRef?.current?.click?.();

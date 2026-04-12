@@ -1,9 +1,9 @@
-import type { ProFormInstance } from '@ant-design/pro-components';
+import type { ProFormInstance } from '@xxlabs/pro-components';
 import {
   ProForm,
   ProFormDatePicker,
   ProFormText,
-} from '@ant-design/pro-components';
+} from '@xxlabs/pro-components';
 import { Button, message, Space } from 'antd';
 import dayjs from 'dayjs';
 import { useRef } from 'react';
@@ -37,7 +37,9 @@ const Demo = () => {
 
   const validateAndGetFormatValue = () => {
     formRef.current?.validateFieldsReturnFormatValue?.().then((values) => {
-      message.success(`校验表单并返回格式化后的所有数据：${JSON.stringify(values)}`);
+      message.success(
+        `校验表单并返回格式化后的所有数据：${JSON.stringify(values)}`,
+      );
     });
   };
 

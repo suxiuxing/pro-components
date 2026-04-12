@@ -1,15 +1,15 @@
-﻿import type {
-  ProFormColumnsType,
-  ProFormLayoutType,
-} from '@ant-design/pro-components';
-import { BetaSchemaForm, ProProvider } from '@ant-design/pro-components';
-import {
+﻿import {
   cleanup,
   fireEvent,
   render,
   screen,
   waitFor,
 } from '@testing-library/react';
+import type {
+  ProFormColumnsType,
+  ProFormLayoutType,
+} from '@xxlabs/pro-components';
+import { BetaSchemaForm, ProProvider } from '@xxlabs/pro-components';
 import type { FormInstance } from 'antd';
 import { Input } from 'antd';
 import React, { act, createRef, useContext, useEffect } from 'react';
@@ -941,11 +941,7 @@ describe('SchemaForm', () => {
     ];
 
     const wrapper = render(
-      <BetaSchemaForm
-        grid
-        rowProps={{ gutter: [16, 0] }}
-        columns={columns}
-      />,
+      <BetaSchemaForm grid rowProps={{ gutter: [16, 0] }} columns={columns} />,
     );
     await wrapper.findByText('提 交');
 

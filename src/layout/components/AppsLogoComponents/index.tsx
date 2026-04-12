@@ -39,7 +39,7 @@ export const AppsLogoComponents: React.FC<{
   ) => React.ReactNode;
   onItemClick?: (
     item: AppItemProps,
-    popoverRef?: React.RefObject<HTMLSpanElement>,
+    popoverRef?: React.RefObject<HTMLSpanElement | null>,
   ) => void;
   prefixCls?: string;
 }> = (props) => {

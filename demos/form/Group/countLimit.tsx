@@ -1,6 +1,6 @@
 import { CloseOutlined, SnippetsOutlined } from '@ant-design/icons';
-import type { FormListActionType } from '@ant-design/pro-components';
-import { ProForm, ProFormList, ProFormText } from '@ant-design/pro-components';
+import type { FormListActionType } from '@xxlabs/pro-components';
+import { ProForm, ProFormList, ProFormText } from '@xxlabs/pro-components';
 import { useRef } from 'react';
 
 const Demo = () => {
@@ -25,7 +25,6 @@ const Demo = () => {
           actionGuard={{
             beforeAddRow: async (defaultValue, insertIndex, count) => {
               return new Promise((resolve) => {
-
                 setTimeout(() => resolve(true), 1000);
               });
             },

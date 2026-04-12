@@ -1,4 +1,3 @@
-import { ProTable } from '@ant-design/pro-components';
 import {
   cleanup,
   createEvent,
@@ -6,6 +5,7 @@ import {
   render,
   waitFor,
 } from '@testing-library/react';
+import { ProTable } from '@xxlabs/pro-components';
 import { act } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { waitForWaitTime } from '../util';

@@ -1,4 +1,4 @@
-import { ProTable } from '@ant-design/pro-components';
+import { ProTable } from '@xxlabs/pro-components';
 
 import { DEMO_VALUE_ENUM, FIXED_BASE_TIMESTAMP } from '../mockData';
 

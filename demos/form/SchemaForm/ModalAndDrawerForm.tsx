@@ -1,5 +1,5 @@
-﻿import type { ProFormLayoutType } from '@ant-design/pro-components';
-import { BetaSchemaForm, ProFormSelect } from '@ant-design/pro-components';
+﻿import type { ProFormLayoutType } from '@xxlabs/pro-components';
+import { BetaSchemaForm, ProFormSelect } from '@xxlabs/pro-components';
 import { Alert, Button, Space } from 'antd';
 import { useState } from 'react';
 
@@ -38,9 +38,7 @@ const Demo = () => {
         name="schema-form-modal-and-drawer-form-demo"
         trigger={<Button>点击我</Button>}
         layoutType={layoutType as 'ModalForm'}
-        onFinish={async (values) => {
-
-        }}
+        onFinish={async (values) => {}}
         {...(layoutType === 'ModalForm'
           ? {
               modalProps: { destroyOnHidden: true },
