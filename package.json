@@ -41,6 +41,7 @@
     "lint": "oxlint --quiet",
     "lint:fix": "oxlint --fix --quiet",
     "prepare": "lefthook install",
+    "prepublishOnly": "pnpm run test && pnpm run build:lib",
     "preview": "rspress preview",
     "release": "semantic-release",
     "test": "cross-env TZ=UTC vitest run",
