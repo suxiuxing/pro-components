@@ -27,16 +27,15 @@
   "include": [
     "demos",
     "docs",
-    "theme",
-    "site",
     "src",
     "tests",
+    "theme",
     "commitlint.config.ts",
     "oxfmt.config.ts",
     "oxlint.config.ts",
     "rspress.config.ts",
     "tsdown.config.ts",
-    "vitest.config.mts"
+    "vitest.config.ts"
   ],
   "mdx": {
     "checkMdx": true
