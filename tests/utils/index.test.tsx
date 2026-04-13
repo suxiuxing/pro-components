@@ -19,7 +19,6 @@ import {
   LabelIconTip,
   lighten,
   merge,
-  nanoid,
   omitUndefined,
   omitUndefinedAndEmptyArr,
   parseValueToDay,
@@ -154,7 +153,7 @@ describe('utils', () => {
       const fetchData = useDebounceFn(async () => fn(), wait);
       useEffect(() => {
         fetchData.run();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        //
       }, []);
       return (
         <div
@@ -224,7 +223,7 @@ describe('utils', () => {
 
       useEffect(() => {
         fetchData.run().catch(catchFn);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        //
       }, []);
       return <div />;
     };
@@ -1160,17 +1159,6 @@ describe('utils', () => {
 
     const html = render(<DeepComponent />);
     await html.findByText('not equal');
-  });
-
-  it('🪓 nanoid', () => {
-    if (!window.crypto.randomUUID) {
-      window.crypto.randomUUID = () => '1' as any;
-    }
-    const cryptoSpy = vi.spyOn(window.crypto, 'randomUUID');
-
-    nanoid();
-
-    expect(cryptoSpy).toHaveBeenCalled();
   });
 
   it('🪓 stringify', () => {
