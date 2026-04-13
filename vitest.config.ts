@@ -1,13 +1,16 @@
-import { join } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { defineConfig } from 'vitest/config';
 
 import { TEST_INITIAL_URL } from './tests/testConstants';
 
+const rootDir = dirname(fileURLToPath(import.meta.url));
+
 export default defineConfig({
   resolve: {
     alias: {
-      '@xxlabs/pro-components': join(process.cwd(), './src'),
+      '@xxlabs/pro-components': resolve(rootDir, 'src'),
     },
   },
   test: {
@@ -16,11 +19,6 @@ export default defineConfig({
     environmentOptions: {
       happyDOM: {
         url: TEST_INITIAL_URL,
-      },
-    },
-    server: {
-      deps: {
-        inline: true,
       },
     },
     coverage: {
@@ -34,7 +32,6 @@ export default defineConfig({
         'src/utils/isDeepEqualReact/*.{ts,tsx}',
       ],
     },
-    testTimeout: 600_0000, // 60 seconds
-    globals: true,
+    testTimeout: 60_000,
   },
 });
