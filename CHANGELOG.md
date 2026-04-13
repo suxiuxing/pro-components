@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/suxiuxing/pro-components/compare/v1.1.0...v1.2.0) (2026-04-13)
+
+
+### Features
+
+* remove build verification steps from release workflow and add prepublishOnly script ([2e83fdc](https://github.com/suxiuxing/pro-components/commit/2e83fdc97b8c4420440bc9cb2f13ba0e76485928))
+
 # [1.1.0](https://github.com/suxiuxing/pro-components/compare/v1.0.4...v1.1.0) (2026-04-13)
 
 
