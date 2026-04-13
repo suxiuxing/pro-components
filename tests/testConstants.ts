@@ -1,6 +1,6 @@
 /**
  * 测试环境公共常量
- * 在 vitest.config.mts 和测试文件中共享使用
+ * 在 vitest.config.ts 和测试文件中共享使用
  */
 
 /** 测试 URL 参数 */
