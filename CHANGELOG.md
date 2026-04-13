@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/suxiuxing/pro-components/compare/v1.2.0...v1.3.0) (2026-04-13)
+
+
+### Bug Fixes
+
+* **field:** honor range separators in read mode ([a8b5979](https://github.com/suxiuxing/pro-components/commit/a8b597950cdbbc99c649bc1d36c349d25002f2fd))
+* remove extra space in test:update script command ([3407b8e](https://github.com/suxiuxing/pro-components/commit/3407b8eaaaa968bfd652e079b6628a11abf0b49e))
+
+
+### Features
+
+* add FormSchema type export to index files ([62b9ca2](https://github.com/suxiuxing/pro-components/commit/62b9ca242a80ff66c652316989cf5a5686666869))
+
 # [1.2.0](https://github.com/suxiuxing/pro-components/compare/v1.1.0...v1.2.0) (2026-04-13)
 
 
