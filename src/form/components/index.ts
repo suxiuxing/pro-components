@@ -45,7 +45,7 @@ export { default as ProFormRadio } from './Radio';
 export type { ProFormRadioGroupProps } from './Radio';
 export { default as ProFormRate } from './Rate';
 export { default as BetaSchemaForm } from './SchemaForm';
-export type { ProFormColumnsType, ProFormLayoutType } from './SchemaForm';
+export type { ProFormColumnsType, ProFormLayoutType, FormSchema } from './SchemaForm';
 export { default as ProFormSegmented } from './Segmented';
 export { default as ProFormSelect } from './Select';
 export type { ProFormSelectProps } from './Select';
