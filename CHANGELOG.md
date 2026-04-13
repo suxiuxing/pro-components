@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/suxiuxing/pro-components/compare/v1.0.4...v1.1.0) (2026-04-13)
+
+
+### Features
+
+* replace custom nanoid implementation with nanoid package ([9399491](https://github.com/suxiuxing/pro-components/commit/9399491d492821d3c2f9ae2176b9df364908daba))
+
 ## [1.0.4](https://github.com/suxiuxing/pro-components/compare/v1.0.3...v1.0.4) (2026-04-12)
 
 
