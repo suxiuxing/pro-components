@@ -15,12 +15,28 @@ type Props = Parameters<
   parsedEndText: string;
 };
 
-export function FieldTimeRangePickerRead(props: Props, ref?: Ref<unknown>) {
+export function FieldTimeRangePickerRead(props: Props, ref?: Ref<HTMLDivElement>) {
   const { text, mode, render, fieldProps, parsedStartText, parsedEndText } = props;
+  const separator = fieldProps?.separator ?? '~';
   const dom = (
-    <div ref={ref as Ref<HTMLDivElement>}>
-      <div>{parsedStartText || '-'}</div>
-      <div>{parsedEndText || '-'}</div>
+    <div
+      ref={ref}
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 4,
+        alignItems: 'center',
+      }}
+    >
+      {parsedStartText || parsedEndText ? (
+        <>
+          <div>{parsedStartText || '-'}</div>
+          <div>{separator}</div>
+          <div>{parsedEndText || '-'}</div>
+        </>
+      ) : (
+        '-'
+      )}
     </div>
   );
   if (render) {

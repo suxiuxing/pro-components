@@ -1813,6 +1813,45 @@ describe('Field', () => {
     html.unmount();
   });
 
+  it(`🐴 dateRange read support custom separator`, async () => {
+    const html = render(
+      <Field
+        text={['2024-01-01', '2024-01-02']}
+        valueType="dateRange"
+        mode="read"
+        fieldProps={{
+          separator: '至',
+        }}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(html.baseElement.textContent).toBe('2024-01-01至2024-01-02');
+    });
+
+    html.unmount();
+  });
+
+  it(`🐴 timeRange read support custom separator node`, async () => {
+    const html = render(
+      <Field
+        text={['12:00:00', '13:00:00']}
+        valueType="timeRange"
+        mode="read"
+        fieldProps={{
+          separator: <span data-testid="time-range-separator">到</span>,
+        }}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(html.getByTestId('time-range-separator')).toBeTruthy();
+      expect(html.baseElement.textContent).toBe('12:00:00到13:00:00');
+    });
+
+    html.unmount();
+  });
+
   it(`🐴 digitRange support placeholder`, async () => {
     const onchangeFn = vi.fn();
     const html = render(

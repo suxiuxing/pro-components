@@ -175,7 +175,7 @@ describe('DateField', () => {
       />,
     );
 
-    expect(html.baseElement.textContent).toBe('2016-11-22 15:22:442016-11-23 15:22:44');
+    expect(html.baseElement.textContent).toBe('2016-11-22 15:22:44~2016-11-23 15:22:44');
   });
 
   it(`📅  DatePicker support format is Array`, async () => {
