@@ -435,6 +435,8 @@ describe('LightFilter', () => {
       );
     });
 
+    // Reset locale to 'en' since the LightFilter render changes it to 'zh-cn' via provider
+    dayjs.locale('en');
     const weekLabel = dateArrayFormatter([dayjs('2023-01-02'), dayjs('2023-01-08')], 'YYYY-wo');
     const quarterLabel = dateArrayFormatter(
       [dayjs('2023-01-01'), dayjs('2023-03-31')],

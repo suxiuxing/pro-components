@@ -1,12 +1,13 @@
 import '@testing-library/jest-dom/vitest';
 import crypto from 'crypto';
 
+import { cleanup } from '@testing-library/react';
 import { defaultConfig } from 'antd/es/theme/internal';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import MockDate from 'mockdate';
-import { vi } from 'vitest';
+import { afterEach, vi } from 'vitest';
 
 const React = await import('react');
 
@@ -97,6 +98,20 @@ Object.defineProperty(globalThis, 'localStorage', {
 MockDate.set(1479828164000);
 
 Math.random = () => 0.8404419276253765;
+
+afterEach(() => {
+  cleanup();
+  // Remove portal elements (Drawer, Modal, Popup) leaked into document.body between tests
+  if (typeof document !== 'undefined') {
+    document
+      .querySelectorAll('.ant-drawer-root, .ant-modal-root, .ant-popup-root')
+      .forEach((el) => {
+        el.remove();
+      });
+  }
+  // Reset dayjs locale to default to prevent locale pollution between tests
+  dayjs.locale('en');
+});
 
 // @ts-ignore-next-line
 globalThis.Worker = class {
