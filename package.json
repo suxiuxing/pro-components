@@ -102,7 +102,7 @@
     "@vitest/browser": "^4.1.4",
     "@vitest/coverage-istanbul": "^4.1.4",
     "@vitest/ui": "^4.1.4",
-    "antd": "^6.3.5",
+    "antd": "^6.3.6",
     "babel-plugin-react-compiler": "^1.0.0",
     "cross-env": "^10.1.0",
     "happy-dom": "^20.9.0",
