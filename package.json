@@ -59,7 +59,7 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@emotion/css": "^11.13.5",
-    "@rc-component/form": "^1.8.0",
+    "@rc-component/form": "^1.8.1",
     "@rc-component/resize-observer": "^1.1.2",
     "@rc-component/table": "^1.10.0",
     "@rc-component/util": "^1.10.1",
