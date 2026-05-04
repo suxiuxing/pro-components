@@ -79,6 +79,8 @@ const navVar = {
   iconSvgSize: '--pro-layout-nav-icon-svg-size',
   /** submenu 右侧指示器（chevron）尺寸，默认 12px */
   arrowSize: '--pro-layout-nav-arrow-size',
+  /** 收起态下一级 button 的整体方形尺寸，默认 28px（icon 居中显示） */
+  collapsedItemSize: '--pro-layout-nav-collapsed-item-size',
 } as const;
 
 function layoutNavCssVars(surface: 'sider' | 'header'): Record<string, string> {
@@ -121,6 +123,7 @@ function layoutNavCssVars(surface: 'sider' | 'header'): Record<string, string> {
       [navVar.iconBox]: '24px',
       [navVar.iconSvgSize]: '18px',
       [navVar.arrowSize]: '12px',
+      [navVar.collapsedItemSize]: '28px',
     };
   }
   return {
@@ -159,6 +162,7 @@ function layoutNavCssVars(surface: 'sider' | 'header'): Record<string, string> {
     [navVar.iconBox]: '24px',
     [navVar.iconSvgSize]: '18px',
     [navVar.arrowSize]: '12px',
+    [navVar.collapsedItemSize]: '28px',
   };
 }
 
@@ -529,25 +533,70 @@ const genProLayoutBaseMenuStyle: GenerateStyle<ProLayoutBaseMenuToken> = (
 
       /** `--collapsed` 与根 `nav` 同元素，须用 `&--collapsed` 复合选择器，勿写成后代 `${c} ${c}--collapsed` */
       '&--collapsed': {
-        [`${c}-item`]: {
-          paddingBlock: 0,
-          paddingInlineStart: v('itemPadInline'),
-          paddingInlineEnd: 0,
+        /**
+         * 收起态：button 仅展示 icon，整体收紧成 `collapsedItemSize × collapsedItemSize`
+         * 的正方形（默认 28px，可通过 `--pro-layout-nav-collapsed-item-size` 覆盖）：
+         * 1. 外层 `<li>`：宽度跟随 button，自身在 nav 里水平居中；
+         * 2. button 自身：宽高都固定为 collapsedItemSize，padding 全部清零，
+         *    内容用 `justifyContent: center` + `alignItems: center` 居中；
+         * 3. `> :first-child`（item-title）不再 flex:1，自然收缩；
+         * 4. icon 视觉尺寸仍跟随 `iconSvgSize`（默认 18px），被 button 包裹居中。
+         */
+        [`${c}-item, ${c}-submenu`]: {
+          width: v('collapsedItemSize'),
+          marginInline: 'auto',
           marginBlock: 'var(--ant-margin-xxs, 4px)',
+          padding: 0,
         },
-        [`${c}-submenu-title`]: {
+        [`${c}-item-button, ${c}-submenu-title`]: {
+          width: v('collapsedItemSize'),
+          height: v('collapsedItemSize'),
+          minHeight: v('collapsedItemSize'),
           paddingBlock: 0,
-          paddingInlineStart: v('itemPadInline'),
-          paddingInlineEnd: 0,
+          paddingInline: 0,
+          justifyContent: 'center',
+          alignItems: 'center',
+          [`> :first-child`]: {
+            flex: 'none',
+            width: 'auto',
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
         },
+        /**
+         * 收起态采用「首字 chip」风格：button 仅显示 label 的第一个字符。
+         * 实现方式：
+         * - `${c}-item-title` 限制宽度 = collapsedItemSize（28px），
+         *   `overflow: hidden + whiteSpace: nowrap` 把超出的字符裁掉，
+         *   等价于"只显示第一个字"（中文一字 ~16px、英文 ~9px，刚好落在容器内）；
+         * - 业务 label 里若包含 icon，会被自动裁掉（仅展示首字 chip 视觉）；
+         * - label 文字居中、稍重字重，模拟方块 chip 效果。
+         */
         [`${c}-item-title`]: {
-          width: 'fit-content',
-          maxWidth: '100%',
-          overflow: 'visible',
+          width: v('collapsedItemSize'),
+          maxWidth: v('collapsedItemSize'),
+          overflow: 'hidden',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+          whiteSpace: 'nowrap',
+          gap: 0,
+          fontWeight: 500,
+          /** 防止业务 label 内的 icon 撑高 button：统一固定高度 */
+          height: v('collapsedItemSize'),
         },
         [`${c}-submenu${c}-submenu-open > ${c}-submenu-title`]: {
           backgroundColor: v('colorBgSelected'),
           borderRadius: v('itemRadius'),
+        },
+        /**
+         * 收起态隐藏 submenu 指示器：
+         * - 收起时 button 仅显示 icon，没有文案，箭头会变成视觉噪点；
+         * - popup 是否会弹出可由 hover 行为本身体现，不需要额外指示器。
+         */
+        [`${c}-submenu-arrow`]: {
+          display: 'none',
         },
       },
     },
@@ -625,15 +674,6 @@ const genProLayoutBaseMenuStyle: GenerateStyle<ProLayoutBaseMenuToken> = (
       [`${c}-submenu-title--open ${c}-submenu-arrow`]: {
         transform: 'rotate(90deg)',
       },
-    },
-
-    /**
-     * popup 模式（侧栏 collapsed 一级 / horizontal 顶栏一级）下，
-     * 一级 submenu 触发器箭头朝右，提示「点击会向侧弹出浮层」。
-     * 注意：horizontal 块上面已单独覆盖为朝下，这里仅对 collapsed 侧栏生效。
-     */
-    [`${c}--collapsed ${c}-submenu-title ${c}-submenu-arrow`]: {
-      transform: 'rotate(0deg)',
     },
 
     [`${c}-link-list`]: {

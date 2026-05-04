@@ -179,7 +179,15 @@ function renderLeaf(
           }
         }}
       >
-        {node.label}
+        {/**
+         * 用 `<span class="item-title">` 包裹 label，与 submenu button 行为一致：
+         * - 让 CSS `:first-child` / `${c}-item-title` 选择器能稳定命中；
+         * - 收起态可通过 `${c}-item-title { width: collapsedItemSize; overflow: hidden }`
+         *   实现「首字 chip」风格，无需关心业务侧 label 的内部 DOM 结构。
+         */}
+        <span className={clsx(`${baseClassName}-item-title`, hashId)}>
+          {node.label}
+        </span>
       </button>
     </li>
   );
@@ -333,7 +341,15 @@ function renderPopup(
            */
         }}
       >
-        {node.label}
+        {/**
+         * 必须用 `<span>` 包裹 label，让 CSS `:first-child` 命中这个 element：
+         * - `{node.label}` 若是字符串会渲染为 Text Node，CSS 的 `:first-child`
+         *   只匹配 element child，会跳过文本节点直接命中 `<SubmenuArrow>`，
+         *   导致 arrow 被 `flex:1` 撑满整个 button、label 被挤没。
+         */}
+        <span className={clsx(`${baseClassName}-item-title`, hashId)}>
+          {node.label}
+        </span>
         <SubmenuArrow baseClassName={baseClassName} hashId={hashId} />
       </button>
     </Popover>
@@ -421,7 +437,10 @@ function renderInlineSubmenu(
           }
         }}
       >
-        {node.label}
+        {/** 同 renderPopup：用 span 包裹让 `:first-child` 命中文字容器 */}
+        <span className={clsx(`${baseClassName}-item-title`, hashId)}>
+          {node.label}
+        </span>
         <SubmenuArrow baseClassName={baseClassName} hashId={hashId} />
       </button>
       {isOpen ? (
