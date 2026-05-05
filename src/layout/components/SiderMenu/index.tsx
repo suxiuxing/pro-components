@@ -1,11 +1,11 @@
 import { omit } from '@rc-component/util';
 import { ConfigProvider, Drawer } from 'antd';
 import { clsx } from 'clsx';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import type { PrivateSiderMenuProps, SiderMenuProps } from './SiderMenu';
 import { SiderMenu } from './SiderMenu';
-import { getProLayoutSiderCssVarsStyle } from './style/menu';
 import { useStyle } from './style/index';
+import { getProLayoutSiderCssVarsStyle } from './style/menu';
 
 const SiderMenuWrapper: React.FC<SiderMenuProps & PrivateSiderMenuProps> = (
   props,

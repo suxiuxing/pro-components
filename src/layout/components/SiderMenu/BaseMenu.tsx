@@ -12,13 +12,13 @@ import React, {
 } from 'react';
 import { isImg, isUrl } from '../../../utils';
 import { getOpenKeysFromMenuData } from '../../utils/utils';
-import type { PrivateSiderMenuProps } from './SiderMenu';
 import {
   mapMenuDataToNavNodes,
-  type BaseMenuProps as BaseMenuTreeProps,
   type BaseMenuTreeContext,
+  type BaseMenuProps as BaseMenuTreeProps,
 } from './menuTree';
 import { ProLayoutNavMenu } from './ProLayoutNavMenu';
+import type { PrivateSiderMenuProps } from './SiderMenu';
 import { useStyle } from './style/menu';
 export type {
   MenuMode,
@@ -46,7 +46,10 @@ const BaseMenu: React.FC<BaseMenuProps & PrivateSiderMenuProps> = (props) => {
   } = props;
 
   const renderIcon = useCallback(
-    (icon: string | React.ReactNode, iconClassName: string): React.ReactNode => {
+    (
+      icon: string | React.ReactNode,
+      iconClassName: string,
+    ): React.ReactNode => {
       if (icon == null || icon === false) {
         return null;
       }
@@ -146,50 +149,45 @@ const BaseMenu: React.FC<BaseMenuProps & PrivateSiderMenuProps> = (props) => {
     }
   }, [matchMenuKeys.join('-')]);
 
-  useEffect(
-    () => {
-      if (
-        matchMenuKeys.length > 0 &&
-        matchMenuKeys.join('-') !== (selectedKeys || []).join('-')
-      ) {
-        setSelectedKeys(matchMenuKeys);
+  useEffect(() => {
+    if (
+      matchMenuKeys.length > 0 &&
+      matchMenuKeys.join('-') !== (selectedKeys || []).join('-')
+    ) {
+      setSelectedKeys(matchMenuKeys);
+    }
+    if (
+      !defaultOpenAll &&
+      propsOpenKeys !== false &&
+      matchMenuKeys.join('-') !== (openKeys || []).join('-')
+    ) {
+      let newKeys: (string | number)[] | false = matchMenuKeys;
+      if (menu?.autoClose === false) {
+        newKeys = Array.from(new Set([...matchMenuKeys, ...(openKeys || [])]));
       }
       if (
-        !defaultOpenAll &&
-        propsOpenKeys !== false &&
-        matchMenuKeys.join('-') !== (openKeys || []).join('-')
+        matchMenuKeys.length === 0 &&
+        menu?.autoClose === false &&
+        Array.isArray(openKeys) &&
+        openKeys.length > 0
       ) {
-        let newKeys: (string | number)[] | false = matchMenuKeys;
-        if (menu?.autoClose === false) {
-          newKeys = Array.from(
-            new Set([...matchMenuKeys, ...(openKeys || [])]),
-          );
-        }
-        if (
-          matchMenuKeys.length === 0 &&
-          menu?.autoClose === false &&
-          Array.isArray(openKeys) &&
-          openKeys.length > 0
-        ) {
-          newKeys = [...openKeys];
-        }
-        if (
-          Array.isArray(newKeys) &&
-          newKeys.length === 0 &&
-          matchMenuKeys.length === 0
-        ) {
-          // 路由无法匹配菜单时保留展开态（如 pathname 被写成外链）
-        } else {
-          setOpenKeys(newKeys);
-        }
-      } else if (menu?.ignoreFlatMenu && defaultOpenAll && !props.collapsed) {
-        setOpenKeys(getOpenKeysFromMenuData(menuData));
+        newKeys = [...openKeys];
+      }
+      if (
+        Array.isArray(newKeys) &&
+        newKeys.length === 0 &&
+        matchMenuKeys.length === 0
+      ) {
+        // 路由无法匹配菜单时保留展开态（如 pathname 被写成外链）
       } else {
-        setDefaultOpenAll(false);
+        setOpenKeys(newKeys);
       }
-    },
-    [matchMenuKeys.join('-'), props.collapsed],
-  );
+    } else if (menu?.ignoreFlatMenu && defaultOpenAll && !props.collapsed) {
+      setOpenKeys(getOpenKeysFromMenuData(menuData));
+    } else {
+      setDefaultOpenAll(false);
+    }
+  }, [matchMenuKeys.join('-'), props.collapsed]);
 
   const { wrapSSR, hashId } = useStyle(baseClassName, mode);
 
@@ -205,8 +203,7 @@ const BaseMenu: React.FC<BaseMenuProps & PrivateSiderMenuProps> = (props) => {
   );
 
   if (menu?.loading) {
-    const compactMenuSkeleton =
-      mode === 'horizontal' || !!props.collapsed;
+    const compactMenuSkeleton = mode === 'horizontal' || !!props.collapsed;
     return (
       <div
         style={

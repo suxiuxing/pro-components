@@ -783,19 +783,6 @@ const genProLayoutBaseMenuStyle: GenerateStyle<ProLayoutBaseMenuToken> = (
         WebkitAppearance: 'none',
         textAlign: 'start',
         transition: `background-color var(--ant-motion-duration-mid, 0.2s), color var(--ant-motion-duration-mid, 0.2s)`,
-        /**
-         * 第一个子节点（item-title）拿走剩余空间；后续子节点（如 submenu-arrow）
-         * 自然贴右，不参与 flex 拉伸。这与主区 `${c}-submenu-title` 规则保持一致，
-         * 否则 popup 内 arrow 会被 flex:1 撑大到与 title 等宽。
-         */
-        [`> :first-child`]: {
-          flex: 1,
-          minWidth: 0,
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: v('itemGap'),
-        },
         '&:hover:not(:disabled)': {
           backgroundColor: v('colorBgHover'),
           color: v('colorTextHover'),
@@ -803,6 +790,24 @@ const genProLayoutBaseMenuStyle: GenerateStyle<ProLayoutBaseMenuToken> = (
         '&:disabled': {
           cursor: 'not-allowed',
           opacity: 0.45,
+        },
+      },
+
+      /**
+       * Submenu 标题专属：第一个子节点（item-title span）拿走剩余空间，arrow 自然贴右。
+       * 这条规则**不能**应用到 leaf 的 `${c}-item-button` 上 —— leaf button 内只有
+       * 一个 `<span class="item-title">` 子元素，叠加 `flex:1 + display:flex` 后该 span
+       * 会变成 flex 容器，但其内部只是纯文本节点（非 element），会被 flex 容器塌缩
+       * 到极小宽度，导致 popup 内 leaf 文案不可见。
+       */
+      [`${c}-submenu-title`]: {
+        [`> :first-child`]: {
+          flex: 1,
+          minWidth: 0,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: v('itemGap'),
         },
       },
 

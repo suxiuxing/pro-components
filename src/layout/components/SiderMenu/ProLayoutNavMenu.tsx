@@ -557,10 +557,7 @@ export const ProLayoutNavMenu: React.FC<ProLayoutNavMenuProps> = ({
       }
     }
     setPopupInnerOpenSet((prev) => {
-      if (
-        prev.size === next.size &&
-        [...next].every((k) => prev.has(k))
-      ) {
+      if (prev.size === next.size && [...next].every((k) => prev.has(k))) {
         return prev;
       }
       return next;

@@ -154,7 +154,6 @@ function renderLeafRow(
   ctx: BaseMenuTreeContext,
   item: MenuDataItem,
   level: number,
-  collapsedGroupDepth: number,
 ) {
   const path = normalizeMenuPath(item.path || '/');
   const {
@@ -179,9 +178,12 @@ function renderLeafRow(
   const fallbackLetter =
     collapsed && showIconSlot ? collapsedTitleLetter(titleText) : null;
 
-  /** collapsed 且 collapsedShowTitle 关闭时不渲染文案，避免占位/溢出 */
-  const shouldRenderLabel = !(collapsed && !menu?.collapsedShowTitle);
-
+  /**
+   * **始终渲染 label 与 icon**：
+   * 同一份 NavMenuNode 既会被主区（折叠态）使用，也会被 popup（展开态）使用。
+   * 若在数据构造期按 `collapsed` 剃掉文案，popup 内会拿到空 span，无法恢复。
+   * 是否在主区折叠态隐藏文案，全部交由 cssinjs 的 `&--collapsed` 块控制。
+   */
   const iconCell =
     iconNode || fallbackLetter !== null ? (
       <span className={clsx(`${baseClassName}-item-icon`, ctx.hashId)}>
@@ -189,7 +191,7 @@ function renderLeafRow(
       </span>
     ) : null;
 
-  const labelCell = shouldRenderLabel ? (
+  const labelCell = (
     <span
       className={clsx(`${baseClassName}-item-label`, ctx.hashId, {
         [`${baseClassName}-item-text-has-icon`]:
@@ -198,15 +200,9 @@ function renderLeafRow(
     >
       {titleText}
     </span>
-  ) : null;
+  );
 
-  const titleClassName = clsx(`${baseClassName}-item-title`, ctx.hashId, {
-    [`${baseClassName}-item-title-collapsed`]: collapsed,
-    [`${baseClassName}-item-title-collapsed-level-${collapsedGroupDepth}`]:
-      collapsed,
-    [`${baseClassName}-item-collapsed-show-title`]:
-      menu?.collapsedShowTitle && collapsed,
-  });
+  const titleClassName = clsx(`${baseClassName}-item-title`, ctx.hashId);
 
   const isExternalUrl = isUrl(path);
 
@@ -258,15 +254,21 @@ function mapMenuItemToNavNode(
   ctx: BaseMenuTreeContext,
   item: MenuDataItem,
   depth: number,
-  collapsedGroupDepth: number,
 ): NavMenuNode | NavMenuNode[] {
-  const { subMenuItemRender, baseClassName, collapsed, menu, layout, renderIcon } =
-    ctx;
+  const {
+    subMenuItemRender,
+    baseClassName,
+    collapsed,
+    menu,
+    layout,
+    renderIcon,
+  } = ctx;
   const useGroupChrome = menu?.type === 'group' && layout !== 'top';
   const titleText = resolveMenuItemTitle(ctx, item);
   const children = item?.children;
 
-  const rowVariant = useGroupChrome && depth === 0 ? ('group' as const) : undefined;
+  const rowVariant =
+    useGroupChrome && depth === 0 ? ('group' as const) : undefined;
 
   if (Array.isArray(children) && children.length > 0) {
     const iconLevel = depth === 0 || (useGroupChrome && depth === 1);
@@ -278,28 +280,19 @@ function mapMenuItemToNavNode(
     const fallbackLetter =
       collapsed && iconLevel ? collapsedTitleLetter(titleText) : null;
 
-    const showIconCell =
-      rowVariant !== 'group' || !collapsed
-        ? iconLevel && (iconDom || fallbackLetter)
-        : false;
-    const shouldRenderTitleText =
-      rowVariant === 'group' ? !collapsed : !(collapsed && !menu?.collapsedShowTitle);
-
     /**
-     * 标题行 DOM：
-     * - 普通 submenu / group：`span.icon? + span.label`，与 leaf 完全对齐
-     * - group 标题在收起态既不显示 icon 也不显示文案（由 cssinjs 控制隐藏）
+     * **始终渲染 icon 和文案**，是否隐藏交由 cssinjs 控制：
+     * 同一份 NavMenuNode 会被主区与 popup 共用，数据构造期不能按 collapsed 剃内容，
+     * 否则 popup 内拿到的是空 span，无法恢复。
      */
+    const showIconCell = iconLevel && (iconDom || fallbackLetter);
+
+    /** 标题行 DOM：`span.icon? + span.label`，与 leaf 完全对齐 */
     const defaultTitleRow = (
       <span
         data-pro-layout-nav-item-title
         className={clsx(`${baseClassName}-item-title`, ctx.hashId, {
-          [`${baseClassName}-item-title-collapsed`]: collapsed,
-          [`${baseClassName}-item-title-collapsed-level-${collapsedGroupDepth}`]:
-            collapsed,
           [`${baseClassName}-group-item-title`]: rowVariant === 'group',
-          [`${baseClassName}-item-collapsed-show-title`]:
-            menu?.collapsedShowTitle && collapsed,
         })}
       >
         {showIconCell ? (
@@ -307,16 +300,14 @@ function mapMenuItemToNavNode(
             {iconDom ?? fallbackLetter}
           </span>
         ) : null}
-        {shouldRenderTitleText ? (
-          <span
-            className={clsx(`${baseClassName}-item-label`, ctx.hashId, {
-              [`${baseClassName}-item-text-has-icon`]:
-                rowVariant !== 'group' && showIconCell,
-            })}
-          >
-            {titleText}
-          </span>
-        ) : null}
+        <span
+          className={clsx(`${baseClassName}-item-label`, ctx.hashId, {
+            [`${baseClassName}-item-text-has-icon`]:
+              rowVariant !== 'group' && showIconCell,
+          })}
+        >
+          {titleText}
+        </span>
       </span>
     );
 
@@ -325,12 +316,10 @@ function mapMenuItemToNavNode(
       : defaultTitleRow;
 
     const nextDepth = depth + 1;
-    const nextCollapsedDepth =
-      useGroupChrome && depth === 0 && ctx.collapsed ? depth : depth + 1;
 
     const childNodes =
       // eslint-disable-next-line @typescript-eslint/no-use-before-define -- `mapMenuDataToNavNodes` 与 `mapMenuItemToNavNode` 互递归
-      mapMenuDataToNavNodes(ctx, children, nextDepth, nextCollapsedDepth);
+      mapMenuDataToNavNodes(ctx, children, nextDepth);
 
     /**
      * 分组分隔不再使用 1px divider（与 SidebarMenu 一致），改由 `--pro-layout-nav-group-gap`
@@ -367,7 +356,7 @@ function mapMenuItemToNavNode(
     disabled: item.disabled,
     key: String(item.key! || item.path!),
     onClick: onTitle ? () => onTitle() : undefined,
-    label: renderLeafRow(ctx, item, depth, collapsedGroupDepth),
+    label: renderLeafRow(ctx, item, depth),
   };
 }
 
@@ -376,10 +365,9 @@ function mapMenuDataToNavNodes(
   ctx: BaseMenuTreeContext,
   items: MenuDataItem[] = [],
   depth = 0,
-  collapsedGroupDepth = 0,
 ): NavMenuNode[] {
   return items
-    .map((item) => mapMenuItemToNavNode(ctx, item, depth, collapsedGroupDepth))
+    .map((item) => mapMenuItemToNavNode(ctx, item, depth))
     .filter(Boolean)
     .flat(1) as NavMenuNode[];
 }
