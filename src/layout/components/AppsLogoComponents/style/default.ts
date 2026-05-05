@@ -1,4 +1,4 @@
-﻿import type { GenerateStyle } from '../../../../provider';
+import type { GenerateStyle } from '../../../../provider';
 import { resetComponent } from '../../../../utils';
 import type { AppsLogoComponentsToken } from './index';
 const genAppsLogoComponentsDefaultListStyle: GenerateStyle<
@@ -25,8 +25,15 @@ const genAppsLogoComponentsDefaultListStyle: GenerateStyle<
           paddingBlock: 16,
           verticalAlign: 'top',
           listStyleType: 'none',
-          transition: 'transform 0.2s cubic-bezier(0.333, 0, 0, 1)',
+          /**
+           * Item 交互过渡：同时过渡 transform / background / box-shadow，
+           * hover 时整张卡轻微浮起（translateY(-2px)）+ 阴影，active 下按；
+           * 缓动曲线沿用 Material "easeOutStandard"。
+           */
+          transition:
+            'transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1)',
           borderRadius: token.borderRadius,
+          cursor: 'pointer',
           '&-group': {
             marginBottom: 16,
             '&-title': {
@@ -44,6 +51,15 @@ const genAppsLogoComponentsDefaultListStyle: GenerateStyle<
 
           '&:hover': {
             backgroundColor: token.colorBgTextHover,
+            transform: 'translateY(-2px)',
+            boxShadow:
+              '0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12)',
+            /** icon 伴随轻微放大，与卡片浮起协调 */
+            '& > a > img': { transform: 'scale(1.04)' },
+          },
+          '&:active': {
+            transform: 'translateY(0)',
+            boxShadow: 'none',
           },
           '* div': resetComponent?.(token),
           a: {
@@ -54,6 +70,7 @@ const genAppsLogoComponentsDefaultListStyle: GenerateStyle<
             '& > img': {
               width: 40,
               height: 40,
+              transition: 'transform 0.22s cubic-bezier(0.22, 1, 0.36, 1)',
             },
             '& > div': {
               marginInlineStart: 14,

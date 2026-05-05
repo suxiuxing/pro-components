@@ -4,31 +4,34 @@ import { isUrl } from '../../../utils';
 import type { AppItemProps, AppListProps } from './types';
 
 /**
- * simple 模式渲染logo的方式
+ * simple 模式 logo 渲染：
+ * - 函数：就地调用，业务方完全自控；
+ * - URL 字符串：渲染 `<img>`；
+ * - 非 URL 字符串：当作"字符 chip"渲染（如首字母）；
+ * - logo 为空但 title 是字符串：取 title 首字作 chip 占位；
+ * - 其他 ReactNode：直接返回。
  *
- * @param logo
- * @param title
- * @returns
+ * 使用 className `${baseClassName}-avatar` 而不是 `id`，避免列表内多次渲染造成重复 id。
  */
 export const renderLogo = (
   logo: React.ReactNode | (() => React.ReactNode),
-  title?: React.ReactNode,
+  title: React.ReactNode,
+  avatarClassName: string,
+  hashId?: string,
 ): React.ReactNode => {
   if (logo && typeof logo === 'string' && isUrl(logo)) {
     return <img src={logo} alt="logo" />;
   }
-
   if (typeof logo === 'function') {
     return logo();
   }
-
   if (logo && typeof logo === 'string') {
-    return <div id="avatarLogo">{logo}</div>;
+    return <div className={clsx(avatarClassName, hashId)}>{logo}</div>;
   }
-
   if (!logo && title && typeof title === 'string') {
-    const symbol = title.substring(0, 1);
-    return <div id="avatarLogo">{symbol}</div>;
+    return (
+      <div className={clsx(avatarClassName, hashId)}>{title.substring(0, 1)}</div>
+    );
   }
   return logo;
 };
@@ -40,14 +43,21 @@ export const SimpleContent: React.FC<{
   hashId?: string;
 }> = (props) => {
   const { appList, baseClassName, hashId, itemClick } = props;
+  const avatarClassName = `${baseClassName}-avatar`;
   return (
     <div className={clsx(`${baseClassName}-content`, hashId)}>
       <ul className={clsx(`${baseClassName}-content-list`, hashId)}>
         {appList?.map((app, index) => {
+          const itemKey = (typeof app.title === 'string' && app.title) || index;
           if (app?.children?.length) {
+            /**
+             * 分组节点用 `<li role="presentation">`（而非 `<div>`），
+             * 与父 `<ul>` 语义对齐；内部再嵌一层 `<ul>`（由递归渲染的 SimpleContent 产生）。
+             */
             return (
-              <div
-                key={index}
+              <li
+                key={itemKey}
+                role="presentation"
                 className={clsx(
                   `${baseClassName}-content-list-item-group`,
                   hashId,
@@ -67,24 +77,31 @@ export const SimpleContent: React.FC<{
                   appList={app?.children}
                   baseClassName={baseClassName}
                 />
-              </div>
+              </li>
             );
           }
+          const hasClick = !!itemClick;
           return (
             <li
-              key={index}
+              key={itemKey}
               className={clsx(`${baseClassName}-content-list-item`, hashId)}
               onClick={(e) => {
                 e.stopPropagation();
                 itemClick?.(app);
               }}
             >
+              {/**
+               * 有外部 onItemClick 时，使用 `role="button"` 的 <a>（不带 href），
+               * 避免 `javascript:;` 反模式被 CSP 拦截；否则作为普通外链。
+               */}
               <a
-                href={itemClick ? 'javascript:;' : app.url}
-                target={app.target}
+                href={hasClick ? undefined : app.url}
+                target={hasClick ? undefined : app.target}
+                role={hasClick ? 'button' : undefined}
+                tabIndex={hasClick ? 0 : undefined}
                 rel="noreferrer"
               >
-                {renderLogo(app.icon, app.title)}
+                {renderLogo(app.icon, app.title, avatarClassName, hashId)}
                 <div>
                   <div>{app.title}</div>
                 </div>

@@ -14,10 +14,13 @@ export const DefaultContent: React.FC<{
     <div className={clsx(`${baseClassName}-content`, hashId)}>
       <ul className={clsx(`${baseClassName}-content-list`, hashId)}>
         {appList?.map((app, index) => {
+          const itemKey = (typeof app.title === 'string' && app.title) || index;
           if (app?.children?.length) {
+            /** 分组节点用 `<li role="presentation">`，保持 `<ul>` 只直含 `<li>` 的语义 */
             return (
-              <div
-                key={index}
+              <li
+                key={itemKey}
+                role="presentation"
                 className={clsx(
                   `${baseClassName}-content-list-item-group`,
                   hashId,
@@ -37,12 +40,13 @@ export const DefaultContent: React.FC<{
                   appList={app?.children}
                   baseClassName={baseClassName}
                 />
-              </div>
+              </li>
             );
           }
+          const hasClick = !!itemClick;
           return (
             <li
-              key={index}
+              key={itemKey}
               className={clsx(`${baseClassName}-content-list-item`, hashId)}
               onClick={(e) => {
                 e.stopPropagation();
@@ -50,8 +54,10 @@ export const DefaultContent: React.FC<{
               }}
             >
               <a
-                href={itemClick ? undefined : app.url}
-                target={app.target}
+                href={hasClick ? undefined : app.url}
+                target={hasClick ? undefined : app.target}
+                role={hasClick ? 'button' : undefined}
+                tabIndex={hasClick ? 0 : undefined}
                 rel="noreferrer"
               >
                 {defaultRenderLogo(app.icon)}
