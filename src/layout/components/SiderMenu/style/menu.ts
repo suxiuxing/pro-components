@@ -564,27 +564,40 @@ const genProLayoutBaseMenuStyle: GenerateStyle<ProLayoutBaseMenuToken> = (
           },
         },
         /**
-         * 收起态采用「首字 chip」风格：button 仅显示 label 的第一个字符。
-         * 实现方式：
-         * - `${c}-item-title` 限制宽度 = collapsedItemSize（28px），
-         *   `overflow: hidden + whiteSpace: nowrap` 把超出的字符裁掉，
-         *   等价于"只显示第一个字"（中文一字 ~16px、英文 ~9px，刚好落在容器内）；
-         * - 业务 label 里若包含 icon，会被自动裁掉（仅展示首字 chip 视觉）；
-         * - label 文字居中、稍重字重，模拟方块 chip 效果。
+         * 收起态渲染契约：**有 icon 展示 icon；无 icon 时退化为首字 chip**。
+         * - 数据层（`menuTree.tsx`）已按 `hasIcon` 决定渲染 `iconNode` 还是 `fallbackLetter`，
+         *   并给 label 打上 `-item-text-has-icon` 类名；
+         * - CSS 这里只做两件事：
+         *   1. 把 item-title 做成居中的 flex 容器，icon/首字都在 collapsedItemSize 正方形内居中；
+         *   2. 有 icon 时隐藏 label（由 `-item-text-has-icon: display:none` 负责）。
+         *   **不再**用 `width/overflow:hidden + nowrap` 暴力裁 label 做"首字 chip"，
+         *   否则 icon 会被一起挤掉。
          */
         [`${c}-item-title`]: {
           width: v('collapsedItemSize'),
           maxWidth: v('collapsedItemSize'),
-          overflow: 'hidden',
+          height: v('collapsedItemSize'),
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
-          whiteSpace: 'nowrap',
           gap: 0,
           fontWeight: 500,
-          /** 防止业务 label 内的 icon 撑高 button：统一固定高度 */
-          height: v('collapsedItemSize'),
+          /** 无 icon 时展示首字（`collapsedTitleLetter` 已只返回 1 个字符），
+           *  用 nowrap 保证不会在 28px 容器里换行；但**不**用 overflow:hidden，
+           *  避免 svg 因定位/padding 在 1px 边缘被误裁。 */
+          whiteSpace: 'nowrap',
+          [`${c}-item-label`]: {
+            /** 业务 label 里可能包含 icon 等复杂节点，限制成单行文本，
+             *  配合父容器的 justify/align center 呈现首字 chip。 */
+            overflow: 'hidden',
+            textOverflow: 'clip',
+            maxWidth: '100%',
+          },
+          /** 有 icon 的项：label 整块隐藏，仅展示 icon */
+          [`${c}-item-text-has-icon`]: {
+            display: 'none',
+          },
         },
         [`${c}-submenu${c}-submenu-open > ${c}-submenu-title`]: {
           backgroundColor: v('colorBgSelected'),

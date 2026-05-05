@@ -1,13 +1,135 @@
 import {
+  AppstoreOutlined,
+  AuditOutlined,
+  BranchesOutlined,
+  ContainerOutlined,
+  FileDoneOutlined,
   GithubFilled,
+  HomeOutlined,
   InfoCircleFilled,
+  OrderedListOutlined,
+  ProfileOutlined,
   QuestionCircleFilled,
+  SafetyOutlined,
+  TagsOutlined,
+  TeamOutlined,
+  UnorderedListOutlined,
 } from '@ant-design/icons';
 import type { ProSettings } from '@ant-design/pro-components';
 import { PageContainer, ProCard, ProLayout } from '@ant-design/pro-components';
 import { Segmented, Space, theme } from 'antd';
 import { useState } from 'react';
 import defaultProps from './_defaultProps';
+
+// enum-switch 专用路由：一级菜单不带 icon，二级菜单带 icon
+const routeWithSecondLevelIcons = {
+  path: '/',
+  routes: [
+    {
+      path: '/welcome',
+      name: '工作台',
+      icon: <HomeOutlined />,
+      component: './Welcome',
+    },
+    {
+      path: '/product',
+      name: '商品管理',
+      component: './Product',
+      routes: [
+        {
+          path: '/product/list',
+          name: '商品列表',
+          icon: <UnorderedListOutlined />,
+          routes: [
+            { path: 'on-sale', name: '在售商品', component: './Welcome' },
+            { path: 'draft', name: '草稿箱', component: './Welcome' },
+            { path: 'off-shelf', name: '已下架', component: './Welcome' },
+          ],
+        },
+        {
+          path: '/product/category',
+          name: '商品分类',
+          icon: <AppstoreOutlined />,
+          component: './Welcome',
+        },
+        {
+          path: '/product/brand',
+          name: '品牌管理',
+          icon: <TagsOutlined />,
+          component: './Welcome',
+        },
+        {
+          path: '/product/inventory',
+          name: '库存管理',
+          icon: <ContainerOutlined />,
+          component: './Welcome',
+        },
+      ],
+    },
+    {
+      path: '/order',
+      name: '订单中心',
+      component: './Order',
+      routes: [
+        {
+          path: '/order/sales',
+          name: '销售订单',
+          icon: <OrderedListOutlined />,
+          routes: [
+            { path: 'pending', name: '待付款', component: './Welcome' },
+            { path: 'paid', name: '已付款', component: './Welcome' },
+            { path: 'shipped', name: '已发货', component: './Welcome' },
+            { path: 'completed', name: '已完成', component: './Welcome' },
+          ],
+        },
+        {
+          path: '/order/refund',
+          name: '退款售后',
+          icon: <BranchesOutlined />,
+          component: './Welcome',
+        },
+        {
+          path: '/order/invoice',
+          name: '发票申请',
+          icon: <FileDoneOutlined />,
+          component: './Welcome',
+        },
+      ],
+    },
+    {
+      path: '/admin',
+      name: '系统管理',
+      access: 'canAdmin',
+      component: './Admin',
+      routes: [
+        {
+          path: '/admin/users',
+          name: '用户管理',
+          icon: <TeamOutlined />,
+          component: './Welcome',
+        },
+        {
+          path: '/admin/roles',
+          name: '角色权限',
+          icon: <SafetyOutlined />,
+          component: './Welcome',
+        },
+        {
+          path: '/admin/menu',
+          name: '菜单管理',
+          icon: <ProfileOutlined />,
+          component: './Welcome',
+        },
+        {
+          path: '/admin/audit-logs',
+          name: '操作日志',
+          icon: <AuditOutlined />,
+          component: './Welcome',
+        },
+      ],
+    },
+  ],
+};
 
 const Demo = () => {
   const { token } = theme.useToken();
@@ -30,6 +152,7 @@ const Demo = () => {
     >
       <ProLayout
         {...defaultProps}
+        route={routeWithSecondLevelIcons}
         layout={layout}
         splitMenus={layout === 'side' ? splitMenus : false}
         contentWidth={contentWidth}
