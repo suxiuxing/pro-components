@@ -20,7 +20,7 @@ const genAppsLogoComponentsDefaultListStyle: GenerateStyle<
           position: 'relative',
           display: 'inline-block',
           width: 328,
-          height: 72,
+          maxHeight: 72,
           paddingInline: 16,
           paddingBlock: 16,
           verticalAlign: 'top',
