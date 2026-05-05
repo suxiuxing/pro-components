@@ -1,4 +1,4 @@
-﻿import { Keyframes } from '@ant-design/cssinjs';
+import { Keyframes } from '@ant-design/cssinjs';
 import type { GenerateStyle, ProAliasToken } from '../../../../provider';
 import { useStyle as useAntdStyle } from '../../../../provider';
 import { proLayoutSiderVar } from './menu';
@@ -96,7 +96,8 @@ const genSiderMenuStyle: GenerateStyle<SiderMenuToken> = (token) => {
           '&-collapsed': {
             flexDirection: 'column-reverse',
             margin: 0,
-            padding: 12,
+            /** 收起态 logo 不再加 padding，与菜单 28×28 正方形按钮在横向对齐 */
+            padding: 0,
             [`${token.proComponentsCls}-layout-apps-icon`]: {
               marginBlockEnd: 8,
               fontSize: 16,
