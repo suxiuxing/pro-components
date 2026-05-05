@@ -251,7 +251,7 @@ function renderPopup(
     insideSubmenuPopup: true,
   };
   const isOpen = popupOpenKey === node.key;
-  const hasIconClass = node.className?.includes('submenu-has-icon');
+  const hasIcon = !!node.hasIcon;
 
   /**
    * popup 内重置 depth 起算：popup 自身已经把当前 submenu「外移」到浮层里，
@@ -273,8 +273,23 @@ function renderPopup(
   );
 
   return (
-    <Popover
+    /**
+     * 外层 `<li role="none">`：根 `<nav role="menu">` 的子节点必须是
+     * `role="none"` 的 `<li>` 才符合 WAI-ARIA 菜单结构（真正的 `menuitem`
+     * 由 Popover 内的 `<button>` 承担）。少了这一层会导致 a11y 检查报错、
+     * 屏幕阅读器把 popover wrapper 误读为通用容器。
+     */
+    <li
       key={node.key}
+      role="none"
+      data-pro-layout-nav-submenu
+      data-pro-layout-nav-submenu-open={isOpen || undefined}
+      className={clsx(`${baseClassName}-submenu`, hashId, node.className, {
+        [`${baseClassName}-submenu-open`]: isOpen,
+        [`${baseClassName}-submenu-has-icon`]: hasIcon,
+      })}
+    >
+    <Popover
       open={isOpen}
       arrow={false}
       destroyOnHidden
@@ -321,7 +336,7 @@ function renderPopup(
         type="button"
         className={clsx(`${baseClassName}-submenu-title`, hashId, {
           [`${baseClassName}-submenu-title--open`]: isOpen,
-          [`${baseClassName}-submenu-has-icon`]: hasIconClass,
+          [`${baseClassName}-submenu-has-icon`]: hasIcon,
         })}
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -353,6 +368,7 @@ function renderPopup(
         <SubmenuArrow baseClassName={baseClassName} hashId={hashId} />
       </button>
     </Popover>
+    </li>
   );
 }
 
@@ -371,13 +387,7 @@ function renderInlineSubmenu(
   } = ctx;
   /**
    * 三级及以下 submenu 的展开判定：
-   * - 非 popup 模式（侧栏展开态/inline）：以受控的 `openKeysProp` 为准（openSet 已映射）
-   * - popup 模式（collapsed 侧栏 / horizontal）下 popup 内的内联 submenu：
-   *   `openKeysProp` 不会包含三级 key，需要用本地 `popupOpenKey` 兜底，否则三级无法展开
-   */
-  /**
-   * 三级及以下 submenu 的展开判定：
-   * - 非 popup 模式：以受控的 `openKeysProp` 为准（openSet 已映射）
+   * - 非 popup 模式：以受控的 `openKeysProp` 为准（`openSet` 已映射）；
    * - popup 模式（侧栏 collapsed / horizontal）下 popup 内的内联 submenu：
    *   用独立的 `popupInnerOpenSet`，与顶级 `popupOpenKey` 解耦，避免点击三级
    *   submenu 时把顶级 popup 的 key 顶掉导致整个 popup 关闭。
@@ -523,12 +533,26 @@ export const ProLayoutNavMenu: React.FC<ProLayoutNavMenuProps> = ({
     () => new Set(),
   );
 
+  /**
+   * 用 `\u0001` 这种**不可能出现在业务 key 中的字符**做分隔符做依赖签名，
+   * 避免 `['a,b']` 与 `['a', 'b']` 在 `.join(',')` 后字符串相同 → 漏触发副作用。
+   */
+  const defaultOpenKeysSig = useMemo(
+    () => defaultOpenKeys.join('\u0001'),
+    [defaultOpenKeys],
+  );
+  const selectedKeysSig = useMemo(
+    () => selectedKeys.join('\u0001'),
+    [selectedKeys],
+  );
+
   useEffect(() => {
     if (!popupMode) return;
     if (defaultOpenKeys.length > 0) {
       setPopupOpenKey(defaultOpenKeys[0] ?? null);
     }
-  }, [popupMode, defaultOpenKeys.join(',')]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- 用 `defaultOpenKeysSig` 等价签名替代数组引用
+  }, [popupMode, defaultOpenKeysSig]);
 
   /**
    * 顶级 popup 状态联动 popup 内 inline 展开：
@@ -562,7 +586,8 @@ export const ProLayoutNavMenu: React.FC<ProLayoutNavMenuProps> = ({
       }
       return next;
     });
-  }, [popupOpenKey, nodes, selectedKeys.join(',')]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- `selectedKeysSig` 已是 selectedKeys 的稳定签名
+  }, [popupOpenKey, nodes, selectedKeysSig]);
 
   const selectedSet = useMemo(
     () => new Set(selectedKeys.map(keyToString)),

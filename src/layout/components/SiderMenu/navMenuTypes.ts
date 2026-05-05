@@ -15,9 +15,7 @@ export type NavMenuSubmenuNode = {
   label: ReactNode;
   children: NavMenuNode[];
   className?: string;
-  /** 子菜单触发器可访问名称（`label` 非纯文本时使用） */
-  ariaLabel?: string;
-  /** 子菜单标题是否含图标（用于布局样式，优于解析 className） */
+  /** 子菜单标题是否含图标（用于布局样式，优于在渲染层解析 className 字符串） */
   hasIcon?: boolean;
   onTitleClick?: (e: MouseEvent<Element>) => void;
 };

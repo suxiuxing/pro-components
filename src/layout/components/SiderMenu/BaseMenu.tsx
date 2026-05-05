@@ -100,14 +100,17 @@ const BaseMenu: React.FC<BaseMenuProps & PrivateSiderMenuProps> = (props) => {
     ) => {
       setOpenKeysInner((prev) => {
         const next =
-          typeof updater === 'function'
-            ? (
-                updater as (
-                  p: (string | number)[] | false,
-                ) => (string | number)[] | false
-              )(prev)
-            : updater;
-        (onOpenChange as (keys?: (string | number)[] | false) => void)?.(next);
+          typeof updater === 'function' ? updater(prev) : updater;
+        /**
+         * 对外回调签名是 `(openKeys: string[]) => void`（`BaseMenuProps.onOpenChange`），
+         * 内部 state 同时兼容 `false`（"完全不展开"语义）。这里把 `false` 映射成 `[]`，
+         * 把 number key 统一字符串化，再回调，避免向用户透出内部 state 形状。
+         */
+        if (onOpenChange) {
+          const callbackKeys =
+            next === false ? [] : next.map((k) => String(k));
+          onOpenChange(callbackKeys);
+        }
         return next;
       });
     },
@@ -281,10 +284,13 @@ const BaseMenu: React.FC<BaseMenuProps & PrivateSiderMenuProps> = (props) => {
       className={clsx(className, hashId, baseClassName, menuPropsClassName, {
         'ant-pro-sider-menu':
           mode !== 'horizontal' && props.menuRenderType !== 'header',
-        [`${baseClassName}-horizontal`]: mode === 'horizontal',
-        [`${baseClassName}--horizontal`]: mode === 'horizontal',
-        [`${baseClassName}-collapsed`]: props.collapsed,
-        [`${baseClassName}--collapsed`]: props.collapsed,
+        /**
+         * 修饰类（`--horizontal` / `--collapsed`）由 `ProLayoutNavMenu` 自身的
+         * 根 `<nav>` 统一加；这里不再重复挂双横线/单横线两套，避免：
+         * 1. DOM 上同一类名出现两次；
+         * 2. 旧的单横线变体（`-horizontal` / `-collapsed`）在 cssinjs 里没有匹配规则，
+         *    属于死类，徒增噪声。
+         */
       })}
       {...restMenuProps}
     />,

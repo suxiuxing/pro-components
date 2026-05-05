@@ -1,5 +1,6 @@
 import { Tooltip } from 'antd';
 import { clsx } from 'clsx';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- 保留 React 导入以满足部分构建链对 React in scope 的要求
 import React, { useEffect, useState } from 'react';
 import { isUrl } from '../../../utils';
 import type { PureSettings } from '../../defaultSettings';
@@ -250,11 +251,18 @@ function renderLeafRow(
   );
 }
 
+/**
+ * 将单个 `MenuDataItem` 转为 `NavMenuNode`。
+ *
+ * 返回类型故意不是 `NavMenuNode | NavMenuNode[]`：当前实现下永远只返回单个节点，
+ * 让调用方多一层 `.flat()` 是噪音。如未来要支持「一个 item 展开为多个 node」，
+ * 再放宽返回类型。
+ */
 function mapMenuItemToNavNode(
   ctx: BaseMenuTreeContext,
   item: MenuDataItem,
   depth: number,
-): NavMenuNode | NavMenuNode[] {
+): NavMenuNode {
   const {
     subMenuItemRender,
     baseClassName,
@@ -331,7 +339,7 @@ function mapMenuItemToNavNode(
         key: String(item.key! || item.path!),
         label: titleCell,
         children: childNodes,
-        className: clsx(`${baseClassName}-group`),
+        /** 基础类 `${c}-group` 由渲染层统一加，这里只负责数据 */
       };
     }
 
@@ -341,10 +349,12 @@ function mapMenuItemToNavNode(
       label: titleCell,
       onTitleClick: (e) => item.onTitleClick?.(e),
       children: childNodes,
-      className: clsx({
-        [`${baseClassName}-submenu`]: true,
-        [`${baseClassName}-submenu-has-icon`]: iconLevel && iconDom,
-      }),
+      /**
+       * 这里**不再**自挂 `${c}-submenu` 基础类，由渲染层（`ProLayoutNavMenu`）的
+       * `<li>` 统一加，避免主区/popup 两处都要管的同名 className 重复挂载。
+       * `hasIcon` 通过强类型字段透出，渲染层无需再做字符串嗅探。
+       */
+      hasIcon: !!(iconLevel && iconDom),
     };
   }
 
@@ -352,7 +362,6 @@ function mapMenuItemToNavNode(
     .onTitleClick;
   return {
     kind: 'item' as const,
-    className: `${baseClassName}-menu-item`,
     disabled: item.disabled,
     key: String(item.key! || item.path!),
     onClick: onTitle ? () => onTitle() : undefined,
@@ -368,8 +377,7 @@ function mapMenuDataToNavNodes(
 ): NavMenuNode[] {
   return items
     .map((item) => mapMenuItemToNavNode(ctx, item, depth))
-    .filter(Boolean)
-    .flat(1) as NavMenuNode[];
+    .filter(Boolean) as NavMenuNode[];
 }
 
 export { mapMenuDataToNavNodes };
