@@ -74,7 +74,7 @@ const navVar = {
   groupGap: '--pro-layout-nav-group-gap',
   groupTitleFontSize: '--pro-layout-nav-group-title-font-size',
   groupTitleLineHeight: '--pro-layout-nav-group-title-line-height',
-  /** 图标容器尺寸，默认 24px（svg 自身按 18px 渲染） */
+  /** 图标容器尺寸，默认 18px（svg 自身按 18px 渲染，容器与 svg 等宽） */
   iconBox: '--pro-layout-nav-icon-box-size',
   iconSvgSize: '--pro-layout-nav-icon-svg-size',
   /** submenu 右侧指示器（chevron）尺寸，默认 12px */
@@ -120,7 +120,7 @@ function layoutNavCssVars(surface: 'sider' | 'header'): Record<string, string> {
       [navVar.groupGap]: '12px',
       [navVar.groupTitleFontSize]: 'calc(var(--ant-font-size, 14px) - 1px)',
       [navVar.groupTitleLineHeight]: '20px',
-      [navVar.iconBox]: '24px',
+      [navVar.iconBox]: '18px',
       [navVar.iconSvgSize]: '18px',
       [navVar.arrowSize]: '12px',
       [navVar.collapsedItemSize]: '28px',
@@ -159,7 +159,7 @@ function layoutNavCssVars(surface: 'sider' | 'header'): Record<string, string> {
     [navVar.groupGap]: '12px',
     [navVar.groupTitleFontSize]: 'var(--ant-font-size-sm)',
     [navVar.groupTitleLineHeight]: '20px',
-    [navVar.iconBox]: '24px',
+    [navVar.iconBox]: '18px',
     [navVar.iconSvgSize]: '18px',
     [navVar.arrowSize]: '12px',
     [navVar.collapsedItemSize]: '28px',
@@ -472,7 +472,7 @@ const genProLayoutBaseMenuStyle: GenerateStyle<ProLayoutBaseMenuToken> = (
          * - group-title（13px）下，svg 用 `1em` 自然跟随，视觉上与标题等高
          *
          * 因此：
-         * 1. 容器自身宽高用 `1em`（跟随父级 fontSize），不再写死 24px；
+         * 1. 容器自身宽高用 `1em`（跟随父级 fontSize），不再写死像素值；
          * 2. fontSize 设为 `inherit`（默认就是 inherit，显式写一遍提示语义）；
          * 3. svg/anticon 用 `1em`，让字号链路自然传导。
          *
