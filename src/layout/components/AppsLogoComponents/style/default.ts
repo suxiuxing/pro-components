@@ -10,7 +10,6 @@ const genAppsLogoComponentsDefaultListStyle: GenerateStyle<
       overflow: 'auto',
       '&-list': {
         boxSizing: 'content-box',
-        maxWidth: 656,
         marginBlock: 0,
         marginInline: 0,
         paddingBlock: 0,

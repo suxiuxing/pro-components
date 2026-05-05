@@ -10,7 +10,16 @@ const genAppsLogoComponentsSimpleListStyle: GenerateStyle<
       overflow: 'auto',
       '&-list': {
         boxSizing: 'border-box',
-        maxWidth: 376,
+        /**
+         * 固定为"两列网格"：一个 item 实际占位 = width(104) + marginInline(8)×2 = 120px，
+         * 两列就是 240px。使用 `width` 而非 `maxWidth` 才能强制换行，避免
+         * inline-block 子项把 popover 面板撑成一长排（用户反馈一排显示的根因）。
+         * - 2 项 → 1 排 2 列
+         * - 4 项 → 2 排 2 列（默认就是两排，符合业务常见预期）
+         * - 8 项 → 4 排 2 列
+         * 业务若需要 3/4 列，可在外层覆盖 `${cls}-simple-content-list` 的 width。
+         */
+        width: 240,
         marginBlock: 0,
         marginInline: 0,
         paddingBlock: 0,
